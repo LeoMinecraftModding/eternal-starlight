@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class TangledHusk extends LivingEntity {
+public class TangledHusk extends LivingEntity implements TraceableEntity {
 	private static final String TAG_OWNER = "owner";
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
 
@@ -48,6 +48,7 @@ public class TangledHusk extends LivingEntity {
 	@Nullable
 	private UUID ownerId;
 
+	@Override
 	public LivingEntity getOwner() {
 		return owner;
 	}

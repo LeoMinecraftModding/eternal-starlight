@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.sounds.SoundEvents;
@@ -26,9 +27,10 @@ public class FrozenTubeItem extends Item implements ProjectileItem {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 		level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 		if (!level.isClientSide) {
-			FrozenTube tube = new FrozenTube(level, player, null);
+			FrozenTube tube = new FrozenTube(level, player);
 			tube.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
 			tube.setPos(tube.position().offsetRandom(player.getRandom(), 0.2f)); // so we can see the trail
+			tube.playSound(ESSoundEvents.FROZEN_TUBE_THROW.get());
 			level.addFreshEntity(tube);
 		}
 

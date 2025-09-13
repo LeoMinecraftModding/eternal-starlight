@@ -463,6 +463,29 @@ public class ClientSetupHandlers {
 
 		ItemProperties.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
+		ItemProperties.register(ESItems.STARFIRE_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
+			if (entity == null) {
+				return 0.0F;
+			} else {
+				return CrossbowItem.isCharged(stack) ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / (float) CrossbowItem.getChargeDuration(stack, entity);
+			}
+		});
+		ItemProperties.register(ESItems.STARFIRE_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+		ItemProperties.register(ESItems.STARFIRE_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("charged"), (stack, level, entity, i) -> CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+		ItemProperties.register(ESItems.STARFIRE_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("firework"), (stack, level, entity, i) -> {
+			ChargedProjectiles chargedProjectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
+			return chargedProjectiles != null && chargedProjectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
+		});
+
+		ItemProperties.register(ESItems.FLOWGLAZE_BOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
+			if (entity == null) {
+				return 0.0F;
+			} else {
+				return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
+			}
+		});
+		ItemProperties.register(ESItems.FLOWGLAZE_BOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
 		ItemProperties.register(ESItems.FLOWGLAZE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
@@ -799,6 +822,8 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.FREEZE.get(), FreezeRenderer::new);
 		strategy.register(ESEntities.FROZEN_TUBE.get(), FrozenTubeRenderer::new);
 		strategy.register(ESEntities.PERMAFROST.get(), PermafrostRenderer::new);
+		strategy.register(ESEntities.PERMAFROST_SPIT.get(), PermafrostSpitRenderer::new);
+		strategy.register(ESEntities.PERMAFROST_CLOUD.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
 		strategy.register(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
@@ -904,6 +929,8 @@ public class ClientSetupHandlers {
 		strategy.register(StarlightGolemModel.LAYER_LOCATION, StarlightGolemModel::createBodyLayer);
 		strategy.register(FreezeModel.LAYER_LOCATION, FreezeModel::createBodyLayer);
 		strategy.register(PermafrostModel.LAYER_LOCATION, PermafrostModel::createBodyLayer);
+		strategy.register(PermafrostSpitModel.LAYER_LOCATION, PermafrostSpitModel::createBodyLayer);
+		strategy.register(PermafrostSpitModel.SMALL_LAYER_LOCATION, PermafrostSpitModel::createSmallLayer);
 		strategy.register(FrozenTubeModel.LAYER_LOCATION, FrozenTubeModel::createBodyLayer);
 		strategy.register(LunarMonstrosityModel.LAYER_LOCATION, LunarMonstrosityModel::createBodyLayer);
 		strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);

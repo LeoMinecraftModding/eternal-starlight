@@ -5,9 +5,12 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -46,7 +49,8 @@ public class Permafrost extends ESBoss {
 		new PermafrostMeleePhase(),
 		new PermafrostMeleeTransitionPhase(),
 		new PermafrostMeleeEndPhase(),
-		new PermafrostRangedPhase()
+		new PermafrostRangedPhase(),
+		new PermafrostSneezePhase()
 	));
 
 	public AnimationState idleAnimationState = new AnimationState();
@@ -54,6 +58,8 @@ public class Permafrost extends ESBoss {
 	public AnimationState meleeTransitionAnimationState = new AnimationState();
 	public AnimationState meleeEndAnimationState = new AnimationState();
 	public AnimationState rangedAnimationState = new AnimationState();
+	public AnimationState sneezeAnimationState = new AnimationState();
+	public Vec3 smokePos = Vec3.ZERO;
 
 	@Override
 	protected PathNavigation createNavigation(Level level) {
@@ -147,6 +153,7 @@ public class Permafrost extends ESBoss {
 		meleeTransitionAnimationState.stop();
 		meleeEndAnimationState.stop();
 		rangedAnimationState.stop();
+		sneezeAnimationState.stop();
 	}
 
 	@Override
@@ -158,6 +165,7 @@ public class Permafrost extends ESBoss {
 				case PermafrostMeleeTransitionPhase.ID -> meleeTransitionAnimationState.start(tickCount);
 				case PermafrostMeleeEndPhase.ID -> meleeEndAnimationState.start(tickCount);
 				case PermafrostRangedPhase.ID -> rangedAnimationState.start(tickCount);
+				case PermafrostSneezePhase.ID -> sneezeAnimationState.start(tickCount);
 			}
 		}
 		super.onSyncedDataUpdated(accessor);
@@ -196,6 +204,12 @@ public class Permafrost extends ESBoss {
 				}
 			}
 		} else {
+			if (!onGround() && smokePos.distanceTo(position()) < getBbHeight()) {
+				Vec3 pos = smokePos.subtract(0, 13d / 16d, 0);
+				for (int i = 0; i < 5; i++) {
+					level().addParticle(ParticleTypes.WHITE_SMOKE, pos.x + (getBbWidth() / 2f) * (getRandom().nextFloat() - 0.5f), pos.y, pos.z + (getBbWidth() / 2f) * (getRandom().nextFloat() - 0.5f), 0, -0.15, 0);
+				}
+			}
 			idleAnimationState.startIfStopped(tickCount);
 		}
 	}
@@ -207,6 +221,16 @@ public class Permafrost extends ESBoss {
 			entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 150, 300));
 		}
 		return success;
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return ESSoundEvents.PERMAFROST_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ESSoundEvents.PERMAFROST_DEATH.get();
 	}
 
 	@Override

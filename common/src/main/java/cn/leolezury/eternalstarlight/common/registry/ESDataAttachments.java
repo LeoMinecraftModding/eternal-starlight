@@ -37,6 +37,7 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Integer> TEARY_TICKS = register(ESPlatform.INSTANCE.registerDataAttachment("teary_ticks", () -> 0, Codec.INT, null, false));
 	public static final EntityDataAttachment<Integer> IN_ABYSSAL_FIRE_TICKS = register(ESPlatform.INSTANCE.registerDataAttachment("in_abyssal_fire_ticks", () -> 0, Codec.INT, ByteBufCodecs.INT, false));
 	public static final EntityDataAttachment<String> ARROW_TYPE = register(ESPlatform.INSTANCE.registerDataAttachment("arrow_type", () -> "", Codec.STRING, null, false));
+	public static final EntityDataAttachment<Float> FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE = register(ESPlatform.INSTANCE.registerDataAttachment("flowglaze_arrow_extra_base_damage", () -> 0f, Codec.FLOAT, null, false));
 	public static final EntityDataAttachment<Integer> METEOR_COOLDOWN = register(ESPlatform.INSTANCE.registerDataAttachment("meteor_cooldown", () -> 0, Codec.INT, null, false));
 	public static final EntityDataAttachment<List<Crest.Instance>> OLD_ACTIVE_CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("old_active_crests", List::of, Crest.Instance.LIST_CODEC, null, true));
 	public static final EntityDataAttachment<List<Crest.Instance>> CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("crests", List::of, Crest.Instance.LIST_CODEC, null, true));

@@ -17,16 +17,18 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class RayAttack extends Entity {
+public class RayAttack extends Entity implements TraceableEntity {
 	protected static final EntityDataAccessor<Integer> CASTER = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.INT);
 
 	public Optional<Entity> getCaster() {
@@ -260,5 +262,10 @@ public class RayAttack extends Entity {
 
 	public Vec3 getPositionForCaster(Entity caster, Vec3 casterPos) {
 		return casterPos;
+	}
+
+	@Override
+	public @Nullable Entity getOwner() {
+		return getCaster().orElse(null);
 	}
 }

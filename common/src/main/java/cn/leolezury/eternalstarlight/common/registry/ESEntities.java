@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.attack.CrystalCluster;
-import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
-import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
-import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
+import cn.leolezury.eternalstarlight.common.entity.attack.*;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.GolemLaserBeam;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.LunarMonstrosityBreath;
 import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
@@ -343,10 +340,25 @@ public class ESEntities {
 			.fireImmune()
 			.build(EternalStarlight.id("permafrost").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<PermafrostSpit>> PERMAFROST_SPIT = ENTITIES.register(
+		"permafrost_spit",
+		() -> EntityType.Builder.<PermafrostSpit>of(PermafrostSpit::new, MobCategory.MISC)
+			.sized(0.3f, 0.3f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("permafrost_spit").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<PermafrostCloud>> PERMAFROST_CLOUD = ENTITIES.register(
+		"permafrost_cloud",
+		() -> EntityType.Builder.of(PermafrostCloud::new, MobCategory.MISC)
+			.sized(3.5f, 0.3f)
+			.clientTrackingRange(10)
+			.build(EternalStarlight.id("permafrost_cloud").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<LunarMonstrosity>> LUNAR_MONSTROSITY = ENTITIES.register(
 		"lunar_monstrosity",
 		() -> EntityType.Builder.of(LunarMonstrosity::new, MobCategory.MONSTER)
-			.sized(0.9f, 3f)
+			.sized(0.9f, 3.5f)
 			.build(EternalStarlight.id("lunar_monstrosity").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<LunarMonstrosityBreath>> LUNAR_MONSTROSITY_BREATH = ENTITIES.register(

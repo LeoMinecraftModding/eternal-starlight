@@ -707,6 +707,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		largeHandheld(ESItems.STARFIRE_SCYTHE.get());
 		inventoryHandheld(ESItems.STARFIRE_SCYTHE.get());
 		inventoryHandheld(ESItems.STARFIRE_HAMMER.get());
+		crossbow(ESItems.STARFIRE_CROSSBOW.get());
 
 		block(ESItems.RAW_FLOWGLAZE.get());
 		block(ESItems.FLOWGLAZE.get());
@@ -723,6 +724,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.FLOWGLAZE_SHOVEL.get());
 		largeHandheld(ESItems.FLOWGLAZE_SCYTHE.get());
 		inventoryHandheld(ESItems.FLOWGLAZE_SCYTHE.get());
+		bow(ESItems.FLOWGLAZE_BOW.get());
 
 		block(ESItems.GRIMSTONE_SALTPETER_ORE.get());
 		block(ESItems.VOIDSTONE_SALTPETER_ORE.get());
@@ -879,6 +881,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.GOLEM_STEEL_INGOT.get());
 		basicItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
+		basicItem(ESItems.GOLEM_STEEL_NUGGET.get());
+		basicItem(ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get());
 		handheld(ESItems.ENERGY_SWORD.get());
 		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
 		crossbow(ESItems.MECHANICAL_CROSSBOW.get());

@@ -834,6 +834,7 @@ public class ESItems {
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.STARFIRE, false, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.STARFIRE, 4, -2.7F, 0.5F, 0.25F))));
 	public static final RegistryObject<Item, Item> STARFIRE_HAMMER = registerItem("starfire_hammer",
 		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.STARFIRE, ESParticles.STARFIRE_EXPLOSION::get, ESSoundEvents.STARFIRE_WHOOSH.asHolder(), new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.STARFIRE, 7, -3F))));
+	public static final RegistryObject<Item, Item> STARFIRE_CROSSBOW = registerItem("starfire_crossbow", () -> new CrossbowItem(new Item.Properties().durability(875)));
 
 	public static final RegistryObject<Item, Item> RAW_FLOWGLAZE = registerItem("raw_flowglaze", () -> new BlockItem(ESBlocks.RAW_FLOWGLAZE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> FLOWGLAZE = registerItem("flowglaze", () -> new BlockItem(ESBlocks.FLOWGLAZE.get(), new Item.Properties()));
@@ -869,6 +870,7 @@ public class ESItems {
 		() -> new ShovelItem(ESItemTiers.FLOWGLAZE, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.FLOWGLAZE, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> FLOWGLAZE_SCYTHE = registerItem("flowglaze_scythe",
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.FLOWGLAZE, false, new Item.Properties().attributes(ScytheItem.createAttributes(ESItemTiers.FLOWGLAZE, 4, -2.7F, 0.5F, 0.3F))));
+	public static final RegistryObject<Item, Item> FLOWGLAZE_BOW = registerItem("flowglaze_bow", () -> new BowItem(new Item.Properties().durability(875)));
 	public static final RegistryObject<Item, Item> FLOWGLAZE_SHIELD = registerItem("flowglaze_shield",
 		() -> new ShieldItem(new Item.Properties().durability(1000)));
 
@@ -1044,6 +1046,8 @@ public class ESItems {
 	// starlight golem
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> GOLEM_STEEL_NUGGET = registerItem("golem_steel_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_NUGGET = registerItem("oxidized_golem_steel_nugget", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> ENERGY_SWORD = registerItem("energy_sword", () -> new EnergySwordItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.SWAMP_SILVER, 4, -2.4F))));
 	public static final RegistryObject<Item, Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));

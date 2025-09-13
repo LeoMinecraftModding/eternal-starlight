@@ -16,12 +16,13 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class LunarThorn extends Entity {
+public class LunarThorn extends Entity implements TraceableEntity {
 	private static final String TAG_ATTACK_MODE = "attack_mode";
 	private static final String TAG_OWNER = "owner";
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
@@ -31,6 +32,7 @@ public class LunarThorn extends Entity {
 	@Nullable
 	private UUID ownerId;
 
+	@Override
 	public LivingEntity getOwner() {
 		return owner;
 	}

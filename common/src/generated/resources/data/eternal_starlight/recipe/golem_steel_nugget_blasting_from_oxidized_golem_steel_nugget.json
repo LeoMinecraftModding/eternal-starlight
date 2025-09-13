@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 15,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "eternal_starlight:oxidized_golem_steel_nugget"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:golem_steel_nugget"
+  }
+}

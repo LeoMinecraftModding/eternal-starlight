@@ -56,6 +56,10 @@ public class ESSoundEvents {
 
 	public static final RegistryObject<SoundEvent, SoundEvent> LASER_BEAM_HUM = register("entity.laser_beam.hum");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> FROZEN_TUBE_THROW = register("entity.frozen_tube.throw");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> FROZEN_TUBE_BREAK = register("entity.frozen_tube.break");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> SONAR_BOMB_EXPLODE = register("entity.sonar_bomb.explode");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_WHOOSH = register("entity.starfire.whoosh");
@@ -120,6 +124,13 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_BLOCK = register("entity.starlight_golem.block");
 	public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_PREPARE_BEAM = register("entity.starlight_golem.prepare_beam");
 	public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_PREPARE_CHARGE = register("entity.starlight_golem.prepare_charge");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> FREEZE_HURT = register("entity.freeze.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> FREEZE_DEATH = register("entity.freeze.death");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> PERMAFROST_HURT = register("entity.permafrost.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> PERMAFROST_DEATH = register("entity.permafrost.death");
+	public static final RegistryObject<SoundEvent, SoundEvent> PERMAFROST_SNEEZE = register("entity.permafrost.sneeze");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> LUNAR_MONSTROSITY_HURT = register("entity.lunar_monstrosity.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> LUNAR_MONSTROSITY_DEATH = register("entity.lunar_monstrosity.death");

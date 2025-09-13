@@ -19,10 +19,14 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("permafrost"), "main");
 	private final ModelPart root;
 	private final ModelPart head;
+	public final ModelPart lower;
+	public final ModelPart armature;
 
 	public PermafrostModel(ModelPart root) {
 		this.root = root.getChild("root");
 		this.head = root.getChild("root").getChild("head");
+		this.lower = root.getChild("root").getChild("lower");
+		this.armature = root.getChild("root").getChild("lower").getChild("armature");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -129,6 +133,9 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 				}
 				case PermafrostRangedPhase.ID -> {
 					animate(entity.rangedAnimationState, PermafrostAnimation.RANGED, ageInTicks);
+				}
+				case PermafrostSneezePhase.ID -> {
+					animate(entity.sneezeAnimationState, PermafrostAnimation.RANGED_SNEEZE, ageInTicks);
 				}
 			}
 		}

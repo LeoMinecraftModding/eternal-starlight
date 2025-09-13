@@ -30,6 +30,50 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "attacking_player",
+              "predicate": {
+                "type_specific": {
+                  "type": "minecraft:player",
+                  "advancements": {
+                    "eternal_starlight:kill_golem": true
+                  }
+                }
+              }
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 6.0,
+                "min": 4.0
+              },
+              "function": "minecraft:set_count"
+            },
+            {
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 0.0
+              },
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase"
+            }
+          ],
+          "name": "eternal_starlight:oxidized_golem_steel_nugget"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "eternal_starlight:entities/freeze"

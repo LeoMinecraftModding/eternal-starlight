@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.FrozenTubeModel;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -30,15 +29,14 @@ public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
 	public void render(FrozenTube entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		poseStack.pushPose();
 		float yRot = -Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
-		float xRot = -Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90f;
+		float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) - 90f;
 		float bob = entity.tickCount + partialTicks;
 
-		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - yRot));
 		poseStack.scale(-1.0F, -1.0F, 1.0F);
-		poseStack.translate(0.0F, -1.5F, 0.0F);
+		poseStack.translate(0.0F, -1.5F - entity.getBbHeight() / 2, 0.0F);
 
 		this.model.prepareMobModel(entity, 0, 0, partialTicks);
-		this.model.setupAnim(entity, 0, 0, bob, 0, xRot);
+		this.model.setupAnim(entity, 0, 0, bob, yRot, xRot);
 		RenderType renderType = this.model.renderType(getTextureLocation(entity));
 		VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
 		this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);

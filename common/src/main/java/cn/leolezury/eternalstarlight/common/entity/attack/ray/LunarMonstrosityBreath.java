@@ -55,24 +55,27 @@ public class LunarMonstrosityBreath extends RayAttack {
 
 	@Override
 	public void addEndParticles(Vec3 endPos) {
+
 		Vec3 from = getCaster().isPresent() && getCaster().get() instanceof LunarMonstrosity monstrosity ? monstrosity.headPos : position();
-		Vec3 delta = endPos.subtract(from);
-		for (int i = 0; i < 10; i++) {
-			double dx = delta.x();
-			double dy = delta.y();
-			double dz = delta.z();
+		if (from.distanceTo(position()) < (getCaster().isPresent() && getCaster().get() instanceof LunarMonstrosity monstrosity ? monstrosity.getBbHeight() : 3)) {
+			Vec3 delta = endPos.subtract(from);
+			for (int i = 0; i < 10; i++) {
+				double dx = delta.x();
+				double dy = delta.y();
+				double dz = delta.z();
 
-			double spread = 5.0D + random.nextFloat() * 2.5D;
-			double velocity = 3.0D + random.nextFloat() * 0.15D;
+				double spread = 5.0D + random.nextFloat() * 2.5D;
+				double velocity = 3.0D + random.nextFloat() * 0.15D;
 
-			dx += random.nextGaussian() * 0.0075D * spread;
-			dy += random.nextGaussian() * 0.0075D * spread;
-			dz += random.nextGaussian() * 0.0075D * spread;
-			dx *= velocity;
-			dy *= velocity;
-			dz *= velocity;
-			endPos.add((random.nextFloat() - 0.5f) * 2.5f, (random.nextFloat() - 0.5f) * 2.5f, (random.nextFloat() - 0.5f) * 2.5f);
-			level().addParticle(ESSmokeParticleOptions.LUNAR_BREATH, from.x, from.y, from.z, dx, dy, dz);
+				dx += random.nextGaussian() * 0.0075D * spread;
+				dy += random.nextGaussian() * 0.0075D * spread;
+				dz += random.nextGaussian() * 0.0075D * spread;
+				dx *= velocity;
+				dy *= velocity;
+				dz *= velocity;
+				endPos.add((random.nextFloat() - 0.5f) * 2.5f, (random.nextFloat() - 0.5f) * 2.5f, (random.nextFloat() - 0.5f) * 2.5f);
+				level().addParticle(ESSmokeParticleOptions.LUNAR_BREATH, from.x, from.y, from.z, dx, dy, dz);
+			}
 		}
 	}
 }

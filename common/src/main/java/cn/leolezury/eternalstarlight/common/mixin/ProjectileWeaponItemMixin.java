@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
@@ -20,6 +21,16 @@ public abstract class ProjectileWeaponItemMixin {
 		if (itemStack.is(ESItems.STARFALL_LONGBOW.get())) {
 			Projectile projectile = cir.getReturnValue();
 			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.STARFALL_ARROW);
+		}
+		if (itemStack.is(ESItems.FLOWGLAZE_BOW.get())) {
+			Projectile projectile = cir.getReturnValue();
+			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.FLOWGLAZE_ARROW);
+		}
+		if (itemStack.is(ESItems.MOONRING_BOW.get())) {
+			Projectile projectile = cir.getReturnValue();
+			if (projectile instanceof AbstractArrow arrow) {
+				arrow.setBaseDamage(arrow.getBaseDamage() + 0.75);
+			}
 		}
 	}
 }

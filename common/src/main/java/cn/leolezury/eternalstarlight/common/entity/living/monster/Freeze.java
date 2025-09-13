@@ -3,14 +3,16 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -174,10 +176,10 @@ public class Freeze extends Monster implements RangedAttackMob {
 					Vec3 targetPos = livingEntity.position().add(0, livingEntity.getBbHeight() / 2f, 0);
 					Vec3 launchPos = position().add(0, getBbHeight() / 2f, 0);
 					Vec3 delta = targetPos.subtract(launchPos).normalize();
-					FrozenTube tube = new FrozenTube(level(), this, null);
+					FrozenTube tube = new FrozenTube(level(), this);
 					tube.shoot(delta.x, delta.y + delta.horizontalDistance() * 0.4, delta.z, 0.9f, 0.2f);
 					tube.setPos(launchPos);
-					tube.setOwner(this);
+					tube.playSound(ESSoundEvents.FROZEN_TUBE_THROW.get());
 					level().addFreshEntity(tube);
 				}
 				setAttackTicks(getAttackTicks() + 1);
@@ -191,11 +193,21 @@ public class Freeze extends Monster implements RangedAttackMob {
 			if (!onGround()) {
 				Vec3 pos = position().add(0, getBbHeight() / 20f * 12f, 0);
 				for (int i = 0; i < 5; i++) {
-					level().addParticle(ESParticles.STARLIGHT.get(), pos.x + (getBbWidth() / 2f) * (getRandom().nextFloat() - 0.5f), pos.y, pos.z + (getBbWidth() / 2f) * (getRandom().nextFloat() - 0.5f), 0, -0.15, 0);
+					level().addParticle(ParticleTypes.WHITE_SMOKE, pos.x + (getBbWidth() / 2f) * (getRandom().nextFloat() - 0.5f), pos.y, pos.z + (getBbWidth() / 2f) * (getRandom().nextFloat() - 0.5f), 0, -0.15, 0);
 				}
 			}
 			idleAnimationState.startIfStopped(tickCount);
 		}
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return ESSoundEvents.FREEZE_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ESSoundEvents.FREEZE_DEATH.get();
 	}
 
 	public static boolean checkFreezeSpawnRules(EntityType<? extends Freeze> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

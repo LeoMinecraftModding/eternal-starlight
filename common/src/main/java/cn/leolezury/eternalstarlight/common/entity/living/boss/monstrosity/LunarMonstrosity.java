@@ -390,7 +390,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 							level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockstate), d0, d1, d2, 0.0D, 0.0D, 0.0D);
 						}
 					}
-				} else if (getBehaviorState() == LunarMonstrosityStunPhase.ID) {
+				} else if (getBehaviorState() == LunarMonstrosityStunPhase.ID && headPos.distanceTo(position()) < getBbHeight() * 2) {
 					level().addParticle(ParticleTypes.CRIT, headPos.x + getRandom().nextDouble() - 0.5, headPos.y, headPos.z + getRandom().nextDouble() - 0.5, getRandom().nextDouble() / 10, 0.8, getRandom().nextDouble() / 10);
 				}
 			}

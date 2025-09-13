@@ -259,6 +259,30 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.ent.hurt"
   },
+  "entity.freeze.death": {
+    "sounds": [
+      "eternal_starlight:mob/freeze/death"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.freeze.death"
+  },
+  "entity.freeze.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/freeze/hurt"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.freeze.hurt"
+  },
+  "entity.frozen_tube.break": {
+    "sounds": [
+      "eternal_starlight:entity/frozen_tube/break"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.frozen_tube.break"
+  },
+  "entity.frozen_tube.throw": {
+    "sounds": [
+      "eternal_starlight:entity/frozen_tube/throw"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.frozen_tube.throw"
+  },
   "entity.laser_beam.hum": {
     "sounds": [
       "eternal_starlight:entity/laser_beam/hum"
@@ -385,6 +409,24 @@
       "eternal_starlight:mob/lunar_monstrosity/roar"
     ],
     "subtitle": "subtitles.entity.eternal_starlight.lunar_monstrosity.roar"
+  },
+  "entity.permafrost.death": {
+    "sounds": [
+      "eternal_starlight:mob/freeze/death"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.permafrost.death"
+  },
+  "entity.permafrost.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/freeze/hurt"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.permafrost.hurt"
+  },
+  "entity.permafrost.sneeze": {
+    "sounds": [
+      "eternal_starlight:mob/permafrost/sneeze"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.permafrost.sneeze"
   },
   "entity.seeking_eye.death": {
     "sounds": [

@@ -95,6 +95,8 @@ import java.util.Locale;
 import java.util.Optional;
 
 public class CommonHandlers {
+	public static final String STARFIRE_ARROW = EternalStarlight.ID + ":starfire";
+	public static final String FLOWGLAZE_ARROW = EternalStarlight.ID + ":flowglaze";
 	public static final String CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";
 	public static final String MECHANICAL_ARROW = EternalStarlight.ID + ":mechanical";
 	public static final String STARFALL_ARROW = EternalStarlight.ID + ":starfall";
@@ -166,6 +168,9 @@ public class CommonHandlers {
 		if (itemStack.is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_weapon").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_tool").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
+		}
+		if (itemStack.is(ESItems.FLOWGLAZE_BOW.get())) {
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_bow").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 		}
 		if (itemStack.is(ESItems.FLOWGLAZE_SHIELD.get())) {
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_shield").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
@@ -315,7 +320,7 @@ public class CommonHandlers {
 					ThrownStarfire.createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 6, 0.75);
 				}
 				for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3))) {
-					if (living != entity && living != source.getDirectEntity()) {
+					if (ESEntityUtil.shouldHarm(source.getEntity(), living)) {
 						living.hurt(ESDamageTypes.getIndirectEntityDamageSource(entity.level(), ESDamageTypes.STARFIRE, source.getDirectEntity(), source.getEntity()), amount / 3);
 					}
 				}
@@ -436,6 +441,13 @@ public class CommonHandlers {
 			}
 		}
 		if (!level.isClientSide && entity instanceof AbstractArrow arrow && !arrow.inGround) {
+			if (ESDataAttachments.ARROW_TYPE.getData(arrow).equals(FLOWGLAZE_ARROW)) {
+				float previousExtra = ESDataAttachments.FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE.getData(arrow);
+				if (previousExtra < 3) {
+					arrow.setBaseDamage(arrow.getBaseDamage() + 0.1);
+					ESDataAttachments.FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE.setData(arrow, previousExtra + 0.1f);
+				}
+			}
 			if (ESDataAttachments.ARROW_TYPE.getData(arrow).equals(WILTED_ARROW)) {
 				List<LivingEntity> affected = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(5));
 				affected.removeIf(e -> !ESEntityUtil.shouldHarm(arrow.getOwner(), e));
@@ -611,6 +623,14 @@ public class CommonHandlers {
 
 	public static void onProjectileImpact(Projectile projectile, HitResult result) {
 		if (projectile.level() instanceof ServerLevel serverLevel) {
+			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(STARFIRE_ARROW)) {
+				ThrownStarfire.createExplosionParticles(serverLevel, projectile.position(), 10, 0.25);
+				for (LivingEntity living : projectile.level().getEntitiesOfClass(LivingEntity.class, projectile.getBoundingBox().inflate(3))) {
+					if (ESEntityUtil.shouldHarm(projectile.getOwner(), living)) {
+						living.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), 200));
+					}
+				}
+			}
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(CRYSTAL_ARROW)) {
 				for (int i = 0; i < 5; i++) {
 					Vec3 pos = projectile.position().offsetRandom(projectile.getRandom(), 4);

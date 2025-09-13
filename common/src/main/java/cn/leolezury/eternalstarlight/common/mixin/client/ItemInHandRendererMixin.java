@@ -63,19 +63,19 @@ public abstract class ItemInHandRendererMixin {
 
 	@Inject(method = "evaluateWhichHandsToRender", at = @At(value = "RETURN"), cancellable = true)
 	private static void evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
-		ItemStack itemStack = player.getMainHandItem();
-		ItemStack itemStack1 = player.getOffhandItem();
-		boolean flag = itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack.is(ESItems.WILTED_CROSSBOW.get()) || itemStack.is(ESItems.MOONRING_BOW.get()) || itemStack.is(ESItems.STARFALL_LONGBOW.get()) || itemStack.is(ESItems.BOW_OF_BLOOD.get());
-		boolean flag1 = itemStack1.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack1.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack1.is(ESItems.WILTED_CROSSBOW.get()) || itemStack1.is(ESItems.MOONRING_BOW.get()) || itemStack1.is(ESItems.STARFALL_LONGBOW.get()) || itemStack1.is(ESItems.BOW_OF_BLOOD.get());
+		ItemStack mainhand = player.getMainHandItem();
+		ItemStack offhand = player.getOffhandItem();
+		boolean flag = mainhand.is(ESItems.STARFIRE_CROSSBOW.get()) || mainhand.is(ESItems.CRYSTAL_CROSSBOW.get()) || mainhand.is(ESItems.MECHANICAL_CROSSBOW.get()) || mainhand.is(ESItems.WILTED_CROSSBOW.get()) || mainhand.is(ESItems.STARFALL_LONGBOW.get()) || mainhand.is(ESItems.FLOWGLAZE_BOW.get()) || mainhand.is(ESItems.MOONRING_BOW.get()) || mainhand.is(ESItems.BOW_OF_BLOOD.get());
+		boolean flag1 = offhand.is(ESItems.STARFIRE_CROSSBOW.get()) || offhand.is(ESItems.CRYSTAL_CROSSBOW.get()) || offhand.is(ESItems.MECHANICAL_CROSSBOW.get()) || offhand.is(ESItems.WILTED_CROSSBOW.get()) || offhand.is(ESItems.STARFALL_LONGBOW.get()) || offhand.is(ESItems.FLOWGLAZE_BOW.get()) || offhand.is(ESItems.MOONRING_BOW.get()) || offhand.is(ESItems.BOW_OF_BLOOD.get());
 		if (flag || flag1) {
 			if (player.isUsingItem()) {
-				ItemStack itemStack2 = player.getUseItem();
+				ItemStack useItem = player.getUseItem();
 				InteractionHand interactionhand = player.getUsedItemHand();
-				if (itemStack2.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack2.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack2.is(ESItems.WILTED_CROSSBOW.get()) || itemStack2.is(ESItems.MOONRING_BOW.get()) || itemStack2.is(ESItems.STARFALL_LONGBOW.get()) || itemStack2.is(ESItems.BOW_OF_BLOOD.get())) {
+				if (useItem.is(ESItems.STARFIRE_CROSSBOW.get()) || useItem.is(ESItems.CRYSTAL_CROSSBOW.get()) || useItem.is(ESItems.MECHANICAL_CROSSBOW.get()) || useItem.is(ESItems.WILTED_CROSSBOW.get()) || useItem.is(ESItems.STARFALL_LONGBOW.get()) || useItem.is(ESItems.FLOWGLAZE_BOW.get()) || useItem.is(ESItems.MOONRING_BOW.get()) || useItem.is(ESItems.BOW_OF_BLOOD.get())) {
 					cir.setReturnValue(ItemInHandRenderer.HandRenderSelection.onlyForHand(interactionhand));
 				}
 			} else {
-				cir.setReturnValue(((itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack.is(ESItems.WILTED_CROSSBOW.get())) && CrossbowItem.isCharged(itemStack)) ? ItemInHandRenderer.HandRenderSelection.RENDER_MAIN_HAND_ONLY : ItemInHandRenderer.HandRenderSelection.RENDER_BOTH_HANDS);
+				cir.setReturnValue(((mainhand.is(ESItems.STARFIRE_CROSSBOW.get()) || mainhand.is(ESItems.CRYSTAL_CROSSBOW.get()) || mainhand.is(ESItems.MECHANICAL_CROSSBOW.get()) || mainhand.is(ESItems.WILTED_CROSSBOW.get())) && CrossbowItem.isCharged(mainhand)) ? ItemInHandRenderer.HandRenderSelection.RENDER_MAIN_HAND_ONLY : ItemInHandRenderer.HandRenderSelection.RENDER_BOTH_HANDS);
 			}
 		}
 	}

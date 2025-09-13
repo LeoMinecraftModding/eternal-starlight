@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,10 +46,10 @@ public class PermafrostRangedPhase extends BehaviorPhase<Permafrost> {
 					for (int i = 0; i <= 5; i++) {
 						Vec3 targetPos = i == 0 ? target.position().add(0, target.getBbHeight() / 2f, 0) : ESMathUtil.rotationToPosition(launchPos, 1, 15, 360f * i / 5f + entity.getRandom().nextInt(72));
 						Vec3 delta = targetPos.subtract(launchPos).normalize();
-						FrozenTube tube = new FrozenTube(level, entity, null);
+						FrozenTube tube = new FrozenTube(level, entity);
 						tube.shoot(delta.x, delta.y, delta.z, i == 0 ? 1.25f : 0.5f, i == 0 ? 0.1f : 0.3f);
 						tube.setPos(launchPos);
-						tube.setOwner(entity);
+						tube.playSound(ESSoundEvents.FROZEN_TUBE_THROW.get());
 						level.addFreshEntity(tube);
 					}
 				}

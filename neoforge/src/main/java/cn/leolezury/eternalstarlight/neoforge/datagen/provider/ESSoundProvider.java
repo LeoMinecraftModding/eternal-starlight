@@ -70,6 +70,9 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 
 		add(ESSoundEvents.LASER_BEAM_HUM.get(), definition().with(sound(loc("entity/laser_beam/hum"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".laser_beam.hum"));
 
+		add(ESSoundEvents.FROZEN_TUBE_THROW.get(), definition().with(sound(loc("entity/frozen_tube/throw"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".frozen_tube.throw"));
+		add(ESSoundEvents.FROZEN_TUBE_BREAK.get(), definition().with(sound(loc("entity/frozen_tube/break"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".frozen_tube.break"));
+
 		add(ESSoundEvents.SONAR_BOMB_EXPLODE.get(), definition().with(sound(loc("entity/sonar_bomb/explode"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".sonar_bomb.explode"));
 
 		add(ESSoundEvents.STARFIRE_WHOOSH.get(), definition().with(sound(loc("entity/starfire/whoosh"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starfire.whoosh"));
@@ -134,6 +137,13 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), definition().with(sound(mcLoc("random/anvil_land"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starlight_golem.block"));
 		add(ESSoundEvents.STARLIGHT_GOLEM_PREPARE_CHARGE.get(), definition().with(sound(mcLoc("mob/irongolem/repair"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starlight_golem.prepare_charge"));
 		add(ESSoundEvents.STARLIGHT_GOLEM_PREPARE_BEAM.get(), definition().with(sound(mcLoc("block/beacon/activate"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starlight_golem.prepare_beam"));
+
+		add(ESSoundEvents.FREEZE_HURT.get(), definition().with(sound(loc("mob/freeze/hurt"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".freeze.hurt"));
+		add(ESSoundEvents.FREEZE_DEATH.get(), definition().with(sound(loc("mob/freeze/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".freeze.death"));
+
+		add(ESSoundEvents.PERMAFROST_HURT.get(), definition().with(sound(loc("mob/freeze/hurt"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".permafrost.hurt"));
+		add(ESSoundEvents.PERMAFROST_DEATH.get(), definition().with(sound(loc("mob/freeze/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".permafrost.death"));
+		add(ESSoundEvents.PERMAFROST_SNEEZE.get(), definition().with(sound(loc("mob/permafrost/sneeze"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".permafrost.sneeze"));
 
 		add(ESSoundEvents.LUNAR_MONSTROSITY_HURT.get(), definition().with(sound(mcLoc("mob/irongolem/damage1")).pitch(1.5).volume(0.8), sound(mcLoc("mob/irongolem/damage1")).pitch(1.2).volume(0.8), sound(mcLoc("mob/irongolem/damage2")).pitch(1.5).volume(0.8), sound(mcLoc("mob/irongolem/damage2")).pitch(1.2).volume(0.8)).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.hurt"));
 		add(ESSoundEvents.LUNAR_MONSTROSITY_DEATH.get(), definition().with(sound(loc("mob/lunar_monstrosity/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".lunar_monstrosity.death"));

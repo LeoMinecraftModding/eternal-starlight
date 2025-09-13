@@ -79,6 +79,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private static final String TAG_FIGHT_TARGET = "flight_target";
 	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
+	private int noTargetTime;
 
 	public TheGatekeeper(EntityType<? extends TheGatekeeper> entityType, Level level) {
 		super(entityType, level);
@@ -520,8 +521,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 		refreshDimensions();
 		if (!level().isClientSide) {
-			if (isAlive() && tickCount % 5 == 0 && (getTarget() == null || !getTarget().isAlive())) {
-				abortFight();
+			if (isAlive() && (getTarget() == null || !getTarget().isAlive())) {
+				noTargetTime++;
+				if (getFightTarget().isEmpty() || noTargetTime > 200) {
+					abortFight();
+				}
 			}
 			if (restockCooldown > 0) {
 				restockCooldown--;

@@ -19,12 +19,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ItemInHandRendererMixin {
 	@WrapOperation(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))
 	private boolean isCrossbow(ItemStack instance, Item item, Operation<Boolean> original) {
-		return original.call(instance, item) || instance.is(ESItems.CRYSTAL_CROSSBOW.get()) || instance.is(ESItems.MECHANICAL_CROSSBOW.get()) || instance.is(ESItems.WILTED_CROSSBOW.get());
+		return original.call(instance, item) || instance.is(ESItems.STARFIRE_CROSSBOW.get()) || instance.is(ESItems.CRYSTAL_CROSSBOW.get()) || instance.is(ESItems.MECHANICAL_CROSSBOW.get()) || instance.is(ESItems.WILTED_CROSSBOW.get());
 	}
 
 	@Inject(method = "isChargedCrossbow", at = @At("RETURN"), cancellable = true)
 	private static void isChargedCrossbow(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
-		if ((itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack.is(ESItems.WILTED_CROSSBOW.get())) && CrossbowItem.isCharged(itemStack)) {
+		if ((itemStack.is(ESItems.STARFIRE_CROSSBOW.get()) || itemStack.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemStack.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemStack.is(ESItems.WILTED_CROSSBOW.get())) && CrossbowItem.isCharged(itemStack)) {
 			cir.setReturnValue(true);
 		}
 	}

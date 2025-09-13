@@ -81,9 +81,6 @@ public class EnergySpark extends ThrowableProjectile implements TrailOwner {
 	@Override
 	public void tick() {
 		super.tick();
-		if (isInWater()) {
-			setDeltaMovement(getDeltaMovement().scale(1 / 0.8));
-		}
 		if (!level().isClientSide) {
 			if (target == null && targetId != null && level() instanceof ServerLevel serverLevel) {
 				if (serverLevel.getEntity(targetId) instanceof LivingEntity livingEntity) {

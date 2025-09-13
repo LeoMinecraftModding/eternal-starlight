@@ -57,6 +57,8 @@ public class ESConventionalTags {
 		public static final TagKey<Item> STORAGE_BLOCKS_OXIDIZED_GOLEM_STEEL = storageBlock("oxidized_golem_steel");
 		public static final TagKey<Item> INGOTS_GOLEM_STEEL = ingot("golem_steel");
 		public static final TagKey<Item> INGOTS_OXIDIZED_GOLEM_STEEL = ingot("oxidized_golem_steel");
+		public static final TagKey<Item> NUGGETS_GOLEM_STEEL = nugget("golem_steel");
+		public static final TagKey<Item> NUGGETS_OXIDIZED_GOLEM_STEEL = nugget("oxidized_golem_steel");
 
 		public static final TagKey<Item> ORES_IN_GROUND_GRIMSTONE = oresInGround("grimstone");
 		public static final TagKey<Item> ORES_IN_GROUND_VOIDSTONE = oresInGround("voidstone");

@@ -19,6 +19,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class CrossbowItemMixin {
 	@Inject(method = "createProjectile", at = @At("RETURN"))
 	private void createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl, CallbackInfoReturnable<Projectile> cir) {
+		if (itemStack.is(ESItems.STARFIRE_CROSSBOW.get())) {
+			Projectile projectile = cir.getReturnValue();
+			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.STARFIRE_ARROW);
+			if (projectile instanceof AbstractArrow arrow) {
+				arrow.setBaseDamage(arrow.getBaseDamage() + 0.25);
+			}
+		}
 		if (itemStack.is(ESItems.CRYSTAL_CROSSBOW.get())) {
 			Projectile projectile = cir.getReturnValue();
 			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.CRYSTAL_ARROW);

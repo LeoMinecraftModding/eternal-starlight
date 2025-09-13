@@ -8,6 +8,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -32,11 +33,22 @@ public class LunarSporeRenderer extends EntityRenderer<LunarSpore> {
 
 	@Override
 	public void render(LunarSpore entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
-		VertexConsumer vertexconsumer = bufferSource.getBuffer(this.model.renderType(ENTITY_TEXTURE));
-		float yRot = Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
-		float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot());
-		this.model.setupAnim(yRot, xRot);
-		this.model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
+		poseStack.pushPose();
+		float yRot = -Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
+		float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) + 90f;
+		float bob = entity.tickCount + partialTicks;
+
+		poseStack.scale(-1.0F, -1.0F, 1.0F);
+		poseStack.translate(0.0F, -1.5F - entity.getBbHeight() / 2, 0.0F);
+
+		this.model.prepareMobModel(entity, 0, 0, partialTicks);
+		this.model.setupAnim(entity, 0, 0, bob, yRot, xRot);
+		RenderType renderType = this.model.renderType(getTextureLocation(entity));
+		VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
+		this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+
+		poseStack.popPose();
+
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
 	}
 

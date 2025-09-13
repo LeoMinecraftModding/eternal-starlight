@@ -18,7 +18,7 @@ public abstract class AbstractArrowMixin {
 
 	@Inject(method = "shotFromCrossbow", at = @At(value = "RETURN"), cancellable = true)
 	public void shotFromCrossbow(CallbackInfoReturnable<Boolean> cir) {
-		if (this.firedFromWeapon != null && (this.firedFromWeapon.is(ESItems.CRYSTAL_CROSSBOW.get()) || this.firedFromWeapon.is(ESItems.MECHANICAL_CROSSBOW.get()) || this.firedFromWeapon.is(ESItems.WILTED_CROSSBOW.get()))) {
+		if (this.firedFromWeapon != null && (this.firedFromWeapon.is(ESItems.STARFIRE_CROSSBOW.get()) || this.firedFromWeapon.is(ESItems.CRYSTAL_CROSSBOW.get()) || this.firedFromWeapon.is(ESItems.MECHANICAL_CROSSBOW.get()) || this.firedFromWeapon.is(ESItems.WILTED_CROSSBOW.get()))) {
 			cir.setReturnValue(true);
 		}
 	}

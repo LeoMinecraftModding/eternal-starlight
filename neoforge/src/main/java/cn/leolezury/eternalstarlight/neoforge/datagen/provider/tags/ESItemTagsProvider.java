@@ -174,14 +174,16 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE,
 				ESConventionalTags.Items.INGOTS_SWAMP_SILVER,
 				ESConventionalTags.Items.INGOTS_AMARAMBER,
-				ESConventionalTags.Items.INGOTS_OXIDIZED_GOLEM_STEEL,
-				ESConventionalTags.Items.INGOTS_GOLEM_STEEL
+				ESConventionalTags.Items.INGOTS_GOLEM_STEEL,
+				ESConventionalTags.Items.INGOTS_OXIDIZED_GOLEM_STEEL
 			);
 		tag(Tags.Items.NUGGETS)
 			.addTags(
 				ESConventionalTags.Items.NUGGETS_AETHERSENT,
 				ESConventionalTags.Items.NUGGETS_SWAMP_SILVER,
-				ESConventionalTags.Items.NUGGETS_AMARAMBER
+				ESConventionalTags.Items.NUGGETS_AMARAMBER,
+				ESConventionalTags.Items.NUGGETS_GOLEM_STEEL,
+				ESConventionalTags.Items.NUGGETS_OXIDIZED_GOLEM_STEEL
 			);
 		tag(Tags.Items.RAW_MATERIALS)
 			.addTags(
@@ -200,10 +202,13 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.TOOLS_BOW)
 			.add(
 				ESItems.STARFALL_LONGBOW.get(),
+				ESItems.FLOWGLAZE_BOW.get(),
+				ESItems.MOONRING_BOW.get(),
 				ESItems.BOW_OF_BLOOD.get()
 			);
 		tag(Tags.Items.TOOLS_CROSSBOW)
 			.add(
+				ESItems.STARFIRE_CROSSBOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get()
@@ -258,6 +263,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 				ESItems.SEEDS_LAUNCHER.get(),
+				ESItems.STARFIRE_CROSSBOW.get(),
+				ESItems.FLOWGLAZE_BOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get(),
@@ -375,6 +382,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESConventionalTags.Items.INGOTS_OXIDIZED_GOLEM_STEEL)
 			.add(
 				ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()
+			);
+		tag(ESConventionalTags.Items.NUGGETS_GOLEM_STEEL)
+			.add(
+				ESItems.GOLEM_STEEL_NUGGET.get()
+			);
+		tag(ESConventionalTags.Items.NUGGETS_OXIDIZED_GOLEM_STEEL)
+			.add(
+				ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get()
 			);
 		// mod tags
 		copy(ESTags.Blocks.LUNAR_LOGS, ESTags.Items.LUNAR_LOGS);
@@ -886,6 +901,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 				ESItems.SEEDS_LAUNCHER.get(),
+				ESItems.STARFIRE_CROSSBOW.get(),
+				ESItems.FLOWGLAZE_BOW.get(),
 				ESItems.FLOWGLAZE_SHIELD.get(),
 				ESItems.SALTPETER_MATCHBOX.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
@@ -903,11 +920,13 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.BOW_ENCHANTABLE)
 			.add(
 				ESItems.STARFALL_LONGBOW.get(),
+				ESItems.FLOWGLAZE_BOW.get(),
 				ESItems.MOONRING_BOW.get(),
 				ESItems.BOW_OF_BLOOD.get()
 			);
 		tag(ItemTags.CROSSBOW_ENCHANTABLE)
 			.add(
+				ESItems.STARFIRE_CROSSBOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get()

@@ -12,13 +12,14 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class EnergizedFlame extends Entity {
+public class EnergizedFlame extends Entity implements TraceableEntity {
 	private static final String TAG_OWNER = "owner";
 
 	@Nullable
@@ -26,6 +27,7 @@ public class EnergizedFlame extends Entity {
 	@Nullable
 	private UUID ownerId;
 
+	@Override
 	public LivingEntity getOwner() {
 		return owner;
 	}

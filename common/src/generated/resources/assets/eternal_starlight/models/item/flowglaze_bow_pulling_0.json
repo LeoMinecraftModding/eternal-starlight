@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/bow",
+  "textures": {
+    "layer0": "eternal_starlight:item/flowglaze_bow_pulling_0"
+  }
+}

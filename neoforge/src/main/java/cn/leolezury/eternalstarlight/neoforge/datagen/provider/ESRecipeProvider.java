@@ -123,6 +123,8 @@ public class ESRecipeProvider extends RecipeProvider {
 		addBlast(recipeOutput, 150, ESItems.HAZE_ICE_REDSTONE_ORE.get(), Items.REDSTONE, ESItems.HAZE_ICE_REDSTONE_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), ESItems.GOLEM_STEEL_INGOT.get(), ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
 		addBlast(recipeOutput, 100, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), ESItems.GOLEM_STEEL_INGOT.get(), ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
+		addSmelt(recipeOutput, 30, ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get(), ESItems.GOLEM_STEEL_NUGGET.get(), ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get());
+		addBlast(recipeOutput, 15, ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get(), ESItems.GOLEM_STEEL_NUGGET.get(), ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get());
 
 		// magic
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.ORB_OF_PROPHECY.get())
@@ -1140,6 +1142,8 @@ public class ESRecipeProvider extends RecipeProvider {
 
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.GOLEM_STEEL_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.GOLEM_STEEL_BLOCK.get(), "golem_steel_ingot_from_golem_steel_block", "golem_steel_ingot");
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get(), "oxidized_golem_steel_ingot_from_oxidized_golem_steel_block", "oxidized_golem_steel_ingot");
+		nineBlockStorageCustomPacking(recipeOutput, RecipeCategory.MISC, ESItems.GOLEM_STEEL_NUGGET.get(), RecipeCategory.MISC, ESItems.GOLEM_STEEL_INGOT.get(), "golem_steel_ingot_from_nuggets", "golem_steel_ingot");
+		nineBlockStorageCustomPacking(recipeOutput, RecipeCategory.MISC, ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get(), RecipeCategory.MISC, ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(), "oxidized_golem_steel_ingot_from_nuggets", "oxidized_golem_steel_ingot");
 		addStoneCompress(recipeOutput, ESBlocks.GOLEM_STEEL_TILES.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
 		chiseled(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.GOLEM_STEEL_SLAB.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.GOLEM_STEEL_BLOCK.get());
@@ -1502,6 +1506,16 @@ public class ESRecipeProvider extends RecipeProvider {
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SHOVEL.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), RecipeCategory.COMBAT, ESItems.STARFIRE_SCYTHE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), RecipeCategory.COMBAT, ESItems.STARFIRE_HAMMER.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.STARFIRE_CROSSBOW.get())
+			.pattern("#&#")
+			.pattern("~$~")
+			.pattern(" # ")
+			.define('~', Items.STRING)
+			.define('#', Tags.Items.RODS_WOODEN)
+			.define('&', ESItems.STARFIRE.get())
+			.define('$', Items.TRIPWIRE_HOOK)
+			.unlockedBy("has_item", has(ESItems.STARFIRE.get()))
+			.save(recipeOutput);
 
 		addSmelt(recipeOutput, 200, ESItems.RAW_FLOWGLAZE.get(), ESItems.FLOWGLAZE.get(), ESItems.RAW_FLOWGLAZE.get());
 		addBlast(recipeOutput, 100, ESItems.RAW_FLOWGLAZE.get(), ESItems.FLOWGLAZE.get(), ESItems.RAW_FLOWGLAZE.get());
@@ -1519,6 +1533,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SHOVEL.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SCYTHE.get(), RecipeCategory.COMBAT, ESItems.FLOWGLAZE_SCYTHE.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SHIELD.get(), RecipeCategory.COMBAT, ESItems.FLOWGLAZE_SHIELD.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FLOWGLAZE_BOW.get())
+			.pattern(" FS")
+			.pattern("F S")
+			.pattern(" FS")
+			.define('S', Items.STRING)
+			.define('F', ESItems.FLOWGLAZE.get())
+			.unlockedBy("has_item", has(ESItems.FLOWGLAZE.get()))
+			.save(recipeOutput);
 	}
 
 	protected final void addStarfireBirdAviary(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
