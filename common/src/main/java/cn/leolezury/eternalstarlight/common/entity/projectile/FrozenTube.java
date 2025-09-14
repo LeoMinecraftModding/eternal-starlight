@@ -97,7 +97,7 @@ public class FrozenTube extends ThrowableProjectile implements TrailOwner {
 
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
-		if (hitResult.getType() != HitResult.Type.MISS && getOwner() instanceof LivingEntity owner) {
+		if (hitResult.getType() != HitResult.Type.MISS && getOwner() instanceof LivingEntity owner && ESEntityUtil.shouldHarm(owner, hitResult.getEntity())) {
 			hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, owner), (float) switch (getOwner()) {
 				case Player ignored -> 6;
 				case Freeze ignored -> ESConfig.INSTANCE.mobsConfig.freeze.attackDamage();

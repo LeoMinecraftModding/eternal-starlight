@@ -421,9 +421,9 @@ public class ESEntities {
 			.updateInterval(2)
 			.build(EternalStarlight.id("tangled_husk").toString())
 	);
-	public static final RegistryObject<EntityType<?>, EntityType<ShatteredBlade>> SHATTERED_BLADE = ENTITIES.register(
+	public static final RegistryObject<EntityType<?>, EntityType<ThrownShatteredBlade>> SHATTERED_BLADE = ENTITIES.register(
 		"shattered_blade",
-		() -> EntityType.Builder.<ShatteredBlade>of(ShatteredBlade::new, MobCategory.MISC)
+		() -> EntityType.Builder.<ThrownShatteredBlade>of(ThrownShatteredBlade::new, MobCategory.MISC)
 			.sized(0.3f, 0.3f)
 			.clientTrackingRange(6)
 			.updateInterval(1)

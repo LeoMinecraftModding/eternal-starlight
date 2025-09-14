@@ -2,11 +2,14 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LonestarSkeletonShootBladeGoal;
+import cn.leolezury.eternalstarlight.common.item.combat.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
@@ -70,6 +73,14 @@ public class LonestarSkeleton extends Skeleton {
 	protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficultyInstance) {
 		super.populateDefaultEquipmentSlots(randomSource, difficultyInstance);
 		this.setItemSlot(EquipmentSlot.MAINHAND, ESItems.SHATTERED_SWORD.get().getDefaultInstance());
+	}
+
+	@Override
+	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
+		if (getMainHandItem().is(ESItems.SHATTERED_SWORD.get())) {
+			ShatteredSwordItem.setHasBlade(getMainHandItem(), true);
+		}
+		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
 	}
 
 	@Override

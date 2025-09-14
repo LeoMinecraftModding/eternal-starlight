@@ -28,7 +28,7 @@ public class StarlightGolemChargePhase extends BehaviorPhase<StarlightGolem> {
 
 	@Override
 	public boolean canContinue(StarlightGolem entity) {
-		return entity.getHurtCount() < 10;
+		return entity.getHurtCount() < 7;
 	}
 
 	@Override

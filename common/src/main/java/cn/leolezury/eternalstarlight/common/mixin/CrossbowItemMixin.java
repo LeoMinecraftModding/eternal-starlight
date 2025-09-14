@@ -41,18 +41,21 @@ public abstract class CrossbowItemMixin {
 			Projectile projectile = cir.getReturnValue();
 			ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.WILTED_ARROW);
 			if (projectile instanceof AbstractArrow arrow) {
-				arrow.setBaseDamage(arrow.getBaseDamage() + 1);
+				arrow.setBaseDamage(arrow.getBaseDamage() + 1.5);
 			}
 		}
 	}
 
 	@Inject(method = "shootProjectile", at = @At("RETURN"))
 	private void shootProjectile(LivingEntity livingEntity, Projectile projectile, int i, float f, float g, float h, LivingEntity livingEntity2, CallbackInfo ci) {
+		if ((Object) this == ESItems.CRYSTAL_CROSSBOW.get()) {
+			projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.35));
+		}
 		if ((Object) this == ESItems.MECHANICAL_CROSSBOW.get()) {
 			projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.75));
 		}
-		if ((Object) this == ESItems.CRYSTAL_CROSSBOW.get() || (Object) this == ESItems.WILTED_CROSSBOW.get()) {
-			projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.35));
+		if ((Object) this == ESItems.WILTED_CROSSBOW.get()) {
+			projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.5));
 		}
 	}
 }

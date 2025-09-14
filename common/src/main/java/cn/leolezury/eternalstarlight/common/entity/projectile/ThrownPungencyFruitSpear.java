@@ -21,8 +21,8 @@ public class ThrownPungencyFruitSpear extends ThrownSpear {
 	}
 
 	@Override
-	protected float getDamage(Entity target) {
-		return 9.0F;
+	protected float getDamageScale(Entity target) {
+		return 2.5F;
 	}
 
 	@Override

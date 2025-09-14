@@ -4,10 +4,11 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
-import cn.leolezury.eternalstarlight.common.particle.ESGlowParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.core.BlockPos;
@@ -147,21 +148,20 @@ public abstract class LivingEntityMixin {
 		if (autoSpinAttackItemStack != null && autoSpinAttackItemStack.is(ESItems.CRESCENT_SPEAR.get())) {
 			if (!entity.level().isClientSide) {
 				for (LivingEntity living : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(3))) {
-					if (!living.isAlliedTo(entity) && entity instanceof Player player) {
+					if (ESEntityUtil.shouldHarm(entity, living) && entity instanceof Player player) {
 						player.attack(living);
 					}
 				}
 				if (entity.level() instanceof ServerLevel serverLevel) {
-					for (int i = 0; i < 40; i++) {
-						serverLevel.sendParticles(ESGlowParticleOptions.GLOW, entity.getX() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth() * 2, entity.getRandomY(), entity.getZ() + (entity.getRandom().nextDouble() - 0.5) * entity.getBbWidth() * 2, 3, 0.2, 0.2, 0.2, 0);
-					}
+					Vec3 centerPos = entity.position().add(0, entity.getBbHeight() / 2, 0);
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(RingExplosionParticleOptions.CRESCENT_SPEAR, centerPos.x, centerPos.y, centerPos.z, 0, 0.05, 0));
 					for (int i = 0; i < 10; i++) {
 						Vec3 speed = new Vec3((entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1F, entity.getRandom().nextFloat() * 0.05F, (entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1F).normalize();
-						Vec3 centerPos = entity.position().add(0, entity.getBbHeight() / 2, 0);
 						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.CRESCENT_SPEAR, centerPos.x + speed.x * 1.5, centerPos.y + speed.y * 1.5, centerPos.z + speed.z * 1.5, speed.x, speed.y, speed.z));
 					}
 					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 20, 0.12f, 0.24f, 3, 5.5f).send(serverLevel);
 				}
+				entity.invulnerableTime = Math.max(entity.invulnerableTime, 10);
 			}
 		}
 	}

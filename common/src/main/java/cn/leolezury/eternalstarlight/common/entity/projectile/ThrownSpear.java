@@ -5,11 +5,13 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -63,25 +65,25 @@ public abstract class ThrownSpear extends AbstractArrow {
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
 		Entity target = result.getEntity();
-		float damage = getDamage(target);
 		Entity owner = this.getOwner();
-		DamageSource damagesource = this.damageSources().thrown(this, owner == null ? this : owner);
+		float damage = getDamageScale(target) * (owner instanceof LivingEntity living && living.getAttribute(Attributes.ATTACK_DAMAGE) != null ? (float) living.getAttributeValue(Attributes.ATTACK_DAMAGE) : 5);
+		DamageSource damageSource = this.damageSources().thrown(this, owner == null ? this : owner);
 		if (this.level() instanceof ServerLevel serverlevel) {
-			damage = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), target, damagesource, damage);
+			damage = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), target, damageSource, damage);
 		}
 
 		this.dealtDamage = true;
-		if (target.hurt(damagesource, damage)) {
+		if (target.hurt(damageSource, damage)) {
 			if (target.getType() == EntityType.ENDERMAN) {
 				return;
 			}
 
 			if (this.level() instanceof ServerLevel serverLevel) {
-				EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, target, damagesource, this.getWeaponItem());
+				EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, target, damageSource, this.getWeaponItem());
 			}
 
 			if (target instanceof LivingEntity living) {
-				this.doKnockback(living, damagesource);
+				this.doKnockback(living, damageSource);
 				this.doPostHurtEffects(living);
 			}
 		}
@@ -90,8 +92,13 @@ public abstract class ThrownSpear extends AbstractArrow {
 		this.playSound(SoundEvents.PLAYER_ATTACK_CRIT, 1.0F, 1.0F);
 	}
 
-	protected float getDamage(Entity target) {
-		return 8.0F;
+	@Override
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
+		return SoundEvents.PLAYER_ATTACK_CRIT;
+	}
+
+	protected float getDamageScale(Entity target) {
+		return 2.0F;
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 				if (toGround.getType() != HitResult.Type.MISS && level instanceof ServerLevel serverLevel) {
 					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(RingExplosionParticleOptions.ENERGY, entity.getX(), entity.getY(), entity.getZ(), 0, 0.1, 0));
 					serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, serverLevel.getBlockState(entity.blockPosition().below())), entity.getX(), entity.getY(), entity.getZ(), 150, 0.5, 0.5, 0.5, 0.15);
-					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 50, 0.2f, 0.3f, 3, 5.5f).send(serverLevel);
+					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 20, 0.2f, 0.3f, 3, 5.5f).send(serverLevel);
 				}
 			}
 			for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(entity.getBehaviorTicks() == 3 ? 4.5 : 1.5))) {

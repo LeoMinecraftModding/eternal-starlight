@@ -30,10 +30,10 @@ import org.joml.Vector4f;
 import java.util.UUID;
 
 public class EnergySpark extends ThrowableProjectile implements TrailOwner {
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
+
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
-
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 
 	public float oSpin, spin;
 

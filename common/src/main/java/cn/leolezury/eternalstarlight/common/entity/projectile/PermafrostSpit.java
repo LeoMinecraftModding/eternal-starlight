@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.entity.attack.PermafrostCloud;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.fabricmc.api.EnvType;
@@ -34,6 +35,7 @@ import org.joml.Vector4f;
 
 public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
+
 	private static final String TAG_SMALL = "small";
 
 	protected static final EntityDataAccessor<Boolean> SMALL = SynchedEntityData.defineId(PermafrostSpit.class, EntityDataSerializers.BOOLEAN);
@@ -110,7 +112,7 @@ public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
 
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
-		if (hitResult.getType() != HitResult.Type.MISS && getOwner() instanceof LivingEntity owner) {
+		if (hitResult.getType() != HitResult.Type.MISS && getOwner() instanceof LivingEntity owner && ESEntityUtil.shouldHarm(owner, hitResult.getEntity())) {
 			hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, owner), (float) ((owner.getAttribute(Attributes.ATTACK_SPEED) != null ? owner.getAttributeValue(Attributes.ATTACK_SPEED) : 12) * 1.25));
 		}
 	}

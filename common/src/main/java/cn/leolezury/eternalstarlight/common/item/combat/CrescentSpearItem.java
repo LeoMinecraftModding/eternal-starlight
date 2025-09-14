@@ -33,7 +33,7 @@ public class CrescentSpearItem extends Item {
 	}
 
 	public static ItemAttributeModifiers createAttributes() {
-		return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 6.5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.7, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
+		return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 7.5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.7, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
 	}
 
 	public static Tool createToolProperties() {
@@ -84,8 +84,8 @@ public class CrescentSpearItem extends Item {
 				ySpeed *= spinStrength / length;
 				zSpeed *= spinStrength / length;
 				player.push(xSpeed, ySpeed, zSpeed);
-				player.startAutoSpinAttack(20, 8.0F, itemStack);
-				player.getCooldowns().addCooldown(this, 35);
+				player.startAutoSpinAttack(20, player.getAttribute(Attributes.ATTACK_DAMAGE) != null ? (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 1.5f : 8, itemStack);
+				player.getCooldowns().addCooldown(this, 20);
 
 				player.playSound(ESSoundEvents.CRESCENT_SPEAR_THROW.get());
 
@@ -96,5 +96,10 @@ public class CrescentSpearItem extends Item {
 				player.awardStat(Stats.ITEM_USED.get(this));
 			}
 		}
+	}
+
+	@Override
+	public int getEnchantmentValue() {
+		return 1;
 	}
 }

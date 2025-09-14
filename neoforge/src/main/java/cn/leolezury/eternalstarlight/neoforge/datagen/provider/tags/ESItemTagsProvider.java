@@ -915,7 +915,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			)
 			.addTags(
 				ESTags.Items.SCYTHES,
-				ESTags.Items.SICKLES
+				ESTags.Items.SICKLES,
+				ESTags.Items.HAMMERS
 			);
 		tag(ItemTags.BOW_ENCHANTABLE)
 			.add(
@@ -946,6 +947,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.WEAPON_ENCHANTABLE)
 			.addTag(ESTags.Items.HAMMER_ENCHANTABLE);
 		tag(ItemTags.FIRE_ASPECT_ENCHANTABLE)
+			.add(
+				ESItems.CRESCENT_SPEAR.get()
+			)
 			.addTags(
 				ESTags.Items.HAMMER_ENCHANTABLE,
 				ESTags.Items.SCYTHE_ENCHANTABLE

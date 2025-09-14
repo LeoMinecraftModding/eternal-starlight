@@ -46,6 +46,8 @@ import org.joml.Vector4f;
 import java.util.UUID;
 
 public class AethersentMeteor extends AbstractHurtingProjectile implements TrailOwner {
+	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
+
 	private static final String TAG_SIZE = "size";
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_TARGET_X = "target_x";
@@ -53,7 +55,6 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	private static final String TAG_TARGET_Z = "target_z";
 	private static final String TAG_NATURAL = "natural";
 
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 	protected static final EntityDataAccessor<Integer> SIZE = SynchedEntityData.defineId(AethersentMeteor.class, EntityDataSerializers.INT);
 
 	public int getSize() {

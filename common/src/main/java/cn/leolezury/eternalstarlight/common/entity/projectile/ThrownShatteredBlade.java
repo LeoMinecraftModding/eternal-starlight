@@ -1,18 +1,18 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -22,18 +22,18 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class ShatteredBlade extends AbstractArrow {
+public class ThrownShatteredBlade extends AbstractArrow {
 	private static final String TAG_DEALT_DAMAGE = "dealt_damage";
 
 	private boolean dealtDamage;
 	public int clientSideReturnTickCount;
 
-	public ShatteredBlade(EntityType<? extends ShatteredBlade> entityType, Level level) {
+	public ThrownShatteredBlade(EntityType<? extends ThrownShatteredBlade> entityType, Level level) {
 		super(entityType, level);
 	}
 
-	public ShatteredBlade(Level level, LivingEntity livingEntity, @Nullable ItemStack itemStack2) {
-		super(ESEntities.SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()), itemStack2);
+	public ThrownShatteredBlade(Level level, LivingEntity livingEntity, @Nullable ItemStack weapon) {
+		super(ESEntities.SHATTERED_BLADE.get(), livingEntity, level, new ItemStack(ESItems.SHATTERED_SWORD_BLADE.get()), weapon);
 	}
 
 	@Override
@@ -89,10 +89,7 @@ public class ShatteredBlade extends AbstractArrow {
 	protected void onHitEntity(EntityHitResult entityHitResult) {
 		Entity entity = entityHitResult.getEntity();
 		Entity owner = this.getOwner();
-		float damage = owner instanceof Player ? 5f : 3.2f;
-		if (owner instanceof LonestarSkeleton) {
-			damage = (float) ESConfig.INSTANCE.mobsConfig.lonestarSkeleton.attackDamage();
-		}
+		float damage = owner instanceof LivingEntity living && living.getAttribute(Attributes.ATTACK_DAMAGE) != null ? (float) living.getAttributeValue(Attributes.ATTACK_DAMAGE) : 5;
 		DamageSource damageSource = ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.SHATTERED_BLADE, this, owner == null ? this : owner);
 
 		if (level() instanceof ServerLevel serverLevel && this.getWeaponItem() != null) {
@@ -105,7 +102,9 @@ public class ShatteredBlade extends AbstractArrow {
 				return;
 			}
 			if (level() instanceof ServerLevel serverLevel) {
-				EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
+				// so that we can trigger melee-only effects
+				DamageSource directSource = getOwner() instanceof Player player ? this.damageSources().playerAttack(player) : (getOwner() instanceof LivingEntity living ? damageSources().mobAttack(living) : damageSource);
+				EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, directSource, this.getWeaponItem());
 			}
 			if (entity instanceof LivingEntity livingEntity) {
 				this.doKnockback(livingEntity, damageSource);
@@ -115,6 +114,11 @@ public class ShatteredBlade extends AbstractArrow {
 
 		this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01, -0.1, -0.01));
 		this.playSound(SoundEvents.PLAYER_ATTACK_CRIT, 1.0F, 1.0F);
+	}
+
+	@Override
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
+		return SoundEvents.PLAYER_ATTACK_CRIT;
 	}
 
 	@Override
@@ -145,14 +149,6 @@ public class ShatteredBlade extends AbstractArrow {
 		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putBoolean(TAG_DEALT_DAMAGE, this.dealtDamage);
 	}
-
-	// just despawn it as it sometimes gets really annoying
-	/*@Override
-	public void tickDespawn() {
-		if (this.pickup != Pickup.ALLOWED) {
-			super.tickDespawn();
-		}
-	}*/
 
 	@Override
 	protected float getWaterInertia() {
