@@ -25,6 +25,7 @@ import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
@@ -106,6 +107,11 @@ public class CommonEvents {
 	@SubscribeEvent
 	private static void onBlockBroken(BlockEvent.BreakEvent event) {
 		CommonHandlers.onBlockBroken(event.getPlayer(), event.getPos(), event.getState());
+	}
+
+	@SubscribeEvent
+	private static void onBlockBroken(PlayerEvent.BreakSpeed event) {
+		event.setNewSpeed(CommonHandlers.onBlockBreakSpeed(event.getEntity(), event.getState(), event.getNewSpeed()));
 	}
 
 	@SubscribeEvent

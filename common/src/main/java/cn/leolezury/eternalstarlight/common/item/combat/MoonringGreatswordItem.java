@@ -17,7 +17,7 @@ public class MoonringGreatswordItem extends GreatswordItem {
 		super.postHurtEnemy(stack, target, attacker);
 		Level level = attacker.level();
 		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(attacker, this)) {
-			float radiusIncrement = target.getBbWidth() * 0.75f;
+			float radiusIncrement = Math.min(target.getBbWidth() * 0.75f, 3);
 			for (int i = 0; i < 4; i++) {
 				float radius = (i + 1) * radiusIncrement;
 				int num = Math.max(Math.round(7 * radius), 5);

@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-13T20:01:35.9063528	Loot Tables
+// 1.21.1	2025-09-15T20:27:34.3664846	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -727,7 +727,7 @@ fb9cb6127147441247d93f0c6f7f21290b6c18bf data/eternal_starlight/loot_table/block
 66a535bc690812a6854b5dc925199725d4802ec4 data/eternal_starlight/loot_table/blocks/yellow_yeti_fur.json
 019c8a21885af7e74b31f81187c1fef117ea2d61 data/eternal_starlight/loot_table/blocks/yellow_yeti_fur_carpet.json
 e7a4432f13c78aadaee5cb60b6c6ec9a2131bbf5 data/eternal_starlight/loot_table/bosses/boss_common.json
-77f5b65ab75b20927285a6b1d8a99e9ed4303a8e data/eternal_starlight/loot_table/bosses/lunar_monstrosity.json
+9933a6cb01f317bd062384be129b06130f79cadf data/eternal_starlight/loot_table/bosses/lunar_monstrosity.json
 5390df88beec0383420ce5f96e41f20eeee2994b data/eternal_starlight/loot_table/bosses/starlight_golem.json
 52da11c8fd6b033f3dc6f777959d6b16c137cbb1 data/eternal_starlight/loot_table/bosses/tangled_hatred.json
 32ecaadca66ddc88abfa3372a4ba3d9c2ec433d9 data/eternal_starlight/loot_table/bosses/the_gatekeeper.json

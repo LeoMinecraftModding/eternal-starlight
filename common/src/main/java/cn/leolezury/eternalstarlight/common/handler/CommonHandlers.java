@@ -194,6 +194,9 @@ public class CommonHandlers {
 			}
 			tooltip.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.cooldown", type.cooldown()).withStyle(ChatFormatting.DARK_GREEN)));
 		}
+		if (itemStack.is(ESItems.UNDERMINER.get())) {
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".underminer").withStyle(Style.EMPTY.withColor(0x47adc4)));
+		}
 	}
 
 	public static float onModifyLivingHurtDamage(LivingEntity entity, DamageSource source, float amount) {
@@ -613,6 +616,17 @@ public class CommonHandlers {
 				}
 			}
 		}
+	}
+
+	public static float onBlockBreakSpeed(Player player, BlockState state, float speed) {
+		if (player.getMainHandItem().is(ESItems.UNDERMINER.get())) {
+			int min = player.level().getMinBuildHeight();
+			int max = player.level().getMaxBuildHeight();
+			double y = Mth.clamp(player.getY(), min, max);
+			float modifier = (float) (2.0 - (y - min) / (max - min));
+			return speed * modifier;
+		}
+		return speed;
 	}
 
 	public static void onShieldBlock(LivingEntity blocker, DamageSource source) {

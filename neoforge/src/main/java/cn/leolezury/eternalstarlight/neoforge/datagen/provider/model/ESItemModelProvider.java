@@ -884,8 +884,11 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.GOLEM_STEEL_NUGGET.get());
 		basicItem(ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get());
 		handheld(ESItems.ENERGY_SWORD.get());
+		greatsword(ESItems.GOLEM_STEEL_GREATSWORD.get());
+		greatswordInventory(ESItems.GOLEM_STEEL_GREATSWORD.get());
 		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
 		crossbow(ESItems.MECHANICAL_CROSSBOW.get());
+		handheld(ESItems.UNDERMINER.get());
 		block(ESItems.GOLEM_STEEL_BLOCK.get());
 		otherBlock(ESItems.WAXED_GOLEM_STEEL_BLOCK.get(), ESItems.GOLEM_STEEL_BLOCK.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get());

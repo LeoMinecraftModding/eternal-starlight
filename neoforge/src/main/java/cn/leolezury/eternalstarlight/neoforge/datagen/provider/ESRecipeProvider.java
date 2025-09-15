@@ -290,6 +290,14 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.STARLIGHT_FLOWER.get()))
 			.save(recipeOutput);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.GOLEM_STEEL_GREATSWORD.get())
+			.pattern("  G")
+			.pattern(" GG")
+			.pattern("SG ")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CRYSTAL_CROSSBOW.get())
 			.pattern("BGB")
 			.pattern("STS")
@@ -311,6 +319,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('$', Items.TRIPWIRE_HOOK)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
+		addPickaxe(recipeOutput, ESItems.UNDERMINER.get(), ESConventionalTags.Items.INGOTS_GOLEM_STEEL);
 
 		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.WILTED_CROSSBOW.get())
@@ -324,21 +333,20 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MOONRING_GREATSWORD.get())
-			.pattern("TTT")
-			.pattern("TGT")
-			.pattern("SSS")
-			.define('S', Tags.Items.RODS_WOODEN)
-			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
-			.define('T', ESItems.TENACIOUS_PETAL.get())
+			.pattern("  P")
+			.pattern(" VP")
+			.pattern("VS ")
+			.define('S', ESItems.TRAPPED_SOUL.get())
+			.define('P', ESItems.TENACIOUS_PETAL.get())
+			.define('V', ESItems.TENACIOUS_VINE.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.PETAL_SCYTHE.get())
-			.pattern("GTT")
-			.pattern("GS ")
-			.pattern(" S ")
-			.define('S', Tags.Items.RODS_WOODEN)
-			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
-			.define('T', ESItems.TENACIOUS_PETAL.get())
+			.pattern("PPP")
+			.pattern(" VP")
+			.pattern("V  ")
+			.define('P', ESItems.TENACIOUS_PETAL.get())
+			.define('V', ESItems.TENACIOUS_VINE.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CHAIN_OF_SOULS.get())

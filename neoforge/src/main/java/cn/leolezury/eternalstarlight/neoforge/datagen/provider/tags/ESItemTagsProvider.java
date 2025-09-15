@@ -252,6 +252,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.DAGGER_OF_HUNGER.get(),
 				ESItems.SHATTERED_SWORD.get(),
 				ESItems.ENERGY_SWORD.get(),
+				ESItems.GOLEM_STEEL_GREATSWORD.get(),
 				ESItems.MOONRING_GREATSWORD.get(),
 				ESItems.PETAL_SCYTHE.get(),
 				ESItems.BONEMORE.get(),
@@ -281,6 +282,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SWAMP_SILVER_PICKAXE.get(),
 				ESItems.MALARITE_PICKAXE.get(),
 				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.UNDERMINER.get(),
 				ESItems.GRAVITY_PICKAXE.get()
 			);
 		// mod conventional tags
@@ -419,6 +421,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.GREATSWORDS)
 			.add(
+				ESItems.GOLEM_STEEL_GREATSWORD.get(),
 				ESItems.MOONRING_GREATSWORD.get(),
 				ESItems.BONEMORE.get()
 			);
@@ -1068,6 +1071,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFIRE_PICKAXE.get(),
 				ESItems.FLOWGLAZE_PICKAXE.get(),
 				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.UNDERMINER.get(),
 				ESItems.GRAVITY_PICKAXE.get()
 			);
 		tag(ItemTags.CLUSTER_MAX_HARVESTABLES)
@@ -1081,6 +1085,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFIRE_PICKAXE.get(),
 				ESItems.FLOWGLAZE_PICKAXE.get(),
 				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.UNDERMINER.get(),
 				ESItems.GRAVITY_PICKAXE.get()
 			);
 		tag(ItemTags.AXES)

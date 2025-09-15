@@ -33,7 +33,7 @@ public class GatekeeperDanceFightPhase extends BehaviorPhase<TheGatekeeper> {
 					for (int z = -5; z <= 5; z++) {
 						BlockPos pos = entity.blockPosition().offset(x, y, z);
 						if (entity.level().getBlockState(pos.above()).isAir() && pos.getCenter().distanceTo(entity.position()) <= 5) {
-							ESFallingBlock fallingBlock = new ESFallingBlock(entity.level(), pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, entity.level().getBlockState(pos), 100, false);
+							ESFallingBlock fallingBlock = new ESFallingBlock(entity.level(), pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f, entity.level().getBlockState(pos), 100, false);
 							fallingBlock.push(0, entity.getRandom().nextDouble() / 6 + 0.25, 0);
 							entity.level().addFreshEntity(fallingBlock);
 						}

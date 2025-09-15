@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -19,7 +20,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -31,27 +31,17 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 	@Shadow
 	public abstract M getModel();
 
-	@Unique
-	private boolean huskDisplay = false;
-
-	@Inject(method = "render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "HEAD"))
-	private void render(T entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
-		if (entity instanceof AbstractClientPlayer) {
-			huskDisplay = entity.level().getEntity(ESDataAttachments.HUSK_OWNER_ID.getData(entity)) instanceof Player;
-		}
-	}
-
 	@Inject(method = "render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;isSpectator()Z"))
 	private void renderOverlay(T entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
-		if (huskDisplay) {
+		if (entity instanceof AbstractClientPlayer && entity.level().getEntity(ESDataAttachments.HUSK_OWNER_ID.getData(entity)) instanceof Player) {
 			VertexConsumer consumer = buffer.getBuffer(RenderType.entityCutout(entity instanceof AbstractClientPlayer player && player.getSkin().model() == PlayerSkin.Model.SLIM ? EternalStarlight.id("textures/entity/tangled_husk_slim.png") : EternalStarlight.id("textures/entity/tangled_husk.png")));
 			getModel().renderToBuffer(poseStack, consumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
 		}
 	}
 
 	@WrapOperation(method = "render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/EntityModel;renderToBuffer(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V"))
-	private void renderToBuffer(M instance, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color, Operation<Void> original) {
-		if (huskDisplay) {
+	private void renderToBuffer(M instance, PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color, Operation<Void> original, @Local(ordinal = 0, argsOnly = true) T entity) {
+		if (entity instanceof AbstractClientPlayer && entity.level().getEntity(ESDataAttachments.HUSK_OWNER_ID.getData(entity)) instanceof Player) {
 			int alpha = FastColor.ARGB32.alpha(color);
 			int red = FastColor.ARGB32.red(color);
 			int green = FastColor.ARGB32.green(color);

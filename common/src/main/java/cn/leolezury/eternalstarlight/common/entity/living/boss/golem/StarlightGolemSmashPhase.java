@@ -79,7 +79,7 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 										flag = entity.getRandom().nextInt(6) == 0;
 									}
 									if (flag) {
-										ESFallingBlock fallingBlock = new ESFallingBlock(entity.level(), pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, entity.level().getBlockState(pos), 100);
+										ESFallingBlock fallingBlock = new ESFallingBlock(entity.level(), pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f, entity.level().getBlockState(pos), 100);
 										fallingBlock.push(0, (above ? 1 : -1) * entity.getRandom().nextDouble() / 6 + 0.25, 0);
 										entity.level().addFreshEntity(fallingBlock);
 										for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(1))) {

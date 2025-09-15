@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "tag": "c:ingots/golem_steel"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "  G",
+    " GG",
+    "SG "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:golem_steel_greatsword"
+  }
+}

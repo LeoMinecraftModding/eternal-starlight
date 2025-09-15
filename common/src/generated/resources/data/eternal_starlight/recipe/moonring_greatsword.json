@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "G": {
-      "tag": "c:ingots/golem_steel"
+    "P": {
+      "item": "eternal_starlight:tenacious_petal"
     },
     "S": {
-      "tag": "c:rods/wooden"
+      "item": "eternal_starlight:trapped_soul"
     },
-    "T": {
-      "item": "eternal_starlight:tenacious_petal"
+    "V": {
+      "item": "eternal_starlight:tenacious_vine"
     }
   },
   "pattern": [
-    "TTT",
-    "TGT",
-    "SSS"
+    "  P",
+    " VP",
+    "VS "
   ],
   "result": {
     "count": 1,

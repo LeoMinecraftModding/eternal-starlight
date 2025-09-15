@@ -417,6 +417,8 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("starfire_scythe");
 		registerSimpleSpecialModel("starfire_hammer");
 		registerSimpleSpecialModel("flowglaze_scythe");
+		registerSimpleSpecialModel("golem_steel_greatsword");
+		registerSimpleSpecialModel("golem_steel_greatsword_blocking");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
@@ -427,7 +429,6 @@ public class ClientSetupHandlers {
 		registerSimpleSpecialModel("orb_of_prophecy");
 		registerSimpleSpecialModel("orb_of_prophecy_with_crests");
 
-		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ENERGY_SWORD), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.LASER_BEAM), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.CastSpellHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 
@@ -491,6 +492,8 @@ public class ClientSetupHandlers {
 		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
 
 		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), EternalStarlight.id("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
+
+		ItemProperties.register(ESItems.GOLEM_STEEL_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
 			if (entity == null) {
@@ -706,6 +709,7 @@ public class ClientSetupHandlers {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_hammer_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("flowglaze_scythe_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("golem_steel_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));

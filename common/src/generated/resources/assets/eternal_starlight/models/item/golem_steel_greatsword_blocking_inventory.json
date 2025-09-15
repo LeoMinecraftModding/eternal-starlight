@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "eternal_starlight:item/golem_steel_greatsword_inventory"
+  }
+}
