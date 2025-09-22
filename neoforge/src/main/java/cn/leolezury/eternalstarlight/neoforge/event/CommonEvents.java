@@ -18,10 +18,7 @@ import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
-import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
+import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
@@ -62,8 +59,13 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
+	private static void onIncomingDamage(LivingIncomingDamageEvent event) {
+		event.setAmount(CommonHandlers.onModifyLivingHurtDamage(event.getEntity(), event.getSource(), event.getAmount()));
+	}
+
+	@SubscribeEvent
 	private static void onPreLivingHurt(LivingDamageEvent.Pre event) {
-		event.setNewDamage(CommonHandlers.onModifyLivingHurtDamage(event.getEntity(), event.getContainer().getSource(), event.getContainer().getNewDamage()));
+		event.setNewDamage(CommonHandlers.onModifyLivingActualHurtDamage(event.getEntity(), event.getSource(), event.getNewDamage()));
 	}
 
 	@SubscribeEvent

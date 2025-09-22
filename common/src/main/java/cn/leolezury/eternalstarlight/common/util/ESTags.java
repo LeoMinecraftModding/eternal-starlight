@@ -31,6 +31,7 @@ public class ESTags {
 		public static final TagKey<Item> SICKLES = create("sickles");
 		public static final TagKey<Item> GREATSWORDS = create("greatswords");
 		public static final TagKey<Item> HAMMERS = create("hammers");
+		public static final TagKey<Item> BOOMERANGS = create("boomerangs");
 		public static final TagKey<Item> SMALL_SHIELDS = create("small_shields");
 		public static final TagKey<Item> AURORA_DEER_FOOD = create("aurora_deer_food");
 		public static final TagKey<Item> CRYSTALLIZED_MOTH_FOOD = create("crystallized_moth_food");
@@ -47,6 +48,7 @@ public class ESTags {
 		public static final TagKey<Item> STARFIRE_WEAPONS = create("starfire_weapons");
 		public static final TagKey<Item> FLOWGLAZE_WEAPONS = create("flowglaze_weapons");
 		public static final TagKey<Item> MENDS_NATURALLY = create("mends_naturally");
+		public static final TagKey<Item> REPAIRED_BY_CRESCENT_PENDANT = create("repaired_by_crescent_pendant");
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");
 		public static final TagKey<Item> STELLAGMITE_IGNITERS = create("stellagmite_igniters");
 		public static final TagKey<Item> ENT_FERTILIZERS = create("ent_fertilizers");
@@ -60,6 +62,7 @@ public class ESTags {
 		public static final TagKey<Item> SCYTHE_ENCHANTABLE = create("enchantable/scythe");
 		public static final TagKey<Item> GREATSWORD_ENCHANTABLE = create("enchantable/greatsword");
 		public static final TagKey<Item> HAMMER_ENCHANTABLE = create("enchantable/hammer");
+		public static final TagKey<Item> BOOMERANG_ENCHANTABLE = create("enchantable/boomerang");
 		public static final TagKey<Item> CHAIN_OF_SOULS_ENCHANTABLE = create("enchantable/chain_of_souls");
 		public static final TagKey<Item> PUNGENCY_FRUIT_SPEAR_ENCHANTABLE = create("enchantable/pungency_fruit_spear");
 		public static final TagKey<Item> SEEDS_LAUNCHER_ENCHANTABLE = create("enchantable/seeds_launcher");

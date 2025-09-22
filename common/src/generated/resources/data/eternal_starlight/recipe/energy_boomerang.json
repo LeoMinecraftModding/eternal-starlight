@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "tag": "c:ingots/golem_steel"
+    }
+  },
+  "pattern": [
+    " GG",
+    "G  ",
+    "GG "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:energy_boomerang"
+  }
+}

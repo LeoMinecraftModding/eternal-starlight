@@ -26,7 +26,6 @@ public class ThrownShatteredBlade extends AbstractArrow {
 	private static final String TAG_DEALT_DAMAGE = "dealt_damage";
 
 	private boolean dealtDamage;
-	public int clientSideReturnTickCount;
 
 	public ThrownShatteredBlade(EntityType<? extends ThrownShatteredBlade> entityType, Level level) {
 		super(entityType, level);
@@ -63,8 +62,6 @@ public class ThrownShatteredBlade extends AbstractArrow {
 
 				double d = 0.05 * (double) loyaltyLevel;
 				this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d)));
-
-				++this.clientSideReturnTickCount;
 			}
 		}
 

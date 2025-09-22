@@ -19,9 +19,13 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -196,6 +200,20 @@ public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
 		ClientSetupHandlers.registerMenuScreens(event::register);
+	}
+
+	@SubscribeEvent
+	private static void onRegisterMenuScreens(EntityRenderersEvent.AddLayers event) {
+		for (EntityType<? extends Entity> entityType : event.getEntityTypes()) {
+			if (event.getRenderer(entityType) instanceof LivingEntityRenderer<?, ?> livingEntityRenderer) {
+				ClientSetupHandlers.onRenderLayerAttachment(entityType, livingEntityRenderer, event.getContext());
+			}
+		}
+		for (PlayerSkin.Model model : event.getSkins()) {
+			if (event.getSkin(model) instanceof LivingEntityRenderer<?, ?> livingEntityRenderer) {
+				ClientSetupHandlers.onRenderLayerAttachment(EntityType.PLAYER, livingEntityRenderer, event.getContext());
+			}
+		}
 	}
 
 	@SubscribeEvent

@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.item.recipe.DryingRecipe;
-import cn.leolezury.eternalstarlight.common.item.recipe.GeyserSmokingRecipe;
-import cn.leolezury.eternalstarlight.common.item.recipe.ManaCrystalRecipe;
-import cn.leolezury.eternalstarlight.common.item.recipe.ToolModificationRecipe;
+import cn.leolezury.eternalstarlight.common.item.recipe.*;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
@@ -319,6 +316,13 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('$', Items.TRIPWIRE_HOOK)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.ENERGY_BOOMERANG.get())
+			.pattern(" GG")
+			.pattern("G  ")
+			.pattern("GG ")
+			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
+			.save(recipeOutput);
 		addPickaxe(recipeOutput, ESItems.UNDERMINER.get(), ESConventionalTags.Items.INGOTS_GOLEM_STEEL);
 
 		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
@@ -367,6 +371,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('V', ESItems.TENACIOUS_VINE.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
+		SpecialRecipeBuilder.special(AccessoryCombinationRecipe::new).save(recipeOutput, EternalStarlight.id("accessory_combination"));
 
 		// overworld stuff replacements
 		// cinder brick

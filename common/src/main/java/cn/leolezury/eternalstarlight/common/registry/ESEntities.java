@@ -591,6 +591,14 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("crystal_cluster").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<ThrownEnergyBoomerang>> ENERGY_BOOMERANG = ENTITIES.register(
+		"energy_boomerang",
+		() -> EntityType.Builder.<ThrownEnergyBoomerang>of(ThrownEnergyBoomerang::new, MobCategory.MISC)
+			.sized(0.3f, 0.3f)
+			.clientTrackingRange(6)
+			.updateInterval(1)
+			.build(EternalStarlight.id("energy_boomerang").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<SoulitSpectator>> SOULIT_SPECTATOR = ENTITIES.register(
 		"soulit_spectator",
 		() -> EntityType.Builder.<SoulitSpectator>of(SoulitSpectator::new, MobCategory.MISC)

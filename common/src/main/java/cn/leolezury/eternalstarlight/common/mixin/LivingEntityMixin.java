@@ -85,9 +85,6 @@ public abstract class LivingEntityMixin {
 	public abstract AttributeMap getAttributes();
 
 	@Shadow
-	public abstract boolean hurt(DamageSource damageSource, float f);
-
-	@Shadow
 	@Nullable
 	public abstract LivingEntity getKillCredit();
 
@@ -217,7 +214,7 @@ public abstract class LivingEntityMixin {
 		if (!hasEffect(ESMobEffects.NUMBNESS.asHolder())) {
 			float damage = ESDataAttachments.NUMBNESS_DAMAGE.getData(livingEntity);
 			if (damage != 0) {
-				hurt(ESDamageTypes.getDamageSource(livingEntity.level(), ESDamageTypes.NUMBNESS), damage);
+				livingEntity.hurt(ESDamageTypes.getDamageSource(livingEntity.level(), ESDamageTypes.NUMBNESS), damage);
 				ESDataAttachments.NUMBNESS_DAMAGE.setData(livingEntity, 0f);
 			}
 		}

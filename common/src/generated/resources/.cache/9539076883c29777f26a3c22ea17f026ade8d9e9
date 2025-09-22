@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-15T22:40:56.3958635	Item Models: eternal_starlight
+// 1.21.1	2025-09-20T21:34:56.1165655	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -174,6 +174,7 @@ c0092d00a4d738050f3e7ba21cf98d1c20538813 assets/eternal_starlight/models/item/cr
 54c177e8cc665b1bcfebf4357aea002dc6cc8dba assets/eternal_starlight/models/item/cradlewood_trapdoor.json
 5238b31e32cddbf82958d4bd52f14762190f7f32 assets/eternal_starlight/models/item/cradlewood_wood.json
 6c070c5d2e1c3e3ba28da6d35951d30ed3002f72 assets/eternal_starlight/models/item/crescent_grass.json
+e9ae9d20af769e55e1da8fa099d93169251f15a6 assets/eternal_starlight/models/item/crescent_pendant.json
 fdeb72c584a345e6f78e9485ec853167b91fe994 assets/eternal_starlight/models/item/crescent_spear_inventory.json
 11a7930fa3222c7e64695591eb194674ef73f689 assets/eternal_starlight/models/item/crest_pot.json
 e07b555661332e4f0f8130ae79f29da51a551dfb assets/eternal_starlight/models/item/creteor_hide.json
@@ -254,6 +255,7 @@ b0e816c796c37e24ef9efbb2e645a37edd762d26 assets/eternal_starlight/models/item/du
 42f49e7093d93eb6e0f5f82e75093d50d12edd13 assets/eternal_starlight/models/item/eclipse_core.json
 9f55d0b0f7197396caddca121ad3247775ae7753 assets/eternal_starlight/models/item/enchanted_grimstone_bricks.json
 4663cf98e41b90faa681afbf847ee70ee5b85509 assets/eternal_starlight/models/item/energy_block.json
+6bf8f042029a60879ab272c5ab4f2b7ab7ad9cea assets/eternal_starlight/models/item/energy_boomerang.json
 3928ba295508531f6edd8a8a37ff96b0d0dd459f assets/eternal_starlight/models/item/energy_sword.json
 7bdb83ff755675584d961a11244ecb8a77def413 assets/eternal_starlight/models/item/ent_spawn_egg.json
 3d7108057dee8414c312d86fdbd5c91388549844 assets/eternal_starlight/models/item/eternal_ice.json

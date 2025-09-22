@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-11T23:30:49.9211371	Registries
+// 1.21.1	2025-09-20T17:29:19.9738788	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 7e028d9111c471543bdd218b17976d7a541b1f8b data/eternal_starlight/damage_type/crystalline_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -20,9 +20,12 @@ bf5c8cd358c5e47525234038a2c5fe45836a4ed1 data/eternal_starlight/dimension/starli
 c616b5b419be855340e096247b775c0bfd00e623 data/eternal_starlight/dimension_type/starlight.json
 bc232dce5777ec4a69e88c84ff37dd1dd470f7ae data/eternal_starlight/enchantment/fearless.json
 2f5b0834d7fe10acb74643470cd8e168fa027b8d data/eternal_starlight/enchantment/fertile.json
+168c3171131bd181155c7d78bc8a46c5b226f425 data/eternal_starlight/enchantment/gathering.json
 d80c4e84eb7e7131b73ddbe57c90e1f813b0150a data/eternal_starlight/enchantment/glacial_sowing.json
+aced8603109f9fa4a910e6b021476c627858098a data/eternal_starlight/enchantment/homing.json
 b8725efa93035b67bb13a3699a21c62bb6c4a298 data/eternal_starlight/enchantment/overheat.json
 280c5f592c2e31c2d713d70360a697cb7ae51ff1 data/eternal_starlight/enchantment/poisoning.json
+fcf4660912152339186b46e238d371d302d916c2 data/eternal_starlight/enchantment/precision.json
 67ec33f388305347a2e8dc4ba1924915df6e0d0a data/eternal_starlight/enchantment/soul_snatcher.json
 c8f9d2029a0e1c6142b79562933412a5717c65d0 data/eternal_starlight/enchantment/tearing.json
 866a31e8894dadaa694333f9372fa62ba839632e data/eternal_starlight/enchantment/tracing.json

@@ -11,7 +11,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,11 +30,14 @@ public abstract class PlayerMixin {
 
 	// the player has a different actuallyHurt, modify it again
 	// copied from LivingEntityMixin
-	@ModifyVariable(method = "actuallyHurt", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
-	private float actuallyHurt(float amount, DamageSource damageSource) {
-		float modified = CommonHandlers.onModifyLivingHurtDamage((LivingEntity) (Object) this, damageSource, amount);
-		CommonHandlers.onPostLivingHurt((LivingEntity) (Object) this, damageSource, modified);
-		return modified;
+	@ModifyVariable(method = "actuallyHurt", at = @At(value = "STORE", ordinal = 1), ordinal = 0, argsOnly = true)
+	private float modifyActualHurtDamage(float original, @Local(argsOnly = true) DamageSource source) {
+		return CommonHandlers.onModifyLivingActualHurtDamage((Player) (Object) this, source, original);
+	}
+
+	@Inject(method = "actuallyHurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;setHealth(F)V", shift = At.Shift.AFTER))
+	private void actuallyHurt(DamageSource source, float amount, CallbackInfo ci) {
+		CommonHandlers.onPostLivingHurt((Player) (Object) this, source, amount);
 	}
 
 	@Inject(method = "hurtCurrentlyUsedShield", at = @At(value = "HEAD"))

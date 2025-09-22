@@ -64,12 +64,12 @@ public abstract class SpearItem extends TieredItem implements ProjectileItem {
 
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-		ItemStack itemstack = player.getItemInHand(hand);
-		if (isTooDamagedToUse(itemstack)) {
-			return InteractionResultHolder.fail(itemstack);
+		ItemStack stack = player.getItemInHand(hand);
+		if (isTooDamagedToUse(stack)) {
+			return InteractionResultHolder.fail(stack);
 		} else {
 			player.startUsingItem(hand);
-			return InteractionResultHolder.consume(itemstack);
+			return InteractionResultHolder.consume(stack);
 		}
 	}
 

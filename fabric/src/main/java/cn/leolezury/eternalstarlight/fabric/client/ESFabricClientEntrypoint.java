@@ -60,6 +60,7 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 		ClientSetupHandlers.registerLayers((layerLocation, supplier) -> EntityModelLayerRegistry.registerModelLayer(layerLocation, supplier::get));
 		ClientSetupHandlers.registerMenuScreens(MenuScreens::register);
 		ClientSetupHandlers.addClientReloadListeners(listener -> ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener((IdentifiableResourceReloadListener) listener));
+		LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, livingEntityRenderer, registrationHelper, context) -> ClientSetupHandlers.onRenderLayerAttachment(entityType, livingEntityRenderer, context));
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ClientHandlers.onAfterRenderEntities(context.consumers(), context.matrixStack(), context.tickCounter().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())));
 
 		for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT_MIPPED) {

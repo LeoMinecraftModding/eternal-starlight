@@ -76,15 +76,21 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public AnimationState deathAnimationState = new AnimationState();
 
 	private int attackEnergy;
-	private int hurtCount;
+	private int chargeHurtCount;
+	private float chargeHurtAmount;
 	private int lastHurtSound;
 
-	public void clearHurtCount() {
-		this.hurtCount = 0;
+	public void clearChargeHurtCountAndAmount() {
+		this.chargeHurtCount = 0;
+		this.chargeHurtAmount = 0;
 	}
 
-	public int getHurtCount() {
-		return hurtCount;
+	public int getChargeHurtCount() {
+		return chargeHurtCount;
+	}
+
+	public float getChargeHurtAmount() {
+		return chargeHurtAmount;
 	}
 
 	public int getAttackEnergy() {
@@ -173,21 +179,22 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	}
 
 	@Override
-	public boolean hurt(DamageSource damageSource, float f) {
-		if (!damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-			if (canHurt() && getBehaviorState() == StarlightGolemChargePhase.ID && !damageSource.is(DamageTypes.FALL) && !damageSource.is(DamageTypes.FREEZE) && damageSource.getEntity() != this) {
-				if (damageSource.getEntity() != null) {
-					hurtCount++;
+	public boolean hurt(DamageSource source, float amount) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			if (canHurt() && getBehaviorState() == StarlightGolemChargePhase.ID && !source.is(DamageTypes.FALL) && !source.is(DamageTypes.FREEZE) && source.getEntity() != this) {
+				if (source.getEntity() != null) {
+					chargeHurtCount++;
+					chargeHurtAmount += amount;
 				}
 			} else {
-				if (damageSource.getDirectEntity() instanceof LivingEntity && tickCount - lastHurtSound > 20) {
+				if (source.getDirectEntity() instanceof LivingEntity && tickCount - lastHurtSound > 20) {
 					playSound(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), getSoundVolume(), getVoicePitch());
 					lastHurtSound = tickCount;
 				}
 				return false;
 			}
 		}
-		return super.hurt(damageSource, f);
+		return super.hurt(source, amount);
 	}
 
 	@Override

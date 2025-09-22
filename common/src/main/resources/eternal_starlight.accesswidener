@@ -95,8 +95,13 @@ accessible field net/minecraft/server/level/ServerPlayerGameMode destroyPos Lnet
 accessible method net/minecraft/world/entity/projectile/Projectile <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 
 # enchantment
+accessible method net/minecraft/world/item/enchantment/Enchantment modifyDamageFilteredValue (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;)V
+accessible method net/minecraft/world/item/enchantment/Enchantment modifyItemFilteredCount (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lorg/apache/commons/lang3/mutable/MutableFloat;)V
 accessible method net/minecraft/world/item/enchantment/EnchantmentHelper runIterationOnItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;)V
 accessible class net/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor
+
+# tooltip
+accessible method net/minecraft/world/item/ItemStack addModifierTooltip (Ljava/util/function/Consumer;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
 
 # chunkgen
 extendable class net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
@@ -164,3 +169,6 @@ extendable method net/minecraft/client/model/Model renderType (Lnet/minecraft/re
 # custom witch
 accessible field net/minecraft/client/renderer/entity/LivingEntityRenderer model Lnet/minecraft/client/model/EntityModel;
 mutable field net/minecraft/client/renderer/entity/LivingEntityRenderer model Lnet/minecraft/client/model/EntityModel;
+
+# layer attachment
+accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z

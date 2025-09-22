@@ -24,11 +24,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.material.Fluids;
 
 import java.util.ArrayList;
@@ -1052,6 +1057,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_GREATSWORD = registerItem("golem_steel_greatsword", () -> new GolemSteelGreatswordItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.GOLEM_STEEL, 6, -2.8F, 0.5F))));
 	public static final RegistryObject<Item, Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new CrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> ENERGY_BOOMERANG = registerItem("energy_boomerang", () -> new EnergyBoomerangItem(new Item.Properties().attributes(EnergyBoomerangItem.createAttributes())));
 	public static final RegistryObject<Item, Item> UNDERMINER = registerItem("underminer", () -> new PickaxeItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().rarity(Rarity.RARE).attributes(PickaxeItem.createAttributes(ESItemTiers.GOLEM_STEEL, 1, -2.8F))));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_BLOCK = registerItem("golem_steel_block", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_BLOCK = registerItem("waxed_golem_steel_block", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
@@ -1101,6 +1107,19 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> WAND_OF_TELEPORTATION = registerItem("wand_of_teleportation", () -> new WandOfTeleportationItem(new Item.Properties().durability(800).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> CHAIN_OF_SOULS = registerItem("chain_of_souls", () -> new ChainOfSoulsItem(new Item.Properties().durability(1200).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> CRESCENT_SPEAR = registerItem("crescent_spear", () -> ESPlatform.INSTANCE.createCrescentSpear(new Item.Properties().attributes(CrescentSpearItem.createAttributes()).component(DataComponents.TOOL, CrescentSpearItem.createToolProperties()).durability(750).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> CRESCENT_PENDANT = registerItem("crescent_pendant", () -> new Item(new Item.Properties()
+		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
+			ItemTags.CHEST_ARMOR,
+			ItemAttributeModifiers.builder()
+				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(EternalStarlight.id("crescent_pendant_attack_damage"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.CHEST)
+				.build(),
+			List.of(
+				Component.translatable("tooltip." + EternalStarlight.ID + ".crescent_pendant.damage_cap").withColor(0x6666a3),
+				Component.translatable("tooltip." + EternalStarlight.ID + ".crescent_pendant.repair").withColor(0x6666a3)
+			),
+			Optional.of(EternalStarlight.id("textures/accessory/crescent_pendant_overlay"))
+		))
+		.stacksTo(1)));
 	public static final RegistryObject<Item, Item> SHADEGRIEVE = registerItem("shadegrieve", () -> new BlockItem(ESBlocks.SHADEGRIEVE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BLOOMING_SHADEGRIEVE = registerItem("blooming_shadegrieve", () -> new BlockItem(ESBlocks.BLOOMING_SHADEGRIEVE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_VINE = registerItem("lunar_vine", () -> new BlockItem(ESBlocks.LUNAR_VINE.get(), new Item.Properties()));

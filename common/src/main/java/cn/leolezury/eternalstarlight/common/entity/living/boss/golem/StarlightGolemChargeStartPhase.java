@@ -18,7 +18,7 @@ public class StarlightGolemChargeStartPhase extends BehaviorPhase<StarlightGolem
 	public void onStart(StarlightGolem entity) {
 		entity.setAttackEnergy(100);
 		entity.turnOnEnergyBlocks();
-		entity.clearHurtCount();
+		entity.clearChargeHurtCountAndAmount();
 	}
 
 	@Override

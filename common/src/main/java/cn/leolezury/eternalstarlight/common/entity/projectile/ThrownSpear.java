@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
@@ -62,11 +64,34 @@ public abstract class ThrownSpear extends AbstractArrow {
 		return this.dealtDamage ? null : super.findHitEntity(startVec, endVec);
 	}
 
+	private double getItemDamage(double baseValue) {
+		ItemStack weapon = getWeaponItem();
+		if (weapon == null) {
+			return baseValue;
+		}
+		double result = baseValue;
+		ItemAttributeModifiers modifiers = weapon.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+		for (ItemAttributeModifiers.Entry entry : modifiers.modifiers()) {
+			if (entry.attribute() == Attributes.ATTACK_DAMAGE) {
+				double amount = entry.modifier().amount();
+				double addition;
+				switch (entry.modifier().operation()) {
+					case ADD_VALUE -> addition = amount;
+					case ADD_MULTIPLIED_BASE -> addition = amount * baseValue;
+					case ADD_MULTIPLIED_TOTAL -> addition = amount * result;
+					default -> throw new MatchException(null, null);
+				}
+				result += addition;
+			}
+		}
+		return result;
+	}
+
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
 		Entity target = result.getEntity();
 		Entity owner = this.getOwner();
-		float damage = getDamageScale(target) * (owner instanceof LivingEntity living && living.getAttribute(Attributes.ATTACK_DAMAGE) != null ? (float) living.getAttributeValue(Attributes.ATTACK_DAMAGE) : 5);
+		float damage = getDamageScale(target) * (float) getItemDamage(owner instanceof LivingEntity living && living.getAttribute(Attributes.ATTACK_DAMAGE) != null ? (float) living.getAttributeBaseValue(Attributes.ATTACK_DAMAGE) : 1);
 		DamageSource damageSource = this.damageSources().thrown(this, owner == null ? this : owner);
 		if (this.level() instanceof ServerLevel serverlevel) {
 			damage = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), target, damageSource, damage);
@@ -105,11 +130,6 @@ public abstract class ThrownSpear extends AbstractArrow {
 	protected void hitBlockEnchantmentEffects(ServerLevel level, BlockHitResult hitResult, ItemStack stack) {
 		Vec3 location = hitResult.getBlockPos().clampLocationWithin(hitResult.getLocation());
 		EnchantmentHelper.onHitBlock(level, stack, this.getOwner() instanceof LivingEntity livingentity ? livingentity : null, this, null, location, level.getBlockState(hitResult.getBlockPos()), item -> this.kill());
-	}
-
-	@Override
-	public ItemStack getWeaponItem() {
-		return this.getPickupItemStackOrigin();
 	}
 
 	@Override

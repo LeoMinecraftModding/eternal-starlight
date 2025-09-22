@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.eternal_starlight.gathering"
+  },
+  "effects": {
+    "eternal_starlight:boomerang_pickup_radius": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 1.0,
+            "per_level_above_first": 0.75
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 30,
+    "per_level_above_first": 11
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 20,
+    "per_level_above_first": 11
+  },
+  "primary_items": "#eternal_starlight:enchantable/boomerang",
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#eternal_starlight:enchantable/boomerang",
+  "weight": 3
+}

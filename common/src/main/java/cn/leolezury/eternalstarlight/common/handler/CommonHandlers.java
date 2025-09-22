@@ -20,6 +20,7 @@ import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
+import cn.leolezury.eternalstarlight.common.item.misc.Accessory;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
@@ -46,6 +47,7 @@ import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.game.ClientboundLevelEventPacket;
@@ -62,10 +64,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -89,10 +88,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 public class CommonHandlers {
 	public static final String STARFIRE_ARROW = EternalStarlight.ID + ":starfire";
@@ -165,6 +163,38 @@ public class CommonHandlers {
 
 	public static void onItemTooltip(Player player, TooltipFlag flags, ItemStack itemStack, List<Component> tooltip, Item.TooltipContext context) {
 		HolderLookup.Provider lookup = context.registries();
+		Accessory accessory = itemStack.get(ESDataComponents.ACCESSORY.get());
+		// copied from ItemStack#addAttributeTooltips
+		if (accessory != null && accessory.attributeModifiers().showInTooltip()) {
+			for (EquipmentSlotGroup slotGroup : EquipmentSlotGroup.values()) {
+				MutableBoolean mutableBoolean = new MutableBoolean(true);
+				accessory.attributeModifiers().forEach(slotGroup, (holder, modifier) -> {
+					if (mutableBoolean.isTrue()) {
+						tooltip.add(CommonComponents.EMPTY);
+						tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combined").withStyle(ChatFormatting.GRAY));
+						mutableBoolean.setFalse();
+					}
+					itemStack.addModifierTooltip(tooltip::add, player, holder, modifier);
+				});
+			}
+		}
+		if (accessory != null) {
+			tooltip.addAll(accessory.extraDescription());
+		}
+		if (itemStack.has(ESDataComponents.ACCESSORIES.get())) {
+			List<ItemStack> accessories = itemStack.getOrDefault(ESDataComponents.ACCESSORIES.get(), new ArrayList<>());
+			if (!accessories.isEmpty()) {
+				tooltip.add(CommonComponents.EMPTY);
+				tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessories").withStyle(ChatFormatting.GRAY));
+				accessories.forEach(accessoryStack -> {
+					tooltip.add(accessoryStack.getHoverName());
+					Accessory data = accessoryStack.get(ESDataComponents.ACCESSORY.get());
+					if (data != null) {
+						tooltip.addAll(data.extraDescription());
+					}
+				});
+			}
+		}
 		if (itemStack.is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_weapon").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_tool").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
@@ -196,6 +226,19 @@ public class CommonHandlers {
 		}
 		if (itemStack.is(ESItems.UNDERMINER.get())) {
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".underminer").withStyle(Style.EMPTY.withColor(0x47adc4)));
+		}
+	}
+
+	public static float onModifyLivingActualHurtDamage(LivingEntity entity, DamageSource source, float amount) {
+		float modified = amount;
+		Set<Item> activeAccessories = ESAccessoryUtil.getActiveAccessoriesOnArmors(entity);
+		if (activeAccessories.contains(ESItems.CRESCENT_PENDANT.get()) && modified > entity.getMaxHealth() * 0.75f) {
+			modified = entity.getMaxHealth() * 0.75f;
+		}
+		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			return Math.max(amount, modified);
+		} else {
+			return modified;
 		}
 	}
 
@@ -240,7 +283,11 @@ public class CommonHandlers {
 		) {
 			modified *= 1.25f;
 		}
-		return modified;
+		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			return Math.max(amount, modified);
+		} else {
+			return modified;
+		}
 	}
 
 	public static void onPostLivingHurt(LivingEntity entity, DamageSource source, float amount) {
@@ -623,7 +670,7 @@ public class CommonHandlers {
 			int min = player.level().getMinBuildHeight();
 			int max = player.level().getMaxBuildHeight();
 			double y = Mth.clamp(player.getY(), min, max);
-			float modifier = (float) (2.0 - (y - min) / (max - min));
+			float modifier = (float) (2 - 1.75 * (y - min) / (max - min));
 			return speed * modifier;
 		}
 		return speed;

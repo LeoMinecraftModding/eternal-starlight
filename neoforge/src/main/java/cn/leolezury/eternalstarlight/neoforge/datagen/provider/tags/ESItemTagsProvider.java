@@ -268,6 +268,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.FLOWGLAZE_BOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
+				ESItems.ENERGY_BOOMERANG.get(),
 				ESItems.WILTED_CROSSBOW.get(),
 				ESItems.MOONRING_BOW.get(),
 				ESItems.CRESCENT_SPEAR.get(),
@@ -430,6 +431,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
 				ESItems.STARFIRE_HAMMER.get()
 			);
+		tag(ESTags.Items.BOOMERANGS)
+			.add(
+				ESItems.ENERGY_BOOMERANG.get()
+			);
 		tag(ESTags.Items.SMALL_SHIELDS)
 			.add(
 				ESItems.GLACITE_SHIELD.get(),
@@ -554,6 +559,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AMARAMBER_HELMET.get(),
 				ESItems.AMARAMBER_CHESTPLATE.get()
 			);
+		tag(ESTags.Items.REPAIRED_BY_CRESCENT_PENDANT)
+			.add(
+				ESItems.MOONRING_BOW.get(),
+				ESItems.MOONRING_GREATSWORD.get(),
+				ESItems.PETAL_SCYTHE.get(),
+				ESItems.WAND_OF_TELEPORTATION.get(),
+				ESItems.CHAIN_OF_SOULS.get(),
+				ESItems.CHAIN_OF_SOULS.get()
+			);
 		tag(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS)
 			.add(
 				Items.FLINT_AND_STEEL,
@@ -633,6 +647,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.addTag(ESTags.Items.GREATSWORDS);
 		tag(ESTags.Items.HAMMER_ENCHANTABLE)
 			.addTag(ESTags.Items.HAMMERS);
+		tag(ESTags.Items.BOOMERANG_ENCHANTABLE)
+			.addTag(ESTags.Items.BOOMERANGS);
 		tag(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE)
 			.add(
 				ESItems.CHAIN_OF_SOULS.get()
@@ -919,7 +935,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.addTags(
 				ESTags.Items.SCYTHES,
 				ESTags.Items.SICKLES,
-				ESTags.Items.HAMMERS
+				ESTags.Items.HAMMERS,
+				ESTags.Items.BOOMERANGS
 			);
 		tag(ItemTags.BOW_ENCHANTABLE)
 			.add(
@@ -948,14 +965,18 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			)
 			.addTag(ESTags.Items.SCYTHE_ENCHANTABLE);
 		tag(ItemTags.WEAPON_ENCHANTABLE)
-			.addTag(ESTags.Items.HAMMER_ENCHANTABLE);
+			.addTags(
+				ESTags.Items.HAMMER_ENCHANTABLE,
+				ESTags.Items.BOOMERANG_ENCHANTABLE
+			);
 		tag(ItemTags.FIRE_ASPECT_ENCHANTABLE)
 			.add(
 				ESItems.CRESCENT_SPEAR.get()
 			)
 			.addTags(
+				ESTags.Items.SCYTHE_ENCHANTABLE,
 				ESTags.Items.HAMMER_ENCHANTABLE,
-				ESTags.Items.SCYTHE_ENCHANTABLE
+				ESTags.Items.BOOMERANG_ENCHANTABLE
 			);
 		tag(ItemTags.BOATS)
 			.add(

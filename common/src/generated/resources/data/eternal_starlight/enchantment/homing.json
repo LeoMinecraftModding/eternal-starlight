@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 3,
+  "description": {
+    "translate": "enchantment.eternal_starlight.homing"
+  },
+  "effects": {
+    "eternal_starlight:boomerang_homing_strength": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.1,
+            "per_level_above_first": 0.75
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 21,
+    "per_level_above_first": 11
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 15,
+    "per_level_above_first": 11
+  },
+  "primary_items": "#eternal_starlight:enchantable/boomerang",
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#eternal_starlight:enchantable/boomerang",
+  "weight": 4
+}

@@ -24,6 +24,7 @@ public class EternalStarlight {
 		ESBlocks.loadClass();
 		ESPoiTypes.loadClass();
 		ESDataComponents.loadClass();
+		ESEnchantmentEffectComponents.loadClass();
 		ESArmorMaterials.loadClass();
 		ESSpells.loadClass();
 		ESEntities.loadClass();

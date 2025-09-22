@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.eternal_starlight.precision"
+  },
+  "effects": {
+    "eternal_starlight:boomerang_crit_chance": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.16,
+            "per_level_above_first": 0.16
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 21,
+    "per_level_above_first": 11
+  },
+  "max_level": 5,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 11
+  },
+  "primary_items": "#eternal_starlight:enchantable/boomerang",
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#eternal_starlight:enchantable/boomerang",
+  "weight": 10
+}

@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.enchantment.effects.Freeze;
 import cn.leolezury.eternalstarlight.common.enchantment.effects.PushTowardsEntity;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
+import cn.leolezury.eternalstarlight.common.registry.ESEnchantmentEffectComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -13,21 +14,23 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.valueproviders.ConstantFloat;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.EnchantmentTarget;
-import net.minecraft.world.item.enchantment.LevelBasedValue;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.item.enchantment.effects.ApplyMobEffect;
 import net.minecraft.world.item.enchantment.effects.Ignite;
 import net.minecraft.world.item.enchantment.effects.SpawnParticlesEffect;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import org.apache.commons.lang3.mutable.MutableFloat;
 
 public class ESEnchantments {
 	public static final ResourceKey<Enchantment> POISONING = create("poisoning");
@@ -38,6 +41,9 @@ public class ESEnchantments {
 	public static final ResourceKey<Enchantment> OVERHEAT = create("overheat");
 	public static final ResourceKey<Enchantment> GLACIAL_SOWING = create("glacial_sowing");
 	public static final ResourceKey<Enchantment> FERTILE = create("fertile");
+	public static final ResourceKey<Enchantment> PRECISION = create("precision");
+	public static final ResourceKey<Enchantment> HOMING = create("homing");
+	public static final ResourceKey<Enchantment> GATHERING = create("gathering");
 
 	public static void bootstrap(BootstrapContext<Enchantment> context) {
 		HolderGetter<Item> items = context.lookup(Registries.ITEM);
@@ -70,9 +76,54 @@ public class ESEnchantments {
 		context.register(FERTILE, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.SEEDS_LAUNCHER_ENCHANTABLE), items.getOrThrow(ESTags.Items.SEEDS_LAUNCHER_ENCHANTABLE), 2, 3, Enchantment.dynamicCost(20, 11), Enchantment.dynamicCost(30, 11), 4, EquipmentSlotGroup.MAINHAND))
 			.withEffect(EnchantmentEffectComponents.PROJECTILE_COUNT, new AddValue(LevelBasedValue.perLevel(2.0F)))
 			.build(FERTILE.location()));
+		context.register(PRECISION, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.BOOMERANG_ENCHANTABLE), items.getOrThrow(ESTags.Items.BOOMERANG_ENCHANTABLE), 10, 5, Enchantment.dynamicCost(1, 11), Enchantment.dynamicCost(21, 11), 1, EquipmentSlotGroup.MAINHAND))
+			.withEffect(ESEnchantmentEffectComponents.BOOMERANG_CRIT_CHANCE.get(), new AddValue(LevelBasedValue.perLevel(0.16F)))
+			.build(PRECISION.location()));
+		context.register(HOMING, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.BOOMERANG_ENCHANTABLE), items.getOrThrow(ESTags.Items.BOOMERANG_ENCHANTABLE), 4, 3, Enchantment.dynamicCost(15, 11), Enchantment.dynamicCost(21, 11), 3, EquipmentSlotGroup.MAINHAND))
+			.withEffect(ESEnchantmentEffectComponents.BOOMERANG_HOMING_STRENGTH.get(), new AddValue(LevelBasedValue.perLevel(0.1F, 0.75F)))
+			.build(HOMING.location()));
+		context.register(GATHERING, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.BOOMERANG_ENCHANTABLE), items.getOrThrow(ESTags.Items.BOOMERANG_ENCHANTABLE), 3, 2, Enchantment.dynamicCost(20, 11), Enchantment.dynamicCost(30, 11), 4, EquipmentSlotGroup.MAINHAND))
+			.withEffect(ESEnchantmentEffectComponents.BOOMERANG_PICKUP_RADIUS.get(), new AddValue(LevelBasedValue.perLevel(1.0F, 0.75F)))
+			.build(GATHERING.location()));
 	}
 
 	public static ResourceKey<Enchantment> create(String name) {
 		return ResourceKey.create(Registries.ENCHANTMENT, EternalStarlight.id(name));
+	}
+
+	public static float modifyBoomerangCritChance(ServerLevel level, ItemStack tool, Entity entity, DamageSource damageSource, float boomerangCritChance) {
+		MutableFloat mutablefloat = new MutableFloat(boomerangCritChance);
+		EnchantmentHelper.runIterationOnItem(
+			tool, (holder, enchantmentLevel) -> modifyBoomerangCritChance(holder.value(), level, enchantmentLevel, tool, entity, damageSource, mutablefloat)
+		);
+		return mutablefloat.floatValue();
+	}
+
+	public static void modifyBoomerangCritChance(Enchantment enchantment, ServerLevel level, int enchantmentLevel, ItemStack tool, Entity entity, DamageSource damageSource, MutableFloat boomerangCritChance) {
+		enchantment.modifyDamageFilteredValue(ESEnchantmentEffectComponents.BOOMERANG_CRIT_CHANCE.get(), level, enchantmentLevel, tool, entity, damageSource, boomerangCritChance);
+	}
+
+	public static float modifyBoomerangHomingStrength(ServerLevel level, ItemStack tool, float boomerangHomingStrength) {
+		MutableFloat mutablefloat = new MutableFloat(boomerangHomingStrength);
+		EnchantmentHelper.runIterationOnItem(
+			tool, (holder, enchantmentLevel) -> modifyBoomerangHomingStrength(holder.value(), level, enchantmentLevel, tool, mutablefloat)
+		);
+		return mutablefloat.floatValue();
+	}
+
+	public static void modifyBoomerangHomingStrength(Enchantment enchantment, ServerLevel level, int enchantmentLevel, ItemStack tool, MutableFloat boomerangHomingStrength) {
+		enchantment.modifyItemFilteredCount(ESEnchantmentEffectComponents.BOOMERANG_HOMING_STRENGTH.get(), level, enchantmentLevel, tool, boomerangHomingStrength);
+	}
+
+	public static float modifyBoomerangPickupRadius(ServerLevel level, ItemStack tool, float boomerangPickupRadius) {
+		MutableFloat mutablefloat = new MutableFloat(boomerangPickupRadius);
+		EnchantmentHelper.runIterationOnItem(
+			tool, (holder, enchantmentLevel) -> modifyBoomerangPickupRadius(holder.value(), level, enchantmentLevel, tool, mutablefloat)
+		);
+		return mutablefloat.floatValue();
+	}
+
+	public static void modifyBoomerangPickupRadius(Enchantment enchantment, ServerLevel level, int enchantmentLevel, ItemStack tool, MutableFloat boomerangPickupRadius) {
+		enchantment.modifyItemFilteredCount(ESEnchantmentEffectComponents.BOOMERANG_PICKUP_RADIUS.get(), level, enchantmentLevel, tool, boomerangPickupRadius);
 	}
 }

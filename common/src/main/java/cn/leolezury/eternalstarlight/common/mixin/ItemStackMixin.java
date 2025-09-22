@@ -1,11 +1,19 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESAccessoryUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ClickAction;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -35,7 +43,7 @@ public abstract class ItemStackMixin {
 
 	@Inject(method = "inventoryTick", at = @At(value = "RETURN"))
 	private void inventoryTick(Level level, Entity entity, int inventorySlot, boolean isCurrentItem, CallbackInfo ci) {
-		if (!level.isClientSide && entity.tickCount % 600 == 0 && isDamaged() && is(ESTags.Items.MENDS_NATURALLY)) {
+		if (!level.isClientSide && entity.tickCount % 600 == 0 && isDamaged() && (is(ESTags.Items.MENDS_NATURALLY) || (is(ESTags.Items.REPAIRED_BY_CRESCENT_PENDANT) && entity instanceof LivingEntity living && ESAccessoryUtil.getActiveAccessoriesOnArmors(living).contains(ESItems.CRESCENT_PENDANT.get())))) {
 			setDamageValue(Math.max(getDamageValue() - 1, 0));
 		}
 	}
@@ -45,5 +53,15 @@ public abstract class ItemStackMixin {
 		if (is(ESItems.LOOT_BAG.get()) && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			cir.setReturnValue(false);
 		}
+	}
+
+	@ModifyReturnValue(method = "overrideStackedOnOther", at = @At(value = "RETURN"))
+	private boolean overrideStackedOnOther(boolean original, @Local(argsOnly = true) Slot slot, @Local(argsOnly = true) ClickAction action, @Local(argsOnly = true) Player player) {
+		return original || ESAccessoryUtil.overrideEquipmentOnAccessory((ItemStack) (Object) this, slot, action, player);
+	}
+
+	@ModifyReturnValue(method = "overrideOtherStackedOnMe", at = @At(value = "RETURN"))
+	private boolean overrideOtherStackedOnMe(boolean original, @Local(argsOnly = true) ItemStack other, @Local(argsOnly = true) Slot slot, @Local(argsOnly = true) ClickAction action, @Local(argsOnly = true) Player player, @Local(argsOnly = true) SlotAccess access) {
+		return original || ESAccessoryUtil.overrideAccessoryOnEquipment((ItemStack) (Object) this, other, slot, action, player, access);
 	}
 }

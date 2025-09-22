@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.item.misc.Accessory;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
@@ -16,6 +18,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
+
 @Environment(EnvType.CLIENT)
 @Mixin(GuiGraphics.class)
 public abstract class GuiGraphicsMixin {
@@ -30,9 +34,19 @@ public abstract class GuiGraphicsMixin {
 	private void renderItemDecorations(Font font, ItemStack itemStack, int i, int j, String string, CallbackInfo ci) {
 		if (itemStack.is(ESTags.Items.WIP)) {
 			this.pose.pushPose();
-			this.pose.translate(0.0F, 0.0F, 200.0F);
+			this.pose.translate(0.0F, 0.0F, 199.0F);
 			blit(ClientHandlers.WIP_LOCATION, i, j, 0.0F, 0.0F, 16, 16, 16, 16);
 			this.pose.popPose();
+		}
+		List<ItemStack> accessories = itemStack.get(ESDataComponents.ACCESSORIES.get());
+		if (accessories != null && !accessories.isEmpty()) {
+			Accessory accessory = accessories.getFirst().get(ESDataComponents.ACCESSORY.get());
+			if (accessory != null && accessory.overlay().isPresent()) {
+				this.pose.pushPose();
+				this.pose.translate(0.0F, 0.0F, 198.0F);
+				blit(accessory.overlay().get().withSuffix(".png"), i, j, 0.0F, 0.0F, 16, 16, 16, 16);
+				this.pose.popPose();
+			}
 		}
 	}
 }

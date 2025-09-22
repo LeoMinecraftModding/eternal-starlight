@@ -23,17 +23,7 @@ public class ESParticles {
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> FALLING_RED_CRYSTAL_MOSS = PARTICLE_TYPES.register("falling_red_crystal_moss", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> FALLING_BLUE_CRYSTAL_MOSS = PARTICLE_TYPES.register("falling_blue_crystal_moss", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGY = PARTICLE_TYPES.register("energy", () -> new SimpleParticleType(false));
-	public static final RegistryObject<ParticleType<?>, ParticleType<LightningParticleOptions>> LIGHTNING = PARTICLE_TYPES.register("lightning", () -> new ParticleType<>(false) {
-		@Override
-		public MapCodec<LightningParticleOptions> codec() {
-			return LightningParticleOptions.CODEC;
-		}
-
-		@Override
-		public StreamCodec<? super RegistryFriendlyByteBuf, LightningParticleOptions> streamCodec() {
-			return LightningParticleOptions.STREAM_CODEC;
-		}
-	});
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ELECTRIC_SPARK = PARTICLE_TYPES.register("electric_spark", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> BLADE_SHOCKWAVE = PARTICLE_TYPES.register("blade_shockwave", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> CRYSTALLIZED_MOTH_SONAR = PARTICLE_TYPES.register("crystallized_moth_sonar", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AMARAMBER_FLAME = PARTICLE_TYPES.register("amaramber_flame", () -> new SimpleParticleType(false));

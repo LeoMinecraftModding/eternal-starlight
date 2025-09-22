@@ -22,6 +22,7 @@ import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyP
 import cn.leolezury.eternalstarlight.common.client.particle.environment.MeteorParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.*;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
+import cn.leolezury.eternalstarlight.common.client.renderer.layer.CrescentPendantLayer;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
@@ -54,9 +55,8 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.*;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.PaintingRenderer;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -70,6 +70,7 @@ import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
@@ -116,7 +117,7 @@ public class ClientSetupHandlers {
 		void register(SkullBlock.Type type, SkullModelBase model);
 	}
 
-	public interface RendererLayerRegisterStrategy {
+	public interface ModelLayerRegisterStrategy {
 		void register(ModelLayerLocation layerLocation, Supplier<LayerDefinition> supplier);
 	}
 
@@ -729,7 +730,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.FALLING_RED_CRYSTAL_MOSS.get(), FallingLeavesParticle.GlowProvider::new);
 		strategy.register(ESParticles.FALLING_BLUE_CRYSTAL_MOSS.get(), FallingLeavesParticle.GlowProvider::new);
 		strategy.register(ESParticles.ENERGY.get(), EnergyParticle.Provider::new);
-		strategy.register(ESParticles.LIGHTNING.get(), LightningParticle.Provider::new);
+		strategy.register(ESParticles.ELECTRIC_SPARK.get(), ElectricSparkParticle.Provider::new);
 		strategy.register(ESParticles.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
 		strategy.register(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), SonarParticle.Provider::new);
 		strategy.register(ESParticles.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);
@@ -858,6 +859,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.STARFIRE.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.ENERGY_SPARK.get(), EnergySparkRenderer::new);
 		strategy.register(ESEntities.CRYSTAL_CLUSTER.get(), CrystalClusterRenderer::new);
+		strategy.register(ESEntities.ENERGY_BOOMERANG.get(), ThrownBoomerangRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
 	}
@@ -869,7 +871,7 @@ public class ClientSetupHandlers {
 	private static final CubeDeformation INNER_ARMOR_DEFORMATION = new CubeDeformation(0.5f);
 	private static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0f);
 
-	public static void registerLayers(RendererLayerRegisterStrategy strategy) {
+	public static void registerLayers(ModelLayerRegisterStrategy strategy) {
 		strategy.register(ThermalSpringStoneArmorModel.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
 		strategy.register(ThermalSpringStoneArmorModel.OUTER_LOCATION, () -> ThermalSpringStoneArmorModel.createArmorLayer(OUTER_ARMOR_DEFORMATION));
 		strategy.register(AlchemistArmorModel.LAYER_LOCATION, AlchemistArmorModel::createBodyLayer);
@@ -947,6 +949,8 @@ public class ClientSetupHandlers {
 
 		// vanilla entities
 		strategy.register(DarkSwampWitchModel.LAYER_LOCATION, DarkSwampWitchModel::createBodyLayer);
+		strategy.register(CrescentPendantLayer.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.0F)), 64, 32));
+		strategy.register(CrescentPendantLayer.OUTER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.5F)), 64, 32));
 
 		// items
 		strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
@@ -969,5 +973,14 @@ public class ClientSetupHandlers {
 	public static void addClientReloadListeners(Consumer<PreparableReloadListener> strategy) {
 		ClientHandlers.books = ESPlatform.INSTANCE.createBookLoader();
 		strategy.accept(ClientHandlers.books);
+	}
+
+	public static void onRenderLayerAttachment(EntityType<?> entityType, LivingEntityRenderer<?, ?> renderer, EntityRendererProvider.Context context) {
+		try {
+			if (renderer.getModel() instanceof HumanoidModel<?>) {
+				renderer.addLayer((RenderLayer) new CrescentPendantLayer((RenderLayerParent<LivingEntity, HumanoidModel<LivingEntity>>) renderer, new HumanoidArmorModel<>(context.bakeLayer(CrescentPendantLayer.INNER_LOCATION)), new HumanoidArmorModel<>(context.bakeLayer(CrescentPendantLayer.OUTER_LOCATION))));
+			}
+		} catch (ClassCastException ignored) {
+		}
 	}
 }

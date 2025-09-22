@@ -888,6 +888,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		greatswordInventory(ESItems.GOLEM_STEEL_GREATSWORD.get());
 		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
 		crossbow(ESItems.MECHANICAL_CROSSBOW.get());
+		handheld(ESItems.ENERGY_BOOMERANG.get());
 		handheld(ESItems.UNDERMINER.get());
 		block(ESItems.GOLEM_STEEL_BLOCK.get());
 		otherBlock(ESItems.WAXED_GOLEM_STEEL_BLOCK.get(), ESItems.GOLEM_STEEL_BLOCK.get());
@@ -938,6 +939,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.WAND_OF_TELEPORTATION.get());
 		chainOfSouls(ESItems.CHAIN_OF_SOULS.get());
 		inventoryHandheld(ESItems.CRESCENT_SPEAR.get());
+		basicItem(ESItems.CRESCENT_PENDANT.get());
 		block(ESItems.SHADEGRIEVE.get());
 		block(ESItems.BLOOMING_SHADEGRIEVE.get());
 		basicItem(ESItems.LUNAR_VINE.get());

@@ -22,7 +22,10 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 	protected void addTags(HolderLookup.Provider lookupProvider) {
 		tag(ESTags.Enchantments.GOLEM_FORGE_LOOT)
 			.add(
-				ESEnchantments.FEARLESS
+				ESEnchantments.FEARLESS,
+				ESEnchantments.PRECISION,
+				ESEnchantments.HOMING,
+				ESEnchantments.GATHERING
 			);
 		tag(ESTags.Enchantments.CURSED_GARDEN_LOOT)
 			.add(
@@ -49,15 +52,10 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 				ESEnchantments.TEARING,
 				ESEnchantments.OVERHEAT,
 				ESEnchantments.GLACIAL_SOWING,
-				ESEnchantments.FERTILE
-			);
-		tag(EnchantmentTags.IN_ENCHANTING_TABLE)
-			.add(
-				ESEnchantments.TRACING,
-				ESEnchantments.TEARING,
-				ESEnchantments.OVERHEAT,
-				ESEnchantments.GLACIAL_SOWING,
-				ESEnchantments.FERTILE
+				ESEnchantments.FERTILE,
+				ESEnchantments.PRECISION,
+				ESEnchantments.HOMING,
+				ESEnchantments.GATHERING
 			);
 		tag(EnchantmentTags.TREASURE)
 			.add(
@@ -71,7 +69,10 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 				ESEnchantments.TEARING,
 				ESEnchantments.OVERHEAT,
 				ESEnchantments.GLACIAL_SOWING,
-				ESEnchantments.FERTILE
+				ESEnchantments.FERTILE,
+				ESEnchantments.PRECISION,
+				ESEnchantments.HOMING,
+				ESEnchantments.GATHERING
 			);
 	}
 }
