@@ -38,6 +38,7 @@ public record ESBarteringLootSubProvider(HolderLookup.Provider registries) imple
 					.add(LootItem.lootTableItem(Items.LEATHER).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
 					.add(LootItem.lootTableItem(Items.ROTTEN_FLESH).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F))))
 					.add(LootItem.lootTableItem(ESItems.SEEDS_LAUNCHER.get()).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(10.0F, 20.0F))).setWeight(4))
+					.add(LootItem.lootTableItem(ESItems.BATTLEAXE_PENDANT.get()).setWeight(4))
 					.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).setWeight(8).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
 					.add(LootItem.lootTableItem(ESItems.PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.DRYING_RACK.get()).setWeight(8))

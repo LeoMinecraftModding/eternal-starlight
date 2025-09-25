@@ -650,6 +650,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.SWAMP_SILVER_LEGGINGS.get());
 		basicItem(ESItems.SWAMP_SILVER_BOOTS.get());
 
+		basicItem(ESItems.WARHAMMER_PENDANT.get());
+
 		block(ESItems.GRIMSTONE_MALARITE_ORE.get());
 		block(ESItems.VOIDSTONE_MALARITE_ORE.get());
 		block(ESItems.MALARITE_BLOCK.get());
@@ -674,6 +676,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		inventoryHandheld(ESItems.PUNGENCY_FRUIT_SPEAR.get());
 
 		inventoryHandheld(ESItems.SEEDS_LAUNCHER.get());
+
+		basicItem(ESItems.BATTLEAXE_PENDANT.get());
 
 		basicItem(ESItems.DRYING_RACK.get());
 		basicItem(ESItems.ROTTEN_FLESH_JERKY.get());

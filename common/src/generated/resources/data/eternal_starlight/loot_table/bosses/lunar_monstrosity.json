@@ -116,6 +116,16 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:crescent_pendant"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:twining_armor_trim_smithing_template"
         }
       ],

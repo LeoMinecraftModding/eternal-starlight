@@ -49,6 +49,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.game.ClientboundLevelEventPacket;
 import net.minecraft.server.MinecraftServer;
@@ -88,7 +89,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import org.apache.commons.lang3.mutable.MutableBoolean;
 
 import java.util.*;
 
@@ -165,21 +165,22 @@ public class CommonHandlers {
 		HolderLookup.Provider lookup = context.registries();
 		Accessory accessory = itemStack.get(ESDataComponents.ACCESSORY.get());
 		// copied from ItemStack#addAttributeTooltips
-		if (accessory != null && accessory.attributeModifiers().showInTooltip()) {
-			for (EquipmentSlotGroup slotGroup : EquipmentSlotGroup.values()) {
-				MutableBoolean mutableBoolean = new MutableBoolean(true);
-				accessory.attributeModifiers().forEach(slotGroup, (holder, modifier) -> {
-					if (mutableBoolean.isTrue()) {
-						tooltip.add(CommonComponents.EMPTY);
-						tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combined").withStyle(ChatFormatting.GRAY));
-						mutableBoolean.setFalse();
-					}
-					itemStack.addModifierTooltip(tooltip::add, player, holder, modifier);
-				});
-			}
-		}
 		if (accessory != null) {
-			tooltip.addAll(accessory.extraDescription());
+			if ((accessory.attributeModifiers().showInTooltip() && !accessory.attributeModifiers().modifiers().isEmpty()) || !accessory.extraDescription().isEmpty()) {
+				tooltip.add(CommonComponents.EMPTY);
+				tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combined").withStyle(ChatFormatting.GRAY));
+			}
+			if (accessory.attributeModifiers().showInTooltip()) {
+				for (EquipmentSlotGroup slotGroup : EquipmentSlotGroup.values()) {
+					accessory.attributeModifiers().forEach(slotGroup, (holder, modifier) -> itemStack.addModifierTooltip(tooltip::add, player, holder, modifier));
+				}
+			}
+			for (Component desc : accessory.extraDescription()) {
+				tooltip.add(Component.literal(" ").append(desc));
+			}
+			tooltip.add(CommonComponents.EMPTY);
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.literal(" ").append(accessory.combinationTargetDescription()));
 		}
 		if (itemStack.has(ESDataComponents.ACCESSORIES.get())) {
 			List<ItemStack> accessories = itemStack.getOrDefault(ESDataComponents.ACCESSORIES.get(), new ArrayList<>());
@@ -187,25 +188,35 @@ public class CommonHandlers {
 				tooltip.add(CommonComponents.EMPTY);
 				tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessories").withStyle(ChatFormatting.GRAY));
 				accessories.forEach(accessoryStack -> {
-					tooltip.add(accessoryStack.getHoverName());
 					Accessory data = accessoryStack.get(ESDataComponents.ACCESSORY.get());
+					MutableComponent name = Component.literal(" ").append(accessoryStack.getHoverName());
+					if (data != null && data.nameStyle().isPresent()) {
+						name.withStyle(data.nameStyle().get());
+					}
+					tooltip.add(name);
 					if (data != null) {
-						tooltip.addAll(data.extraDescription());
+						for (Component desc : data.extraDescription()) {
+							tooltip.add(Component.literal(" ").append(desc));
+						}
 					}
 				});
 			}
 		}
 		if (itemStack.is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
+			tooltip.add(CommonComponents.EMPTY);
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_weapon").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_tool").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 		}
 		if (itemStack.is(ESItems.FLOWGLAZE_BOW.get())) {
+			tooltip.add(CommonComponents.EMPTY);
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_bow").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 		}
 		if (itemStack.is(ESItems.FLOWGLAZE_SHIELD.get())) {
+			tooltip.add(CommonComponents.EMPTY);
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_shield").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
 		}
 		if (player != null && lookup != null && itemStack.is(ESTags.Items.SEEDS_LAUNCHER_AMMO) && player.getInventory().contains(stack -> stack.getItem() == ESItems.SEEDS_LAUNCHER.get())) {
+			tooltip.add(CommonComponents.EMPTY);
 			SeedsLauncherAmmoType type = SeedsLauncherAmmoType.getAmmoType(lookup, itemStack.getItem()).value();
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.ammo").withStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
 			String damage = Math.round((type.damageMultiplier() - 1) * 100) + "%";
@@ -225,6 +236,7 @@ public class CommonHandlers {
 			tooltip.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.cooldown", type.cooldown()).withStyle(ChatFormatting.DARK_GREEN)));
 		}
 		if (itemStack.is(ESItems.UNDERMINER.get())) {
+			tooltip.add(CommonComponents.EMPTY);
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".underminer").withStyle(Style.EMPTY.withColor(0x47adc4)));
 		}
 	}
@@ -282,6 +294,9 @@ public class CommonHandlers {
 			&& ESDataAttachments.CONCENTRATION_LEVEL.getData(attacker) >= 4
 		) {
 			modified *= 1.25f;
+		}
+		if (source.getDirectEntity() instanceof LivingEntity attacker && ESAccessoryUtil.getAccessories(attacker.getWeaponItem()).contains(ESItems.WARHAMMER_PENDANT.get())) {
+			modified *= Math.min(1 + ESDataAttachments.MOVEMENT.getData(attacker) * 1.5f, 2);
 		}
 		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			return Math.max(amount, modified);

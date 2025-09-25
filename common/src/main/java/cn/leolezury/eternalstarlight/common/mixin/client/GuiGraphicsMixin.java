@@ -31,21 +31,24 @@ public abstract class GuiGraphicsMixin {
 	private PoseStack pose;
 
 	@Inject(method = "renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"))
-	private void renderItemDecorations(Font font, ItemStack itemStack, int i, int j, String string, CallbackInfo ci) {
+	private void renderItemDecorations(Font font, ItemStack itemStack, int x, int y, String string, CallbackInfo ci) {
 		if (itemStack.is(ESTags.Items.WIP)) {
 			this.pose.pushPose();
 			this.pose.translate(0.0F, 0.0F, 199.0F);
-			blit(ClientHandlers.WIP_LOCATION, i, j, 0.0F, 0.0F, 16, 16, 16, 16);
+			blit(ClientHandlers.WIP_LOCATION, x, y, 0.0F, 0.0F, 16, 16, 16, 16);
 			this.pose.popPose();
 		}
 		List<ItemStack> accessories = itemStack.get(ESDataComponents.ACCESSORIES.get());
 		if (accessories != null && !accessories.isEmpty()) {
-			Accessory accessory = accessories.getFirst().get(ESDataComponents.ACCESSORY.get());
-			if (accessory != null && accessory.overlay().isPresent()) {
-				this.pose.pushPose();
-				this.pose.translate(0.0F, 0.0F, 198.0F);
-				blit(accessory.overlay().get().withSuffix(".png"), i, j, 0.0F, 0.0F, 16, 16, 16, 16);
-				this.pose.popPose();
+			for (ItemStack stack : accessories) {
+				Accessory accessory = stack.get(ESDataComponents.ACCESSORY.get());
+				if (accessory != null && accessory.overlay().isPresent()) {
+					this.pose.pushPose();
+					this.pose.translate(0.0F, 0.0F, 198.0F);
+					blit(accessory.overlay().get().withSuffix(".png"), x, y, 0.0F, 0.0F, 16, 16, 16, 16);
+					this.pose.popPose();
+					break;
+				}
 			}
 		}
 	}

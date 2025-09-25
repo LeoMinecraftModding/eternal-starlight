@@ -162,7 +162,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		if (!isRemoved()) {
 			if (!level().isClientSide) {
 				if (natural && getSize() >= 10) {
-					ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(15, 25)));
+					ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(20, 30)));
 					if (entity != null) {
 						entity.setGlowingTag(true);
 					}

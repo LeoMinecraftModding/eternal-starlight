@@ -31,7 +31,8 @@ public class AccessoryCombinationRecipe extends CustomRecipe {
 		List<ItemStack> equipment = recipeInput.items().stream().filter(stack -> {
 			Accessory data = accessory.getFirst().get(ESDataComponents.ACCESSORY.get());
 			if (data != null) {
-				return stack.is(data.combinationTarget()) && stack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.<ItemStack>of()).stream().noneMatch(s -> s.getItem() == accessory.getFirst().getItem());
+				List<ItemStack> accessories = stack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of());
+				return stack.is(data.combinationTarget()) && ESAccessoryUtil.getAccessorySlotCount(stack) > accessories.size() && accessories.stream().noneMatch(s -> s.getItem() == accessory.getFirst().getItem());
 			} else {
 				return false;
 			}
@@ -45,7 +46,8 @@ public class AccessoryCombinationRecipe extends CustomRecipe {
 		List<ItemStack> equipment = recipeInput.items().stream().filter(stack -> {
 			Accessory data = accessory.getFirst().get(ESDataComponents.ACCESSORY.get());
 			if (data != null) {
-				return stack.is(data.combinationTarget()) && stack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.<ItemStack>of()).stream().noneMatch(s -> s.getItem() == accessory.getFirst().getItem());
+				List<ItemStack> accessories = stack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of());
+				return stack.is(data.combinationTarget()) && ESAccessoryUtil.getAccessorySlotCount(stack) > accessories.size() && accessories.stream().noneMatch(s -> s.getItem() == accessory.getFirst().getItem());
 			} else {
 				return false;
 			}

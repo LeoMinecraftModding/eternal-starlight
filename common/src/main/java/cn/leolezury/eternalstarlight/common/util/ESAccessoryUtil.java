@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ESAccessoryUtil {
 	public static Set<Item> getActiveAccessoriesOnArmors(LivingEntity entity) {
@@ -24,9 +25,17 @@ public class ESAccessoryUtil {
 	public static Set<Item> getActiveAccessories(LivingEntity entity, Set<EquipmentSlot> slots) {
 		Set<Item> result = new HashSet<>();
 		for (EquipmentSlot slot : slots) {
-			result.addAll(entity.getItemBySlot(slot).getOrDefault(ESDataComponents.ACCESSORIES.get(), List.<ItemStack>of()).stream().map(ItemStack::getItem).toList());
+			result.addAll(getAccessories(entity.getItemBySlot(slot)));
 		}
 		return result;
+	}
+
+	public static Set<Item> getAccessories(ItemStack stack) {
+		return stack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.<ItemStack>of()).stream().map(ItemStack::getItem).collect(Collectors.toSet());
+	}
+
+	public static int getAccessorySlotCount(ItemStack stack) {
+		return stack.getOrDefault(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 1);
 	}
 
 	public static void applyAccessory(ItemStack equipmentStack, ItemStack accessoryStack) {
@@ -75,7 +84,7 @@ public class ESAccessoryUtil {
 				ItemStack remain = slot.safeInsert(removed.copy());
 				applyAccessory(stack, remain);
 			}
-		} else if (accessory != null && stack.is(accessory.combinationTarget()) && accessories.stream().noneMatch(s -> s.getItem() == slotItem.getItem())) {
+		} else if (accessory != null && stack.is(accessory.combinationTarget()) && getAccessorySlotCount(stack) > accessories.size() && accessories.stream().noneMatch(s -> s.getItem() == slotItem.getItem())) {
 			ItemStack taken = slot.safeTake(slotItem.getCount(), 1, player);
 			applyAccessory(stack, taken);
 		}
@@ -94,7 +103,7 @@ public class ESAccessoryUtil {
 					removeAccessory(stack, removed);
 					access.set(removed.copy());
 				}
-			} else if (accessory != null && stack.is(accessory.combinationTarget()) && accessories.stream().noneMatch(s -> s.getItem() == other.getItem())) {
+			} else if (accessory != null && stack.is(accessory.combinationTarget()) && getAccessorySlotCount(stack) > accessories.size() && accessories.stream().noneMatch(s -> s.getItem() == other.getItem())) {
 				applyAccessory(stack, other);
 				other.shrink(1);
 			}

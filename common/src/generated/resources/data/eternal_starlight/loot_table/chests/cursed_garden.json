@@ -385,6 +385,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:warhammer_pendant",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:starfire_upgrade_smithing_template",
           "weight": 10
         },

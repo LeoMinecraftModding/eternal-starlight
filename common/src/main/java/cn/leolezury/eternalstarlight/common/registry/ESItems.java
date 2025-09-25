@@ -15,12 +15,14 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -745,6 +747,21 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_BOOTS = registerItem("swamp_silver_boots",
 		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(30))));
 
+	public static final RegistryObject<Item, Item> WARHAMMER_PENDANT = registerItem("warhammer_pendant", () -> new Item(new Item.Properties()
+		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
+			ESTags.Items.HAMMERS,
+			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.hammer").withStyle(ChatFormatting.BLUE),
+			ItemAttributeModifiers.builder()
+				.add(Attributes.ATTACK_SPEED, new AttributeModifier(EternalStarlight.id("warhammer_pendant_attack_speed"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.MAINHAND)
+				.build(),
+			List.of(
+				Component.translatable("tooltip." + EternalStarlight.ID + ".warhammer_pendant.speed_based_damage").withStyle(ChatFormatting.BLUE)
+			),
+			Optional.of(Style.EMPTY.withColor(0x8797b8)),
+			Optional.of(EternalStarlight.id("textures/accessory/warhammer_pendant_overlay"))
+		))
+		.stacksTo(1)));
+
 	public static final RegistryObject<Item, Item> GRIMSTONE_MALARITE_ORE = registerItem("grimstone_malarite_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_MALARITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_MALARITE_ORE = registerItem("voidstone_malarite_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_MALARITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MALARITE_BLOCK = registerItem("malarite_block", () -> new BlockItem(ESBlocks.MALARITE_BLOCK.get(), new Item.Properties()));
@@ -786,6 +803,22 @@ public class ESItems {
 		() -> new PungencyFruitSpearItem(new Item.Properties().attributes(PungencyFruitSpearItem.createAttributes())));
 
 	public static final RegistryObject<Item, Item> SEEDS_LAUNCHER = registerItem("seeds_launcher", () -> new SeedsLauncherItem(new Item.Properties().durability(500)));
+
+	public static final RegistryObject<Item, Item> BATTLEAXE_PENDANT = registerItem("battleaxe_pendant", () -> new Item(new Item.Properties()
+		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
+			ItemTags.AXES,
+			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.axe").withStyle(ChatFormatting.BLUE),
+			ItemAttributeModifiers.builder()
+				.add(Attributes.ATTACK_SPEED, new AttributeModifier(EternalStarlight.id("battleaxe_pendant_attack_speed"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.MAINHAND)
+				.build(),
+			List.of(
+				Component.translatable("tooltip." + EternalStarlight.ID + ".battleaxe_pendant.durability").withStyle(ChatFormatting.BLUE),
+				Component.translatable("tooltip." + EternalStarlight.ID + ".battleaxe_pendant.strip").withStyle(ChatFormatting.BLUE)
+			),
+			Optional.of(Style.EMPTY.withColor(0x415548)),
+			Optional.of(EternalStarlight.id("textures/accessory/battleaxe_pendant_overlay"))
+		))
+		.stacksTo(1)));
 
 	public static final RegistryObject<Item, Item> DRYING_RACK = registerItem("drying_rack", () -> new BlockItem(ESBlocks.DRYING_RACK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ROTTEN_FLESH_JERKY = registerItem("rotten_flesh_jerky", () -> new Item(new Item.Properties().food(new FoodProperties(5, 0.8F, false, 2.5F, Optional.empty(), List.of()))));
@@ -1110,13 +1143,15 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> CRESCENT_PENDANT = registerItem("crescent_pendant", () -> new Item(new Item.Properties()
 		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
 			ItemTags.CHEST_ARMOR,
+			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.chestplate").withStyle(ChatFormatting.BLUE),
 			ItemAttributeModifiers.builder()
 				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(EternalStarlight.id("crescent_pendant_attack_damage"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.CHEST)
 				.build(),
 			List.of(
-				Component.translatable("tooltip." + EternalStarlight.ID + ".crescent_pendant.damage_cap").withColor(0x6666a3),
-				Component.translatable("tooltip." + EternalStarlight.ID + ".crescent_pendant.repair").withColor(0x6666a3)
+				Component.translatable("tooltip." + EternalStarlight.ID + ".crescent_pendant.damage_cap").withStyle(ChatFormatting.BLUE),
+				Component.translatable("tooltip." + EternalStarlight.ID + ".crescent_pendant.repair").withStyle(ChatFormatting.BLUE)
 			),
+			Optional.of(Style.EMPTY.withColor(0x6666a3)),
 			Optional.of(EternalStarlight.id("textures/accessory/crescent_pendant_overlay"))
 		))
 		.stacksTo(1)));

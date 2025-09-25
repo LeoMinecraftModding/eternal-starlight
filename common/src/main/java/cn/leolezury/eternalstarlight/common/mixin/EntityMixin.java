@@ -13,6 +13,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.level.Level;
@@ -111,5 +112,11 @@ public abstract class EntityMixin implements PersistentDataHolder {
 				cir.setReturnValue(ProjectileDeflection.AIM_DEFLECT);
 			}
 		}
+	}
+
+	@Inject(method = "move", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;setPos(DDD)V", ordinal = 1))
+	private void move(MoverType moverType, Vec3 vec3, CallbackInfo ci, @Local(ordinal = 1) Vec3 movement) {
+		Entity entity = (Entity) (Object) this;
+		ESDataAttachments.MOVEMENT.setData(entity, (float) movement.length());
 	}
 }

@@ -27,6 +27,7 @@ public class ESDataComponents {
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<List<StarfireBirdNestBlockEntity.Occupant>>> BIRDS = DATA_COMPONENTS.register("birds", () -> DataComponentType.<List<StarfireBirdNestBlockEntity.Occupant>>builder().persistent(StarfireBirdNestBlockEntity.Occupant.LIST_CODEC).networkSynchronized(StarfireBirdNestBlockEntity.Occupant.STREAM_CODEC.apply(ByteBufCodecs.list())).cacheEncoding().build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<Accessory>> ACCESSORY = DATA_COMPONENTS.register("accessory", () -> DataComponentType.<Accessory>builder().persistent(Accessory.CODEC).networkSynchronized(Accessory.STREAM_CODEC).cacheEncoding().build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<List<ItemStack>>> ACCESSORIES = DATA_COMPONENTS.register("accessories", () -> DataComponentType.<List<ItemStack>>builder().persistent(ItemStack.OPTIONAL_CODEC.listOf()).networkSynchronized(ItemStack.OPTIONAL_LIST_STREAM_CODEC).cacheEncoding().build());
+	public static final RegistryObject<DataComponentType<?>, DataComponentType<Integer>> ACCESSORY_SLOT_COUNT = DATA_COMPONENTS.register("accessory_slot_count", () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
 
 	public static void loadClass() {
 	}

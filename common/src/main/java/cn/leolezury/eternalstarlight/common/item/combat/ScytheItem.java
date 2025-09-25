@@ -86,12 +86,12 @@ public class ScytheItem extends TieredItem {
 	}
 
 	@Override
-	public boolean hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity livingEntity2) {
+	public boolean hurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity attacker) {
 		return true;
 	}
 
 	@Override
-	public void postHurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity livingEntity2) {
-		itemStack.hurtAndBreak(1, livingEntity2, EquipmentSlot.MAINHAND);
+	public void postHurtEnemy(ItemStack stack, LivingEntity entity, LivingEntity attacker) {
+		stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
 	}
 }

@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.item.armor;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -18,8 +19,9 @@ public class GlaciteArmorItem extends ArmorItem {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(CommonComponents.EMPTY);
 		list.add(Component.translatable("item.modifiers.armor").withStyle(ChatFormatting.BLUE));
-		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".glacite_armor").withStyle(ChatFormatting.AQUA));
+		list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".glacite_armor")).withStyle(ChatFormatting.AQUA));
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}
 }

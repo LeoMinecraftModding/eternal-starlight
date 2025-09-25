@@ -7,6 +7,7 @@ import com.google.common.base.Suppliers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -68,8 +69,9 @@ public class SwampSilverArmorItem extends ArmorItem implements TickableArmor {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(CommonComponents.EMPTY);
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".full_set").withStyle(ChatFormatting.BLUE));
-		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".swamp_silver_armor").withStyle(ChatFormatting.YELLOW));
+		list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".swamp_silver_armor")).withStyle(ChatFormatting.YELLOW));
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}
 }

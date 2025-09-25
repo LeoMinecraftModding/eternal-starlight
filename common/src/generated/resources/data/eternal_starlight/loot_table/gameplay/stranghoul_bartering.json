@@ -87,6 +87,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:battleaxe_pendant",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,

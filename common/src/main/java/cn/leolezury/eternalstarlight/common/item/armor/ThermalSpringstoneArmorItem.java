@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
 import com.google.common.base.Suppliers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -52,8 +53,9 @@ public class ThermalSpringstoneArmorItem extends ArmorItem {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(CommonComponents.EMPTY);
 		list.add(Component.translatable("item.modifiers.armor").withStyle(ChatFormatting.BLUE));
-		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".thermal_springstone_armor").withStyle(ChatFormatting.GOLD));
+		list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".thermal_springstone_armor")).withStyle(ChatFormatting.GOLD));
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}
 }

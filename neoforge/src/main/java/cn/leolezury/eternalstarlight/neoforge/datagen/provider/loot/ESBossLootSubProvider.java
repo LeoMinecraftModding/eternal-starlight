@@ -21,7 +21,6 @@ import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.SetComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
@@ -52,10 +51,8 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 		consumer.accept(ESLootTables.BOSS_THE_GATEKEEPER,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.BOOK.get())))
 				.withPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.ORB_OF_PROPHECY.get())))
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_OPTIMIZED_OPTION.get())))
@@ -74,7 +71,6 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 					.setRolls(UniformGenerator.between(8, 10))
 					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get())))
 				.withPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get())))
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(0, 1))
@@ -98,7 +94,6 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 				.withPool(LootPool.lootPool()
 					.add(NestedLootTable.lootTableReference(ESLootTables.BOSS_COMMON)))
 				.withPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.MOONRING_BOW.get())))
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(10, 15))
@@ -120,10 +115,10 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 					.when(LootItemRandomChanceCondition.randomChance(0.4f))
 					.add(LootItem.lootTableItem(ESItems.CRESCENT_SPEAR.get())))
 				.withPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(1))
+					.add(LootItem.lootTableItem(ESItems.CRESCENT_PENDANT.get())))
+				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.TWINING_ARMOR_TRIM_SMITHING_TEMPLATE.get())))
 				.withPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(1))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_MOONLIGHT.get())))
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_FAKE_LIGHT.get())))
