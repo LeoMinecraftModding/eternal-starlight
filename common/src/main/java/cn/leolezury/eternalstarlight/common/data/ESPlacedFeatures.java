@@ -73,6 +73,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> ABYSSLATE_PATCH = create("abysslate_patch");
 	public static final ResourceKey<PlacedFeature> THERMABYSSLATE_PATCH = create("thermabysslate_patch");
 	public static final ResourceKey<PlacedFeature> CRYOBYSSLATE_PATCH = create("cryobysslate_patch");
+	public static final ResourceKey<PlacedFeature> ABYSSAL_CAVE = create("abyssal_cave");
 	public static final ResourceKey<PlacedFeature> VELVETUMOSS = create("velvetumoss");
 	public static final ResourceKey<PlacedFeature> RED_VELVETUMOSS = create("red_velvetumoss");
 	public static final ResourceKey<PlacedFeature> LUNAR_TREE_CHECKED = create("lunar_tree_checked");
@@ -176,6 +177,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, ABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, THERMABYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.THERMABYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, CRYOBYSSLATE_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.CRYOBYSSLATE_PATCH), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+		PlacementUtils.register(context, ABYSSAL_CAVE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ABYSSAL_CAVE), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, VELVETUMOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.VELVETUMOSS), RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, RED_VELVETUMOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.RED_VELVETUMOSS), RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
 		PlacementUtils.register(context, LUNAR_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));

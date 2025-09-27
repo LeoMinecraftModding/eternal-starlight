@@ -74,7 +74,7 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))).setWeight(45))
 					.add(LootItem.lootTableItem(ESItems.GLACITE_SHARD.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))).setWeight(20)))
 				.withPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(2))
+					.setRolls(ConstantValue.exactly(3))
 					.add(LootItem.lootTableItem(Items.BOOK).apply(new EnchantRandomlyFunction.Builder().withOneOf(enchantments.getOrThrow(ESTags.Enchantments.GOLEM_FORGE_LOOT))).setWeight(75))
 					.add(LootItem.lootTableItem(Items.GOLDEN_CARROT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(25))
 					.add(LootItem.lootTableItem(Items.GOLDEN_APPLE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(10))
@@ -82,6 +82,7 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(15))
 					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()).setWeight(5))
 					.add(LootItem.lootTableItem(ESItems.WARHAMMER_PENDANT.get()).setWeight(8))
+					.add(LootItem.lootTableItem(ESItems.BUTTERFLY_WINGS_AMULET.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
 					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
@@ -114,7 +115,7 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(ESItems.SALTPETER_POWDER.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))).setWeight(20))
 					.add(LootItem.lootTableItem(ESItems.SALTPETER_MATCHBOX.get()).setWeight(10)))
 				.withPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(2))
+					.setRolls(ConstantValue.exactly(3))
 					.add(LootItem.lootTableItem(Items.GOLDEN_APPLE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(15))
 					.add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(2))
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(25))
@@ -122,6 +123,7 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 9))).setWeight(45))
 					.add(LootItem.lootTableItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(25))
 					.add(LootItem.lootTableItem(ESItems.WARHAMMER_PENDANT.get()).setWeight(8))
+					.add(LootItem.lootTableItem(ESItems.BUTTERFLY_WINGS_AMULET.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(10))
 					.add(LootItem.lootTableItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(10))
 					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));

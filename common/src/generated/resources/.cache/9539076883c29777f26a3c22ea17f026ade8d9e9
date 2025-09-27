@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-25T22:25:09.7410021	Item Models: eternal_starlight
+// 1.21.1	2025-09-26T22:35:54.7206898	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -112,6 +112,7 @@ c16e0c777ca968c9a4f783f9278d815bca4b5004 assets/eternal_starlight/models/item/br
 eeb338cf5acefe3f9b255b7a676d21c3aed8fa82 assets/eternal_starlight/models/item/brown_yeti_fur.json
 6b85c3c62d67e2fc8d4f2900194e71ebf94df0e7 assets/eternal_starlight/models/item/brown_yeti_fur_carpet.json
 0cfe0363e4876ab11258ff8dc7b12d150b6475e4 assets/eternal_starlight/models/item/budding_thioquartz.json
+3897c63f709b7ac83ecdcd1e714927b31706c2b4 assets/eternal_starlight/models/item/butterfly_wings_amulet.json
 8575fee30a34674d0fb6cace7ded0fdc37de5f25 assets/eternal_starlight/models/item/carved_lunaris_cactus_fruit.json
 70c04adea827512e258f5af8d41726010b2db688 assets/eternal_starlight/models/item/cave_moss.json
 6e300d222bee017e16a279319c708a9871d38bed assets/eternal_starlight/models/item/chain_of_souls.json

@@ -356,6 +356,7 @@ public class ESBiomes {
 	private static BiomeGenerationSettings.Builder theAbyssGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder builder = baseAquaticGenSettings(featureGetter, carverGetter);
 
+		builder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ESPlacedFeatures.ABYSSAL_CAVE);
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.ABYSSLATE_PATCH);
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.THERMABYSSLATE_PATCH);
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.CRYOBYSSLATE_PATCH);

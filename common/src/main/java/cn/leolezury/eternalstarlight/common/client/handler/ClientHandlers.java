@@ -641,6 +641,21 @@ public class ClientHandlers {
 		}
 	}
 
+	public static void setAirBubbleColor() {
+		LocalPlayer player = Minecraft.getInstance().player;
+		if (player != null && player.level().getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS)) {
+			RenderSystem.setShaderColor(1, (float) Mth.clamp(1 + player.getY() / 64, 0, 1), 1, 1);
+		}
+	}
+
+	public static int getAirBubbleYOffset() {
+		LocalPlayer player = Minecraft.getInstance().player;
+		if (player != null && player.level().getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS) && player.getY() < 0) {
+			return player.getRandom().nextInt(2);
+		}
+		return 0;
+	}
+
 	private static class GuiCrest {
 		private boolean shouldShow = false;
 		private float prevAngle = -135;

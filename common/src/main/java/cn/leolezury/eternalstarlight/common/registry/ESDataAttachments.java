@@ -12,6 +12,7 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +21,7 @@ import java.util.List;
 public class ESDataAttachments {
 	private static final List<EntityDataAttachment<?>> ATTACHMENTS = new ArrayList<>();
 
-	public static final EntityDataAttachment<Float> MOVEMENT = register(ESPlatform.INSTANCE.registerDataAttachment("movement", () -> 0f, null, null, false));
+	public static final EntityDataAttachment<Vec3> MOVEMENT = register(ESPlatform.INSTANCE.registerDataAttachment("movement", () -> Vec3.ZERO, null, null, false));
 	public static final EntityDataAttachment<LivingEntity> CONCENTRATED_TARGET = register(ESPlatform.INSTANCE.registerDataAttachment("concentrated_target", () -> null, null, null, false));
 	public static final EntityDataAttachment<ItemStack> CONCENTRATED_WEAPON = register(ESPlatform.INSTANCE.registerDataAttachment("concentrated_weapon", () -> null, null, null, false));
 	public static final EntityDataAttachment<Integer> LAST_CONCENTRATED_ATTACK_TIME = register(ESPlatform.INSTANCE.registerDataAttachment("last_concentrated_attack_time", () -> Integer.MIN_VALUE, null, null, false));

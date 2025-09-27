@@ -113,7 +113,7 @@ public abstract class LivingEntityMixin {
 	private void decreaseAirSupply(int i, CallbackInfoReturnable<Integer> cir) {
 		if (getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AIR_SAC_MASK.asHolder())) {
 			LivingEntity entity = (LivingEntity) (Object) this;
-			if (ESDataAttachments.MOVEMENT.getData(entity) < 0.01) {
+			if (ESDataAttachments.MOVEMENT.getData(entity).multiply(1, 0, 1).length() < 0.01) {
 				cir.setReturnValue(Math.min(i + 1, entity.getMaxAirSupply()));
 			} else if (entity.isSwimming()) {
 				cir.setReturnValue(Math.max(cir.getReturnValue() - (entity.getRandom().nextBoolean() ? 1 : 0), 0));

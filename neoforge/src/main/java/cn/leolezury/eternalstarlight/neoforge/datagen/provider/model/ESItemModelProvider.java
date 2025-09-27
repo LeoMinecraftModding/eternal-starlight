@@ -778,6 +778,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		wall(ESItems.POLISHED_TOXITE_WALL.get(), ESItems.POLISHED_TOXITE.get());
 		basicItem(ESItems.ALCHEMIST_MASK.get());
 		basicItem(ESItems.ALCHEMIST_ROBE.get());
+		basicItem(ESItems.BUTTERFLY_WINGS_AMULET.get());
 
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());

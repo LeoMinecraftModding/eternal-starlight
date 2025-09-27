@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
+import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
@@ -36,6 +37,7 @@ import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import cn.leolezury.eternalstarlight.common.weather.WeatherInstance;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
+import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
@@ -59,6 +61,7 @@ import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -202,23 +205,28 @@ public class CommonHandlers {
 				});
 			}
 		}
+		int accessorySlotCount = itemStack.getOrDefault(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 1);
+		if (accessorySlotCount > 1) {
+			tooltip.add(CommonComponents.EMPTY);
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_slot_count", accessorySlotCount).withStyle(ChatFormatting.BLUE));
+		}
 		if (itemStack.is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
 			tooltip.add(CommonComponents.EMPTY);
-			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_weapon").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
-			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_tool").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_weapon").withColor(0x8ed6b0));
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_tool").withColor(0x8ed6b0));
 		}
 		if (itemStack.is(ESItems.FLOWGLAZE_BOW.get())) {
 			tooltip.add(CommonComponents.EMPTY);
-			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_bow").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_bow").withColor(0x8ed6b0));
 		}
 		if (itemStack.is(ESItems.FLOWGLAZE_SHIELD.get())) {
 			tooltip.add(CommonComponents.EMPTY);
-			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_shield").withStyle(Style.EMPTY.withColor(0x8ed6b0)));
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_shield").withColor(0x8ed6b0));
 		}
 		if (player != null && lookup != null && itemStack.is(ESTags.Items.SEEDS_LAUNCHER_AMMO) && player.getInventory().contains(stack -> stack.getItem() == ESItems.SEEDS_LAUNCHER.get())) {
 			tooltip.add(CommonComponents.EMPTY);
 			SeedsLauncherAmmoType type = SeedsLauncherAmmoType.getAmmoType(lookup, itemStack.getItem()).value();
-			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.ammo").withStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.ammo").withStyle(ChatFormatting.GRAY));
 			String damage = Math.round((type.damageMultiplier() - 1) * 100) + "%";
 			if (!damage.startsWith("-")) {
 				damage = "+" + damage;
@@ -237,7 +245,7 @@ public class CommonHandlers {
 		}
 		if (itemStack.is(ESItems.UNDERMINER.get())) {
 			tooltip.add(CommonComponents.EMPTY);
-			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".underminer").withStyle(Style.EMPTY.withColor(0x47adc4)));
+			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".underminer").withColor(0x47adc4));
 		}
 	}
 
@@ -296,7 +304,7 @@ public class CommonHandlers {
 			modified *= 1.25f;
 		}
 		if (source.getDirectEntity() instanceof LivingEntity attacker && ESAccessoryUtil.getAccessories(attacker.getWeaponItem()).contains(ESItems.WARHAMMER_PENDANT.get())) {
-			modified *= Math.min(1 + ESDataAttachments.MOVEMENT.getData(attacker) * 1.5f, 2);
+			modified *= Math.min(1 + (float) ESDataAttachments.MOVEMENT.getData(attacker).length() * 1.5f, 2);
 		}
 		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			return Math.max(amount, modified);
@@ -376,7 +384,6 @@ public class CommonHandlers {
 				if (attacker.level() instanceof ServerLevel serverLevel) {
 					Vec3 vec3 = entity.position().add(0, entity.getBbHeight() / 2, 0);
 					serverLevel.sendParticles(ESSmokeParticleOptions.LUNAR_ATTACK, vec3.x, vec3.y, vec3.z, 10, 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 0.1 * (serverLevel.getRandom().nextFloat() - 0.5));
-					// serverLevel.sendParticles(ESParticles.SHADEGRIEVE_LEAVES.get(), vec3.x, vec3.y, vec3.z, 15, entity.getBbWidth() * 1.25 * (serverLevel.getRandom().nextFloat() - 0.5), entity.getBbHeight() * 0.75 * (serverLevel.getRandom().nextFloat() - 0.5), entity.getBbWidth() * 1.25 * (serverLevel.getRandom().nextFloat() - 0.5), 0.1 * (serverLevel.getRandom().nextFloat() - 0.5));
 				}
 			}
 
@@ -389,6 +396,24 @@ public class CommonHandlers {
 						living.hurt(ESDamageTypes.getIndirectEntityDamageSource(entity.level(), ESDamageTypes.STARFIRE, source.getDirectEntity(), source.getEntity()), amount / 3);
 					}
 				}
+			}
+
+			if (ESAccessoryUtil.getActiveAccessoriesOnArmors(entity).contains(ESItems.BUTTERFLY_WINGS_AMULET.get()) && source.getEntity() instanceof LivingEntity attacker) {
+				int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(attacker);
+				if (inEtherTicks < 600) {
+					ESDataAttachments.IN_ETHER_TICKS.setData(attacker, Math.min(inEtherTicks + 200, 600));
+				}
+			}
+
+			if (source.getEntity() instanceof LivingEntity attacker && ESAccessoryUtil.getActiveAccessoriesOnArmors(attacker).contains(ESItems.BUTTERFLY_WINGS_AMULET.get())) {
+				int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(entity);
+				if (inEtherTicks < 600) {
+					ESDataAttachments.IN_ETHER_TICKS.setData(entity, Math.min(inEtherTicks + 200, 600));
+				}
+			}
+
+			if (entity instanceof Player player && player.level().getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS) && player.isEyeInFluid(FluidTags.WATER) && player.getAirSupply() > 0) {
+				player.setAirSupply(Math.max(player.getAirSupply() - 30, 0));
 			}
 
 			if (source.getDirectEntity() instanceof Player player) {
@@ -471,7 +496,7 @@ public class CommonHandlers {
 					ItemStack content = item.getItem();
 					if (content.is(ConventionalTags.Items.MUSIC_DISCS) && !content.is(ESItems.MUSIC_DISC_SPIRIT.get())) {
 						item.setItem(ESItems.MUSIC_DISC_SPIRIT.get().getDefaultInstance());
-						item.addDeltaMovement(new Vec3(0, 0.25, 0));
+						item.addDeltaMovement(new Vec3(0, 0.75, 0));
 						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
 					} else if (content.is(ESItems.STARLIT_PAINTING.get())) {
 						CustomData data = content.get(DataComponents.ENTITY_DATA);
@@ -487,9 +512,13 @@ public class CommonHandlers {
 								ItemStack copy = content.copy();
 								copy.set(DataComponents.ENTITY_DATA, newData);
 								item.setItem(copy);
-								item.addDeltaMovement(new Vec3(0, 0.25, 0));
+								item.addDeltaMovement(new Vec3(0, 0.75, 0));
 							}
 						}
+						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
+					} else if (content.has(ESDataComponents.ACCESSORY.get())) {
+						item.setItem(ESItems.BUTTERFLY_WINGS_AMULET.get().getDefaultInstance());
+						item.addDeltaMovement(new Vec3(0, 0.75, 0));
 						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
 					}
 				}
@@ -543,6 +572,12 @@ public class CommonHandlers {
 			SpecialItemCooldown.tick(livingEntity);
 			if (livingEntity instanceof Player player && !level.isClientSide) {
 				ESCrestUtil.tickCrests(player);
+				if (level.getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS) && player.isEyeInFluid(FluidTags.WATER) && player.getY() < 0) {
+					int maxAir = Math.max((int) Math.round((player.getMaxAirSupply() + player.getY() * 3) / 30) * 30 - 15, 0);
+					if (player.getAirSupply() > maxAir) {
+						player.setAirSupply(maxAir);
+					}
+				}
 				if (player.getMainHandItem().is(ESItems.GRAVITY_PICKAXE.get()) || player.getOffhandItem().is(ESItems.GRAVITY_PICKAXE.get())) {
 					for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(5))) {
 						itemEntity.playerTouch(player);

@@ -36,7 +36,7 @@ public class VelvetumossFeature extends Feature<VelvetumossFeature.Configuration
 		for (int x = -3; x <= 3; x++) {
 			for (int y = -2; y <= 2; y++) {
 				for (int z = -3; z <= 3; z++) {
-					if (ESMathUtil.isPointInEllipsoid(x, y, z, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1)) {
+					if (ESMathUtil.isPointInOrOnEllipsoid(x, y, z, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1)) {
 						stonePos.setWithOffset(pos, x, y, z);
 						BlockState blockState = level.getBlockState(stonePos);
 						if (blockState.is(ESTags.Blocks.ABYSSLATES) || blockState.is(ESBlocks.TWILIGHT_SAND.get()) || blockState.is(ESBlocks.DUSTED_GRAVEL.get()) || blockState.is(ESBlocks.MOSSY_DUSTED_GRAVEL.get()) || blockState.is(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get())) {

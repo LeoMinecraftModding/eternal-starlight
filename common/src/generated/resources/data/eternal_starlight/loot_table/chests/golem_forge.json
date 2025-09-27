@@ -438,6 +438,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:butterfly_wings_amulet",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:starfire_upgrade_smithing_template",
           "weight": 8
         },
@@ -452,7 +457,7 @@
           "weight": 8
         }
       ],
-      "rolls": 2.0
+      "rolls": 3.0
     }
   ],
   "random_sequence": "eternal_starlight:chests/golem_forge"

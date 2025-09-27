@@ -8,6 +8,7 @@
     "ExtendedBlockMixin"
   ],
   "client": [
+    "client.GuiMixin",
     "client.HumanoidArmorLayerMixin"
   ],
   "injectors": {

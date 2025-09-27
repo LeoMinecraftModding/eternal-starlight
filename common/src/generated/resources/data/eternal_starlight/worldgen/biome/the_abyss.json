@@ -19,7 +19,9 @@
     "water_fog_color": 3409191
   },
   "features": [
-    [],
+    [
+      "eternal_starlight:abyssal_cave"
+    ],
     [],
     [
       "eternal_starlight:abysslate_patch",

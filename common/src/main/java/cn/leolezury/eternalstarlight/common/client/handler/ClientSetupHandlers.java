@@ -22,6 +22,8 @@ import cn.leolezury.eternalstarlight.common.client.particle.environment.FireflyP
 import cn.leolezury.eternalstarlight.common.client.particle.environment.MeteorParticle;
 import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.*;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
+import cn.leolezury.eternalstarlight.common.client.renderer.layer.ArmorLikeAccessoryLayer;
+import cn.leolezury.eternalstarlight.common.client.renderer.layer.ButterflyWingsAmuletLayer;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.CrescentPendantLayer;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
@@ -949,8 +951,8 @@ public class ClientSetupHandlers {
 
 		// vanilla entities
 		strategy.register(DarkSwampWitchModel.LAYER_LOCATION, DarkSwampWitchModel::createBodyLayer);
-		strategy.register(CrescentPendantLayer.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.0F)), 64, 32));
-		strategy.register(CrescentPendantLayer.OUTER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.5F)), 64, 32));
+		strategy.register(ArmorLikeAccessoryLayer.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.0F)), 64, 32));
+		strategy.register(ArmorLikeAccessoryLayer.OUTER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.5F)), 64, 32));
 
 		// items
 		strategy.register(GlaciteShieldModel.LAYER_LOCATION, GlaciteShieldModel::createBodyLayer);
@@ -978,7 +980,8 @@ public class ClientSetupHandlers {
 	public static void onRenderLayerAttachment(EntityType<?> entityType, LivingEntityRenderer<?, ?> renderer, EntityRendererProvider.Context context) {
 		try {
 			if (renderer.getModel() instanceof HumanoidModel<?>) {
-				renderer.addLayer((RenderLayer) new CrescentPendantLayer((RenderLayerParent<LivingEntity, HumanoidModel<LivingEntity>>) renderer, new HumanoidArmorModel<>(context.bakeLayer(CrescentPendantLayer.INNER_LOCATION)), new HumanoidArmorModel<>(context.bakeLayer(CrescentPendantLayer.OUTER_LOCATION))));
+				renderer.addLayer((RenderLayer) new CrescentPendantLayer((RenderLayerParent<LivingEntity, HumanoidModel<LivingEntity>>) renderer, new HumanoidArmorModel<>(context.bakeLayer(ArmorLikeAccessoryLayer.INNER_LOCATION)), new HumanoidArmorModel<>(context.bakeLayer(ArmorLikeAccessoryLayer.OUTER_LOCATION))));
+				renderer.addLayer((RenderLayer) new ButterflyWingsAmuletLayer((RenderLayerParent<LivingEntity, HumanoidModel<LivingEntity>>) renderer, new HumanoidArmorModel<>(context.bakeLayer(ArmorLikeAccessoryLayer.INNER_LOCATION)), new HumanoidArmorModel<>(context.bakeLayer(ArmorLikeAccessoryLayer.OUTER_LOCATION))));
 			}
 		} catch (ClassCastException ignored) {
 		}

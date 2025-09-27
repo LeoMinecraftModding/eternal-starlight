@@ -30,7 +30,7 @@ public class AbysslatePatchFeature extends Feature<AbysslatePatchFeature.Configu
 		for (int x = -3; x <= 3; x++) {
 			for (int y = -2; y <= 2; y++) {
 				for (int z = -3; z <= 3; z++) {
-					if (ESMathUtil.isPointInEllipsoid(x, y, z, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1)) {
+					if (ESMathUtil.isPointInOrOnEllipsoid(x, y, z, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1)) {
 						placePos.setWithOffset(pos, x, y, z);
 						if (level.getBlockState(placePos).is(config.stone())) {
 							// then replace with our block

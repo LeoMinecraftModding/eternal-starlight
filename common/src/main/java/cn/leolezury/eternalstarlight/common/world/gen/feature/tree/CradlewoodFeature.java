@@ -80,7 +80,7 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 			for (int x = 0; x <= leavesRadius; x++) {
 				for (int z = 0; z <= leavesRadius; z++) {
 					for (int y = 0; y <= leavesRadius / 1.5f; y++) {
-						if (ESMathUtil.isPointInEllipsoid(x, y, z, leavesRadius, leavesRadius / 1.5f, leavesRadius)) {
+						if (ESMathUtil.isPointInOrOnEllipsoid(x, y, z, leavesRadius, leavesRadius / 1.5f, leavesRadius)) {
 							for (int i = -1; i <= 1; i += 2) {
 								for (int j = -1; j <= 1; j += 2) {
 									for (int k = -1; k <= 1; k += 2) {

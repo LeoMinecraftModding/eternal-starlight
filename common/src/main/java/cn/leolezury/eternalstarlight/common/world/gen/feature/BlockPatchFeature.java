@@ -31,7 +31,7 @@ public class BlockPatchFeature extends Feature<BlockPatchFeature.Configuration> 
 		for (int x = -size; x <= size; x++) {
 			for (int y = (int) (-size / 1.8f); y <= size / 1.8f; y++) {
 				for (int z = -size; z <= size; z++) {
-					if (ESMathUtil.isPointInEllipsoid(x, y, z, size + random.nextInt(3) - 1, size + random.nextInt(3) - 1, size + random.nextInt(3) - 1)) {
+					if (ESMathUtil.isPointInOrOnEllipsoid(x, y, z, size + random.nextInt(3) - 1, size + random.nextInt(3) - 1, size + random.nextInt(3) - 1)) {
 						placePos.setWithOffset(pos, x, y, z);
 						if (level.getBlockState(placePos).is(config.replaceable())) {
 							setBlock(level, placePos, config.placeState().getState(random, placePos));

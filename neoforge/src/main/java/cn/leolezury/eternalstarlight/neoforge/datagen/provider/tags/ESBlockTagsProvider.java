@@ -463,6 +463,18 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				BlockTags.SAND,
 				ESTags.Blocks.BASE_STONE_STARLIGHT
 			);
+		tag(ESTags.Blocks.ABYSSAL_CAVE_REPLACEABLES)
+			.add(
+				ESBlocks.ABYSSLATE.get(),
+				ESBlocks.ABYSSAL_MAGMA_BLOCK.get(),
+				ESBlocks.ABYSSAL_GEYSER.get(),
+				ESBlocks.THERMABYSSLATE.get(),
+				ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get(),
+				ESBlocks.THERMABYSSAL_GEYSER.get(),
+				ESBlocks.CRYOBYSSLATE.get(),
+				ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get(),
+				ESBlocks.CRYOBYSSAL_GEYSER.get()
+			);
 		tag(ESTags.Blocks.CORAL_PLANTS)
 			.add(
 				ESBlocks.TENTACLES_CORAL.get(),

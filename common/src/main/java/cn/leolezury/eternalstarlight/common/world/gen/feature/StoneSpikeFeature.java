@@ -32,7 +32,7 @@ public class StoneSpikeFeature extends ESFeature<NoneFeatureConfiguration> {
 		for (int x = -4; x <= 4; x++) {
 			for (int y = -2; y <= 3; y++) {
 				for (int z = -4; z <= 4; z++) {
-					if (ESMathUtil.isPointInEllipsoid(x, y, z, 4 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 4 + random.nextInt(3) - 1)) {
+					if (ESMathUtil.isPointInOrOnEllipsoid(x, y, z, 4 + random.nextInt(3) - 1, 3 + random.nextInt(3) - 1, 4 + random.nextInt(3) - 1)) {
 						setBlockIfEmpty(level, pos.offset(x, y, z), getBlockToPlace(random, pos.offset(x, y, z)));
 					}
 				}

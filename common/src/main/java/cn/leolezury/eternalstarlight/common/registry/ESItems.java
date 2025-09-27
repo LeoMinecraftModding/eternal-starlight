@@ -618,7 +618,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> AETHERSENT_HOOD = registerItem("aethersent_hood",
 		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(45))));
 	public static final RegistryObject<Item, Item> AETHERSENT_CAPE = registerItem("aethersent_cape",
-		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(45))));
+		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(45)).component(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 2)));
 	public static final RegistryObject<Item, Item> AETHERSENT_BOTTOMS = registerItem("aethersent_bottoms",
 		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(45))));
 	public static final RegistryObject<Item, Item> AETHERSENT_BOOTS = registerItem("aethersent_boots",
@@ -691,7 +691,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLACITE_HELMET = registerItem("glacite_helmet",
 		() -> new GlaciteArmorItem(ESArmorMaterials.GLACITE.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> GLACITE_CHESTPLATE = registerItem("glacite_chestplate",
-		() -> new GlaciteArmorItem(ESArmorMaterials.GLACITE.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))));
+		() -> new GlaciteArmorItem(ESArmorMaterials.GLACITE.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15)).component(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 2)));
 	public static final RegistryObject<Item, Item> GLACITE_LEGGINGS = registerItem("glacite_leggings",
 		() -> new GlaciteArmorItem(ESArmorMaterials.GLACITE.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(15))));
 	public static final RegistryObject<Item, Item> GLACITE_BOOTS = registerItem("glacite_boots",
@@ -719,7 +719,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_HELMET = registerItem("starlit_diamond_helmet",
 		() -> ESPlatform.INSTANCE.createStarlitDiamondArmor(ESArmorMaterials.STARLIT_DIAMOND.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(45))));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_CHESTPLATE = registerItem("starlit_diamond_chestplate",
-		() -> ESPlatform.INSTANCE.createStarlitDiamondArmor(ESArmorMaterials.STARLIT_DIAMOND.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(45))));
+		() -> ESPlatform.INSTANCE.createStarlitDiamondArmor(ESArmorMaterials.STARLIT_DIAMOND.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(45)).component(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 3)));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_LEGGINGS = registerItem("starlit_diamond_leggings",
 		() -> ESPlatform.INSTANCE.createStarlitDiamondArmor(ESArmorMaterials.STARLIT_DIAMOND.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(45))));
 	public static final RegistryObject<Item, Item> STARLIT_DIAMOND_BOOTS = registerItem("starlit_diamond_boots",
@@ -741,7 +741,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_HELMET = registerItem("swamp_silver_helmet",
 		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(30))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_CHESTPLATE = registerItem("swamp_silver_chestplate",
-		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(30))));
+		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(30)).component(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 2)));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_LEGGINGS = registerItem("swamp_silver_leggings",
 		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(30))));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_BOOTS = registerItem("swamp_silver_boots",
@@ -970,7 +970,21 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> ALCHEMIST_MASK = registerItem("alchemist_mask",
 		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(10))));
 	public static final RegistryObject<Item, Item> ALCHEMIST_ROBE = registerItem("alchemist_robe",
-		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(10))));
+		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(10)).component(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 3)));
+	public static final RegistryObject<Item, Item> BUTTERFLY_WINGS_AMULET = registerItem("butterfly_wings_amulet", () -> new Item(new Item.Properties()
+		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
+			ItemTags.CHEST_ARMOR,
+			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.chestplate").withStyle(ChatFormatting.BLUE),
+			ItemAttributeModifiers.builder()
+				.add(ESAttributes.ETHER_RESISTANCE.asHolder(), new AttributeModifier(EternalStarlight.id("butterfly_wings_amulet_ether_resistance"), 0.5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.CHEST)
+				.build(),
+			List.of(
+				Component.translatable("tooltip." + EternalStarlight.ID + ".butterfly_wings_amulet.armor_erosion").withStyle(ChatFormatting.BLUE)
+			),
+			Optional.of(Style.EMPTY.withColor(0xd1ffe1)),
+			Optional.of(EternalStarlight.id("textures/accessory/butterfly_wings_amulet_overlay"))
+		))
+		.stacksTo(1)));
 
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));

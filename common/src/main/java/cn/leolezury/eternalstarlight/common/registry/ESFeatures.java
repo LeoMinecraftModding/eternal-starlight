@@ -41,6 +41,7 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<JinglestemFeature.Configuration>> JINGLESTEM = FEATURES.register("jinglestem", () -> new JinglestemFeature(JinglestemFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<CradlewoodFeature.Configuration>> CRADLEWOOD = FEATURES.register("cradlewood", () -> new CradlewoodFeature(CradlewoodFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<AbysslatePatchFeature.Configuration>> ABYSSLATE_PATCH = FEATURES.register("abysslate_patch", () -> new AbysslatePatchFeature(AbysslatePatchFeature.Configuration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ABYSSAL_CAVE = FEATURES.register("abyssal_cave", () -> new AbyssalCaveFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<VelvetumossFeature.Configuration>> VELVETUMOSS = FEATURES.register("velvetumoss", () -> new VelvetumossFeature(VelvetumossFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<BlockPatchFeature.Configuration>> BLOCK_PATCH = FEATURES.register("block_patch", () -> new BlockPatchFeature(BlockPatchFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> GOLEM_FORGE_CHIMNEY = FEATURES.register("golem_forge_chimney", () -> new GolemForgeChimneyFeature(NoneFeatureConfiguration.CODEC));

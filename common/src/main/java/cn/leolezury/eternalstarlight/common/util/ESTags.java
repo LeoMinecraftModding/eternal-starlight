@@ -101,6 +101,7 @@ public class ESTags {
 		public static final TagKey<Block> PORTAL_FRAME_BLOCKS = create("portal_frame_blocks");
 		public static final TagKey<Block> BASE_STONE_STARLIGHT = create("base_stone_starlight");
 		public static final TagKey<Block> STARLIGHT_CARVER_REPLACEABLES = create("starlight_carver_replaceables");
+		public static final TagKey<Block> ABYSSAL_CAVE_REPLACEABLES = create("abyssal_cave_replaceables");
 		public static final TagKey<Block> CORAL_PLANTS = create("coral_plants");
 		public static final TagKey<Block> CORALS = create("corals");
 		public static final TagKey<Block> WALL_CORALS = create("wall_corals");

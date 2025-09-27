@@ -117,6 +117,6 @@ public abstract class EntityMixin implements PersistentDataHolder {
 	@Inject(method = "move", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;setPos(DDD)V", ordinal = 1))
 	private void move(MoverType moverType, Vec3 vec3, CallbackInfo ci, @Local(ordinal = 1) Vec3 movement) {
 		Entity entity = (Entity) (Object) this;
-		ESDataAttachments.MOVEMENT.setData(entity, (float) movement.length());
+		ESDataAttachments.MOVEMENT.setData(entity, movement);
 	}
 }

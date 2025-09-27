@@ -59,7 +59,10 @@ public class ThioquartzShard extends ThrowableProjectile {
 		if (hitResult.getEntity() != getOwner()) {
 			if (hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ETHER, this, getOwner()), 4) && hitResult.getEntity() instanceof LivingEntity livingEntity) {
 				playSound(SoundEvents.GLASS_BREAK);
-				ESDataAttachments.IN_ETHER_TICKS.setData(livingEntity, Math.min(ESDataAttachments.IN_ETHER_TICKS.getData(livingEntity) + 100, 300));
+				int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(livingEntity);
+				if (inEtherTicks < 400) {
+					ESDataAttachments.IN_ETHER_TICKS.setData(livingEntity, Math.min(inEtherTicks + 200, 400));
+				}
 			}
 		}
 		discard();

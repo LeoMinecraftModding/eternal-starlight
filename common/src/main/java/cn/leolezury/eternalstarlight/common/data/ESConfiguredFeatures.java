@@ -105,6 +105,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ABYSSLATE_PATCH = create("abysslate_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> THERMABYSSLATE_PATCH = create("thermabysslate_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CRYOBYSSLATE_PATCH = create("cryobysslate_patch");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ABYSSAL_CAVE = create("abyssal_cave");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> VELVETUMOSS = create("velvetumoss");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> RED_VELVETUMOSS = create("red_velvetumoss");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LUNAR = create("lunar");
@@ -212,6 +213,7 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, ABYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.ABYSSLATE.get(), BlockStateProvider.simple(ESBlocks.ABYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.ABYSSAL_GEYSER.get())));
 		FeatureUtils.register(context, THERMABYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.THERMABYSSLATE.get(), BlockStateProvider.simple(ESBlocks.THERMABYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.THERMABYSSAL_GEYSER.get())));
 		FeatureUtils.register(context, CRYOBYSSLATE_PATCH, ESFeatures.ABYSSLATE_PATCH.get(), new AbysslatePatchFeature.Configuration(ESBlocks.CRYOBYSSLATE.get(), BlockStateProvider.simple(ESBlocks.CRYOBYSSAL_MAGMA_BLOCK.get()), BlockStateProvider.simple(ESBlocks.CRYOBYSSAL_GEYSER.get())));
+		FeatureUtils.register(context, ABYSSAL_CAVE, ESFeatures.ABYSSAL_CAVE.get());
 		FeatureUtils.register(context, VELVETUMOSS, ESFeatures.VELVETUMOSS.get(), new VelvetumossFeature.Configuration(ESBlocks.VELVETUMOSS.get(), ESBlocks.VELVETUMOSS_VILLI.get(), Optional.empty()));
 		FeatureUtils.register(context, RED_VELVETUMOSS, ESFeatures.VELVETUMOSS.get(), new VelvetumossFeature.Configuration(ESBlocks.RED_VELVETUMOSS.get(), ESBlocks.RED_VELVETUMOSS_VILLI.get(), Optional.of(ESBlocks.RED_VELVETUMOSS_FLOWER.get())));
 		FeatureUtils.register(context, LUNAR, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ESBlocks.LUNAR_LOG.get()), new BranchingTrunkPlacer(8, 2, 10, ConstantInt.of(0), UniformInt.of(4, 5), ConstantInt.of(1), UniformInt.of(3, 4)), BlockStateProvider.simple(ESBlocks.LUNAR_LEAVES.get()), new SpheroidFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 1, 1)).dirt(BlockStateProvider.simple(ESBlocks.NIGHTFALL_DIRT.get())).decorators(List.of(new TrunkBerriesDecorator(UniformInt.of(2, 5)))).build());

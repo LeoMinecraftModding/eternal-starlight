@@ -109,7 +109,7 @@ public class JinglingPickleBlock extends BushBlock implements BonemealableBlock,
 			for (int x = -5; x <= 5; x++) {
 				for (int y = -5; y <= 5; y++) {
 					for (int z = -5; z <= 5; z++) {
-						if (ESMathUtil.isPointInEllipsoid(x, y, z, 5, 5, 5)) {
+						if (ESMathUtil.isPointInOrOnEllipsoid(x, y, z, 5, 5, 5)) {
 							BlockPos pos = blockPos.offset(x, y, z);
 							if (serverLevel.getBlockState(pos.below()).is(ESTags.Blocks.CORAL_BLOCKS) && serverLevel.getBlockState(pos).is(Blocks.WATER) && randomSource.nextInt(15) == 0) {
 								serverLevel.setBlockAndUpdate(pos, ESBlocks.JINGLING_PICKLE.get().defaultBlockState());
