@@ -10,6 +10,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.GlobalVec3;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -23,7 +24,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -31,6 +31,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
@@ -116,7 +117,9 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		GlobalVec3.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_INITIAL_POS)).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent(pos -> this.initialPos = pos);
+		if (compoundTag.contains(TAG_INITIAL_POS)) {
+			GlobalVec3.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_INITIAL_POS)).resultOrPartial(s -> EternalStarlight.LOGGER.warn("Failed to parse boss initial pos: {}", s)).ifPresent(pos -> this.initialPos = pos);
+		}
 		spawned = compoundTag.getBoolean(TAG_SPAWNED);
 		setPhase(compoundTag.getInt(TAG_PHASE));
 		if (compoundTag.contains(TAG_ACTIVATED, CompoundTag.TAG_INT)) {
@@ -127,7 +130,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		GlobalVec3.CODEC.encodeStart(NbtOps.INSTANCE, initialPos).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent((tag) -> compoundTag.put(TAG_INITIAL_POS, tag));
+		compoundTag.put(TAG_INITIAL_POS, GlobalVec3.CODEC.encodeStart(NbtOps.INSTANCE, initialPos).getOrThrow());
 		compoundTag.putBoolean(TAG_SPAWNED, spawned);
 		compoundTag.putInt(TAG_PHASE, getPhase());
 		compoundTag.putBoolean(TAG_ACTIVATED, isActivated());
@@ -135,15 +138,11 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-			return super.hurt(source, amount);
-		} else if (source.equals(level().damageSources().fall())) {
-			return false;
-		}
-		if (source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player.getName().getString())) {
+		boolean success = super.hurt(source, amount);
+		if (success && source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player.getName().getString())) {
 			fightParticipants.add(player.getName().getString());
 		}
-		return super.hurt(source, Math.min(amount, 20));
+		return success;
 	}
 
 	@Override
@@ -200,12 +199,19 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		return ResourceKey.create(Registries.LOOT_TABLE, lootTable);
 	}
 
+	public ItemStack getBossLootBag() {
+		ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
+		lootBag.applyComponentsAndValidate(DataComponentPatch.builder()
+			.set(DataComponents.LORE, new ItemLore(List.of(getDisplayName())))
+			.set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+		return lootBag;
+	}
+
 	@Override
 	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
 		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
 		if (!level().isClientSide) {
-			ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
-			lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+			ItemStack lootBag = getBossLootBag();
 			if (fightParticipants.isEmpty()) {
 				ItemEntity item = spawnAtLocation(lootBag.copy());
 				if (item != null) {

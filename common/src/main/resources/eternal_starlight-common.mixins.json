@@ -21,6 +21,7 @@
     "FishingHookMixin",
     "InventoryChangeTriggerMixin",
     "ItemEntityMixin",
+    "ItemMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
     "PlayerListMixin",

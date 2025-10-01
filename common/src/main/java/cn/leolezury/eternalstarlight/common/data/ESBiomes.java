@@ -98,9 +98,7 @@ public class ESBiomes {
 			.creatureGenerationProbability(0.2f)
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTFALL_SPIDER.get(), 20, 1, 2))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 20, 1, 2))
-			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 2, 1, 2))
-			.addMobCharge(ESEntities.NIGHTFALL_SPIDER.get(), 1, 0.15)
-			.addMobCharge(ESEntities.LONESTAR_SKELETON.get(), 1, 0.15);
+			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 2, 1, 2));
 	}
 
 	private static MobSpawnSettings.Builder baseLushSpawnBuilder() {
@@ -126,7 +124,7 @@ public class ESBiomes {
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ZOMBIFIED_RATLIN.get(), 24, 1, 3))
 			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 10, 1, 2))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.WITCH, 7, 1, 2))
-			.addMobCharge(EntityType.WITCH, 1, 0.15);
+			.addMobCharge(EntityType.WITCH, 1, 0.75);
 	}
 
 	private static MobSpawnSettings.Builder desertSpawns() {
@@ -134,8 +132,8 @@ public class ESBiomes {
 			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 10, 1, 4))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.GLEECH.get(), 10, 1, 3))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.THIRST_WALKER.get(), 10, 1, 2))
-			.addMobCharge(ESEntities.GLEECH.get(), 1, 0.15)
-			.addMobCharge(ESEntities.THIRST_WALKER.get(), 1, 0.15);
+			.addMobCharge(ESEntities.GLEECH.get(), 1, 0.75)
+			.addMobCharge(ESEntities.THIRST_WALKER.get(), 1, 0.75);
 	}
 
 	private static MobSpawnSettings.Builder riverSpawns() {

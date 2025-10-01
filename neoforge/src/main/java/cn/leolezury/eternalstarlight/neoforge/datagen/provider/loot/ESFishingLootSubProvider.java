@@ -94,6 +94,8 @@ public record ESFishingLootSubProvider(HolderLookup.Provider registries) impleme
 						.add(LootItem.lootTableItem(Items.BOOK)
 							.apply(EnchantWithLevelsFunction.enchantWithLevels(this.registries, ConstantValue.exactly(30.0F))))
 						.add(LootItem.lootTableItem(Items.NAUTILUS_SHELL))
+						.add(LootItem.lootTableItem(ESItems.PEARL_NECKLACE.get())
+							.when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomes.getOrThrow(ESBiomes.THE_ABYSS)))))
 						.add(LootItem.lootTableItem(ESItems.RAW_AETHERSENT.get())
 							.apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 10.0F))))
 						.add(LootItem.lootTableItem(ESItems.SONAR_BOMB.get())

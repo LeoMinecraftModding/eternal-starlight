@@ -979,8 +979,9 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	@Override
 	protected InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		if (stack.is(ESTags.Items.STRANGHOUL_HIRING_FOOD) && !isHired() && !isBaby() && getTarget() == null) {
+		if (ESDataAttachments.STRANGHOUL_HIRING_COOLDOWN.getData(player) <= 0 && stack.is(ESTags.Items.STRANGHOUL_HIRING_FOOD) && !isHired() && !isBaby() && getTarget() == null) {
 			setHirer(player);
+			ESDataAttachments.STRANGHOUL_HIRING_COOLDOWN.setData(player, ESConfig.INSTANCE.mobsConfig.stranghoul.hiringCooldown());
 			hiredTicksLeft = 24000;
 			hiredEatAnim = true;
 			spawnAtLocation(getOffhandItem());
@@ -1153,7 +1154,7 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		this.addPersistentAngerSaveData(compoundTag);
-		GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, homePos).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent((tag) -> compoundTag.put(TAG_HOME_POS, tag));
+		compoundTag.put(TAG_HOME_POS, GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, homePos).getOrThrow());
 		compoundTag.putBoolean(TAG_BABY, isBaby());
 		compoundTag.putInt(TAG_GROWTH_TICKS, growthTicks);
 		compoundTag.putInt(TAG_BREED_COOLDOWN, breedCooldown);
@@ -1168,7 +1169,9 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.readPersistentAngerSaveData(this.level(), compoundTag);
-		GlobalPos.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_HOME_POS)).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent(pos -> this.homePos = pos);
+		if (compoundTag.contains(TAG_HOME_POS)) {
+			GlobalPos.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_HOME_POS)).resultOrPartial(s -> EternalStarlight.LOGGER.warn("Failed to parse Stranghoul home pos: {}", s)).ifPresent(pos -> this.homePos = pos);
+		}
 		if (compoundTag.contains(TAG_BABY, CompoundTag.TAG_BYTE)) {
 			setBaby(compoundTag.getBoolean(TAG_BABY));
 		}

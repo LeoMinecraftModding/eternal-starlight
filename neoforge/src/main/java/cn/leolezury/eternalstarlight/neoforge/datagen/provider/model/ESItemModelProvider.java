@@ -650,8 +650,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.SWAMP_SILVER_LEGGINGS.get());
 		basicItem(ESItems.SWAMP_SILVER_BOOTS.get());
 
-		basicItem(ESItems.WARHAMMER_PENDANT.get());
-
 		block(ESItems.GRIMSTONE_MALARITE_ORE.get());
 		block(ESItems.VOIDSTONE_MALARITE_ORE.get());
 		block(ESItems.MALARITE_BLOCK.get());
@@ -676,8 +674,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		inventoryHandheld(ESItems.PUNGENCY_FRUIT_SPEAR.get());
 
 		inventoryHandheld(ESItems.SEEDS_LAUNCHER.get());
-
-		basicItem(ESItems.BATTLEAXE_PENDANT.get());
 
 		basicItem(ESItems.DRYING_RACK.get());
 		basicItem(ESItems.ROTTEN_FLESH_JERKY.get());
@@ -778,7 +774,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		wall(ESItems.POLISHED_TOXITE_WALL.get(), ESItems.POLISHED_TOXITE.get());
 		basicItem(ESItems.ALCHEMIST_MASK.get());
 		basicItem(ESItems.ALCHEMIST_ROBE.get());
-		basicItem(ESItems.BUTTERFLY_WINGS_AMULET.get());
 
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());
@@ -871,6 +866,13 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.CRYSTALBORN_CATALYST.get());
 		block(ESItems.CRYSTALLIZED_SAND.get());
 
+		basicItem(ESItems.BATTLEAXE_PENDANT.get());
+		basicItem(ESItems.WARHAMMER_PENDANT.get());
+		basicItem(ESItems.BUTTERFLY_WINGS_AMULET.get());
+		basicItem(ESItems.FUNGUS_AMULET.get());
+		basicItem(ESItems.PEARL_NECKLACE.get());
+		basicItem(ESItems.CRESCENT_PENDANT.get());
+
 		block(ESItems.THE_GATEKEEPER_SPAWNER.get());
 		block(ESItems.STARLIGHT_GOLEM_SPAWNER.get());
 		block(ESItems.TANGLED_HATRED_SPAWNER.get());
@@ -944,7 +946,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.WAND_OF_TELEPORTATION.get());
 		chainOfSouls(ESItems.CHAIN_OF_SOULS.get());
 		inventoryHandheld(ESItems.CRESCENT_SPEAR.get());
-		basicItem(ESItems.CRESCENT_PENDANT.get());
 		block(ESItems.SHADEGRIEVE.get());
 		block(ESItems.BLOOMING_SHADEGRIEVE.get());
 		basicItem(ESItems.LUNAR_VINE.get());

@@ -164,8 +164,11 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.STARFIRE_BIRD.get(),
 				ESEntities.GRIMSTONE_GOLEM.get(),
 				ESEntities.AETHERSENT_GOLEM.get(),
+				ESEntities.THE_GATEKEEPER.get(),
+				ESEntities.STARLIGHT_GOLEM.get(),
 				ESEntities.FREEZE.get(),
-				ESEntities.PERMAFROST.get()
+				ESEntities.PERMAFROST.get(),
+				ESEntities.LUNAR_MONSTROSITY.get()
 			);
 	}
 }

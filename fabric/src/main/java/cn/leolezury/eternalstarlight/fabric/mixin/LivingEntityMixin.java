@@ -40,6 +40,12 @@ public abstract class LivingEntityMixin {
 		CommonHandlers.onPostLivingHurt((LivingEntity) (Object) this, source, amount);
 	}
 
+	@WrapMethod(method = "heal")
+	private void heal(float amount, Operation<Void> original) {
+		float modified = CommonHandlers.onLivingHeal((LivingEntity) (Object) this, amount);
+		original.call(modified);
+	}
+
 	@WrapMethod(method = "hurt")
 	private boolean hurt(DamageSource source, float amount, Operation<Boolean> original) {
 		float modified = CommonHandlers.onModifyLivingHurtDamage((LivingEntity) (Object) this, source, amount);

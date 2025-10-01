@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.PaintingVariant;
@@ -48,6 +49,7 @@ public class ESTags {
 		public static final TagKey<Item> STARFIRE_WEAPONS = create("starfire_weapons");
 		public static final TagKey<Item> FLOWGLAZE_WEAPONS = create("flowglaze_weapons");
 		public static final TagKey<Item> MENDS_NATURALLY = create("mends_naturally");
+		public static final TagKey<Item> CONSUMABLE_WHEN_WEARING_FUNGUS_AMULET = create("consumable_when_wearing_fungus_amulet");
 		public static final TagKey<Item> REPAIRED_BY_CRESCENT_PENDANT = create("repaired_by_crescent_pendant");
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");
 		public static final TagKey<Item> STELLAGMITE_IGNITERS = create("stellagmite_igniters");
@@ -141,6 +143,14 @@ public class ESTags {
 
 		private static TagKey<EntityType<?>> create(String string) {
 			return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));
+		}
+	}
+
+	public static class DamageTypes {
+		public static final TagKey<DamageType> BYPASSES_CRESCENT_PENDANT = create("bypasses_crescent_pendant");
+
+		private static TagKey<DamageType> create(String string) {
+			return TagKey.create(Registries.DAMAGE_TYPE, EternalStarlight.id(string));
 		}
 	}
 

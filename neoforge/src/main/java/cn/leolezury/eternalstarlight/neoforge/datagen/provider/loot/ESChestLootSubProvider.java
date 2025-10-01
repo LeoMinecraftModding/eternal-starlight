@@ -42,6 +42,14 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_STARS_SHINING_UPON_THE_SEA.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_ATLANTIS.get()))));
 
+		consumer.accept(ESLootTables.CHEST_ACCESSORIES,
+			LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.WARHAMMER_PENDANT.get()))
+					.add(LootItem.lootTableItem(ESItems.BUTTERFLY_WINGS_AMULET.get()))
+					.add(LootItem.lootTableItem(ESItems.FUNGUS_AMULET.get()))
+					.add(LootItem.lootTableItem(ESItems.PEARL_NECKLACE.get()))));
+
 		consumer.accept(ESLootTables.CHEST_GOLEM_FORGE,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
@@ -81,11 +89,10 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(2))
 					.add(LootItem.lootTableItem(Items.POTION).apply(SetPotionFunction.setPotion(Potions.STRONG_HEALING)).setWeight(15))
 					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get()).setWeight(5))
-					.add(LootItem.lootTableItem(ESItems.WARHAMMER_PENDANT.get()).setWeight(8))
-					.add(LootItem.lootTableItem(ESItems.BUTTERFLY_WINGS_AMULET.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
-					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
+					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))
+					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_ACCESSORIES).setWeight(10))));
 
 		consumer.accept(ESLootTables.CHEST_CURSED_GARDEN,
 			LootTable.lootTable()
@@ -122,11 +129,10 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(ESItems.AMARAMBER_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 8))).setWeight(30))
 					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 9))).setWeight(45))
 					.add(LootItem.lootTableItem(ESItems.THERMAL_SPRINGSTONE_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).setWeight(25))
-					.add(LootItem.lootTableItem(ESItems.WARHAMMER_PENDANT.get()).setWeight(8))
-					.add(LootItem.lootTableItem(ESItems.BUTTERFLY_WINGS_AMULET.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(10))
 					.add(LootItem.lootTableItem(ESItems.FLOWGLAZE_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(10))
-					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))));
+					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_MUSIC_DISCS).setWeight(8))
+					.add(NestedLootTable.lootTableReference(ESLootTables.CHEST_ACCESSORIES).setWeight(10))));
 
 		consumer.accept(ESLootTables.CHEST_DUSK_LOCKBOX,
 			LootTable.lootTable()

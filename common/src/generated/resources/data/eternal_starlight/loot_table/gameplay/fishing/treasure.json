@@ -69,6 +69,18 @@
         },
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": "eternal_starlight:the_abyss"
+              }
+            }
+          ],
+          "name": "eternal_starlight:pearl_necklace"
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,

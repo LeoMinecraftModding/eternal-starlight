@@ -278,7 +278,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))
 			.save(recipeOutput);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.SEEKING_EYE.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.SEEKING_EYE.get(), 16)
 			.pattern("FFF")
 			.pattern("FPF")
 			.pattern("FFF")

@@ -38,7 +38,7 @@ public class GolemForgeChimneyFeature extends ESFeature<NoneFeatureConfiguration
 							if (Math.abs(x) == 5 || Math.abs(z) == 5) {
 								setBlockIfEmpty(worldGenLevel, origin.offset(x, y, z), ESBlocks.VOIDSTONE_BRICKS.get().defaultBlockState(), true, state -> anyMatch(state, ignored) || state.canBeReplaced());
 							} else {
-								setBlockIfEmpty(worldGenLevel, origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+								setBlock(worldGenLevel, origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 							}
 						}
 					}

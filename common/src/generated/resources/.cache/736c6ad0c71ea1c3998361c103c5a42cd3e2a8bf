@@ -1,4 +1,5 @@
-// 1.21.1	2025-09-11T23:30:49.9356455	Tags for minecraft:damage_type mod id eternal_starlight
+// 1.21.1	2025-10-01T13:31:23.1526269	Tags for minecraft:damage_type mod id eternal_starlight
+c5b6dc02a45138f7b0c041d4eacf045f726aa3bf data/eternal_starlight/tags/damage_type/bypasses_crescent_pendant.json
 7ec4ef987458f2a35edd11d2a66197a43bd2aebd data/minecraft/tags/damage_type/always_kills_armor_stands.json
 a0b51b35c521cfc43a3e190559294da93287ea1c data/minecraft/tags/damage_type/bypasses_armor.json
 a0b51b35c521cfc43a3e190559294da93287ea1c data/minecraft/tags/damage_type/bypasses_enchantments.json

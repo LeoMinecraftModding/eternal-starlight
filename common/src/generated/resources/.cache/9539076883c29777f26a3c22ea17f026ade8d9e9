@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-26T22:35:54.7206898	Item Models: eternal_starlight
+// 1.21.1	2025-10-01T17:30:09.0110329	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -309,6 +309,7 @@ a20c723b154c13ac836b487946422201b6f5a395 assets/eternal_starlight/models/item/fl
 8e7cf13cabbd21c7b549c95f6318b208e16e655e assets/eternal_starlight/models/item/freeze_spawn_egg.json
 9b4678b69ab734fd83d4ff61ca8b7e9dd1e459f3 assets/eternal_starlight/models/item/frozen_bomb.json
 64c9d329eda50a9028dea3426fb9c473589f79f9 assets/eternal_starlight/models/item/frozen_tube.json
+86f1fbd39fdd6c755c38649a0f0b0f8ddbecc84b assets/eternal_starlight/models/item/fungus_amulet.json
 a6d922f589397263de5cdbe957a7256285610101 assets/eternal_starlight/models/item/glacite.json
 987f2f7e1e64fb4e52c5e95027e16a65e6e76a28 assets/eternal_starlight/models/item/glacite_arrow.json
 99e054290a2fe3c8cd7652c1c69bc7c46301b232 assets/eternal_starlight/models/item/glacite_axe.json
@@ -632,6 +633,7 @@ e3363e3c9bd4e4f08e9253f9eafad350b4e5a624 assets/eternal_starlight/models/item/ox
 557e8235f136d33df1fbdb8fa7557992ffb98c5a assets/eternal_starlight/models/item/oxidized_golem_steel_tile_stairs.json
 ab00c94148b0d38aba8a1e454147a19576c25ba7 assets/eternal_starlight/models/item/packed_nightfall_mud.json
 450d938b145d84e3e5806ea587464300471d008d assets/eternal_starlight/models/item/parasol_grass.json
+397a1f1612ed7e8d3d332cde130f57965f5e913d assets/eternal_starlight/models/item/pearl_necklace.json
 b6e7d0e93afbad155ed7de58502ad8506541f28d assets/eternal_starlight/models/item/permafrost_spawn_egg.json
 c1315c30db7ce19e3869d72add9cb6d74435612c assets/eternal_starlight/models/item/petal_scythe.json
 aa7cee5ed2d127b67ff4e274d31b20993669b504 assets/eternal_starlight/models/item/petal_scythe_inventory.json

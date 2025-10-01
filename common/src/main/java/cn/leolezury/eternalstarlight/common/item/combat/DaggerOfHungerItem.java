@@ -9,6 +9,7 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.FastColor;
@@ -93,6 +94,7 @@ public class DaggerOfHungerItem extends SwordItem {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+		list.add(CommonComponents.EMPTY);
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.when_attack").withStyle(ChatFormatting.BLUE));
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.attack_bonus").withStyle(ChatFormatting.BLUE));
 		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.hurt_player").withStyle(ChatFormatting.BLUE));

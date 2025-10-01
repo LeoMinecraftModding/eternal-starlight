@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-22T23:41:05.0653456	Recipes
+// 1.21.1	2025-09-30T22:59:35.4730774	Recipes
 ad29647c03c8631e74ab853101908eda2a14194c data/eternal_starlight/advancement/recipes/brewing/cauldron_from_swamp_silver_ingot.json
 e3ac56c58944a1e442e93eb25dcf634c25647417 data/eternal_starlight/advancement/recipes/building_blocks/acacia_starfire_bird_aviary.json
 eadb12aecf81885f07435504edfeb0e4ef368170 data/eternal_starlight/advancement/recipes/building_blocks/aethersent_block.json
@@ -2011,7 +2011,7 @@ dd09c0886a7ca44cbe1bef019b745d5df071df38 data/eternal_starlight/recipe/scarlet_s
 06af0821aad62570c9958e0af1c2780e70b7712d data/eternal_starlight/recipe/scarlet_starfire_bird_aviary.json
 52bce57ea0d809958fe969097ff8d050303d8aef data/eternal_starlight/recipe/scarlet_trapdoor.json
 81dfa4ea7d2d595931335aa5ab516da5f2853817 data/eternal_starlight/recipe/scarlet_wood.json
-e1b4706b33d3d196c48e8eb5d527d8063661c5fd data/eternal_starlight/recipe/seeking_eye.json
+01e0621f246ee151f1d54a8d1149cf91e48155d3 data/eternal_starlight/recipe/seeking_eye.json
 8023230be8645eb490347d85b79a92504ad3b00a data/eternal_starlight/recipe/shapeless/aetherstrike_rocket.json
 a821a23156c5ed044e76447c8fc0c92299834b07 data/eternal_starlight/recipe/shapeless/amaramber_ingot.json
 248abe25dfd5d0599f66258271dfd584d0692650 data/eternal_starlight/recipe/shapeless/black_dye_from_shadow_snail_shell_powder.json

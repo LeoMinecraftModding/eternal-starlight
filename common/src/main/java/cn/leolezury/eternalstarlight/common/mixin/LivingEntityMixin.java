@@ -8,9 +8,12 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
+import cn.leolezury.eternalstarlight.common.util.ESAccessoryUtil;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
@@ -29,6 +32,7 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -123,7 +127,12 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "createLivingAttributes", at = @At("RETURN"))
 	private static void createLivingAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
-		cir.getReturnValue().add(ESAttributes.THROWN_POTION_DISTANCE.asHolder()).add(ESAttributes.ETHER_RESISTANCE.asHolder()).add(ESAttributes.FIRE_RESISTANCE.asHolder());
+		cir.getReturnValue()
+			.add(ESAttributes.THROWN_POTION_DISTANCE.asHolder())
+			.add(ESAttributes.ETHER_RESISTANCE.asHolder())
+			.add(ESAttributes.FIRE_RESISTANCE.asHolder())
+			.add(ESAttributes.METEOR_COUNTERATTACK_CHANCE.asHolder())
+			.add(ESAttributes.HEAL_MULTIPLIER.asHolder());
 	}
 
 	@Inject(method = "checkAutoSpinAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V", shift = At.Shift.AFTER))
@@ -180,6 +189,14 @@ public abstract class LivingEntityMixin {
 		} else if (itemStack.is(ESItems.PUNGENCY_STEW.get())) {
 			removeEffect(MobEffects.HUNGER);
 		}
+	}
+
+	@WrapOperation(method = "triggerItemUseEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getUseAnimation()Lnet/minecraft/world/item/UseAnim;"))
+	private UseAnim getUseAnimation(ItemStack instance, Operation<UseAnim> original) {
+		if (ESAccessoryUtil.getActiveAccessoriesOnArmors((LivingEntity) (Object) this).contains(ESItems.FUNGUS_AMULET.get()) && instance.is(ESTags.Items.CONSUMABLE_WHEN_WEARING_FUNGUS_AMULET)) {
+			return UseAnim.EAT;
+		}
+		return original.call(instance);
 	}
 
 	@Inject(method = "onClimbable", at = @At(value = "RETURN"), cancellable = true)

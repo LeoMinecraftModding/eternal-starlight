@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.neoforge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -19,6 +20,10 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 
 	@Override
 	protected void addTags(HolderLookup.Provider lookupProvider) {
+		tag(ESTags.DamageTypes.BYPASSES_CRESCENT_PENDANT)
+			.add(
+				ESDamageTypes.NUMBNESS
+			);
 		tag(DamageTypeTags.BYPASSES_ARMOR)
 			.add(
 				ESDamageTypes.ETHER,

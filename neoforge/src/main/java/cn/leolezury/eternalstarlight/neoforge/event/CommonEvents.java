@@ -74,6 +74,11 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
+	private static void onLivingHeal(LivingHealEvent event) {
+		event.setAmount(CommonHandlers.onLivingHeal(event.getEntity(), event.getAmount()));
+	}
+
+	@SubscribeEvent
 	private static void onLivingDeath(LivingDeathEvent event) {
 		if (!event.isCanceled()) {
 			boolean allow = CommonHandlers.onAllowLivingDeath(event.getEntity(), event.getSource());

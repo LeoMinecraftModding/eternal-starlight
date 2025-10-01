@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
 import cn.leolezury.eternalstarlight.common.client.book.component.*;
 import cn.leolezury.eternalstarlight.common.client.book.text.BookContent;
 import cn.leolezury.eternalstarlight.common.client.book.text.BookText;
+import cn.leolezury.eternalstarlight.common.data.ESStructures;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -49,6 +50,10 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), EternalStarlight.id("starlight_golem_display"), Sets.newHashSet(EternalStarlight.id("starlight_golem")), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
 						ItemStack stack = ESItems.CHISELED_GOLEM_STEEL_BLOCK.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
+					})),
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId()), EternalStarlight.id("lunar_monstrosity_display"), Sets.newHashSet(EternalStarlight.id("lunar_monstrosity")), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+						ItemStack stack = ESItems.PARASOL_GRASS.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
 					}))
 				), 20, 20, 130, 12))
 			),
@@ -74,7 +79,13 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				)), 50)
 					.textDisplay(new BookContent(List.of(new BookText(false, "${color: #acfffc}${link: " + EternalStarlight.ID + ":starlight_golem_display}"), new BookText(true, ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()))), true, 65, 35, 110, 9, 6, 1)
 					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 5, 20, 20)
-					.itemTagDisplay(ESTags.Items.GOLEM_FORGE_LOCATORS, 55 + 2, 5 + 2))
+					.itemTagDisplay(ESTags.Items.GOLEM_FORGE_LOCATORS, 55 + 2, 5 + 2)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("seeking_eye_locators_lunar_monstrosity"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), 50)
+					.textDisplay(new BookContent(List.of(new BookText(false, "${color: #acfffc}${link: " + EternalStarlight.ID + ":lunar_monstrosity_display}"), new BookText(true, ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId()))), true, 65, 35, 110, 9, 6, 1)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 5, 20, 20)
+					.itemTagDisplay(ESTags.Items.CURSED_GARDEN_LOCATORS, 55 + 2, 5 + 2))
 			),
 			// orb of prophecy
 			List.of(
@@ -91,6 +102,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
 				)), simpleColoredTranslatedBookContent("orb_of_prophecy"), 10, 20, 130, 12))
 			),
+			// starlight golem
 			List.of(
 				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("starlight_golem_display"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
@@ -105,16 +117,41 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				new ConfiguredBookComponent<>(BookComponentRegistry.MOB_INFO, new MobInfoBookComponent.Config(EternalStarlight.id("starlight_golem_info"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
 				)), ESEntities.STARLIGHT_GOLEM.getId(), List.of(
+					new MobInfoBookComponent.Entry(simpleColoredTranslated(Util.makeDescriptionId("structure", ESStructures.GOLEM_FORGE.location())), Optional.empty(), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/location_structure.png")),
 					new MobInfoBookComponent.Entry(new BookContent(List.of()), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.MAX_HEALTH.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_max_health.png")),
 					new MobInfoBookComponent.Entry(simpleColoredTranslatedBookContent("starlight_golem.defense"), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.ARMOR.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_armor.png")),
 					new MobInfoBookComponent.Entry(simpleColoredTranslatedBookContent("starlight_golem.speed"), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.MOVEMENT_SPEED.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_movement_speed.png"))
-				), 150, 65, 20, 8, 4, 4, EternalStarlight.id("textures/gui/screen/book/left.png"), EternalStarlight.id("textures/gui/screen/book/right.png"))),
+				), 150, 65, 24, 8, 8, 8, EternalStarlight.id("textures/gui/screen/book/left.png"), EternalStarlight.id("textures/gui/screen/book/right.png"))),
 				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("starlight_golem"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
 				)), simpleColoredTranslatedBookContent("starlight_golem"), 10, 20, 130, 12))
+			),
+			// lunar monstrosity
+			List.of(
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("lunar_monstrosity_display"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), 125)
+					.textDisplay(simpleColoredTranslated(ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId()), true, 65, 110, 110, 12, 3, 1.5f)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/frame_72.png"), 29, 20, 72, 72)
+					.entityDisplay(Util.make(() -> {
+						CompoundTag tag = new CompoundTag();
+						tag.putString(Entity.ID_TAG, ESEntities.LUNAR_MONSTROSITY.getId().toString());
+						return tag;
+					}), 65, 80, -25, 210, 16, new Quaternionf().rotationXYZ(0.43633232F, 0.0F, 3.1415927F))),
+				new ConfiguredBookComponent<>(BookComponentRegistry.MOB_INFO, new MobInfoBookComponent.Config(EternalStarlight.id("lunar_monstrosity_info"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), ESEntities.LUNAR_MONSTROSITY.getId(), List.of(
+					new MobInfoBookComponent.Entry(simpleColoredTranslated(Util.makeDescriptionId("structure", ESStructures.CURSED_GARDEN.location())), Optional.empty(), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/location_structure.png")),
+					new MobInfoBookComponent.Entry(new BookContent(List.of()), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.MAX_HEALTH.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_max_health.png")),
+					new MobInfoBookComponent.Entry(simpleColoredTranslatedBookContent("lunar_monstrosity.defense"), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.ARMOR.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_armor.png")),
+					new MobInfoBookComponent.Entry(simpleColoredTranslatedBookContent("lunar_monstrosity.speed"), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.MOVEMENT_SPEED.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 8, 8, EternalStarlight.id("textures/gui/screen/book/attribute_movement_speed.png"))
+				), 150, 65, 24, 8, 8, 8, EternalStarlight.id("textures/gui/screen/book/left.png"), EternalStarlight.id("textures/gui/screen/book/right.png"))),
+				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("lunar_monstrosity"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("enter_starlight"))
+				)), simpleColoredTranslatedBookContent("lunar_monstrosity"), 10, 20, 130, 12))
 			)
 		), 150, 187, 10,
-			4, 4, 2, 174, 6,
+			8, 8, 0, 172, 4,
 			4, 170, 140, 5, 2, FastColor.ARGB32.color(172, 255, 252),
 			new BookDefinition.Textures(EternalStarlight.id("textures/gui/screen/book/book.png"),
 				EternalStarlight.id("textures/gui/screen/book/book_overlay.png"),

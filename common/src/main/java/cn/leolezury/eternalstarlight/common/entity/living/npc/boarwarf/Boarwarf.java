@@ -140,7 +140,9 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		chatTicks = compoundTag.getInt(TAG_CHAT_TICKS);
 		awakeTicks = compoundTag.getInt(TAG_AWAKE_TICKS);
 		sleepTicks = compoundTag.getInt(TAG_SLEEP_TICKS);
-		GlobalPos.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_HOME_POS)).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent(pos -> this.homePos = pos);
+		if (compoundTag.contains(TAG_HOME_POS)) {
+			GlobalPos.CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_HOME_POS)).resultOrPartial(s -> EternalStarlight.LOGGER.warn("Failed to parse Boarwarf home pos: {}", s)).ifPresent(pos -> this.homePos = pos);
+		}
 		if (this.offers == null) {
 			this.offers = new MerchantOffers();
 			this.addTrades();
@@ -163,7 +165,7 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 		compoundTag.putInt(TAG_CHAT_TICKS, chatTicks);
 		compoundTag.putInt(TAG_AWAKE_TICKS, awakeTicks);
 		compoundTag.putInt(TAG_SLEEP_TICKS, sleepTicks);
-		GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, homePos).resultOrPartial(EternalStarlight.LOGGER::error).ifPresent((tag) -> compoundTag.put(TAG_HOME_POS, tag));
+		compoundTag.put(TAG_HOME_POS, GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, homePos).getOrThrow());
 	}
 
 	@Override

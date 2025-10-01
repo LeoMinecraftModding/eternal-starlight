@@ -8,7 +8,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetG
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.item.component.ResourceKeyComponent;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
@@ -21,7 +20,6 @@ import net.minecraft.Util;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
@@ -333,8 +331,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(ResourceLocation.withDefaultNamespace("end/kill_dragon"));
 			if (killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone() && !isPlayerPermitted(serverPlayer)) {
 				permitPlayer(serverPlayer);
-				ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
-				lootBag.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.LOOT_TABLE.get(), new ResourceKeyComponent<>(getBossLootTable())).build());
+				ItemStack lootBag = getBossLootBag();
 				ItemEntity item = player.spawnAtLocation(lootBag);
 				if (item != null) {
 					item.setGlowingTag(true);

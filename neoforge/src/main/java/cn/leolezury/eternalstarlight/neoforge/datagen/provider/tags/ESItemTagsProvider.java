@@ -130,7 +130,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.MUSHROOMS)
 			.add(
 				ESItems.GLOWING_MUSHROOM.get(),
-				ESItems.BOULDERSHROOM.get()
+				ESItems.BOULDERSHROOM.get(),
+				ESItems.MARIMOLD.get()
 			);
 		tag(Tags.Items.MUSIC_DISCS)
 			.add(
@@ -559,6 +560,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AMARAMBER_HELMET.get(),
 				ESItems.AMARAMBER_CHESTPLATE.get()
 			);
+		tag(ESTags.Items.CONSUMABLE_WHEN_WEARING_FUNGUS_AMULET)
+			.addTag(Tags.Items.MUSHROOMS);
 		tag(ESTags.Items.REPAIRED_BY_CRESCENT_PENDANT)
 			.add(
 				ESItems.MOONRING_BOW.get(),

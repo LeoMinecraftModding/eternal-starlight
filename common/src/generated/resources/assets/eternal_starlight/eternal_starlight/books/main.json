@@ -1,7 +1,7 @@
 {
-  "button_distance_from_right": 6,
-  "button_height": 4,
-  "button_width": 4,
+  "button_distance_from_right": 4,
+  "button_height": 8,
+  "button_width": 8,
   "components": [
     [
       {
@@ -73,6 +73,29 @@
                 },
                 {
                   "content": "entity.eternal_starlight.starlight_golem",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:parasol_grass"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:lunar_monstrosity_display",
+              "listening": [
+                "eternal_starlight:lunar_monstrosity"
+              ],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.lunar_monstrosity",
                   "translation": true
                 }
               ]
@@ -242,6 +265,57 @@
             ]
           ]
         }
+      },
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "entity_displays": [],
+          "id": "eternal_starlight:seeking_eye_locators_lunar_monstrosity",
+          "image_displays": [
+            {
+              "height": 20,
+              "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+              "width": 20,
+              "x": 55,
+              "y": 5
+            }
+          ],
+          "item_displays": [],
+          "item_tag_displays": [
+            {
+              "item_tag": "eternal_starlight:cursed_garden_locators",
+              "x": 57,
+              "y": 7
+            }
+          ],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 9,
+              "min_distance_to_bottom": 6,
+              "scale": 1.0,
+              "text": [
+                {
+                  "content": "${color: #acfffc}${link: eternal_starlight:lunar_monstrosity_display}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.lunar_monstrosity",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 35
+            }
+          ],
+          "total_height": 50,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ]
+        }
       }
     ],
     [
@@ -391,10 +465,28 @@
       {
         "type": "eternal_starlight:mob_info",
         "config": {
-          "button_height": 4,
-          "button_width": 4,
+          "button_height": 8,
+          "button_width": 8,
           "center_x": 65,
           "entries": [
+            {
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/location_structure.png",
+              "icon_height": 8,
+              "icon_width": 8,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "structure.eternal_starlight.golem_forge",
+                  "translation": true
+                }
+              ]
+            },
             {
               "attribute": "minecraft:generic.max_health",
               "attribute_text_style": {
@@ -455,7 +547,7 @@
               "eternal_starlight:enter_starlight"
             ]
           ],
-          "width": 20
+          "width": 24
         }
       },
       {
@@ -483,9 +575,186 @@
           "width": 130
         }
       }
+    ],
+    [
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "entity_displays": [
+            {
+              "entity": {
+                "id": "eternal_starlight:lunar_monstrosity"
+              },
+              "rotation": [
+                0.0,
+                -0.21643962,
+                0.976296,
+                -0.0
+              ],
+              "scale": 16.0,
+              "x": 65,
+              "x_rot": -25.0,
+              "y": 80,
+              "y_rot": 210.0
+            }
+          ],
+          "id": "eternal_starlight:lunar_monstrosity_display",
+          "image_displays": [
+            {
+              "height": 72,
+              "location": "eternal_starlight:textures/gui/screen/book/frame_72.png",
+              "width": 72,
+              "x": 29,
+              "y": 20
+            }
+          ],
+          "item_displays": [],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 3,
+              "scale": 1.5,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.lunar_monstrosity",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 110
+            }
+          ],
+          "total_height": 125,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:mob_info",
+        "config": {
+          "button_height": 8,
+          "button_width": 8,
+          "center_x": 65,
+          "entries": [
+            {
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/location_structure.png",
+              "icon_height": 8,
+              "icon_width": 8,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "structure.eternal_starlight.cursed_garden",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "attribute": "minecraft:generic.max_health",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_max_health.png",
+              "icon_height": 8,
+              "icon_width": 8,
+              "text": []
+            },
+            {
+              "attribute": "minecraft:generic.armor",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_armor.png",
+              "icon_height": 8,
+              "icon_width": 8,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "book.eternal_starlight.lunar_monstrosity.defense",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_movement_speed.png",
+              "icon_height": 8,
+              "icon_width": 8,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "book.eternal_starlight.lunar_monstrosity.speed",
+                  "translation": true
+                }
+              ]
+            }
+          ],
+          "height": 8,
+          "id": "eternal_starlight:lunar_monstrosity_info",
+          "left_button": "eternal_starlight:textures/gui/screen/book/left.png",
+          "mob": "eternal_starlight:lunar_monstrosity",
+          "right_button": "eternal_starlight:textures/gui/screen/book/right.png",
+          "tooltip_width": 150,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ],
+          "width": 24
+        }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 20,
+          "id": "eternal_starlight:lunar_monstrosity",
+          "line_height": 12,
+          "offset": 10,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.lunar_monstrosity",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:enter_starlight"
+            ]
+          ],
+          "width": 130
+        }
+      }
     ]
   ],
-  "down_button_offset": 174,
+  "down_button_offset": 172,
   "frame_width": 10,
   "height": 187,
   "scroll_button_color": -5439492,
@@ -500,6 +769,6 @@
     "overlay": "eternal_starlight:textures/gui/screen/book/book_overlay.png",
     "up_button": "eternal_starlight:textures/gui/screen/book/up.png"
   },
-  "up_button_offset": 2,
+  "up_button_offset": 0,
   "width": 150
 }

@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.renderer.layer;
+package cn.leolezury.eternalstarlight.common.client.renderer.layer.accessory;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.blaze3d.vertex.PoseStack;

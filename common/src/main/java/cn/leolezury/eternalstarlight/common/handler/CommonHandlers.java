@@ -14,7 +14,6 @@ import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.EnergySpark;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownStarfire;
 import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
-import cn.leolezury.eternalstarlight.common.item.armor.AethersentArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
@@ -37,7 +36,6 @@ import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import cn.leolezury.eternalstarlight.common.weather.WeatherInstance;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
-import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
@@ -52,7 +50,6 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.game.ClientboundLevelEventPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -252,7 +249,7 @@ public class CommonHandlers {
 	public static float onModifyLivingActualHurtDamage(LivingEntity entity, DamageSource source, float amount) {
 		float modified = amount;
 		Set<Item> activeAccessories = ESAccessoryUtil.getActiveAccessoriesOnArmors(entity);
-		if (activeAccessories.contains(ESItems.CRESCENT_PENDANT.get()) && modified > entity.getMaxHealth() * 0.75f) {
+		if (activeAccessories.contains(ESItems.CRESCENT_PENDANT.get()) && !source.is(ESTags.DamageTypes.BYPASSES_CRESCENT_PENDANT) && modified > entity.getMaxHealth() * 0.75f) {
 			modified = entity.getMaxHealth() * 0.75f;
 		}
 		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
@@ -314,124 +311,128 @@ public class CommonHandlers {
 	}
 
 	public static void onPostLivingHurt(LivingEntity entity, DamageSource source, float amount) {
-		if (amount > 0) {
-			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringstoneArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringstoneArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringstoneArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringstoneArmorItem
-			) {
-				if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
-					livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + 200);
+		if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof ThermalSpringstoneArmorItem
+			|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ThermalSpringstoneArmorItem
+			|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof ThermalSpringstoneArmorItem
+			|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof ThermalSpringstoneArmorItem
+		) {
+			if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
+				livingEntity.setRemainingFireTicks(livingEntity.getRemainingFireTicks() + 200);
+			}
+		}
+
+		if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
+			entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 200);
+		}
+
+		if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof GlaciteArmorItem
+			|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof GlaciteArmorItem
+			|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof GlaciteArmorItem
+			|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof GlaciteArmorItem
+		) {
+			if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
+				livingEntity.setTicksFrozen(Math.min(livingEntity.getTicksFrozen() + 80, 300));
+			}
+		}
+
+		if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.GLACITE_WEAPONS) && entity.canFreeze()) {
+			entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 80, 300));
+		}
+
+		if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.MALARITE_WEAPONS)) {
+			entity.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
+		}
+
+		if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.PUNGENCY_FRUIT_WEAPONS)) {
+			entity.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
+			entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 120));
+		}
+
+		if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.STARFIRE_WEAPONS)) {
+			entity.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), 60));
+			if (attacker.level() instanceof ServerLevel serverLevel) {
+				ThrownStarfire.createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 5, 0.25);
+			}
+			attacker.level().playSound(null, attacker.blockPosition(), ESSoundEvents.STARFIRE_WHOOSH.get(), attacker.getSoundSource());
+		}
+
+		if (source.getDirectEntity() instanceof LivingEntity attacker && !(attacker instanceof Player)) {
+			handleFlowglazeWeaponAttack(attacker, entity);
+		}
+
+		AttributeInstance meteorChance = entity.getAttribute(ESAttributes.METEOR_COUNTERATTACK_CHANCE.asHolder());
+		if (meteorChance != null && entity.getRandom().nextDouble() < meteorChance.getValue()) {
+			if (source.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
+				Vec3 location = livingEntity.position();
+				AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, true);
+			}
+		}
+
+		if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESItems.PETAL_SCYTHE.get())) {
+			for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(2.5))) {
+				if (living != attacker) {
+					living.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
 				}
 			}
-
-			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.THERMAL_SPRINGSTONE_WEAPONS)) {
-				entity.setRemainingFireTicks(entity.getRemainingFireTicks() + 200);
+			if (attacker.level() instanceof ServerLevel serverLevel) {
+				Vec3 vec3 = entity.position().add(0, entity.getBbHeight() / 2, 0);
+				serverLevel.sendParticles(ESSmokeParticleOptions.LUNAR_ATTACK, vec3.x, vec3.y, vec3.z, 10, 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 0.1 * (serverLevel.getRandom().nextFloat() - 0.5));
 			}
+		}
 
-			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof GlaciteArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof GlaciteArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof GlaciteArmorItem
-				|| entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof GlaciteArmorItem
-			) {
-				if (source.getDirectEntity() instanceof LivingEntity livingEntity) {
-					livingEntity.setTicksFrozen(Math.min(livingEntity.getTicksFrozen() + 80, 300));
-				}
+		if (entity.hasEffect(ESMobEffects.STARFIRE.asHolder()) && !source.is(ESDamageTypes.STARFIRE)) {
+			if (entity.level() instanceof ServerLevel serverLevel) {
+				ThrownStarfire.createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 6, 0.75);
 			}
-
-			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.GLACITE_WEAPONS) && entity.canFreeze()) {
-				entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 80, 300));
-			}
-
-			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.MALARITE_WEAPONS)) {
-				entity.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
-			}
-
-			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.PUNGENCY_FRUIT_WEAPONS)) {
-				entity.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
-				entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 120));
-			}
-
-			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESTags.Items.STARFIRE_WEAPONS)) {
-				entity.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), 60));
-				if (attacker.level() instanceof ServerLevel serverLevel) {
-					ThrownStarfire.createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 5, 0.25);
-				}
-				attacker.level().playSound(null, attacker.blockPosition(), ESSoundEvents.STARFIRE_WHOOSH.get(), attacker.getSoundSource());
-			}
-
-			if (source.getDirectEntity() instanceof LivingEntity attacker && !(attacker instanceof Player)) {
-				handleFlowglazeWeaponAttack(attacker, entity);
-			}
-
-			if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof AethersentArmorItem
-				&& entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof AethersentArmorItem
-				&& entity.getItemBySlot(EquipmentSlot.LEGS).getItem() instanceof AethersentArmorItem
-				&& entity.getItemBySlot(EquipmentSlot.FEET).getItem() instanceof AethersentArmorItem
-			) {
-				if (source.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
-					Vec3 location = livingEntity.position();
-					AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, true);
-				}
-			}
-
-			if (source.getDirectEntity() instanceof LivingEntity attacker && attacker.getWeaponItem().is(ESItems.PETAL_SCYTHE.get())) {
-				for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(2.5))) {
-					if (living != attacker) {
-						living.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
-					}
-				}
-				if (attacker.level() instanceof ServerLevel serverLevel) {
-					Vec3 vec3 = entity.position().add(0, entity.getBbHeight() / 2, 0);
-					serverLevel.sendParticles(ESSmokeParticleOptions.LUNAR_ATTACK, vec3.x, vec3.y, vec3.z, 10, 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 1.5 * (serverLevel.getRandom().nextFloat() - 0.5), 0.1 * (serverLevel.getRandom().nextFloat() - 0.5));
-				}
-			}
-
-			if (entity.hasEffect(ESMobEffects.STARFIRE.asHolder()) && !source.is(ESDamageTypes.STARFIRE)) {
-				if (entity.level() instanceof ServerLevel serverLevel) {
-					ThrownStarfire.createExplosionParticles(serverLevel, entity.position().add(0, entity.getBbHeight() / 2, 0), 6, 0.75);
-				}
-				for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3))) {
-					if (ESEntityUtil.shouldHarm(source.getEntity(), living)) {
-						living.hurt(ESDamageTypes.getIndirectEntityDamageSource(entity.level(), ESDamageTypes.STARFIRE, source.getDirectEntity(), source.getEntity()), amount / 3);
-					}
-				}
-			}
-
-			if (ESAccessoryUtil.getActiveAccessoriesOnArmors(entity).contains(ESItems.BUTTERFLY_WINGS_AMULET.get()) && source.getEntity() instanceof LivingEntity attacker) {
-				int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(attacker);
-				if (inEtherTicks < 600) {
-					ESDataAttachments.IN_ETHER_TICKS.setData(attacker, Math.min(inEtherTicks + 200, 600));
-				}
-			}
-
-			if (source.getEntity() instanceof LivingEntity attacker && ESAccessoryUtil.getActiveAccessoriesOnArmors(attacker).contains(ESItems.BUTTERFLY_WINGS_AMULET.get())) {
-				int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(entity);
-				if (inEtherTicks < 600) {
-					ESDataAttachments.IN_ETHER_TICKS.setData(entity, Math.min(inEtherTicks + 200, 600));
-				}
-			}
-
-			if (entity instanceof Player player && player.level().getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS) && player.isEyeInFluid(FluidTags.WATER) && player.getAirSupply() > 0) {
-				player.setAirSupply(Math.max(player.getAirSupply() - 30, 0));
-			}
-
-			if (source.getDirectEntity() instanceof Player player) {
-				if (player.getRandom().nextInt(15) == 0) {
-					Inventory inventory = player.getInventory();
-					boolean hasCrystals = false;
-					for (int i = 0; i < inventory.getContainerSize(); i++) {
-						if (inventory.getItem(i).is(ESTags.Items.MANA_CRYSTALS)) {
-							hasCrystals = true;
-						}
-					}
-					if (hasCrystals) {
-						ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ESItems.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
-						player.level().addFreshEntity(itemEntity);
-					}
+			for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3))) {
+				if (ESEntityUtil.shouldHarm(source.getEntity(), living)) {
+					living.hurt(ESDamageTypes.getIndirectEntityDamageSource(entity.level(), ESDamageTypes.STARFIRE, source.getDirectEntity(), source.getEntity()), amount / 3);
 				}
 			}
 		}
+
+		if (ESAccessoryUtil.getActiveAccessoriesOnArmors(entity).contains(ESItems.BUTTERFLY_WINGS_AMULET.get()) && source.getEntity() instanceof LivingEntity attacker) {
+			int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(attacker);
+			if (inEtherTicks < 600) {
+				ESDataAttachments.IN_ETHER_TICKS.setData(attacker, Math.min(inEtherTicks + 200, 600));
+			}
+		}
+
+		if (source.getEntity() instanceof LivingEntity attacker && ESAccessoryUtil.getActiveAccessoriesOnArmors(attacker).contains(ESItems.BUTTERFLY_WINGS_AMULET.get())) {
+			int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(entity);
+			if (inEtherTicks < 600) {
+				ESDataAttachments.IN_ETHER_TICKS.setData(entity, Math.min(inEtherTicks + 200, 600));
+			}
+		}
+
+		if (entity instanceof Player player && player.level().getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS) && player.isEyeInFluid(FluidTags.WATER) && player.getAirSupply() > 0) {
+			player.setAirSupply(Math.max(player.getAirSupply() - 30, 0));
+		}
+
+		if (source.getDirectEntity() instanceof Player player) {
+			if (player.getRandom().nextInt(15) == 0) {
+				Inventory inventory = player.getInventory();
+				boolean hasCrystals = false;
+				for (int i = 0; i < inventory.getContainerSize(); i++) {
+					if (inventory.getItem(i).is(ESTags.Items.MANA_CRYSTALS)) {
+						hasCrystals = true;
+					}
+				}
+				if (hasCrystals) {
+					ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ESItems.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
+					player.level().addFreshEntity(itemEntity);
+				}
+			}
+		}
+	}
+
+	public static float onLivingHeal(LivingEntity entity, float amount) {
+		float modified = amount;
+		AttributeInstance healMultiplier = entity.getAttribute(ESAttributes.HEAL_MULTIPLIER.asHolder());
+		if (healMultiplier != null) {
+			modified *= (float) healMultiplier.getValue();
+		}
+		return modified;
 	}
 
 	public static void handleFlowglazeWeaponAttack(LivingEntity attacker, LivingEntity entity) {
@@ -578,6 +579,9 @@ public class CommonHandlers {
 						player.setAirSupply(maxAir);
 					}
 				}
+				if (ESAccessoryUtil.getActiveAccessoriesOnArmors(player).contains(ESItems.PEARL_NECKLACE.get()) && !player.isEyeInFluid(FluidTags.WATER)) {
+					player.setAirSupply(player.getMaxAirSupply());
+				}
 				if (player.getMainHandItem().is(ESItems.GRAVITY_PICKAXE.get()) || player.getOffhandItem().is(ESItems.GRAVITY_PICKAXE.get())) {
 					for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(5))) {
 						itemEntity.playerTouch(player);
@@ -649,6 +653,10 @@ public class CommonHandlers {
 				int meteorCooldown = ESDataAttachments.METEOR_COOLDOWN.getData(entity);
 				if (meteorCooldown > 0) {
 					ESDataAttachments.METEOR_COOLDOWN.setData(entity, meteorCooldown - 1);
+				}
+				int hireCooldown = ESDataAttachments.STRANGHOUL_HIRING_COOLDOWN.getData(entity);
+				if (hireCooldown > 0) {
+					ESDataAttachments.STRANGHOUL_HIRING_COOLDOWN.setData(entity, hireCooldown - 1);
 				}
 				if (livingEntity.hasEffect(ESMobEffects.TEARY.asHolder()) && level instanceof ServerLevel serverLevel) {
 					serverLevel.sendParticles(ParticleTypes.FALLING_WATER, livingEntity.getX() + livingEntity.getBbWidth() * (livingEntity.getRandom().nextFloat() - 0.5), livingEntity.getEyeY(), livingEntity.getZ() + livingEntity.getBbWidth() * (livingEntity.getRandom().nextFloat() - 0.5), 3, 0, 0, 0, 0);
