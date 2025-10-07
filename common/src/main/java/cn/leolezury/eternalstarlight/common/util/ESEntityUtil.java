@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.util;
 
-import cn.leolezury.eternalstarlight.common.entity.interfaces.PersistentDataHolder;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
@@ -16,13 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ESEntityUtil {
-	public static CompoundTag getPersistentData(Entity entity) {
-		if (entity instanceof PersistentDataHolder holder) {
-			return holder.getESPersistentData();
-		}
-		return new CompoundTag();
-	}
-
 	public static RaytraceResult raytrace(LevelAccessor level, CollisionContext context, Vec3 from, Vec3 to) {
 		BlockHitResult hitResult = level.clip(new ClipContext(from, to, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, context));
 		RaytraceResult result = new RaytraceResult(new ArrayList<>(), hitResult.getType() == HitResult.Type.BLOCK ? hitResult : null);

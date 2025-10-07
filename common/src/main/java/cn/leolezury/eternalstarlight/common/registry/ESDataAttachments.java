@@ -22,6 +22,7 @@ public class ESDataAttachments {
 	private static final List<EntityDataAttachment<?>> ATTACHMENTS = new ArrayList<>();
 
 	public static final EntityDataAttachment<Vec3> MOVEMENT = register(ESPlatform.INSTANCE.registerDataAttachment("movement", () -> Vec3.ZERO, null, null, false));
+	public static final EntityDataAttachment<Integer> LAST_MOVEMENT_UPDATE = register(ESPlatform.INSTANCE.registerDataAttachment("last_movement_update", () -> 0, null, null, false));
 	public static final EntityDataAttachment<LivingEntity> CONCENTRATED_TARGET = register(ESPlatform.INSTANCE.registerDataAttachment("concentrated_target", () -> null, null, null, false));
 	public static final EntityDataAttachment<ItemStack> CONCENTRATED_WEAPON = register(ESPlatform.INSTANCE.registerDataAttachment("concentrated_weapon", () -> null, null, null, false));
 	public static final EntityDataAttachment<Integer> LAST_CONCENTRATED_ATTACK_TIME = register(ESPlatform.INSTANCE.registerDataAttachment("last_concentrated_attack_time", () -> Integer.MIN_VALUE, null, null, false));
@@ -48,6 +49,8 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Integer> HUSK_OWNER_ID = register(ESPlatform.INSTANCE.registerDataAttachment("husk_owner_id", () -> -1, null, null, false));
 	public static final EntityDataAttachment<Integer> GATEKEEPER_CHALLENGE_COUNT = register(ESPlatform.INSTANCE.registerDataAttachment("gatekeeper_challenge_count", () -> 0, Codec.INT, null, true));
 	public static final EntityDataAttachment<Integer> STRANGHOUL_HIRING_COOLDOWN = register(ESPlatform.INSTANCE.registerDataAttachment("stranghoul_hiring_cooldown", () -> 0, Codec.INT, ByteBufCodecs.INT, true));
+	public static final EntityDataAttachment<Integer> BOARWARF_CREDIT = register(ESPlatform.INSTANCE.registerDataAttachment("boarwarf_credit", () -> 0, Codec.INT, null, true));
+	public static final EntityDataAttachment<Boolean> CRESCENT_SPEAR_DASH = register(ESPlatform.INSTANCE.registerDataAttachment("crescent_spear_dash", () -> false, null, ByteBufCodecs.BOOL, false));
 
 	private static <T> EntityDataAttachment<T> register(EntityDataAttachment<T> attachment) {
 		ATTACHMENTS.add(attachment);

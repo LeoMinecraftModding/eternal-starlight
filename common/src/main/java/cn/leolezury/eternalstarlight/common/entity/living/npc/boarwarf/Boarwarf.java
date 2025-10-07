@@ -6,8 +6,8 @@ import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.registry.ESBoarwarfProfessions;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import com.mojang.serialization.DataResult;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -58,7 +58,6 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	private static final String TAG_AWAKE_TICKS = "awake_ticks";
 	private static final String TAG_SLEEP_TICKS = "sleep_ticks";
 	private static final String TAG_HOME_POS = "home_pos";
-	private static final String TAG_BOARWARF_CREDIT = "boarwarf_credit";
 
 	public Boarwarf(EntityType<? extends Boarwarf> type, Level level) {
 		super(type, level);
@@ -287,11 +286,11 @@ public class Boarwarf extends PathfinderMob implements Npc, Merchant {
 	}
 
 	public static int getBoarwarfCredit(Player player) {
-		return ESEntityUtil.getPersistentData(player).getInt(TAG_BOARWARF_CREDIT);
+		return ESDataAttachments.BOARWARF_CREDIT.getData(player);
 	}
 
 	public static void setBoarwarfCredit(Player player, int credit) {
-		ESEntityUtil.getPersistentData(player).putInt(TAG_BOARWARF_CREDIT, credit);
+		ESDataAttachments.BOARWARF_CREDIT.setData(player, credit);
 	}
 
 	@Override

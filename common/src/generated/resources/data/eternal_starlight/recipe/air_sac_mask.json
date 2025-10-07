@@ -5,11 +5,11 @@
     "B": {
       "item": "eternal_starlight:velvetumoss_ball"
     },
-    "H": {
-      "item": "eternal_starlight:amaramber_helmet"
-    },
     "L": {
       "item": "eternal_starlight:jinglestem_log"
+    },
+    "M": {
+      "item": "eternal_starlight:amaramber_mask"
     },
     "S": {
       "item": "eternal_starlight:rookfish_air_sac"
@@ -17,7 +17,7 @@
   },
   "pattern": [
     "LLL",
-    "LHL",
+    "LML",
     "SBS"
   ],
   "result": {

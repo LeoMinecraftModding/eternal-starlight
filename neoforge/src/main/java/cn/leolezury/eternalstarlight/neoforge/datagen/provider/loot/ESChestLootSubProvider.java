@@ -46,9 +46,7 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.WARHAMMER_PENDANT.get()))
-					.add(LootItem.lootTableItem(ESItems.BUTTERFLY_WINGS_AMULET.get()))
-					.add(LootItem.lootTableItem(ESItems.FUNGUS_AMULET.get()))
-					.add(LootItem.lootTableItem(ESItems.PEARL_NECKLACE.get()))));
+					.add(LootItem.lootTableItem(ESItems.FUNGUS_AMULET.get()))));
 
 		consumer.accept(ESLootTables.CHEST_GOLEM_FORGE,
 			LootTable.lootTable()

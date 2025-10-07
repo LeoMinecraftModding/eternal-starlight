@@ -5,7 +5,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
-import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESAccessoryUtil;
@@ -18,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -113,18 +113,6 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@Inject(method = "decreaseAirSupply", at = @At("RETURN"), cancellable = true)
-	private void decreaseAirSupply(int i, CallbackInfoReturnable<Integer> cir) {
-		if (getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AIR_SAC_MASK.asHolder())) {
-			LivingEntity entity = (LivingEntity) (Object) this;
-			if (ESDataAttachments.MOVEMENT.getData(entity).multiply(1, 0, 1).length() < 0.01) {
-				cir.setReturnValue(Math.min(i + 1, entity.getMaxAirSupply()));
-			} else if (entity.isSwimming()) {
-				cir.setReturnValue(Math.max(cir.getReturnValue() - (entity.getRandom().nextBoolean() ? 1 : 0), 0));
-			}
-		}
-	}
-
 	@Inject(method = "createLivingAttributes", at = @At("RETURN"))
 	private static void createLivingAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
 		cir.getReturnValue()
@@ -140,7 +128,7 @@ public abstract class LivingEntityMixin {
 		doCrescentSpearDamage();
 	}
 
-	@Inject(method = "checkAutoSpinAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;level()Lnet/minecraft/world/level/Level;", shift = At.Shift.AFTER))
+	@Inject(method = "checkAutoSpinAttack", at = @At("HEAD"))
 	private void checkAutoSpinAttackTail(CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity) (Object) this;
 		if (entity.horizontalCollision) {
@@ -155,12 +143,20 @@ public abstract class LivingEntityMixin {
 			if (!entity.level().isClientSide) {
 				for (LivingEntity living : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(3))) {
 					if (ESEntityUtil.shouldHarm(entity, living) && entity instanceof Player player) {
+						player.attackStrengthTicker = Mth.ceil(player.getCurrentItemAttackStrengthDelay());
 						player.attack(living);
+						if (entity.level() instanceof ServerLevel serverLevel) {
+							Vec3 targetPos = living.position().add((entity.getRandom().nextDouble() - 0.5) * living.getBbWidth(), entity.getRandom().nextDouble() * living.getBbHeight(), (entity.getRandom().nextDouble() - 0.5) * living.getBbWidth());
+							Vec3 speed = targetPos.subtract(entity.position().add(0, entity.getBbHeight() / 2, 0));
+							Vec3 pos = targetPos.subtract(speed.normalize().scale(1));
+							for (int i = 0; i < 2; i++) {
+								ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.LUNAR_SLASH.get(), pos.x, pos.y, pos.z, speed.x, speed.y, speed.z));
+							}
+						}
 					}
 				}
 				if (entity.level() instanceof ServerLevel serverLevel) {
 					Vec3 centerPos = entity.position().add(0, entity.getBbHeight() / 2, 0);
-					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(RingExplosionParticleOptions.CRESCENT_SPEAR, centerPos.x, centerPos.y, centerPos.z, 0, 0.05, 0));
 					for (int i = 0; i < 10; i++) {
 						Vec3 speed = new Vec3((entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1F, entity.getRandom().nextFloat() * 0.05F, (entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1F).normalize();
 						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.CRESCENT_SPEAR, centerPos.x + speed.x * 1.5, centerPos.y + speed.y * 1.5, centerPos.z + speed.z * 1.5, speed.x, speed.y, speed.z));
@@ -169,6 +165,7 @@ public abstract class LivingEntityMixin {
 				}
 				entity.invulnerableTime = Math.max(entity.invulnerableTime, 10);
 			}
+			ESDataAttachments.CRESCENT_SPEAR_DASH.setData(entity, false);
 		}
 	}
 

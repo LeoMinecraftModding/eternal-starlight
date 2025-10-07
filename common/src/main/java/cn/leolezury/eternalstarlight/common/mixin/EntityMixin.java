@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
-import cn.leolezury.eternalstarlight.common.entity.interfaces.PersistentDataHolder;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
@@ -8,7 +7,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -29,7 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
-public abstract class EntityMixin implements PersistentDataHolder {
+public abstract class EntityMixin {
 	@Shadow
 	public abstract boolean isInWater();
 
@@ -39,33 +37,11 @@ public abstract class EntityMixin implements PersistentDataHolder {
 	@Shadow
 	public abstract AABB getBoundingBox();
 
-	@Unique
-	private CompoundTag esPersistentData;
+	@Shadow
+	public int tickCount;
 
 	@Unique
 	private boolean feetInWater = false;
-
-	@Override
-	public CompoundTag getESPersistentData() {
-		if (esPersistentData == null) {
-			esPersistentData = new CompoundTag();
-		}
-		return esPersistentData;
-	}
-
-	@Inject(method = "saveWithoutId", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;addAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V"))
-	private void save(CompoundTag compoundTag, CallbackInfoReturnable<Boolean> info) {
-		if (esPersistentData != null && compoundTag != null) {
-			compoundTag.put("es_data", esPersistentData.copy());
-		}
-	}
-
-	@Inject(method = "load", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;readAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V"))
-	private void load(CompoundTag compoundTag, CallbackInfo info) {
-		if (compoundTag != null && compoundTag.contains("es_data", CompoundTag.TAG_COMPOUND)) {
-			esPersistentData = compoundTag.getCompound("es_data");
-		}
-	}
 
 	@Inject(method = "isStateClimbable", at = @At("RETURN"), cancellable = true)
 	private void isStateClimbable(BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
@@ -117,6 +93,12 @@ public abstract class EntityMixin implements PersistentDataHolder {
 	@Inject(method = "move", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;setPos(DDD)V", ordinal = 1))
 	private void move(MoverType moverType, Vec3 vec3, CallbackInfo ci, @Local(ordinal = 1) Vec3 movement) {
 		Entity entity = (Entity) (Object) this;
-		ESDataAttachments.MOVEMENT.setData(entity, movement);
+		int lastUpdate = ESDataAttachments.LAST_MOVEMENT_UPDATE.getData(entity);
+		if (lastUpdate != tickCount) {
+			ESDataAttachments.MOVEMENT.setData(entity, movement);
+			ESDataAttachments.LAST_MOVEMENT_UPDATE.setData(entity, tickCount);
+		} else {
+			ESDataAttachments.MOVEMENT.setData(entity, ESDataAttachments.MOVEMENT.getData(entity).add(movement));
+		}
 	}
 }

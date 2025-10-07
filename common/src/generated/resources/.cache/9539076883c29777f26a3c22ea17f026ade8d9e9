@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-01T17:30:09.0110329	Item Models: eternal_starlight
+// 1.21.1	2025-10-07T16:55:37.1435709	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -50,10 +50,10 @@ e107cb9d3d7836bd5c199f7cfb90da7d594eb2f3 assets/eternal_starlight/models/item/am
 46cc42a9edec61f199487f962028b5b4c97e28c0 assets/eternal_starlight/models/item/amaramber_chestplate.json
 482774a4dc1527aecddef5460ff67e5b9925ab8f assets/eternal_starlight/models/item/amaramber_grass.json
 e8c7fdb03b5bdddba1e30f7dfa5e5eeffc4fefb4 assets/eternal_starlight/models/item/amaramber_grass_bush.json
-657aacd94462b342cfe18896066d609085b5c4b8 assets/eternal_starlight/models/item/amaramber_helmet.json
 9365b317b78b6b2105b3d1894cd2d868b115e4ff assets/eternal_starlight/models/item/amaramber_hoe.json
 0d545feeb03aff5177fb7c2a21907cb9418fb3e7 assets/eternal_starlight/models/item/amaramber_ingot.json
 9bf68b92a1b24c28506868e0bc417d4ec9860d5b assets/eternal_starlight/models/item/amaramber_lantern.json
+7bcd6cddd992fd903ae47e758d032cffcb176b8c assets/eternal_starlight/models/item/amaramber_mask.json
 349b25c1dce69cd42256bcc40fc7d04116366255 assets/eternal_starlight/models/item/amaramber_nugget.json
 0a79148c979d4075fa8c965e72328c9708c5088c assets/eternal_starlight/models/item/amaramber_pickaxe.json
 03f59494e3535e10d73eb1e4dad017c697e7411d assets/eternal_starlight/models/item/amaramber_shovel.json

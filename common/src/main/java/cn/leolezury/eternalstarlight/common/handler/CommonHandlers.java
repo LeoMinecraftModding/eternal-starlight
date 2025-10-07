@@ -489,6 +489,17 @@ public class CommonHandlers {
 		return newTarget;
 	}
 
+	public static int onLivingDecreaseAirSupply(LivingEntity entity) {
+		if (entity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AIR_SAC_MASK.asHolder())) {
+			if (entity.isSwimming()) {
+				return entity.getRandom().nextBoolean() ? -1 : 0;
+			} else if (ESDataAttachments.MOVEMENT.getData(entity).multiply(1, 0, 1).length() < 0.01) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+
 	public static void onEntityTick(Entity entity) {
 		Level level = entity.level();
 		if (entity instanceof ItemEntity item) {
@@ -517,7 +528,7 @@ public class CommonHandlers {
 							}
 						}
 						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
-					} else if (content.has(ESDataComponents.ACCESSORY.get())) {
+					} else if (content.is(ESTags.Items.ACCESSORIES)) {
 						item.setItem(ESItems.BUTTERFLY_WINGS_AMULET.get().getDefaultInstance());
 						item.addDeltaMovement(new Vec3(0, 0.75, 0));
 						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
@@ -634,7 +645,7 @@ public class CommonHandlers {
 			if (armorChanged) {
 				AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
 				if (armorAttribute != null) {
-					if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_HELMET.get())
+					if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_MASK.get())
 						&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
 						&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
 						&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {

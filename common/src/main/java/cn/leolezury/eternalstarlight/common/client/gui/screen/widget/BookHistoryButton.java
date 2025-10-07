@@ -9,21 +9,21 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.CommonComponents;
 
 @Environment(EnvType.CLIENT)
-public class BookProgressButton extends Button {
+public class BookHistoryButton extends Button {
 	private final BookDefinition book;
-	private final boolean isDown;
+	private final boolean isLeft;
 
-	public BookProgressButton(int x, int y, BookDefinition book, boolean isDown, Button.OnPress onPress) {
-		super(x, y, book.buttons().upDownButtonWidth(), book.buttons().upDownButtonHeight(), CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
+	public BookHistoryButton(int x, int y, BookDefinition book, boolean isLeft, OnPress onPress) {
+		super(x, y, book.buttons().leftRightButtonWidth(), book.buttons().leftRightButtonHeight(), CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
 		this.book = book;
-		this.isDown = isDown;
+		this.isLeft = isLeft;
 	}
 
 	@Override
 	public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		guiGraphics.pose().pushPose();
 		guiGraphics.pose().translate(0.0, 0.0, BookScreen.BUTTON_Z_OFFSET);
-		guiGraphics.blit(isDown ? book.textures().downButton() : book.textures().upButton(), this.getX(), this.getY(), 0, 0, book.buttons().upDownButtonWidth(), book.buttons().upDownButtonHeight(), book.buttons().upDownButtonWidth(), book.buttons().upDownButtonHeight());
+		guiGraphics.blit(isLeft ? book.textures().leftButton() : book.textures().rightButton(), this.getX(), this.getY(), 0, 0, book.buttons().leftRightButtonWidth(), book.buttons().leftRightButtonHeight(), book.buttons().leftRightButtonWidth(), book.buttons().leftRightButtonHeight());
 		guiGraphics.pose().popPose();
 	}
 }

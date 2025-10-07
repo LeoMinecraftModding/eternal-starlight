@@ -8,6 +8,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
@@ -29,6 +30,9 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	protected abstract void jumpInLiquid(TagKey<Fluid> tagKey);
+
+	@Shadow
+	public abstract ItemStack getItemBySlot(EquipmentSlot equipmentSlot);
 
 	@ModifyVariable(method = "actuallyHurt", at = @At(value = "STORE", ordinal = 1), ordinal = 0, argsOnly = true)
 	private float modifyActualHurtDamage(float original, @Local(argsOnly = true) DamageSource source) {
@@ -70,6 +74,18 @@ public abstract class LivingEntityMixin {
 	private void aiStep(CallbackInfo ci) {
 		if (((LivingEntity) (Object) this).getFluidHeight(ESTags.Fluids.ETHER) > 0) {
 			jumpInLiquid(ESTags.Fluids.ETHER);
+		}
+	}
+
+	@Inject(method = "decreaseAirSupply", at = @At("RETURN"), cancellable = true)
+	private void decreaseAirSupply(int i, CallbackInfoReturnable<Integer> cir) {
+		LivingEntity entity = (LivingEntity) (Object) this;
+		int result = CommonHandlers.onLivingDecreaseAirSupply(entity);
+		if (result > 0) {
+			cir.setReturnValue(Math.min(i + result, entity.getMaxAirSupply()));
+		}
+		if (result < 0) {
+			cir.setReturnValue(i - Math.max(Math.max(i - cir.getReturnValue(), 0) + result, 0));
 		}
 	}
 }

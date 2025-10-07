@@ -227,11 +227,11 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_MASK.get())
 			.pattern("LLL")
-			.pattern("LHL")
+			.pattern("LML")
 			.pattern("SBS")
 			.define('L', ESItems.JINGLESTEM_LOG.get())
 			.define('S', ESItems.ROOKFISH_AIR_SAC.get())
-			.define('H', ESItems.AMARAMBER_HELMET.get())
+			.define('M', ESItems.AMARAMBER_MASK.get())
 			.define('B', ESItems.VELVETUMOSS_BALL.get())
 			.unlockedBy("has_item", has(ESItems.ROOKFISH_AIR_SAC.get()))
 			.save(recipeOutput);
@@ -1738,11 +1738,11 @@ public class ESRecipeProvider extends RecipeProvider {
 		addHoe(recipeOutput, ESItems.AMARAMBER_HOE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addShovel(recipeOutput, ESItems.AMARAMBER_SHOVEL.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addSickle(recipeOutput, ESItems.AMARAMBER_SICKLE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
-		addHelmet(recipeOutput, ESItems.AMARAMBER_HELMET.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+		addHelmet(recipeOutput, ESItems.AMARAMBER_MASK.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addChestplate(recipeOutput, ESItems.AMARAMBER_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 
-		addSmelt(recipeOutput, 200, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_CHESTPLATE.get());
-		addBlast(recipeOutput, 100, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.AMARAMBER_HELMET.get(), ESItems.AMARAMBER_CHESTPLATE.get());
+		addSmelt(recipeOutput, 200, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.AMARAMBER_MASK.get(), ESItems.AMARAMBER_CHESTPLATE.get());
+		addBlast(recipeOutput, 100, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.AMARAMBER_MASK.get(), ESItems.AMARAMBER_CHESTPLATE.get());
 	}
 
 	// misc

@@ -441,6 +441,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.GLACITE_SHIELD.get(),
 				ESItems.FLOWGLAZE_SHIELD.get()
 			);
+		tag(ESTags.Items.ACCESSORIES)
+			.add(
+				ESItems.BATTLEAXE_PENDANT.get(),
+				ESItems.WARHAMMER_PENDANT.get(),
+				ESItems.BUTTERFLY_WINGS_AMULET.get(),
+				ESItems.FUNGUS_AMULET.get(),
+				ESItems.PEARL_NECKLACE.get(),
+				ESItems.CRESCENT_PENDANT.get()
+			);
 		tag(ESTags.Items.AURORA_DEER_FOOD)
 			.add(
 				ESItems.LUNAR_BERRIES.get(),
@@ -487,7 +496,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARLIT_DIAMOND_BOOTS.get(),
 				ESItems.SWAMP_SILVER_LEGGINGS.get(),
 				ESItems.SWAMP_SILVER_BOOTS.get(),
-				ESItems.AMARAMBER_HELMET.get(),
+				ESItems.AMARAMBER_MASK.get(),
 				ESItems.AMARAMBER_CHESTPLATE.get(),
 				ESItems.ALCHEMIST_MASK.get(),
 				ESItems.ALCHEMIST_ROBE.get(),
@@ -557,7 +566,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AMARAMBER_HOE.get(),
 				ESItems.AMARAMBER_SHOVEL.get(),
 				ESItems.AMARAMBER_SICKLE.get(),
-				ESItems.AMARAMBER_HELMET.get(),
+				ESItems.AMARAMBER_MASK.get(),
 				ESItems.AMARAMBER_CHESTPLATE.get()
 			);
 		tag(ESTags.Items.CONSUMABLE_WHEN_WEARING_FUNGUS_AMULET)
@@ -1035,7 +1044,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.GLACITE_HELMET.get(),
 				ESItems.STARLIT_DIAMOND_HELMET.get(),
 				ESItems.SWAMP_SILVER_HELMET.get(),
-				ESItems.AMARAMBER_HELMET.get(),
+				ESItems.AMARAMBER_MASK.get(),
 				ESItems.ALCHEMIST_MASK.get(),
 				ESItems.AETHERSENT_HOOD.get(),
 				ESItems.AIR_SAC_MASK.get()

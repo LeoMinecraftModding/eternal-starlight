@@ -58,6 +58,7 @@
     "client.PlayerRendererMixin",
     "client.ScreenEffectRendererMixin",
     "client.SkullBlockRendererMixin",
+    "client.SpinAttackEffectLayerMixin",
     "client.SpriteSourceListMixin",
     "client.SpriteSourceListMixin$PalettedPermutationsAccessor",
     "client.WitchRendererMixin"

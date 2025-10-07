@@ -10,15 +10,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:butterfly_wings_amulet"
-        },
-        {
-          "type": "minecraft:item",
           "name": "eternal_starlight:fungus_amulet"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "eternal_starlight:pearl_necklace"
         }
       ],
       "rolls": 1.0

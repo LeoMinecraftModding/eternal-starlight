@@ -755,7 +755,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.AMARAMBER_HOE.get());
 		handheld(ESItems.AMARAMBER_SHOVEL.get());
 		handheld(ESItems.AMARAMBER_SICKLE.get());
-		basicItem(ESItems.AMARAMBER_HELMET.get());
+		basicItem(ESItems.AMARAMBER_MASK.get());
 		basicItem(ESItems.AMARAMBER_CHESTPLATE.get());
 
 		basicItem(ESItems.ETHER_BUCKET.get());

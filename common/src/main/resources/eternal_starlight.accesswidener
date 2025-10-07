@@ -94,6 +94,9 @@ accessible field net/minecraft/server/level/ServerPlayerGameMode destroyPos Lnet
 # chain of souls
 accessible method net/minecraft/world/entity/projectile/Projectile <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 
+# crescent spear
+accessible field net/minecraft/world/entity/LivingEntity attackStrengthTicker I
+
 # enchantment
 accessible method net/minecraft/world/item/enchantment/Enchantment modifyDamageFilteredValue (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;)V
 accessible method net/minecraft/world/item/enchantment/Enchantment modifyItemFilteredCount (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lorg/apache/commons/lang3/mutable/MutableFloat;)V

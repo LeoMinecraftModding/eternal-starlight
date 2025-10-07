@@ -731,6 +731,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.FALLING_BLUE_CRYSTAL_MOSS.get(), FallingLeavesParticle.GlowProvider::new);
 		strategy.register(ESParticles.ENERGY.get(), EnergyParticle.Provider::new);
 		strategy.register(ESParticles.ELECTRIC_SPARK.get(), ElectricSparkParticle.Provider::new);
+		strategy.register(ESParticles.LUNAR_SLASH.get(), LunarSlashParticle.Provider::new);
 		strategy.register(ESParticles.BLADE_SHOCKWAVE.get(), ShockwaveParticle.Provider::new);
 		strategy.register(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), SonarParticle.Provider::new);
 		strategy.register(ESParticles.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);

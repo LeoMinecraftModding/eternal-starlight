@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
@@ -84,6 +85,7 @@ public class CrescentSpearItem extends Item {
 				ySpeed *= spinStrength / length;
 				zSpeed *= spinStrength / length;
 				player.push(xSpeed, ySpeed, zSpeed);
+				ESDataAttachments.CRESCENT_SPEAR_DASH.setData(player, true);
 				player.startAutoSpinAttack(20, player.getAttribute(Attributes.ATTACK_DAMAGE) != null ? (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 1.5f : 8, itemStack);
 				player.getCooldowns().addCooldown(this, 20);
 

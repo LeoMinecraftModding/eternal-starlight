@@ -100,6 +100,20 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
+	private static void onLivingBreathe(LivingBreatheEvent event) {
+		if (!event.canBreathe() && event.getConsumeAirAmount() > 0) {
+			int result = CommonHandlers.onLivingDecreaseAirSupply(event.getEntity());
+			if (result > 0) {
+				event.setCanBreathe(true);
+				event.setRefillAirAmount(result);
+			}
+			if (result < 0) {
+				event.setConsumeAirAmount(Math.max(event.getConsumeAirAmount() + result, 0));
+			}
+		}
+	}
+
+	@SubscribeEvent
 	private static void onLivingTick(EntityTickEvent.Post event) {
 		CommonHandlers.onEntityTick(event.getEntity());
 	}

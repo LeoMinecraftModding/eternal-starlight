@@ -916,7 +916,7 @@ public class ESItems {
 		() -> new ShovelItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.AMARAMBER, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_SICKLE = registerItem("amaramber_sickle",
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AMARAMBER, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.AMARAMBER, 1, -1.5F))));
-	public static final RegistryObject<Item, Item> AMARAMBER_HELMET = registerItem("amaramber_helmet",
+	public static final RegistryObject<Item, Item> AMARAMBER_MASK = registerItem("amaramber_mask",
 		() -> new ArmorItem(ESArmorMaterials.AMARAMBER.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> AMARAMBER_CHESTPLATE = registerItem("amaramber_chestplate",
 		() -> new ArmorItem(ESArmorMaterials.AMARAMBER.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))));

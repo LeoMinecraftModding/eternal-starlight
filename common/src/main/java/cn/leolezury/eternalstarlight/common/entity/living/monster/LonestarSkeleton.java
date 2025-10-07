@@ -61,7 +61,7 @@ public class LonestarSkeleton extends Skeleton {
 		SpawnGroupData data = super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
 		Arrays.fill(this.handDropChances, 0.2F);
 		if (!getItemBySlot(EquipmentSlot.HEAD).isEmpty() || random.nextInt(5) == 0) {
-			setItemSlot(EquipmentSlot.HEAD, ESItems.AMARAMBER_HELMET.get().getDefaultInstance());
+			setItemSlot(EquipmentSlot.HEAD, ESItems.AMARAMBER_MASK.get().getDefaultInstance());
 		}
 		if (!getItemBySlot(EquipmentSlot.CHEST).isEmpty() || random.nextInt(5) == 0) {
 			setItemSlot(EquipmentSlot.CHEST, ESItems.AMARAMBER_CHESTPLATE.get().getDefaultInstance());
