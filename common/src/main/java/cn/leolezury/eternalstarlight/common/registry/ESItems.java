@@ -81,7 +81,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> PERMAFROST_SPAWN_EGG = registerItem("permafrost_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.PERMAFROST::get, 0x525050, 0x68ccff, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TANGLED_SPAWN_EGG = registerItem("tangled_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED::get, 0x96b3bb, 0x6275c1, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TANGLED_SKULL_SPAWN_EGG = registerItem("tangled_skull_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED_SKULL::get, 0x838c8d, 0x445955, new Item.Properties()));
-	public static final RegistryObject<Item, Item> TANGLED_HATRED_SPAWN_EGG = registerItem("tangled_hatred_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED_HATRED::get, 0x424273, 0x202040, new Item.Properties()));
 
 	// lunar wood
 	public static final RegistryObject<Item, Item> LUNAR_SAPLING = registerItem("lunar_sapling", () -> new BlockItem(ESBlocks.LUNAR_SAPLING.get(), new Item.Properties()));
@@ -1127,14 +1126,13 @@ public class ESItems {
 	// boss spawners
 	public static final RegistryObject<Item, Item> THE_GATEKEEPER_SPAWNER = registerItem("the_gatekeeper_spawner", () -> new BlockItem(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> TANGLED_HATRED_SPAWNER = registerItem("tangled_hatred_spawner", () -> new BlockItem(ESBlocks.TANGLED_HATRED_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWNER = registerItem("lunar_monstrosity_spawner", () -> new BlockItem(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> SOLAR_EGG = registerItem("solar_egg", () -> new BlockItem(ESBlocks.SOLAR_EGG.get(), new Item.Properties()));
 
 	// gatekeeper
 	public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = registerItem("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1)));
+	public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().component(ESDataComponents.BOOK.get(), EternalStarlight.id("main")).rarity(Rarity.RARE).stacksTo(1)));
 	public static final RegistryObject<Item, Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(ESItemTiers.SWAMP_SILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.SWAMP_SILVER, 3, -2.4F))));
 	public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));

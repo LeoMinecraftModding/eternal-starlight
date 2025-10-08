@@ -355,7 +355,6 @@ public class ClientSetupHandlers {
 		ESBlocks.AMARAMBER_FIRE,
 		ESBlocks.THE_GATEKEEPER_SPAWNER,
 		ESBlocks.STARLIGHT_GOLEM_SPAWNER,
-		ESBlocks.TANGLED_HATRED_SPAWNER,
 		ESBlocks.LUNAR_MONSTROSITY_SPAWNER,
 		ESBlocks.GOLEM_STEEL_GRATE,
 		ESBlocks.WAXED_GOLEM_STEEL_GRATE,
@@ -836,8 +835,6 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.LUNAR_THORN.get(), LunarThornRenderer::new);
 		strategy.register(ESEntities.TANGLED.get(), TangledRenderer::new);
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkullRenderer::new);
-		strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatredRenderer::new);
-		strategy.register(ESEntities.TANGLED_HATRED_PART.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHuskRenderer::new);
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
 		strategy.register(ESEntities.MALARITE_SPEAR.get(), ThrownMalariteSpearRenderer::new);
@@ -945,7 +942,6 @@ public class ClientSetupHandlers {
 		strategy.register(TangledModel.LAYER_LOCATION, TangledModel::createBodyLayer);
 		strategy.register(TangledSkullModel.LAYER_LOCATION, TangledSkullModel::createBodyLayer);
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
-		strategy.register(TangledHatredModel.LAYER_LOCATION, TangledHatredModel::createBodyLayer);
 		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
 
 		// vanilla entities

@@ -1,17 +1,14 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
-import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -119,12 +116,6 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.shimmerLacewing.armor())
 			.add(Attributes.MOVEMENT_SPEED, 0.3)
 			.add(Attributes.FLYING_SPEED, 0.6);
-	}
-
-	@Override
-	public void startSeenByPlayer(ServerPlayer serverPlayer) {
-		super.startSeenByPlayer(serverPlayer);
-		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("shimmer_lacewing"));
 	}
 
 	@Override

@@ -1,9 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
@@ -18,10 +17,8 @@ public abstract class InventoryChangeTriggerMixin {
 	private void trigger(ServerPlayer player, Inventory inventory, ItemStack stack, CallbackInfo ci) {
 		for (int i = 0; i < inventory.getContainerSize(); ++i) {
 			ItemStack inventoryItem = inventory.getItem(i);
-			if (inventoryItem.is(ESItems.PUNGENCY_FRUIT.get())) {
-				ESBookUtil.unlock(player, EternalStarlight.id("pungency_fruit"));
-			} else if (inventoryItem.is(ESItems.DRYING_RACK.get())) {
-				ESBookUtil.unlock(player, EternalStarlight.id("drying_rack"));
+			if (!inventoryItem.isEmpty()) {
+				ESBookUtil.unlock(player, BuiltInRegistries.ITEM.getKey(inventoryItem.getItem()).withPrefix("item_"));
 			}
 		}
 	}

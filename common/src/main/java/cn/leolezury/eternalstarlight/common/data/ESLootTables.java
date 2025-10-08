@@ -9,7 +9,6 @@ public class ESLootTables {
 	public static final ResourceKey<LootTable> BOSS_COMMON = create("bosses/boss_common");
 	public static final ResourceKey<LootTable> BOSS_THE_GATEKEEPER = create("bosses/the_gatekeeper");
 	public static final ResourceKey<LootTable> BOSS_STARLIGHT_GOLEM = create("bosses/starlight_golem");
-	public static final ResourceKey<LootTable> BOSS_TANGLED_HATRED = create("bosses/tangled_hatred");
 	public static final ResourceKey<LootTable> BOSS_LUNAR_MONSTROSITY = create("bosses/lunar_monstrosity");
 
 	public static final ResourceKey<LootTable> CHEST_MUSIC_DISCS = create("chests/music_discs");

@@ -202,7 +202,6 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
 		add(ESEntities.STARLIGHT_GOLEM.get(), LootTable.lootTable());
 		add(ESEntities.PERMAFROST.get(), LootTable.lootTable());
 		add(ESEntities.LUNAR_MONSTROSITY.get(), LootTable.lootTable());
-		add(ESEntities.TANGLED_HATRED.get(), LootTable.lootTable());
 	}
 
 	@Override

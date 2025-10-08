@@ -1,20 +1,17 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MeleeAttackPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
-import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
@@ -126,12 +123,6 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.thirstWalker.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.thirstWalker.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.3);
-	}
-
-	@Override
-	public void startSeenByPlayer(ServerPlayer serverPlayer) {
-		super.startSeenByPlayer(serverPlayer);
-		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("thirst_walker"));
 	}
 
 	@Override

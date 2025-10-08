@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.entity.*;
 import cn.leolezury.eternalstarlight.common.block.entity.spawner.LunarMonstrositySpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.spawner.StarlightGolemSpawnerBlockEntity;
-import cn.leolezury.eternalstarlight.common.block.entity.spawner.TangledHatredSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.spawner.TheGatekeeperSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
@@ -43,7 +42,6 @@ public class ESBlockEntities {
 	).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TheGatekeeperSpawnerBlockEntity>> THE_GATEKEEPER_SPAWNER = BLOCK_ENTITIES.register("the_gatekeeper_spawner", () -> BlockEntityType.Builder.of(TheGatekeeperSpawnerBlockEntity::new, ESBlocks.THE_GATEKEEPER_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarlightGolemSpawnerBlockEntity>> STARLIGHT_GOLEM_SPAWNER = BLOCK_ENTITIES.register("starlight_golem_spawner", () -> BlockEntityType.Builder.of(StarlightGolemSpawnerBlockEntity::new, ESBlocks.STARLIGHT_GOLEM_SPAWNER.get()).build(null));
-	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TangledHatredSpawnerBlockEntity>> TANGLED_HATRED_SPAWNER = BLOCK_ENTITIES.register("tangled_hatred_spawner", () -> BlockEntityType.Builder.of(TangledHatredSpawnerBlockEntity::new, ESBlocks.TANGLED_HATRED_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LunarMonstrositySpawnerBlockEntity>> LUNAR_MONSTROSITY_SPAWNER = BLOCK_ENTITIES.register("lunar_monstrosity_spawner", () -> BlockEntityType.Builder.of(LunarMonstrositySpawnerBlockEntity::new, ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<SolarEggBlockEntity>> SOLAR_EGG = BLOCK_ENTITIES.register("solar_egg", () -> BlockEntityType.Builder.of(SolarEggBlockEntity::new, ESBlocks.SOLAR_EGG.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LunarVineBlockEntity>> LUNAR_VINE = BLOCK_ENTITIES.register("lunar_vine", () -> BlockEntityType.Builder.of(LunarVineBlockEntity::new, ESBlocks.LUNAR_VINE.get()).build(null));

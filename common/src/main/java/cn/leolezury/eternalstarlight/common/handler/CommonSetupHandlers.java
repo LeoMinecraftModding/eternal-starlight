@@ -11,7 +11,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
@@ -287,7 +286,6 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosity.createAttributes().build());
 		strategy.register(ESEntities.TANGLED.get(), Tangled.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkull.createAttributes().build());
-		strategy.register(ESEntities.TANGLED_HATRED.get(), TangledHatred.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHusk.createAttributes().build());
 	}
 

@@ -11,8 +11,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatredPart;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
@@ -397,19 +395,6 @@ public class ESEntities {
 			.sized(0.5F, 0.5F)
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("tangled_skull").toString())
-	);
-	public static final RegistryObject<EntityType<?>, EntityType<TangledHatred>> TANGLED_HATRED = ENTITIES.register(
-		"tangled_hatred",
-		() -> EntityType.Builder.of(TangledHatred::new, MobCategory.MONSTER)
-			.sized(0.9f, 1f)
-			.build(EternalStarlight.id("tangled_hatred").toString())
-	);
-	public static final RegistryObject<EntityType<?>, EntityType<TangledHatredPart>> TANGLED_HATRED_PART = ENTITIES.register(
-		"tangled_hatred_part",
-		() -> EntityType.Builder.of(TangledHatredPart::new, MobCategory.MISC)
-			.sized(1.5f, 1.5f)
-			.updateInterval(1)
-			.build(EternalStarlight.id("tangled_hatred_part").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<TangledHusk>> TANGLED_HUSK = ENTITIES.register(
 		"tangled_husk",

@@ -1538,7 +1538,6 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			.add(
 				ESBlocks.THE_GATEKEEPER_SPAWNER.get(),
 				ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(),
-				ESBlocks.TANGLED_HATRED_SPAWNER.get(),
 				ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(),
 				ESBlocks.SOLAR_EGG.get(),
 				ESBlocks.GOLEM_STEEL_CRATE.get(),

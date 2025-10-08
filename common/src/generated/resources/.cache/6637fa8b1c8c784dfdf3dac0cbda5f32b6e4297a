@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-27T20:08:13.5364759	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-10-08T20:21:59.5508847	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -96,7 +96,7 @@ a5c861e65bd285da7e6180ee485ddbd6c84b6cda data/minecraft/tags/block/combination_s
 0c69071d8808fc63e12b14b997cf488ed35f27be data/minecraft/tags/block/dampens_vibrations.json
 d0a2b11171dc65d73093da1e9a864e8164493da8 data/minecraft/tags/block/dirt.json
 6ea55feb79f02ab17e1dd4bdc32c306ded7f85c3 data/minecraft/tags/block/dragon_immune.json
-8c49beef2266788c50c9257a22134a57064c9910 data/minecraft/tags/block/features_cannot_replace.json
+5a86ce0c4477a1bad9bc376ac87b79c6fa75440c data/minecraft/tags/block/features_cannot_replace.json
 0ba65e333c1645d015b8b95daaa846b4064f3747 data/minecraft/tags/block/fence_gates.json
 9d34c3f353473a445208384d2bdb0f87ade13c64 data/minecraft/tags/block/flower_pots.json
 42884e8c5a46a38bf9f966edf96dcb9f0e316b0e data/minecraft/tags/block/frog_prefer_jump_to.json

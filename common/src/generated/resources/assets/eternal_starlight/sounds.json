@@ -552,18 +552,6 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.stranghoul.shoot"
   },
-  "entity.tangled_hatred.ambient": {
-    "sounds": [
-      "eternal_starlight:mob/tangled_hatred/idle"
-    ],
-    "subtitle": "subtitles.entity.eternal_starlight.tangled_hatred.ambient"
-  },
-  "entity.tangled_hatred.hurt": {
-    "sounds": [
-      "eternal_starlight:mob/tangled_hatred/hurt"
-    ],
-    "subtitle": "subtitles.entity.eternal_starlight.tangled_hatred.hurt"
-  },
   "entity.tangled_skull.ambient": {
     "sounds": [
       "eternal_starlight:mob/tangled_skull/idle"

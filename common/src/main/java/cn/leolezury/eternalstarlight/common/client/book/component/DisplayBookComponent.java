@@ -19,14 +19,19 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.recipebook.PlaceRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeType;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -68,8 +73,21 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 		for (ItemTagDisplay display : config.itemTagDisplays()) {
 			List<Item> items = StreamSupport.stream(BuiltInRegistries.ITEM.getTagOrEmpty(display.tag()).spliterator(), false).map(Holder::value).toList();
 			if (!items.isEmpty()) {
-				ItemStack stack = items.get((context.getTickCount() / 20) % items.size()).getDefaultInstance();
+				ItemStack stack = items.get(Mth.floor(context.getTickCount() / 30.0) % items.size()).getDefaultInstance();
 				graphics.renderItem(stack, x + display.x(), y + display.y());
+			}
+		}
+		for (CraftingRecipeDisplay display : config.craftingRecipeDisplays) {
+			Ingredient[][] ingredients = display.getIngredients();
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					Ingredient ingredient = ingredients[i][j];
+					if (ingredient != null) {
+						ItemStack[] items = ingredient.getItems();
+						ItemStack stack = items.length == 0 ? ItemStack.EMPTY : items[Mth.floor(context.getTickCount() / 30.0) % items.length];
+						graphics.renderItem(stack, x + display.x + i * 16, y + display.y + j * 16);
+					}
+				}
 			}
 		}
 		for (TextDisplay display : config.textDisplays()) {
@@ -100,13 +118,32 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 		for (ItemTagDisplay display : config.itemTagDisplays()) {
 			List<Item> items = StreamSupport.stream(BuiltInRegistries.ITEM.getTagOrEmpty(display.tag()).spliterator(), false).map(Holder::value).toList();
 			if (!items.isEmpty()) {
-				ItemStack stack = items.get((context.getTickCount() / 20) % items.size()).getDefaultInstance();
+				ItemStack stack = items.get(Mth.floor(context.getTickCount() / 30.0) % items.size()).getDefaultInstance();
 				if (context.getMouseX() >= x + display.x() && context.getMouseX() <= x + display.x() + 16
 					&& context.getMouseY() >= Math.max(y + display.y(), context.getContentY()) && context.getMouseY() <= Math.min(y + display.y() + 16, context.getContentY() + context.getBookDefinition().height() - 2 * context.getBookDefinition().frameWidth())) {
 					graphics.pose().pushPose();
 					graphics.pose().translate(0.0, 0.0, BookScreen.TOOLTIP_Z_OFFSET);
 					graphics.renderTooltip(context.getFont(), Screen.getTooltipFromItem(Minecraft.getInstance(), stack), stack.getTooltipImage(), context.getMouseX(), context.getMouseY());
 					graphics.pose().popPose();
+				}
+			}
+		}
+		for (CraftingRecipeDisplay display : config.craftingRecipeDisplays) {
+			Ingredient[][] ingredients = display.getIngredients();
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					Ingredient ingredient = ingredients[i][j];
+					if (ingredient != null) {
+						ItemStack[] items = ingredient.getItems();
+						ItemStack stack = items.length == 0 ? ItemStack.EMPTY : items[Mth.floor(context.getTickCount() / 30.0) % items.length];
+						if (!stack.isEmpty() && context.getMouseX() > x + display.x + i * 16 && context.getMouseX() < x + display.x + i * 16 + 16
+							&& context.getMouseY() > Math.max(y + display.y + j * 16, context.getContentY()) && context.getMouseY() < Math.min(y + display.y + j * 16 + 16, context.getContentY() + context.getBookDefinition().height() - 2 * context.getBookDefinition().frameWidth())) {
+							graphics.pose().pushPose();
+							graphics.pose().translate(0.0, 0.0, BookScreen.TOOLTIP_Z_OFFSET);
+							graphics.renderTooltip(context.getFont(), Screen.getTooltipFromItem(Minecraft.getInstance(), stack), stack.getTooltipImage(), context.getMouseX(), context.getMouseY());
+							graphics.pose().popPose();
+						}
+					}
 				}
 			}
 		}
@@ -252,6 +289,38 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 		).apply(instance, ItemTagDisplay::new));
 	}
 
+	private static class CraftingRecipeDisplay {
+		public static final Codec<CraftingRecipeDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ResourceLocation.CODEC.fieldOf("recipe").forGetter(o -> o.recipeId),
+			Codec.INT.fieldOf("x").forGetter(o -> o.x),
+			Codec.INT.fieldOf("y").forGetter(o -> o.y)
+		).apply(instance, CraftingRecipeDisplay::new));
+
+		private final Ingredient[][] ingredients = new Ingredient[3][3];
+		private final ResourceLocation recipeId;
+		private RecipeHolder<?> recipe;
+		private final int x, y;
+		private boolean recipePlaced = false;
+
+		public CraftingRecipeDisplay(ResourceLocation recipe, int x, int y) {
+			this.recipeId = recipe;
+			this.x = x;
+			this.y = y;
+		}
+
+		public Ingredient[][] getIngredients() {
+			if (recipe == null && Minecraft.getInstance().level != null) {
+				recipe = Minecraft.getInstance().level.getRecipeManager().byKey(recipeId).orElse(null);
+			}
+			if (!recipePlaced && recipe != null && recipe.value().getType() == RecipeType.CRAFTING) {
+				recipePlaced = true;
+				PlaceRecipe<Ingredient> placeRecipe = (ingredient, slot, maxAmount, x, y) -> ingredients[x][y] = ingredient;
+				placeRecipe.placeRecipe(3, 3, -1, recipe, recipe.value().getIngredients().iterator(), 0);
+			}
+			return ingredients;
+		}
+	}
+
 	private record ImageDisplay(ResourceLocation location, int x, int y, int width, int height) {
 		public static final Codec<ImageDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			ResourceLocation.CODEC.fieldOf("location").forGetter(ImageDisplay::location),
@@ -262,7 +331,7 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 		).apply(instance, ImageDisplay::new));
 	}
 
-	public record Config(ResourceLocation id, HashSet<HashSet<ResourceLocation>> unlockConditions, int totalHeight, List<TextDisplay> textDisplays, List<EntityDisplay> entityDisplays, List<ItemDisplay> itemDisplays, List<ItemTagDisplay> itemTagDisplays, List<ImageDisplay> imageDisplays) implements BookComponentConfig {
+	public record Config(ResourceLocation id, HashSet<HashSet<ResourceLocation>> unlockConditions, int totalHeight, List<TextDisplay> textDisplays, List<EntityDisplay> entityDisplays, List<ItemDisplay> itemDisplays, List<ItemTagDisplay> itemTagDisplays, List<CraftingRecipeDisplay> craftingRecipeDisplays, List<ImageDisplay> imageDisplays) implements BookComponentConfig {
 		public static final Codec<Config> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			ResourceLocation.CODEC.fieldOf("id").forGetter(Config::id),
 			ResourceLocation.CODEC.listOf().xmap(Sets::newHashSet, Lists::newArrayList).listOf().xmap(Sets::newHashSet, Lists::newArrayList).fieldOf("unlock_conditions").forGetter(Config::unlockConditions),
@@ -271,11 +340,12 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 			EntityDisplay.CODEC.listOf().fieldOf("entity_displays").forGetter(Config::entityDisplays),
 			ItemDisplay.CODEC.listOf().fieldOf("item_displays").forGetter(Config::itemDisplays),
 			ItemTagDisplay.CODEC.listOf().fieldOf("item_tag_displays").forGetter(Config::itemTagDisplays),
+			CraftingRecipeDisplay.CODEC.listOf().fieldOf("crafting_recipe_displays").forGetter(Config::craftingRecipeDisplays),
 			ImageDisplay.CODEC.listOf().fieldOf("image_displays").forGetter(Config::imageDisplays)
 		).apply(instance, Config::new));
 
 		public Config(ResourceLocation id, HashSet<HashSet<ResourceLocation>> unlockConditions, int totalHeight) {
-			this(id, unlockConditions, totalHeight, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+			this(id, unlockConditions, totalHeight, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 		}
 
 		public Config textDisplay(BookContent text, boolean centered, int x, int y, int width, int lineHeight, int minDistanceToBottom, float scale) {
@@ -295,6 +365,11 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 
 		public Config itemTagDisplay(TagKey<Item> tag, int x, int y) {
 			itemTagDisplays.add(new ItemTagDisplay(tag, x, y));
+			return this;
+		}
+
+		public Config craftingRecipeDisplay(ResourceLocation recipe, int x, int y) {
+			craftingRecipeDisplays.add(new CraftingRecipeDisplay(recipe, x, y));
 			return this;
 		}
 

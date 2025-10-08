@@ -120,8 +120,10 @@ public class ClientSideHelper implements ClientHelper {
 			Inventory inventory = player.getInventory();
 			for (int i = 0; i < inventory.getContainerSize(); i++) {
 				ItemStack stack = inventory.getItem(i);
-				ResourceLocation bookId = stack.getOrDefault(ESDataComponents.BOOK.get(), EternalStarlight.id("main"));
-				bookIds.add(bookId);
+				ResourceLocation bookId = stack.get(ESDataComponents.BOOK.get());
+				if (bookId != null) {
+					bookIds.add(bookId);
+				}
 			}
 		}
 		Set<BookDefinition> definitions = bookIds.stream().map(ClientHandlers.books::getBook).collect(Collectors.toSet());

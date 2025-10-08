@@ -26,9 +26,7 @@
               "icon_frame_height": 24,
               "icon_frame_width": 24,
               "jump_to": "eternal_starlight:seeking_eye_display",
-              "listening": [
-                "eternal_starlight:seeking_eye"
-              ],
+              "listening": [],
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -49,9 +47,7 @@
               "icon_frame_height": 24,
               "icon_frame_width": 24,
               "jump_to": "eternal_starlight:orb_of_prophecy_display",
-              "listening": [
-                "eternal_starlight:orb_of_prophecy"
-              ],
+              "listening": [],
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -72,9 +68,7 @@
               "icon_frame_height": 24,
               "icon_frame_width": 24,
               "jump_to": "eternal_starlight:accessories_display",
-              "listening": [
-                "eternal_starlight:accessories"
-              ],
+              "listening": [],
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -95,9 +89,7 @@
               "icon_frame_height": 24,
               "icon_frame_width": 24,
               "jump_to": "eternal_starlight:starlight_golem_display",
-              "listening": [
-                "eternal_starlight:starlight_golem"
-              ],
+              "listening": [],
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -112,15 +104,34 @@
             {
               "icon": {
                 "count": 1,
+                "id": "eternal_starlight:frozen_tube"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:freeze_display",
+              "listening": [],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.freeze",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "icon": {
+                "count": 1,
                 "id": "eternal_starlight:parasol_grass"
               },
               "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
               "icon_frame_height": 24,
               "icon_frame_width": 24,
               "jump_to": "eternal_starlight:lunar_monstrosity_display",
-              "listening": [
-                "eternal_starlight:lunar_monstrosity"
-              ],
+              "listening": [],
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -146,6 +157,7 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [],
           "id": "eternal_starlight:seeking_eye_display",
           "image_displays": [
@@ -192,7 +204,7 @@
           "total_height": 60,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -216,7 +228,7 @@
           ],
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ],
           "width": 130
@@ -241,7 +253,7 @@
           ],
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ],
           "width": 130
@@ -250,6 +262,7 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [],
           "id": "eternal_starlight:seeking_eye_locators_starlight_golem",
           "image_displays": [
@@ -293,7 +306,7 @@
           "total_height": 50,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -301,6 +314,7 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [],
           "id": "eternal_starlight:seeking_eye_locators_lunar_monstrosity",
           "image_displays": [
@@ -344,7 +358,7 @@
           "total_height": 50,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -354,6 +368,7 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [],
           "id": "eternal_starlight:orb_of_prophecy_display",
           "image_displays": [
@@ -400,7 +415,7 @@
           "total_height": 60,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -424,7 +439,7 @@
           ],
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ],
           "width": 130
@@ -435,6 +450,7 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [],
           "id": "eternal_starlight:accessories_display",
           "image_displays": [
@@ -478,7 +494,7 @@
           "total_height": 60,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -502,7 +518,7 @@
           ],
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ],
           "width": 130
@@ -511,6 +527,7 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [],
           "id": "eternal_starlight:butterfly_wings_amulet_display",
           "image_displays": [
@@ -557,7 +574,7 @@
           "total_height": 30,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -565,6 +582,7 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [],
           "id": "eternal_starlight:pearl_necklace_display",
           "image_displays": [
@@ -611,7 +629,7 @@
           "total_height": 30,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -621,6 +639,7 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [
             {
               "entity": {
@@ -675,7 +694,7 @@
           "total_height": 125,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -762,7 +781,7 @@
           "tooltip_width": 150,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ],
           "width": 24
@@ -787,7 +806,7 @@
           ],
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ],
           "width": 130
@@ -798,6 +817,189 @@
       {
         "type": "eternal_starlight:display",
         "config": {
+          "crafting_recipe_displays": [],
+          "entity_displays": [
+            {
+              "entity": {
+                "id": "eternal_starlight:freeze"
+              },
+              "rotation": [
+                0.0,
+                -0.21643962,
+                0.976296,
+                -0.0
+              ],
+              "scale": 40.0,
+              "x": 65,
+              "x_rot": -25.0,
+              "y": 80,
+              "y_rot": 210.0
+            }
+          ],
+          "id": "eternal_starlight:freeze_display",
+          "image_displays": [
+            {
+              "height": 72,
+              "location": "eternal_starlight:textures/gui/screen/book/frame_72.png",
+              "width": 72,
+              "x": 29,
+              "y": 20
+            }
+          ],
+          "item_displays": [],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 3,
+              "scale": 1.5,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.freeze",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 110
+            }
+          ],
+          "total_height": 125,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:entity_seen_freeze"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:mob_info",
+        "config": {
+          "button_height": 10,
+          "button_width": 6,
+          "center_x": 65,
+          "entries": [
+            {
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/location_structure.png",
+              "icon_height": 12,
+              "icon_width": 12,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "structure.eternal_starlight.golem_forge",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "attribute": "minecraft:generic.max_health",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_max_health.png",
+              "icon_height": 12,
+              "icon_width": 12,
+              "text": []
+            },
+            {
+              "attribute": "minecraft:generic.armor",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_armor.png",
+              "icon_height": 12,
+              "icon_width": 12,
+              "text": []
+            },
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_attack_damage.png",
+              "icon_height": 12,
+              "icon_width": 12,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "book.eternal_starlight.freeze.attack",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "attribute": "minecraft:generic.flying_speed",
+              "attribute_text_style": {
+                "color": "#ACFFFC"
+              },
+              "icon": "eternal_starlight:textures/gui/screen/book/attribute_movement_speed.png",
+              "icon_height": 12,
+              "icon_width": 12,
+              "text": []
+            }
+          ],
+          "height": 12,
+          "id": "eternal_starlight:freeze_info",
+          "left_button": "eternal_starlight:textures/gui/screen/book/left.png",
+          "mob": "eternal_starlight:freeze",
+          "right_button": "eternal_starlight:textures/gui/screen/book/right.png",
+          "tooltip_width": 150,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:entity_seen_freeze"
+            ]
+          ],
+          "width": 24
+        }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 20,
+          "id": "eternal_starlight:freeze",
+          "line_height": 12,
+          "offset": 10,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.freeze",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:entity_seen_freeze"
+            ]
+          ],
+          "width": 130
+        }
+      }
+    ],
+    [
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [
             {
               "entity": {
@@ -852,7 +1054,7 @@
           "total_height": 125,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ]
         }
@@ -939,7 +1141,7 @@
           "tooltip_width": 150,
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ],
           "width": 24
@@ -964,7 +1166,7 @@
           ],
           "unlock_conditions": [
             [
-              "eternal_starlight:enter_starlight"
+              "eternal_starlight:advancement_enter_starlight"
             ]
           ],
           "width": 130

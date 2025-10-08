@@ -50,7 +50,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.PERMAFROST_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
-		basicItem(ESItems.TANGLED_HATRED_SPAWN_EGG.get());
 
 		// wood
 		flatBlockTexture(ESItems.LUNAR_SAPLING.get());
@@ -875,7 +874,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		block(ESItems.THE_GATEKEEPER_SPAWNER.get());
 		block(ESItems.STARLIGHT_GOLEM_SPAWNER.get());
-		block(ESItems.TANGLED_HATRED_SPAWNER.get());
 		block(ESItems.LUNAR_MONSTROSITY_SPAWNER.get());
 		basicItem(ESItems.SOLAR_EGG.get());
 

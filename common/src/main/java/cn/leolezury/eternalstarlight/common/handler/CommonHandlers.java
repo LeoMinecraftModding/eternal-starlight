@@ -45,6 +45,7 @@ import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.CommonComponents;
@@ -272,9 +273,6 @@ public class CommonHandlers {
 			if (sourceEntity.getType() == ESEntities.LUNAR_MONSTROSITY.get()) {
 				modified *= (float) ESConfig.INSTANCE.mobsConfig.lunarMonstrosity.attackDamageScale();
 			}
-			if (sourceEntity.getType() == ESEntities.TANGLED_HATRED.get()) {
-				modified *= (float) ESConfig.INSTANCE.mobsConfig.tangledHatred.attackDamageScale();
-			}
 		}
 		if (source.is(DamageTypeTags.IS_FIRE)) {
 			if (entity.hasEffect(ESMobEffects.FLAMMABLE.asHolder())) {
@@ -476,6 +474,9 @@ public class CommonHandlers {
 					}
 				}
 			}
+		}
+		if (source.getEntity() instanceof ServerPlayer player) {
+			ESBookUtil.unlock(player, BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).withPrefix("entity_killed_"));
 		}
 	}
 
@@ -821,8 +822,8 @@ public class CommonHandlers {
 	}
 
 	public static void onCompleteAdvancement(Player player, AdvancementHolder advancement) {
-		if (player instanceof ServerPlayer serverPlayer && advancement.id().equals(EternalStarlight.id("enter_starlight"))) {
-			ESBookUtil.unlock(serverPlayer, EternalStarlight.id("enter_starlight"));
+		if (player instanceof ServerPlayer serverPlayer) {
+			ESBookUtil.unlock(serverPlayer, advancement.id().withPrefix("advancement_"));
 		}
 	}
 

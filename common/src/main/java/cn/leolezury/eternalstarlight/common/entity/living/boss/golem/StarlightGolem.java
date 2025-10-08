@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.EnergyBlock;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
@@ -14,7 +13,6 @@ import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
-import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.datafixers.util.Pair;
@@ -115,7 +113,6 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
 		bossEvent.addPlayer(serverPlayer);
-		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("starlight_golem_seen"));
 	}
 
 	@Override

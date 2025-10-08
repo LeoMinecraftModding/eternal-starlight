@@ -26,7 +26,6 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			.add(
 				ESEntities.THE_GATEKEEPER.get(),
 				ESEntities.STARLIGHT_GOLEM.get(),
-				ESEntities.TANGLED_HATRED.get(),
 				ESEntities.LUNAR_MONSTROSITY.get()
 			);
 		tag(Tags.EntityTypes.BOATS)
@@ -44,7 +43,6 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			.add(
 				ESEntities.TANGLED.get(),
 				ESEntities.TANGLED_SKULL.get(),
-				ESEntities.TANGLED_HATRED.get(),
 				ESEntities.LUNAR_MONSTROSITY.get()
 			);
 		tag(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE)

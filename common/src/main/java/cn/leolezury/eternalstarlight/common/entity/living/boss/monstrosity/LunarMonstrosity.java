@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
@@ -14,7 +13,6 @@ import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOption
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
-import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -96,7 +94,6 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
 		bossEvent.addPlayer(serverPlayer);
-		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("lunar_monstrosity_seen"));
 	}
 
 	@Override

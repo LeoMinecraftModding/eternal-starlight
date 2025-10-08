@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.mixin;
 import cn.leolezury.eternalstarlight.common.network.SyncAttachmentsPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
+import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -31,5 +33,6 @@ public abstract class ServerEntityMixin {
 				ESPlatform.INSTANCE.sendToClient(serverPlayer, SyncAttachmentsPacket.create(entity, attachment, attachment.getData(entity), level.registryAccess()));
 			}
 		});
+		ESBookUtil.unlock(serverPlayer, BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).withPrefix("entity_seen_"));
 	}
 }

@@ -192,8 +192,7 @@ public class CursedGardenMazePiece extends StructurePiece {
 				}
 			}
 		}
-		placeBlock(level, ESBlocks.TANGLED_HATRED_SPAWNER.get().defaultBlockState(), STRUCTURE_SIZE / 2 - CENTER_SIZE / 3, 1, STRUCTURE_SIZE / 2, box);
-		placeBlock(level, ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get().defaultBlockState(), STRUCTURE_SIZE / 2 + CENTER_SIZE / 3, 1, STRUCTURE_SIZE / 2, box);
+		placeBlock(level, ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get().defaultBlockState(), STRUCTURE_SIZE / 2, 1, STRUCTURE_SIZE / 2, box);
 
 		List<BlockPos> chestPositions = new ArrayList<>();
 

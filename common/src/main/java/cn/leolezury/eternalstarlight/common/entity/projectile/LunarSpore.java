@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.TangledHatred;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
@@ -107,7 +106,6 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 	public TrailEffect newTrail() {
 		return new TrailEffect(0.4f, switch (getOwner()) {
 			case LunarMonstrosity ignored -> 15;
-			case TangledHatred ignored -> 40;
 			case null, default -> 12;
 		});
 	}

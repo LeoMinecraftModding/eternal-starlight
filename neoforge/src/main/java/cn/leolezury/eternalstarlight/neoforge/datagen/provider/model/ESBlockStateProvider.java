@@ -491,7 +491,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		spawner(ESBlocks.THE_GATEKEEPER_SPAWNER.get());
 		spawner(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get());
-		spawner(ESBlocks.TANGLED_HATRED_SPAWNER.get());
 		spawner(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get());
 		particleOnly(ESBlocks.SOLAR_EGG.get(), itemTextureFromBlock(ESBlocks.SOLAR_EGG.get()));
 

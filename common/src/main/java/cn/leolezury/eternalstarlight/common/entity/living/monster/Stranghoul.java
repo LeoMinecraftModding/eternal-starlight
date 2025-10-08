@@ -11,7 +11,6 @@ import cn.leolezury.eternalstarlight.common.item.combat.SpearItem;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
-import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
@@ -842,12 +841,6 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.stranghoul.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.stranghoul.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.3);
-	}
-
-	@Override
-	public void startSeenByPlayer(ServerPlayer serverPlayer) {
-		super.startSeenByPlayer(serverPlayer);
-		ESBookUtil.unlock(serverPlayer, EternalStarlight.id("stranghoul"));
 	}
 
 	@Override

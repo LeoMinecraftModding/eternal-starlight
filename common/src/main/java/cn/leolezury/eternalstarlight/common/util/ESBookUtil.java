@@ -23,7 +23,7 @@ public class ESBookUtil {
 			ServerLevel level = player.getServer().getLevel(Level.OVERWORLD);
 			if (level != null) {
 				BookProgressions progressions = getOrCreateBookProgressions(level);
-				return progressions.getProgressions().getOrDefault(player.getUUID(), new HashSet<>());
+				return new HashSet<>(progressions.getProgressions().getOrDefault(player.getUUID(), new HashSet<>()));
 			}
 		}
 		return new HashSet<>();
@@ -41,7 +41,7 @@ public class ESBookUtil {
 				if (!unlocked.equals(oldUnlocked)) {
 					progressions.getProgressions().put(player.getUUID(), unlocked);
 					progressions.setDirty();
-					ESPlatform.INSTANCE.sendToClient(player, new UpdateBookPacket(oldUnlocked, unlocked));
+					ESPlatform.INSTANCE.sendToClient(player, new UpdateBookPacket(new HashSet<>(oldUnlocked), new HashSet<>(unlocked)));
 				}
 			}
 		}
