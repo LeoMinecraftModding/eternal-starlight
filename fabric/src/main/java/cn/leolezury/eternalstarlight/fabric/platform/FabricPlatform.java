@@ -227,6 +227,7 @@ public class FabricPlatform implements ESPlatform {
 		};
 	}
 
+	@Environment(EnvType.CLIENT)
 	@Override
 	public BookLoader createBookLoader() {
 		return new FabricBookLoader();

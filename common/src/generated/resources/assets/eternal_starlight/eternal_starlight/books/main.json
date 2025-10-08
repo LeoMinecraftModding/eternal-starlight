@@ -711,8 +711,8 @@
                 "color": "#ACFFFC"
               },
               "icon": "eternal_starlight:textures/gui/screen/book/attribute_max_health.png",
-              "icon_height": 8,
-              "icon_width": 8,
+              "icon_height": 12,
+              "icon_width": 12,
               "text": []
             },
             {
@@ -721,8 +721,8 @@
                 "color": "#ACFFFC"
               },
               "icon": "eternal_starlight:textures/gui/screen/book/attribute_armor.png",
-              "icon_height": 8,
-              "icon_width": 8,
+              "icon_height": 12,
+              "icon_width": 12,
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -740,8 +740,8 @@
                 "color": "#ACFFFC"
               },
               "icon": "eternal_starlight:textures/gui/screen/book/attribute_movement_speed.png",
-              "icon_height": 8,
-              "icon_width": 8,
+              "icon_height": 12,
+              "icon_width": 12,
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -888,8 +888,8 @@
                 "color": "#ACFFFC"
               },
               "icon": "eternal_starlight:textures/gui/screen/book/attribute_max_health.png",
-              "icon_height": 8,
-              "icon_width": 8,
+              "icon_height": 12,
+              "icon_width": 12,
               "text": []
             },
             {
@@ -898,8 +898,8 @@
                 "color": "#ACFFFC"
               },
               "icon": "eternal_starlight:textures/gui/screen/book/attribute_armor.png",
-              "icon_height": 8,
-              "icon_width": 8,
+              "icon_height": 12,
+              "icon_width": 12,
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -917,8 +917,8 @@
                 "color": "#ACFFFC"
               },
               "icon": "eternal_starlight:textures/gui/screen/book/attribute_movement_speed.png",
-              "icon_height": 8,
-              "icon_width": 8,
+              "icon_height": 12,
+              "icon_width": 12,
               "text": [
                 {
                   "content": "${color: #acfffc}",
