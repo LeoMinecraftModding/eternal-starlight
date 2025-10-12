@@ -1108,7 +1108,7 @@
   "tooltip.eternal_starlight.accessory_combination_target.axe": "斧",
   "tooltip.eternal_starlight.accessory_combination_target.hammer": "ハンマー",
   "tooltip.eternal_starlight.accessories": "アクセサリー：",
-  "tooltip.eternal_starlight.accessory_slot_count": "%1$s アクセサリースロット",
+  "tooltip.eternal_starlight.accessory_slot_count": "アクセサリースロット数 %1$s",
   "tooltip.eternal_starlight.battleaxe_pendant.durability": "斧による攻撃での耐久値の減少量を軽減する",
   "tooltip.eternal_starlight.battleaxe_pendant.strip": "斧で樹皮を剥ぐことができなくなる",
   "tooltip.eternal_starlight.warhammer_pendant.speed_based_damage": "移動速度に応じてダメージが増加する",
@@ -1580,8 +1580,8 @@
   "book.eternal_starlight.starlight_golem": "古代の星明りの民によって建造された機械の創造物。破滅に対抗するために用いられた機械の巨人たちの命令を受けて動いていた。かつては重厚な装甲と比類なき強さを持っていた。\n今日に至るまで、無傷の状態で残っているゴーレムは見つかっていない。",
   "book.eternal_starlight.starlight_golem.defense": "通常の場合、スターライトゴーレムの装甲を貫くことは非常に困難である。しかし、攻撃を止めてエネルギーを吸収し始めると、その弱点が露わとなる。供給源となるエネルギーブロックをすべて破壊できれば、一時的にその装甲を無効化できるだろう。",
   "book.eternal_starlight.starlight_golem.speed": "不完全な造物であるため動くことはない。そのため戦闘の難易度は大きく低下している。",
-  "book.eternal_starlight.freeze": "In ancient times, they had been the embodiment of the frozen magic of this dimension. The discovery of the Freeze provided a major opportunity for the ancient Starlighters when they were building that mechanical giant and realized that the exothermic heat of the machine was too intense but could not be solved due to technical problems.\nThe Freeze were modified and eventually used successfully for cooling and defense against intruding enemies, and the magical ice ball they once shot were compressed and sealed in tubes.",
-  "book.eternal_starlight.freeze.attack": "You can defend yourself against their intensive attacks using cold-proof armor.",
+  "book.eternal_starlight.freeze": "太古の昔、彼らはこのディメンションの凍結魔法の化身であった。機械の巨人が建造されていた頃、機械の発熱が激しすぎることに悩まされていた古代の星明りの民にとって、フリーズの発見は大きな機会となった。\nフリーズは改良され、やがて冷却と侵入者に対する防御に使用されるようになった。彼らがかつて放っていた魔法の氷球は圧縮され、チューブの中に封印された。",
+  "book.eternal_starlight.freeze.attack": "彼らの激しい攻撃から身を守るには、防寒防具が有用である。",
   "book.eternal_starlight.lunar_monstrosity": "古代文明によって月明りの力を注入された植物。迷宮に収容された囚人の魂を貪り喰らうために利用された。",
   "book.eternal_starlight.lunar_monstrosity.defense": "通常、その強靭な表皮によって、受けるダメージが大きく減少する。\nしかし、炎上中または気絶中はこのダメージ軽減効果が失われる。",
   "book.eternal_starlight.lunar_monstrosity.speed": "植物であるため、普段はほとんど移動しないが、獲物を追跡するために地中に潜り込むことがある。",
@@ -1595,6 +1595,6 @@
   "book.eternal_starlight.silver_pungency_fruit": "パンジェンシーフルーツと沼地銀インゴットから作られた貴重な食べ物。パンジェンシーフルーツの風味が残っている。神経を鈍らせ、一時的にほとんどのダメージを無視できるようになるが、すべてのダメージは一定時間後に返ってくる。",
   "book.eternal_starlight.seeds_launcher": "この特異な武器は、あらゆる種類の種を高速で発射することができる。主にパンジェンシーフルーツから作られているが、その製造方法は不明であるため、入手するには製作者と物々交換するしかない。\nこの武器はエンチャントが可能で、エンチャントすると特殊な効果を持つ種を発射できるようになる。",
   "book.eternal_starlight.drying_rack": "ストレングールはこれを使って腐った肉を乾燥させ、防具用の革を作っている。\nまた、焚き火の上に設置すると、腐った肉のジャーキーを作ることができる。このジャーキーは、元の腐った肉より風味は増すものの、硬く噛み切りにくい。",
-  "book.eternal_starlight.twilight_gaze": "タソガレガンギョは、輝く紫色の瞳を持つことで知られている。この神秘的な魚は、生息地である深淵の暗闇の中でもその瞳で周囲を見渡すことができる。\nタソガレガンギョは深淵の環境を好み、その領域を超えて彷徨いすぎると、深淵へと戻る道を探し求めるという性質を持つ。人間に対して攻撃的な性質は持たないが、その身に危害を加えられると、迷わず反撃を試みる。",
-  "book.eternal_starlight.shimmer_lacewing": "薄明りの川や闇の沼地を飛び回る昆虫で、青色や紫色に輝く四対の翅を持っている。彼らの存在は他の生物にとって脅威でも有用なものでもなかったが、星明りの文明が存在していた時代、この小さな生物は子供たちに愛されていた。"
+  "book.eternal_starlight.shimmer_lacewing": "薄明りの川や闇の沼地を飛び回る昆虫で、青色や紫色に輝く四対の翅を持っている。彼らの存在は他の生物にとって脅威でも有用なものでもなかったが、星明りの文明が存在していた時代、この小さな生物は子供たちに愛されていた。",
+  "book.eternal_starlight.twilight_gaze": "タソガレガンギョは、輝く紫色の瞳を持つことで知られている。この神秘的な魚は、生息地である深淵の暗闇の中でもその瞳で周囲を見渡すことができる。\nタソガレガンギョは深淵の環境を好み、その領域を超えて彷徨いすぎると、深淵へと戻る道を探し求めるという性質を持つ。人間に対して攻撃的な性質は持たないが、その身に危害を加えられると、迷わず反撃を試みる。"
 }
