@@ -18,7 +18,6 @@ import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
-import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.Accessory;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
@@ -834,7 +833,7 @@ public class CommonHandlers {
 				ItemStack mainHand = player.getMainHandItem();
 				ItemStack offHand = player.getOffhandItem();
 				ItemStack spellItem;
-				CurrentCrestComponent component = null;
+				Holder<Crest> component = null;
 				Holder<Crest> nextCrest = null;
 				if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
 					component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
@@ -852,7 +851,7 @@ public class CommonHandlers {
 				if (component != null) {
 					find:
 					for (int i = 0; i < crests.size(); i++) {
-						if (crests.get(i).crest().is(component.crest()) && i < crests.size() - 1) {
+						if (crests.get(i).crest().is(component) && i < crests.size() - 1) {
 							for (int j = i + 1; j < crests.size(); j++) {
 								if (crests.get(j).crest().value().getSpell().isPresent()) {
 									nextCrest = crests.get(j).crest();
@@ -871,7 +870,7 @@ public class CommonHandlers {
 				}
 				if (spellItem != null) {
 					if (nextCrest != null && nextCrest.isBound()) {
-						spellItem.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CURRENT_CREST.get(), new CurrentCrestComponent(nextCrest)).build());
+						spellItem.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CURRENT_CREST.get(), nextCrest).build());
 					} else {
 						spellItem.remove(ESDataComponents.CURRENT_CREST.get());
 					}

@@ -192,12 +192,12 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, HUGE_MARIMOLD_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_MARIMOLD), PlacementUtils.filteredByBlockSurvival(ESBlocks.MARIMOLD.get()));
 		PlacementUtils.register(context, HUGE_GLOWING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_GLOWING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(ESBlocks.GLOWING_MUSHROOM.get()));
 		PlacementUtils.register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), onSnow);
-		PlacementUtils.register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
-		PlacementUtils.register(context, DENSE_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(15, 0.1F, 2)));
+		PlacementUtils.register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 1)));
+		PlacementUtils.register(context, DENSE_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(9, 0.1F, 2)));
 		PlacementUtils.register(context, PERMAFROST_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.2F, 2)));
 		PlacementUtils.register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
 		PlacementUtils.register(context, SCARLET_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
-		PlacementUtils.register(context, TORREYA_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(12, 0.1F, 1)));
+		PlacementUtils.register(context, TORREYA_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 1)));
 		PlacementUtils.register(context, JINGLESTEM_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.JINGLESTEM_FOREST), PlacementUtils.countExtra(5, 0.2F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome());
 		PlacementUtils.register(context, DEAD_LUNAR_TREE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEAD_LUNAR_TREE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, LUNARIS_CACTUS, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNARIS_CACTUS), RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());

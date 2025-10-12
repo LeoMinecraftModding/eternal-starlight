@@ -19,7 +19,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
-import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -214,7 +213,7 @@ public class ClientHandlers {
 			}
 			ItemStack mainHand = player.getMainHandItem();
 			ItemStack offHand = player.getOffhandItem();
-			CurrentCrestComponent component = null;
+			Holder<Crest> component = null;
 			if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
 				component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
 			} else if (offHand.has(ESDataComponents.CURRENT_CREST.get())) {
@@ -223,9 +222,9 @@ public class ClientHandlers {
 			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
 				entry.getValue().shouldShow = false;
 			}
-			if (component != null && component.crest().isBound()) {
+			if (component != null && component.isBound()) {
 				Registry<Crest> registry = player.registryAccess().registryOrThrow(ESRegistries.CREST);
-				Optional<ResourceKey<Crest>> key = registry.getResourceKey(component.crest().value());
+				Optional<ResourceKey<Crest>> key = registry.getResourceKey(component.value());
 				if (key.isPresent()) {
 					if (!GUI_CRESTS.containsKey(key.get())) {
 						GUI_CRESTS.put(key.get(), new GuiCrest());

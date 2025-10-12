@@ -78,6 +78,14 @@
       "charge": 1.0,
       "energy_budget": 0.75
     },
+    "eternal_starlight:lonestar_skeleton": {
+      "charge": 1.0,
+      "energy_budget": 0.75
+    },
+    "eternal_starlight:nightfall_spider": {
+      "charge": 1.0,
+      "energy_budget": 0.75
+    },
     "eternal_starlight:thirst_walker": {
       "charge": 1.0,
       "energy_budget": 0.75

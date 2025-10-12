@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.enchantment.effects.Freeze;
-import cn.leolezury.eternalstarlight.common.enchantment.effects.PushTowardsEntity;
+import cn.leolezury.eternalstarlight.common.enchantment.effect.Freeze;
+import cn.leolezury.eternalstarlight.common.enchantment.effect.PushTowardsEntity;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import com.mojang.serialization.MapCodec;

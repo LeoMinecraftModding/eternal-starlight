@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.enchantment.effects;
+package cn.leolezury.eternalstarlight.common.enchantment.effect;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

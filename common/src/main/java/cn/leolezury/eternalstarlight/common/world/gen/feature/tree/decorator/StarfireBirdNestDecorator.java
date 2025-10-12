@@ -38,7 +38,7 @@ public class StarfireBirdNestDecorator extends TreeDecorator {
 			}
 			if (nearLog) {
 				BlockPos nestPos = pos.relative(Direction.DOWN);
-				if (context.isAir(nestPos) && random.nextInt(50) == 0) {
+				if (context.isAir(nestPos) && random.nextInt(100) == 0) {
 					List<Direction> availableDirs = Arrays.stream(Direction.values()).filter(direction -> direction.getAxis() != Direction.Axis.Y && context.level().isStateAtPosition(nestPos.relative(direction), BlockState::isAir)).toList();
 					if (!availableDirs.isEmpty()) {
 						context.setBlock(nestPos, ESBlocks.STARFIRE_BIRD_NEST.get().defaultBlockState().setValue(StarfireBirdNestBlock.FACING, availableDirs.get(random.nextInt(availableDirs.size()))).setValue(StarfireBirdNestBlock.EGGS, random.nextInt(2)));

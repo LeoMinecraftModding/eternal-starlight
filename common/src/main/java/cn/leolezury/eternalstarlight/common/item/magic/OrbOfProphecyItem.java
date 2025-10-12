@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
-import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
@@ -13,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -61,12 +61,12 @@ public class OrbOfProphecyItem extends Item {
 				player.startUsingItem(interactionHand);
 				return InteractionResultHolder.consume(itemStack);
 			} else if (!level.isClientSide && player instanceof SpellCaster && !ESDataAttachments.SPELL_CAST_DATA.getData(player).hasSpell()) {
-				CurrentCrestComponent component = itemStack.get(ESDataComponents.CURRENT_CREST.get());
-				if (component != null && component.crest().isBound()) {
-					Crest crest = component.crest().value();
+				Holder<Crest> component = itemStack.get(ESDataComponents.CURRENT_CREST.get());
+				if (component != null && component.isBound()) {
+					Crest crest = component.value();
 					if (crest.getSpell().isPresent() && crest.getSpell().get().canCast(player, true)) {
 						ESDataAttachments.SPELL_SOURCE.setData(player, new SpellCastData.ItemSpellSource(this, interactionHand));
-						crest.getSpell().get().start(player, ESCrestUtil.getCrestLevel(player, component.crest()), true);
+						crest.getSpell().get().start(player, ESCrestUtil.getCrestLevel(player, component), true);
 						return InteractionResultHolder.consume(itemStack);
 					}
 				}

@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import cn.leolezury.eternalstarlight.common.item.component.CurrentCrestComponent;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -126,13 +125,13 @@ public class ESCrestUtil {
 		ItemStack mainHand = player.getMainHandItem();
 		ItemStack offHand = player.getOffhandItem();
 		if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
-			CurrentCrestComponent component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
-			if (component != null && component.crest().isBound() && ownedSet.stream().noneMatch(c -> c.crest().is(component.crest()))) {
+			Holder<Crest> component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
+			if (component != null && component.isBound() && ownedSet.stream().noneMatch(c -> c.crest().is(component))) {
 				mainHand.remove(ESDataComponents.CURRENT_CREST.get());
 			}
 		} else if (offHand.has(ESDataComponents.CURRENT_CREST.get())) {
-			CurrentCrestComponent component = offHand.get(ESDataComponents.CURRENT_CREST.get());
-			if (component != null && component.crest().isBound() && ownedSet.stream().noneMatch(c -> c.crest().is(component.crest()))) {
+			Holder<Crest> component = offHand.get(ESDataComponents.CURRENT_CREST.get());
+			if (component != null && component.isBound() && ownedSet.stream().noneMatch(c -> c.crest().is(component))) {
 				offHand.remove(ESDataComponents.CURRENT_CREST.get());
 			}
 		}

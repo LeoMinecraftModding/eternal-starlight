@@ -178,26 +178,30 @@ public class BookScreen extends Screen {
 
 	@Override
 	public boolean mouseClicked(double x, double y, int button) {
-		if (x >= getContentX() && x <= getContentX() + book.width() - 2 * book.frameWidth()) {
-			int startHeight = 0;
-			for (ConfiguredBookComponent<?, ?> component : new ArrayList<>(currentComponents)) {
-				int currentY = getContentY() - scrollProgress + startHeight;
-				if (y >= currentY && y <= currentY + component.getTotalHeight(context)) {
-					component.onClick(context, getContentX(), getContentY() - scrollProgress + startHeight);
+		boolean result = super.mouseClicked(x, y, button);
+		if (!result) {
+			if (x >= getContentX() && x <= getContentX() + book.width() - 2 * book.frameWidth()
+				&& y >= getContentY() && y <= getContentY() + book.height() - 2 * book.frameWidth()) {
+				int startHeight = 0;
+				for (ConfiguredBookComponent<?, ?> component : new ArrayList<>(currentComponents)) {
+					int currentY = getContentY() - scrollProgress + startHeight;
+					if (y >= currentY && y <= currentY + component.getTotalHeight(context)) {
+						component.onClick(context, getContentX(), getContentY() - scrollProgress + startHeight);
+					}
+					startHeight += component.getTotalHeight(context);
 				}
-				startHeight += component.getTotalHeight(context);
+			}
+			boolean scrollArea = x >= getBaseX() + book.scrollbar().scrollbarXOffset()
+				&& x <= getBaseX() + book.scrollbar().scrollbarXOffset() + book.scrollbar().scrollbarWidth()
+				&& y >= getBaseY() + book.scrollbar().scrollbarYOffset()
+				&& y <= getBaseY() + book.scrollbar().scrollbarYOffset() + book.scrollbar().scrollbarHeight();
+			if (scrollArea && button == 0) {
+				this.scrolling = true;
+				this.mouseOffset = Mth.clamp((int) (y - (getBaseY() + book.scrollbar().scrollbarYOffset() + (int) (getMaxScroll() * ((double) scrollProgress / (double) (totalHeight - book.height() + 2 * book.frameWidth()))))), 0, getScrollButtonHeight());
+				return true;
 			}
 		}
-		boolean scrollArea = x >= getBaseX() + book.scrollbar().scrollbarXOffset()
-			&& x <= getBaseX() + book.scrollbar().scrollbarXOffset() + book.scrollbar().scrollbarWidth()
-			&& y >= getBaseY() + book.scrollbar().scrollbarYOffset()
-			&& y <= getBaseY() + book.scrollbar().scrollbarYOffset() + book.scrollbar().scrollbarHeight();
-		if (scrollArea && button == 0) {
-			this.scrolling = true;
-			this.mouseOffset = Mth.clamp((int) (y - (getBaseY() + book.scrollbar().scrollbarYOffset() + (int) (getMaxScroll() * ((double) scrollProgress / (double) (totalHeight - book.height() + 2 * book.frameWidth()))))), 0, getScrollButtonHeight());
-			return true;
-		}
-		return super.mouseClicked(x, y, button);
+		return result;
 	}
 
 	@Override

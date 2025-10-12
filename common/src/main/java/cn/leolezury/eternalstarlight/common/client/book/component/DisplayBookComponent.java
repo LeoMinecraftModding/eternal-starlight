@@ -85,7 +85,7 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 					if (ingredient != null) {
 						ItemStack[] items = ingredient.getItems();
 						ItemStack stack = items.length == 0 ? ItemStack.EMPTY : items[Mth.floor(context.getTickCount() / 30.0) % items.length];
-						graphics.renderItem(stack, x + display.x + i * 16, y + display.y + j * 16);
+						graphics.renderItem(stack, x + display.x + i * display.slotWidth + (display.slotWidth - 16) / 2, y + display.y + j * display.slotHeight + (display.slotHeight - 16) / 2);
 					}
 				}
 			}
@@ -136,8 +136,8 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 					if (ingredient != null) {
 						ItemStack[] items = ingredient.getItems();
 						ItemStack stack = items.length == 0 ? ItemStack.EMPTY : items[Mth.floor(context.getTickCount() / 30.0) % items.length];
-						if (!stack.isEmpty() && context.getMouseX() > x + display.x + i * 16 && context.getMouseX() < x + display.x + i * 16 + 16
-							&& context.getMouseY() > Math.max(y + display.y + j * 16, context.getContentY()) && context.getMouseY() < Math.min(y + display.y + j * 16 + 16, context.getContentY() + context.getBookDefinition().height() - 2 * context.getBookDefinition().frameWidth())) {
+						if (!stack.isEmpty() && context.getMouseX() > x + display.x + i * display.slotWidth + (display.slotWidth - 16) / 2 && context.getMouseX() < x + display.x + i * display.slotWidth + (display.slotWidth - 16) / 2 + 16
+							&& context.getMouseY() > Math.max(y + display.y + j * display.slotHeight + (display.slotHeight - 16) / 2, context.getContentY()) && context.getMouseY() < Math.min(y + display.y + j * display.slotHeight + (display.slotHeight - 16) / 2 + 16, context.getContentY() + context.getBookDefinition().height() - 2 * context.getBookDefinition().frameWidth())) {
 							graphics.pose().pushPose();
 							graphics.pose().translate(0.0, 0.0, BookScreen.TOOLTIP_Z_OFFSET);
 							graphics.renderTooltip(context.getFont(), Screen.getTooltipFromItem(Minecraft.getInstance(), stack), stack.getTooltipImage(), context.getMouseX(), context.getMouseY());
@@ -293,19 +293,23 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 		public static final Codec<CraftingRecipeDisplay> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			ResourceLocation.CODEC.fieldOf("recipe").forGetter(o -> o.recipeId),
 			Codec.INT.fieldOf("x").forGetter(o -> o.x),
-			Codec.INT.fieldOf("y").forGetter(o -> o.y)
+			Codec.INT.fieldOf("y").forGetter(o -> o.y),
+			Codec.INT.fieldOf("slot_width").forGetter(o -> o.slotWidth),
+			Codec.INT.fieldOf("slot_height").forGetter(o -> o.slotHeight)
 		).apply(instance, CraftingRecipeDisplay::new));
 
 		private final Ingredient[][] ingredients = new Ingredient[3][3];
 		private final ResourceLocation recipeId;
 		private RecipeHolder<?> recipe;
-		private final int x, y;
+		private final int x, y, slotWidth, slotHeight;
 		private boolean recipePlaced = false;
 
-		public CraftingRecipeDisplay(ResourceLocation recipe, int x, int y) {
+		public CraftingRecipeDisplay(ResourceLocation recipe, int x, int y, int slotWidth, int slotHeight) {
 			this.recipeId = recipe;
 			this.x = x;
 			this.y = y;
+			this.slotWidth = slotWidth;
+			this.slotHeight = slotHeight;
 		}
 
 		public Ingredient[][] getIngredients() {
@@ -368,8 +372,8 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 			return this;
 		}
 
-		public Config craftingRecipeDisplay(ResourceLocation recipe, int x, int y) {
-			craftingRecipeDisplays.add(new CraftingRecipeDisplay(recipe, x, y));
+		public Config craftingRecipeDisplay(ResourceLocation recipe, int x, int y, int slotWidth, int slotHeight) {
+			craftingRecipeDisplays.add(new CraftingRecipeDisplay(recipe, x, y, slotWidth, slotHeight));
 			return this;
 		}
 

@@ -334,6 +334,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				ItemStack lootBag = getBossLootBag();
 				ItemEntity item = player.spawnAtLocation(lootBag);
 				if (item != null) {
+					item.setTarget(player.getUUID());
 					item.setGlowingTag(true);
 					item.setExtendedLifetime();
 				}

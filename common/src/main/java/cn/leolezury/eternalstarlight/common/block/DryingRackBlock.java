@@ -82,18 +82,26 @@ public class DryingRackBlock extends BaseEntityBlock {
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 		if (level.getBlockEntity(pos) instanceof DryingRackBlockEntity entity) {
-			if (!stack.isEmpty() && entity.getItem().isEmpty() && entity.canBeDried(stack, state.getValue(LIT))) {
+			if (entity.getItem().isEmpty() && !stack.isEmpty() && entity.canBeDried(stack, state.getValue(LIT))) {
 				if (!level.isClientSide) {
 					entity.setItem(stack.copyWithCount(1));
 					stack.consume(1, player);
 				}
 				return ItemInteractionResult.sidedSuccess(level.isClientSide);
-			} else if (stack.isEmpty() && !entity.getItem().isEmpty()) {
+			} else if (!entity.getItem().isEmpty() && ItemStack.isSameItemSameComponents(entity.getItem(), stack)) {
+				int mergedCount = entity.getItem().getCount() + stack.getCount();
+				int maxSize = stack.getMaxStackSize();
 				if (!level.isClientSide) {
-					player.setItemInHand(hand, entity.getItem().copy());
-					entity.setItem(ItemStack.EMPTY);
+					player.setItemInHand(hand, entity.getItem().copyWithCount(Math.min(mergedCount, maxSize)));
+					if (mergedCount <= maxSize) {
+						entity.setItem(ItemStack.EMPTY);
+					} else {
+						entity.setItem(entity.getItem().copyWithCount(mergedCount - maxSize));
+					}
 				}
-				return ItemInteractionResult.sidedSuccess(level.isClientSide);
+				if (stack.getCount() < maxSize) {
+					return ItemInteractionResult.sidedSuccess(level.isClientSide);
+				}
 			}
 		}
 		return super.useItemOn(stack, state, level, pos, player, hand, hitResult);

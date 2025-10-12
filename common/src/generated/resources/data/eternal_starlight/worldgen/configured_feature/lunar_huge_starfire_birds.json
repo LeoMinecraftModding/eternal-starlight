@@ -6,7 +6,7 @@
         "type": "eternal_starlight:trunk_berries",
         "length": {
           "type": "minecraft:uniform",
-          "max_inclusive": 8,
+          "max_inclusive": 6,
           "min_inclusive": 3
         }
       },

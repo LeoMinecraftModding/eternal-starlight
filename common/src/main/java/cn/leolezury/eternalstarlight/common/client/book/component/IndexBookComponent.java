@@ -56,8 +56,7 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 		int startHeight = y + config.offset();
 		for (Entry entry : filterEnabledEntries(config, context)) {
 			int currentHeight = entry.getHeight(config, context);
-			if (context.getMouseX() >= context.getContentX() && context.getMouseX() <= context.getContentX() + context.getBookDefinition().width() - 2 * context.getBookDefinition().frameWidth()
-				&& context.getMouseY() > startHeight && context.getMouseY() < startHeight + currentHeight) {
+			if (context.getMouseY() > startHeight && context.getMouseY() < startHeight + currentHeight) {
 				context.jumpToComponent(entry.jumpTo);
 				break;
 			}
@@ -115,7 +114,7 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 		}
 
 		private List<FormattedCharSequence> splitText(Config config, BookContext context, Component component) {
-			return context.getFont().split(component, config.width() - iconFrameWidth);
+			return context.getFont().split(component, config.width() - iconFrameWidth - 5);
 		}
 
 		public int getHeight(Config config, BookContext context) {
@@ -129,7 +128,7 @@ public class IndexBookComponent extends BookComponent<IndexBookComponent.Config>
 				&& context.getMouseY() > y && context.getMouseY() < y + getHeight(config, context);
 			List<FormattedCharSequence> list = splitText(config, context, selected ? getText().copy().withStyle(ChatFormatting.UNDERLINE) : getText());
 			for (int i = 0; i < list.size(); i++) {
-				graphics.drawString(context.getFont(), list.get(i), x + iconFrameWidth, y + iconFrameHeight / 2 - context.getFont().lineHeight / 2 + i * config.lineHeight(), -1, true);
+				graphics.drawString(context.getFont(), list.get(i), x + iconFrameWidth + 5, y + iconFrameHeight / 2 - context.getFont().lineHeight / 2 + i * config.lineHeight(), -1, true);
 			}
 		}
 	}
