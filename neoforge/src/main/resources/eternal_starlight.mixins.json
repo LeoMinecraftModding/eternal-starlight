@@ -5,7 +5,8 @@
   "minVersion": "0.8",
   "mixins": [
     "AxeItemMixin",
-    "ExtendedBlockMixin"
+    "ExtendedBlockMixin",
+    "ProjectileWeaponItemMixin"
   ],
   "client": [
     "client.GuiMixin",

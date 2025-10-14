@@ -12,7 +12,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -39,7 +38,7 @@ public class SeedsLauncherItem extends ProjectileWeaponItem {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		ItemStack projectile = getProjectile(player, stack);
+		ItemStack projectile = player.getProjectile(stack);
 		boolean success = performShooting(level, player, projectile, hand);
 		if (success) {
 			SeedsLauncherAmmoType type = SeedsLauncherAmmoType.getAmmoType(level.registryAccess(), projectile.getItem()).value();
@@ -84,31 +83,6 @@ public class SeedsLauncherItem extends ProjectileWeaponItem {
 			}
 
 			return list;
-		}
-	}
-
-	// copied from Player
-	// modified the default arrow
-	public ItemStack getProjectile(Player player, ItemStack itemStack) {
-		if (!(itemStack.getItem() instanceof ProjectileWeaponItem)) {
-			return ItemStack.EMPTY;
-		} else {
-			Predicate<ItemStack> supported = ((ProjectileWeaponItem) itemStack.getItem()).getSupportedHeldProjectiles();
-			ItemStack heldProjectile = ProjectileWeaponItem.getHeldProjectile(player, supported);
-			if (!heldProjectile.isEmpty()) {
-				return heldProjectile;
-			} else {
-				supported = ((ProjectileWeaponItem) itemStack.getItem()).getAllSupportedProjectiles();
-
-				for (int i = 0; i < player.getInventory().getContainerSize(); ++i) {
-					ItemStack itemStack3 = player.getInventory().getItem(i);
-					if (supported.test(itemStack3)) {
-						return itemStack3;
-					}
-				}
-
-				return player.getAbilities().instabuild ? new ItemStack(Items.WHEAT_SEEDS) : ItemStack.EMPTY;
-			}
 		}
 	}
 

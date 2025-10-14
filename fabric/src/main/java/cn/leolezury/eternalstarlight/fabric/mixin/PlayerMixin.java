@@ -3,8 +3,11 @@ package cn.leolezury.eternalstarlight.fabric.mixin;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
 import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
+import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 import net.minecraft.world.InteractionHand;
@@ -13,6 +16,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -75,5 +80,10 @@ public abstract class PlayerMixin {
 	@ModifyReturnValue(method = "getDestroySpeed", at = @At(value = "RETURN"))
 	private float getDestroySpeed(float original, @Local(ordinal = 0, argsOnly = true) BlockState state) {
 		return CommonHandlers.onBlockBreakSpeed((Player) (Object) this, state, original);
+	}
+
+	@WrapOperation(method = "getProjectile", at = @At(value = "NEW", target = "(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/item/ItemStack;"))
+	private ItemStack newItemStack(ItemLike itemLike, Operation<ItemStack> original, @Local(argsOnly = true) ItemStack stack) {
+		return stack.getItem() instanceof SeedsLauncherItem ? new ItemStack(Items.WHEAT_SEEDS) : original.call(itemLike);
 	}
 }

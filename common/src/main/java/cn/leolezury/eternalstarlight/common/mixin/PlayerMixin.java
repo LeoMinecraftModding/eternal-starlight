@@ -103,7 +103,6 @@ public abstract class PlayerMixin implements SpellCaster, GrapplingOwner {
 		}
 	}
 
-
 	@Inject(method = "isModelPartShown", at = @At(value = "RETURN"), cancellable = true)
 	private void isModelPartShown(PlayerModelPart part, CallbackInfoReturnable<Boolean> cir) {
 		Player player = (Player) (Object) this;
