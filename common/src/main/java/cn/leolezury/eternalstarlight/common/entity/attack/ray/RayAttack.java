@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
-import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -69,7 +68,7 @@ public class RayAttack extends Entity implements TraceableEntity {
 		this.getEntityData().set(LENGTH, length);
 	}
 
-	public float prevPitch, prevYaw;
+	public float renderPitch, renderYaw, prevPitch, prevYaw;
 	private final Object2IntArrayMap<BlockPos> destroyProgresses = new Object2IntArrayMap<>();
 
 	public RayAttack(EntityType<? extends RayAttack> type, Level world) {
@@ -116,8 +115,10 @@ public class RayAttack extends Entity implements TraceableEntity {
 			result = ESEntityUtil.raytrace(level(), CollisionContext.of(this), position(), endPos);
 			onHit(result);
 		} else {
-			prevYaw = getYaw();
-			prevPitch = getPitch();
+			prevYaw = renderYaw;
+			prevPitch = renderPitch;
+			renderYaw = getYaw();
+			renderPitch = getPitch();
 			xo = getX();
 			yo = getY();
 			zo = getZ();
@@ -179,13 +180,10 @@ public class RayAttack extends Entity implements TraceableEntity {
 	}
 
 	public void addEndParticles(Vec3 endPos) {
-		for (int i = 0; i < 4; i++) {
-			level().addParticle(ESExplosionParticleOptions.ENERGY, true, endPos.x + random.nextFloat() - 0.5f, endPos.y + random.nextFloat() - 0.5f, endPos.z + random.nextFloat() - 0.5f, 0, 0, 0);
-		}
 	}
 
 	public float getRotationSpeed() {
-		return 1.2f;
+		return 1.0f;
 	}
 
 	public float getAttackDamage() {

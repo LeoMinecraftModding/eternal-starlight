@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
+import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
@@ -14,6 +15,7 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
+import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.serialization.DataResult;
 import net.minecraft.Util;
@@ -74,7 +76,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public static int GUI_RESPONSE_LEAVE = 3;
 	private static final String TAG_OFFERS = "offers";
 	private static final String TAG_GATEKEEPER_NAME = "gatekeeper_name";
-	private static final String TAG_FIGHT_TARGET = "flight_target";
+	private static final String TAG_FIGHT_TARGET = "fight_target";
 	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
 	private int noTargetTime;
@@ -559,6 +561,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	protected EntityDimensions getDefaultDimensions(Pose pose) {
 		EntityDimensions dimensions = super.getDefaultDimensions(pose);
 		return isActivated() ? dimensions : dimensions.scale(1, 0.7f);
+	}
+
+	@Override
+	public void dropExtraLoot(ServerPlayer player) {
+		ESCrestUtil.upgradeCrest(player, ESCrests.GUIDANCE_OF_STARS);
 	}
 
 	@Override

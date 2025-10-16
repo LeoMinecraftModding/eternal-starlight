@@ -16,12 +16,7 @@ public class StarlightGolemBeamRenderer extends LaserBeamRenderer<GolemLaserBeam
 	}
 
 	@Override
-	public float getBeamRadius() {
-		return 0.75f;
-	}
-
-	@Override
 	public ResourceLocation getTextureLocation(GolemLaserBeam entity) {
-		return StarlightGolemBeamRenderer.TEXTURE;
+		return TEXTURE;
 	}
 }

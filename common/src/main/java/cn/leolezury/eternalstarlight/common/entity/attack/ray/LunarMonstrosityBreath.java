@@ -27,7 +27,7 @@ public class LunarMonstrosityBreath extends RayAttack {
 
 	@Override
 	public float getRotationSpeed() {
-		return 1.0f;
+		return 0.9f;
 	}
 
 	@Override
@@ -55,7 +55,6 @@ public class LunarMonstrosityBreath extends RayAttack {
 
 	@Override
 	public void addEndParticles(Vec3 endPos) {
-
 		Vec3 from = getCaster().isPresent() && getCaster().get() instanceof LunarMonstrosity monstrosity ? monstrosity.headPos : position();
 		if (from.distanceTo(position()) < (getCaster().isPresent() && getCaster().get() instanceof LunarMonstrosity monstrosity ? monstrosity.getBbHeight() : 3)) {
 			Vec3 delta = endPos.subtract(from);
