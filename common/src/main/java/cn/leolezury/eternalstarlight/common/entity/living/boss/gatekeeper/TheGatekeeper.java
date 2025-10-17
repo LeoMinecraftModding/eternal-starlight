@@ -255,6 +255,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	@Nullable
+	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
 		spawnGroupData = super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
 		RandomSource randomSource = serverLevelAccessor.getRandom();
@@ -521,10 +522,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 		refreshDimensions();
 		if (!level().isClientSide) {
-			if (isAlive() && (getTarget() == null || !getTarget().isAlive())) {
+			if (tickCount > 5 && isAlive() && isActivated() && (getTarget() == null || !getTarget().isAlive())) {
 				noTargetTime++;
 				if (getFightTarget().isEmpty() || noTargetTime > 200) {
 					abortFight();
+					noTargetTime = 0;
 				}
 			}
 			if (restockCooldown > 0) {

@@ -23,17 +23,22 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +118,14 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 			.define(ACTIVATED, true);
 	}
 
+	@Nullable
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
+		spawnGroupData = super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
+		initializeBossOnFirstSpawn();
+		return spawnGroupData;
+	}
+
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
@@ -181,6 +194,13 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		initialPos = GlobalVec3.of(level().dimension(), position());
 	}
 
+	public void initializeBossOnFirstSpawn() {
+		if (!spawned) {
+			initializeBoss();
+			spawned = true;
+		}
+	}
+
 	public boolean shouldPlayBossMusic() {
 		return isAlive() && getBossMusic() != null;
 	}
@@ -242,10 +262,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	public void tick() {
 		super.tick();
 		if (!level().isClientSide) {
-			if (!spawned) {
-				initializeBoss();
-				spawned = true;
-			}
+			initializeBossOnFirstSpawn();
 			if (!canBossMove() && level().dimension() == initialPos.dimension()) {
 				setPos(initialPos.pos().x, position().y, initialPos.pos().z);
 			}
