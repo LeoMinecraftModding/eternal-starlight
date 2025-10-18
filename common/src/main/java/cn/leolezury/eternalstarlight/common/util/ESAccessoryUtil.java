@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+import cn.leolezury.eternalstarlight.common.item.component.ItemStackList;
 import cn.leolezury.eternalstarlight.common.item.misc.Accessory;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import net.minecraft.core.component.DataComponents;
@@ -56,7 +57,7 @@ public class ESAccessoryUtil {
 		equipmentStack.set(DataComponents.ATTRIBUTE_MODIFIERS, builder.build());
 		List<ItemStack> accessories = new ArrayList<>(equipmentStack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of()));
 		accessories.add(accessoryStack.copyWithCount(1));
-		equipmentStack.set(ESDataComponents.ACCESSORIES.get(), Collections.unmodifiableList(accessories));
+		equipmentStack.set(ESDataComponents.ACCESSORIES.get(), new ItemStackList(Collections.unmodifiableList(accessories)));
 	}
 
 	public static void removeAccessory(ItemStack equipmentStack, ItemStack accessoryStack) {
@@ -68,7 +69,7 @@ public class ESAccessoryUtil {
 		equipmentStack.set(DataComponents.ATTRIBUTE_MODIFIERS, new ItemAttributeModifiers(Collections.unmodifiableList(entries), modifiers.showInTooltip()));
 		List<ItemStack> accessories = new ArrayList<>(equipmentStack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of()));
 		accessories.removeIf(stack -> stack.getItem() == accessoryStack.getItem());
-		equipmentStack.set(ESDataComponents.ACCESSORIES.get(), Collections.unmodifiableList(accessories));
+		equipmentStack.set(ESDataComponents.ACCESSORIES.get(), new ItemStackList(Collections.unmodifiableList(accessories)));
 	}
 
 	public static boolean overrideEquipmentOnAccessory(ItemStack stack, Slot slot, ClickAction action, Player player) {

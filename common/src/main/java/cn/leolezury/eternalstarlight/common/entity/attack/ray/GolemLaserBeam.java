@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.attack.ray;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemLaserBeamPhase;
+import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.registry.ESSpells;
@@ -43,6 +44,20 @@ public class GolemLaserBeam extends RayAttack {
 				}
 			}
 		}, this::discard);
+	}
+
+	@Override
+	public void addEndParticles(Vec3 endPos) {
+		Vec3 offset = endPos.subtract(position());
+		Vec3 particlePos = position().add(offset.normalize().scale(offset.length() - 0.5));
+		for (int i = 0; i < 3; i++) {
+			level().addParticle(ExplosionShockParticleOptions.ENERGY, particlePos.x, particlePos.y, particlePos.z, (getRandom().nextDouble() - 0.5) * 0.2, (getRandom().nextDouble() - 0.5) * 0.2, (getRandom().nextDouble() - 0.5) * 0.2);
+		}
+	}
+
+	@Override
+	public boolean shouldRender(double x, double y, double z) {
+		return this.shouldRenderAtSqrDistance(distanceToSqr(x, y, z) / 16);
 	}
 
 	@Override

@@ -1519,16 +1519,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.STARFIRE_SHOVEL.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_SCYTHE.get(), RecipeCategory.COMBAT, ESItems.STARFIRE_SCYTHE.get());
 		starfireSmithing(recipeOutput, ESItems.THERMAL_SPRINGSTONE_HAMMER.get(), RecipeCategory.COMBAT, ESItems.STARFIRE_HAMMER.get());
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.STARFIRE_CROSSBOW.get())
-			.pattern("#&#")
-			.pattern("~$~")
-			.pattern(" # ")
-			.define('~', Items.STRING)
-			.define('#', Tags.Items.RODS_WOODEN)
-			.define('&', ESItems.STARFIRE.get())
-			.define('$', Items.TRIPWIRE_HOOK)
-			.unlockedBy("has_item", has(ESItems.STARFIRE.get()))
-			.save(recipeOutput);
+		starfireSmithing(recipeOutput, Items.CROSSBOW, RecipeCategory.COMBAT, ESItems.STARFIRE_CROSSBOW.get());
 
 		addSmelt(recipeOutput, 200, ESItems.RAW_FLOWGLAZE.get(), ESItems.FLOWGLAZE.get(), ESItems.RAW_FLOWGLAZE.get());
 		addBlast(recipeOutput, 100, ESItems.RAW_FLOWGLAZE.get(), ESItems.FLOWGLAZE.get(), ESItems.RAW_FLOWGLAZE.get());
@@ -1546,14 +1537,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SHOVEL.get(), RecipeCategory.TOOLS, ESItems.FLOWGLAZE_SHOVEL.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SCYTHE.get(), RecipeCategory.COMBAT, ESItems.FLOWGLAZE_SCYTHE.get());
 		flowglazeSmithing(recipeOutput, ESItems.GLACITE_SHIELD.get(), RecipeCategory.COMBAT, ESItems.FLOWGLAZE_SHIELD.get());
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FLOWGLAZE_BOW.get())
-			.pattern(" FS")
-			.pattern("F S")
-			.pattern(" FS")
-			.define('S', Items.STRING)
-			.define('F', ESItems.FLOWGLAZE.get())
-			.unlockedBy("has_item", has(ESItems.FLOWGLAZE.get()))
-			.save(recipeOutput);
+		flowglazeSmithing(recipeOutput, Items.BOW, RecipeCategory.COMBAT, ESItems.FLOWGLAZE_BOW.get());
 	}
 
 	protected final void addStarfireBirdAviary(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {

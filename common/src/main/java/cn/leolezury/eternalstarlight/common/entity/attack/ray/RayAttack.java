@@ -173,7 +173,7 @@ public class RayAttack extends Entity implements TraceableEntity {
 
 	public void doHurtTarget(LivingEntity target) {
 		getCaster().ifPresent(caster -> {
-			if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.LASER, this, caster), getAttackDamage())) {
+			if (ESEntityUtil.shouldHarm(caster, target) && target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.LASER, this, caster), getAttackDamage())) {
 				target.setRemainingFireTicks(Math.max(target.getRemainingFireTicks(), 100));
 			}
 		});

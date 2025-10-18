@@ -30,9 +30,10 @@ public class ThrownEnergyBoomerang extends ThrownBoomerang {
 		super.doPostHurtEffects(livingEntity);
 		Entity owner = getOwner();
 		ItemStack weapon = getWeaponItem();
+		livingEntity.igniteForSeconds(2);
 		if ((owner == null || weapon == null || !SpecialItemCooldown.isOnCooldown(owner, weapon.getItem())) && level() instanceof ServerLevel serverLevel) {
 			for (LivingEntity living : level().getEntitiesOfClass(LivingEntity.class, livingEntity.getBoundingBox().inflate(2))) {
-				if (ESEntityUtil.shouldHarm(getOwner(), living)) {
+				if (ESEntityUtil.shouldHarm(getOwner(), living) && living != livingEntity) {
 					living.invulnerableTime = 0;
 					if (living.hurt(damageSources().thrown(this, getOwner()), 8)) {
 						living.igniteForSeconds(2);

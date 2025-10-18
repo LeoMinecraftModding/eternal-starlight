@@ -27,19 +27,19 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 		tag(DamageTypeTags.BYPASSES_ARMOR)
 			.add(
 				ESDamageTypes.ETHER,
-				ESDamageTypes.CRYSTALLINE_INFECTION,
+				ESDamageTypes.CRYSTAL_INFECTION,
 				ESDamageTypes.SOUL_ABSORB
 			);
 		tag(DamageTypeTags.BYPASSES_ENCHANTMENTS)
 			.add(
 				ESDamageTypes.ETHER,
-				ESDamageTypes.CRYSTALLINE_INFECTION,
+				ESDamageTypes.CRYSTAL_INFECTION,
 				ESDamageTypes.SOUL_ABSORB
 			);
 		tag(DamageTypeTags.BYPASSES_SHIELD)
 			.add(
 				ESDamageTypes.ETHER,
-				ESDamageTypes.CRYSTALLINE_INFECTION,
+				ESDamageTypes.CRYSTAL_INFECTION,
 				ESDamageTypes.SONAR,
 				ESDamageTypes.SOUL_ABSORB,
 				ESDamageTypes.NUMBNESS
@@ -47,7 +47,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 		tag(DamageTypeTags.NO_IMPACT)
 			.add(
 				ESDamageTypes.ETHER,
-				ESDamageTypes.CRYSTALLINE_INFECTION,
+				ESDamageTypes.CRYSTAL_INFECTION,
 				ESDamageTypes.SONAR,
 				ESDamageTypes.DAGGER_OF_HUNGER,
 				ESDamageTypes.SOUL_ABSORB,
@@ -60,7 +60,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 		tag(DamageTypeTags.NO_KNOCKBACK)
 			.add(
 				ESDamageTypes.ETHER,
-				ESDamageTypes.CRYSTALLINE_INFECTION,
+				ESDamageTypes.CRYSTAL_INFECTION,
 				ESDamageTypes.SONAR,
 				ESDamageTypes.DAGGER_OF_HUNGER,
 				ESDamageTypes.SOUL_ABSORB,

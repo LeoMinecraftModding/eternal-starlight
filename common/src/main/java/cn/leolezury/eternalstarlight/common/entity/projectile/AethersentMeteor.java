@@ -103,7 +103,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		setOwner(entity);
 	}
 
-	public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height, boolean onlyHurtEnemy) {
+	public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height) {
 		if (!level.isClientSide) {
 			if (ESDataAttachments.METEOR_COOLDOWN.getData(entity) > 0) {
 				return;

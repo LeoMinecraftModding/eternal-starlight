@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_item": {
+    "has_flowglaze": {
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:starfire"
+            "items": "eternal_starlight:flowglaze"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:starfire_crossbow"
+        "recipe": "eternal_starlight:flowglaze_bow_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_item"
+      "has_flowglaze"
     ]
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:starfire_crossbow"
+      "eternal_starlight:flowglaze_bow_smithing"
     ]
   }
 }

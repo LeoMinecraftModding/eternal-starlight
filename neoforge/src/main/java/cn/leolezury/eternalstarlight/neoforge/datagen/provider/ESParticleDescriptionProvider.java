@@ -36,7 +36,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		sprite(ESParticles.AETHERSENT_SMOKE.get(), loc("big_smoke_3"));
 		spriteSet(ESParticles.ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);
 		spriteSet(ESParticles.ORBITAL_ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);
-		sprite(ESParticles.EXPLOSION_SHOCK.get(), loc("explosion_shock"));
+		sprite(ESParticles.EXPLOSION_SHOCK.get(), loc("blank"));
 		spriteSet(ESParticles.ROOKFISH_INK.get(), mcLoc("generic"), 8, true);
 		sprite(ESParticles.AMARAMBER_WAX_ON.get(), loc("amaramber_wax_on"));
 		sprite(ESParticles.DRIPPING_MUD.get(), mcLoc("drip_hang"));
@@ -46,6 +46,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.PUNGENCY_FRUIT_SMOKE.get(), mcLoc("generic"), 8, true);
 		spriteSet(ESParticles.STARFIRE_EXPLOSION.get(), loc("starfire_explosion"), 5, false);
 		spriteSet(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), loc("starfire_explosion_small"), 6, false);
+		spriteSet(ESParticles.BIG_EXPLOSION.get(), loc("explosion"), 16, false);
 		sprite(ESParticles.STARFIRE.get(), loc("starfire"));
 		sprite(ESParticles.ADVANCED_GLOW.get(), loc("glow"));
 		sprite(ESParticles.SHINE.get(), loc("shine"));

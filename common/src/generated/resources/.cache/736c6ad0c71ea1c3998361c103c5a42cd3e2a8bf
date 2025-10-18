@@ -1,10 +1,10 @@
-// 1.21.1	2025-10-01T13:31:23.1526269	Tags for minecraft:damage_type mod id eternal_starlight
+// 1.21.1	2025-10-18T19:21:17.2468325	Tags for minecraft:damage_type mod id eternal_starlight
 c5b6dc02a45138f7b0c041d4eacf045f726aa3bf data/eternal_starlight/tags/damage_type/bypasses_crescent_pendant.json
 7ec4ef987458f2a35edd11d2a66197a43bd2aebd data/minecraft/tags/damage_type/always_kills_armor_stands.json
-a0b51b35c521cfc43a3e190559294da93287ea1c data/minecraft/tags/damage_type/bypasses_armor.json
-a0b51b35c521cfc43a3e190559294da93287ea1c data/minecraft/tags/damage_type/bypasses_enchantments.json
-d333f8a27770a4899d30e37fcbfea67b43629c90 data/minecraft/tags/damage_type/bypasses_shield.json
+85248d25bce7a37a7f802d7e80e25b2be610c3e6 data/minecraft/tags/damage_type/bypasses_armor.json
+85248d25bce7a37a7f802d7e80e25b2be610c3e6 data/minecraft/tags/damage_type/bypasses_enchantments.json
+2dd4f7bbb67237eca188c0f7d81f0768445e1997 data/minecraft/tags/damage_type/bypasses_shield.json
 80cdd122fa9f7fc66afd12460ba25e9a11aef5bb data/minecraft/tags/damage_type/is_projectile.json
-4b0fb15669d6f3058f9dda751f9d7448660e46fe data/minecraft/tags/damage_type/no_impact.json
-4b0fb15669d6f3058f9dda751f9d7448660e46fe data/minecraft/tags/damage_type/no_knockback.json
+c3f44a4fc41a8c4e3b30a504762393b6755cb109 data/minecraft/tags/damage_type/no_impact.json
+c3f44a4fc41a8c4e3b30a504762393b6755cb109 data/minecraft/tags/damage_type/no_knockback.json
 ba76178b8f2b04fa7475bb09dfd1560cc57501b2 data/minecraft/tags/damage_type/panic_causes.json

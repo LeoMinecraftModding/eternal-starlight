@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.effect.CrystallineInfectionEffect;
+import cn.leolezury.eternalstarlight.common.effect.CrystalInfectionEffect;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
@@ -55,7 +55,7 @@ public abstract class EntityRenderDispatcherMixin {
 	private <E extends Entity> void render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
 		if (entity instanceof LivingEntity living && !living.isDeadOrDying()) {
 			AttributeInstance instance = living.getAttribute(Attributes.ARMOR);
-			if (instance != null && instance.hasModifier(CrystallineInfectionEffect.ARMOR_MODIFIER_ID)) {
+			if (instance != null && instance.hasModifier(CrystalInfectionEffect.ARMOR_MODIFIER_ID)) {
 				EntityRenderer<? super E> entityRenderer = getRenderer(living);
 
 				Vec3 renderOffset = entityRenderer.getRenderOffset(entity, yRot);

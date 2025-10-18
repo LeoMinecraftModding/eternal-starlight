@@ -361,7 +361,7 @@ public class CommonHandlers {
 		if (meteorChance != null && entity.getRandom().nextDouble() < meteorChance.getValue()) {
 			if (source.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
 				Vec3 location = livingEntity.position();
-				AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200, true);
+				AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 200);
 			}
 		}
 
@@ -785,13 +785,13 @@ public class CommonHandlers {
 				}
 				if (result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
 					int level = 0;
-					if (living.hasEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder())) {
-						MobEffectInstance instance = living.getEffect(ESMobEffects.CRYSTALLINE_INFECTION.asHolder());
+					if (living.hasEffect(ESMobEffects.CRYSTAL_INFECTION.asHolder())) {
+						MobEffectInstance instance = living.getEffect(ESMobEffects.CRYSTAL_INFECTION.asHolder());
 						if (instance != null) {
 							level = Math.min(instance.getAmplifier() + 1, 4);
 						}
 					}
-					living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.asHolder(), 200, level));
+					living.addEffect(new MobEffectInstance(ESMobEffects.CRYSTAL_INFECTION.asHolder(), 200, level));
 				}
 			}
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(MECHANICAL_ARROW) && result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
@@ -811,7 +811,7 @@ public class CommonHandlers {
 			}
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(STARFALL_ARROW) && projectile.getOwner() instanceof LivingEntity owner) {
 				Vec3 location = result.getLocation();
-				AethersentMeteor.createMeteorShower(serverLevel, owner, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200, false);
+				AethersentMeteor.createMeteorShower(serverLevel, owner, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200);
 			}
 		}
 	}

@@ -88,7 +88,7 @@ public class DryingRackBlock extends BaseEntityBlock {
 					stack.consume(1, player);
 				}
 				return ItemInteractionResult.sidedSuccess(level.isClientSide);
-			} else if (!entity.getItem().isEmpty() && ItemStack.isSameItemSameComponents(entity.getItem(), stack)) {
+			} else if (!entity.getItem().isEmpty() && (ItemStack.isSameItemSameComponents(entity.getItem(), stack) || stack.isEmpty())) {
 				int mergedCount = entity.getItem().getCount() + stack.getCount();
 				int maxSize = stack.getMaxStackSize();
 				if (!level.isClientSide) {

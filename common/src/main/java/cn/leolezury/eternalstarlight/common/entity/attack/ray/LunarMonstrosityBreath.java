@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosityToxicBreathPhase;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -33,7 +34,7 @@ public class LunarMonstrosityBreath extends RayAttack {
 	@Override
 	public void doHurtTarget(LivingEntity target) {
 		getCaster().ifPresent(caster -> {
-			if (caster != target) {
+			if (ESEntityUtil.shouldHarm(caster, target)) {
 				if (target.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, caster), getAttackDamage()) && !target.hasEffect(MobEffects.POISON)) {
 					target.addEffect(new MobEffectInstance(MobEffects.POISON, 60));
 				}

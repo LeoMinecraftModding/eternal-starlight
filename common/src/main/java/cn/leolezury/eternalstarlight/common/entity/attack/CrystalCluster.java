@@ -80,8 +80,8 @@ public class CrystalCluster extends Entity implements TraceableEntity {
 			}
 			if (getSpawnedTicks() > 5 && getOwner() != null) {
 				for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(0.5))) {
-					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity) && livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.CRYSTALLINE_INFECTION, this, getOwner()), 4)) {
-						livingEntity.addEffect(new MobEffectInstance(ESMobEffects.CRYSTALLINE_INFECTION.asHolder(), 120));
+					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity) && livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.CRYSTAL_INFECTION, this, getOwner()), 4)) {
+						livingEntity.addEffect(new MobEffectInstance(ESMobEffects.CRYSTAL_INFECTION.asHolder(), 120));
 					}
 				}
 			}
