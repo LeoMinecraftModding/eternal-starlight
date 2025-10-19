@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.item.misc;
+package cn.leolezury.eternalstarlight.common.item.component;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

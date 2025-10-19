@@ -1,8 +1,12 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
+import cn.leolezury.eternalstarlight.common.item.misc.GalacticQuiverItem;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -57,5 +61,14 @@ public abstract class ItemEntityMixin {
 				}
 			}
 		}
+	}
+
+	@WrapOperation(method = "playerTouch", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;add(Lnet/minecraft/world/item/ItemStack;)Z"))
+	public boolean addToInventory(Inventory instance, ItemStack itemStack, Operation<Boolean> original) {
+		if (itemStack.is(ItemTags.ARROWS)) {
+			boolean arrowSuccess = GalacticQuiverItem.addArrowToInventory(instance, itemStack);
+			return arrowSuccess || original.call(instance, itemStack);
+		}
+		return original.call(instance, itemStack);
 	}
 }

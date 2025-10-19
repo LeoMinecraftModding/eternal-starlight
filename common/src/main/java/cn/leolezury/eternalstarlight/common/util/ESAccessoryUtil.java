@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.item.component.ItemStackList;
-import cn.leolezury.eternalstarlight.common.item.misc.Accessory;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.EquipmentSlot;

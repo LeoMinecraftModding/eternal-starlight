@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-08T20:21:59.554387	Item Models: eternal_starlight
+// 1.21.1	2025-10-19T00:27:29.9103937	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -310,6 +310,8 @@ a20c723b154c13ac836b487946422201b6f5a395 assets/eternal_starlight/models/item/fl
 9b4678b69ab734fd83d4ff61ca8b7e9dd1e459f3 assets/eternal_starlight/models/item/frozen_bomb.json
 64c9d329eda50a9028dea3426fb9c473589f79f9 assets/eternal_starlight/models/item/frozen_tube.json
 86f1fbd39fdd6c755c38649a0f0b0f8ddbecc84b assets/eternal_starlight/models/item/fungus_amulet.json
+01a25e53a7fa5441084e297caba24871362123b7 assets/eternal_starlight/models/item/galactic_quiver.json
+f5570115bede09b1ec2804d5cd40f6e21ef9f35d assets/eternal_starlight/models/item/galactic_quiver_arrows.json
 a6d922f589397263de5cdbe957a7256285610101 assets/eternal_starlight/models/item/glacite.json
 987f2f7e1e64fb4e52c5e95027e16a65e6e76a28 assets/eternal_starlight/models/item/glacite_arrow.json
 99e054290a2fe3c8cd7652c1c69bc7c46301b232 assets/eternal_starlight/models/item/glacite_axe.json

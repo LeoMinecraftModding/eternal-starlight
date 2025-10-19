@@ -18,8 +18,8 @@ import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
+import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
-import cn.leolezury.eternalstarlight.common.item.misc.Accessory;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
@@ -546,36 +546,41 @@ public class CommonHandlers {
 				ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.setData(entity, inAbyssalFireTicks - 1);
 			}
 		}
-		if (!level.isClientSide && entity instanceof AbstractArrow arrow && !arrow.inGround) {
-			if (ESDataAttachments.ARROW_TYPE.getData(arrow).equals(FLOWGLAZE_ARROW)) {
-				float previousExtra = ESDataAttachments.FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE.getData(arrow);
-				if (previousExtra < 3) {
-					arrow.setBaseDamage(arrow.getBaseDamage() + 0.1);
-					ESDataAttachments.FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE.setData(arrow, previousExtra + 0.1f);
-				}
+		if (!level.isClientSide && entity instanceof AbstractArrow arrow) {
+			if (arrow.getPickupItemStackOrigin().has(ESDataComponents.QUIVER_ARROW.get())) {
+				arrow.getPickupItemStackOrigin().remove(ESDataComponents.QUIVER_ARROW.get());
 			}
-			if (ESDataAttachments.ARROW_TYPE.getData(arrow).equals(WILTED_ARROW)) {
-				List<LivingEntity> affected = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(5));
-				affected.removeIf(e -> !ESEntityUtil.shouldHarm(arrow.getOwner(), e));
-				for (LivingEntity living : affected) {
-					living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80));
-					living.addEffect(new MobEffectInstance(MobEffects.WITHER, entity.isInWater() ? 300 : 160));
-				}
-				if (arrow.tickCount % 4 == 0) {
-					for (int i = 0; i < 3; i++) {
-						WiltedPetal petal = arrow.getOwner() instanceof LivingEntity living ? new WiltedPetal(level, living) : new WiltedPetal(ESEntities.WILTED_PETAL.get(), level);
-						petal.setPos(entity.position());
-						Vec3 movement = new Vec3(entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5);
-						if (affected.size() > i) {
-							LivingEntity target = affected.get(i);
-							movement = target.position().add(0, target.getBbHeight() / 2, 0).subtract(entity.position());
-						}
-						petal.shoot(movement.x, movement.y, movement.z, 0.8f, 0.2f);
-						level.addFreshEntity(petal);
+			if (!arrow.inGround) {
+				if (ESDataAttachments.ARROW_TYPE.getData(arrow).equals(FLOWGLAZE_ARROW)) {
+					float previousExtra = ESDataAttachments.FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE.getData(arrow);
+					if (previousExtra < 3) {
+						arrow.setBaseDamage(arrow.getBaseDamage() + 0.1);
+						ESDataAttachments.FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE.setData(arrow, previousExtra + 0.1f);
 					}
 				}
-				if (level instanceof ServerLevel serverLevel) {
-					serverLevel.sendParticles(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, FastColor.ARGB32.color(96, 0x90003b)), entity.getX(), entity.getY(), entity.getZ(), 6, 2, 2, 2, 0.2);
+				if (ESDataAttachments.ARROW_TYPE.getData(arrow).equals(WILTED_ARROW)) {
+					List<LivingEntity> affected = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(5));
+					affected.removeIf(e -> !ESEntityUtil.shouldHarm(arrow.getOwner(), e));
+					for (LivingEntity living : affected) {
+						living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80));
+						living.addEffect(new MobEffectInstance(MobEffects.WITHER, entity.isInWater() ? 300 : 160));
+					}
+					if (arrow.tickCount % 4 == 0) {
+						for (int i = 0; i < 3; i++) {
+							WiltedPetal petal = arrow.getOwner() instanceof LivingEntity living ? new WiltedPetal(level, living) : new WiltedPetal(ESEntities.WILTED_PETAL.get(), level);
+							petal.setPos(entity.position());
+							Vec3 movement = new Vec3(entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5, entity.getRandom().nextFloat() - 0.5);
+							if (affected.size() > i) {
+								LivingEntity target = affected.get(i);
+								movement = target.position().add(0, target.getBbHeight() / 2, 0).subtract(entity.position());
+							}
+							petal.shoot(movement.x, movement.y, movement.z, 0.8f, 0.2f);
+							level.addFreshEntity(petal);
+						}
+					}
+					if (level instanceof ServerLevel serverLevel) {
+						serverLevel.sendParticles(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, FastColor.ARGB32.color(96, 0x90003b)), entity.getX(), entity.getY(), entity.getZ(), 6, 2, 2, 2, 0.2);
+					}
 				}
 			}
 		}
@@ -592,6 +597,12 @@ public class CommonHandlers {
 				}
 				if (ESAccessoryUtil.getActiveAccessoriesOnArmors(player).contains(ESItems.PEARL_NECKLACE.get()) && !player.isEyeInFluid(FluidTags.WATER)) {
 					player.setAirSupply(player.getMaxAirSupply());
+				}
+				Inventory inventory = player.getInventory();
+				for (int i = 0; i < inventory.getContainerSize(); i++) {
+					if (inventory.getItem(i).has(ESDataComponents.QUIVER_ARROW.get())) {
+						inventory.getItem(i).remove(ESDataComponents.QUIVER_ARROW.get());
+					}
 				}
 				if (player.getMainHandItem().is(ESItems.GRAVITY_PICKAXE.get()) || player.getOffhandItem().is(ESItems.GRAVITY_PICKAXE.get())) {
 					for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, player.getBoundingBox().inflate(5))) {
@@ -754,6 +765,7 @@ public class CommonHandlers {
 	public static void onProjectileImpact(Projectile projectile, HitResult result) {
 		if (projectile.level() instanceof ServerLevel serverLevel) {
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(STARFIRE_ARROW)) {
+				ESDataAttachments.ARROW_TYPE.setData(projectile, "");
 				ThrownStarfire.createExplosionParticles(serverLevel, projectile.position(), 10, 0.25);
 				for (LivingEntity living : projectile.level().getEntitiesOfClass(LivingEntity.class, projectile.getBoundingBox().inflate(3))) {
 					if (ESEntityUtil.shouldHarm(projectile.getOwner(), living)) {
@@ -762,6 +774,7 @@ public class CommonHandlers {
 				}
 			}
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(CRYSTAL_ARROW)) {
+				ESDataAttachments.ARROW_TYPE.setData(projectile, "");
 				for (int i = 0; i < 5; i++) {
 					Vec3 pos = projectile.position().offsetRandom(projectile.getRandom(), 4);
 					BlockPos startPos = BlockPos.containing(pos);
@@ -795,6 +808,7 @@ public class CommonHandlers {
 				}
 			}
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(MECHANICAL_ARROW) && result.getType() == HitResult.Type.ENTITY && result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
+				ESDataAttachments.ARROW_TYPE.setData(projectile, "");
 				Entity owner = projectile.getOwner();
 				ItemStack weapon = projectile.getWeaponItem();
 				if (owner instanceof LivingEntity attacker && weapon != null && !SpecialItemCooldown.isOnCooldown(owner, weapon.getItem())) {
@@ -810,6 +824,7 @@ public class CommonHandlers {
 				}
 			}
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(STARFALL_ARROW) && projectile.getOwner() instanceof LivingEntity owner) {
+				ESDataAttachments.ARROW_TYPE.setData(projectile, "");
 				Vec3 location = result.getLocation();
 				AethersentMeteor.createMeteorShower(serverLevel, owner, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 200);
 			}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": {
+      "item": "eternal_starlight:creteor_hide"
+    }
+  },
+  "pattern": [
+    "H H",
+    " H "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:galactic_quiver"
+  }
+}

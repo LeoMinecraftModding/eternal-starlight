@@ -1,10 +1,13 @@
 package cn.leolezury.eternalstarlight.fabric.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.gui.tooltip.ClientGalacticQuiverTooltip;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESSkyRenderer;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.item.component.LargeItemStackList;
+import cn.leolezury.eternalstarlight.common.item.tooltip.GalacticQuiverTooltipComponent;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -62,6 +65,12 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 		ClientSetupHandlers.addClientReloadListeners(listener -> ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener((IdentifiableResourceReloadListener) listener));
 		LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, livingEntityRenderer, registrationHelper, context) -> ClientSetupHandlers.onRenderLayerAttachment(entityType, livingEntityRenderer, context));
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ClientHandlers.onAfterRenderEntities(context.consumers(), context.matrixStack(), context.tickCounter().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())));
+		TooltipComponentCallback.EVENT.register(tooltipComponent -> {
+			if (tooltipComponent instanceof GalacticQuiverTooltipComponent(LargeItemStackList contents)) {
+				return new ClientGalacticQuiverTooltip(contents);
+			}
+			return null;
+		});
 
 		for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT_MIPPED) {
 			BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutoutMipped());

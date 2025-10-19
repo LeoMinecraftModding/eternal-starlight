@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.recipe;
 
-import cn.leolezury.eternalstarlight.common.item.misc.Accessory;
+import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipeSerializers;
 import cn.leolezury.eternalstarlight.common.util.ESAccessoryUtil;

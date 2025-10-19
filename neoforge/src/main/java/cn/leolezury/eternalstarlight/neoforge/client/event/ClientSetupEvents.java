@@ -1,11 +1,13 @@
 package cn.leolezury.eternalstarlight.neoforge.client.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.gui.tooltip.ClientGalacticQuiverTooltip;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.StarlitDiamondArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
+import cn.leolezury.eternalstarlight.common.item.tooltip.GalacticQuiverTooltipComponent;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.neoforge.client.renderer.ForgeItemStackRenderer;
@@ -253,5 +255,10 @@ public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void onAddReloadListener(RegisterClientReloadListenersEvent event) {
 		ClientSetupHandlers.addClientReloadListeners(event::registerReloadListener);
+	}
+
+	@SubscribeEvent
+	private static void onRegisterClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
+		event.register(GalacticQuiverTooltipComponent.class, component -> new ClientGalacticQuiverTooltip(component.contents()));
 	}
 }

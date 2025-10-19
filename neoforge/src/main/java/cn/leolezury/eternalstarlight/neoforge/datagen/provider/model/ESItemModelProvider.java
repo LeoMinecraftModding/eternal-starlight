@@ -567,6 +567,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.AETHERSENT_CAPE.get());
 		basicItem(ESItems.AETHERSENT_BOTTOMS.get());
 		basicItem(ESItems.AETHERSENT_BOOTS.get());
+		galacticQuiver(ESItems.GALACTIC_QUIVER.get());
 		basicItem(ESItems.AETHERSTRIKE_ROCKET.get());
 
 		block(ESItems.SPRINGSTONE.get());
@@ -1077,6 +1078,14 @@ public class ESItemModelProvider extends ItemModelProvider {
 		withExistingParent(name(item), "item/handheld")
 			.texture("layer0", itemTexture(item))
 			.override().predicate(EternalStarlight.id("no_blade"), 1).model(noBladeModel).end();
+	}
+
+	private void galacticQuiver(Item item) {
+		ModelFile arrowsModel = withExistingParent(name(item) + "_arrows", "item/generated")
+			.texture("layer0", itemTexture(item).withSuffix("_arrows"));
+		withExistingParent(name(item), "item/generated")
+			.texture("layer0", itemTexture(item))
+			.override().predicate(EternalStarlight.id("arrows"), 1).model(arrowsModel).end();
 	}
 
 	private void daggerOfHunger(Item item) {

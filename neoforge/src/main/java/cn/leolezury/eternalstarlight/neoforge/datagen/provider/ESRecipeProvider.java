@@ -1383,6 +1383,12 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_AETHERSENT))
 			.save(recipeOutput);
 		addSword(recipeOutput, ESItems.RAGE_OF_STARS.get(), ESConventionalTags.Items.INGOTS_AETHERSENT);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.GALACTIC_QUIVER.get())
+			.pattern("H H")
+			.pattern(" H ")
+			.define('H', ESItems.CRETEOR_HIDE.get())
+			.unlockedBy("has_item", has(ESItems.CRETEOR_HIDE.get()))
+			.save(recipeOutput);
 		addShapeless(recipeOutput, RecipeCategory.MISC, ESItems.CRETEOR_HIDE.get(), ESItems.AETHERSTRIKE_ROCKET.get(), 1, ESItems.CRETEOR_HIDE.get(), ESItems.ATALPHAITE.get(), Items.PAPER);
 	}
 

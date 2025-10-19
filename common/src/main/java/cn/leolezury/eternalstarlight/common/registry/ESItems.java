@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.AirSacArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.SwampSilverArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.*;
+import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.item.magic.LivingArmItem;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.item.misc.*;
@@ -622,6 +623,7 @@ public class ESItems {
 		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(45))));
 	public static final RegistryObject<Item, Item> AETHERSENT_BOOTS = registerItem("aethersent_boots",
 		() -> new AethersentArmorItem(ESArmorMaterials.AETHERSENT.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(45))));
+	public static final RegistryObject<Item, Item> GALACTIC_QUIVER = registerItem("galactic_quiver", () -> new GalacticQuiverItem(new Item.Properties().fireResistant().stacksTo(1)));
 	public static final RegistryObject<Item, Item> AETHERSTRIKE_ROCKET = registerItem("aetherstrike_rocket", () -> new AetherstrikeRocketItem(new Item.Properties()));
 
 	// thermal springstone

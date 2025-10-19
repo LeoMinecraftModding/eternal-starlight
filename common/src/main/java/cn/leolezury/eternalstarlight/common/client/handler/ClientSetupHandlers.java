@@ -30,6 +30,7 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.combat.ChainOfSoulsItem;
 import cn.leolezury.eternalstarlight.common.item.combat.ShatteredSwordItem;
+import cn.leolezury.eternalstarlight.common.item.misc.GalacticQuiverItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import com.mojang.blaze3d.platform.InputConstants;
@@ -457,6 +458,8 @@ public class ClientSetupHandlers {
 			}
 		});
 		ItemProperties.register(ESItems.STARFALL_LONGBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.GALACTIC_QUIVER.get(), EternalStarlight.id("arrows"), (stack, level, entity, i) -> GalacticQuiverItem.hasArrows(stack) ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.GLACITE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
