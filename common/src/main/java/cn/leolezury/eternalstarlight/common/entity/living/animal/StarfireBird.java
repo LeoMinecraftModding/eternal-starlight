@@ -543,6 +543,10 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 			if (nestDestroyedTicks > 600) {
 				nestPos = null;
 			}
+			stayOutOfNestTicks--;
+			if (stayOutOfNestTicks < 0) {
+				stayOutOfNestTicks = 0;
+			}
 			if (nestPos == null && tickCount % 20 == 0 && !isBaby() && level() instanceof ServerLevel serverLevel) {
 				PoiManager poiManager = serverLevel.getPoiManager();
 				List<BlockPos> availableNests = poiManager

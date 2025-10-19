@@ -27,7 +27,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GalacticQuiverItem extends Item {
-	private static final int MAX_ARROWS = 640;
+	private static final int MAX_ARROWS = 512;
 
 	public GalacticQuiverItem(Properties properties) {
 		super(properties);
