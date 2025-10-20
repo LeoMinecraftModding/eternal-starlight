@@ -252,6 +252,10 @@ public class CommonHandlers {
 		if (activeAccessories.contains(ESItems.CRESCENT_PENDANT.get()) && !source.is(ESTags.DamageTypes.BYPASSES_CRESCENT_PENDANT) && modified > entity.getMaxHealth() * 0.75f) {
 			modified = entity.getMaxHealth() * 0.75f;
 		}
+		if (entity.hasEffect(ESMobEffects.NUMBNESS.asHolder())) {
+			ESDataAttachments.NUMBNESS_DAMAGE.setData(entity, ESDataAttachments.NUMBNESS_DAMAGE.getData(entity) + modified * 0.75f);
+			modified *= 0.25f;
+		}
 		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			return Math.max(amount, modified);
 		} else {
@@ -284,10 +288,6 @@ public class CommonHandlers {
 			if (resistance != null) {
 				modified *= (1 - (float) resistance.getValue());
 			}
-		}
-		if (entity.hasEffect(ESMobEffects.NUMBNESS.asHolder())) {
-			ESDataAttachments.NUMBNESS_DAMAGE.setData(entity, ESDataAttachments.NUMBNESS_DAMAGE.getData(entity) + modified * 0.75f);
-			modified *= 0.25f;
 		}
 		if (source.getDirectEntity() instanceof LivingEntity attacker
 			&& attacker.getWeaponItem().is(ESTags.Items.FLOWGLAZE_WEAPONS)
@@ -765,7 +765,9 @@ public class CommonHandlers {
 	public static void onProjectileImpact(Projectile projectile, HitResult result) {
 		if (projectile.level() instanceof ServerLevel serverLevel) {
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(STARFIRE_ARROW)) {
-				ESDataAttachments.ARROW_TYPE.setData(projectile, "");
+				if (result.getType() == HitResult.Type.BLOCK) {
+					ESDataAttachments.ARROW_TYPE.setData(projectile, "");
+				}
 				ThrownStarfire.createExplosionParticles(serverLevel, projectile.position(), 10, 0.25);
 				for (LivingEntity living : projectile.level().getEntitiesOfClass(LivingEntity.class, projectile.getBoundingBox().inflate(3))) {
 					if (ESEntityUtil.shouldHarm(projectile.getOwner(), living)) {
@@ -774,7 +776,9 @@ public class CommonHandlers {
 				}
 			}
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(CRYSTAL_ARROW)) {
-				ESDataAttachments.ARROW_TYPE.setData(projectile, "");
+				if (result.getType() == HitResult.Type.BLOCK) {
+					ESDataAttachments.ARROW_TYPE.setData(projectile, "");
+				}
 				for (int i = 0; i < 5; i++) {
 					Vec3 pos = projectile.position().offsetRandom(projectile.getRandom(), 4);
 					BlockPos startPos = BlockPos.containing(pos);
