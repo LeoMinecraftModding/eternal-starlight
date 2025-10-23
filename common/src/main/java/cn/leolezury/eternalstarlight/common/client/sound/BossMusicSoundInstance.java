@@ -18,6 +18,7 @@ public class BossMusicSoundInstance extends AbstractTickableSoundInstance {
 	public BossMusicSoundInstance(SoundEvent soundEvent, ESBoss boss) {
 		super(soundEvent, SoundSource.MUSIC, SoundInstance.createUnseededRandom());
 		this.boss = boss;
+		this.attenuation = Attenuation.NONE;
 		this.looping = true;
 		this.delay = 0;
 		this.volume = 1f;
@@ -41,6 +42,10 @@ public class BossMusicSoundInstance extends AbstractTickableSoundInstance {
 				ClientHandlers.bossMusicInstance = null;
 			}
 		}
+	}
+
+	public boolean shouldStopMusic(LocalPlayer player) {
+		return !this.boss.isAlive() || this.boss.distanceTo(player) > 160 || !this.boss.shouldPlayBossMusic();
 	}
 
 	@Override

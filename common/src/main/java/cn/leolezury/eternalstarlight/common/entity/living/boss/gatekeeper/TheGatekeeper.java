@@ -3,10 +3,12 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
+import cn.leolezury.eternalstarlight.common.entity.living.npc.trade.SellItemTrade;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
@@ -22,6 +24,8 @@ import net.minecraft.Util;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
@@ -49,12 +53,14 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.Npc;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
@@ -609,6 +615,13 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	protected void addTrades() {
 		MerchantOffers merchantoffers = this.getOffers();
 		this.addTrades(merchantoffers, GatekeeperTrades.TRADES, 50);
+		this.addTrades(merchantoffers, new VillagerTrades.ItemListing[]{
+			new SellItemTrade(Util.make(() -> {
+				ItemStack stack = ESItems.STARLIT_PAINTING.get().getDefaultInstance();
+				stack.set(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(level().registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level().registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.GUARDIAN)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")));
+				return stack;
+			}), new ItemStack(ESItems.STARLIGHT_SILVER_COIN.get(), 10), 10),
+		}, 50);
 	}
 
 	protected void addTrades(MerchantOffers original, VillagerTrades.ItemListing[] newTrades, int maxNumbers) {

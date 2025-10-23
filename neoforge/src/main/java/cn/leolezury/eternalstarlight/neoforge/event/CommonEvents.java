@@ -21,7 +21,6 @@ import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
-import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -51,11 +50,6 @@ public class CommonEvents {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
 			CommonHandlers.onLevelLoad(serverLevel);
 		}
-	}
-
-	@SubscribeEvent
-	private static void onItemTooltip(ItemTooltipEvent event) {
-		CommonHandlers.onItemTooltip(event.getEntity(), event.getFlags(), event.getItemStack(), event.getToolTip(), event.getContext());
 	}
 
 	@SubscribeEvent

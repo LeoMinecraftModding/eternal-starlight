@@ -6,7 +6,6 @@
   "mixins": [
     "AxeItemMixin",
     "EntityMixin",
-    "ItemStackMixin",
     "LiquidBlockMixin",
     "LivingEntityMixin",
     "MobMixin",

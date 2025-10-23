@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-18T19:21:17.2270222	Registries
+// 1.21.1	2025-10-21T20:51:52.3515356	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -108,6 +108,7 @@ bcde44abe78eae61278b05ee2902cee21b8a3271 data/eternal_starlight/painting_variant
 bfcfb72a59dc0c63084d17048ca2e3f1ecb27612 data/eternal_starlight/painting_variant/crystalborn.json
 beb367c63c7be2ad43b802a43666a87e832a303d data/eternal_starlight/painting_variant/energized.json
 1a18f74db519aeaf0505865c0fa6225a46dacbcd data/eternal_starlight/painting_variant/energized_special.json
+aeab86e581e44e17acf6d43e03e1fb690c406cf4 data/eternal_starlight/painting_variant/guardian.json
 505358ae1134c9fbbc3a3da65b7e902c797a6115 data/eternal_starlight/painting_variant/hymn_of_the_rats.json
 6fde38bb0ce1ca04751bbe4585084243b8e1c8e9 data/eternal_starlight/painting_variant/insect_specimen.json
 faa4ac655493ac1b20030f84c93702a9a957a475 data/eternal_starlight/painting_variant/monstrous.json

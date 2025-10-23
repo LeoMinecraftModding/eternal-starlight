@@ -74,6 +74,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public AnimationState deathAnimationState = new AnimationState();
 
 	private int attackEnergy;
+	private int lastHurtCount;
 	private int chargeHurtCount;
 	private float chargeHurtAmount;
 	private int lastHurtSound;
@@ -180,7 +181,10 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			if (canHurt() && getBehaviorState() == StarlightGolemChargePhase.ID && !source.is(DamageTypes.FALL) && !source.is(DamageTypes.FREEZE) && source.getEntity() != this) {
 				if (source.getEntity() != null) {
-					chargeHurtCount++;
+					if (tickCount - lastHurtCount > 10) {
+						chargeHurtCount++;
+						lastHurtCount = tickCount;
+					}
 					chargeHurtAmount += amount;
 				}
 			} else {

@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 
 public class ESPaintingVariants {
+	public static final ResourceKey<PaintingVariant> GUARDIAN = create("guardian");
 	public static final ResourceKey<PaintingVariant> ENERGIZED = create("energized");
 	public static final ResourceKey<PaintingVariant> ENERGIZED_SPECIAL = create("energized_special");
 	public static final ResourceKey<PaintingVariant> MONSTROUS = create("monstrous");
@@ -33,6 +34,7 @@ public class ESPaintingVariants {
 	public static final ResourceKey<PaintingVariant> COOLER = create("cooler");
 
 	public static void bootstrap(BootstrapContext<PaintingVariant> context) {
+		register(context, GUARDIAN, 2, 2);
 		register(context, ENERGIZED, 2, 2);
 		register(context, ENERGIZED_SPECIAL, 2, 2);
 		register(context, MONSTROUS, 2, 2);

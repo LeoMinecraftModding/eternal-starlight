@@ -156,7 +156,7 @@ public class ClientHandlers {
 							bossMusicInstance = new BossMusicSoundInstance(boss.getBossMusic(), boss);
 						}
 					} else {
-						if (bossMusicInstance.getBoss().distanceTo(player) > 160 || !bossMusicInstance.getBoss().shouldPlayBossMusic()) {
+						if (bossMusicInstance.shouldStopMusic(player)) {
 							Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
 							bossMusicInstance = null;
 						}
