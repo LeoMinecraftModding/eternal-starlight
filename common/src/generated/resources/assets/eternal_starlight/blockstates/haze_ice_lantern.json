@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "eternal_starlight:block/haze_ice_lantern"
+    },
+    "hanging=true": {
+      "model": "eternal_starlight:block/haze_ice_lantern_hanging"
+    }
+  }
+}

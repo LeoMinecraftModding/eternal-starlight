@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "eternal_starlight:red_starlight_crystal_shard"
+    },
+    "T": {
+      "item": "minecraft:torch"
+    }
+  },
+  "pattern": [
+    " S ",
+    "STS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:red_starlight_crystal_lantern"
+  }
+}

@@ -778,6 +778,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICKS.get());
 		addSlab(recipeOutput, ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICKS.get(), 2);
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESItems.ETERNAL_ICE_LANTERN.get())
+			.pattern(" I ")
+			.pattern("ITI")
+			.pattern(" I ")
+			.define('I', ESBlocks.ETERNAL_ICE.get())
+			.define('T', Items.TORCH)
+			.unlockedBy("has_item", has(ESBlocks.ETERNAL_ICE.get()))
+			.save(recipeOutput);
 
 		addStoneCompress(recipeOutput, ESBlocks.HAZE_ICE_BRICKS.get(), ESBlocks.HAZE_ICE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.HAZE_ICE_BRICKS.get(), ESBlocks.HAZE_ICE.get());
@@ -788,6 +796,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.HAZE_ICE_BRICK_STAIRS.get(), ESBlocks.HAZE_ICE_BRICKS.get());
 		addSlab(recipeOutput, ESBlocks.HAZE_ICE_BRICK_SLAB.get(), ESBlocks.HAZE_ICE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.HAZE_ICE_BRICK_SLAB.get(), ESBlocks.HAZE_ICE_BRICKS.get(), 2);
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESItems.HAZE_ICE_LANTERN.get())
+			.pattern(" I ")
+			.pattern("ITI")
+			.pattern(" I ")
+			.define('I', ESBlocks.HAZE_ICE.get())
+			.define('T', Items.TORCH)
+			.unlockedBy("has_item", has(ESBlocks.HAZE_ICE.get()))
+			.save(recipeOutput);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.NEBULAITE.get(), 4)
 			.pattern("$#")
@@ -1030,6 +1046,23 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICKS.get(), 2);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.RED_STARLIGHT_CRYSTAL_LANTERN.get())
+			.pattern(" S ")
+			.pattern("STS")
+			.pattern(" S ")
+			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('T', Items.TORCH)
+			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESItems.BLUE_STARLIGHT_CRYSTAL_LANTERN.get())
+			.pattern(" S ")
+			.pattern("STS")
+			.pattern(" S ")
+			.define('S', ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('T', Items.TORCH)
+			.unlockedBy("has_item", has(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()))
+			.save(recipeOutput);
+
 		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SPRINGSTONE_WALL.get(), ESBlocks.SPRINGSTONE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SPRINGSTONE_WALL.get(), ESBlocks.SPRINGSTONE.get());
 		addStairs(recipeOutput, ESBlocks.SPRINGSTONE_STAIRS.get(), ESBlocks.SPRINGSTONE.get());
@@ -1076,6 +1109,15 @@ public class ESRecipeProvider extends RecipeProvider {
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.THERMAL_SPRINGSTONE_BRICK_STAIRS.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get());
 		addSlab(recipeOutput, ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.THERMAL_SPRINGSTONE_BRICK_SLAB.get(), ESBlocks.THERMAL_SPRINGSTONE_BRICKS.get(), 2);
+
+		grate(recipeOutput, ESBlocks.SWAMP_SILVER_GRATE.get(), ESBlocks.SWAMP_SILVER_BLOCK.get());
+		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.SWAMP_SILVER_GRATE.get(), ESBlocks.SWAMP_SILVER_BLOCK.get(), 4);
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.SWAMP_SILVER_BARS.get(), 16)
+			.pattern("###")
+			.pattern("###")
+			.define('#', ESItems.SWAMP_SILVER_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.SWAMP_SILVER_INGOT.get()))
+			.save(recipeOutput);
 
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE.get(), ESBlocks.FLOWGLAZE_BRICKS.get(), 8, ESBlocks.FLOWGLAZE.get(), ESBlocks.FLOWGLAZE.get(), ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.GRIMSTONE_BRICKS.get());
 		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE_BRICK_WALL.get(), ESBlocks.FLOWGLAZE_BRICKS.get());
@@ -1463,6 +1505,8 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSickle(recipeOutput, ESItems.MALARITE_SICKLE.get(), ESConventionalTags.Items.GEMS_MALARITE);
 		addSword(recipeOutput, ESItems.MALARITE_SWORD.get(), ESConventionalTags.Items.GEMS_MALARITE);
 		addSpear(recipeOutput, ESItems.MALARITE_SPEAR.get(), ESConventionalTags.Items.GEMS_MALARITE);
+		addSmelt(recipeOutput, 200, ESItems.NIGHTFALL_MUD_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.NIGHTFALL_MUD_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.GRIMSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.GRIMSTONE_MALARITE_ORE.get());
 		addBlast(recipeOutput, 100, ESItems.GRIMSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.GRIMSTONE_MALARITE_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.VOIDSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.VOIDSTONE_MALARITE_ORE.get());

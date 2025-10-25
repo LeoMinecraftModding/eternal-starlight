@@ -254,11 +254,13 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.ETERNAL_ICE_BRICK_SLAB.get());
 		block(ESItems.ETERNAL_ICE_BRICK_STAIRS.get());
 		wall(ESItems.ETERNAL_ICE_BRICK_WALL.get(), ESItems.ETERNAL_ICE_BRICKS.get());
+		basicItem(ESItems.ETERNAL_ICE_LANTERN.get());
 		block(ESItems.HAZE_ICE.get());
 		block(ESItems.HAZE_ICE_BRICKS.get());
 		block(ESItems.HAZE_ICE_BRICK_SLAB.get());
 		block(ESItems.HAZE_ICE_BRICK_STAIRS.get());
 		wall(ESItems.HAZE_ICE_BRICK_WALL.get(), ESItems.HAZE_ICE_BRICKS.get());
+		basicItem(ESItems.HAZE_ICE_LANTERN.get());
 		basicItem(ESItems.ICICLE.get(), blockTextureFromItem(ESItems.ICICLE.get()).withSuffix("_tip"));
 		layeredBlock(ESItems.ASHEN_SNOW.get());
 		basicItem(ESItems.ASHEN_SNOWBALL.get());
@@ -466,6 +468,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
 		basicItem(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get());
 		basicItem(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get());
+		block(ESItems.RED_STARLIGHT_CRYSTAL_LANTERN.get());
+		block(ESItems.BLUE_STARLIGHT_CRYSTAL_LANTERN.get());
 		flatBlockTexture(ESItems.DEAD_LUNAR_BUSH.get());
 		flatBlockTexture(ESItems.DESERT_AMETHYSIA.get());
 		flatBlockTexture(ESItems.WITHERED_DESERT_AMETHYSIA.get());
@@ -639,6 +643,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		block(ESItems.SWAMP_SILVER_ORE.get());
 		block(ESItems.SWAMP_SILVER_BLOCK.get());
+		block(ESItems.SWAMP_SILVER_GRATE.get());
+		flatBlockTexture(ESItems.SWAMP_SILVER_BARS.get());
 		basicItem(ESItems.SWAMP_SILVER_INGOT.get());
 		basicItem(ESItems.SWAMP_SILVER_NUGGET.get());
 		handheld(ESItems.SWAMP_SILVER_SWORD.get());
@@ -650,6 +656,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.SWAMP_SILVER_LEGGINGS.get());
 		basicItem(ESItems.SWAMP_SILVER_BOOTS.get());
 
+		block(ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
 		block(ESItems.GRIMSTONE_MALARITE_ORE.get());
 		block(ESItems.VOIDSTONE_MALARITE_ORE.get());
 		block(ESItems.MALARITE_BLOCK.get());

@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-08T20:21:59.5508847	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-10-25T23:20:13.2211189	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -24,7 +24,7 @@ f0bd040a5c70355d46f29d0603177aa652593ce1 data/c/tags/block/dyed/yellow.json
 6c0492001f8571f4726f00e1fa68a49f2b755ea3 data/c/tags/block/gravels.json
 de0fc99543a9ee4a2d785d4e010c691fb98fccfd data/c/tags/block/ores.json
 3f904d94183d2afae7698d7e242281b93273ad37 data/c/tags/block/ores/atalphaite.json
-93d452f437e2bf2303231eb02b53330c81a74824 data/c/tags/block/ores/malarite.json
+d0dd0f1ba2fffc17df62fefb52c49d18c419bf24 data/c/tags/block/ores/malarite.json
 75ac2f95aef85dc0429ab605962ae1464b1d6f28 data/c/tags/block/ores/redstone.json
 4ae824bf159c2223e29a2d0f70fd8e836d42f4df data/c/tags/block/ores/saltpeter.json
 282c38177e5bc9fe171581f4d7f8e8e844b97bb0 data/c/tags/block/ores/starlit_diamond.json
@@ -32,10 +32,10 @@ de0fc99543a9ee4a2d785d4e010c691fb98fccfd data/c/tags/block/ores.json
 838ed8b4a587fbd1a0eb72261e2136214866d5e0 data/c/tags/block/ores_in_ground/eternal_ice.json
 485715e9b8e7fad1e339adba08a446e974586287 data/c/tags/block/ores_in_ground/grimstone.json
 047e4dbe078f95c43c500ee06eff574837129a6e data/c/tags/block/ores_in_ground/haze_ice.json
-79594e3530f1e6eab2277904c04fdd886e5bfa08 data/c/tags/block/ores_in_ground/nightfall_mud.json
+b1b3d56cdab42491e3644be1984df7acbc36b622 data/c/tags/block/ores_in_ground/nightfall_mud.json
 f3d545ba6439ce7cf4da5a329ddfc9f2314b54d0 data/c/tags/block/ores_in_ground/voidstone.json
 f82cd3e20cf7a213927f734c5354a1300c97baab data/c/tags/block/ore_rates/dense.json
-7f93f60d24bb88de7a7838fbf9146aed11f9495e data/c/tags/block/ore_rates/sparse.json
+dbd6d2438ea6bc98e5b3f69396bac00a4cbd0e17 data/c/tags/block/ore_rates/sparse.json
 4ee447c5b8c185a2d98b38ce0672139b63c8e9a3 data/c/tags/block/sands.json
 9ed1a8054322f0da7a2db0c72f73e1d03cfd2a3d data/c/tags/block/sandstone/blocks.json
 5b87b123e291847286b5f065a15e87cd2e8e4fef data/c/tags/block/sandstone/slabs.json
@@ -111,11 +111,11 @@ b7e18f3b592dc299e6b3b19b05c7c10f92dd4efb data/minecraft/tags/block/mangrove_logs
 ad2418f9c0d27ca82a64e2a223a76e48fb21bd77 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
 a931837b3e3a4e8f660cca175a63470e48e5c3c2 data/minecraft/tags/block/mineable/axe.json
 920afd94d6a670e2f3cfb64ac3135d2d70e2fa82 data/minecraft/tags/block/mineable/hoe.json
-ccc63de5c32ababf470d6e0d88d8dbf72648c3a6 data/minecraft/tags/block/mineable/pickaxe.json
-7f23848766bbaeba39ab4ad4fe1346351f9ff854 data/minecraft/tags/block/mineable/shovel.json
+826bf6c00127a9528d3ea5fa820c6f9a363fc6c1 data/minecraft/tags/block/mineable/pickaxe.json
+bbec22f55d39cea6a5edcf59bc149cdaa7d10268 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json
 f1a357ab1926778d96e01ccd9e41a6a26437047d data/minecraft/tags/block/mushroom_grow_block.json
-ca9a3b3f0dc84fd5697027715fe9f6b3d0656304 data/minecraft/tags/block/needs_iron_tool.json
+63fef1288a66467cbe0ebbf40ac29854c587cd7b data/minecraft/tags/block/needs_iron_tool.json
 90de9afe0872027063bcb6f66d1fe2a0ff06b5e0 data/minecraft/tags/block/occludes_vibration_signals.json
 f5715402f8078cd8429ad1fa9f7df07741851433 data/minecraft/tags/block/planks.json
 d0ad7cbe8e4b2e08fea83cf0f9b09343be8ff883 data/minecraft/tags/block/portals.json

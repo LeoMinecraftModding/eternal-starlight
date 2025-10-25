@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-07T16:55:37.2100984	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-10-25T17:32:25.0129009	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -60,16 +60,16 @@ f4dc3980b35bfbf6e5c114f953c888f305966075 data/c/tags/item/nuggets/amaramber.json
 d29136487306048710dc2bfbe22595e36710d81f data/c/tags/item/nuggets/swamp_silver.json
 de0fc99543a9ee4a2d785d4e010c691fb98fccfd data/c/tags/item/ores.json
 3f904d94183d2afae7698d7e242281b93273ad37 data/c/tags/item/ores/atalphaite.json
-93d452f437e2bf2303231eb02b53330c81a74824 data/c/tags/item/ores/malarite.json
+d0dd0f1ba2fffc17df62fefb52c49d18c419bf24 data/c/tags/item/ores/malarite.json
 75ac2f95aef85dc0429ab605962ae1464b1d6f28 data/c/tags/item/ores/redstone.json
 4ae824bf159c2223e29a2d0f70fd8e836d42f4df data/c/tags/item/ores/saltpeter.json
 282c38177e5bc9fe171581f4d7f8e8e844b97bb0 data/c/tags/item/ores/starlit_diamond.json
 79594e3530f1e6eab2277904c04fdd886e5bfa08 data/c/tags/item/ores/swamp_silver.json
 485715e9b8e7fad1e339adba08a446e974586287 data/c/tags/item/ores_in_ground/grimstone.json
-79594e3530f1e6eab2277904c04fdd886e5bfa08 data/c/tags/item/ores_in_ground/nightfall_mud.json
+b1b3d56cdab42491e3644be1984df7acbc36b622 data/c/tags/item/ores_in_ground/nightfall_mud.json
 f3d545ba6439ce7cf4da5a329ddfc9f2314b54d0 data/c/tags/item/ores_in_ground/voidstone.json
 f82cd3e20cf7a213927f734c5354a1300c97baab data/c/tags/item/ore_rates/dense.json
-7f93f60d24bb88de7a7838fbf9146aed11f9495e data/c/tags/item/ore_rates/sparse.json
+dbd6d2438ea6bc98e5b3f69396bac00a4cbd0e17 data/c/tags/item/ore_rates/sparse.json
 d38249fab22efad1375ca4ab1d7e084894c894fa data/c/tags/item/raw_materials.json
 652f6b9b076931b4a7fb90ff2bc2c81b704204dc data/c/tags/item/raw_materials/aethersent.json
 74a68b74f5863830cf3b4ba95a1ed6ea1cd84d81 data/c/tags/item/raw_materials/amaramber.json

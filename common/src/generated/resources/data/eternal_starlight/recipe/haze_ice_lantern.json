@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "eternal_starlight:haze_ice"
+    },
+    "T": {
+      "item": "minecraft:torch"
+    }
+  },
+  "pattern": [
+    " I ",
+    "ITI",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:haze_ice_lantern"
+  }
+}

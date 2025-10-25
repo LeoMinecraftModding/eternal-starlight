@@ -295,11 +295,13 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_SLAB = registerItem("eternal_ice_brick_slab", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_STAIRS = registerItem("eternal_ice_brick_stairs", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_WALL = registerItem("eternal_ice_brick_wall", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> ETERNAL_ICE_LANTERN = registerItem("eternal_ice_lantern", () -> new BlockItem(ESBlocks.ETERNAL_ICE_LANTERN.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HAZE_ICE = registerItem("haze_ice", () -> new BlockItem(ESBlocks.HAZE_ICE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HAZE_ICE_BRICKS = registerItem("haze_ice_bricks", () -> new BlockItem(ESBlocks.HAZE_ICE_BRICKS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HAZE_ICE_BRICK_SLAB = registerItem("haze_ice_brick_slab", () -> new BlockItem(ESBlocks.HAZE_ICE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HAZE_ICE_BRICK_STAIRS = registerItem("haze_ice_brick_stairs", () -> new BlockItem(ESBlocks.HAZE_ICE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HAZE_ICE_BRICK_WALL = registerItem("haze_ice_brick_wall", () -> new BlockItem(ESBlocks.HAZE_ICE_BRICK_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> HAZE_ICE_LANTERN = registerItem("haze_ice_lantern", () -> new BlockItem(ESBlocks.HAZE_ICE_LANTERN.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ICICLE = registerItem("icicle", () -> new BlockItem(ESBlocks.ICICLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ASHEN_SNOW = registerItem("ashen_snow", () -> new BlockItem(ESBlocks.ASHEN_SNOW.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ASHEN_SNOWBALL = registerItem("ashen_snowball", () -> new AshenSnowballItem(new Item.Properties().stacksTo(16)));
@@ -512,6 +514,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_CLUSTER = registerItem("blue_starlight_crystal_cluster", () -> new BlockItem(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_SHARD = registerItem("red_starlight_crystal_shard", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_SHARD = registerItem("blue_starlight_crystal_shard", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_LANTERN = registerItem("red_starlight_crystal_lantern", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_LANTERN.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLUE_STARLIGHT_CRYSTAL_LANTERN = registerItem("blue_starlight_crystal_lantern", () -> new BlockItem(ESBlocks.BLUE_STARLIGHT_CRYSTAL_LANTERN.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DEAD_LUNAR_BUSH = registerItem("dead_lunar_bush", () -> new BlockItem(ESBlocks.DEAD_LUNAR_BUSH.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> DESERT_AMETHYSIA = registerItem("desert_amethysia", () -> new BlockItem(ESBlocks.DESERT_AMETHYSIA.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> WITHERED_DESERT_AMETHYSIA = registerItem("withered_desert_amethysia", () -> new BlockItem(ESBlocks.WITHERED_DESERT_AMETHYSIA.get(), new Item.Properties()));
@@ -729,6 +733,8 @@ public class ESItems {
 	// swamp silver
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_ORE = registerItem("swamp_silver_ore", () -> new BlockItem(ESBlocks.SWAMP_SILVER_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_BLOCK = registerItem("swamp_silver_block", () -> new BlockItem(ESBlocks.SWAMP_SILVER_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SWAMP_SILVER_GRATE = registerItem("swamp_silver_grate", () -> new BlockItem(ESBlocks.SWAMP_SILVER_GRATE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SWAMP_SILVER_BARS = registerItem("swamp_silver_bars", () -> new BlockItem(ESBlocks.SWAMP_SILVER_BARS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_INGOT = registerItem("swamp_silver_ingot", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_NUGGET = registerItem("swamp_silver_nugget", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_SWORD = registerItem("swamp_silver_sword",
@@ -748,6 +754,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SWAMP_SILVER_BOOTS = registerItem("swamp_silver_boots",
 		() -> new SwampSilverArmorItem(ESArmorMaterials.SWAMP_SILVER.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(30))));
 
+	public static final RegistryObject<Item, Item> NIGHTFALL_MUD_MALARITE_ORE = registerItem("nightfall_mud_malarite_ore", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GRIMSTONE_MALARITE_ORE = registerItem("grimstone_malarite_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_MALARITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_MALARITE_ORE = registerItem("voidstone_malarite_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_MALARITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MALARITE_BLOCK = registerItem("malarite_block", () -> new BlockItem(ESBlocks.MALARITE_BLOCK.get(), new Item.Properties()));

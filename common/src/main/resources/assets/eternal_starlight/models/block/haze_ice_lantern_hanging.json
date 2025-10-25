@@ -1,0 +1,172 @@
+{
+  "render_type": "minecraft:cutout",
+  "parent": "block/block",
+  "textures": {
+    "lantern": "eternal_starlight:block/haze_ice_lantern",
+    "lantern_bottom": "eternal_starlight:block/haze_ice_lantern_bottom",
+    "particle": "eternal_starlight:block/haze_ice_lantern"
+  },
+  "elements": [
+    {
+      "from": [
+        6.5,
+        11,
+        8
+      ],
+      "to": [
+        9.5,
+        15,
+        8
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            14,
+            1,
+            11,
+            5
+          ],
+          "texture": "#lantern"
+        },
+        "south": {
+          "uv": [
+            11,
+            1,
+            14,
+            5
+          ],
+          "texture": "#lantern"
+        }
+      }
+    },
+    {
+      "from": [
+        8,
+        10,
+        6.5
+      ],
+      "to": [
+        8,
+        16,
+        9.5
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          8
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            11,
+            6,
+            14,
+            12
+          ],
+          "texture": "#lantern"
+        },
+        "west": {
+          "uv": [
+            14,
+            6,
+            11,
+            12
+          ],
+          "texture": "#lantern"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        4,
+        3
+      ],
+      "to": [
+        13,
+        10,
+        13
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          1,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            10,
+            10,
+            16
+          ],
+          "texture": "#lantern"
+        },
+        "east": {
+          "uv": [
+            0,
+            10,
+            10,
+            16
+          ],
+          "texture": "#lantern"
+        },
+        "south": {
+          "uv": [
+            0,
+            10,
+            10,
+            16
+          ],
+          "texture": "#lantern"
+        },
+        "west": {
+          "uv": [
+            0,
+            10,
+            10,
+            16
+          ],
+          "texture": "#lantern"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#lantern"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            10,
+            10
+          ],
+          "texture": "#lantern_bottom"
+        }
+      }
+    }
+  ]
+}

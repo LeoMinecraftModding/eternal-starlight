@@ -101,8 +101,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.ETERNAL_ICE.get());
 		stoneSet(ESBlocks.ETERNAL_ICE_BRICKS.get(), ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
+		onOffBlock(ESBlocks.ETERNAL_ICE_LANTERN.get(), BlockStateProperties.HANGING, models().getExistingFile(EternalStarlight.id("eternal_ice_lantern_hanging")), models().getExistingFile(EternalStarlight.id("eternal_ice_lantern")));
 		simpleBlock(ESBlocks.HAZE_ICE.get());
 		stoneSet(ESBlocks.HAZE_ICE_BRICKS.get(), ESBlocks.HAZE_ICE_BRICK_SLAB.get(), ESBlocks.HAZE_ICE_BRICK_STAIRS.get(), ESBlocks.HAZE_ICE_BRICK_WALL.get());
+		onOffBlock(ESBlocks.HAZE_ICE_LANTERN.get(), BlockStateProperties.HANGING, models().getExistingFile(EternalStarlight.id("haze_ice_lantern_hanging")), models().getExistingFile(EternalStarlight.id("haze_ice_lantern")));
 		icicle(ESBlocks.ICICLE.get());
 		layered(ESBlocks.ASHEN_SNOW.get(), blockTexture(ESBlocks.ASHEN_SNOW.get()));
 
@@ -260,6 +262,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
 		directionalBud(ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get());
 		directionalBud(ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get());
+		simpleBlock(ESBlocks.RED_STARLIGHT_CRYSTAL_LANTERN.get());
+		simpleBlock(ESBlocks.BLUE_STARLIGHT_CRYSTAL_LANTERN.get());
 		cross(ESBlocks.DEAD_LUNAR_BUSH.get());
 		pottedPlant(ESBlocks.POTTED_DEAD_LUNAR_BUSH.get(), blockTexture(ESBlocks.DEAD_LUNAR_BUSH.get()));
 		cross(ESBlocks.DESERT_AMETHYSIA.get());
@@ -384,7 +388,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
 		simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
+		simpleBlock(ESBlocks.SWAMP_SILVER_GRATE.get(), models().cubeAll(name(ESBlocks.SWAMP_SILVER_GRATE.get()), blockTexture(ESBlocks.SWAMP_SILVER_GRATE.get())).renderType(CUTOUT));
 
+		simpleBlock(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.GRIMSTONE_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.VOIDSTONE_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.MALARITE_BLOCK.get());
