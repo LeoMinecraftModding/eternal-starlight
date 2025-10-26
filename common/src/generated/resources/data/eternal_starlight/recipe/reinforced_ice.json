@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "eternal_starlight:eternal_ice"
+    },
+    "P": {
+      "item": "minecraft:packed_ice"
+    }
+  },
+  "pattern": [
+    " E ",
+    "EPE",
+    " E "
+  ],
+  "result": {
+    "count": 4,
+    "id": "eternal_starlight:reinforced_ice"
+  }
+}

@@ -578,7 +578,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.PETAL_SCYTHE.get(),
 				ESItems.WAND_OF_TELEPORTATION.get(),
 				ESItems.CHAIN_OF_SOULS.get(),
-				ESItems.CHAIN_OF_SOULS.get()
+				ESItems.CRESCENT_SPEAR.get()
 			);
 		tag(ESTags.Items.LUNAR_MONSTROSITY_IGNITERS)
 			.add(

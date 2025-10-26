@@ -261,6 +261,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.HAZE_ICE_BRICK_STAIRS.get());
 		wall(ESItems.HAZE_ICE_BRICK_WALL.get(), ESItems.HAZE_ICE_BRICKS.get());
 		basicItem(ESItems.HAZE_ICE_LANTERN.get());
+		block(ESItems.REINFORCED_ICE.get());
+		basicItem(ESItems.REINFORCED_ICE_PANE.get(), blockTextureFromItem(ESItems.REINFORCED_ICE.get()));
 		basicItem(ESItems.ICICLE.get(), blockTextureFromItem(ESItems.ICICLE.get()).withSuffix("_tip"));
 		layeredBlock(ESItems.ASHEN_SNOW.get());
 		basicItem(ESItems.ASHEN_SNOWBALL.get());

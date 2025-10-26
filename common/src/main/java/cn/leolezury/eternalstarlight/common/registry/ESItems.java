@@ -302,6 +302,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> HAZE_ICE_BRICK_STAIRS = registerItem("haze_ice_brick_stairs", () -> new BlockItem(ESBlocks.HAZE_ICE_BRICK_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HAZE_ICE_BRICK_WALL = registerItem("haze_ice_brick_wall", () -> new BlockItem(ESBlocks.HAZE_ICE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> HAZE_ICE_LANTERN = registerItem("haze_ice_lantern", () -> new BlockItem(ESBlocks.HAZE_ICE_LANTERN.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> REINFORCED_ICE = registerItem("reinforced_ice", () -> new BlockItem(ESBlocks.REINFORCED_ICE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> REINFORCED_ICE_PANE = registerItem("reinforced_ice_pane", () -> new BlockItem(ESBlocks.REINFORCED_ICE_PANE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ICICLE = registerItem("icicle", () -> new BlockItem(ESBlocks.ICICLE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ASHEN_SNOW = registerItem("ashen_snow", () -> new BlockItem(ESBlocks.ASHEN_SNOW.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ASHEN_SNOWBALL = registerItem("ashen_snowball", () -> new AshenSnowballItem(new Item.Properties().stacksTo(16)));

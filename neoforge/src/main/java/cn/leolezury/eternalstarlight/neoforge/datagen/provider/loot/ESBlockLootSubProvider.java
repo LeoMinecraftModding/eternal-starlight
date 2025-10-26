@@ -292,6 +292,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.HAZE_ICE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.HAZE_ICE_BRICK_WALL.get());
 		dropSelf(ESBlocks.HAZE_ICE_LANTERN.get());
+		dropSelf(ESBlocks.REINFORCED_ICE.get());
+		dropSelf(ESBlocks.REINFORCED_ICE_PANE.get());
 		dropSelf(ESBlocks.ICICLE.get());
 		add(ESBlocks.ASHEN_SNOW.get(), (block) -> LootTable.lootTable()
 			.withPool(LootPool.lootPool()

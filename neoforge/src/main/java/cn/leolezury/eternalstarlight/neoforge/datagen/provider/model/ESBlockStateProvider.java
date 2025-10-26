@@ -105,6 +105,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.HAZE_ICE.get());
 		stoneSet(ESBlocks.HAZE_ICE_BRICKS.get(), ESBlocks.HAZE_ICE_BRICK_SLAB.get(), ESBlocks.HAZE_ICE_BRICK_STAIRS.get(), ESBlocks.HAZE_ICE_BRICK_WALL.get());
 		onOffBlock(ESBlocks.HAZE_ICE_LANTERN.get(), BlockStateProperties.HANGING, models().getExistingFile(EternalStarlight.id("haze_ice_lantern_hanging")), models().getExistingFile(EternalStarlight.id("haze_ice_lantern")));
+		simpleBlock(ESBlocks.REINFORCED_ICE.get(), models().cubeAll(name(ESBlocks.REINFORCED_ICE.get()), blockTexture(ESBlocks.REINFORCED_ICE.get())).renderType(TRANSLUCENT));
+		paneBlockWithRenderType(ESBlocks.REINFORCED_ICE_PANE.get(), blockTexture(ESBlocks.REINFORCED_ICE.get()), blockTexture(ESBlocks.REINFORCED_ICE_PANE.get()).withSuffix("_top"), TRANSLUCENT);
 		icicle(ESBlocks.ICICLE.get());
 		layered(ESBlocks.ASHEN_SNOW.get(), blockTexture(ESBlocks.ASHEN_SNOW.get()));
 

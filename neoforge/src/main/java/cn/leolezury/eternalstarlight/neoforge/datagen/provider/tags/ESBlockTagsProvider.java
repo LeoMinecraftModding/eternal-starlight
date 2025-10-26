@@ -1149,6 +1149,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.HAZE_ICE_BRICK_STAIRS.get(),
 				ESBlocks.HAZE_ICE_BRICK_WALL.get(),
 				ESBlocks.HAZE_ICE_LANTERN.get(),
+				ESBlocks.REINFORCED_ICE.get(),
+				ESBlocks.REINFORCED_ICE_PANE.get(),
 				ESBlocks.ICICLE.get(),
 				ESBlocks.NEBULAITE.get(),
 				ESBlocks.NEBULAITE_BRICKS.get(),
@@ -1575,6 +1577,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			);
 		tag(BlockTags.IMPERMEABLE)
 			.add(
+				ESBlocks.REINFORCED_ICE.get(),
 				ESBlocks.FLOWGLAZE.get(),
 				ESBlocks.DUSK_GLASS.get()
 			);

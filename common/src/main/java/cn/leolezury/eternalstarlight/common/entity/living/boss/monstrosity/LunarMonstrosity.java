@@ -49,6 +49,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -83,6 +84,8 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	public AnimationState switchPhaseAnimationState = new AnimationState();
 	public AnimationState deathAnimationState = new AnimationState();
 	public Vec3 headPos = Vec3.ZERO;
+
+	public int fleeFromLavaCooldown = 0;
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
@@ -303,6 +306,10 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		return getBehaviorState() == LunarMonstrositySneakPhase.ID ? super.getDefaultDimensions(pose).scale(0.1f) : super.getDefaultDimensions(pose);
 	}
 
+	public AABB getNormalStateBoundingBox() {
+		return super.getDefaultDimensions(getPose()).makeBoundingBox(position());
+	}
+
 	@Override
 	public boolean displayFireAnimation() {
 		return getBehaviorState() != LunarMonstrositySneakPhase.ID && super.displayFireAnimation();
@@ -372,6 +379,9 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 			}
 			if (getBehaviorState() != LunarMonstrositySneakPhase.ID) {
 				getNavigation().stop();
+			}
+			if (fleeFromLavaCooldown > 0) {
+				fleeFromLavaCooldown--;
 			}
 		} else {
 			level().addParticle(ESSmokeParticleOptions.LUNAR_SHORT, getX() + (getRandom().nextDouble() - 0.5) * 3, getY() + 1 + (getRandom().nextDouble() - 0.5) * 3, getZ() + (getRandom().nextDouble() - 0.5) * 3, 0, 0, 0);

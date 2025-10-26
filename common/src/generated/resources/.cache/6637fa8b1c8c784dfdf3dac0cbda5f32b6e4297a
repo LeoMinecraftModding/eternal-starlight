@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-25T23:20:13.2211189	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-10-26T15:31:34.3423778	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -101,7 +101,7 @@ d0a2b11171dc65d73093da1e9a864e8164493da8 data/minecraft/tags/block/dirt.json
 9d34c3f353473a445208384d2bdb0f87ade13c64 data/minecraft/tags/block/flower_pots.json
 42884e8c5a46a38bf9f966edf96dcb9f0e316b0e data/minecraft/tags/block/frog_prefer_jump_to.json
 a3b5c288e24581425d5cf66d5082a574adaf87a9 data/minecraft/tags/block/guarded_by_piglins.json
-a7f776b8d6c9462a7c530d03a055462bc12a7951 data/minecraft/tags/block/impermeable.json
+e6d222bcccd09b1bedf366a51c27712110a1b594 data/minecraft/tags/block/impermeable.json
 b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/inside_step_sound_blocks.json
 0f8477f0d24a5155b211ed17168cb359357b345d data/minecraft/tags/block/leaves.json
 4d4cd3b6bbdb893c509c92bc10dd4af1fbcbed0b data/minecraft/tags/block/logs.json
@@ -111,7 +111,7 @@ b7e18f3b592dc299e6b3b19b05c7c10f92dd4efb data/minecraft/tags/block/mangrove_logs
 ad2418f9c0d27ca82a64e2a223a76e48fb21bd77 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
 a931837b3e3a4e8f660cca175a63470e48e5c3c2 data/minecraft/tags/block/mineable/axe.json
 920afd94d6a670e2f3cfb64ac3135d2d70e2fa82 data/minecraft/tags/block/mineable/hoe.json
-826bf6c00127a9528d3ea5fa820c6f9a363fc6c1 data/minecraft/tags/block/mineable/pickaxe.json
+5955dbe5f0d0fe44633a6ab6203cd7d05fe3a07b data/minecraft/tags/block/mineable/pickaxe.json
 bbec22f55d39cea6a5edcf59bc149cdaa7d10268 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json
 f1a357ab1926778d96e01ccd9e41a6a26437047d data/minecraft/tags/block/mushroom_grow_block.json
