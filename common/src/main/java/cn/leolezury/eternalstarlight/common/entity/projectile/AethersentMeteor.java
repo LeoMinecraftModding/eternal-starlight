@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Creteor;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -119,7 +120,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 					meteor.natural = false;
 					level.addFreshEntity(meteor);
 					if (level instanceof ServerLevel serverLevel) {
-						serverLevel.sendParticles(ParticleTypes.EXPLOSION, meteor.getX(), meteor.getY(), meteor.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
+						serverLevel.sendParticles(ESExplosionParticleOptions.AETHERSENT, meteor.getX(), meteor.getY(), meteor.getZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
 					}
 				}
 			}
@@ -217,7 +218,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		if ((getTarget() != null && getY() < getTarget().getY()) || getY() < targetPos.y) {
 			playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
 			if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
-				serverLevel.sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ParticleTypes.EXPLOSION, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
+				serverLevel.sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ESExplosionParticleOptions.AETHERSENT, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
 				discard();
 			}
 		}
