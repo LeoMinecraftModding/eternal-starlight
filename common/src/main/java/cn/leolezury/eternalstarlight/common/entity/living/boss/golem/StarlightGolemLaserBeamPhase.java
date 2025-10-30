@@ -16,7 +16,7 @@ public class StarlightGolemLaserBeamPhase extends BehaviorPhase<StarlightGolem> 
 
 	@Override
 	public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
-		return cooldownOver && entity.getTarget() != null && entity.getAttackEnergy() >= 30;
+		return cooldownOver && entity.getTarget() != null && (entity.getPhase() == 1 || entity.getAttackEnergy() >= 30);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class StarlightGolemLaserBeamPhase extends BehaviorPhase<StarlightGolem> 
 			if (entity.level() instanceof ServerLevel serverLevel) {
 				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 60, 0.3f, 0.3f, 4.5f, 5).send(serverLevel);
 			}
-			entity.spawnEnergizedFlame(1, 15, false);
+			entity.spawnEnergizedFlame(1, 15, entity.getPhase() == 1);
 		}
 	}
 

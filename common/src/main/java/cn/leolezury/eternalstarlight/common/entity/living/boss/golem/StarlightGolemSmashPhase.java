@@ -3,24 +3,34 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
+import cn.leolezury.eternalstarlight.common.entity.projectile.EnergySpark;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
+import com.google.common.collect.Lists;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.Util;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.behavior.LongJumpUtil;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 	public static final int ID = 3;
 
+	private static final ObjectArrayList<Integer> ALLOWED_ANGLES = new ObjectArrayList<>(Lists.newArrayList(15, 20, 25, 30, 35, 40));
+
+	private BlockPos shockwavePos = BlockPos.ZERO;
 	private float pitch, yaw;
 	private final List<BlockPos> visited = new ArrayList<>();
 	private final List<BlockPos> lavaVisited = new ArrayList<>();
@@ -31,7 +41,7 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 
 	@Override
 	public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
-		return cooldownOver && entity.getTarget() != null && entity.getAttackEnergy() >= 0;
+		return (cooldownOver || (entity.getPhase() == 1 && entity.onGround() && entity.getBehaviorManager().getCooldowns().getOrDefault(ID, 0) < 150)) && entity.getTarget() != null && (entity.getPhase() == 1 || entity.getAttackEnergy() >= 0);
 	}
 
 	@Override
@@ -43,20 +53,44 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 
 	@Override
 	public void tick(StarlightGolem entity) {
+		LivingEntity target = entity.getTarget();
 		if (entity.getBehaviorTicks() == 30) {
-			pitch = entity.getTarget() != null ? ESMathUtil.positionToPitch(entity.position(), entity.getTarget().position()) : 0;
+			pitch = target != null ? ESMathUtil.positionToPitch(entity.position(), target.position()) : 0;
 			yaw = entity.getYHeadRot() + 90f;
+			if (target != null) {
+				for (int i = 0; i < 5; i++) {
+					EnergySpark spark = new EnergySpark(entity.level(), entity);
+					spark.setPos(entity.position().add(0, entity.getBbHeight() / 3f, 0));
+					spark.setTarget(target);
+					Vec3 movement = ESMathUtil.rotationToPosition(1, pitch, yaw - 30 + 15 * i);
+					spark.shoot(movement.x, movement.y, movement.z, 0.1f, 0);
+					entity.level().addFreshEntity(spark);
+				}
+			}
+			shockwavePos = entity.blockPosition();
+		}
+		if (entity.getBehaviorTicks() == 37 && entity.getPhase() == 1 && target != null) {
+			for (int i : Util.shuffledCopy(ALLOWED_ANGLES, entity.getRandom())) {
+				Optional<Vec3> optional = LongJumpUtil.calculateJumpVectorForAngle(entity, ESMathUtil.rotationToPosition(entity.position(), 1, pitch, yaw), 0.75F, i, false);
+				if (optional.isPresent()) {
+					entity.hurtMarked = true;
+					entity.addDeltaMovement(optional.get());
+				}
+			}
 		}
 		if (entity.getBehaviorTicks() == 40 && entity.level() instanceof ServerLevel serverLevel) {
 			ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 50, 0.24f, 0.5f, 3, 5.5f).send(serverLevel);
 		}
 		if (entity.getBehaviorTicks() >= 30) {
-			int radius = (int) ((entity.getBehaviorTicks() - 30f) / 3.5f);
+			entity.lookAt(EntityAnchorArgument.Anchor.EYES, ESMathUtil.rotationToPosition(entity.position(), entity.getBbWidth() * 10, pitch, yaw));
+		}
+		if (entity.getBehaviorTicks() >= 40) {
+			int radius = (int) ((entity.getBehaviorTicks() - 30f) / 3f);
 			for (int x = -radius; x <= radius; x++) {
 				for (int z = -radius; z <= radius; z++) {
 					for (int y = -radius; y <= radius; y++) {
-						BlockPos pos = entity.blockPosition().offset(x, y, z);
-						if (entity.level().getBlockState(pos).getFluidState().is(Fluids.LAVA)) {
+						BlockPos pos = shockwavePos.offset(x, y, z);
+						if (entity.level().getBlockState(pos).is(Blocks.LAVA)) {
 							if (!lavaVisited.contains(pos)) {
 								lavaVisited.add(pos);
 								if (entity.getRandom().nextInt(25) == 0) {
@@ -67,9 +101,9 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 								}
 							}
 						} else {
-							float blockPitch = ESMathUtil.positionToPitch(entity.position(), pos.getCenter());
-							float blockYaw = ESMathUtil.positionToYaw(entity.position(), pos.getCenter());
-							if (!visited.contains(pos) && !entity.level().getBlockState(pos).isAir() && Math.abs(Mth.wrapDegrees(pitch - blockPitch)) < 75 && Math.abs(Mth.wrapDegrees(yaw - blockYaw)) < 30 && pos.getCenter().distanceTo(entity.position()) <= radius && pos.getCenter().distanceTo(entity.position()) >= radius - 1) {
+							float blockPitch = ESMathUtil.positionToPitch(shockwavePos.getBottomCenter(), pos.getCenter());
+							float blockYaw = ESMathUtil.positionToYaw(shockwavePos.getBottomCenter(), pos.getCenter());
+							if (!visited.contains(pos) && !entity.level().getBlockState(pos).isAir() && Math.abs(Mth.wrapDegrees(pitch - blockPitch)) < 75 && Math.abs(Mth.wrapDegrees(yaw - blockYaw)) < 30 && pos.getCenter().distanceTo(shockwavePos.getBottomCenter()) <= radius && pos.getCenter().distanceTo(shockwavePos.getBottomCenter()) >= radius - 1) {
 								boolean above = entity.level().getBlockState(pos.above()).isAir();
 								boolean below = entity.level().getBlockState(pos.below()).isAir();
 								if (above || below) {

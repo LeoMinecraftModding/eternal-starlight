@@ -480,7 +480,7 @@
   },
   "entity.starlight_golem.block": {
     "sounds": [
-      "random/anvil_land"
+      "eternal_starlight:mob/starlight_golem/block"
     ],
     "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.block"
   },
@@ -492,24 +492,7 @@
   },
   "entity.starlight_golem.hurt": {
     "sounds": [
-      {
-        "name": "mob/irongolem/damage1",
-        "volume": 0.8
-      },
-      {
-        "name": "mob/irongolem/damage1",
-        "pitch": 0.8,
-        "volume": 0.8
-      },
-      {
-        "name": "mob/irongolem/damage2",
-        "volume": 0.8
-      },
-      {
-        "name": "mob/irongolem/damage2",
-        "pitch": 0.8,
-        "volume": 0.8
-      }
+      "eternal_starlight:mob/starlight_golem/hurt"
     ],
     "subtitle": "subtitles.entity.eternal_starlight.starlight_golem.hurt"
   },

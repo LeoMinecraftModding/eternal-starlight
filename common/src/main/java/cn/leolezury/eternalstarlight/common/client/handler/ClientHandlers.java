@@ -158,6 +158,7 @@ public class ClientHandlers {
 					} else {
 						if (bossMusicInstance.shouldStopMusic(player)) {
 							Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
+							bossMusicInstance.stopMusic();
 							bossMusicInstance = null;
 						}
 					}
@@ -167,6 +168,7 @@ public class ClientHandlers {
 				}
 			} else if (bossMusicInstance != null) {
 				Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
+				bossMusicInstance.stopMusic();
 				bossMusicInstance = null;
 			}
 		}

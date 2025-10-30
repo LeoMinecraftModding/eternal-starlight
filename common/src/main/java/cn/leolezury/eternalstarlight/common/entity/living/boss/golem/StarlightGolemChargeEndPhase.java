@@ -21,7 +21,7 @@ public class StarlightGolemChargeEndPhase extends BehaviorPhase<StarlightGolem> 
 
 	@Override
 	public void tick(StarlightGolem entity) {
-		if (!entity.canHurt()) {
+		if (entity.hasProtection()) {
 			entity.heal(0.02f);
 		}
 	}

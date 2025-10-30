@@ -36,12 +36,10 @@ public class BossMusicSoundInstance extends AbstractTickableSoundInstance {
 			this.y = player.getY();
 			this.z = player.getZ();
 		}
-		if (!this.boss.isAlive()) {
-			this.stop();
-			if (canPlaySound()) {
-				ClientHandlers.bossMusicInstance = null;
-			}
-		}
+	}
+
+	public void stopMusic() {
+		stop();
 	}
 
 	public boolean shouldStopMusic(LocalPlayer player) {

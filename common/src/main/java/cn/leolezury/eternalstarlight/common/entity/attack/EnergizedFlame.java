@@ -1,8 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -49,7 +50,7 @@ public class EnergizedFlame extends Entity implements TraceableEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (tickCount > 100) {
+		if (tickCount > 60) {
 			discard();
 		}
 		if (!level().isClientSide) {
@@ -66,16 +67,21 @@ public class EnergizedFlame extends Entity implements TraceableEntity {
 			}
 			if (tickCount > 20 && getOwner() != null) {
 				AABB box = getBoundingBox().inflate(0.5, 1, 0.5);
-				for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, box)) {
-					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
-						livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 2);
-						livingEntity.setRemainingFireTicks(Math.max(livingEntity.getRemainingFireTicks(), 60));
+				for (LivingEntity living : level().getEntitiesOfClass(LivingEntity.class, box)) {
+					if (ESEntityUtil.shouldHarm(getOwner(), living)) {
+						living.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 2);
+						living.igniteForSeconds(3);
 					}
 				}
 			}
 		} else {
-			level().addParticle(ParticleTypes.SMOKE, getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 1, 0);
-			level().addParticle(ParticleTypes.LARGE_SMOKE, getX() + (random.nextDouble() - 0.5) * 1, getY() + 0.25 + (random.nextDouble() - 0.5) * 1, getZ() + (random.nextDouble() - 0.5) * 1, 0, 0.2, 0);
+			double dx = random.nextDouble() - 0.5;
+			double dy = random.nextDouble() - 0.5;
+			double dz = random.nextDouble() - 0.5;
+			level().addParticle(ESParticles.ENERGY.get(), getX() - dx, getY() - dy, getZ() - dz, dz * 0.25, 0.25, dx * 0.25);
+			if (tickCount % 20 == 0 && tickCount >= 20) {
+				level().addParticle(RingExplosionParticleOptions.ENERGY_SMALL, getX(), getY() + 0.12, getZ(), 0, 0, 0);
+			}
 		}
 	}
 

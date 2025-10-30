@@ -6,8 +6,10 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemMo
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemEyesLayer;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemGlowLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemChargePhase;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -31,5 +33,16 @@ public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRendere
 	@Override
 	public ResourceLocation getTextureLocation(T entity) {
 		return ClientHandlers.isHalloween ? HALLOWEEN_TEXTURE : ENTITY_TEXTURE;
+	}
+
+	@Override
+	public boolean shouldRender(T entity, Frustum frustum, double x, double y, double z) {
+		boolean oCull = entity.noCulling;
+		if (entity.getBehaviorState() == StarlightGolemChargePhase.ID) {
+			entity.noCulling = true;
+		}
+		boolean shouldRender = super.shouldRender(entity, frustum, x, y, z);
+		entity.noCulling = oCull;
+		return shouldRender;
 	}
 }

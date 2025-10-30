@@ -13,7 +13,7 @@ public class StarlightGolemSummonFlamePhase extends BehaviorPhase<StarlightGolem
 
 	@Override
 	public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
-		return cooldownOver && entity.getTarget() != null && entity.getAttackEnergy() >= 0;
+		return cooldownOver && entity.getTarget() != null && entity.getAttackEnergy() >= 0 && entity.getPhase() == 0;
 	}
 
 	@Override

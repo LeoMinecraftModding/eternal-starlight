@@ -10,6 +10,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -26,6 +27,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -78,6 +80,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	private int chargeHurtCount;
 	private float chargeHurtAmount;
 	private int lastHurtSound;
+	private boolean hasProtection;
 
 	public void clearChargeHurtCountAndAmount() {
 		this.chargeHurtCount = 0;
@@ -100,8 +103,12 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		this.attackEnergy = energy;
 	}
 
-	public boolean canHurt() {
-		return getNearbyEnergyBlocks(true).isEmpty();
+	public boolean hasProtection() {
+		return hasProtection;
+	}
+
+	public BehaviorManager<StarlightGolem> getBehaviorManager() {
+		return behaviorManager;
 	}
 
 	@Override
@@ -159,7 +166,8 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		@Override
 		public void tick() {
 			boolean affectsLook =
-				StarlightGolem.this.getBehaviorState() == StarlightGolemLaserBeamPhase.ID;
+				StarlightGolem.this.getBehaviorState() == StarlightGolemLaserBeamPhase.ID
+					|| (StarlightGolem.this.getBehaviorState() == StarlightGolemSmashPhase.ID && StarlightGolem.this.getBehaviorTicks() > 30);
 			if (!affectsLook) {
 				super.tick();
 			}
@@ -177,10 +185,15 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	}
 
 	@Override
+	public boolean isInvulnerableTo(DamageSource source) {
+		return super.isInvulnerableTo(source) || source.getEntity() == this || source.is(DamageTypes.FALLING_BLOCK);
+	}
+
+	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-			if (canHurt() && getBehaviorState() == StarlightGolemChargePhase.ID && !source.is(DamageTypes.FALL) && !source.is(DamageTypes.FREEZE) && source.getEntity() != this) {
-				if (source.getEntity() != null) {
+			if (!hasProtection()) {
+				if (source.getEntity() != null && source.getEntity() != this) {
 					if (tickCount - lastHurtCount > 10) {
 						chargeHurtCount++;
 						lastHurtCount = tickCount;
@@ -194,6 +207,9 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				}
 				return false;
 			}
+		}
+		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.2) {
+			setPhase(1);
 		}
 		return super.hurt(source, amount);
 	}
@@ -249,7 +265,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	@Override
 	public boolean canBossMove() {
-		return false;
+		return getPhase() != 0;
 	}
 
 	private List<BlockPos> getNearbyEnergyBlocks(boolean lit) {
@@ -283,16 +299,19 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	public void spawnEnergizedFlame(int maxNum, int scanRadius, boolean trackTarget) {
 		int left = maxNum;
-		if (trackTarget) {
+		LivingEntity target = getTarget();
+		if (trackTarget && target != null) {
 			EnergizedFlame energizedFlame = ESEntities.ENERGIZED_FLAME.get().create(level());
-			energizedFlame.setPos(getTarget() != null ? getTarget().position() : position());
-			energizedFlame.setOwner(this);
-			level().addFreshEntity(energizedFlame);
-			left--;
+			if (energizedFlame != null) {
+				energizedFlame.setPos(target.position().add(ESDataAttachments.MOVEMENT.getData(target).scale(20)));
+				energizedFlame.setOwner(this);
+				level().addFreshEntity(energizedFlame);
+				left--;
+			}
 		}
 		List<BlockPos> possiblePositions = new ArrayList<>();
-		for (int x = -scanRadius; x <= scanRadius; x += 1) {
-			for (int z = -scanRadius; z <= scanRadius; z += 1) {
+		for (int x = -scanRadius; x <= scanRadius; x++) {
+			for (int z = -scanRadius; z <= scanRadius; z++) {
 				for (int y = -5; y <= 5; y++) {
 					BlockPos firePos = blockPosition().offset(x, y, z);
 					if (level().isEmptyBlock(firePos) && level().getBlockState(firePos.below()).isFaceSturdy(level(), firePos.below(), Direction.UP)) {
@@ -305,7 +324,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 			if (!possiblePositions.isEmpty()) {
 				BlockPos firePos = possiblePositions.get(getRandom().nextInt(possiblePositions.size()));
 				EnergizedFlame energizedFlame = ESEntities.ENERGIZED_FLAME.get().create(level());
-				energizedFlame.setPos(firePos.getCenter().add(0, -0.5, 0));
+				energizedFlame.setPos(firePos.getBottomCenter());
 				energizedFlame.setOwner(this);
 				level().addFreshEntity(energizedFlame);
 				possiblePositions.remove(firePos);
@@ -351,10 +370,28 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 					}
 				}
 			}
+			if (getBehaviorState() == StarlightGolemChargePhase.ID) {
+				hasProtection = !getNearbyEnergyBlocks(true).isEmpty();
+			} else {
+				hasProtection = true;
+			}
+			if (getPhase() == 1) {
+				hasProtection = false;
+				if (tickCount % 60 == 0) {
+					hurt(damageSources().generic(), 0);
+				}
+			}
 		} else {
-			if (getRandom().nextInt(15) == 0) {
+			if (getRandom().nextInt(Mth.clamp(Math.round((getHealth() / getMaxHealth()) * 30), 1, 30)) == 0) {
 				Vec3 smokePos = position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f));
-				level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, smokePos.x, smokePos.y, smokePos.z, (getRandom().nextFloat() - 0.5f) * 0.15, getRandom().nextFloat() * 0.15, (getRandom().nextFloat() - 0.5f) * 0.15);
+				level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, smokePos.x, smokePos.y, smokePos.z, 0, getRandom().nextFloat() * 0.15, 0);
+			}
+			if (getRandom().nextInt(3) == 0 && getPhase() == 1) {
+				Vec3 sparkPos = position().add(getBbWidth() * (getRandom().nextFloat() - 0.5f), getBbHeight() * getRandom().nextFloat(), getBbWidth() * (getRandom().nextFloat() - 0.5f));
+				for (int i = 0; i < 25; i++) {
+					Vec3 speed = new Vec3((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F).normalize();
+					level().addParticle(ExplosionShockParticleOptions.ENERGY_SMALL, sparkPos.x, sparkPos.y, sparkPos.z, speed.x, speed.y, speed.z);
+				}
 			}
 		}
 	}

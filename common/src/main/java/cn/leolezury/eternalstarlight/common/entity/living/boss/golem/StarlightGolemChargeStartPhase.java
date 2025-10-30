@@ -11,7 +11,7 @@ public class StarlightGolemChargeStartPhase extends BehaviorPhase<StarlightGolem
 
 	@Override
 	public boolean canStart(StarlightGolem entity, boolean cooldownOver) {
-		return cooldownOver && entity.getTarget() != null && entity.getAttackEnergy() <= 0;
+		return cooldownOver && entity.getTarget() != null && entity.getAttackEnergy() <= 0 && entity.getPhase() == 0;
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class StarlightGolemChargeStartPhase extends BehaviorPhase<StarlightGolem
 
 	@Override
 	public void tick(StarlightGolem entity) {
-		if (!entity.canHurt()) {
+		if (entity.hasProtection()) {
 			entity.heal(0.04f);
 		}
 	}

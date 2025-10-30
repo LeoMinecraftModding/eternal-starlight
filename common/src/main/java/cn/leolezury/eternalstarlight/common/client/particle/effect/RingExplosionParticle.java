@@ -50,7 +50,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 
 	@Override
 	public float getQuadSize(float partialTicks) {
-		return this.quadSize * Easing.OUT_QUINT.interpolate((age + partialTicks) / lifetime, 1, scale);
+		return this.quadSize * Easing.OUT_QUINT.interpolate((age + partialTicks) / lifetime, scale / 10, scale);
 	}
 
 	public static class Provider implements ParticleProvider<RingExplosionParticleOptions> {

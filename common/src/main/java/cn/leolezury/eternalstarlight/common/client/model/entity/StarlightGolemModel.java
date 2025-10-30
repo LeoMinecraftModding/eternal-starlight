@@ -11,6 +11,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
+import org.joml.Vector3f;
 
 @Environment(EnvType.CLIENT)
 public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntityModel<T> {
@@ -49,6 +50,9 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+		if (entity.getPhase() == 1) {
+			this.root().getAllParts().forEach(part -> part.offsetPos(new Vector3f(entity.getRandom().nextFloat() - 0.5f, entity.getRandom().nextFloat() - 0.5f, entity.getRandom().nextFloat() - 0.5f).normalize().mul(0.2f)));
+		}
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
 		if (entity.getBehaviorTicks() >= 0 && entity.getBehaviorState() != 0 && entity.deathTime <= 0) {
