@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
@@ -103,5 +104,10 @@ public class CrescentSpearItem extends Item {
 	@Override
 	public int getEnchantmentValue() {
 		return 1;
+	}
+
+	@Override
+	public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+		return repairCandidate.is(ESItems.TENACIOUS_PETAL.get()) || repairCandidate.is(ESItems.TENACIOUS_VINE.get()) || super.isValidRepairItem(stack, repairCandidate);
 	}
 }

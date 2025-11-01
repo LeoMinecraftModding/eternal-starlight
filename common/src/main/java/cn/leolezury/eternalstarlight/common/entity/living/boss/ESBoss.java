@@ -31,7 +31,6 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.level.Level;
@@ -229,27 +228,23 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
 		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
-		if (!level().isClientSide) {
-			ItemStack lootBag = getBossLootBag();
-			if (fightParticipants.isEmpty()) {
-				ItemEntity item = spawnAtLocation(lootBag.copy());
+		ItemStack lootBag = getBossLootBag();
+		if (fightParticipants.stream().noneMatch(s -> serverLevel.players().stream().anyMatch(player -> player.getName().getString().equals(s)))) {
+			ItemEntity item = spawnAtLocation(lootBag.copy());
+			if (item != null) {
+				item.setGlowingTag(true);
+				item.setExtendedLifetime();
+			}
+		}
+		for (ServerPlayer player : serverLevel.players()) {
+			if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
+				ItemEntity item = player.spawnAtLocation(lootBag.copy());
 				if (item != null) {
+					item.setTarget(player.getUUID());
 					item.setGlowingTag(true);
 					item.setExtendedLifetime();
 				}
-			}
-			for (Player player : level().players()) {
-				if (player instanceof ServerPlayer serverPlayer) {
-					if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
-						ItemEntity item = player.spawnAtLocation(lootBag.copy());
-						if (item != null) {
-							item.setTarget(player.getUUID());
-							item.setGlowingTag(true);
-							item.setExtendedLifetime();
-						}
-						dropExtraLoot(serverPlayer);
-					}
-				}
+				dropExtraLoot(player);
 			}
 		}
 	}

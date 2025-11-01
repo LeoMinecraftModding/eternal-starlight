@@ -13,6 +13,8 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 import org.joml.Vector3f;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Environment(EnvType.CLIENT)
 public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("starlight_golem"), "main");
@@ -51,11 +53,12 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		if (entity.getPhase() == 1) {
-			this.root().getAllParts().forEach(part -> part.offsetPos(new Vector3f(entity.getRandom().nextFloat() - 0.5f, entity.getRandom().nextFloat() - 0.5f, entity.getRandom().nextFloat() - 0.5f).normalize().mul(0.2f)));
+			AtomicInteger offsetCount = new AtomicInteger();
+			this.root().getAllParts().forEach(part -> part.offsetPos(new Vector3f((float) Math.cos(entity.tickCount * 3.25 + offsetCount.getAndIncrement() * 1.5), (float) Math.cos(entity.tickCount * 2.25 + offsetCount.getAndIncrement() * 1.5), (float) Math.cos(entity.tickCount * 3.25 + offsetCount.getAndIncrement() * 1.5)).normalize().mul(0.2f)));
 		}
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
-		if (entity.getBehaviorTicks() >= 0 && entity.getBehaviorState() != 0 && entity.deathTime <= 0) {
+		if (entity.getBehaviorTicks() >= 0 && entity.getBehaviorState() != 0 && entity.deathAnimationTime <= 0) {
 			int state = entity.getBehaviorState();
 			switch (state) {
 				case StarlightGolemLaserBeamPhase.ID -> {
@@ -78,7 +81,7 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
 				}
 			}
 		}
-		if (entity.deathTime > 0) {
+		if (entity.deathAnimationTime > 0) {
 			animate(entity.deathAnimationState, StarlightGolemAnimation.DEATH, ageInTicks);
 		}
 	}

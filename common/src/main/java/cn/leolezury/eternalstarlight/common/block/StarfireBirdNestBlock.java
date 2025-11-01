@@ -68,7 +68,7 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 		if (stack.is(ESTags.Items.STARFIRE_BIRD_FOOD) && level.getBlockEntity(pos) instanceof StarfireBirdNestBlockEntity nest && nest.getItems().stream().anyMatch(ItemStack::isEmpty)) {
-			if (!level.isClientSide && nest.addSeeds(stack)) {
+			if (!level.isClientSide && nest.addSeeds(stack.copyWithCount(1))) {
 				nest.setLastSeedPlayer(player);
 				if (player instanceof ServerPlayer serverPlayer) {
 					ESCriteriaTriggers.PUT_SEEDS_INTO_STARFIRE_BIRD_NEST.get().trigger(serverPlayer);

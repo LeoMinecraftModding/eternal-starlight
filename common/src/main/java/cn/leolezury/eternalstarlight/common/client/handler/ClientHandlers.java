@@ -91,8 +91,8 @@ public class ClientHandlers {
 	public static int resetCameraIn;
 	public static float fogStartDecrement;
 	public static float fogEndDecrement;
-	public static float abyssalFogModifier = 1;
 	public static float oldAbyssalFogModifier = 1;
+	public static float abyssalFogModifier = 1;
 	public static boolean oldTearyEffect;
 	public static boolean tearyEffect;
 	public static int oldSeedsLauncherAnimTicks;
@@ -102,6 +102,9 @@ public class ClientHandlers {
 	public static boolean isHalloween;
 
 	public static void onClientTick() {
+		if (Minecraft.getInstance().level == null) {
+			clearWorldSpecificVars();
+		}
 		LocalPlayer player = Minecraft.getInstance().player;
 		ClientWeatherState.tickRainLevel();
 		List<WorldVisualEffect> effectsToRemove = new ArrayList<>();
@@ -302,6 +305,32 @@ public class ClientHandlers {
 		if (oldTearyEffect != tearyEffect) {
 			Minecraft.getInstance().gameRenderer.checkEntityPostEffect(Minecraft.getInstance().cameraEntity);
 		}
+	}
+
+	private static void clearWorldSpecificVars() {
+		BOSSES.clear();
+		VISUAL_EFFECTS.clear();
+		SCREEN_SHAKES.clear();
+		GUI_CRESTS.clear();
+		DREAM_CATCHER_TEXTS.clear();
+		if (bossMusicInstance != null) {
+			Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
+			bossMusicInstance.stopMusic();
+			bossMusicInstance = null;
+		}
+		oldPortalTicks = 0;
+		portalTicks = 0;
+		oldAuroraIntensity = 0;
+		auroraIntensity = 0;
+		resetCameraIn = 0;
+		fogStartDecrement = 0;
+		fogEndDecrement = 0;
+		oldAbyssalFogModifier = 1;
+		abyssalFogModifier = 1;
+		oldTearyEffect = false;
+		tearyEffect = false;
+		oldSeedsLauncherAnimTicks = 0;
+		seedsLauncherAnimTicks = 0;
 	}
 
 	public static float getScreenShakeYawOffset() {

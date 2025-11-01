@@ -86,4 +86,9 @@ public abstract class SpearItem extends TieredItem implements ProjectileItem {
 	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
 	}
+
+	@Override
+	public int getEnchantmentValue() {
+		return 1;
+	}
 }

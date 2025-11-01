@@ -60,7 +60,12 @@ public class ChainOfSoulsItem extends Item {
 	}
 
 	@Override
+	public int getEnchantmentValue() {
+		return 1;
+	}
+
+	@Override
 	public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
-		return repairCandidate.is(ESItems.TENACIOUS_PETAL.get()) || super.isValidRepairItem(stack, repairCandidate);
+		return repairCandidate.is(ESItems.TENACIOUS_PETAL.get()) || repairCandidate.is(ESItems.TENACIOUS_VINE.get()) || super.isValidRepairItem(stack, repairCandidate);
 	}
 }

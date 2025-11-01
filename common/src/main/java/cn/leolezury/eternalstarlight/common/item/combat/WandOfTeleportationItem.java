@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.item.combat;
 import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.util.Mth;
@@ -75,5 +76,10 @@ public class WandOfTeleportationItem extends Item {
 			return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
 		}
 		return super.use(level, player, hand);
+	}
+
+	@Override
+	public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+		return repairCandidate.is(ESItems.TRAPPED_SOUL.get()) || super.isValidRepairItem(stack, repairCandidate);
 	}
 }

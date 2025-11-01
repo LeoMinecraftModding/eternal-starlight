@@ -417,17 +417,15 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 					ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.setData(serverPlayer, ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.getData(serverPlayer) + 1);
 				}
 			});
-			for (Player player : level().players()) {
-				if (player instanceof ServerPlayer serverPlayer) {
+			if (level() instanceof ServerLevel serverLevel) {
+				dropCustomDeathLoot(serverLevel, source, true);
+				for (ServerPlayer player : serverLevel.players()) {
 					if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
-						permitPlayer(serverPlayer);
+						permitPlayer(player);
 					}
 				}
 			}
 			abortFight();
-			if (level() instanceof ServerLevel serverLevel) {
-				dropCustomDeathLoot(serverLevel, source, true);
-			}
 		}
 	}
 
@@ -563,6 +561,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		setTarget(null);
 		setActivated(false);
 		tryTeleportBack();
+		fightParticipants.clear();
 	}
 
 	@Override

@@ -646,26 +646,17 @@ public class CommonHandlers {
 					tickableArmor.tick(level, livingEntity, armor);
 				}
 			}
-			boolean armorChanged = false;
-			for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET)) {
-				if (livingEntity.equipmentHasChanged(livingEntity.getLastArmorItem(slot), livingEntity.getItemBySlot(slot))) {
-					armorChanged = true;
-					break;
-				}
-			}
-			if (armorChanged) {
-				AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
-				if (armorAttribute != null) {
-					if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_MASK.get())
-						&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
-						&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
-						&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
-						if (!armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
-							armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
-						}
-					} else if (armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
-						armorAttribute.removeModifier(AMARAMBER_BONUS.id());
+			AttributeInstance armorAttribute = livingEntity.getAttributes().getInstance(Attributes.ARMOR);
+			if (armorAttribute != null) {
+				if (livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.AMARAMBER_MASK.get())
+					&& livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.AMARAMBER_CHESTPLATE.get())
+					&& livingEntity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()
+					&& livingEntity.getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
+					if (!armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
+						armorAttribute.addPermanentModifier(AMARAMBER_BONUS);
 					}
+				} else if (armorAttribute.hasModifier(AMARAMBER_BONUS.id())) {
+					armorAttribute.removeModifier(AMARAMBER_BONUS.id());
 				}
 			}
 			int inEtherTicks = ESDataAttachments.IN_ETHER_TICKS.getData(entity);

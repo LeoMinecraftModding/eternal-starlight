@@ -43,7 +43,7 @@ public class BossMusicSoundInstance extends AbstractTickableSoundInstance {
 	}
 
 	public boolean shouldStopMusic(LocalPlayer player) {
-		return !this.boss.isAlive() || this.boss.distanceTo(player) > 160 || !this.boss.shouldPlayBossMusic();
+		return !this.boss.isAlive() || !player.isAlive() || this.boss.distanceTo(player) > 160 || this.boss.level().dimension() != player.level().dimension() || !this.boss.shouldPlayBossMusic();
 	}
 
 	@Override

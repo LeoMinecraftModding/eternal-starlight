@@ -805,13 +805,13 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESBlocks.HAZE_ICE.get()))
 			.save(recipeOutput);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESItems.REINFORCED_ICE.get(), 4)
-			.pattern(" E ")
-			.pattern("EPE")
-			.pattern(" E ")
-			.define('E', ESBlocks.ETERNAL_ICE.get())
-			.define('P', Items.PACKED_ICE)
-			.unlockedBy("has_item", has(ESBlocks.ETERNAL_ICE.get()))
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESItems.REINFORCED_ICE.get(), 8)
+			.pattern("GIG")
+			.pattern("III")
+			.pattern("GIG")
+			.define('G', ESConventionalTags.Items.GEMS_GLACITE)
+			.define('I', Blocks.ICE)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_GLACITE))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.REINFORCED_ICE_PANE.get(), 16)
 			.pattern("###")

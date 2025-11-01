@@ -10,12 +10,15 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
+import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
@@ -26,7 +29,9 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -44,8 +49,10 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
@@ -74,6 +81,9 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public AnimationState chargeAnimationState = new AnimationState();
 	public AnimationState chargeEndAnimationState = new AnimationState();
 	public AnimationState deathAnimationState = new AnimationState();
+
+	public int oldDeathAnimationTime;
+	public int deathAnimationTime;
 
 	private int attackEnergy;
 	private int lastHurtCount;
@@ -216,14 +226,25 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	@Override
 	protected void tickDeath() {
-		if (deathTime == 0) {
+		if (deathAnimationTime == 0) {
 			stopAllAnimStates();
 			deathAnimationState.start(tickCount);
 			setBehaviorState(0);
 		}
-		++deathTime;
-		if (deathTime == 110 && !level().isClientSide()) {
+		oldDeathAnimationTime = deathAnimationTime;
+		++deathAnimationTime;
+		if (deathAnimationTime == 110 && !level().isClientSide()) {
 			level().broadcastEntityEvent(this, (byte) 60);
+			playSound(SoundEvents.GENERIC_EXPLODE.value());
+			if (level() instanceof ServerLevel serverLevel) {
+				serverLevel.sendParticles(ESExplosionParticleOptions.ENERGY, getX(), getY() + getBbHeight() / 2, getZ(), 20, getBbWidth() / 2, getBbHeight() / 2, getBbWidth() / 2, 0);
+				serverLevel.sendParticles(ESParticles.BIG_EXPLOSION.get(), getX(), getY() + getBbHeight() / 2, getZ(), 5, getBbWidth() / 2, getBbHeight() / 2, getBbWidth() / 2, 0);
+				for (int i = 0; i < 25; i++) {
+					Vec3 speed = new Vec3((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F).normalize();
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.ENERGY, position().x + speed.x * 1.2, position().y + speed.y * 1.2, position().z + speed.z * 1.2, speed.x, speed.y, speed.z));
+				}
+				ScreenShakeVfx.createInstance(level().dimension(), position(), 40, 50, 0.5f, 0.5f, 3, 5.5f).send(serverLevel);
+			}
 			remove(Entity.RemovalReason.KILLED);
 		}
 	}
@@ -261,6 +282,11 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	@Override
 	public boolean isAlliedTo(Entity entity) {
 		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLYS);
+	}
+
+	@Override
+	public boolean canStandOnFluid(FluidState fluidState) {
+		return super.canStandOnFluid(fluidState) || fluidState.is(FluidTags.LAVA);
 	}
 
 	@Override
@@ -379,6 +405,14 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				hasProtection = false;
 				if (tickCount % 60 == 0) {
 					hurt(damageSources().generic(), 0);
+				}
+				for (BlockPos pos : ESBlockUtil.getBlocksInBoundingBox(getBoundingBox().inflate(3))) {
+					if (level().getBlockState(pos).is(Blocks.LAVA)) {
+						level().setBlockAndUpdate(pos, Blocks.MAGMA_BLOCK.defaultBlockState());
+						if (level() instanceof ServerLevel serverLevel) {
+							serverLevel.sendParticles(ESExplosionParticleOptions.LAVA, pos.getCenter().x, pos.getCenter().y + 0.6, pos.getCenter().z, 1, 0, 0, 0, 0);
+						}
+					}
 				}
 			}
 		} else {
