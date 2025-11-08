@@ -35,6 +35,7 @@ public class BlockPatchFeature extends Feature<BlockPatchFeature.Configuration> 
 						placePos.setWithOffset(pos, x, y, z);
 						if (level.getBlockState(placePos).is(config.replaceable())) {
 							setBlock(level, placePos, config.placeState().getState(random, placePos));
+							level.getChunk(placePos).markPosForPostprocessing(placePos);
 						}
 					}
 				}

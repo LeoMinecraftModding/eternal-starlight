@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/deepsilver"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "P#P",
+    "PPP",
+    " P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:shield"
+  }
+}

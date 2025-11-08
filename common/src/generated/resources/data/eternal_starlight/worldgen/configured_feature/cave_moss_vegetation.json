@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:cave_moss_vein",
+            "Properties": {
+              "down": "true",
+              "east": "false",
+              "north": "false",
+              "south": "false",
+              "up": "false",
+              "waterlogged": "false",
+              "west": "false"
+            }
+          },
+          "weight": 9
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:cave_moss_carpet",
+            "Properties": {
+              "bottom": "false"
+            }
+          },
+          "weight": 25
+        }
+      ]
+    }
+  }
+}

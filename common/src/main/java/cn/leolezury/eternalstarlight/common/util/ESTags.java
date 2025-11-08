@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.crest.Crest;
-import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
@@ -209,18 +207,10 @@ public class ESTags {
 	}
 
 	public static class MobEffects {
-		public static final TagKey<MobEffect> SWAMP_SILVER_ARMOR_CAN_REMOVE = create("swamp_silver_armor_can_remove");
+		public static final TagKey<MobEffect> DEEPSILVER_ARMOR_CAN_REMOVE = create("deepsilver_armor_can_remove");
 
 		private static TagKey<MobEffect> create(String string) {
 			return TagKey.create(Registries.MOB_EFFECT, EternalStarlight.id(string));
-		}
-	}
-
-	public static class Crests {
-		public static final TagKey<Crest> IS_IN_CREST_POT = create("is_in_crest_pot");
-
-		private static TagKey<Crest> create(String string) {
-			return TagKey.create(ESRegistries.CREST, EternalStarlight.id(string));
 		}
 	}
 }

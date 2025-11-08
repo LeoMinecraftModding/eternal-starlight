@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "eternal_starlight:eternal_ice_deepsilver_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:deepsilver_ingot"
+  }
+}

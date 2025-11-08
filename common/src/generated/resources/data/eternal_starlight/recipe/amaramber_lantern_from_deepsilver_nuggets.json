@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "eternal_starlight:amaramber_candle"
+    },
+    "N": {
+      "tag": "c:nuggets/deepsilver"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NAN",
+    "NNN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:amaramber_lantern"
+  }
+}

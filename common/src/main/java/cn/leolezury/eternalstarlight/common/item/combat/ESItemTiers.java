@@ -17,7 +17,7 @@ public enum ESItemTiers implements Tier {
 	THERMAL_SPRINGSTONE(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_THERMAL_SPRINGSTONE)),
 	GLACITE(BlockTags.INCORRECT_FOR_IRON_TOOL, 500, 6.0F, 2.5F, 10, () -> Ingredient.of(ESConventionalTags.Items.GEMS_GLACITE)),
 	STARLIT_DIAMOND(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 2500, 9.0F, 4.0F, 20, () -> Ingredient.of(ESConventionalTags.Items.GEMS_STARLIT_DIAMOND)),
-	SWAMP_SILVER(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_SWAMP_SILVER)),
+	DEEPSILVER(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 800, 12.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_DEEPSILVER)),
 	MALARITE(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 2.0F, 10, () -> Ingredient.of(ESConventionalTags.Items.GEMS_MALARITE)),
 	PUNGENCY_FRUIT(BlockTags.INCORRECT_FOR_IRON_TOOL, 600, 6.0F, 2.5F, 12, () -> Ingredient.of(ESItems.PUNGENCY_FRUIT.get())),
 	STARFIRE(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1000, 7.5F, 2.5F, 15, () -> Ingredient.of(ESItems.STARFIRE.get())),

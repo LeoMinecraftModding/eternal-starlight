@@ -1,0 +1,20 @@
+{
+  "type": "eternal_starlight:block_patch",
+  "config": {
+    "place_state": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:cave_moss_block",
+        "Properties": {
+          "bottom": "false"
+        }
+      }
+    },
+    "replaceable": "#minecraft:moss_replaceable",
+    "size": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 7,
+      "min_inclusive": 4
+    }
+  }
+}

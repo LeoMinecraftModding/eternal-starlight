@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
 import cn.leolezury.eternalstarlight.common.entity.projectile.EnergySpark;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.google.common.collect.Lists;
@@ -93,7 +94,7 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 						if (entity.level().getBlockState(pos).is(Blocks.LAVA)) {
 							if (!lavaVisited.contains(pos)) {
 								lavaVisited.add(pos);
-								if (entity.getRandom().nextInt(25) == 0) {
+								if (entity.getRandom().nextInt(25) == 0 && ESPlatform.INSTANCE.postEntityDestroyBlockEvent(entity.level(), pos, entity)) {
 									entity.level().setBlockAndUpdate(pos, Blocks.MAGMA_BLOCK.defaultBlockState());
 									if (!entity.level().isClientSide) {
 										((ServerLevel) entity.level()).sendParticles(ESExplosionParticleOptions.LAVA, pos.getCenter().x, pos.getCenter().y + 0.6, pos.getCenter().z, 1, 0, 0, 0, 0);

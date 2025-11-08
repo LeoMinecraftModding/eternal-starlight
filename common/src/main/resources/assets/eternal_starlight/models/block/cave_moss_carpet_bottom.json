@@ -1,0 +1,190 @@
+{
+  "parent": "minecraft:block/thin_block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "moss": "eternal_starlight:block/cave_moss_block",
+    "lower": "eternal_starlight:block/cave_moss_block_lower",
+    "particle": "eternal_starlight:block/cave_moss_block"
+  },
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#moss",
+          "tintindex": 0
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#moss",
+          "tintindex": 0
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#moss",
+          "tintindex": 0
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#moss",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#moss",
+          "tintindex": 0
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#moss",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        1,
+        16
+      ]
+    },
+    {
+      "from": [
+        0,
+        -16,
+        -0.01
+      ],
+      "to": [
+        16,
+        0,
+        -0.01
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#lower",
+          "tintindex": 0
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#lower",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        -16,
+        16.01
+      ],
+      "to": [
+        16,
+        0,
+        16.01
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#lower",
+          "tintindex": 0
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#lower",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        -0.01,
+        -16,
+        0
+      ],
+      "to": [
+        -0.01,
+        0,
+        16
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#lower",
+          "tintindex": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#lower",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        16.01,
+        -16,
+        0
+      ],
+      "to": [
+        16.01,
+        0,
+        16
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#lower",
+          "tintindex": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#lower",
+          "tintindex": 0
+        }
+      }
+    }
+  ]
+}

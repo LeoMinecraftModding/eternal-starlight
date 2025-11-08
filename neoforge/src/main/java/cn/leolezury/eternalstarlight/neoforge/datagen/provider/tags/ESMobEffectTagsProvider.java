@@ -17,7 +17,7 @@ public class ESMobEffectTagsProvider extends MobEffectTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		tag(ESTags.MobEffects.SWAMP_SILVER_ARMOR_CAN_REMOVE)
+		tag(ESTags.MobEffects.DEEPSILVER_ARMOR_CAN_REMOVE)
 			.add(
 				MobEffects.POISON.value(),
 				MobEffects.WITHER.value(),

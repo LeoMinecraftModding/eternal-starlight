@@ -79,6 +79,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		// stones
 		randomlyFlippedBlock(ESBlocks.GRIMSTONE.get());
+		slabBlock(ESBlocks.GRIMSTONE_SLAB.get(), blockTexture(ESBlocks.GRIMSTONE.get()), blockTexture(ESBlocks.GRIMSTONE.get()));
+		stairsBlock(ESBlocks.GRIMSTONE_STAIRS.get(), blockTexture(ESBlocks.GRIMSTONE.get()));
+		wallBlock(ESBlocks.GRIMSTONE_WALL.get(), blockTexture(ESBlocks.GRIMSTONE.get()));
 		simpleBlock(ESBlocks.CHISELED_GRIMSTONE.get());
 		stoneSet(ESBlocks.COBBLED_GRIMSTONE.get(), ESBlocks.COBBLED_GRIMSTONE_SLAB.get(), ESBlocks.COBBLED_GRIMSTONE_STAIRS.get(), ESBlocks.COBBLED_GRIMSTONE_WALL.get());
 		stoneSet(ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.GRIMSTONE_BRICK_SLAB.get(), ESBlocks.GRIMSTONE_BRICK_STAIRS.get(), ESBlocks.GRIMSTONE_BRICK_WALL.get());
@@ -90,6 +93,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.GLOWING_GRIMSTONE.get());
 
 		randomlyFlippedBlock(ESBlocks.VOIDSTONE.get());
+		slabBlock(ESBlocks.VOIDSTONE_SLAB.get(), blockTexture(ESBlocks.VOIDSTONE.get()), blockTexture(ESBlocks.VOIDSTONE.get()));
+		stairsBlock(ESBlocks.VOIDSTONE_STAIRS.get(), blockTexture(ESBlocks.VOIDSTONE.get()));
+		wallBlock(ESBlocks.VOIDSTONE_WALL.get(), blockTexture(ESBlocks.VOIDSTONE.get()));
 		simpleBlock(ESBlocks.CHISELED_VOIDSTONE.get());
 		stoneSet(ESBlocks.COBBLED_VOIDSTONE.get(), ESBlocks.COBBLED_VOIDSTONE_SLAB.get(), ESBlocks.COBBLED_VOIDSTONE_STAIRS.get(), ESBlocks.COBBLED_VOIDSTONE_WALL.get());
 		stoneSet(ESBlocks.VOIDSTONE_BRICKS.get(), ESBlocks.VOIDSTONE_BRICK_SLAB.get(), ESBlocks.VOIDSTONE_BRICK_STAIRS.get(), ESBlocks.VOIDSTONE_BRICK_WALL.get());
@@ -114,13 +120,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.NEBULAITE_BRICKS.get(), ESBlocks.NEBULAITE_BRICK_SLAB.get(), ESBlocks.NEBULAITE_BRICK_STAIRS.get(), ESBlocks.NEBULAITE_BRICK_WALL.get());
 		simpleBlock(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
 
-		simpleBlock(ESBlocks.ATALPHAITE_BLOCK.get());
-		simpleBlock(ESBlocks.BLAZING_ATALPHAITE_BLOCK.get());
-		simpleBlock(ESBlocks.ATALPHAITE_LIGHT.get());
-		simpleBlock(ESBlocks.GRIMSTONE_ATALPHAITE_ORE.get());
-		simpleBlock(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get());
-		simpleBlock(ESBlocks.ETERNAL_ICE_ATALPHAITE_ORE.get());
-		simpleBlock(ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get());
+		simpleBlock(ESBlocks.STARCORE_BLOCK.get());
+		simpleBlock(ESBlocks.BLAZING_STARCORE_BLOCK.get());
+		simpleBlock(ESBlocks.STARCORE_LIGHT.get());
+		simpleBlock(ESBlocks.GRIMSTONE_STARCORE_ORE.get());
+		simpleBlock(ESBlocks.VOIDSTONE_STARCORE_ORE.get());
+		simpleBlock(ESBlocks.ETERNAL_ICE_STARCORE_ORE.get());
+		simpleBlock(ESBlocks.HAZE_ICE_STARCORE_ORE.get());
 		stoneSet(ESBlocks.RADIANITE.get(), ESBlocks.RADIANITE_SLAB.get(), ESBlocks.RADIANITE_STAIRS.get(), ESBlocks.RADIANITE_WALL.get());
 		stoneSet(ESBlocks.COBBLED_RADIANITE.get(), ESBlocks.COBBLED_RADIANITE_SLAB.get(), ESBlocks.COBBLED_RADIANITE_STAIRS.get(), ESBlocks.COBBLED_RADIANITE_WALL.get());
 		axisBlock(ESBlocks.RADIANITE_PILLAR.get());
@@ -228,6 +234,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		tintedCross(ESBlocks.CAVE_MOSS.get());
 		tintedCross(ESBlocks.CAVE_MOSS_PLANT.get());
 		multifaceBlock(ESBlocks.CAVE_MOSS_VEIN.get());
+		caveMossFull(ESBlocks.CAVE_MOSS_BLOCK.get());
+		onOffBlock(ESBlocks.CAVE_MOSS_CARPET.get(), CaveMossCarpetBlock.BOTTOM, models().getExistingFile(blockTexture(ESBlocks.CAVE_MOSS_CARPET.get()).withSuffix("_bottom")), models().singleTexture(name(ESBlocks.CAVE_MOSS_CARPET.get()), EternalStarlight.id("block/tinted_carpet"), "wool", blockTexture(ESBlocks.CAVE_MOSS_BLOCK.get())));
 		directionalBud(ESBlocks.BOULDERSHROOM.get());
 		pottedPlant(ESBlocks.POTTED_BOULDERSHROOM.get(), blockTexture(ESBlocks.BOULDERSHROOM.get()));
 		mushroomLikeBlock(ESBlocks.BOULDERSHROOM_BLOCK.get());
@@ -388,9 +396,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get());
 		simpleBlock(ESBlocks.STARLIT_DIAMOND_BLOCK.get());
 
-		simpleBlock(ESBlocks.SWAMP_SILVER_ORE.get());
-		simpleBlock(ESBlocks.SWAMP_SILVER_BLOCK.get());
-		simpleBlock(ESBlocks.SWAMP_SILVER_GRATE.get(), models().cubeAll(name(ESBlocks.SWAMP_SILVER_GRATE.get()), blockTexture(ESBlocks.SWAMP_SILVER_GRATE.get())).renderType(CUTOUT));
+		simpleBlock(ESBlocks.GRIMSTONE_DEEPSILVER_ORE.get());
+		simpleBlock(ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get());
+		simpleBlock(ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get());
+		simpleBlock(ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get());
+		simpleBlock(ESBlocks.RAW_DEEPSILVER_BLOCK.get());
+		simpleBlock(ESBlocks.DEEPSILVER_BLOCK.get());
+		simpleBlock(ESBlocks.DEEPSILVER_GRATE.get(), models().cubeAll(name(ESBlocks.DEEPSILVER_GRATE.get()), blockTexture(ESBlocks.DEEPSILVER_GRATE.get())).renderType(CUTOUT));
 
 		simpleBlock(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.GRIMSTONE_MALARITE_ORE.get());
@@ -433,10 +445,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.HAZE_ICE_SALTPETER_ORE.get());
 		simpleBlock(ESBlocks.SALTPETER_BLOCK.get());
 
+		rawAmaramberBlock(ESBlocks.RAW_AMARAMBER_BLOCK.get());
 		lantern(ESBlocks.AMARAMBER_LANTERN.get());
 		candle(ESBlocks.AMARAMBER_CANDLE.get());
 		candleCake(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), Blocks.CAKE, ESBlocks.AMARAMBER_CANDLE.get());
-		rawAmaramberBlock(ESBlocks.RAW_AMARAMBER_BLOCK.get());
 		stoneSet(ESBlocks.AMARAMBER_BRICKS.get(), ESBlocks.AMARAMBER_BRICK_SLAB.get(), ESBlocks.AMARAMBER_BRICK_STAIRS.get(), ESBlocks.AMARAMBER_BRICK_WALL.get());
 		stoneSet(ESBlocks.TORREYA_TILES.get(), ESBlocks.TORREYA_TILE_SLAB.get(), ESBlocks.TORREYA_TILE_STAIRS.get(), ESBlocks.TORREYA_TILE_WALL.get());
 
@@ -565,7 +577,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 		stellarRack(ESBlocks.STELLAR_RACK.get());
 		horizontalBlock(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), blockTexture(ESBlocks.GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()), blockTexture(ESBlocks.POLISHED_GRIMSTONE.get()));
-		simpleBlock(ESBlocks.CREST_POT.get(), models().getExistingFile(modLoc("crest_pot")));
 		portal(ESBlocks.STARLIGHT_PORTAL.get());
 	}
 
@@ -1342,9 +1353,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 	private void shadegrieve(Block block) {
 		ModelFile modelNormal = cubeAll(block);
-		ModelFile modelTop = models().withExistingParent(name(block) + "_top", EternalStarlight.id("template_top_shadegrieve")).renderType(CUTOUT)
-			.texture("cube", blockTexture(block)).texture("particle", blockTexture(block)).texture("upper", blockTexture(block).withSuffix("_upper"));
+		ModelFile modelTop = models().withExistingParent(name(block) + "_top", EternalStarlight.id("template_up_spreading_plant")).renderType(CUTOUT)
+			.texture("cube", blockTexture(block)).texture("upper", blockTexture(block).withSuffix("_upper"));
 		onOffBlock(block, ShadegrieveBlock.TOP, modelTop, modelNormal);
+	}
+
+	private void caveMossFull(Block block) {
+		ModelFile modelNormal = models().singleTexture(name(block), EternalStarlight.id("block/tinted_cube_all"), "all", blockTexture(block));
+		ModelFile modelBottom = models().withExistingParent(name(block) + "_bottom", EternalStarlight.id("template_down_spreading_plant")).renderType(CUTOUT)
+			.texture("cube", blockTexture(block)).texture("lower", blockTexture(block).withSuffix("_lower"));
+		onOffBlock(block, CaveMossFullBlock.BOTTOM, modelBottom, modelNormal);
 	}
 
 	private void onOffBlock(Block block, BooleanProperty property, ModelFile on, ModelFile off) {
@@ -1431,17 +1449,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void tintedCubeAll(Block block, ResourceLocation texture, ResourceLocation renderType) {
-		ModelFile modelFile = models().withExistingParent(name(block), "block/block")
-			.renderType(renderType)
-			.texture("particle", texture)
-			.texture("all", texture)
-			.element()
-			.from(0, 0, 0)
-			.to(16, 16, 16)
-			.allFaces((direction, builder) -> {
-				builder.texture("#all").cullface(direction).tintindex(0);
-			}).end();
-		simpleBlock(block, modelFile);
+		simpleBlock(block, models().singleTexture(name(block), EternalStarlight.id("block/tinted_cube_all"), "all", texture).renderType(renderType));
 	}
 
 	private void cross(Block block) {
@@ -1463,20 +1471,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void tintedCarpet(Block block, ResourceLocation wool) {
-		ModelFile modelFile = models().withExistingParent(name(block), "block/thin_block")
-			.texture("particle", wool)
-			.texture("wool", wool)
-			.element()
-			.from(0, 0, 0)
-			.to(16, 1, 16)
-			.face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#wool").cullface(Direction.DOWN).tintindex(0).end()
-			.face(Direction.UP).uvs(0, 0, 16, 16).texture("#wool").tintindex(0).end()
-			.face(Direction.NORTH).uvs(0, 15, 16, 16).texture("#wool").cullface(Direction.NORTH).tintindex(0).end()
-			.face(Direction.SOUTH).uvs(0, 15, 16, 16).texture("#wool").cullface(Direction.SOUTH).tintindex(0).end()
-			.face(Direction.WEST).uvs(0, 15, 16, 16).texture("#wool").cullface(Direction.WEST).tintindex(0).end()
-			.face(Direction.EAST).uvs(0, 15, 16, 16).texture("#wool").cullface(Direction.EAST).tintindex(0).end()
-			.end();
-		simpleBlock(block, modelFile);
+		simpleBlock(block, models().singleTexture(name(block), EternalStarlight.id("block/tinted_carpet"), "wool", wool));
 	}
 
 	private void carpet(Block block, ResourceLocation wool) {

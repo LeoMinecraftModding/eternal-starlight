@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/brush_brushing_1",
+  "textures": {
+    "layer0": "eternal_starlight:item/deepsilver_brush"
+  }
+}

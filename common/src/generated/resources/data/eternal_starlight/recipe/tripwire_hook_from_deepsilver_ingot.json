@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:ingots/deepsilver"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "#",
+    "S",
+    "P"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:tripwire_hook"
+  }
+}

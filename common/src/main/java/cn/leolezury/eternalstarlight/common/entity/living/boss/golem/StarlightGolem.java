@@ -218,10 +218,11 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				return false;
 			}
 		}
+		boolean success = super.hurt(source, amount);
 		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.2) {
 			setPhase(1);
 		}
-		return super.hurt(source, amount);
+		return success;
 	}
 
 	@Override
@@ -407,7 +408,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 					hurt(damageSources().generic(), 0);
 				}
 				for (BlockPos pos : ESBlockUtil.getBlocksInBoundingBox(getBoundingBox().inflate(3))) {
-					if (level().getBlockState(pos).is(Blocks.LAVA)) {
+					if (pos.distToCenterSqr(position()) < (getBbWidth() * getBbWidth()) * 2 && level().getBlockState(pos).is(Blocks.LAVA) && ESPlatform.INSTANCE.postEntityDestroyBlockEvent(level(), pos, this)) {
 						level().setBlockAndUpdate(pos, Blocks.MAGMA_BLOCK.defaultBlockState());
 						if (level() instanceof ServerLevel serverLevel) {
 							serverLevel.sendParticles(ESExplosionParticleOptions.LAVA, pos.getCenter().x, pos.getCenter().y + 0.6, pos.getCenter().z, 1, 0, 0, 0, 0);

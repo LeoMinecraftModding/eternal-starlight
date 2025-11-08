@@ -151,10 +151,10 @@ public class ESBiomes {
 	}
 
 	public static BiomeGenerationSettings.Builder baseLandGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		return baseLandGenSettings(featureGetter, carverGetter, true, true);
+		return baseLandGenSettings(featureGetter, carverGetter, true);
 	}
 
-	public static BiomeGenerationSettings.Builder baseLandGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter, boolean grass, boolean defaultOres) {
+	public static BiomeGenerationSettings.Builder baseLandGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter, boolean grass) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
 		if (grass) {
@@ -165,6 +165,9 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.WATERSIDE_VEGETATION);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
+		if (grass) {
+			builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_PATCH);
+		}
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.BOULDERSHROOM);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.STELLAGMITE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.STONE_ORE);
@@ -174,12 +177,14 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_VOIDSTONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_STARLIT_DIAMOND_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_STARLIT_DIAMOND_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_DEEPSILVER_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_DEEPSILVER_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_REDSTONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_REDSTONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_SALTPETER_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_SALTPETER_ORE);
-		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_ATALPHAITE_ORE);
-		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_ATALPHAITE_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_STARCORE_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_STARCORE_ORE);
 		builder.addFeature(GenerationStep.Decoration.LAKES, ESPlacedFeatures.HOT_SPRING);
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ESPlacedFeatures.FINAL_MODIFICATION);
 
@@ -194,6 +199,7 @@ public class ESBiomes {
 		BiomeDefaultFeatures.addSurfaceFreezing(builder);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_VEIN);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_MOSS_PATCH);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.BOULDERSHROOM);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.STONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.DEEPSLATE_ORE);
@@ -203,12 +209,14 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_VOIDSTONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_STARLIT_DIAMOND_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_STARLIT_DIAMOND_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_DEEPSILVER_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_DEEPSILVER_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_REDSTONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_REDSTONE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_SALTPETER_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_SALTPETER_ORE);
-		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_ATALPHAITE_ORE);
-		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_ATALPHAITE_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_STARCORE_ORE);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_STARCORE_ORE);
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ESPlacedFeatures.FINAL_MODIFICATION);
 
 		builder.addCarver(GenerationStep.Carving.AIR, ESConfiguredWorldCarvers.CAVES);
@@ -240,7 +248,7 @@ public class ESBiomes {
 	}
 
 	private static BiomeGenerationSettings.Builder permafrostForestGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter, true, false);
+		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter, true);
 
 		builder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ESPlacedFeatures.FALLEN_NORTHLAND_LOG);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.GLACITE);
@@ -258,7 +266,6 @@ public class ESBiomes {
 
 		builder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ESPlacedFeatures.FALLEN_STARLIGHT_MANGROVE_LOG);
 		builder.addFeature(GenerationStep.Decoration.LAKES, ESPlacedFeatures.SWAMP_WATER);
-		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.SWAMP_SILVER_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_MALARITE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_MALARITE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.GLOWING_NIGHTFALL_MUD_ORE);
@@ -293,7 +300,7 @@ public class ESBiomes {
 	}
 
 	private static BiomeGenerationSettings.Builder desertGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter, false, true);
+		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter, false);
 
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.STARLIGHT_CRYSTAL);
 		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STARLIGHT_CRYSTAL_SURFACE);

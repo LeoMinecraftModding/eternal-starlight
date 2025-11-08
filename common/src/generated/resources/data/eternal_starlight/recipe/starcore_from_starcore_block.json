@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "starcore",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:starcore_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:starcore"
+  }
+}

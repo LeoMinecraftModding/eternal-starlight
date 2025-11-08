@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": [
+    {
+      "item": "eternal_starlight:deepsilver_pickaxe"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_axe"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_hoe"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_shovel"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_sickle"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_sword"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_helmet"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_chestplate"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_leggings"
+    },
+    {
+      "item": "eternal_starlight:deepsilver_boots"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:deepsilver_nugget"
+  }
+}

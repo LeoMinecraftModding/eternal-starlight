@@ -233,6 +233,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_CRADLEWOOD_SAPLING.get());
 
 		add(ESBlocks.GRIMSTONE.get(), block -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.COBBLED_GRIMSTONE.get()));
+		add(ESBlocks.GRIMSTONE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.GRIMSTONE_STAIRS.get());
+		dropSelf(ESBlocks.GRIMSTONE_WALL.get());
 		dropSelf(ESBlocks.COBBLED_GRIMSTONE.get());
 		add(ESBlocks.COBBLED_GRIMSTONE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.COBBLED_GRIMSTONE_STAIRS.get());
@@ -259,6 +262,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.GLOWING_GRIMSTONE.get());
 
 		add(ESBlocks.VOIDSTONE.get(), block -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.COBBLED_VOIDSTONE.get()));
+		add(ESBlocks.VOIDSTONE_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.VOIDSTONE_STAIRS.get());
+		dropSelf(ESBlocks.VOIDSTONE_WALL.get());
 		dropSelf(ESBlocks.COBBLED_VOIDSTONE.get());
 		add(ESBlocks.COBBLED_VOIDSTONE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.COBBLED_VOIDSTONE_STAIRS.get());
@@ -322,13 +328,13 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.NEBULAITE_BRICK_WALL.get());
 		dropSelf(ESBlocks.CHISELED_NEBULAITE_BRICKS.get());
 
-		dropSelf(ESBlocks.ATALPHAITE_BLOCK.get());
-		dropSelf(ESBlocks.BLAZING_ATALPHAITE_BLOCK.get());
-		dropSelf(ESBlocks.ATALPHAITE_LIGHT.get());
-		add(ESBlocks.GRIMSTONE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
-		add(ESBlocks.VOIDSTONE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
-		add(ESBlocks.ETERNAL_ICE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
-		add(ESBlocks.HAZE_ICE_ATALPHAITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.ATALPHAITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		dropSelf(ESBlocks.STARCORE_BLOCK.get());
+		dropSelf(ESBlocks.BLAZING_STARCORE_BLOCK.get());
+		dropSelf(ESBlocks.STARCORE_LIGHT.get());
+		add(ESBlocks.GRIMSTONE_STARCORE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARCORE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		add(ESBlocks.VOIDSTONE_STARCORE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARCORE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		add(ESBlocks.ETERNAL_ICE_STARCORE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARCORE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		add(ESBlocks.HAZE_ICE_STARCORE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARCORE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.RADIANITE.get(), block -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.COBBLED_RADIANITE.get()));
 		add(ESBlocks.RADIANITE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.RADIANITE_STAIRS.get());
@@ -496,6 +502,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.CAVE_MOSS.get());
 		dropOther(ESBlocks.CAVE_MOSS_PLANT.get(), ESBlocks.CAVE_MOSS.get());
 		dropOther(ESBlocks.CAVE_MOSS_VEIN.get(), ESBlocks.CAVE_MOSS.get());
+		dropSelf(ESBlocks.CAVE_MOSS_BLOCK.get());
+		dropSelf(ESBlocks.CAVE_MOSS_CARPET.get());
 		dropSelf(ESBlocks.BOULDERSHROOM.get());
 		dropPottedContents(ESBlocks.POTTED_BOULDERSHROOM.get());
 		add(ESBlocks.BOULDERSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.BOULDERSHROOM.get())));
@@ -665,10 +673,14 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.STARLIT_DIAMOND.get()).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		dropSelf(ESBlocks.STARLIT_DIAMOND_BLOCK.get());
 
-		add(ESBlocks.SWAMP_SILVER_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
-		dropSelf(ESBlocks.SWAMP_SILVER_BLOCK.get());
-		dropSelf(ESBlocks.SWAMP_SILVER_GRATE.get());
-		dropSelf(ESBlocks.SWAMP_SILVER_BARS.get());
+		add(ESBlocks.GRIMSTONE_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
+		add(ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
+		add(ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
+		add(ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
+		dropSelf(ESBlocks.RAW_DEEPSILVER_BLOCK.get());
+		dropSelf(ESBlocks.DEEPSILVER_BLOCK.get());
+		dropSelf(ESBlocks.DEEPSILVER_GRATE.get());
+		dropSelf(ESBlocks.DEEPSILVER_BARS.get());
 
 		add(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.MALARITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.GRIMSTONE_MALARITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.MALARITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
@@ -714,11 +726,11 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.FLOWGLAZE_BRICK_STAIRS.get());
 		dropSelf(ESBlocks.FLOWGLAZE_BRICK_WALL.get());
 
+		dropSelf(ESBlocks.RAW_AMARAMBER_BLOCK.get());
 		dropSelf(ESBlocks.AMARAMBER_LANTERN.get());
 		add(ESBlocks.AMARAMBER_CANDLE.get(), this::createCandleDrops);
 		add(ESBlocks.AMARAMBER_CANDLE_CAKE.get(), createCandleCakeDrops(ESBlocks.AMARAMBER_CANDLE.get()));
 		add(ESBlocks.AMARAMBER_FIRE.get(), noDrop());
-		dropSelf(ESBlocks.RAW_AMARAMBER_BLOCK.get());
 		dropSelf(ESBlocks.AMARAMBER_BRICKS.get());
 		add(ESBlocks.AMARAMBER_BRICK_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.AMARAMBER_BRICK_STAIRS.get());
@@ -873,7 +885,6 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		dropSelf(ESBlocks.STELLAR_RACK.get());
 		add(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
-		add(ESBlocks.CREST_POT.get(), noDrop());
 		add(ESBlocks.STARLIGHT_PORTAL.get(), noDrop());
 	}
 

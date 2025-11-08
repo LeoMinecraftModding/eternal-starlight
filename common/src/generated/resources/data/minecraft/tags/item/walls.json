@@ -1,10 +1,12 @@
 {
   "values": [
+    "eternal_starlight:grimstone_wall",
     "eternal_starlight:cobbled_grimstone_wall",
     "eternal_starlight:grimstone_brick_wall",
     "eternal_starlight:polished_grimstone_wall",
     "eternal_starlight:grimstone_tile_wall",
     "eternal_starlight:polished_grimstone_tile_wall",
+    "eternal_starlight:voidstone_wall",
     "eternal_starlight:cobbled_voidstone_wall",
     "eternal_starlight:voidstone_brick_wall",
     "eternal_starlight:polished_voidstone_wall",

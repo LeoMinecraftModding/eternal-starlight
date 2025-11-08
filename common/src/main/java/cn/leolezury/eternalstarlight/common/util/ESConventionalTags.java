@@ -13,10 +13,9 @@ public class ESConventionalTags {
 
 		public static final TagKey<Item> CAMPFIRES = create("campfires");
 
-		public static final TagKey<Item> ORES_ATALPHAITE = ore("atalphaite");
-		public static final TagKey<Item> STORAGE_BLOCKS_ATALPHAITE = storageBlock("atalphaite");
-		public static final TagKey<Item> GEMS_ATALPHAITE = gem("atalphaite");
-
+		public static final TagKey<Item> ORES_STARCORE = ore("starcore");
+		public static final TagKey<Item> STORAGE_BLOCKS_STARCORE = storageBlock("starcore");
+		public static final TagKey<Item> GEMS_STARCORE = gem("starcore");
 
 		public static final TagKey<Item> RAW_MATERIALS_AETHERSENT = rawMaterial("aethersent");
 		public static final TagKey<Item> STORAGE_BLOCKS_RAW_AETHERSENT = storageBlock("raw_aethersent");
@@ -33,10 +32,12 @@ public class ESConventionalTags {
 		public static final TagKey<Item> STORAGE_BLOCKS_STARLIT_DIAMOND = storageBlock("starlit_diamond");
 		public static final TagKey<Item> GEMS_STARLIT_DIAMOND = gem("starlit_diamond");
 
-		public static final TagKey<Item> ORES_SWAMP_SILVER = ore("swamp_silver");
-		public static final TagKey<Item> STORAGE_BLOCKS_SWAMP_SILVER = storageBlock("swamp_silver");
-		public static final TagKey<Item> INGOTS_SWAMP_SILVER = ingot("swamp_silver");
-		public static final TagKey<Item> NUGGETS_SWAMP_SILVER = nugget("swamp_silver");
+		public static final TagKey<Item> RAW_MATERIALS_DEEPSILVER = rawMaterial("deepsilver");
+		public static final TagKey<Item> ORES_DEEPSILVER = ore("deepsilver");
+		public static final TagKey<Item> STORAGE_BLOCKS_RAW_DEEPSILVER = storageBlock("raw_deepsilver");
+		public static final TagKey<Item> STORAGE_BLOCKS_DEEPSILVER = storageBlock("deepsilver");
+		public static final TagKey<Item> INGOTS_DEEPSILVER = ingot("deepsilver");
+		public static final TagKey<Item> NUGGETS_DEEPSILVER = nugget("deepsilver");
 
 		public static final TagKey<Item> ORES_MALARITE = ore("malarite");
 		public static final TagKey<Item> STORAGE_BLOCKS_MALARITE = storageBlock("malarite");
@@ -110,8 +111,8 @@ public class ESConventionalTags {
 	}
 
 	public static class Blocks {
-		public static final TagKey<Block> ORES_ATALPHAITE = ore("atalphaite");
-		public static final TagKey<Block> STORAGE_BLOCKS_ATALPHAITE = storageBlock("atalphaite");
+		public static final TagKey<Block> ORES_STARCORE = ore("starcore");
+		public static final TagKey<Block> STORAGE_BLOCKS_STARCORE = storageBlock("starcore");
 
 		public static final TagKey<Block> STORAGE_BLOCKS_RAW_AETHERSENT = storageBlock("raw_aethersent");
 		public static final TagKey<Block> STORAGE_BLOCKS_AETHERSENT = storageBlock("aethersent");
@@ -121,8 +122,9 @@ public class ESConventionalTags {
 		public static final TagKey<Block> ORES_STARLIT_DIAMOND = ore("starlit_diamond");
 		public static final TagKey<Block> STORAGE_BLOCKS_STARLIT_DIAMOND = storageBlock("starlit_diamond");
 
-		public static final TagKey<Block> ORES_SWAMP_SILVER = ore("swamp_silver");
-		public static final TagKey<Block> STORAGE_BLOCKS_SWAMP_SILVER = storageBlock("swamp_silver");
+		public static final TagKey<Block> ORES_DEEPSILVER = ore("deepsilver");
+		public static final TagKey<Block> STORAGE_BLOCKS_RAW_DEEPSILVER = storageBlock("raw_deepsilver");
+		public static final TagKey<Block> STORAGE_BLOCKS_DEEPSILVER = storageBlock("deepsilver");
 
 		public static final TagKey<Block> ORES_MALARITE = ore("malarite");
 		public static final TagKey<Block> STORAGE_BLOCKS_MALARITE = storageBlock("malarite");

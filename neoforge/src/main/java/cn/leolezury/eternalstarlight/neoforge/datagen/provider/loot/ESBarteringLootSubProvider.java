@@ -42,7 +42,7 @@ public record ESBarteringLootSubProvider(HolderLookup.Provider registries) imple
 					.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).setWeight(8).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
 					.add(LootItem.lootTableItem(ESItems.PUNGENCY_FRUIT_UPGRADE_SMITHING_TEMPLATE.get()).setWeight(8))
 					.add(LootItem.lootTableItem(ESItems.DRYING_RACK.get()).setWeight(8))
-					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).setWeight(12).apply(SetItemCountFunction.setCount(UniformGenerator.between(10.0F, 36.0F))))
+					.add(LootItem.lootTableItem(ESItems.DEEPSILVER_NUGGET.get()).setWeight(12).apply(SetItemCountFunction.setCount(UniformGenerator.between(10.0F, 36.0F))))
 					.add(LootItem.lootTableItem(ESItems.THIOQUARTZ_SHARD.get()).setWeight(15).apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 12.0F))))
 					.add(LootItem.lootTableItem(ESItems.SALTPETER_POWDER.get()).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 12.0F))))
 					.add(LootItem.lootTableItem(ESItems.GRIMSTONE.get()).setWeight(20))

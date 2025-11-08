@@ -1,54 +1,7 @@
 {
-  "parent": "minecraft:block/block",
-  "elements": [
-    {
-      "faces": {
-        "down": {
-          "cullface": "down",
-          "texture": "#all",
-          "tintindex": 0
-        },
-        "east": {
-          "cullface": "east",
-          "texture": "#all",
-          "tintindex": 0
-        },
-        "north": {
-          "cullface": "north",
-          "texture": "#all",
-          "tintindex": 0
-        },
-        "south": {
-          "cullface": "south",
-          "texture": "#all",
-          "tintindex": 0
-        },
-        "up": {
-          "cullface": "up",
-          "texture": "#all",
-          "tintindex": 0
-        },
-        "west": {
-          "cullface": "west",
-          "texture": "#all",
-          "tintindex": 0
-        }
-      },
-      "from": [
-        0,
-        0,
-        0
-      ],
-      "to": [
-        16,
-        16,
-        16
-      ]
-    }
-  ],
+  "parent": "eternal_starlight:block/tinted_cube_all",
   "render_type": "minecraft:translucent",
   "textures": {
-    "all": "eternal_starlight:block/dusk_glass",
-    "particle": "eternal_starlight:block/dusk_glass"
+    "all": "eternal_starlight:block/dusk_glass"
   }
 }

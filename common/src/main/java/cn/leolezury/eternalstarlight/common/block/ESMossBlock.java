@@ -21,13 +21,15 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
+import java.util.Optional;
+
 public class ESMossBlock extends Block implements BonemealableBlock {
 	private final ResourceKey<ConfiguredFeature<?, ?>> bonemealFeature;
-	private final Holder<ParticleType<?>> fallingParticle;
+	private final Optional<Holder<ParticleType<?>>> fallingParticle;
 
 	public static final MapCodec<ESMossBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 		ResourceKey.codec(Registries.CONFIGURED_FEATURE).fieldOf("bonemeal_feature").forGetter((block) -> block.bonemealFeature),
-		BuiltInRegistries.PARTICLE_TYPE.holderByNameCodec().fieldOf("falling_particle").forGetter((block) -> block.fallingParticle),
+		BuiltInRegistries.PARTICLE_TYPE.holderByNameCodec().optionalFieldOf("falling_particle").forGetter((block) -> block.fallingParticle),
 		propertiesCodec()
 	).apply(instance, ESMossBlock::new));
 
@@ -37,6 +39,10 @@ public class ESMossBlock extends Block implements BonemealableBlock {
 	}
 
 	public ESMossBlock(ResourceKey<ConfiguredFeature<?, ?>> bonemealFeature, Holder<ParticleType<?>> fallingParticle, BlockBehaviour.Properties properties) {
+		this(bonemealFeature, Optional.of(fallingParticle), properties);
+	}
+
+	public ESMossBlock(ResourceKey<ConfiguredFeature<?, ?>> bonemealFeature, Optional<Holder<ParticleType<?>>> fallingParticle, BlockBehaviour.Properties properties) {
 		super(properties);
 		this.bonemealFeature = bonemealFeature;
 		this.fallingParticle = fallingParticle;
@@ -65,7 +71,7 @@ public class ESMossBlock extends Block implements BonemealableBlock {
 	@Override
 	public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
 		super.animateTick(blockState, level, blockPos, randomSource);
-		if (fallingParticle.value() instanceof SimpleParticleType type && randomSource.nextInt(10) == 0) {
+		if (fallingParticle.map(Holder::value).orElse(null) instanceof SimpleParticleType type && randomSource.nextInt(10) == 0) {
 			BlockPos blockPos2 = blockPos.below();
 			BlockState blockState2 = level.getBlockState(blockPos2);
 			if (!isFaceFull(blockState2.getCollisionShape(level, blockPos2), Direction.UP)) {

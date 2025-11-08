@@ -1,0 +1,6 @@
+{
+  "parent": "eternal_starlight:block/tinted_carpet",
+  "textures": {
+    "wool": "eternal_starlight:block/cave_moss_block"
+  }
+}

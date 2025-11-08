@@ -38,15 +38,16 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> SAND_ORE = create("sand_ore");
 	public static final ResourceKey<PlacedFeature> UPPER_STARLIT_DIAMOND_ORE = create("upper_starlit_diamond_ore");
 	public static final ResourceKey<PlacedFeature> LOWER_STARLIT_DIAMOND_ORE = create("lower_starlit_diamond_ore");
-	public static final ResourceKey<PlacedFeature> SWAMP_SILVER_ORE = create("swamp_silver_ore");
+	public static final ResourceKey<PlacedFeature> UPPER_DEEPSILVER_ORE = create("upper_deepsilver_ore");
+	public static final ResourceKey<PlacedFeature> LOWER_DEEPSILVER_ORE = create("lower_deepsilver_ore");
 	public static final ResourceKey<PlacedFeature> UPPER_MALARITE_ORE = create("upper_malarite_ore");
 	public static final ResourceKey<PlacedFeature> LOWER_MALARITE_ORE = create("lower_malarite_ore");
 	public static final ResourceKey<PlacedFeature> UPPER_REDSTONE_ORE = create("upper_redstone_ore");
 	public static final ResourceKey<PlacedFeature> LOWER_REDSTONE_ORE = create("lower_redstone_ore");
 	public static final ResourceKey<PlacedFeature> UPPER_SALTPETER_ORE = create("upper_saltpeter_ore");
 	public static final ResourceKey<PlacedFeature> LOWER_SALTPETER_ORE = create("lower_saltpeter_ore");
-	public static final ResourceKey<PlacedFeature> UPPER_ATALPHAITE_ORE = create("upper_atalphaite_ore");
-	public static final ResourceKey<PlacedFeature> LOWER_ATALPHAITE_ORE = create("lower_atalphaite_ore");
+	public static final ResourceKey<PlacedFeature> UPPER_STARCORE_ORE = create("upper_starcore_ore");
+	public static final ResourceKey<PlacedFeature> LOWER_STARCORE_ORE = create("lower_starcore_ore");
 	public static final ResourceKey<PlacedFeature> FALLEN_LUNAR_LOG = create("fallen_lunar_log");
 	public static final ResourceKey<PlacedFeature> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
 	public static final ResourceKey<PlacedFeature> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
@@ -104,6 +105,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> SCARLET_FOREST_VEGETATION = create("scarlet_forest_vegetation");
 	public static final ResourceKey<PlacedFeature> TORREYA_FOREST_VEGETATION = create("torreya_forest_vegetation");
 	public static final ResourceKey<PlacedFeature> DESERT_VEGETATION = create("desert_vegetation");
+	public static final ResourceKey<PlacedFeature> CAVE_MOSS_PATCH = create("cave_moss_patch");
 	public static final ResourceKey<PlacedFeature> WATERSIDE_VEGETATION = create("waterside_vegetation");
 	public static final ResourceKey<PlacedFeature> WATER_SURFACE_VEGETATION = create("water_surface_plant");
 	public static final ResourceKey<PlacedFeature> CRYSTAL_CAVES_VEGETATION = create("crystal_caves_vegetation");
@@ -142,15 +144,16 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, SAND_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SAND_ORE), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, UPPER_STARLIT_DIAMOND_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIT_DIAMOND_ORE), commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, LOWER_STARLIT_DIAMOND_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIT_DIAMOND_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
-		PlacementUtils.register(context, SWAMP_SILVER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_SILVER_ORE), commonOrePlacement(20, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-		PlacementUtils.register(context, UPPER_MALARITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.MALARITE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-		PlacementUtils.register(context, LOWER_MALARITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.MALARITE_ORE), commonOrePlacement(12, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
+		PlacementUtils.register(context, UPPER_DEEPSILVER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEEPSILVER_ORE), commonOrePlacement(12, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+		PlacementUtils.register(context, LOWER_DEEPSILVER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEEPSILVER_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
+		PlacementUtils.register(context, UPPER_MALARITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.MALARITE_ORE), commonOrePlacement(12, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+		PlacementUtils.register(context, LOWER_MALARITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.MALARITE_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, UPPER_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.REDSTONE_ORE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, LOWER_REDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.REDSTONE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, UPPER_SALTPETER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SALTPETER_ORE), commonOrePlacement(18, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, LOWER_SALTPETER_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SALTPETER_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
-		PlacementUtils.register(context, UPPER_ATALPHAITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ATALPHAITE_ORE), commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-		PlacementUtils.register(context, LOWER_ATALPHAITE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ATALPHAITE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
+		PlacementUtils.register(context, UPPER_STARCORE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARCORE_ORE), commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
+		PlacementUtils.register(context, LOWER_STARCORE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARCORE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, FALLEN_LUNAR_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_LUNAR_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, FALLEN_NORTHLAND_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_NORTHLAND_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, FALLEN_STARLIGHT_MANGROVE_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_STARLIGHT_MANGROVE_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
@@ -208,6 +211,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, SCARLET_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, TORREYA_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, DESERT_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.DESERT_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, CAVE_MOSS_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS_PATCH), CountPlacement.of(5), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, WATERSIDE_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.WATERSIDE_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BlockPredicateFilter.forPredicate(BlockPredicate.anyOf(nearWater)), BiomeFilter.biome());
 		PlacementUtils.register(context, WATER_SURFACE_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.WATER_SURFACE_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, CRYSTAL_CAVES_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.CRYSTAL_CAVES_VEGETATION), CountPlacement.of(15), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), BiomeFilter.biome());
@@ -219,7 +223,6 @@ public class ESPlacedFeatures {
 		// structure features
 		PlacementUtils.register(context, GOLEM_FORGE_CHIMNEY, configuredFeatures.getOrThrow(ESConfiguredFeatures.GOLEM_FORGE_CHIMNEY));
 	}
-
 
 	private static ResourceKey<PlacedFeature> create(String name) {
 		return ResourceKey.create(Registries.PLACED_FEATURE, EternalStarlight.id(name));

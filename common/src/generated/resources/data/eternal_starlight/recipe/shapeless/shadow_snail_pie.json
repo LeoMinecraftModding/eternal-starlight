@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:lunaris_cactus_gel"
+    },
+    {
+      "item": "eternal_starlight:lunar_berries"
+    },
+    {
+      "item": "eternal_starlight:cooked_shadow_snail_meat"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:shadow_snail_pie"
+  }
+}

@@ -43,6 +43,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.animal.Squid;
+import net.minecraft.world.entity.animal.armadillo.Armadillo;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
@@ -52,6 +53,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -134,6 +136,25 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerBehavior(ESItems.ROOKFISH_BUCKET.get(), new BucketDispenseItemBehavior());
 		DispenserBlock.registerBehavior(ESItems.LUMINOFISH_BUCKET.get(), new BucketDispenseItemBehavior());
 		DispenserBlock.registerBehavior(ESItems.LUMINARIS_BUCKET.get(), new BucketDispenseItemBehavior());
+		DispenserBlock.registerBehavior(ESItems.DEEPSILVER_BRUSH.get(), new OptionalDispenseItemBehavior() {
+			@Override
+			protected ItemStack execute(BlockSource blockSource, ItemStack itemStack) {
+				ServerLevel serverLevel = blockSource.level();
+				BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
+				List<Armadillo> list = serverLevel.getEntitiesOfClass(Armadillo.class, new AABB(blockPos), EntitySelector.NO_SPECTATORS);
+				if (!list.isEmpty()) {
+					for (Armadillo armadillo : list) {
+						if (armadillo.brushOffScute()) {
+							itemStack.hurtAndBreak(16, serverLevel, null, (item) -> {
+							});
+							return itemStack;
+						}
+					}
+				}
+				this.setSuccess(false);
+				return itemStack;
+			}
+		});
 		DispenserBlock.registerBehavior(ESItems.SALTPETER_MATCHBOX.get(), new OptionalDispenseItemBehavior() {
 			@Override
 			protected ItemStack execute(BlockSource blockSource, ItemStack item) {

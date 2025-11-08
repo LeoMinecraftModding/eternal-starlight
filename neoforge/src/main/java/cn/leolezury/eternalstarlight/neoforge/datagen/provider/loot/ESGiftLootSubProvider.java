@@ -26,7 +26,7 @@ public record ESGiftLootSubProvider(HolderLookup.Provider registries) implements
 					.add(LootItem.lootTableItem(Items.WHEAT_SEEDS).setWeight(25).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
 					.add(LootItem.lootTableItem(ESItems.STARFIRE.get()).setWeight(35).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
 					.add(LootItem.lootTableItem(ESItems.PUNGENCY_FRUIT_SEEDS.get()).setWeight(25).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 5.0F))))
-					.add(LootItem.lootTableItem(ESItems.SWAMP_SILVER_NUGGET.get()).setWeight(12).apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 10.0F))))
+					.add(LootItem.lootTableItem(ESItems.DEEPSILVER_NUGGET.get()).setWeight(12).apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 10.0F))))
 					.add(LootItem.lootTableItem(ESItems.THIOQUARTZ_SHARD.get()).setWeight(12).apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 10.0F))))
 					.add(LootItem.lootTableItem(ESItems.SALTPETER_POWDER.get()).setWeight(12).apply(SetItemCountFunction.setCount(UniformGenerator.between(5.0F, 10.0F))))));
 	}

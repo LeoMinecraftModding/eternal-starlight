@@ -147,7 +147,7 @@ public class ClientSetupHandlers {
 		ESBlocks.HANGING_ALGALEAVES_PLANT,
 		ESBlocks.ALGALEAVES,
 		ESBlocks.NIGHTFALL_GRASS_BLOCK,
-		ESBlocks.SWAMP_SILVER_BARS,
+		ESBlocks.DEEPSILVER_BARS,
 		ESBlocks.GOLEM_STEEL_BARS,
 		ESBlocks.WAXED_GOLEM_STEEL_BARS,
 		ESBlocks.OXIDIZED_GOLEM_STEEL_BARS
@@ -237,6 +237,8 @@ public class ClientSetupHandlers {
 		ESBlocks.CAVE_MOSS,
 		ESBlocks.CAVE_MOSS_PLANT,
 		ESBlocks.CAVE_MOSS_VEIN,
+		ESBlocks.CAVE_MOSS_BLOCK,
+		ESBlocks.CAVE_MOSS_CARPET,
 		ESBlocks.BOULDERSHROOM,
 		ESBlocks.POTTED_BOULDERSHROOM,
 		ESBlocks.BOULDERSHROOM_ROOTS,
@@ -335,7 +337,7 @@ public class ClientSetupHandlers {
 		ESBlocks.GOLDEN_GRASS,
 		ESBlocks.TALL_GOLDEN_GRASS,
 		ESBlocks.SWAMP_ROSE,
-		ESBlocks.SWAMP_SILVER_GRATE,
+		ESBlocks.DEEPSILVER_GRATE,
 		ESBlocks.PUNGENCY_FRUIT_VINES,
 		ESBlocks.STARFIRE_BIRD_NEST,
 		ESBlocks.OAK_STARFIRE_BIRD_AVIARY,
@@ -469,6 +471,8 @@ public class ClientSetupHandlers {
 
 		ItemProperties.register(ESItems.GLACITE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
+		ItemProperties.register(ESItems.DEEPSILVER_BRUSH.get(), ResourceLocation.withDefaultNamespace("brushing"), (stack, level, entity, i) -> entity != null && entity.getUseItem() == stack ? (float) (entity.getUseItemRemainingTicks() % 10) / 10.0F : 0.0F);
+
 		ItemProperties.register(ESItems.MALARITE_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
@@ -593,6 +597,8 @@ public class ClientSetupHandlers {
 		strategy.register(grassColor, ESBlocks.CAVE_MOSS.get());
 		strategy.register(grassColor, ESBlocks.CAVE_MOSS_PLANT.get());
 		strategy.register(grassColor, ESBlocks.CAVE_MOSS_VEIN.get());
+		strategy.register(grassColor, ESBlocks.CAVE_MOSS_BLOCK.get());
+		strategy.register(grassColor, ESBlocks.CAVE_MOSS_CARPET.get());
 		strategy.register(grassColor, ESBlocks.MOONLIGHT_LILY_PAD.get());
 		strategy.register(grassColor, ESBlocks.STARLIT_LILY_PAD.get());
 		strategy.register(grassColor, ESBlocks.MOONLIGHT_DUCKWEED.get());
@@ -649,6 +655,8 @@ public class ClientSetupHandlers {
 		strategy.register(toBlock, ESBlocks.CAVE_MOSS.get());
 		strategy.register(toBlock, ESBlocks.CAVE_MOSS_PLANT.get());
 		strategy.register(toBlock, ESBlocks.CAVE_MOSS_VEIN.get());
+		strategy.register(toBlock, ESBlocks.CAVE_MOSS_BLOCK.get());
+		strategy.register(toBlock, ESBlocks.CAVE_MOSS_CARPET.get());
 		strategy.register(toBlock, ESBlocks.MOONLIGHT_LILY_PAD.get());
 		strategy.register(toBlock, ESBlocks.STARLIT_LILY_PAD.get());
 		strategy.register(toBlock, ESBlocks.MOONLIGHT_DUCKWEED.get());

@@ -18,13 +18,13 @@ import java.util.Map;
 public class ESTrimMaterials {
 	public static final ResourceKey<TrimMaterial> RED_STARLIGHT_CRYSTAL = create("red_starlight_crystal");
 	public static final ResourceKey<TrimMaterial> BLUE_STARLIGHT_CRYSTAL = create("blue_starlight_crystal");
-	public static final ResourceKey<TrimMaterial> ATALPHAITE = create("atalphaite");
+	public static final ResourceKey<TrimMaterial> STARCORE = create("starcore");
 	public static final ResourceKey<TrimMaterial> THIOQUARTZ = create("thioquartz");
 	public static final ResourceKey<TrimMaterial> AETHERSENT = create("aethersent");
 	public static final ResourceKey<TrimMaterial> THERMAL_SPRINGSTONE = create("thermal_springstone");
 	public static final ResourceKey<TrimMaterial> GLACITE = create("glacite");
 	public static final ResourceKey<TrimMaterial> STARLIT_DIAMOND = create("starlit_diamond");
-	public static final ResourceKey<TrimMaterial> SWAMP_SILVER = create("swamp_silver");
+	public static final ResourceKey<TrimMaterial> DEEPSILVER = create("deepsilver");
 	public static final ResourceKey<TrimMaterial> MALARITE = create("malarite");
 	public static final ResourceKey<TrimMaterial> STARFIRE = create("starfire");
 	public static final ResourceKey<TrimMaterial> FLOWGLAZE = create("flowglaze");
@@ -36,13 +36,13 @@ public class ESTrimMaterials {
 	public static final List<ResourceKey<TrimMaterial>> TRIM_MATERIALS = List.of(
 		RED_STARLIGHT_CRYSTAL,
 		BLUE_STARLIGHT_CRYSTAL,
-		ATALPHAITE,
+		STARCORE,
 		THIOQUARTZ,
 		AETHERSENT,
 		THERMAL_SPRINGSTONE,
 		GLACITE,
 		STARLIT_DIAMOND,
-		SWAMP_SILVER,
+		DEEPSILVER,
 		MALARITE,
 		STARFIRE,
 		FLOWGLAZE,
@@ -55,13 +55,13 @@ public class ESTrimMaterials {
 	public static void bootstrap(BootstrapContext<TrimMaterial> context) {
 		register(context, RED_STARLIGHT_CRYSTAL, ESItems.RED_STARLIGHT_CRYSTAL_SHARD.asHolder(), 0xb63070, 1.0f);
 		register(context, BLUE_STARLIGHT_CRYSTAL, ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.asHolder(), 0x308fb6, 0.8f);
-		register(context, ATALPHAITE, ESItems.ATALPHAITE.asHolder(), 0xe0683e, 0.5f);
+		register(context, STARCORE, ESItems.STARCORE.asHolder(), 0xe0683e, 0.5f);
 		register(context, THIOQUARTZ, ESItems.THIOQUARTZ_SHARD.asHolder(), 0xd7e3a8, 0.7f);
 		register(context, AETHERSENT, ESItems.AETHERSENT_INGOT.asHolder(), 0x905ea8, 1.0f);
 		register(context, THERMAL_SPRINGSTONE, ESItems.THERMAL_SPRINGSTONE_INGOT.asHolder(), 0xfdbd77, 0.5f);
 		register(context, GLACITE, ESItems.GLACITE_SHARD.asHolder(), 0xcafeff, 0.8f);
 		register(context, STARLIT_DIAMOND, ESItems.STARLIT_DIAMOND.asHolder(), 0x9584e4, 0.8f);
-		register(context, SWAMP_SILVER, ESItems.SWAMP_SILVER_INGOT.asHolder(), 0x8797b8, 0.2f);
+		register(context, DEEPSILVER, ESItems.DEEPSILVER_INGOT.asHolder(), 0x8797b8, 0.2f);
 		register(context, MALARITE, ESItems.MALARITE.asHolder(), 0x7a518a, 1.0f);
 		register(context, STARFIRE, ESItems.STARFIRE.asHolder(), 0xff7d3d, 0.5f);
 		register(context, FLOWGLAZE, ESItems.FLOWGLAZE.asHolder(), 0x8ed6b0, 0.8f);

@@ -1,0 +1,8 @@
+{
+  "parent": "eternal_starlight:block/template_down_spreading_plant",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cube": "eternal_starlight:block/cave_moss_block",
+    "lower": "eternal_starlight:block/cave_moss_block_lower"
+  }
+}

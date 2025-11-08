@@ -619,6 +619,17 @@
     ],
     "subtitle": "subtitles.item.armor.eternal_starlight.equip_amaramber"
   },
+  "item.armor.equip_deepsilver": {
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_deepsilver"
+  },
   "item.armor.equip_glacite": {
     "sounds": [
       "item/armor/equip_iron1",
@@ -640,17 +651,6 @@
       "item/armor/equip_diamond6"
     ],
     "subtitle": "subtitles.item.armor.eternal_starlight.equip_starlit_diamond"
-  },
-  "item.armor.equip_swamp_silver": {
-    "sounds": [
-      "item/armor/equip_diamond1",
-      "item/armor/equip_diamond2",
-      "item/armor/equip_diamond3",
-      "item/armor/equip_diamond4",
-      "item/armor/equip_diamond5",
-      "item/armor/equip_diamond6"
-    ],
-    "subtitle": "subtitles.item.armor.eternal_starlight.equip_swamp_silver"
   },
   "item.armor.equip_thermal_springstone": {
     "sounds": [

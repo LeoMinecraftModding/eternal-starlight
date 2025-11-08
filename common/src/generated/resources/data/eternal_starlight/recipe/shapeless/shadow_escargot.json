@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:pungency_fruit"
+    },
+    {
+      "item": "eternal_starlight:cooked_shadow_snail_meat"
+    },
+    {
+      "item": "eternal_starlight:shadow_snail_shell"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:shadow_escargot"
+  }
+}

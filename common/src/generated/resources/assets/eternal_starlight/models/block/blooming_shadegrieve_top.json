@@ -1,9 +1,8 @@
 {
-  "parent": "eternal_starlight:block/template_top_shadegrieve",
+  "parent": "eternal_starlight:block/template_up_spreading_plant",
   "render_type": "minecraft:cutout",
   "textures": {
     "cube": "eternal_starlight:block/blooming_shadegrieve",
-    "particle": "eternal_starlight:block/blooming_shadegrieve",
     "upper": "eternal_starlight:block/blooming_shadegrieve_upper"
   }
 }

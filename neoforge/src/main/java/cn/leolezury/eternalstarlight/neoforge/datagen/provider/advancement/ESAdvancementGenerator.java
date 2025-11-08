@@ -164,9 +164,9 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder aetherstrikeRocket = addItemObtain(consumer, killCreteor, "obtain_aetherstrike_rocket", ESItems.AETHERSTRIKE_ROCKET.get());
 
-		AdvancementHolder swampSilverIngot = addItemObtain(consumer, enterDim, "obtain_swamp_silver_ingot", ESItems.SWAMP_SILVER_INGOT.get());
+		AdvancementHolder deepsilverIngot = addItemObtain(consumer, enterDim, "obtain_deepsilver_ingot", ESItems.DEEPSILVER_INGOT.get());
 
-		AdvancementHolder numbnessEffect = Advancement.Builder.advancement().parent(swampSilverIngot).display(
+		AdvancementHolder numbnessEffect = Advancement.Builder.advancement().parent(deepsilverIngot).display(
 				ESItems.SILVER_PUNGENCY_FRUIT.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".obtain_numbness_effect.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".obtain_numbness_effect.description"),

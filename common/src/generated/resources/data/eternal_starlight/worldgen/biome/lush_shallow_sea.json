@@ -40,18 +40,21 @@
       "eternal_starlight:glowing_voidstone_ore",
       "eternal_starlight:upper_starlit_diamond_ore",
       "eternal_starlight:lower_starlit_diamond_ore",
+      "eternal_starlight:upper_deepsilver_ore",
+      "eternal_starlight:lower_deepsilver_ore",
       "eternal_starlight:upper_redstone_ore",
       "eternal_starlight:lower_redstone_ore",
       "eternal_starlight:upper_saltpeter_ore",
       "eternal_starlight:lower_saltpeter_ore",
-      "eternal_starlight:upper_atalphaite_ore",
-      "eternal_starlight:lower_atalphaite_ore"
+      "eternal_starlight:upper_starcore_ore",
+      "eternal_starlight:lower_starcore_ore"
     ],
     [],
     [],
     [
       "eternal_starlight:cave_moss",
       "eternal_starlight:cave_moss_vein",
+      "eternal_starlight:cave_moss_patch",
       "eternal_starlight:bouldershroom",
       "eternal_starlight:velvetumoss",
       "eternal_starlight:lumenstem",

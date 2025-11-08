@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/deepsilver"
+    },
+    "H": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "##",
+    " H",
+    " H"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:deepsilver_hoe"
+  }
+}

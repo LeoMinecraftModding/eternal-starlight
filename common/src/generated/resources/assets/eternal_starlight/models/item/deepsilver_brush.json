@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/brush",
+  "overrides": [
+    {
+      "model": "eternal_starlight:item/deepsilver_brush_brushing_0",
+      "predicate": {
+        "minecraft:brushing": 0.25
+      }
+    },
+    {
+      "model": "eternal_starlight:item/deepsilver_brush_brushing_1",
+      "predicate": {
+        "minecraft:brushing": 0.5
+      }
+    },
+    {
+      "model": "eternal_starlight:item/deepsilver_brush_brushing_2",
+      "predicate": {
+        "minecraft:brushing": 0.75
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "eternal_starlight:item/deepsilver_brush"
+  }
+}

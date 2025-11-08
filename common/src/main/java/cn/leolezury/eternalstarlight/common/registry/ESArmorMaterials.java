@@ -44,13 +44,13 @@ public class ESArmorMaterials {
 		map.put(ArmorItem.Type.HELMET, 3);
 		map.put(ArmorItem.Type.BODY, 11);
 	}), 22, ESSoundEvents.ARMOR_EQUIP_STARLIT_DIAMOND.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.GEMS_STARLIT_DIAMOND), List.of(new ArmorMaterial.Layer(EternalStarlight.id("starlit_diamond"))), 3F, 0.1F));
-	public static final RegistryObject<ArmorMaterial, ArmorMaterial> SWAMP_SILVER = ARMOR_MATERIALS.register("swamp_silver", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+	public static final RegistryObject<ArmorMaterial, ArmorMaterial> DEEPSILVER = ARMOR_MATERIALS.register("deepsilver", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
 		map.put(ArmorItem.Type.BOOTS, 2);
 		map.put(ArmorItem.Type.LEGGINGS, 5);
 		map.put(ArmorItem.Type.CHESTPLATE, 6);
 		map.put(ArmorItem.Type.HELMET, 2);
 		map.put(ArmorItem.Type.BODY, 5);
-	}), 25, ESSoundEvents.ARMOR_EQUIP_SWAMP_SILVER.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.INGOTS_SWAMP_SILVER), List.of(new ArmorMaterial.Layer(EternalStarlight.id("swamp_silver"))), 0.5F, 0.2F));
+	}), 25, ESSoundEvents.ARMOR_EQUIP_DEEPSILVER.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.INGOTS_DEEPSILVER), List.of(new ArmorMaterial.Layer(EternalStarlight.id("deepsilver"))), 0.5F, 0.2F));
 	public static final RegistryObject<ArmorMaterial, ArmorMaterial> AMARAMBER = ARMOR_MATERIALS.register("amaramber", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
 		map.put(ArmorItem.Type.BOOTS, 2);
 		map.put(ArmorItem.Type.LEGGINGS, 5);

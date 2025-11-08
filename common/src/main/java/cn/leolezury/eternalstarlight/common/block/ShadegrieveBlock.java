@@ -52,7 +52,7 @@ public class ShadegrieveBlock extends Block {
 		for (Direction dir : xzDirections) {
 			sturdy &= level.getBlockState(blockPos.above()).isFaceSturdy(level, blockPos.above(), dir);
 		}
-		return state.setValue(TOP, !(level.getBlockState(blockPos.above()).getBlock() instanceof ShadegrieveBlock) && sturdy);
+		return state.setValue(TOP, !level.getBlockState(blockPos.above()).is(this) && sturdy);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class ShadegrieveBlock extends Block {
 		for (Direction dir : xzDirections) {
 			sturdy &= level.getBlockState(blockPos.above()).isFaceSturdy(level, blockPos.above(), dir);
 		}
-		return state.setValue(TOP, !(level.getBlockState(blockPos.above()).getBlock() instanceof ShadegrieveBlock) && sturdy);
+		return state.setValue(TOP, !level.getBlockState(blockPos.above()).is(this) && sturdy);
 	}
 
 	@Override

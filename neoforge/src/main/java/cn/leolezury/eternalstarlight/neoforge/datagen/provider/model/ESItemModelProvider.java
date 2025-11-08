@@ -202,6 +202,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.CRADLEWOOD_CHEST_BOAT.get());
 
 		block(ESItems.GRIMSTONE.get());
+		block(ESItems.GRIMSTONE_SLAB.get());
+		block(ESItems.GRIMSTONE_STAIRS.get());
+		wall(ESItems.GRIMSTONE_WALL.get(), ESItems.GRIMSTONE.get());
 		block(ESItems.COBBLED_GRIMSTONE.get());
 		block(ESItems.COBBLED_GRIMSTONE_SLAB.get());
 		block(ESItems.COBBLED_GRIMSTONE_STAIRS.get());
@@ -228,6 +231,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.GLOWING_GRIMSTONE.get());
 
 		block(ESItems.VOIDSTONE.get());
+		block(ESItems.VOIDSTONE_SLAB.get());
+		block(ESItems.VOIDSTONE_STAIRS.get());
+		wall(ESItems.VOIDSTONE_WALL.get(), ESItems.VOIDSTONE.get());
 		block(ESItems.COBBLED_VOIDSTONE.get());
 		block(ESItems.COBBLED_VOIDSTONE_SLAB.get());
 		block(ESItems.COBBLED_VOIDSTONE_STAIRS.get());
@@ -275,14 +281,14 @@ public class ESItemModelProvider extends ItemModelProvider {
 		wall(ESItems.NEBULAITE_BRICK_WALL.get(), ESItems.NEBULAITE_BRICKS.get());
 		block(ESItems.CHISELED_NEBULAITE_BRICKS.get());
 
-		basicItem(ESItems.ATALPHAITE.get());
-		block(ESItems.ATALPHAITE_BLOCK.get());
-		block(ESItems.BLAZING_ATALPHAITE_BLOCK.get());
-		block(ESItems.ATALPHAITE_LIGHT.get());
-		block(ESItems.GRIMSTONE_ATALPHAITE_ORE.get());
-		block(ESItems.VOIDSTONE_ATALPHAITE_ORE.get());
-		block(ESItems.ETERNAL_ICE_ATALPHAITE_ORE.get());
-		block(ESItems.HAZE_ICE_ATALPHAITE_ORE.get());
+		basicItem(ESItems.STARCORE.get());
+		block(ESItems.STARCORE_BLOCK.get());
+		block(ESItems.BLAZING_STARCORE_BLOCK.get());
+		block(ESItems.STARCORE_LIGHT.get());
+		block(ESItems.GRIMSTONE_STARCORE_ORE.get());
+		block(ESItems.VOIDSTONE_STARCORE_ORE.get());
+		block(ESItems.ETERNAL_ICE_STARCORE_ORE.get());
+		block(ESItems.HAZE_ICE_STARCORE_ORE.get());
 		basicItem(ESItems.CINDER_BRICK.get());
 		block(ESItems.RADIANITE.get());
 		block(ESItems.RADIANITE_SLAB.get());
@@ -439,6 +445,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		cubeAll(ESItems.GLOWING_MUSHROOM_STEM.get());
 		basicItem(ESItems.LUNAR_BERRIES.get());
 		flatBlockTexture(ESItems.CAVE_MOSS.get());
+		block(ESItems.CAVE_MOSS_BLOCK.get());
+		block(ESItems.CAVE_MOSS_CARPET.get());
 		flatBlockTexture(ESItems.BOULDERSHROOM.get());
 		cubeAll(ESItems.BOULDERSHROOM_BLOCK.get());
 		cubeAll(ESItems.BOULDERSHROOM_STEM.get());
@@ -562,10 +570,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.CRETEOR_HIDE.get());
 		basicItem(ESItems.RAW_AETHERSENT.get());
-		block(ESItems.RAW_AETHERSENT_BLOCK.get());
-		block(ESItems.AETHERSENT_BLOCK.get());
 		basicItem(ESItems.AETHERSENT_INGOT.get());
 		basicItem(ESItems.AETHERSENT_NUGGET.get());
+		block(ESItems.RAW_AETHERSENT_BLOCK.get());
+		block(ESItems.AETHERSENT_BLOCK.get());
 		basicItem(ESItems.AETHERSENT_ARROW.get());
 		handheld(ESItems.RAGE_OF_STARS.get());
 		bow(ESItems.STARFALL_LONGBOW.get());
@@ -612,8 +620,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.THERMAL_SPRINGSTONE_BOOTS.get());
 
 		block(ESItems.GLACITE.get());
-		block(ESItems.GLACITE_BLOCK.get());
 		basicItem(ESItems.GLACITE_SHARD.get());
+		block(ESItems.GLACITE_BLOCK.get());
 		basicItem(ESItems.GLACITE_ARROW.get());
 		handheld(ESItems.GLACITE_SWORD.get());
 		handheld(ESItems.GLACITE_PICKAXE.get());
@@ -631,8 +639,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.VOIDSTONE_STARLIT_DIAMOND_ORE.get());
 		block(ESItems.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get());
 		block(ESItems.HAZE_ICE_STARLIT_DIAMOND_ORE.get());
-		block(ESItems.STARLIT_DIAMOND_BLOCK.get());
 		basicItem(ESItems.STARLIT_DIAMOND.get());
+		block(ESItems.STARLIT_DIAMOND_BLOCK.get());
 		handheld(ESItems.STARLIT_DIAMOND_SWORD.get());
 		handheld(ESItems.STARLIT_DIAMOND_PICKAXE.get());
 		handheld(ESItems.STARLIT_DIAMOND_AXE.get());
@@ -643,26 +651,34 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.STARLIT_DIAMOND_LEGGINGS.get());
 		basicItem(ESItems.STARLIT_DIAMOND_BOOTS.get());
 
-		block(ESItems.SWAMP_SILVER_ORE.get());
-		block(ESItems.SWAMP_SILVER_BLOCK.get());
-		block(ESItems.SWAMP_SILVER_GRATE.get());
-		flatBlockTexture(ESItems.SWAMP_SILVER_BARS.get());
-		basicItem(ESItems.SWAMP_SILVER_INGOT.get());
-		basicItem(ESItems.SWAMP_SILVER_NUGGET.get());
-		handheld(ESItems.SWAMP_SILVER_SWORD.get());
-		handheld(ESItems.SWAMP_SILVER_PICKAXE.get());
-		handheld(ESItems.SWAMP_SILVER_AXE.get());
-		handheld(ESItems.SWAMP_SILVER_SICKLE.get());
-		armorWithTrim((ArmorItem) ESItems.SWAMP_SILVER_HELMET.get());
-		armorWithTrim((ArmorItem) ESItems.SWAMP_SILVER_CHESTPLATE.get());
-		basicItem(ESItems.SWAMP_SILVER_LEGGINGS.get());
-		basicItem(ESItems.SWAMP_SILVER_BOOTS.get());
+		block(ESItems.GRIMSTONE_DEEPSILVER_ORE.get());
+		block(ESItems.VOIDSTONE_DEEPSILVER_ORE.get());
+		block(ESItems.ETERNAL_ICE_DEEPSILVER_ORE.get());
+		block(ESItems.HAZE_ICE_DEEPSILVER_ORE.get());
+		basicItem(ESItems.RAW_DEEPSILVER.get());
+		basicItem(ESItems.DEEPSILVER_INGOT.get());
+		basicItem(ESItems.DEEPSILVER_NUGGET.get());
+		block(ESItems.RAW_DEEPSILVER_BLOCK.get());
+		block(ESItems.DEEPSILVER_BLOCK.get());
+		block(ESItems.DEEPSILVER_GRATE.get());
+		flatBlockTexture(ESItems.DEEPSILVER_BARS.get());
+		handheld(ESItems.DEEPSILVER_SWORD.get());
+		handheld(ESItems.DEEPSILVER_PICKAXE.get());
+		handheld(ESItems.DEEPSILVER_AXE.get());
+		handheld(ESItems.DEEPSILVER_HOE.get());
+		handheld(ESItems.DEEPSILVER_SHOVEL.get());
+		handheld(ESItems.DEEPSILVER_SICKLE.get());
+		brush(ESItems.DEEPSILVER_BRUSH.get());
+		armorWithTrim((ArmorItem) ESItems.DEEPSILVER_HELMET.get());
+		armorWithTrim((ArmorItem) ESItems.DEEPSILVER_CHESTPLATE.get());
+		basicItem(ESItems.DEEPSILVER_LEGGINGS.get());
+		basicItem(ESItems.DEEPSILVER_BOOTS.get());
 
 		block(ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
 		block(ESItems.GRIMSTONE_MALARITE_ORE.get());
 		block(ESItems.VOIDSTONE_MALARITE_ORE.get());
-		block(ESItems.MALARITE_BLOCK.get());
 		basicItem(ESItems.MALARITE.get());
+		block(ESItems.MALARITE_BLOCK.get());
 		basicItem(ESItems.MALARITE_ARROW.get());
 		handheld(ESItems.MALARITE_SWORD.get());
 		handheld(ESItems.MALARITE_PICKAXE.get());
@@ -746,9 +762,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.RAW_AMARAMBER.get());
 		basicItem(ESItems.AMARAMBER_INGOT.get());
 		basicItem(ESItems.AMARAMBER_NUGGET.get());
+		block(ESItems.RAW_AMARAMBER_BLOCK.get());
 		basicItem(ESItems.AMARAMBER_LANTERN.get());
 		basicItem(ESItems.AMARAMBER_CANDLE.get());
-		block(ESItems.RAW_AMARAMBER_BLOCK.get());
 		block(ESItems.AMARAMBER_BRICKS.get());
 		block(ESItems.AMARAMBER_BRICK_SLAB.get());
 		block(ESItems.AMARAMBER_BRICK_STAIRS.get());
@@ -852,6 +868,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.COOKED_SHADOW_SNAIL_MEAT.get());
 		basicItem(ESItems.SHADOW_SNAIL_SHELL.get());
 		basicItem(ESItems.SHADOW_SNAIL_SHELL_POWDER.get());
+		basicItem(ESItems.SHADOW_SNAIL_PIE.get());
+		basicItem(ESItems.SHADOW_ESCARGOT.get());
 
 		basicItem(ESItems.FROZEN_TUBE.get());
 
@@ -1007,7 +1025,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		inventoryModel(ESItems.ORB_OF_PROPHECY.get());
 		block(ESItems.STELLAR_RACK.get());
 		block(ESItems.ENCHANTED_GRIMSTONE_BRICKS.get());
-		block(ESItems.CREST_POT.get());
 		basicItem(ESItems.MANA_CRYSTAL.get());
 		basicItem(ESItems.TERRA_CRYSTAL.get());
 		basicItem(ESItems.WIND_CRYSTAL.get());
@@ -1140,6 +1157,20 @@ public class ESItemModelProvider extends ItemModelProvider {
 			.override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).model(pull0).end()
 			.override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 0.65).model(pull1).end()
 			.override().predicate(ResourceLocation.withDefaultNamespace("pulling"), 1).predicate(ResourceLocation.withDefaultNamespace("pull"), (float) 0.9).model(pull2).end();
+	}
+
+	private void brush(Item item) {
+		ModelFile brush0 = withExistingParent(name(item) + "_brushing_0", "item/brush_brushing_0")
+			.texture("layer0", itemTexture(item));
+		ModelFile brush1 = withExistingParent(name(item) + "_brushing_1", "item/brush_brushing_1")
+			.texture("layer0", itemTexture(item));
+		ModelFile brush2 = withExistingParent(name(item) + "_brushing_2", "item/brush_brushing_2")
+			.texture("layer0", itemTexture(item));
+		withExistingParent(name(item), "item/brush")
+			.texture("layer0", itemTexture(item))
+			.override().predicate(ResourceLocation.withDefaultNamespace("brushing"), (float) 0.25).model(brush0).end()
+			.override().predicate(ResourceLocation.withDefaultNamespace("brushing"), (float) 0.5).model(brush1).end()
+			.override().predicate(ResourceLocation.withDefaultNamespace("brushing"), (float) 0.75).model(brush2).end();
 	}
 
 	private void trapdoor(Item item) {

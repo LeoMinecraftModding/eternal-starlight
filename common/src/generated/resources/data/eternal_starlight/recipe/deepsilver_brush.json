@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/deepsilver"
+    },
+    "I": {
+      "tag": "c:rods/wooden"
+    },
+    "X": {
+      "tag": "eternal_starlight:arrow_feathers"
+    }
+  },
+  "pattern": [
+    "X",
+    "#",
+    "I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:deepsilver_brush"
+  }
+}

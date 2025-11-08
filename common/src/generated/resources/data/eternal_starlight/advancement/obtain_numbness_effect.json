@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:obtain_swamp_silver_ingot",
+  "parent": "eternal_starlight:obtain_deepsilver_ingot",
   "criteria": {
     "obtain": {
       "conditions": {
