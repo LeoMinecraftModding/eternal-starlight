@@ -610,6 +610,14 @@ public class CommonHandlers {
 					}
 				}
 				if (player instanceof ServerPlayer serverPlayer) {
+					if (player.tickCount % 200 == 0) {
+						for (int i = 0; i < inventory.getContainerSize(); ++i) {
+							ItemStack inventoryItem = inventory.getItem(i);
+							if (!inventoryItem.isEmpty()) {
+								ESBookUtil.unlock(serverPlayer, BuiltInRegistries.ITEM.getKey(inventoryItem.getItem()).withPrefix("item_"));
+							}
+						}
+					}
 					ServerPlayerGameMode gameMode = serverPlayer.gameMode;
 					ServerLevel serverLevel = serverPlayer.serverLevel();
 					if (gameMode.isDestroyingBlock && serverPlayer.getMainHandItem().is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
