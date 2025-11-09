@@ -214,6 +214,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addShapeless(recipeOutput, ESItems.VELVETUMOSS_BALL.get(), Items.SLIME_BALL, 2, ESItems.VELVETUMOSS_BALL.get());
 		customCarpet(recipeOutput, ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
 		customCarpet(recipeOutput, ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
+		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.CRINOA.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.CRINOA_BALE.get(), "crinoa_from_crinoa_bale", "crinoa_bale");
 		addShapeless(recipeOutput, ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH_SKEWER.get(), 3, ESItems.COOKED_ROOKFISH.get(), Items.STICK, Items.STICK, Items.STICK);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_ARROW.get(), 4)
 			.pattern("D")
@@ -243,7 +244,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addShapeless(recipeOutput, ESItems.SHADOW_SNAIL_SHELL.get(), ESItems.SHADOW_SNAIL_SHELL_POWDER.get(), 4, ESItems.SHADOW_SNAIL_SHELL.get());
 		addSingleConversion(recipeOutput, Items.BLACK_DYE, ESItems.SHADOW_SNAIL_SHELL_POWDER.get());
 		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_PIE.get(), 1, ESItems.LUNARIS_CACTUS_GEL.get(), ESItems.LUNAR_BERRIES.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get());
-		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_ESCARGOT.get(), 1, ESItems.PUNGENCY_FRUIT.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_SHELL.get());
+		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_ESCARGOT.get(), 1, ESItems.VELVETUMOSS_BALL.get(), ESItems.PUNGENCY_FRUIT.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_SHELL.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.STARLIT_PAINTING.get())
 			.pattern("SSS")
 			.pattern("SFS")

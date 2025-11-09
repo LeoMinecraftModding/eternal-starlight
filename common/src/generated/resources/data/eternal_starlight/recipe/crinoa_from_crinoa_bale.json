@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "crinoa_bale",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:crinoa_bale"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:crinoa"
+  }
+}

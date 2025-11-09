@@ -336,7 +336,7 @@ public class ClientSetupHandlers {
 		ESBlocks.GLIMMERFLY_BUSH,
 		ESBlocks.GOLDEN_GRASS,
 		ESBlocks.TALL_GOLDEN_GRASS,
-		ESBlocks.SWAMP_ROSE,
+		ESBlocks.CRINOA,
 		ESBlocks.DEEPSILVER_GRATE,
 		ESBlocks.PUNGENCY_FRUIT_VINES,
 		ESBlocks.STARFIRE_BIRD_NEST,

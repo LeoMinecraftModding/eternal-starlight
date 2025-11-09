@@ -568,6 +568,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.FANTASY_GRASS_CARPET.get());
 		block(ESItems.GOLDEN_GRASS_BLOCK.get());
 
+		basicItem(ESItems.CRINOA_SEEDS.get());
+		basicItem(ESItems.CRINOA.get());
+		block(ESItems.CRINOA_BALE.get());
+
 		basicItem(ESItems.CRETEOR_HIDE.get());
 		basicItem(ESItems.RAW_AETHERSENT.get());
 		basicItem(ESItems.AETHERSENT_INGOT.get());
@@ -722,6 +726,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.TORREYA_STARFIRE_BIRD_AVIARY.get());
 		block(ESItems.JINGLESTEM_STARFIRE_BIRD_AVIARY.get());
 		block(ESItems.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get());
+		basicItem(ESItems.STARFIRE_BIRD_EGG.get());
 		basicItem(ESItems.STARFIRE.get());
 		basicItem(ESItems.STARFIRE_UPGRADE_SMITHING_TEMPLATE.get());
 		handheld(ESItems.STARFIRE_SWORD.get());

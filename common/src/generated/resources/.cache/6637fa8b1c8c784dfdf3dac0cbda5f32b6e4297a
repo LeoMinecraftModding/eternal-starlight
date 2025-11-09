@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-08T20:19:19.0933243	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-11-10T00:27:30.6681338	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -42,8 +42,9 @@ debab68e199bead1e6fab023a036b4bd9d6c2317 data/c/tags/block/ore_rates/dense.json
 5dda62b0aa1ce442cd4bd50db134061efaef2e4c data/c/tags/block/sandstone/stairs.json
 c8b398a826d48a0f9f9cdfcf25cdbf300dafdf52 data/c/tags/block/skulls.json
 689c437cd44d855d93ba19066b05f1bb81bddded data/c/tags/block/stones.json
-175250c39b8b382c29d933600068b113c2e8b4a0 data/c/tags/block/storage_blocks.json
+a2014bd22d4a94fb897195c740e998c92d4a9cd6 data/c/tags/block/storage_blocks.json
 c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/block/storage_blocks/aethersent.json
+88122e86774d86833b91d449ed8166b024381d2b data/c/tags/block/storage_blocks/crinoa.json
 06860a0926d3badd6737b819088cafa7caba26b3 data/c/tags/block/storage_blocks/deepsilver.json
 6d545d7a7e464407ffabe77f1493e4dfb4d96a28 data/c/tags/block/storage_blocks/glacite.json
 252ddce914b462b117c335eb7bd1758725927f96 data/c/tags/block/storage_blocks/golem_steel.json
@@ -93,7 +94,7 @@ ceb8eb8b66e28fc35c87b4de79c8268386a72855 data/minecraft/tags/block/beacon_base_b
 25fcef527cd9a240442df188d32c912486c5ddd4 data/minecraft/tags/block/ceiling_hanging_signs.json
 451bc7fc00bd9ed0a95d49c30f3accb41cb12e80 data/minecraft/tags/block/climbable.json
 a5c861e65bd285da7e6180ee485ddbd6c84b6cda data/minecraft/tags/block/combination_step_sound_blocks.json
-6347192baba41b3bc396b8716e60c18a8d3acee6 data/minecraft/tags/block/crops.json
+25a4e55c3725e21769cabf0ef2b970a8b9f82da2 data/minecraft/tags/block/crops.json
 0c69071d8808fc63e12b14b997cf488ed35f27be data/minecraft/tags/block/dampens_vibrations.json
 d0a2b11171dc65d73093da1e9a864e8164493da8 data/minecraft/tags/block/dirt.json
 6ea55feb79f02ab17e1dd4bdc32c306ded7f85c3 data/minecraft/tags/block/dragon_immune.json
@@ -107,11 +108,11 @@ b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/inside_step_s
 0f8477f0d24a5155b211ed17168cb359357b345d data/minecraft/tags/block/leaves.json
 4d4cd3b6bbdb893c509c92bc10dd4af1fbcbed0b data/minecraft/tags/block/logs.json
 4d4cd3b6bbdb893c509c92bc10dd4af1fbcbed0b data/minecraft/tags/block/logs_that_burn.json
-6347192baba41b3bc396b8716e60c18a8d3acee6 data/minecraft/tags/block/maintains_farmland.json
+25a4e55c3725e21769cabf0ef2b970a8b9f82da2 data/minecraft/tags/block/maintains_farmland.json
 b7e18f3b592dc299e6b3b19b05c7c10f92dd4efb data/minecraft/tags/block/mangrove_logs_can_grow_through.json
 ad2418f9c0d27ca82a64e2a223a76e48fb21bd77 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
-a931837b3e3a4e8f660cca175a63470e48e5c3c2 data/minecraft/tags/block/mineable/axe.json
-5793ea2b68e757e43f4c8907e4d128234bf54288 data/minecraft/tags/block/mineable/hoe.json
+9dd8042bfee7279535d6d3c4fc55e1d033429e66 data/minecraft/tags/block/mineable/axe.json
+6a900b68ce8ca8bc8fe8f8dcc2f4db267769b71d data/minecraft/tags/block/mineable/hoe.json
 5f81e9f0b2eee97688a93d7fd15bde96e9ee5e48 data/minecraft/tags/block/mineable/pickaxe.json
 b3d90bb25c78c115ce056c05b48f39399441e063 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json

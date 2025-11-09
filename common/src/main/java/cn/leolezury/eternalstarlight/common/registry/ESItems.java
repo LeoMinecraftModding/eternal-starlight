@@ -617,6 +617,11 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> FANTASY_GRASS_CARPET = registerItem("fantasy_grass_carpet", () -> new BlockItem(ESBlocks.FANTASY_GRASS_CARPET.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GOLDEN_GRASS_BLOCK = registerItem("golden_grass_block", () -> new BlockItem(ESBlocks.GOLDEN_GRASS_BLOCK.get(), new Item.Properties()));
 
+	// crops
+	public static final RegistryObject<Item, Item> CRINOA_SEEDS = registerItem("crinoa_seeds", () -> new ItemNameBlockItem(ESBlocks.CRINOA.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRINOA = registerItem("crinoa", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRINOA_BALE = registerItem("crinoa_bale", () -> new BlockItem(ESBlocks.CRINOA_BALE.get(), new Item.Properties()));
+
 	// aethersent
 	public static final RegistryObject<Item, Item> CRETEOR_HIDE = registerItem("creteor_hide", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> RAW_AETHERSENT = registerItem("raw_aethersent", () -> new Item(new Item.Properties()));
@@ -837,6 +842,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TORREYA_STARFIRE_BIRD_AVIARY = registerItem("torreya_starfire_bird_aviary", () -> new BlockItem(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> JINGLESTEM_STARFIRE_BIRD_AVIARY = registerItem("jinglestem_starfire_bird_aviary", () -> new BlockItem(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CRADLEWOOD_STARFIRE_BIRD_AVIARY = registerItem("cradlewood_starfire_bird_aviary", () -> new BlockItem(ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARFIRE_BIRD_EGG = registerItem("starfire_bird_egg", () -> new Item(new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item, Item> STARFIRE = registerItem("starfire", () -> new StarfireItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARFIRE_UPGRADE_SMITHING_TEMPLATE = registerItem("starfire_upgrade_smithing_template", () -> new SmithingTemplateItem(
 		Component.translatable(Util.makeDescriptionId("item", EternalStarlight.id("smithing_template.starfire_upgrade.applies_to"))).withStyle(ChatFormatting.BLUE),

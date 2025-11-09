@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.block;
 import cn.leolezury.eternalstarlight.common.block.entity.StarfireBirdNestBlockEntity;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -60,6 +61,10 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 		return 0.0625F * 2;
 	}
 
+	public boolean canAccessNestContent(BlockState state) {
+		return true;
+	}
+
 	@Override
 	protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
 		return SHAPE;
@@ -67,7 +72,7 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-		if (stack.is(ESTags.Items.STARFIRE_BIRD_FOOD) && level.getBlockEntity(pos) instanceof StarfireBirdNestBlockEntity nest && nest.getItems().stream().anyMatch(ItemStack::isEmpty)) {
+		if (canAccessNestContent(state) && stack.is(ESTags.Items.STARFIRE_BIRD_FOOD) && level.getBlockEntity(pos) instanceof StarfireBirdNestBlockEntity nest && nest.getItems().stream().anyMatch(ItemStack::isEmpty)) {
 			if (!level.isClientSide && nest.addSeeds(stack.copyWithCount(1))) {
 				nest.setLastSeedPlayer(player);
 				if (player instanceof ServerPlayer serverPlayer) {
@@ -75,6 +80,20 @@ public class StarfireBirdNestBlock extends BaseEntityBlock {
 				}
 				stack.consume(1, player);
 			}
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
+		}
+		if (canAccessNestContent(state) && state.getValue(EGGS) < 3 && stack.is(ESItems.STARFIRE_BIRD_EGG.get())) {
+			stack.consume(1, player);
+			level.setBlockAndUpdate(pos, state.setValue(EGGS, state.getValue(EGGS) + 1));
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
+		}
+		if (canAccessNestContent(state) && state.getValue(EGGS) > 0 && (stack.isEmpty() || (stack.is(ESItems.STARFIRE_BIRD_EGG.get()) && stack.getCount() < stack.getMaxStackSize()))) {
+			if (stack.isEmpty()) {
+				player.setItemInHand(hand, ESItems.STARFIRE_BIRD_EGG.get().getDefaultInstance());
+			} else {
+				stack.grow(1);
+			}
+			level.setBlockAndUpdate(pos, state.setValue(EGGS, state.getValue(EGGS) - 1));
 			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return super.useItemOn(stack, state, level, pos, player, hand, hitResult);

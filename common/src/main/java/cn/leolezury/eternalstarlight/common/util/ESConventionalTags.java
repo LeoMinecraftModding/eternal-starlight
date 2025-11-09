@@ -8,6 +8,10 @@ import net.minecraft.world.level.block.Block;
 
 public class ESConventionalTags {
 	public static class Items {
+		public static final TagKey<Item> SEEDS_CRINOA = seed("crinoa");
+		public static final TagKey<Item> CROPS_CRINOA = crop("crinoa");
+		public static final TagKey<Item> STORAGE_BLOCKS_CRINOA = storageBlock("crinoa");
+
 		public static final TagKey<Item> SEEDS_PUNGENCY_FRUIT = seed("pungency_fruit");
 		public static final TagKey<Item> CROPS_PUNGENCY_FRUIT = crop("pungency_fruit");
 
@@ -111,6 +115,8 @@ public class ESConventionalTags {
 	}
 
 	public static class Blocks {
+		public static final TagKey<Block> STORAGE_BLOCKS_CRINOA = storageBlock("crinoa");
+
 		public static final TagKey<Block> ORES_STARCORE = ore("starcore");
 		public static final TagKey<Block> STORAGE_BLOCKS_STARCORE = storageBlock("starcore");
 

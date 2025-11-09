@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crinoa_bale": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:crinoa_bale"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:crinoa_from_crinoa_bale"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_crinoa_bale"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:crinoa_from_crinoa_bale"
+    ]
+  }
+}

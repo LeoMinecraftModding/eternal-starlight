@@ -42,6 +42,11 @@ public class StarfireBirdAviaryBlock extends StarfireBirdNestBlock {
 	}
 
 	@Override
+	public boolean canAccessNestContent(BlockState state) {
+		return state.getValue(OPEN);
+	}
+
+	@Override
 	protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
 		return SHAPE;
 	}

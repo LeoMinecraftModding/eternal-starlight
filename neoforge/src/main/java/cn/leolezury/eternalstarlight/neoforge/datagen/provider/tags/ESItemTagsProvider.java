@@ -126,10 +126,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.SEEDS)
 			.addTags(
+				ESConventionalTags.Items.SEEDS_CRINOA,
 				ESConventionalTags.Items.SEEDS_PUNGENCY_FRUIT
 			);
 		tag(Tags.Items.CROPS)
 			.addTags(
+				ESConventionalTags.Items.CROPS_CRINOA,
 				ESConventionalTags.Items.CROPS_PUNGENCY_FRUIT
 			);
 		tag(Tags.Items.MUSHROOMS)
@@ -297,6 +299,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.GRAVITY_PICKAXE.get()
 			);
 		// mod conventional tags
+		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_CRINOA, ESConventionalTags.Items.STORAGE_BLOCKS_CRINOA);
 		copy(ESConventionalTags.Blocks.ORES_STARCORE, ESConventionalTags.Items.ORES_STARCORE);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_STARCORE, ESConventionalTags.Items.STORAGE_BLOCKS_STARCORE);
 		copy(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AETHERSENT, ESConventionalTags.Items.STORAGE_BLOCKS_RAW_AETHERSENT);
@@ -317,6 +320,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_GRIMSTONE, ESConventionalTags.Items.ORES_IN_GROUND_GRIMSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_VOIDSTONE, ESConventionalTags.Items.ORES_IN_GROUND_VOIDSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_NIGHTFALL_MUD, ESConventionalTags.Items.ORES_IN_GROUND_NIGHTFALL_MUD);
+		tag(ESConventionalTags.Items.SEEDS_CRINOA)
+			.add(
+				ESItems.CRINOA_SEEDS.get()
+			);
+		tag(ESConventionalTags.Items.CROPS_CRINOA)
+			.add(
+				ESItems.CRINOA.get()
+			);
 		tag(ESConventionalTags.Items.SEEDS_PUNGENCY_FRUIT)
 			.add(
 				ESItems.PUNGENCY_FRUIT_SEEDS.get()

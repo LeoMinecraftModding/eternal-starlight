@@ -251,6 +251,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			);
 		tag(Tags.Blocks.STORAGE_BLOCKS)
 			.addTags(
+				ESConventionalTags.Blocks.STORAGE_BLOCKS_CRINOA,
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_STARCORE,
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AETHERSENT,
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_AETHERSENT,
@@ -285,6 +286,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.STRIPPED_CRADLEWOOD_WOOD.get()
 			);
 		// mod conventional tags
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_CRINOA)
+			.add(
+				ESBlocks.CRINOA_BALE.get()
+			);
 		tag(ESConventionalTags.Blocks.ORES_STARCORE)
 			.add(
 				ESBlocks.GRIMSTONE_STARCORE_ORE.get(),
@@ -1460,6 +1465,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.MOONLIGHT_LILY_PAD.get(),
 				ESBlocks.STARLIT_LILY_PAD.get(),
 				ESBlocks.MOONLIGHT_DUCKWEED.get(),
+				ESBlocks.CRINOA.get(),
 				ESBlocks.PUNGENCY_FRUIT_VINES.get(),
 				ESBlocks.DRYING_RACK.get(),
 				ESBlocks.STARFIRE_BIRD_NEST.get(),
@@ -1507,6 +1513,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.CAVE_MOSS_BLOCK.get(),
 				ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get(),
 				ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get(),
+				ESBlocks.CRINOA_BALE.get(),
 				ESBlocks.STARFIRE_BIRD_NEST.get()
 			);
 		tag(BlockTags.SWORD_EFFICIENT)
@@ -1591,10 +1598,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			);
 		tag(BlockTags.CROPS)
 			.add(
+				ESBlocks.CRINOA.get(),
 				ESBlocks.PUNGENCY_FRUIT_VINES.get()
 			);
 		tag(BlockTags.MAINTAINS_FARMLAND)
 			.add(
+				ESBlocks.CRINOA.get(),
 				ESBlocks.PUNGENCY_FRUIT_VINES.get()
 			);
 		tag(BlockTags.CANDLES)

@@ -35,7 +35,7 @@ public class ESFoods {
 	public static final Supplier<FoodProperties> SHADOW_SNAIL_MEAT = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).effect(new MobEffectInstance(MobEffects.CONFUSION, 600, 0), 0.3F).build());
 	public static final Supplier<FoodProperties> COOKED_SHADOW_SNAIL_MEAT = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build());
 	public static final Supplier<FoodProperties> SHADOW_SNAIL_PIE = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(8).saturationModifier(0.6F).build());
-	public static final Supplier<FoodProperties> SHADOW_ESCARGOT = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(8).saturationModifier(1.0F).usingConvertsTo(ESItems.SHADOW_SNAIL_SHELL.get()).build());
+	public static final Supplier<FoodProperties> SHADOW_ESCARGOT = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(10).saturationModifier(1.0F).usingConvertsTo(ESItems.SHADOW_SNAIL_SHELL.get()).build());
 	public static final Supplier<FoodProperties> DOOMEDEN_CARRION = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.8F).build());
 	public static final Supplier<FoodProperties> ROTTEN_HAM = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(8).saturationModifier(0.8f).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build());
 }

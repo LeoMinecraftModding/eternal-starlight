@@ -549,7 +549,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.WITHERED_DESERT_AMETHYSIA.get());
 		dropPottedContents(ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get());
 		dropSelf(ESBlocks.SUNSET_THORNBLOOM.get());
-		plant(ESBlocks.AMETHYSIA_GRASS.get());
+		add(ESBlocks.AMETHYSIA_GRASS.get(), block -> createPlantDrops(block, ESItems.CRINOA_SEEDS.get()));
 		dropPottedContents(ESBlocks.POTTED_SUNSET_THORNBLOOM.get());
 		add(ESBlocks.LUNARIS_CACTUS.get(), this::createLunarisCactusDrop);
 		dropSelf(ESBlocks.LUNARIS_CACTUS_GEL_BLOCK.get());
@@ -637,6 +637,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.FANTASY_GRASS_BLOCK.get(), block -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_MUD.get()));
 		dropSelf(ESBlocks.FANTASY_GRASS_CARPET.get());
 		add(ESBlocks.GOLDEN_GRASS_BLOCK.get(), block -> this.createSingleItemTableWithSilkTouch(block, ESBlocks.NIGHTFALL_DIRT.get()));
+
+		add(ESBlocks.CRINOA.get(), this.createCropDrops(ESBlocks.CRINOA.get(), ESItems.CRINOA.get(), ESItems.CRINOA_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.CRINOA.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CrinoaBlock.AGE, 7))));
+		dropSelf(ESBlocks.CRINOA_BALE.get());
 
 		dropSelf(ESBlocks.RAW_AETHERSENT_BLOCK.get());
 		dropSelf(ESBlocks.AETHERSENT_BLOCK.get());

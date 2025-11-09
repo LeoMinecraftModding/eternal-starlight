@@ -16,7 +16,7 @@ public class PetalScytheItem extends ScytheItem implements Swingable {
 		super(tier, canTill, properties);
 	}
 
-	private void performSpecialAttach(LivingEntity entity) {
+	private void performSpecialAttack(LivingEntity entity) {
 		Level level = entity.level();
 		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(entity, this)) {
 			Vec3 shootPos = entity.position().add(0, entity.getBbWidth() / 2, 0);
@@ -33,11 +33,11 @@ public class PetalScytheItem extends ScytheItem implements Swingable {
 	@Override
 	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		super.postHurtEnemy(stack, target, attacker);
-		performSpecialAttach(attacker);
+		performSpecialAttack(attacker);
 	}
 
 	@Override
 	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
-		performSpecialAttach(entity);
+		performSpecialAttack(entity);
 	}
 }

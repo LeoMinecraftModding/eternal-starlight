@@ -737,6 +737,10 @@ public class ESBlocks {
 	public static final RegistryObject<Block, CarpetBlock> FANTASY_GRASS_CARPET = BLOCKS.register("fantasy_grass_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, ESGrassBlock> GOLDEN_GRASS_BLOCK = BLOCKS.register("golden_grass_block", () -> new ESGrassBlock(NIGHTFALL_DIRT.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.GOLD)));
 
+	// crops
+	public static final RegistryObject<Block, CrinoaBlock> CRINOA = BLOCKS.register("crinoa", () -> new CrinoaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, CrinoaBaleBlock> CRINOA_BALE = BLOCKS.register("crinoa_bale", () -> new CrinoaBaleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+
 	// aethersent
 	public static final RegistryObject<Block, Block> RAW_AETHERSENT_BLOCK = BLOCKS.register("raw_aethersent_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, Block> AETHERSENT_BLOCK = BLOCKS.register("aethersent_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));

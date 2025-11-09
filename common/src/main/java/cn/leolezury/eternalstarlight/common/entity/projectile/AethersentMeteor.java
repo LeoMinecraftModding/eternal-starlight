@@ -77,6 +77,9 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 
 	public void setTarget(LivingEntity target) {
 		this.target = target;
+		if (target != null) {
+			this.targetId = target.getUUID();
+		}
 	}
 
 	private Vec3 targetPos = Vec3.ZERO;

@@ -376,6 +376,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		carpet(ESBlocks.FANTASY_GRASS_CARPET.get(), blockTexture(ESBlocks.FANTASY_GRASS_BLOCK.get()).withSuffix("_top"));
 		simpleGrassBlock(ESBlocks.GOLDEN_GRASS_BLOCK.get(), blockTexture(ESBlocks.NIGHTFALL_DIRT.get()));
 
+		crinoa(ESBlocks.CRINOA.get());
+		directionalCubeBottomTop(ESBlocks.CRINOA_BALE.get());
+
 		simpleBlock(ESBlocks.RAW_AETHERSENT_BLOCK.get());
 		simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
 
@@ -671,6 +674,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		getVariantBuilder(block).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X ? modelNs : modelEw).build(), ESPortalBlock.CENTER);
 	}
 
+	private void crinoa(Block block) {
+		getVariantBuilder(block).forAllStates(state -> {
+			int stage = Math.max(state.getValue(BlockStateProperties.AGE_7) - 1, 0);
+			return ConfiguredModel.builder().modelFile(models().crop(name(block) + "_stage" + stage, blockTexture(block).withSuffix("_stage" + stage)).renderType(CUTOUT)).build();
+		});
+	}
+
 	private void pungencyFruit(Block block) {
 		ModelFile stage0 = models().cross(name(block) + "_stage0", blockTexture(block).withSuffix("_stage0")).renderType(CUTOUT);
 		ModelFile stage1 = models().cross(name(block) + "_stage1", blockTexture(block).withSuffix("_stage1")).renderType(CUTOUT);
@@ -886,6 +896,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 	private void directionalCrossCropBud(Block block) {
 		ModelFile modelFile = models().singleTexture(name(block), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/cross_crop"), "cross", blockTexture(block)).renderType(CUTOUT);
+		getVariantBuilder(block).forAllStates((state) -> {
+			Direction direction = state.getValue(BlockStateProperties.FACING);
+			int rotX = direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90;
+			return ConfiguredModel.builder()
+				.modelFile(modelFile).rotationY(((int) direction.toYRot() + 180) % 360).rotationX(rotX).build();
+		});
+	}
+
+	private void directionalCubeBottomTop(Block block) {
+		ModelFile modelFile = models().cubeBottomTop(name(block), blockTexture(block), blockTexture(block).withSuffix("_bottom"), blockTexture(block).withSuffix("_top"));
 		getVariantBuilder(block).forAllStates((state) -> {
 			Direction direction = state.getValue(BlockStateProperties.FACING);
 			int rotX = direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90;

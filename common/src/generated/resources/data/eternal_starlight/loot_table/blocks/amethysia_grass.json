@@ -3,29 +3,46 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:any_of",
-          "terms": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "minecraft:shears"
-              }
-            },
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "#eternal_starlight:sickles"
-              }
-            }
-          ]
-        }
-      ],
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "eternal_starlight:amethysia_grass"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "minecraft:shears"
+                  }
+                }
+              ],
+              "name": "eternal_starlight:amethysia_grass"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "chance": 0.125,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "functions": [
+                {
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:uniform_bonus_count",
+                  "function": "minecraft:apply_bonus",
+                  "parameters": {
+                    "bonusMultiplier": 2
+                  }
+                },
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ],
+              "name": "eternal_starlight:crinoa_seeds"
+            }
+          ]
         }
       ],
       "rolls": 1.0

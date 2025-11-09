@@ -1,11 +1,12 @@
-// 1.21.1	2025-11-08T22:21:08.1713666	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-11-10T00:27:30.7152484	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/c/tags/item/campfires.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/item/clusters.json
 bc94fd3727d8fd7ac7e42ed5107711f75accb10c data/c/tags/item/cobblestones.json
-93c4d59a06cda2031ba0851509f1336cc8aacfde data/c/tags/item/crops.json
+bad75973562f40ae75018161efae810698dc6693 data/c/tags/item/crops.json
+e4fdfbaf8d9054e500c7eec455bfa598ca079aaa data/c/tags/item/crops/crinoa.json
 73c48edccb581f837f308a352ba806f2b3012b85 data/c/tags/item/crops/pungency_fruit.json
 9ddd6226db1c2e600bce774563aa46f497dc37d7 data/c/tags/item/dusts.json
 952ece4a60060206e6e340490f8c12cd3ca05984 data/c/tags/item/dusts/saltpeter.json
@@ -79,11 +80,13 @@ d38249fab22efad1375ca4ab1d7e084894c894fa data/c/tags/item/raw_materials.json
 9ed1a8054322f0da7a2db0c72f73e1d03cfd2a3d data/c/tags/item/sandstone/blocks.json
 5b87b123e291847286b5f065a15e87cd2e8e4fef data/c/tags/item/sandstone/slabs.json
 5dda62b0aa1ce442cd4bd50db134061efaef2e4c data/c/tags/item/sandstone/stairs.json
-458502af207d38d0b994c233b146eabc4a5c7fbf data/c/tags/item/seeds.json
+9d2ca5203b89f610407d5ec6f226a12b6fe9b098 data/c/tags/item/seeds.json
+3cd5141271cc2aeca4624af1cd625293497becb5 data/c/tags/item/seeds/crinoa.json
 0711db198d9ca45a09ad131c41591e20b184ce47 data/c/tags/item/seeds/pungency_fruit.json
 689c437cd44d855d93ba19066b05f1bb81bddded data/c/tags/item/stones.json
-175250c39b8b382c29d933600068b113c2e8b4a0 data/c/tags/item/storage_blocks.json
+a2014bd22d4a94fb897195c740e998c92d4a9cd6 data/c/tags/item/storage_blocks.json
 c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/item/storage_blocks/aethersent.json
+88122e86774d86833b91d449ed8166b024381d2b data/c/tags/item/storage_blocks/crinoa.json
 06860a0926d3badd6737b819088cafa7caba26b3 data/c/tags/item/storage_blocks/deepsilver.json
 6d545d7a7e464407ffabe77f1493e4dfb4d96a28 data/c/tags/item/storage_blocks/glacite.json
 252ddce914b462b117c335eb7bd1758725927f96 data/c/tags/item/storage_blocks/golem_steel.json
