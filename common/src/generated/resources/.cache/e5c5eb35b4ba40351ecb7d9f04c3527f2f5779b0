@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-08T14:31:50.6058745	Advancements
+// 1.21.1	2025-11-10T22:43:15.3685424	Advancements
 bc79d3aedb5c3d78bbdf8ea64070159bb3371cb4 data/eternal_starlight/advancement/all_starlight_biomes.json
 f669cf32323b8189231a1ea04f94718c156a21b5 data/eternal_starlight/advancement/chain_tangled_skull_explosion.json
 bbc7597d700cf173452d0d1ae7c5a94322ce9ddc data/eternal_starlight/advancement/challenge_gatekeeper.json
@@ -35,6 +35,7 @@ d50ae28bc35518c117751ab32f2bf1e3465c9527 data/eternal_starlight/advancement/obta
 f12b70715ce7a2fd332ac981a6ee3a45fcb13e5e data/eternal_starlight/advancement/obtain_scythe.json
 36f1cfcf96767011a04849069b174f9d5a6473e4 data/eternal_starlight/advancement/obtain_seeking_eye.json
 b32b4cbd968b26c0e3c71ffae6ea15ef98842591 data/eternal_starlight/advancement/obtain_starfire.json
+b09f0a70acde67a9da8ae7cd6fb7bdefdec182ef data/eternal_starlight/advancement/obtain_starlit_diamond.json
 66eb7bf8d6103d23bb0ee3559e2a58fda11575af data/eternal_starlight/advancement/obtain_stellagmite.json
 096c8c615e16acc93082e25ac2eea6dc0afc07a1 data/eternal_starlight/advancement/obtain_thermal_springstone.json
 d63c3ab5e7f01966df5d6c53fa852599028c1b36 data/eternal_starlight/advancement/obtain_thioquartz_shard.json

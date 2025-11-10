@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-10T00:27:30.7152484	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-11-11T00:29:22.5435396	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -28,7 +28,7 @@ f1bfd8d1e58f64e87a6a8b58fa78780552b3e083 data/c/tags/item/dyed/white.json
 f0bd040a5c70355d46f29d0603177aa652593ce1 data/c/tags/item/dyed/yellow.json
 0d44b3662c03892d3a582bf53190e5eb83c869f1 data/c/tags/item/fences/wooden.json
 0ba65e333c1645d015b8b95daaa846b4064f3747 data/c/tags/item/fence_gates/wooden.json
-e113a9a2ca3a24f05ca4bdef88f65886cf01ae0b data/c/tags/item/foods.json
+e18fa3346e2c22c5ebc6cd13d000c1b2720b3276 data/c/tags/item/foods.json
 f68b1445e8e902a4ca456603a16efc4c38729102 data/c/tags/item/foods/berry.json
 116ffed57cee4ddc2c46b14178918e2809039cbe data/c/tags/item/foods/cooked_fish.json
 3a4b43c6ea5f9487579cdc5d513d8299ae4524b3 data/c/tags/item/foods/cooked_meat.json
@@ -36,7 +36,7 @@ f68b1445e8e902a4ca456603a16efc4c38729102 data/c/tags/item/foods/berry.json
 c3ebce7e2a2b41cae11634857f71043a60c022e5 data/c/tags/item/foods/pie.json
 1b358a5ddc4e169992763bf5c406a16124be40eb data/c/tags/item/foods/raw_fish.json
 5efc0e8686848a02120f2a5c0704b9a4c7dcb8fa data/c/tags/item/foods/raw_meat.json
-9a550dfa716ab6e3bd74b76e08240d11e0db3563 data/c/tags/item/foods/soup.json
+4bdfaed30fe26d3196a1e66603a283da8b56ec29 data/c/tags/item/foods/soup.json
 52f4e331dc68426de50ca43ea9fceed37a08def0 data/c/tags/item/gems.json
 66ff992b2f3b1a07bf922f1caeb8fce665e1c4d2 data/c/tags/item/gems/glacite.json
 820388b7cf47038f17d9e1803fa7373a50fa2fb3 data/c/tags/item/gems/malarite.json
@@ -61,17 +61,18 @@ f4dc3980b35bfbf6e5c114f953c888f305966075 data/c/tags/item/nuggets/amaramber.json
 58f0726efd5d47a690ae2bfb6f1eeb31db73b470 data/c/tags/item/nuggets/golem_steel.json
 61c14bcda1f6221ff31c9430633bfd15a0250611 data/c/tags/item/nuggets/oxidized_golem_steel.json
 0f04d86669991ac8ecb1a0e2f387799513f2bcb7 data/c/tags/item/ores.json
-756a2767d280323aeb7623dc88e010791b1cb78d data/c/tags/item/ores/deepsilver.json
-d0dd0f1ba2fffc17df62fefb52c49d18c419bf24 data/c/tags/item/ores/malarite.json
+20b3c5a5a15f1b69f68a44a095d38d3bd7b56119 data/c/tags/item/ores/deepsilver.json
+be1aa8761efdc0ca07210e3ac53bd0678186bc43 data/c/tags/item/ores/malarite.json
 75ac2f95aef85dc0429ab605962ae1464b1d6f28 data/c/tags/item/ores/redstone.json
 4ae824bf159c2223e29a2d0f70fd8e836d42f4df data/c/tags/item/ores/saltpeter.json
 74294b5633dfcb2c10acf75107b0237f7fbb5124 data/c/tags/item/ores/starcore.json
 282c38177e5bc9fe171581f4d7f8e8e844b97bb0 data/c/tags/item/ores/starlit_diamond.json
 4652bb3eb27df7a51340dc5c312a51116216a71d data/c/tags/item/ores_in_ground/grimstone.json
-105af3cfe57d3c3be61dbf08332e1e1ff015a4e6 data/c/tags/item/ores_in_ground/nightfall_mud.json
+7ba07d57f2bd95e6efe0c0fef0964f1799075a4c data/c/tags/item/ores_in_ground/nightfall_mud.json
+5ffbac8d885cfdfa917fd90645d4e5f460b88a8d data/c/tags/item/ores_in_ground/packed_nightfall_mud.json
 162a51ab3a694d7d6a9334ff94d9b21fa757670c data/c/tags/item/ores_in_ground/voidstone.json
-debab68e199bead1e6fab023a036b4bd9d6c2317 data/c/tags/item/ore_rates/dense.json
-98bfbfb895c5ff3b4bf3f0174c54fa52120368b8 data/c/tags/item/ore_rates/sparse.json
+52f7df393f43d55ac188539fc0bd9c14c34c0ef7 data/c/tags/item/ore_rates/dense.json
+22323804bb9712eb6ccb2b85fb14ecc3f91ac8f2 data/c/tags/item/ore_rates/sparse.json
 d38249fab22efad1375ca4ab1d7e084894c894fa data/c/tags/item/raw_materials.json
 652f6b9b076931b4a7fb90ff2bc2c81b704204dc data/c/tags/item/raw_materials/aethersent.json
 74a68b74f5863830cf3b4ba95a1ed6ea1cd84d81 data/c/tags/item/raw_materials/amaramber.json

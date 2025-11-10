@@ -164,6 +164,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get(),
 				ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get(),
 				ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get(),
+				ESBlocks.NIGHTFALL_MUD_DEEPSILVER_ORE.get(),
+				ESBlocks.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get(),
 				ESBlocks.GRIMSTONE_SALTPETER_ORE.get(),
 				ESBlocks.VOIDSTONE_SALTPETER_ORE.get(),
 				ESBlocks.ETERNAL_ICE_SALTPETER_ORE.get(),
@@ -184,9 +186,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get(),
 				ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get(),
 				ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get(),
-				ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(),
 				ESBlocks.GRIMSTONE_MALARITE_ORE.get(),
-				ESBlocks.VOIDSTONE_MALARITE_ORE.get()
+				ESBlocks.VOIDSTONE_MALARITE_ORE.get(),
+				ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(),
+				ESBlocks.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get()
 			);
 		tag(Tags.Blocks.ORES)
 			.add(
@@ -329,7 +332,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.GRIMSTONE_DEEPSILVER_ORE.get(),
 				ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get(),
 				ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get(),
-				ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get()
+				ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get(),
+				ESBlocks.NIGHTFALL_MUD_DEEPSILVER_ORE.get(),
+				ESBlocks.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get()
 			);
 		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_DEEPSILVER)
 			.add(
@@ -341,9 +346,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			);
 		tag(ESConventionalTags.Blocks.ORES_MALARITE)
 			.add(
-				ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(),
 				ESBlocks.GRIMSTONE_MALARITE_ORE.get(),
-				ESBlocks.VOIDSTONE_MALARITE_ORE.get()
+				ESBlocks.VOIDSTONE_MALARITE_ORE.get(),
+				ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(),
+				ESBlocks.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get()
 			);
 		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_MALARITE)
 			.add(
@@ -408,7 +414,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			);
 		tag(ESConventionalTags.Blocks.ORES_IN_GROUND_NIGHTFALL_MUD)
 			.add(
+				ESBlocks.NIGHTFALL_MUD_DEEPSILVER_ORE.get(),
 				ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get()
+			);
+		tag(ESConventionalTags.Blocks.ORES_IN_GROUND_PACKED_NIGHTFALL_MUD)
+			.add(
+				ESBlocks.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get(),
+				ESBlocks.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get()
 			);
 		// mod tags
 		tag(ESTags.Blocks.LUNAR_LOGS)
@@ -1351,11 +1363,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get(),
 				ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get(),
 				ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get(),
+				ESBlocks.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get(),
 				ESBlocks.DEEPSILVER_BLOCK.get(),
 				ESBlocks.DEEPSILVER_GRATE.get(),
 				ESBlocks.DEEPSILVER_BARS.get(),
 				ESBlocks.GRIMSTONE_MALARITE_ORE.get(),
 				ESBlocks.VOIDSTONE_MALARITE_ORE.get(),
+				ESBlocks.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get(),
 				ESBlocks.MALARITE_BLOCK.get(),
 				ESBlocks.FLOWGLAZE_BRICKS.get(),
 				ESBlocks.FLOWGLAZE_BRICK_SLAB.get(),
@@ -1505,6 +1519,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
 				ESBlocks.FANTASY_GRASS_BLOCK.get(),
 				ESBlocks.GOLDEN_GRASS_BLOCK.get(),
+				ESBlocks.NIGHTFALL_MUD_DEEPSILVER_ORE.get(),
 				ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(),
 				ESBlocks.CRYSTALLIZED_SAND.get()
 			);

@@ -62,6 +62,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
 		tag(Tags.Items.FOODS)
 			.add(
+				ESItems.CRINOA_BALL.get(),
 				ESItems.SHADOW_ESCARGOT.get(),
 				ESItems.DOOMEDEN_CARRION.get(),
 				ESItems.ROTTEN_HAM.get()
@@ -109,6 +110,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.FOODS_SOUP)
 			.add(
 				ESItems.BOULDERSHROOM_STEW.get(),
+				ESItems.CRINOA_PORRIDGE.get(),
 				ESItems.PUNGENCY_STEW.get()
 			);
 		tag(Tags.Items.FOODS_PIE)
@@ -320,6 +322,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_GRIMSTONE, ESConventionalTags.Items.ORES_IN_GROUND_GRIMSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_VOIDSTONE, ESConventionalTags.Items.ORES_IN_GROUND_VOIDSTONE);
 		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_NIGHTFALL_MUD, ESConventionalTags.Items.ORES_IN_GROUND_NIGHTFALL_MUD);
+		copy(ESConventionalTags.Blocks.ORES_IN_GROUND_PACKED_NIGHTFALL_MUD, ESConventionalTags.Items.ORES_IN_GROUND_PACKED_NIGHTFALL_MUD);
 		tag(ESConventionalTags.Items.SEEDS_CRINOA)
 			.add(
 				ESItems.CRINOA_SEEDS.get()

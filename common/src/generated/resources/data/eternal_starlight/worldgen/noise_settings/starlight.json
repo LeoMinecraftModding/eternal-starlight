@@ -453,26 +453,53 @@
           ]
         },
         "then_run": {
-          "type": "minecraft:condition",
-          "if_true": {
-            "type": "minecraft:not",
-            "invert": {
-              "type": "minecraft:vertical_gradient",
-              "false_at_and_above": {
-                "absolute": 30
+          "type": "minecraft:sequence",
+          "sequence": [
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:not",
+                "invert": {
+                  "type": "minecraft:vertical_gradient",
+                  "false_at_and_above": {
+                    "absolute": 40
+                  },
+                  "random_name": "minecraft:stone",
+                  "true_at_and_below": {
+                    "absolute": 32
+                  }
+                }
               },
-              "random_name": "minecraft:stone",
-              "true_at_and_below": {
-                "absolute": 22
+              "then_run": {
+                "type": "minecraft:block",
+                "result_state": {
+                  "Name": "eternal_starlight:nightfall_mud"
+                }
+              }
+            },
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:not",
+                "invert": {
+                  "type": "minecraft:vertical_gradient",
+                  "false_at_and_above": {
+                    "absolute": 30
+                  },
+                  "random_name": "minecraft:stone",
+                  "true_at_and_below": {
+                    "absolute": 22
+                  }
+                }
+              },
+              "then_run": {
+                "type": "minecraft:block",
+                "result_state": {
+                  "Name": "eternal_starlight:packed_nightfall_mud"
+                }
               }
             }
-          },
-          "then_run": {
-            "type": "minecraft:block",
-            "result_state": {
-              "Name": "eternal_starlight:nightfall_mud"
-            }
-          }
+          ]
         }
       },
       {

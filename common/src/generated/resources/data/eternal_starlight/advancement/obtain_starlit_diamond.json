@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:starlit_diamond"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_starlit_diamond.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:starlit_diamond"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_starlit_diamond.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

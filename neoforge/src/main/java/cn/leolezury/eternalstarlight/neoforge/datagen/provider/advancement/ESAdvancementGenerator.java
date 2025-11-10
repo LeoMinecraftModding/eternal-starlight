@@ -176,6 +176,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.addCriterion("obtain", EffectsChangedTrigger.TriggerInstance.hasEffects(MobEffectsPredicate.Builder.effects().and(ESMobEffects.NUMBNESS.asHolder())))
 			.save(consumer, EternalStarlight.ID + ":obtain_numbness_effect");
 
+		AdvancementHolder starlitDiamond = addItemObtain(consumer, enterDim, "obtain_starlit_diamond", ESItems.STARLIT_DIAMOND.get());
+
 		AdvancementHolder igniteTearBomb = Advancement.Builder.advancement().parent(enterDim).display(
 				ESItems.TEAR_BOMB.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".ignite_tear_bomb.title"),

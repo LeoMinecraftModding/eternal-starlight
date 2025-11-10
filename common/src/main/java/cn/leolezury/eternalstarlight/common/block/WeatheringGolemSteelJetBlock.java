@@ -43,7 +43,7 @@ public class WeatheringGolemSteelJetBlock extends WeatheringGolemSteelFullBlock 
 				}
 			}
 			entity.hurtMarked = true;
-			entity.addDeltaMovement(new Vec3(0, blockState.getValue(POWER) * (isOxidized() ? 0.1 : 0.2), 0));
+			entity.addDeltaMovement(new Vec3(0, Math.sqrt(blockState.getValue(POWER) * 0.21) * (isOxidized() ? 0.9 : 1), 0));
 			if (entity instanceof Player player) {
 				player.currentImpulseImpactPos = pos.getCenter().add(0, 0.5, 0);
 				player.setIgnoreFallDamageFromCurrentImpulse(true);

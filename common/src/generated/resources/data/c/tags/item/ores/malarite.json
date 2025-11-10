@@ -1,7 +1,8 @@
 {
   "values": [
-    "eternal_starlight:nightfall_mud_malarite_ore",
     "eternal_starlight:grimstone_malarite_ore",
-    "eternal_starlight:voidstone_malarite_ore"
+    "eternal_starlight:voidstone_malarite_ore",
+    "eternal_starlight:nightfall_mud_malarite_ore",
+    "eternal_starlight:packed_nightfall_mud_malarite_ore"
   ]
 }

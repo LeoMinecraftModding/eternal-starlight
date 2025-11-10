@@ -78,7 +78,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_CRADLEWOOD_SAPLING.get(), blockTexture(ESBlocks.CRADLEWOOD_SAPLING.get()));
 
 		// stones
-		randomlyFlippedBlock(ESBlocks.GRIMSTONE.get());
+		randomlyFlippedBlockNoRotation(ESBlocks.GRIMSTONE.get());
 		slabBlock(ESBlocks.GRIMSTONE_SLAB.get(), blockTexture(ESBlocks.GRIMSTONE.get()), blockTexture(ESBlocks.GRIMSTONE.get()));
 		stairsBlock(ESBlocks.GRIMSTONE_STAIRS.get(), blockTexture(ESBlocks.GRIMSTONE.get()));
 		wallBlock(ESBlocks.GRIMSTONE_WALL.get(), blockTexture(ESBlocks.GRIMSTONE.get()));
@@ -403,13 +403,16 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get());
 		simpleBlock(ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get());
 		simpleBlock(ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get());
+		simpleBlock(ESBlocks.NIGHTFALL_MUD_DEEPSILVER_ORE.get());
+		simpleBlock(ESBlocks.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get());
 		simpleBlock(ESBlocks.RAW_DEEPSILVER_BLOCK.get());
 		simpleBlock(ESBlocks.DEEPSILVER_BLOCK.get());
 		simpleBlock(ESBlocks.DEEPSILVER_GRATE.get(), models().cubeAll(name(ESBlocks.DEEPSILVER_GRATE.get()), blockTexture(ESBlocks.DEEPSILVER_GRATE.get())).renderType(CUTOUT));
 
-		simpleBlock(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.GRIMSTONE_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.VOIDSTONE_MALARITE_ORE.get());
+		simpleBlock(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get());
+		simpleBlock(ESBlocks.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.MALARITE_BLOCK.get());
 
 		pungencyFruit(ESBlocks.PUNGENCY_FRUIT_VINES.get());
@@ -1210,6 +1213,14 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.modelFile(mirrored).nextModel()
 			.rotationY(180).modelFile(normal).nextModel()
 			.rotationY(180).modelFile(mirrored).build());
+	}
+
+	private void randomlyFlippedBlockNoRotation(Block stone) {
+		ModelFile normal = models().cubeAll(name(stone), blockTexture(stone));
+		ModelFile mirrored = models().singleTexture(name(stone) + "_mirrored", ResourceLocation.withDefaultNamespace("block/cube_mirrored_all"), "all", blockTexture(stone));
+		getVariantBuilder(stone).forAllStates(state -> ConfiguredModel.builder()
+			.modelFile(normal).nextModel()
+			.modelFile(mirrored).build());
 	}
 
 	private void farmland(Block farmland, Block dirt) {

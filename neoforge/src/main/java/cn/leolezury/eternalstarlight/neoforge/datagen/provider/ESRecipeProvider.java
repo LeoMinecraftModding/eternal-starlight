@@ -197,7 +197,9 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('S', ESItems.ASHEN_SNOWBALL.get())
 			.unlockedBy("has_item", has(ESItems.ASHEN_SNOWBALL.get()))
 			.save(recipeOutput);
-		addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.LUNAR_BERRIES.get());
+		addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.CRINOA.get());
+		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.CRINOA.get(), ESItems.CRINOA_BALL.get(), 1, ESItems.CRINOA.get(), ESItems.CRINOA.get(), ESItems.LUNAR_BERRIES.get());
+		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.CRINOA.get(), ESItems.CRINOA_PORRIDGE.get(), 1, ESItems.CRINOA.get(), ESItems.CRINOA.get(), ESItems.CRINOA.get(), Items.BOWL);
 		customCarpet(recipeOutput, ESBlocks.CAVE_MOSS_CARPET.get(), ESBlocks.CAVE_MOSS_BLOCK.get());
 		addShapeless(recipeOutput, ESItems.BOULDERSHROOM.get(), ESItems.BOULDERSHROOM_STEW.get(), 1, ESItems.BOULDERSHROOM.get(), ESItems.GLOWING_MUSHROOM.get(), Items.BOWL);
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.LUNARIS_CACTUS_GEL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(), "lunaris_cactus_gel_block_from_lunaris_cactus_gel", "lunaris_cactus_gel");
@@ -243,8 +245,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.SHADOW_SNAIL_SHELL.get(), ESItems.SHADOW_SNAIL_SHELL_POWDER.get(), 4, ESItems.SHADOW_SNAIL_SHELL.get());
 		addSingleConversion(recipeOutput, Items.BLACK_DYE, ESItems.SHADOW_SNAIL_SHELL_POWDER.get());
-		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_PIE.get(), 1, ESItems.LUNARIS_CACTUS_GEL.get(), ESItems.LUNAR_BERRIES.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get());
-		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_ESCARGOT.get(), 1, ESItems.VELVETUMOSS_BALL.get(), ESItems.PUNGENCY_FRUIT.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_SHELL.get());
+		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_PIE.get(), 1, ESItems.RAW_AMARAMBER.get(), ESItems.CRINOA.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get());
+		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_ESCARGOT.get(), 1, ESItems.VELVETUMOSS_BALL.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_SHELL.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.STARLIT_PAINTING.get())
 			.pattern("SSS")
 			.pattern("SFS")
@@ -1478,6 +1480,10 @@ public class ESRecipeProvider extends RecipeProvider {
 		addBlast(recipeOutput, 150, ESItems.ETERNAL_ICE_DEEPSILVER_ORE.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.ETERNAL_ICE_DEEPSILVER_ORE.get());
 		addSmelt(recipeOutput, 300, ESItems.HAZE_ICE_DEEPSILVER_ORE.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.HAZE_ICE_DEEPSILVER_ORE.get());
 		addBlast(recipeOutput, 150, ESItems.HAZE_ICE_DEEPSILVER_ORE.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.HAZE_ICE_DEEPSILVER_ORE.get());
+		addSmelt(recipeOutput, 200, ESItems.NIGHTFALL_MUD_DEEPSILVER_ORE.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.NIGHTFALL_MUD_DEEPSILVER_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.NIGHTFALL_MUD_DEEPSILVER_ORE.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.NIGHTFALL_MUD_DEEPSILVER_ORE.get());
+		addSmelt(recipeOutput, 200, ESItems.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.RAW_DEEPSILVER.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.RAW_DEEPSILVER.get());
 		addBlast(recipeOutput, 100, ESItems.RAW_DEEPSILVER.get(), ESItems.DEEPSILVER_INGOT.get(), ESItems.RAW_DEEPSILVER.get());
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.RAW_DEEPSILVER.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.RAW_DEEPSILVER_BLOCK.get(), "raw_deepsilver_from_raw_deepsilver_block", "raw_deepsilver");
@@ -1560,12 +1566,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSickle(recipeOutput, ESItems.MALARITE_SICKLE.get(), ESConventionalTags.Items.GEMS_MALARITE);
 		addSword(recipeOutput, ESItems.MALARITE_SWORD.get(), ESConventionalTags.Items.GEMS_MALARITE);
 		addSpear(recipeOutput, ESItems.MALARITE_SPEAR.get(), ESConventionalTags.Items.GEMS_MALARITE);
-		addSmelt(recipeOutput, 200, ESItems.NIGHTFALL_MUD_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
-		addBlast(recipeOutput, 100, ESItems.NIGHTFALL_MUD_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.GRIMSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.GRIMSTONE_MALARITE_ORE.get());
 		addBlast(recipeOutput, 100, ESItems.GRIMSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.GRIMSTONE_MALARITE_ORE.get());
 		addSmelt(recipeOutput, 200, ESItems.VOIDSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.VOIDSTONE_MALARITE_ORE.get());
 		addBlast(recipeOutput, 100, ESItems.VOIDSTONE_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.VOIDSTONE_MALARITE_ORE.get());
+		addSmelt(recipeOutput, 200, ESItems.NIGHTFALL_MUD_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.NIGHTFALL_MUD_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
+		addSmelt(recipeOutput, 200, ESItems.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get());
+		addBlast(recipeOutput, 100, ESItems.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get(), ESItems.MALARITE.get(), ESItems.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get());
 	}
 
 	private void addPungencyFruitRecipes(RecipeOutput recipeOutput) {

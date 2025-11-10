@@ -571,6 +571,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.CRINOA_SEEDS.get());
 		basicItem(ESItems.CRINOA.get());
 		block(ESItems.CRINOA_BALE.get());
+		basicItem(ESItems.CRINOA_BALL.get());
+		basicItem(ESItems.CRINOA_PORRIDGE.get());
 
 		basicItem(ESItems.CRETEOR_HIDE.get());
 		basicItem(ESItems.RAW_AETHERSENT.get());
@@ -659,6 +661,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.VOIDSTONE_DEEPSILVER_ORE.get());
 		block(ESItems.ETERNAL_ICE_DEEPSILVER_ORE.get());
 		block(ESItems.HAZE_ICE_DEEPSILVER_ORE.get());
+		block(ESItems.NIGHTFALL_MUD_DEEPSILVER_ORE.get());
+		block(ESItems.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get());
 		basicItem(ESItems.RAW_DEEPSILVER.get());
 		basicItem(ESItems.DEEPSILVER_INGOT.get());
 		basicItem(ESItems.DEEPSILVER_NUGGET.get());
@@ -678,9 +682,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.DEEPSILVER_LEGGINGS.get());
 		basicItem(ESItems.DEEPSILVER_BOOTS.get());
 
-		block(ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
 		block(ESItems.GRIMSTONE_MALARITE_ORE.get());
 		block(ESItems.VOIDSTONE_MALARITE_ORE.get());
+		block(ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());
+		block(ESItems.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get());
 		basicItem(ESItems.MALARITE.get());
 		block(ESItems.MALARITE_BLOCK.get());
 		basicItem(ESItems.MALARITE_ARROW.get());

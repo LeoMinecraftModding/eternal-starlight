@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:crinoa"
+    },
+    {
+      "item": "eternal_starlight:crinoa"
+    },
+    {
+      "item": "eternal_starlight:crinoa"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:crinoa_porridge"
+  }
+}

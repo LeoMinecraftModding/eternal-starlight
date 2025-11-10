@@ -6,14 +6,6 @@
       },
       {
         "model": "eternal_starlight:block/grimstone_mirrored"
-      },
-      {
-        "model": "eternal_starlight:block/grimstone",
-        "y": 180
-      },
-      {
-        "model": "eternal_starlight:block/grimstone_mirrored",
-        "y": 180
       }
     ]
   }

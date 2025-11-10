@@ -680,14 +680,17 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
 		add(ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
 		add(ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
+		add(ESBlocks.NIGHTFALL_MUD_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
+		add(ESBlocks.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get(), block -> this.createOreDrop(block, ESItems.RAW_DEEPSILVER.get()));
 		dropSelf(ESBlocks.RAW_DEEPSILVER_BLOCK.get());
 		dropSelf(ESBlocks.DEEPSILVER_BLOCK.get());
 		dropSelf(ESBlocks.DEEPSILVER_GRATE.get());
 		dropSelf(ESBlocks.DEEPSILVER_BARS.get());
 
-		add(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.MALARITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.GRIMSTONE_MALARITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.MALARITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.VOIDSTONE_MALARITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.MALARITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		add(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.MALARITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+		add(ESBlocks.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.MALARITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		dropSelf(ESBlocks.MALARITE_BLOCK.get());
 
 		add(ESBlocks.GRIMSTONE_SALTPETER_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.SALTPETER_POWDER.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
