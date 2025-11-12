@@ -568,6 +568,14 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("energy_spark").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<BallLightning>> BALL_LIGHTNING = ENTITIES.register(
+		"ball_lightning",
+		() -> EntityType.Builder.<BallLightning>of(BallLightning::new, MobCategory.MISC)
+			.sized(0.5f, 0.5f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("ball_lightning").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<CrystalCluster>> CRYSTAL_CLUSTER = ENTITIES.register(
 		"crystal_cluster",
 		() -> EntityType.Builder.of(CrystalCluster::new, MobCategory.MISC)

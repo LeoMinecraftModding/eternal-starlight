@@ -874,6 +874,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.SHOT_SEEDS.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.STARFIRE.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.ENERGY_SPARK.get(), EnergySparkRenderer::new);
+		strategy.register(ESEntities.BALL_LIGHTNING.get(), BallLightningRenderer::new);
 		strategy.register(ESEntities.CRYSTAL_CLUSTER.get(), CrystalClusterRenderer::new);
 		strategy.register(ESEntities.ENERGY_BOOMERANG.get(), ThrownBoomerangRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
@@ -961,6 +962,7 @@ public class ClientSetupHandlers {
 		strategy.register(TangledSkullModel.LAYER_LOCATION, TangledSkullModel::createBodyLayer);
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
+		strategy.register(BallLightningModel.LAYER_LOCATION, BallLightningModel::createBodyLayer);
 
 		// vanilla entities
 		strategy.register(DarkSwampWitchModel.LAYER_LOCATION, DarkSwampWitchModel::createBodyLayer);

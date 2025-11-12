@@ -12,6 +12,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -23,6 +25,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ThrownSpear extends AbstractArrow {
 	private static final String TAG_DEALT_DAMAGE = "dealt_damage";
@@ -64,25 +69,33 @@ public abstract class ThrownSpear extends AbstractArrow {
 		return this.dealtDamage ? null : super.findHitEntity(startVec, endVec);
 	}
 
-	private double getItemDamage(double baseValue) {
+	private double getItemDamage(AttributeInstance instance) {
+		double baseValue = instance != null ? instance.getBaseValue() : 1;
 		ItemStack weapon = getWeaponItem();
 		if (weapon == null) {
 			return baseValue;
 		}
 		double result = baseValue;
+		List<AttributeModifier> allModifiers = new ArrayList<>();
+		List<AttributeModifier> originalModifiers = instance != null ? new ArrayList<>(instance.getModifiers()) : new ArrayList<>();
 		ItemAttributeModifiers modifiers = weapon.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+		originalModifiers.removeIf(o -> modifiers.modifiers().stream().anyMatch(modifier -> modifier.attribute().is(Attributes.ATTACK_DAMAGE) && modifier.modifier().id().equals(o.id())));
 		for (ItemAttributeModifiers.Entry entry : modifiers.modifiers()) {
-			if (entry.attribute() == Attributes.ATTACK_DAMAGE) {
-				double amount = entry.modifier().amount();
-				double addition;
-				switch (entry.modifier().operation()) {
-					case ADD_VALUE -> addition = amount;
-					case ADD_MULTIPLIED_BASE -> addition = amount * baseValue;
-					case ADD_MULTIPLIED_TOTAL -> addition = amount * result;
-					default -> throw new MatchException(null, null);
-				}
-				result += addition;
+			if (entry.attribute().is(Attributes.ATTACK_DAMAGE)) {
+				allModifiers.addFirst(entry.modifier());
 			}
+		}
+		allModifiers.addAll(originalModifiers);
+		for (AttributeModifier modifier : allModifiers) {
+			double amount = modifier.amount();
+			double addition;
+			switch (modifier.operation()) {
+				case ADD_VALUE -> addition = amount;
+				case ADD_MULTIPLIED_BASE -> addition = amount * baseValue;
+				case ADD_MULTIPLIED_TOTAL -> addition = amount * result;
+				default -> throw new MatchException(null, null);
+			}
+			result += addition;
 		}
 		return result;
 	}
@@ -91,7 +104,7 @@ public abstract class ThrownSpear extends AbstractArrow {
 	protected void onHitEntity(EntityHitResult result) {
 		Entity target = result.getEntity();
 		Entity owner = this.getOwner();
-		float damage = getDamageScale(target) * (float) getItemDamage(owner instanceof LivingEntity living && living.getAttribute(Attributes.ATTACK_DAMAGE) != null ? (float) living.getAttributeBaseValue(Attributes.ATTACK_DAMAGE) : 1);
+		float damage = getDamageScale(target) * (float) getItemDamage(owner instanceof LivingEntity living ? living.getAttribute(Attributes.ATTACK_DAMAGE) : null);
 		DamageSource damageSource = this.damageSources().thrown(this, owner == null ? this : owner);
 		if (this.level() instanceof ServerLevel serverlevel) {
 			damage = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), target, damageSource, damage);

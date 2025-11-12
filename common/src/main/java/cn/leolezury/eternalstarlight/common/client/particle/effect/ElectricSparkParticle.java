@@ -11,7 +11,6 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
@@ -41,11 +40,9 @@ public class ElectricSparkParticle extends TextureSheetParticle {
 	}
 
 	@Override
-	public void render(VertexConsumer consumer, Camera camera, float partialTick) {
-		double currentX = Mth.lerp(partialTick, this.xo, this.x);
-		double currentY = Mth.lerp(partialTick, this.yo, this.y);
-		double currentZ = Mth.lerp(partialTick, this.zo, this.z);
-		Vec3 currentPos = new Vec3(currentX, currentY, currentZ);
+	public void tick() {
+		super.tick();
+		Vec3 currentPos = new Vec3(x, y, z);
 		if (segments.isEmpty() || age % 3 == 0) {
 			segments.clear();
 			int numSegments = (int) (this.random.nextFloat() * 3 + 3);
@@ -53,19 +50,27 @@ public class ElectricSparkParticle extends TextureSheetParticle {
 			Vec3 increment = destPos.subtract(currentPos).scale((double) 1 / numSegments);
 			segments.add(currentPos);
 			for (int i = 0; i < numSegments; i++) {
-				segments.add(currentPos.add(increment.scale((i + 1))).add(new Vec3(random.nextDouble() - 0.5, random.nextDouble() - 0.5, random.nextDouble() - 0.5).normalize().scale(segmentLength / 2)));
+				if (i == numSegments - 1) {
+					segments.add(currentPos.add(increment.scale((i + 1))));
+				} else {
+					segments.add(currentPos.add(increment.scale((i + 1))).add(new Vec3(random.nextDouble() - 0.5, random.nextDouble() - 0.5, random.nextDouble() - 0.5).normalize().scale(segmentLength / 2)));
+				}
 			}
 		}
+	}
+
+	@Override
+	public void render(VertexConsumer consumer, Camera camera, float partialTick) {
 		Vec3 camPos = camera.getPosition();
 		PoseStack stack = new PoseStack();
 		stack.pushPose();
 		stack.translate(-camPos.x, -camPos.y, -camPos.z);
-		Vec3 sight = camPos.subtract(currentX, currentY, currentZ).scale(-1);
 		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE);
 		for (int i = 0; i < segments.size() - 1; i++) {
 			Vec3 start = segments.get(i);
 			Vec3 end = segments.get(i + 1);
 			Vec3 offset = end.subtract(start);
+			Vec3 sight = camPos.subtract(start).scale(-1);
 			Vec3 sideOffset = offset.cross(sight).normalize().scale(0.03);
 			PoseStack.Pose pose = stack.last();
 			float u0 = this.getU0();

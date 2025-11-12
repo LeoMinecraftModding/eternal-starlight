@@ -19,7 +19,7 @@ public class PetalScytheItem extends ScytheItem implements Swingable {
 	private void performSpecialAttack(LivingEntity entity) {
 		Level level = entity.level();
 		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(entity, this)) {
-			Vec3 shootPos = entity.position().add(0, entity.getBbWidth() / 2, 0);
+			Vec3 shootPos = entity.position().add(0, entity.getBbHeight() / 2, 0);
 			for (int i = -2; i <= 2; i++) {
 				LunarSpore spore = new LunarSpore(level, entity, shootPos.x, shootPos.y, shootPos.z);
 				spore.setNoGravity(true);
