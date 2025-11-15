@@ -701,6 +701,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.SEEDS_LAUNCHER.get()
 			);
+		tag(ESTags.Items.CHEST_ARMOR_ACCESSORY_APPLICABLE)
+			.addTag(ItemTags.CHEST_ARMOR);
+		tag(ESTags.Items.AXE_ACCESSORY_APPLICABLE)
+			.addTag(ItemTags.AXES);
+		tag(ESTags.Items.HAMMER_ACCESSORY_APPLICABLE)
+			.addTag(ESTags.Items.HAMMERS);
 		tag(ESTags.Items.GOLEM_FORGE_LOCATORS)
 			.add(
 				Items.REDSTONE,

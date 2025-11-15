@@ -56,7 +56,7 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 		this.model.renderToBuffer(poseStack, vertexConsumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 		this.model.inner.visible = false;
 		this.model.outer.visible = true;
-		this.model.renderToBuffer(poseStack, vertexConsumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, FastColor.ARGB32.color(127, 75, 127, 127));
+		this.model.renderToBuffer(poseStack, vertexConsumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, FastColor.ARGB32.color(127, 30, 50, 50));
 
 		poseStack.popPose();
 

@@ -243,7 +243,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && getBehaviorState() == LunarMonstrositySneakPhase.ID || (source.getEntity() != null && source.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS))) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (getBehaviorState() == LunarMonstrositySneakPhase.ID || (source.getEntity() != null && source.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)))) {
 			return false;
 		}
 		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
@@ -257,7 +257,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 				setBehaviorTicks(0);
 			}
 		}
-		float actualAmount = isOnFire() || hasEffect(ESMobEffects.STARFIRE.asHolder()) || getBehaviorState() == LunarMonstrosityStunPhase.ID ? amount : Math.min(3, amount);
+		float actualAmount = source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) || isOnFire() || hasEffect(ESMobEffects.STARFIRE.asHolder()) || getBehaviorState() == LunarMonstrosityStunPhase.ID ? amount : Math.min(3, amount);
 		boolean success = super.hurt(source, actualAmount);
 		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
 			setPhase(1);

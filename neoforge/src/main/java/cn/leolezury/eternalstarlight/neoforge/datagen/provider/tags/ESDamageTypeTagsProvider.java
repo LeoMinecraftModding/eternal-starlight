@@ -54,6 +54,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.NUMBNESS,
 				ESDamageTypes.STARFIRE,
 				ESDamageTypes.LASER,
+				ESDamageTypes.ELECTRIC_SHOCK,
 				ESDamageTypes.POISON,
 				ESDamageTypes.ENERGIZED_FLAME
 			);
@@ -67,6 +68,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.NUMBNESS,
 				ESDamageTypes.STARFIRE,
 				ESDamageTypes.LASER,
+				ESDamageTypes.ELECTRIC_SHOCK,
 				ESDamageTypes.POISON,
 				ESDamageTypes.ENERGIZED_FLAME
 			);
@@ -96,6 +98,7 @@ public class ESDamageTypeTagsProvider extends TagsProvider<DamageType> {
 				ESDamageTypes.LASER,
 				ESDamageTypes.ENERGIZED_FLAME,
 				ESDamageTypes.FREEZE,
+				ESDamageTypes.ELECTRIC_SHOCK,
 				ESDamageTypes.POISON,
 				ESDamageTypes.BITE
 			);

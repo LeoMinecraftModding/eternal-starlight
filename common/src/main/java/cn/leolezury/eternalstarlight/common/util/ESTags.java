@@ -67,6 +67,9 @@ public class ESTags {
 		public static final TagKey<Item> CHAIN_OF_SOULS_ENCHANTABLE = create("enchantable/chain_of_souls");
 		public static final TagKey<Item> PUNGENCY_FRUIT_SPEAR_ENCHANTABLE = create("enchantable/pungency_fruit_spear");
 		public static final TagKey<Item> SEEDS_LAUNCHER_ENCHANTABLE = create("enchantable/seeds_launcher");
+		public static final TagKey<Item> CHEST_ARMOR_ACCESSORY_APPLICABLE = create("accessory_applicable/chest_armor");
+		public static final TagKey<Item> AXE_ACCESSORY_APPLICABLE = create("accessory_applicable/axe");
+		public static final TagKey<Item> HAMMER_ACCESSORY_APPLICABLE = create("accessory_applicable/hammer");
 		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
 		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
 		public static final TagKey<Item> ARROW_FEATHERS = create("arrow_feathers");

@@ -46,7 +46,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 
 public class TangledSkull extends Monster {
 	private static final String TAG_SHOT = "shot";
@@ -56,6 +58,7 @@ public class TangledSkull extends Monster {
 	private static final String TAG_SHOT_MOVEMENT_Z = "shot_movement_z";
 
 	public int skullDeathTime;
+	public final List<Vec3> trailPositions = new ArrayList<>();
 
 	protected static final EntityDataAccessor<Boolean> CHARGING = SynchedEntityData.defineId(TangledSkull.class, EntityDataSerializers.BOOLEAN);
 
@@ -236,7 +239,7 @@ public class TangledSkull extends Monster {
 		this.setNoGravity(true);
 		if (!level().isClientSide) {
 			if (isShotFromMonstrosity() && tickCount == 30) {
-				playSound(ESSoundEvents.TANGLED_SKULL_MOAN.get(), 5, 1);
+				playSound(ESSoundEvents.TANGLED_SKULL_ROAR.get(), 5, 1);
 			}
 			if (isShot()) {
 				setDeltaMovement(getShotMovement());
@@ -257,7 +260,7 @@ public class TangledSkull extends Monster {
 				}
 			}
 		} else {
-			level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, getX(), getY(0.5), getZ(), 0, 0, 0);
+			level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, xo, yo + getBbHeight() / 2, zo, 0, 0, 0);
 		}
 	}
 

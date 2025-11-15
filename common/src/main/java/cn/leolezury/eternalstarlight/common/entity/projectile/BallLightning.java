@@ -121,8 +121,8 @@ public class BallLightning extends ThrowableProjectile implements TrailOwner {
 				setTargetId(target.getId());
 				ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(level(), CollisionContext.of(this), position().add(0, getBbHeight() / 2, 0), target.position().add(0, target.getBbHeight() / 2, 0));
 				for (Entity entity : result.entities()) {
-					if (entity instanceof LivingEntity && ESEntityUtil.shouldHarm(getOwner(), entity)) {
-						entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 5);
+					if (entity instanceof LivingEntity && ESEntityUtil.shouldHarm(getOwner(), entity) && entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ELECTRIC_SHOCK, this, getOwner()), 8)) {
+						entity.igniteForSeconds(2);
 					}
 				}
 			}
@@ -170,7 +170,7 @@ public class BallLightning extends ThrowableProjectile implements TrailOwner {
 				if (getOwner() instanceof Player) {
 					entity.invulnerableTime = 0;
 				}
-				entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 5);
+				entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 8);
 			}
 		}
 		discard();

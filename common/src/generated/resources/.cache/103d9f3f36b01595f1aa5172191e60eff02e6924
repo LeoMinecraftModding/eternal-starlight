@@ -1,7 +1,8 @@
-// 1.21.1	2025-11-10T23:11:44.3731451	Registries
+// 1.21.1	2025-11-14T15:35:54.311035	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
+b303923f2b9ef41b6403ffb80e37660ff0666b84 data/eternal_starlight/damage_type/electric_shock.json
 c8e9d6a525b90a29a0649d3dc4325c6ff8d4661d data/eternal_starlight/damage_type/energized_flame.json
 9e321103ae281291976e8ad7bfab68d0c353d667 data/eternal_starlight/damage_type/ether.json
 3c63a21e4d674f5f00ddcf84651c4cfd29e634b2 data/eternal_starlight/damage_type/freeze.json

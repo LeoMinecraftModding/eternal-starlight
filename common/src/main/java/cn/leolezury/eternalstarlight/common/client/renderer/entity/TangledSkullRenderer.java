@@ -7,10 +7,12 @@ import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 
 @Environment(EnvType.CLIENT)
 public class TangledSkullRenderer<T extends TangledSkull> extends MobRenderer<T, TangledSkullModel<T>> {
@@ -18,6 +20,33 @@ public class TangledSkullRenderer<T extends TangledSkull> extends MobRenderer<T,
 
 	public TangledSkullRenderer(EntityRendererProvider.Context context) {
 		super(context, new TangledSkullModel<>(context.bakeLayer(TangledSkullModel.LAYER_LOCATION)), 0.3f);
+	}
+
+	@Override
+	public void render(T entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+		super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
+		if (entity.isShot()) {
+			Vec3 currentPos = new Vec3(
+				Mth.lerp(partialTicks, entity.xo, entity.getX()),
+				Mth.lerp(partialTicks, entity.yo, entity.getY()),
+				Mth.lerp(partialTicks, entity.zo, entity.getZ())
+			);
+			if (entity.trailPositions.isEmpty() || entity.trailPositions.getFirst().distanceTo(currentPos) > 0.1) {
+				entity.trailPositions.addFirst(currentPos);
+			}
+			while (entity.trailPositions.size() > 5) {
+				entity.trailPositions.removeLast();
+			}
+			for (int i = 0; i < entity.trailPositions.size(); i++) {
+				getModel().alphaFactor = 1 - ((float) i / entity.trailPositions.size());
+				poseStack.pushPose();
+				Vec3 trailPos = entity.trailPositions.get(i);
+				poseStack.translate(trailPos.x - currentPos.x, trailPos.y - currentPos.y, trailPos.z - currentPos.z);
+				super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
+				poseStack.popPose();
+			}
+			getModel().alphaFactor = 1;
+		}
 	}
 
 	@Override

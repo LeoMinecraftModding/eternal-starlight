@@ -27,7 +27,6 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -1077,7 +1076,7 @@ public class ESItems {
 	// accessories
 	public static final RegistryObject<Item, Item> BATTLEAXE_PENDANT = registerItem("battleaxe_pendant", () -> new Item(new Item.Properties()
 		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
-			ItemTags.AXES,
+			ESTags.Items.AXE_ACCESSORY_APPLICABLE,
 			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.axe").withStyle(ChatFormatting.BLUE),
 			ItemAttributeModifiers.builder()
 				.add(Attributes.ATTACK_SPEED, new AttributeModifier(EternalStarlight.id("battleaxe_pendant_attack_speed"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.MAINHAND)
@@ -1092,7 +1091,7 @@ public class ESItems {
 		.stacksTo(1)));
 	public static final RegistryObject<Item, Item> WARHAMMER_PENDANT = registerItem("warhammer_pendant", () -> new Item(new Item.Properties()
 		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
-			ESTags.Items.HAMMERS,
+			ESTags.Items.HAMMER_ACCESSORY_APPLICABLE,
 			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.hammer").withStyle(ChatFormatting.BLUE),
 			ItemAttributeModifiers.builder()
 				.add(Attributes.ATTACK_SPEED, new AttributeModifier(EternalStarlight.id("warhammer_pendant_attack_speed"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.MAINHAND)
@@ -1106,7 +1105,7 @@ public class ESItems {
 		.stacksTo(1)));
 	public static final RegistryObject<Item, Item> BUTTERFLY_WINGS_AMULET = registerItem("butterfly_wings_amulet", () -> new Item(new Item.Properties()
 		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
-			ItemTags.CHEST_ARMOR,
+			ESTags.Items.CHEST_ARMOR_ACCESSORY_APPLICABLE,
 			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.chestplate").withStyle(ChatFormatting.BLUE),
 			ItemAttributeModifiers.builder()
 				.add(ESAttributes.ETHER_RESISTANCE.asHolder(), new AttributeModifier(EternalStarlight.id("butterfly_wings_amulet_ether_resistance"), 0.5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.CHEST)
@@ -1120,7 +1119,7 @@ public class ESItems {
 		.stacksTo(1)));
 	public static final RegistryObject<Item, Item> FUNGUS_AMULET = registerItem("fungus_amulet", () -> new Item(new Item.Properties()
 		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
-			ItemTags.CHEST_ARMOR,
+			ESTags.Items.CHEST_ARMOR_ACCESSORY_APPLICABLE,
 			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.chestplate").withStyle(ChatFormatting.BLUE),
 			ItemAttributeModifiers.builder()
 				.add(ESAttributes.HEAL_MULTIPLIER.asHolder(), new AttributeModifier(EternalStarlight.id("fungus_amulet_heal_multiplier"), 0.5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.CHEST)
@@ -1134,7 +1133,7 @@ public class ESItems {
 		.stacksTo(1)));
 	public static final RegistryObject<Item, Item> PEARL_NECKLACE = registerItem("pearl_necklace", () -> new Item(new Item.Properties()
 		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
-			ItemTags.CHEST_ARMOR,
+			ESTags.Items.CHEST_ARMOR_ACCESSORY_APPLICABLE,
 			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.chestplate").withStyle(ChatFormatting.BLUE),
 			ItemAttributeModifiers.builder()
 				.add(Attributes.OXYGEN_BONUS, new AttributeModifier(EternalStarlight.id("pearl_necklace_oxygen_bonus"), 3, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.CHEST)
@@ -1149,7 +1148,7 @@ public class ESItems {
 		.stacksTo(1)));
 	public static final RegistryObject<Item, Item> CRESCENT_PENDANT = registerItem("crescent_pendant", () -> new Item(new Item.Properties()
 		.component(ESDataComponents.ACCESSORY.get(), new Accessory(
-			ItemTags.CHEST_ARMOR,
+			ESTags.Items.CHEST_ARMOR_ACCESSORY_APPLICABLE,
 			Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_combination_target.chestplate").withStyle(ChatFormatting.BLUE),
 			ItemAttributeModifiers.builder()
 				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(EternalStarlight.id("crescent_pendant_attack_damage"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.CHEST)
