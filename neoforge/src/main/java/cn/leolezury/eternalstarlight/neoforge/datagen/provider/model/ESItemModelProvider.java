@@ -412,6 +412,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.MOSSY_DUSTED_GRAVEL.get());
 		block(ESItems.GLOWING_MOSSY_DUSTED_GRAVEL.get());
 
+		block(ESItems.DUSTED_SLAG.get());
+		withExistingParent(name(ESItems.SUSPICIOUS_DUSTED_SLAG.get()), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(ESItems.SUSPICIOUS_DUSTED_SLAG.get()) + "_0"));
+
 		flatBlockTexture(ESItems.STARLIGHT_FLOWER.get());
 		flatBlockTexture(ESItems.AUREATE_FLOWER.get());
 		flatBlockTexture(ESItems.CONEBLOOM.get());

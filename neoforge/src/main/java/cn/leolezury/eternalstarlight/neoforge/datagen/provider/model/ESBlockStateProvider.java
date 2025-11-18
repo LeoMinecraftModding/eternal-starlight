@@ -184,6 +184,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleGrassBlock(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
 		simpleGrassBlock(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.MOSSY_DUSTED_GRAVEL.get()).withSuffix("_side"), blockTexture(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get()).withSuffix("_top"), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
 
+		sand(ESBlocks.DUSTED_SLAG.get());
+		suspiciousBlock(ESBlocks.SUSPICIOUS_DUSTED_SLAG.get());
+
 		cross(ESBlocks.STARLIGHT_FLOWER.get());
 		pottedPlant(ESBlocks.POTTED_STARLIGHT_FLOWER.get(), blockTexture(ESBlocks.STARLIGHT_FLOWER.get()));
 		cross(ESBlocks.AUREATE_FLOWER.get());
@@ -1203,6 +1206,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.rotationY(270).modelFile(modelFile).nextModel()
 			.rotationY(180).modelFile(modelFile).nextModel()
 			.rotationY(90).modelFile(modelFile).build());
+	}
+
+	private void suspiciousBlock(Block block) {
+		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
+			.modelFile(models().cubeAll(name(block) + "_" + state.getValue(BlockStateProperties.DUSTED), blockTexture(block).withSuffix("_" + state.getValue(BlockStateProperties.DUSTED)))).build());
 	}
 
 	private void randomlyFlippedBlock(Block stone) {

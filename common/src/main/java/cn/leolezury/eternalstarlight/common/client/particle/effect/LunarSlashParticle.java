@@ -19,7 +19,7 @@ import org.joml.Quaternionf;
 @Environment(EnvType.CLIENT)
 public class LunarSlashParticle extends TextureSheetParticle {
 	private static final int DIVISION = 72;
-	private static final int CELL = 180 / DIVISION;
+	private static final float CELL = (float) 180 / DIVISION;
 
 	private final float yRot, zRot;
 

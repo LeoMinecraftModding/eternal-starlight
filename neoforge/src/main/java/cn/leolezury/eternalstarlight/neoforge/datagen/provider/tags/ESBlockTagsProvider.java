@@ -1511,6 +1511,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.DUSTED_GRAVEL.get(),
 				ESBlocks.MOSSY_DUSTED_GRAVEL.get(),
 				ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(),
+				ESBlocks.DUSTED_SLAG.get(),
+				ESBlocks.SUSPICIOUS_DUSTED_SLAG.get(),
 				ESBlocks.NIGHTFALL_DIRT.get(),
 				ESBlocks.NIGHTFALL_FARMLAND.get(),
 				ESBlocks.NIGHTFALL_DIRT_PATH.get(),
