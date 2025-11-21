@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "eternal_starlight:block/energy_transmitter"
+    },
+    "powered=true": {
+      "model": "eternal_starlight:block/energy_transmitter_on"
+    }
+  }
+}

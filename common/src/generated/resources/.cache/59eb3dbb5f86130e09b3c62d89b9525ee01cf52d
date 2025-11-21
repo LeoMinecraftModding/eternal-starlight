@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-16T16:49:50.0202073	Loot Tables
+// 1.21.1	2025-11-19T21:37:41.161718	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -176,6 +176,7 @@ a162989e0db9ac8fb3a0165f6361a6436e130ad2 data/eternal_starlight/loot_table/block
 e00d6d875796eefeb459938c9cb224464adeb094 data/eternal_starlight/loot_table/blocks/eclipse_core.json
 b6a08ea55b5f2a51ba553515ab37d17068d77e30 data/eternal_starlight/loot_table/blocks/enchanted_grimstone_bricks.json
 491c5a2fd8f3d221db5c784b707ed0897e5bc12d data/eternal_starlight/loot_table/blocks/energy_block.json
+b05e630470cb2c1d029dd62f20958bba7973bed9 data/eternal_starlight/loot_table/blocks/energy_transmitter.json
 1b775ad65cc2f653093e5efaf1fb233b0afd2263 data/eternal_starlight/loot_table/blocks/eternal_ice.json
 2be5d0c14eb00440176ffe9e891ba59abc85da7b data/eternal_starlight/loot_table/blocks/eternal_ice_bricks.json
 b2fb97cb22e9329e9537403b9cb6a4a6998d3ff7 data/eternal_starlight/loot_table/blocks/eternal_ice_brick_slab.json

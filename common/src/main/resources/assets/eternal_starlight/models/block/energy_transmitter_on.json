@@ -1,0 +1,6 @@
+{
+  "parent": "eternal_starlight:block/energy_transmitter",
+  "textures": {
+    "transmitter": "eternal_starlight:block/energy_transmitter_on"
+  }
+}

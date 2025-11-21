@@ -329,6 +329,16 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 		addPickaxe(recipeOutput, ESItems.UNDERMINER.get(), ESConventionalTags.Items.INGOTS_GOLEM_STEEL);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESBlocks.ENERGY_TRANSMITTER.get())
+			.pattern(" N ")
+			.pattern("RNR")
+			.pattern("BBB")
+			.unlockedBy("has_item", has(ESItems.GOLEM_STEEL_NUGGET.get()))
+			.define('N', ESItems.GOLEM_STEEL_NUGGET.get())
+			.define('B', ESItems.CINDER_BRICK.get())
+			.define('R', Items.REDSTONE)
+			.save(recipeOutput);
+
 		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.WILTED_CROSSBOW.get())
 			.pattern("#&#")

@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-16T16:11:57.6437351	Item Models: eternal_starlight
+// 1.21.1	2025-11-19T21:37:41.1669752	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -303,6 +303,7 @@ b0e816c796c37e24ef9efbb2e645a37edd762d26 assets/eternal_starlight/models/item/du
 4663cf98e41b90faa681afbf847ee70ee5b85509 assets/eternal_starlight/models/item/energy_block.json
 6bf8f042029a60879ab272c5ab4f2b7ab7ad9cea assets/eternal_starlight/models/item/energy_boomerang.json
 3928ba295508531f6edd8a8a37ff96b0d0dd459f assets/eternal_starlight/models/item/energy_sword.json
+ce9ad914d76c7f7d673bac3bca83850715c3d878 assets/eternal_starlight/models/item/energy_transmitter.json
 7bdb83ff755675584d961a11244ecb8a77def413 assets/eternal_starlight/models/item/ent_spawn_egg.json
 3d7108057dee8414c312d86fdbd5c91388549844 assets/eternal_starlight/models/item/eternal_ice.json
 9d3196c04decb56eb0e83dfe4b0cf08a46244115 assets/eternal_starlight/models/item/eternal_ice_bricks.json

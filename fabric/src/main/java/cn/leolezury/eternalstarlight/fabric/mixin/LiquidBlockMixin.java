@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -36,7 +37,7 @@ public abstract class LiquidBlockMixin {
 			for (Direction direction : POSSIBLE_FLOW_DIRECTIONS) {
 				BlockPos relativePos = blockPos.relative(direction.getOpposite());
 				if (level.getFluidState(relativePos).is(ESTags.Fluids.ETHER)) {
-					level.setBlockAndUpdate(blockPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
+					level.setBlockAndUpdate(blockPos, this.fluid.is(FluidTags.LAVA) ? ESBlocks.MOLTEN_STELLAGMITE.get().defaultBlockState() : ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
 					this.fizz(level, blockPos);
 					cir.setReturnValue(false);
 				}

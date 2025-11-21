@@ -970,6 +970,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		otherBlock(ESItems.WAXED_GOLEM_STEEL_JET.get(), ESItems.GOLEM_STEEL_JET.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_JET.get());
 		block(ESItems.GOLEM_STEEL_CRATE.get());
+		basicItem(ESItems.ENERGY_TRANSMITTER.get());
 		block(ESItems.ENERGY_BLOCK.get());
 
 		basicItem(ESItems.TENACIOUS_PETAL.get());

@@ -97,7 +97,7 @@ public abstract class EtherFluid extends FlowingFluid {
 	protected void spreadTo(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, Direction direction, FluidState fluidState) {
 		if (!blockState.getFluidState().isEmpty() && !isSame(blockState.getFluidState().getType())) {
 			if (blockState.getBlock() instanceof LiquidBlock) {
-				levelAccessor.setBlock(blockPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState(), 3);
+				levelAccessor.setBlock(blockPos, blockState.getFluidState().is(FluidTags.LAVA) ? ESBlocks.MOLTEN_STELLAGMITE.get().defaultBlockState() : ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState(), 3);
 			}
 			levelAccessor.levelEvent(LevelEvent.LAVA_FIZZ, blockPos, 0);
 			return;

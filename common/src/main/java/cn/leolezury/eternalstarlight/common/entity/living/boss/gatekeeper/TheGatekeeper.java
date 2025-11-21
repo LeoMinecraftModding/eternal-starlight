@@ -359,6 +359,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			if (operation == GUI_RESPONSE_CHALLENGE) {
 				fightPlayerOnly = true;
 				setFightTargetName(conversationTarget.getName().getString());
+				setTarget(conversationTarget);
 				setActivated(true);
 			}
 			if (operation == GUI_RESPONSE_TRADE && isPlayerPermitted(conversationTarget) && offers != null && !offers.isEmpty()) {

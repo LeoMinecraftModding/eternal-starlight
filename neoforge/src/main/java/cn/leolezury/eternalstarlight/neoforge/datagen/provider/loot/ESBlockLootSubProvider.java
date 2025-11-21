@@ -855,6 +855,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.WAXED_GOLEM_STEEL_JET.get());
 		dropSelf(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		add(ESBlocks.GOLEM_STEEL_CRATE.get(), this::createShulkerBoxDrop);
+		dropSelf(ESBlocks.ENERGY_TRANSMITTER.get());
 		add(ESBlocks.ENERGY_BLOCK.get(), noDrop());
 
 		dropSelf(ESBlocks.SHADEGRIEVE.get());

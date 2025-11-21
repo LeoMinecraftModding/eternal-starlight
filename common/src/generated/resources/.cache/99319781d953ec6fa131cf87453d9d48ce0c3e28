@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-16T16:11:57.6646829	Block States: eternal_starlight
+// 1.21.1	2025-11-19T21:37:41.1826435	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -177,6 +177,7 @@ f958fc66ec35b6a97c44bc7d4cc628df4bb80cf7 assets/eternal_starlight/blockstates/du
 9c19ccfc0a3f8086102d4497984ecfd80df8ae4d assets/eternal_starlight/blockstates/eclipse_core.json
 d6eb11716347da68da74fb4af98c008dd8de01ee assets/eternal_starlight/blockstates/enchanted_grimstone_bricks.json
 154ff99ef63d294ae22012829231bad447b1bef2 assets/eternal_starlight/blockstates/energy_block.json
+74bac46822cd289bfa9353a6f96d4b600aebe15f assets/eternal_starlight/blockstates/energy_transmitter.json
 b2389bd44f1f4c1603909f1e7f89db50e074dca8 assets/eternal_starlight/blockstates/eternal_ice.json
 b29e194b8802f644885646f083376f7586de1f58 assets/eternal_starlight/blockstates/eternal_ice_bricks.json
 456555d7a6adf7b359cda55b99fdbe0da1d9cb85 assets/eternal_starlight/blockstates/eternal_ice_brick_slab.json

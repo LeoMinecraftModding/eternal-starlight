@@ -553,7 +553,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		jetBlock(ESBlocks.GOLEM_STEEL_JET.get());
 		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
 		jetBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
-		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(modLoc("golem_steel_crate_open")), models().getExistingFile(modLoc("golem_steel_crate")));
+		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_CRATE.get()).withSuffix("_open")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_CRATE.get())));
+		onOffBlock(ESBlocks.ENERGY_TRANSMITTER.get(), EnergyTransmitterBlock.POWERED, models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get()).withSuffix("_on")), models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get())));
 		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
 
 		shadegrieve(ESBlocks.SHADEGRIEVE.get());

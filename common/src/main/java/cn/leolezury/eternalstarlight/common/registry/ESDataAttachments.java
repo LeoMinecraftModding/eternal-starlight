@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.spell.SpellCooldown;
 import cn.leolezury.eternalstarlight.common.util.SpecialItemCooldown;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -51,6 +52,7 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Integer> STRANGHOUL_HIRING_COOLDOWN = register(ESPlatform.INSTANCE.registerDataAttachment("stranghoul_hiring_cooldown", () -> 0, Codec.INT, ByteBufCodecs.INT, true));
 	public static final EntityDataAttachment<Integer> BOARWARF_CREDIT = register(ESPlatform.INSTANCE.registerDataAttachment("boarwarf_credit", () -> 0, Codec.INT, null, true));
 	public static final EntityDataAttachment<Boolean> CRESCENT_SPEAR_DASH = register(ESPlatform.INSTANCE.registerDataAttachment("crescent_spear_dash", () -> false, null, ByteBufCodecs.BOOL, false));
+	public static final EntityDataAttachment<GlobalPos> ENERGY_TRANSMITTER_SOURCE = register(ESPlatform.INSTANCE.registerDataAttachment("energy_transmitter_source", () -> null, null, null, false));
 
 	private static <T> EntityDataAttachment<T> register(EntityDataAttachment<T> attachment) {
 		ATTACHMENTS.add(attachment);
