@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -52,7 +51,7 @@ public class SolarEggBlock extends BaseEntityBlock {
 					if (!(level.getBlockState(pos.offset(x, y, z)).canBeReplaced(context) && level.getWorldBorder().isWithinBounds(pos.offset(x, y, z)))) {
 						return null;
 					}
-					shape = Shapes.join(shape, defaultBlockState().setValue(X_OFFSET, x + 1).setValue(Y_OFFSET, y).setValue(Z_OFFSET, z + 1).getCollisionShape(level, pos, collisionContext).move(pos.getX() + x, pos.getY() + y, pos.getZ() + z), BooleanOp.OR);
+					shape = Shapes.or(shape, defaultBlockState().setValue(X_OFFSET, x + 1).setValue(Y_OFFSET, y).setValue(Z_OFFSET, z + 1).getCollisionShape(level, pos, collisionContext).move(pos.getX() + x, pos.getY() + y, pos.getZ() + z));
 				}
 			}
 		}

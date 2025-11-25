@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.AccumulatorBlock;
 import cn.leolezury.eternalstarlight.common.block.ESSkullType;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrateScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrystalbornCatalystScreen;
@@ -150,7 +151,8 @@ public class ClientSetupHandlers {
 		ESBlocks.DEEPSILVER_BARS,
 		ESBlocks.GOLEM_STEEL_BARS,
 		ESBlocks.WAXED_GOLEM_STEEL_BARS,
-		ESBlocks.OXIDIZED_GOLEM_STEEL_BARS
+		ESBlocks.OXIDIZED_GOLEM_STEEL_BARS,
+		ESBlocks.ACCUMULATOR
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT = List.of(
@@ -639,6 +641,10 @@ public class ClientSetupHandlers {
 		strategy.register(dyeColor, ESBlocks.RED_YETI_FUR_CARPET.get());
 		strategy.register(dyeColor, ESBlocks.BLACK_YETI_FUR_CARPET.get());
 		strategy.register((state, getter, pos, i) -> {
+			float progress = state.hasProperty(AccumulatorBlock.POWER) ? state.getValue(AccumulatorBlock.POWER) / 15.0f : 0;
+			return FastColor.ARGB32.lerp(progress, 0xffffffff, 0xff00dfff);
+		}, ESBlocks.ACCUMULATOR.get());
+		strategy.register((state, getter, pos, i) -> {
 			double progress = getter != null && pos != null ? (COLOR_NOISE.getValue(pos.getX() / 10.0, pos.getY() / 10.0, pos.getZ() / 10.0) + 1) / 2 : (Math.sin((ClientHandlers.clientTickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())) / 30.0) + 1) / 2;
 			return FastColor.ARGB32.color((int) Mth.lerp(progress, 218, 255), (int) Mth.lerp(progress, 90, 255), (int) Mth.lerp(progress, 255, 116));
 		}, ESBlocks.DUSK_GLASS.get());
@@ -696,6 +702,7 @@ public class ClientSetupHandlers {
 		strategy.register(toBlock, ESBlocks.GREEN_YETI_FUR_CARPET.get());
 		strategy.register(toBlock, ESBlocks.RED_YETI_FUR_CARPET.get());
 		strategy.register(toBlock, ESBlocks.BLACK_YETI_FUR_CARPET.get());
+		strategy.register(toBlock, ESBlocks.ACCUMULATOR.get());
 		strategy.register(toBlock, ESBlocks.DUSK_GLASS.get());
 	}
 
@@ -853,6 +860,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
 		strategy.register(ESEntities.LUNAR_THORN.get(), LunarThornRenderer::new);
+		strategy.register(ESEntities.POISONOUS_CLOUD.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.TANGLED.get(), TangledRenderer::new);
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkullRenderer::new);
 		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHuskRenderer::new);

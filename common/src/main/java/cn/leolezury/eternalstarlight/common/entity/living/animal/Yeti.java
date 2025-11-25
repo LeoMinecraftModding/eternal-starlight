@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.serialization.Dynamic;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -35,6 +36,12 @@ import org.jetbrains.annotations.Nullable;
 public class Yeti extends Animal {
 	private static final String TAG_FUR = "fur";
 	private static final String TAG_FUR_GROWTH_TICKS = "fur_growth_ticks";
+
+	public static final CompoundTag NOT_SHEARED = Util.make(() -> {
+		CompoundTag tag = new CompoundTag();
+		tag.putBoolean(TAG_FUR, true);
+		return tag;
+	});
 
 	protected static final EntityDataAccessor<Integer> ROLL_STATE = SynchedEntityData.defineId(Yeti.class, EntityDataSerializers.INT);
 	protected static final EntityDataAccessor<Boolean> HAS_FUR = SynchedEntityData.defineId(Yeti.class, EntityDataSerializers.BOOLEAN);

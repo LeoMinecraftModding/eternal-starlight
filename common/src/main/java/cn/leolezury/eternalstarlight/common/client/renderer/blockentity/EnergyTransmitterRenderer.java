@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,12 +33,14 @@ public class EnergyTransmitterRenderer<T extends EnergyTransmitterBlockEntity> i
 	public void render(T blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 		Vec3i inputOffset = blockEntity.getInputOffset();
 		BlockState state = blockEntity.getBlockState();
+		BlockState inputState = blockEntity.getInputState();
+		Direction inputFacing = inputState.hasProperty(EnergyTransmitterBlock.FACING) ? inputState.getValue(EnergyTransmitterBlock.FACING) : Direction.UP;
 		int receiverPower = state.hasProperty(EnergyTransmitterBlock.POWER) ? state.getValue(EnergyTransmitterBlock.POWER) : 0;
 		if (!inputOffset.equals(Vec3i.ZERO) && receiverPower > 0) {
 			Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
 			Vec3 sight = camera.getPosition().subtract(blockEntity.getBlockPos().getCenter());
-			Vec3 start = new Vec3(0.5, 6.0 / 16.0, 0.5);
-			Vec3 end = start.add(inputOffset.getX(), inputOffset.getY(), inputOffset.getZ());
+			Vec3 start = new Vec3(0.5, 0.5, 0.5).add(new Vec3(state.getValue(EnergyTransmitterBlock.FACING).step()).scale(-0.125));
+			Vec3 end = Vec3.atCenterOf(inputOffset).add(new Vec3(inputFacing.step()).scale(-0.125));
 			Vec3 sideOffset = end.subtract(start).cross(sight).normalize().scale(1.0 / 32.0);
 			PoseStack.Pose pose = poseStack.last();
 			VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(ENERGY_TRANSMITTER_TEXTURE));

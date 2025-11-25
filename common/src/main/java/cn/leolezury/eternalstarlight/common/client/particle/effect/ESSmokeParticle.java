@@ -10,10 +10,12 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class ESSmokeParticle extends SimpleAnimatedParticle {
 	private final float rotSpeed;
+	private final float initialAlpha;
 
 	protected ESSmokeParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, boolean rise, double movementMultiplier, int fromColor, int toColor, float alpha, SpriteSet spriteSet, float gravity) {
 		super(level, x, y, z, spriteSet, gravity);
@@ -28,7 +30,7 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 		this.rotSpeed = (float) (Math.random() * 0.05f + 0.075f);
 		this.lifetime = (int) (((int) (Math.random() * 20.0D) + 40) * lifeMultiplier);
 		this.quadSize *= 5;
-		this.alpha = alpha;
+		this.initialAlpha = alpha;
 		this.friction = 1f;
 		this.setColor(fromColor);
 		this.setFadeColor(toColor);
@@ -43,8 +45,10 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 	}
 
 	@Override
-	public void render(VertexConsumer vertexConsumer, Camera camera, float f) {
-		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE), camera, f);
+	public void render(VertexConsumer vertexConsumer, Camera camera, float partialTicks) {
+		float progress = Math.min(age + partialTicks, lifetime) / lifetime;
+		this.alpha = Mth.lerp((float) Math.pow((Math.abs(progress - 0.5) * 2), 5), initialAlpha, 0);
+		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE), camera, partialTicks);
 	}
 
 	@Override

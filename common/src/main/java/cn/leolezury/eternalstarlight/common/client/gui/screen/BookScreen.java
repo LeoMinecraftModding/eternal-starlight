@@ -280,6 +280,7 @@ public class BookScreen extends Screen {
 		RenderSystem.disableDepthTest();
 		RenderSystem.defaultBlendFunc();
 		guiGraphics.pose().popPose();
+		guiGraphics.blit(book.textures().topOverlay(), getBaseX(), getBaseY(), 0, 0, book.width(), book.height(), book.width(), book.height());
 		if (getScrollButtonHeight() < book.scrollbar().scrollbarHeight()) {
 			int scrollButtonX = getBaseX() + book.scrollbar().scrollbarXOffset() + (book.scrollbar().scrollbarWidth() - book.scrollbar().scrollButtonWidth()) / 2;
 			int scrollButtonY = getBaseY() + book.scrollbar().scrollbarYOffset() + (int) (getMaxScroll() * ((double) scrollProgress / (double) (totalHeight - book.height() + 2 * book.frameWidth())));

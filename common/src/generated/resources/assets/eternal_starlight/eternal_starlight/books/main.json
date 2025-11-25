@@ -14,6 +14,57 @@
   "components": [
     [
       {
+        "type": "eternal_starlight:display",
+        "config": {
+          "crafting_recipe_displays": [],
+          "entity_displays": [],
+          "id": "eternal_starlight:cover",
+          "image_displays": [
+            {
+              "height": 40,
+              "location": "eternal_starlight:textures/gui/screen/book/icon.png",
+              "width": 40,
+              "x": 45,
+              "y": 30
+            },
+            {
+              "height": 16,
+              "location": "eternal_starlight:textures/gui/screen/book/separator.png",
+              "width": 64,
+              "x": 33,
+              "y": 75
+            }
+          ],
+          "item_displays": [],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 8,
+              "scale": 1.5,
+              "text": [
+                {
+                  "content": "${color: #acfffc}${link: eternal_starlight:index}",
+                  "translation": false
+                },
+                {
+                  "content": "item.eternal_starlight.book",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 100
+            }
+          ],
+          "total_height": 150,
+          "unlock_conditions": []
+        }
+      }
+    ],
+    [
+      {
         "type": "eternal_starlight:index",
         "config": {
           "entries": [
@@ -3074,11 +3125,12 @@
     "scrollbar_y_offset": 5
   },
   "textures": {
-    "background": "eternal_starlight:textures/gui/screen/book/book.png",
+    "background": "eternal_starlight:textures/gui/screen/book/background.png",
     "down_button": "eternal_starlight:textures/gui/screen/book/down.png",
     "left_button": "eternal_starlight:textures/gui/screen/book/left_history.png",
-    "overlay": "eternal_starlight:textures/gui/screen/book/book_overlay.png",
+    "overlay": "eternal_starlight:textures/gui/screen/book/overlay.png",
     "right_button": "eternal_starlight:textures/gui/screen/book/right_history.png",
+    "top_overlay": "eternal_starlight:textures/gui/screen/book/top_overlay.png",
     "up_button": "eternal_starlight:textures/gui/screen/book/up.png"
   },
   "width": 150

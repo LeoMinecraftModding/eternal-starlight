@@ -173,6 +173,11 @@ public class AethersentGolem extends AbstractGolem {
 	}
 
 	@Override
+	public boolean isPushable() {
+		return false;
+	}
+
+	@Override
 	protected @Nullable SoundEvent getHurtSound(DamageSource source) {
 		return ESSoundEvents.AETHERSENT_GOLEM_HURT.get();
 	}

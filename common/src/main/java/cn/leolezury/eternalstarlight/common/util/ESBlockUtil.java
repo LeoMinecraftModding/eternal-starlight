@@ -1,13 +1,19 @@
 package cn.leolezury.eternalstarlight.common.util;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ESBlockUtil {
 	public static boolean isEntityInBlock(Entity entity, Block block) {
@@ -43,5 +49,26 @@ public class ESBlockUtil {
 			}
 		}
 		return posList;
+	}
+
+	public static VoxelShape rotateVoxelShape(VoxelShape shape, Direction direction) {
+		AtomicReference<VoxelShape> result = new AtomicReference<>(Shapes.empty());
+		shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
+			float rotX = (direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90) * Mth.DEG_TO_RAD;
+			float rotY = (((int) -direction.toYRot() + 180) % 360) * Mth.DEG_TO_RAD;
+			Vec3 min = new Vec3(minX - 0.5, minY - 0.5, minZ - 0.5);
+			min = min.xRot(rotX).yRot(rotY);
+			Vec3 max = new Vec3(maxX - 0.5, maxY - 0.5, maxZ - 0.5);
+			max = max.xRot(rotX).yRot(rotY);
+			result.set(Shapes.or(result.get(), Shapes.create(
+				Math.min(min.x, max.x) + 0.5,
+				Math.min(min.y, max.y) + 0.5,
+				Math.min(min.z, max.z) + 0.5,
+				Math.max(min.x, max.x) + 0.5,
+				Math.max(min.y, max.y) + 0.5,
+				Math.max(min.z, max.z) + 0.5
+			)));
+		});
+		return result.get();
 	}
 }

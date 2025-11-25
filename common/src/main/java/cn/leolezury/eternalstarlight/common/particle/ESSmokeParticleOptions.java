@@ -14,11 +14,11 @@ import org.joml.Vector3f;
 
 public record ESSmokeParticleOptions(Vector3f fromColor, Vector3f toColor, float alpha, boolean rise, float lifeScale, float motionScale) implements ParticleOptions {
 	public static final ESSmokeParticleOptions FLAME = new ESSmokeParticleOptions(new Vector3f(255, 147, 25), new Vector3f(49, 10, 2), 1, true, 1, 1);
-	public static final ESSmokeParticleOptions AETHERSENT = new ESSmokeParticleOptions(new Vector3f(115, 51, 153), new Vector3f(46, 14, 64), 0.5f, false, 3, 2.5f);
-	public static final ESSmokeParticleOptions LUNAR = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.4f, false, 3, 0f);
-	public static final ESSmokeParticleOptions LUNAR_SHORT = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.4f, false, 0.8f, 0f);
-	public static final ESSmokeParticleOptions LUNAR_BREATH = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.4f, false, 0.6f, 4f);
-	public static final ESSmokeParticleOptions LUNAR_ATTACK = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.3f, false, 0.3f, 0.4f);
+	public static final ESSmokeParticleOptions AETHERSENT = new ESSmokeParticleOptions(new Vector3f(115, 51, 153), new Vector3f(46, 14, 64), 1, false, 3, 2.5f);
+	public static final ESSmokeParticleOptions LUNAR = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 1, false, 3, 0f);
+	public static final ESSmokeParticleOptions LUNAR_SHORT = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 1, false, 0.8f, 0f);
+	public static final ESSmokeParticleOptions LUNAR_BREATH = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 1, false, 0.6f, 4f);
+	public static final ESSmokeParticleOptions LUNAR_ATTACK = new ESSmokeParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 0.5f, false, 0.6f, 0.4f);
 	public static final ESSmokeParticleOptions PUNGENCY_FRUIT = new ESSmokeParticleOptions(new Vector3f(87, 58, 69), new Vector3f(179, 116, 116), 1, true, 1, 0.3f);
 
 	public static final MapCodec<ESSmokeParticleOptions> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(

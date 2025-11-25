@@ -19,6 +19,8 @@
     "FarmBlockMixin",
     "FireBlockMixin",
     "FishingHookMixin",
+    "FrostedIceBlockMixin",
+    "IceBlockMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",

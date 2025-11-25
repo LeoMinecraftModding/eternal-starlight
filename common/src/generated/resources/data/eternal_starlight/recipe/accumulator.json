@@ -2,23 +2,23 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
+    "L": {
+      "item": "minecraft:redstone_lamp"
+    },
     "N": {
       "item": "eternal_starlight:golem_steel_nugget"
     },
     "R": {
       "item": "minecraft:redstone"
-    },
-    "S": {
-      "item": "minecraft:stone"
     }
   },
   "pattern": [
-    " N ",
     "RNR",
-    "SSS"
+    "NLN",
+    "RNR"
   ],
   "result": {
     "count": 1,
-    "id": "eternal_starlight:energy_transmitter"
+    "id": "eternal_starlight:accumulator"
   }
 }

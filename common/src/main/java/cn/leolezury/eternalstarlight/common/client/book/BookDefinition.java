@@ -52,10 +52,11 @@ public record BookDefinition(List<List<ConfiguredBookComponent<?, ?>>> component
 		).apply(instance, Scrollbar::new));
 	}
 
-	public record Textures(ResourceLocation background, ResourceLocation overlay, ResourceLocation upButton, ResourceLocation downButton, ResourceLocation leftButton, ResourceLocation rightButton) {
+	public record Textures(ResourceLocation background, ResourceLocation overlay, ResourceLocation topOverlay, ResourceLocation upButton, ResourceLocation downButton, ResourceLocation leftButton, ResourceLocation rightButton) {
 		public static final Codec<Textures> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			ResourceLocation.CODEC.fieldOf("background").forGetter(Textures::background),
 			ResourceLocation.CODEC.fieldOf("overlay").forGetter(Textures::overlay),
+			ResourceLocation.CODEC.fieldOf("top_overlay").forGetter(Textures::topOverlay),
 			ResourceLocation.CODEC.fieldOf("up_button").forGetter(Textures::upButton),
 			ResourceLocation.CODEC.fieldOf("down_button").forGetter(Textures::downButton),
 			ResourceLocation.CODEC.fieldOf("left_button").forGetter(Textures::leftButton),

@@ -380,6 +380,13 @@ public class ESEntities {
 			.sized(0.3f, 1f)
 			.build(EternalStarlight.id("lunar_thorn").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<PoisonousCloud>> POISONOUS_CLOUD = ENTITIES.register(
+		"poisonous_cloud",
+		() -> EntityType.Builder.of(PoisonousCloud::new, MobCategory.MISC)
+			.sized(5f, 1f)
+			.clientTrackingRange(10)
+			.build(EternalStarlight.id("poisonous_cloud").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<Tangled>> TANGLED = ENTITIES.register(
 		"tangled",
 		() -> EntityType.Builder.of(Tangled::new, MobCategory.MONSTER)

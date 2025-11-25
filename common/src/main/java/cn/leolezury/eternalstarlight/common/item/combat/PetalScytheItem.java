@@ -1,9 +1,11 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
-import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
+import cn.leolezury.eternalstarlight.common.entity.attack.PoisonousCloud;
 import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
+import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.SpecialItemCooldown;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -19,12 +21,20 @@ public class PetalScytheItem extends ScytheItem implements Swingable {
 	private void performSpecialAttack(LivingEntity entity) {
 		Level level = entity.level();
 		if (!level.isClientSide && !SpecialItemCooldown.isOnCooldown(entity, this)) {
-			Vec3 shootPos = entity.position().add(0, entity.getBbHeight() / 2, 0);
+			RandomSource random = entity.getRandom();
+			Vec3 shootPos = entity.position().add(0, entity.getBbHeight() / 4, 0);
 			for (int i = -2; i <= 2; i++) {
-				LunarSpore spore = new LunarSpore(level, entity, shootPos.x, shootPos.y, shootPos.z);
-				spore.setNoGravity(true);
-				spore.setDeltaMovement(ESMathUtil.rotationToPosition(0.9f, -entity.getViewXRot(0) + 5, entity.getViewYRot(0) + 90 + i * 8));
-				level.addFreshEntity(spore);
+				PoisonousCloud cloud = new PoisonousCloud(ESEntities.POISONOUS_CLOUD.get(), level);
+				cloud.setOwner(entity);
+				cloud.setPos(shootPos);
+				cloud.setDeltaMovement(ESMathUtil.rotationToPosition(1, -entity.getViewXRot(0), entity.getViewYRot(0) + 90)
+					.add(entity.getViewVector(1)
+						.cross(new Vec3(random.nextDouble() * 0.1, 1, random.nextDouble() * 0.1))
+						.normalize()
+						.scale(i * 0.75))
+					.normalize()
+					.scale(0.6));
+				level.addFreshEntity(cloud);
 			}
 			SpecialItemCooldown.setCooldown(entity, this, 100);
 		}

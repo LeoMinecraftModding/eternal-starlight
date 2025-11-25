@@ -554,7 +554,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
 		jetBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_CRATE.get()).withSuffix("_open")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_CRATE.get())));
-		onOffBlock(ESBlocks.ENERGY_TRANSMITTER.get(), EnergyTransmitterBlock.POWERED, models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get()).withSuffix("_on")), models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get())));
+		directionalOnOffBlock(ESBlocks.ENERGY_TRANSMITTER.get(), EnergyTransmitterBlock.POWERED, models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get()).withSuffix("_on")), models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get())));
+		accumulator(ESBlocks.ACCUMULATOR.get());
 		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
 
 		shadegrieve(ESBlocks.SHADEGRIEVE.get());
@@ -1419,6 +1420,29 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			int rotX = direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90;
 			return ConfiguredModel.builder().modelFile(state.getValue(property) ? on : off).rotationX(rotX).rotationY(((int) direction.toYRot() + 180) % 360).build();
 		});
+	}
+
+	private void accumulator(Block block) {
+		ModelFile modelFile = models().withExistingParent(name(block), ResourceLocation.withDefaultNamespace(ModelProvider.BLOCK_FOLDER + "/block")).renderType(CUTOUT_MIPPED)
+			.texture("particle", blockTexture(block)).texture("top", blockTexture(block).withSuffix("_top")).texture("top_overlay", blockTexture(block).withSuffix("_top_overlay")).texture("side", blockTexture(block)).texture("side_overlay", blockTexture(block).withSuffix("_overlay"))
+			.element()
+			.from(0, 0, 0)
+			.to(16, 16, 16)
+			.allFaces((dir, builder) -> builder.uvs(0, 0, 16, 16)
+				.texture("#" + (dir == Direction.UP ? "top" : "side"))
+				.cullface(dir)
+				.end())
+			.end()
+			.element()
+			.from(0, 0, 0)
+			.to(16, 16, 16)
+			.allFaces((dir, builder) -> builder.uvs(0, 0, 16, 16)
+				.texture("#" + (dir == Direction.UP ? "top_overlay" : "side_overlay"))
+				.cullface(dir)
+				.tintindex(0)
+				.end())
+			.end();
+		directionalBlock(block, modelFile);
 	}
 
 	private void simpleSign(Block normal, Block wall, ResourceLocation location) {

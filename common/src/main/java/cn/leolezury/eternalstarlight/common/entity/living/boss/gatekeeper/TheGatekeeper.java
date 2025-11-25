@@ -420,9 +420,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			});
 			if (level() instanceof ServerLevel serverLevel) {
 				dropCustomDeathLoot(serverLevel, source, true);
-				for (ServerPlayer player : serverLevel.players()) {
-					if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
-						permitPlayer(player);
+				for (UUID uuid : fightParticipants) {
+					Player player = level().getPlayerByUUID(uuid);
+					if (player instanceof ServerPlayer serverPlayer && player.isAlive() && player.level().dimension() == level().dimension()) {
+						permitPlayer(serverPlayer);
 					}
 				}
 			}

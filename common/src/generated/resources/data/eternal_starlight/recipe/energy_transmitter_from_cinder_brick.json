@@ -2,23 +2,23 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
+    "B": {
+      "item": "eternal_starlight:cinder_brick"
+    },
     "N": {
       "item": "eternal_starlight:golem_steel_nugget"
     },
     "R": {
       "item": "minecraft:redstone"
-    },
-    "S": {
-      "item": "minecraft:stone"
     }
   },
   "pattern": [
     " N ",
     "RNR",
-    "SSS"
+    "BBB"
   ],
   "result": {
-    "count": 1,
+    "count": 4,
     "id": "eternal_starlight:energy_transmitter"
   }
 }

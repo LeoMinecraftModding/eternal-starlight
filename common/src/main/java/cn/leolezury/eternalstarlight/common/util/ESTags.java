@@ -124,6 +124,7 @@ public class ESTags {
 		public static final TagKey<Block> CRYSTALBORN_CATALYST_REPLACEABLES = create("crystalborn_catalyst_replaceables");
 		public static final TagKey<Block> CRYSTALBORN_CATALYST_PREFERENCES = create("crystalborn_catalyst_preferences");
 		public static final TagKey<Block> STARFIRE_BIRD_NESTS = create("starfire_bird_nests");
+		public static final TagKey<Block> PREVENTS_MELTING = create("prevents_melting");
 
 		private static TagKey<Block> create(String string) {
 			return TagKey.create(Registries.BLOCK, EternalStarlight.id(string));

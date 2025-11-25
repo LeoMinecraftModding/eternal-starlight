@@ -36,6 +36,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "nbt": "{fur:1b}"
+              }
+            }
+          ],
           "functions": [
             {
               "add": false,

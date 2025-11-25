@@ -1,35 +1,29 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class PermafrostCloud extends Entity implements TraceableEntity {
+public class PoisonousCloud extends Entity implements TraceableEntity {
 	private static final String TAG_OWNER = "owner";
-	private static final String TAG_SMALL = "small";
 
-	protected static final EntityDataAccessor<Boolean> SMALL = SynchedEntityData.defineId(PermafrostCloud.class, EntityDataSerializers.BOOLEAN);
-
-	public boolean isSmall() {
-		return this.getEntityData().get(SMALL);
-	}
-
-	public void setSmall(boolean small) {
-		this.getEntityData().set(SMALL, small);
-	}
+	private int attackCooldown;
 
 	@Nullable
 	private LivingEntity owner;
@@ -46,23 +40,20 @@ public class PermafrostCloud extends Entity implements TraceableEntity {
 		this.owner = owner;
 	}
 
-	public PermafrostCloud(EntityType<? extends PermafrostCloud> type, Level level) {
+	public PoisonousCloud(EntityType<? extends PoisonousCloud> type, Level level) {
 		super(type, level);
 	}
 
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		builder.define(SMALL, false);
+
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		if (tickCount > 200) {
+		if (tickCount > 100) {
 			discard();
-		}
-		if (tickCount % 3 == 0) {
-			refreshDimensions();
 		}
 		if (!level().isClientSide) {
 			if (level() instanceof ServerLevel serverLevel && owner == null && ownerId != null) {
@@ -73,18 +64,25 @@ public class PermafrostCloud extends Entity implements TraceableEntity {
 					ownerId = null;
 				}
 			}
-			if (getOwner() != null) {
+			if (attackCooldown > 0) {
+				attackCooldown--;
+			}
+			if (getOwner() != null && attackCooldown <= 0) {
+				boolean success = false;
 				for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox())) {
 					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
-						livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, getOwner()), 4);
-						if (livingEntity.canFreeze()) {
-							livingEntity.setTicksFrozen(Math.min(livingEntity.getTicksFrozen() + 8, 300));
-						}
+						livingEntity.invulnerableTime = 0;
+						success = success || livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 5);
+						livingEntity.invulnerableTime = 0;
+						livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
 					}
+				}
+				if (success) {
+					attackCooldown = 10;
 				}
 			}
 		} else {
-			int count = Mth.ceil(Math.PI * (getBbWidth() / 2) * (getBbWidth() / 2));
+			int count = Mth.ceil((Math.PI * (getBbWidth() / 2) * (getBbWidth() / 2)) / 8);
 			float bbWidth = getBbWidth();
 
 			for (int i = 0; i < count; i++) {
@@ -93,14 +91,12 @@ public class PermafrostCloud extends Entity implements TraceableEntity {
 				double x = this.getX() + Mth.cos(angle) * scale;
 				double y = this.getY();
 				double z = this.getZ() + Mth.sin(angle) * scale;
-				this.level().addAlwaysVisibleParticle(ParticleTypes.SNOWFLAKE, x, y, z, 0.0, 0.0, 0.0);
+				this.level().addAlwaysVisibleParticle(ESSmokeParticleOptions.LUNAR_ATTACK, x, y, z, 0.0, 0.0, 0.0);
 			}
 		}
-	}
-
-	@Override
-	public EntityDimensions getDimensions(Pose pose) {
-		return isSmall() ? super.getDimensions(pose).scale(0.5f, 1) : super.getDimensions(pose);
+		this.setOldPosAndRot();
+		this.setPos(position().add(getDeltaMovement()));
+		this.setDeltaMovement(getDeltaMovement().scale(0.95));
 	}
 
 	@Override
@@ -116,7 +112,6 @@ public class PermafrostCloud extends Entity implements TraceableEntity {
 		if (tag.hasUUID(TAG_OWNER)) {
 			ownerId = tag.getUUID(TAG_OWNER);
 		}
-		setSmall(tag.getBoolean(TAG_SMALL));
 	}
 
 	@Override
@@ -124,6 +119,5 @@ public class PermafrostCloud extends Entity implements TraceableEntity {
 		if (owner != null) {
 			tag.putUUID(TAG_OWNER, owner.getUUID());
 		}
-		tag.putBoolean(TAG_SMALL, isSmall());
 	}
 }

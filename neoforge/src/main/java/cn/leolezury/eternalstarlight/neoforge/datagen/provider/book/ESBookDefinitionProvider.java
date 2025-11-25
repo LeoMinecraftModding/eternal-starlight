@@ -39,6 +39,14 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 	@Override
 	protected void gather(HolderLookup.Provider provider) {
 		BookDefinition main = new BookDefinition(List.of(
+			// cover
+			List.of(
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("cover"), new HashSet<>(), 150)
+					.textDisplay(new BookContent(List.of(new BookText(false, "${color: #acfffc}${link: " + EternalStarlight.ID + ":index}"), new BookText(true, ESItems.BOOK.get().getDescriptionId()))), true, 65, 100, 110, 12, 8, 1.5f)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/icon.png"), 45, 30, 40, 40)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 33, 75, 64, 16))
+			),
+			// index
 			List.of(
 				new ConfiguredBookComponent<>(BookComponentRegistry.INDEX, new IndexBookComponent.Config(EternalStarlight.id("index"), new HashSet<>(), List.of(
 					new IndexBookComponent.Entry(simpleColoredTranslated(ESItems.SEEKING_EYE.get().getDescriptionId()), EternalStarlight.id("seeking_eye_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
@@ -526,8 +534,9 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				4, 170, 140, 5, 2, FastColor.ARGB32.color(172, 255, 252)
 			),
 			new BookDefinition.Textures(
-				EternalStarlight.id("textures/gui/screen/book/book.png"),
-				EternalStarlight.id("textures/gui/screen/book/book_overlay.png"),
+				EternalStarlight.id("textures/gui/screen/book/background.png"),
+				EternalStarlight.id("textures/gui/screen/book/overlay.png"),
+				EternalStarlight.id("textures/gui/screen/book/top_overlay.png"),
 				EternalStarlight.id("textures/gui/screen/book/up.png"),
 				EternalStarlight.id("textures/gui/screen/book/down.png"),
 				EternalStarlight.id("textures/gui/screen/book/left_history.png"),

@@ -332,10 +332,28 @@ public class ESRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESBlocks.ENERGY_TRANSMITTER.get())
 			.pattern(" N ")
 			.pattern("RNR")
+			.pattern("SSS")
+			.unlockedBy("has_item", has(ESItems.GOLEM_STEEL_NUGGET.get()))
+			.define('N', ESItems.GOLEM_STEEL_NUGGET.get())
+			.define('S', Blocks.STONE)
+			.define('R', Items.REDSTONE)
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESBlocks.ENERGY_TRANSMITTER.get(), 4)
+			.pattern(" N ")
+			.pattern("RNR")
 			.pattern("BBB")
 			.unlockedBy("has_item", has(ESItems.GOLEM_STEEL_NUGGET.get()))
 			.define('N', ESItems.GOLEM_STEEL_NUGGET.get())
 			.define('B', ESItems.CINDER_BRICK.get())
+			.define('R', Items.REDSTONE)
+			.save(recipeOutput, EternalStarlight.id("energy_transmitter_from_cinder_brick"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESBlocks.ACCUMULATOR.get())
+			.pattern("RNR")
+			.pattern("NLN")
+			.pattern("RNR")
+			.unlockedBy("has_item", has(ESItems.GOLEM_STEEL_NUGGET.get()))
+			.define('N', ESItems.GOLEM_STEEL_NUGGET.get())
+			.define('L', Blocks.REDSTONE_LAMP)
 			.define('R', Items.REDSTONE)
 			.save(recipeOutput);
 
@@ -1216,7 +1234,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSlab(recipeOutput, ESBlocks.POLISHED_TOXITE_SLAB.get(), ESBlocks.POLISHED_TOXITE.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.POLISHED_TOXITE_SLAB.get(), ESBlocks.POLISHED_TOXITE.get(), 2);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILES.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ESBlocks.TOOTH_OF_HUNGER_TILES.get(), 4)
 			.pattern("##")
 			.pattern("##")
 			.unlockedBy("has_item", has(ESItems.TOOTH_OF_HUNGER.get()))

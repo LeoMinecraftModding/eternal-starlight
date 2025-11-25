@@ -663,6 +663,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(),
 				ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get()
 			);
+		tag(ESTags.Blocks.PREVENTS_MELTING)
+			.add(
+				ESBlocks.ETERNAL_ICE_LANTERN.get(),
+				ESBlocks.HAZE_ICE_LANTERN.get()
+			);
 		// mc tags
 		tag(BlockTags.LOGS)
 			.addTags(

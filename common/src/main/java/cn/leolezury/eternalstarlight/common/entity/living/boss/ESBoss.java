@@ -19,7 +19,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -31,6 +30,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.level.Level;
@@ -41,6 +41,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ESBoss extends Monster implements MultiBehaviorUser {
 	private static final String TAG_INITIAL_POS = "initial_pos";
@@ -48,7 +49,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	private static final String TAG_PHASE = "phase";
 	private static final String TAG_ACTIVATED = "activated";
 
-	protected final List<String> fightParticipants = new ArrayList<>();
+	protected final List<UUID> fightParticipants = new ArrayList<>();
 
 	protected ESBoss(EntityType<? extends ESBoss> type, Level level) {
 		super(type, level);
@@ -150,20 +151,19 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
 		boolean success = super.hurt(source, amount);
-		if (success && source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player.getName().getString())) {
-			fightParticipants.add(player.getName().getString());
+		if (success && source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player.getUUID())) {
+			fightParticipants.add(player.getUUID());
 		}
 		return success;
 	}
 
 	@Override
 	public void die(DamageSource source) {
-		if (!level().isClientSide && level().getServer() instanceof MinecraftServer server) {
-			for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-				for (String name : fightParticipants) {
-					if (player.getName().getString().equals(name) && player.isAlive() && player.level().dimension() == level().dimension()) {
-						CriteriaTriggers.PLAYER_KILLED_ENTITY.trigger(player, this, source);
-					}
+		if (!level().isClientSide) {
+			for (UUID uuid : fightParticipants) {
+				Player player = level().getPlayerByUUID(uuid);
+				if (player instanceof ServerPlayer serverPlayer && player.isAlive() && player.level().dimension() == level().dimension()) {
+					CriteriaTriggers.PLAYER_KILLED_ENTITY.trigger(serverPlayer, this, source);
 				}
 			}
 		}
@@ -229,22 +229,23 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
 		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
 		ItemStack lootBag = getBossLootBag();
-		if (fightParticipants.stream().noneMatch(s -> serverLevel.players().stream().anyMatch(player -> player.getName().getString().equals(s)))) {
+		if (fightParticipants.stream().noneMatch(uuid -> level().getPlayerByUUID(uuid) != null)) {
 			ItemEntity item = spawnAtLocation(lootBag.copy());
 			if (item != null) {
 				item.setGlowingTag(true);
 				item.setExtendedLifetime();
 			}
 		}
-		for (ServerPlayer player : serverLevel.players()) {
-			if (fightParticipants.stream().anyMatch(s -> s.equals(player.getName().getString())) && player.isAlive()) {
+		for (UUID uuid : fightParticipants) {
+			Player player = level().getPlayerByUUID(uuid);
+			if (player instanceof ServerPlayer serverPlayer && player.isAlive() && player.level().dimension() == level().dimension()) {
 				ItemEntity item = player.spawnAtLocation(lootBag.copy());
 				if (item != null) {
 					item.setTarget(player.getUUID());
 					item.setGlowingTag(true);
 					item.setExtendedLifetime();
 				}
-				dropExtraLoot(player);
+				dropExtraLoot(serverPlayer);
 			}
 		}
 	}
@@ -261,6 +262,10 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 			if (!canBossMove() && level().dimension() == initialPos.dimension()) {
 				setPos(initialPos.pos().x, position().y, initialPos.pos().z);
 			}
+			fightParticipants.removeIf(uuid -> {
+				Player player = level().getPlayerByUUID(uuid);
+				return player == null || !player.isAlive();
+			});
 		}
 	}
 }
