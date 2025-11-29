@@ -63,7 +63,7 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 
 	@Inject(method = "shouldShowName(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At(value = "RETURN"), cancellable = true)
 	private void shouldShowName(T livingEntity, CallbackInfoReturnable<Boolean> cir) {
-		if (ESDataAttachments.HUSK_OWNER_ID.hasData(livingEntity)) {
+		if (livingEntity.level().getEntity(ESDataAttachments.HUSK_OWNER_ID.getData(livingEntity)) instanceof Player) {
 			cir.setReturnValue(false);
 		}
 	}
