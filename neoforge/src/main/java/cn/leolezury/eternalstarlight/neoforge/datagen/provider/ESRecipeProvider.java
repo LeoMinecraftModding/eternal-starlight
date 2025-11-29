@@ -357,7 +357,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('R', Items.REDSTONE)
 			.save(recipeOutput);
 
-		addShapeless(recipeOutput, ESItems.TRAPPED_SOUL.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.TRAPPED_SOUL.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
+		addShapeless(recipeOutput, ESItems.SOUL_DEW.get(), ESItems.SOULIT_SPECTATOR.get(), 1, ESItems.SOUL_DEW.get(), ESItems.NIGHTFALL_SPIDER_EYE.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.WILTED_CROSSBOW.get())
 			.pattern("#&#")
 			.pattern("~$~")
@@ -372,7 +372,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("  P")
 			.pattern(" VP")
 			.pattern("VS ")
-			.define('S', ESItems.TRAPPED_SOUL.get())
+			.define('S', ESItems.SOUL_DEW.get())
 			.define('P', ESItems.TENACIOUS_PETAL.get())
 			.define('V', ESItems.TENACIOUS_VINE.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
@@ -389,7 +389,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("SP")
 			.pattern(" V")
 			.pattern(" V")
-			.define('S', ESItems.TRAPPED_SOUL.get())
+			.define('S', ESItems.SOUL_DEW.get())
 			.define('P', ESItems.TENACIOUS_PETAL.get())
 			.define('V', ESItems.TENACIOUS_VINE.get())
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))

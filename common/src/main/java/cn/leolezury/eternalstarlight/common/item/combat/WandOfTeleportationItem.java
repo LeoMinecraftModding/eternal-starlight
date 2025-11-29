@@ -80,6 +80,6 @@ public class WandOfTeleportationItem extends Item {
 
 	@Override
 	public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
-		return repairCandidate.is(ESItems.TRAPPED_SOUL.get()) || super.isValidRepairItem(stack, repairCandidate);
+		return repairCandidate.is(ESItems.SOUL_DEW.get()) || super.isValidRepairItem(stack, repairCandidate);
 	}
 }

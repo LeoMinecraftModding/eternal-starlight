@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-22T21:58:19.2756532	Item Models: eternal_starlight
+// 1.21.1	2025-11-29T16:46:09.9948391	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -856,6 +856,7 @@ b9dd656301e1444dd3ee7d6b13745a72004ac035 assets/eternal_starlight/models/item/si
 ade5562e07e55ff428316a6928d85616b89fc56e assets/eternal_starlight/models/item/solar_egg.json
 3eb8de761a7fec0608d955e8b229fc078271c52c assets/eternal_starlight/models/item/sonar_bomb.json
 412c2a56108c618337bdceaf98c229558cfd818d assets/eternal_starlight/models/item/soulit_spectator.json
+b3ef87caf18f942c7168c65d3a255a3d7d932c95 assets/eternal_starlight/models/item/soul_dew.json
 606d991e109acb7e7ac9cca5cdb7ddc5186fdd92 assets/eternal_starlight/models/item/spiral_kelp.json
 9ccb4b7789a2e5fcfb1bb09bcf12d8f8570d9fb4 assets/eternal_starlight/models/item/springstone.json
 831733ad85ed936ceaed272d6cc7bed49cc19568 assets/eternal_starlight/models/item/springstone_bricks.json
@@ -1034,7 +1035,6 @@ d3529ae907735b2b633f58203e8f0324aa8351ee assets/eternal_starlight/models/item/to
 4a8adb4eeb7466639052f85086015868b7afbb6d assets/eternal_starlight/models/item/toxite_slab.json
 c67ebe328354a20488f5a7bd99f9e2fc3ae14d73 assets/eternal_starlight/models/item/toxite_stairs.json
 bd240fd6b77a60eb57ea27089c9441ea3d5adf56 assets/eternal_starlight/models/item/toxite_wall.json
-e9f205cdaa9655f4374e7c5323ff9068a1ea4c42 assets/eternal_starlight/models/item/trapped_soul.json
 2242f37556d2c98efc2e069a95d6c93c6253ec02 assets/eternal_starlight/models/item/twilight_gaze_spawn_egg.json
 b48dcc603b063f4b6343c2c6c19f30d508a87635 assets/eternal_starlight/models/item/twilight_sand.json
 de5831c0b61c4533ea8737a79bab4d8ed378315b assets/eternal_starlight/models/item/twilight_sandstone.json

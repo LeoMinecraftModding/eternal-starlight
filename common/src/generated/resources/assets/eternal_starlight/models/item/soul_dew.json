@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "eternal_starlight:item/trapped_soul"
+    "layer0": "eternal_starlight:item/soul_dew"
   }
 }

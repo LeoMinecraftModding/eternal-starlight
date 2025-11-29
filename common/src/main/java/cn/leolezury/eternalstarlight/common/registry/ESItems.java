@@ -1232,7 +1232,7 @@ public class ESItems {
 	// lunar monstrosity
 	public static final RegistryObject<Item, Item> TENACIOUS_PETAL = registerItem("tenacious_petal", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> TENACIOUS_VINE = registerItem("tenacious_vine", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> TRAPPED_SOUL = registerItem("trapped_soul", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> SOUL_DEW = registerItem("soul_dew", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> SOULIT_SPECTATOR = registerItem("soulit_spectator", () -> new SoulitSpectatorItem(new Item.Properties().rarity(Rarity.RARE).durability(750)));
 	public static final RegistryObject<Item, Item> WILTED_CROSSBOW = registerItem("wilted_crossbow", () -> new WiltedCrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MOONRING_BOW = registerItem("moonring_bow", () -> new MoonringBowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));

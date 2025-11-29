@@ -976,7 +976,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.TENACIOUS_PETAL.get());
 		basicItem(ESItems.TENACIOUS_VINE.get());
-		basicItem(ESItems.TRAPPED_SOUL.get());
+		basicItem(ESItems.SOUL_DEW.get());
 		basicItem(ESItems.SOULIT_SPECTATOR.get());
 		crossbow(ESItems.WILTED_CROSSBOW.get());
 		bow(ESItems.MOONRING_BOW.get());

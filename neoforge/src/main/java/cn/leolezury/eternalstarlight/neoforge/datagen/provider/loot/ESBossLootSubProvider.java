@@ -94,7 +94,7 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 					.add(LootItem.lootTableItem(ESItems.TENACIOUS_VINE.get())))
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(3, 4))
-					.add(LootItem.lootTableItem(ESItems.TRAPPED_SOUL.get())))
+					.add(LootItem.lootTableItem(ESItems.SOUL_DEW.get())))
 				.withPool(LootPool.lootPool()
 					.setRolls(UniformGenerator.between(5, 8))
 					.add(LootItem.lootTableItem(ESItems.TANGLED_SKULL.get())))

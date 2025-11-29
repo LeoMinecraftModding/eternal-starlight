@@ -551,7 +551,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), models().getExistingFile(blockTexture(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get())));
 		simpleBlock(ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get());
 		jetBlock(ESBlocks.GOLEM_STEEL_JET.get());
-		simpleBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
+		directionalBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
 		jetBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_CRATE.get()).withSuffix("_open")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_CRATE.get())));
 		directionalOnOffBlock(ESBlocks.ENERGY_TRANSMITTER.get(), EnergyTransmitterBlock.POWERED, models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get()).withSuffix("_on")), models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get())));
@@ -933,7 +933,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 	private void jetBlock(Block block) {
 		ModelFile modelFile = models().cubeBottomTop(name(block), blockTexture(block).withSuffix("_side"), blockTexture(block).withSuffix("_side"), blockTexture(block).withSuffix("_top"));
-		simpleBlock(block, modelFile);
+		directionalBlock(block, modelFile);
 	}
 
 	private void cubeBottomTop(Block block) {
