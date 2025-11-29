@@ -53,6 +53,9 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Integer> BOARWARF_CREDIT = register(ESPlatform.INSTANCE.registerDataAttachment("boarwarf_credit", () -> 0, Codec.INT, null, true));
 	public static final EntityDataAttachment<Boolean> CRESCENT_SPEAR_DASH = register(ESPlatform.INSTANCE.registerDataAttachment("crescent_spear_dash", () -> false, null, ByteBufCodecs.BOOL, false));
 	public static final EntityDataAttachment<GlobalPos> ENERGY_TRANSMITTER_SOURCE = register(ESPlatform.INSTANCE.registerDataAttachment("energy_transmitter_source", () -> null, null, null, false));
+	public static final EntityDataAttachment<Boolean> OFFHAND_ATTACK = register(ESPlatform.INSTANCE.registerDataAttachment("offhand_attack", () -> false, null, null, false));
+	public static final EntityDataAttachment<ItemStack> LAST_OFFHAND_ITEM = register(ESPlatform.INSTANCE.registerDataAttachment("last_offhand_item", () -> ItemStack.EMPTY, null, null, false));
+	public static final EntityDataAttachment<Integer> OFFHAND_ATTACK_STRENGTH_TIMER = register(ESPlatform.INSTANCE.registerDataAttachment("offhand_attack_strength_timer", () -> 0, null, ByteBufCodecs.INT, false));
 
 	private static <T> EntityDataAttachment<T> register(EntityDataAttachment<T> attachment) {
 		ATTACHMENTS.add(attachment);

@@ -1,16 +1,12 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
@@ -22,16 +18,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DaggerOfHungerItem extends SwordItem {
+public class DaggerOfHungerItem extends DualWieldingSwordItem {
 	public static final ItemAttributeModifiers DEFAULT_ATTRIBUTE = SwordItem.createAttributes(ESItemTiers.TOOTH_OF_HUNGER, 3, -2.4f);
 	public static final ItemAttributeModifiers BONUS_ATTRIBUTE = SwordItem.createAttributes(ESItemTiers.TOOTH_OF_HUNGER, 4, -1.9f);
 	public static final ItemAttributeModifiers PENALTY_ATTRIBUTE = SwordItem.createAttributes(ESItemTiers.TOOTH_OF_HUNGER, 2, -2.9f);
@@ -90,15 +84,6 @@ public class DaggerOfHungerItem extends SwordItem {
 			stack.applyComponentsAndValidate(DataComponentPatch.builder().set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers).build());
 		}
 		super.inventoryTick(stack, level, entity, slot, bl);
-	}
-
-	@Override
-	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-		list.add(CommonComponents.EMPTY);
-		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.when_attack").withStyle(ChatFormatting.BLUE));
-		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.attack_bonus").withStyle(ChatFormatting.BLUE));
-		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".dagger_of_hunger.hurt_player").withStyle(ChatFormatting.BLUE));
-		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}
 
 	@Override

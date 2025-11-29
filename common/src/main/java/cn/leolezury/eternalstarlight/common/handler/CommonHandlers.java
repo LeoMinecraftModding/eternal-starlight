@@ -588,6 +588,13 @@ public class CommonHandlers {
 			ESSpellUtil.tickSpells(livingEntity);
 			SpecialItemCooldown.tick(livingEntity);
 			if (livingEntity instanceof Player player && !level.isClientSide) {
+				ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.setData(player, Math.max(ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.getData(player) + 1, 0));
+				if (!ItemStack.matches(ESDataAttachments.LAST_OFFHAND_ITEM.getData(player), player.getOffhandItem())) {
+					if (!ItemStack.isSameItem(ESDataAttachments.LAST_OFFHAND_ITEM.getData(player), player.getOffhandItem())) {
+						ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.setData(player, 0);
+					}
+					ESDataAttachments.LAST_OFFHAND_ITEM.setData(player, player.getOffhandItem().copy());
+				}
 				ESCrestUtil.tickCrests(player);
 				if (level.getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS) && player.isEyeInFluid(FluidTags.WATER) && player.getY() < 0) {
 					int maxAir = Math.max((int) Math.round((player.getMaxAirSupply() + player.getY() * 3) / 30) * 30 - 15, 0);

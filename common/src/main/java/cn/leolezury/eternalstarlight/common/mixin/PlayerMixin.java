@@ -4,10 +4,14 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -100,6 +104,49 @@ public abstract class PlayerMixin implements SpellCaster, GrapplingOwner {
 					player.hurtMarked = true;
 				}
 			}
+		}
+	}
+
+	@Inject(method = "getWeaponItem", at = @At(value = "RETURN"), cancellable = true)
+	private void getWeaponItem(CallbackInfoReturnable<ItemStack> cir) {
+		Player player = (Player) (Object) this;
+		if (ESDataAttachments.OFFHAND_ATTACK.getData(player)) {
+			cir.setReturnValue(player.getOffhandItem());
+		}
+	}
+
+	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getWeaponItem()Lnet/minecraft/world/item/ItemStack;"))
+	private void beforeAttack(Entity entity, CallbackInfo ci) {
+		Player player = (Player) (Object) this;
+		ItemStack mainHand = player.getMainHandItem();
+		ItemStack offhand = player.getOffhandItem();
+		if (ItemStack.isSameItem(mainHand, offhand) && mainHand.getItem() instanceof DualWieldingSwordItem) {
+			entity.invulnerableTime = 0;
+		}
+	}
+
+	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getItemInHand(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;"))
+	private ItemStack useOffhandWeapon(Player instance, InteractionHand hand, Operation<ItemStack> original) {
+		if (hand == InteractionHand.MAIN_HAND && ESDataAttachments.OFFHAND_ATTACK.getData(instance)) {
+			return original.call(instance, InteractionHand.OFF_HAND);
+		}
+		return original.call(instance, hand);
+	}
+
+	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getAttackStrengthScale(F)F"))
+	private float useOffhandAttackStrengthTimer(Player instance, float f, Operation<Float> original) {
+		if (ESDataAttachments.OFFHAND_ATTACK.getData(instance)) {
+			return Mth.clamp(((float) ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.getData(instance) + f) / instance.getCurrentItemAttackStrengthDelay(), 0.0F, 1.0F);
+		}
+		return original.call(instance, f);
+	}
+
+	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;resetAttackStrengthTicker()V"))
+	private void resetOffhandAttackStrengthTimer(Player instance, Operation<Void> original) {
+		if (ESDataAttachments.OFFHAND_ATTACK.getData(instance)) {
+			ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.setData(instance, 0);
+		} else {
+			original.call(instance);
 		}
 	}
 

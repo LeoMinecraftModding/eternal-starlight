@@ -19,6 +19,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
+import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -50,6 +51,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
@@ -76,6 +78,7 @@ public class ClientHandlers {
 	private static final ResourceLocation ETHER_ARMOR_HALF = EternalStarlight.id("textures/gui/hud/ether_armor_half.png");
 	private static final ResourceLocation ETHER_ARMOR_FULL = EternalStarlight.id("textures/gui/hud/ether_armor_full.png");
 	private static final ResourceLocation ORB_OF_PROPHECY_USE = EternalStarlight.id("textures/misc/orb_of_prophecy_use.png");
+	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_FULL_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_full");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_background");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_progress");
 	private static final ResourceLocation LUNARIS_CACTUS_BLUR_LOCATION = EternalStarlight.id("textures/misc/lunaris_cactus_blur.png");
@@ -563,13 +566,54 @@ public class ClientHandlers {
 		guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 	}
 
+	public static void renderOffhandAttackCrosshair(GuiGraphics guiGraphics) {
+		RenderSystem.enableBlend();
+		RenderSystem.blendFuncSeparate(
+			GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR,
+			GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR,
+			GlStateManager.SourceFactor.ONE,
+			GlStateManager.DestFactor.ZERO
+		);
+		if (Minecraft.getInstance().options.getCameraType().isFirstPerson() && Minecraft.getInstance().options.attackIndicator().get() == AttackIndicatorStatus.CROSSHAIR && Minecraft.getInstance().player != null) {
+			ItemStack mainHand = Minecraft.getInstance().player.getMainHandItem();
+			ItemStack offhand = Minecraft.getInstance().player.getOffhandItem();
+			if (ItemStack.isSameItem(mainHand, offhand) && mainHand.getItem() instanceof DualWieldingSwordItem) {
+				float attackStrengthScale = Mth.clamp(ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.getData(Minecraft.getInstance().player) / Minecraft.getInstance().player.getCurrentItemAttackStrengthDelay(), 0.0F, 1.0F);
+				boolean full = false;
+				if (Minecraft.getInstance().crosshairPickEntity != null && Minecraft.getInstance().crosshairPickEntity instanceof LivingEntity && attackStrengthScale >= 1.0F) {
+					full = Minecraft.getInstance().player.getCurrentItemAttackStrengthDelay() > 5.0F;
+					full &= Minecraft.getInstance().crosshairPickEntity.isAlive();
+				}
+
+				int x = guiGraphics.guiWidth() / 2 - 8;
+				// +16 -> +32 we want it to be under the normal crosshair
+				int y = guiGraphics.guiHeight() / 2 - 7 + 32;
+				if (full) {
+					guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_FULL_SPRITE, x, y, 16, 16);
+				} else if (attackStrengthScale < 1.0F) {
+					int progress = (int) (attackStrengthScale * 17.0F);
+					guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE, x, y, 16, 4);
+					guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE, 16, 4, 0, 0, x, y, progress, 4);
+				}
+			}
+		}
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.disableBlend();
+	}
+
 	public static void renderSpellCrosshair(GuiGraphics guiGraphics, int screenWidth, int screenHeight) {
+		RenderSystem.enableBlend();
+		RenderSystem.blendFuncSeparate(
+			GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR,
+			GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR,
+			GlStateManager.SourceFactor.ONE,
+			GlStateManager.DestFactor.ZERO
+		);
 		Options options = Minecraft.getInstance().options;
 		if (options.getCameraType().isFirstPerson()) {
 			LocalPlayer player = Minecraft.getInstance().player;
 			if (player instanceof SpellCaster && ESDataAttachments.SPELL_CAST_DATA.getData(player).hasSpell()) {
 				SpellCastData data = ESDataAttachments.SPELL_CAST_DATA.getData(player);
-				RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 				if (Minecraft.getInstance().options.attackIndicator().get() == AttackIndicatorStatus.CROSSHAIR) {
 					float f = Math.min(1, (float) data.castTicks() / data.spell().spellProperties().preparationTicks());
 					if (data.castTicks() > data.spell().spellProperties().preparationTicks()) {
@@ -583,10 +627,10 @@ public class ClientHandlers {
 					guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE, k, j, 16, 4);
 					guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE, 16, 4, 0, 0, k, j, l, 4);
 				}
-
-				RenderSystem.defaultBlendFunc();
 			}
 		}
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.disableBlend();
 	}
 
 	public static void renderEtherErosion(GuiGraphics guiGraphics) {
