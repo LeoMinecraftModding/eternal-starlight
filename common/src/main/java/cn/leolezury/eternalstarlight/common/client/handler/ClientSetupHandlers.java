@@ -138,9 +138,9 @@ public class ClientSetupHandlers {
 	public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
 		ESBlocks.LUNAR_LEAVES,
 		ESBlocks.NORTHLAND_LEAVES,
-		ESBlocks.STARLIGHT_MANGROVE_LEAVES,
-		ESBlocks.STARLIGHT_MANGROVE_ROOTS,
-		ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS,
+		ESBlocks.BANYIN_LEAVES,
+		ESBlocks.BANYIN_ROOTS,
+		ESBlocks.MUDDY_BANYIN_ROOTS,
 		ESBlocks.SCARLET_LEAVES,
 		ESBlocks.SCARLET_LEAVES_PILE,
 		ESBlocks.TORREYA_LEAVES,
@@ -164,10 +164,10 @@ public class ClientSetupHandlers {
 		ESBlocks.POTTED_NORTHLAND_SAPLING,
 		ESBlocks.NORTHLAND_TRAPDOOR,
 		ESBlocks.NORTHLAND_DOOR,
-		ESBlocks.STARLIGHT_MANGROVE_SAPLING,
-		ESBlocks.POTTED_STARLIGHT_MANGROVE_SAPLING,
-		ESBlocks.STARLIGHT_MANGROVE_TRAPDOOR,
-		ESBlocks.STARLIGHT_MANGROVE_DOOR,
+		ESBlocks.BANYIN_SAPLING,
+		ESBlocks.POTTED_BANYIN_SAPLING,
+		ESBlocks.BANYIN_TRAPDOOR,
+		ESBlocks.BANYIN_DOOR,
 		ESBlocks.SCARLET_SAPLING,
 		ESBlocks.POTTED_SCARLET_SAPLING,
 		ESBlocks.SCARLET_TRAPDOOR,
@@ -355,7 +355,7 @@ public class ClientSetupHandlers {
 		ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY,
 		ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY,
 		ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY,
-		ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY,
+		ESBlocks.BANYIN_STARFIRE_BIRD_AVIARY,
 		ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY,
 		ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY,
 		ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY,
@@ -606,7 +606,7 @@ public class ClientSetupHandlers {
 		strategy.register(grassColor, ESBlocks.MOONLIGHT_LILY_PAD.get());
 		strategy.register(grassColor, ESBlocks.STARLIT_LILY_PAD.get());
 		strategy.register(grassColor, ESBlocks.MOONLIGHT_DUCKWEED.get());
-		strategy.register(leavesColor, ESBlocks.STARLIGHT_MANGROVE_LEAVES.get());
+		strategy.register(leavesColor, ESBlocks.BANYIN_LEAVES.get());
 		strategy.register(leavesColor, ESBlocks.STARFIRE_BIRD_NEST.get());
 		strategy.register(dyeColor, ESBlocks.WHITE_YETI_FUR.get());
 		strategy.register(dyeColor, ESBlocks.ORANGE_YETI_FUR.get());
@@ -668,7 +668,7 @@ public class ClientSetupHandlers {
 		strategy.register(toBlock, ESBlocks.MOONLIGHT_LILY_PAD.get());
 		strategy.register(toBlock, ESBlocks.STARLIT_LILY_PAD.get());
 		strategy.register(toBlock, ESBlocks.MOONLIGHT_DUCKWEED.get());
-		strategy.register(toBlock, ESBlocks.STARLIGHT_MANGROVE_LEAVES.get());
+		strategy.register(toBlock, ESBlocks.BANYIN_LEAVES.get());
 		strategy.register(toBlock, ESBlocks.STARFIRE_BIRD_NEST.get());
 		strategy.register(toBlock, ESBlocks.WHITE_YETI_FUR.get());
 		strategy.register(toBlock, ESBlocks.ORANGE_YETI_FUR.get());
@@ -908,8 +908,8 @@ public class ClientSetupHandlers {
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.LUNAR), ChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.NORTHLAND), BoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.NORTHLAND), ChestBoatModel::createBodyModel);
-		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), BoatModel::createBodyModel);
-		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.STARLIGHT_MANGROVE), ChestBoatModel::createBodyModel);
+		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.BANYIN), BoatModel::createBodyModel);
+		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.BANYIN), ChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.SCARLET), ScarletBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.SCARLET), ScarletChestBoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.TORREYA), BoatModel::createBodyModel);

@@ -14,14 +14,14 @@ public class ESEntVariants {
 	public static final ResourceKey<EntVariant> LUNAR = create("lunar");
 	public static final ResourceKey<EntVariant> NORTHLAND = create("northland");
 	public static final ResourceKey<EntVariant> SCARLET = create("scarlet");
-	public static final ResourceKey<EntVariant> STARLIGHT_MANGROVE = create("starlight_mangrove");
+	public static final ResourceKey<EntVariant> BANYIN = create("banyin");
 
 	public static void bootstrap(BootstrapContext<EntVariant> context) {
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
 		context.register(LUNAR, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_FOREST), biomes.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST)), ESItems.LUNAR_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/lunar")));
 		context.register(NORTHLAND, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST)), ESItems.NORTHLAND_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/northland")));
 		context.register(SCARLET, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST)), ESItems.SCARLET_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/scarlet")));
-		context.register(STARLIGHT_MANGROVE, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.DARK_SWAMP)), ESItems.STARLIGHT_MANGROVE_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/starlight_mangrove")));
+		context.register(BANYIN, new EntVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.DARK_SWAMP)), ESItems.BANYIN_LEAVES.asHolder(), EternalStarlight.id("textures/entity/ent/banyin")));
 	}
 
 	public static ResourceKey<EntVariant> create(String name) {

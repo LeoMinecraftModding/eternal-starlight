@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:banyin_roots"
+    },
+    {
+      "item": "eternal_starlight:nightfall_mud"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:muddy_banyin_roots"
+  }
+}

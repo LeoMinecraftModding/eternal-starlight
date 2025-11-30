@@ -1,0 +1,68 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:copy_components",
+                  "include": [
+                    "minecraft:container",
+                    "eternal_starlight:birds"
+                  ],
+                  "source": "block_entity"
+                },
+                {
+                  "block": "eternal_starlight:banyin_starfire_bird_aviary",
+                  "function": "minecraft:copy_state",
+                  "properties": [
+                    "eggs"
+                  ]
+                }
+              ],
+              "name": "eternal_starlight:banyin_starfire_bird_aviary"
+            },
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "function": "minecraft:copy_components",
+                  "include": [
+                    "minecraft:container"
+                  ],
+                  "source": "block_entity"
+                }
+              ],
+              "name": "eternal_starlight:banyin_starfire_bird_aviary"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "eternal_starlight:blocks/banyin_starfire_bird_aviary"
+}

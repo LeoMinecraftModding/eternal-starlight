@@ -51,7 +51,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> LOWER_STARCORE_ORE = create("lower_starcore_ore");
 	public static final ResourceKey<PlacedFeature> FALLEN_LUNAR_LOG = create("fallen_lunar_log");
 	public static final ResourceKey<PlacedFeature> FALLEN_NORTHLAND_LOG = create("fallen_northland_log");
-	public static final ResourceKey<PlacedFeature> FALLEN_STARLIGHT_MANGROVE_LOG = create("fallen_starlight_mangrove_log");
+	public static final ResourceKey<PlacedFeature> FALLEN_BANYIN_LOG = create("fallen_banyin_log");
 	public static final ResourceKey<PlacedFeature> FALLEN_SCARLET_LOG = create("fallen_scarlet_log");
 	public static final ResourceKey<PlacedFeature> SCARLET_LEAVES_PILE = create("scarlet_leaves_pile");
 	public static final ResourceKey<PlacedFeature> ASHEN_SNOW = create("ashen_snow");
@@ -82,7 +82,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_TREE_CHECKED = create("lunar_huge_tree_checked");
 	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED = create("lunar_huge_starfire_birds_tree_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = create("northland_tree_checked");
-	public static final ResourceKey<PlacedFeature> STARLIGHT_MANGROVE_TREE_CHECKED = create("starlight_mangrove_tree_checked");
+	public static final ResourceKey<PlacedFeature> BANYIN_TREE_CHECKED = create("banyin_tree_checked");
 	public static final ResourceKey<PlacedFeature> SCARLET_TREE_CHECKED = create("scarlet_tree_checked");
 	public static final ResourceKey<PlacedFeature> TORREYA_TREE_CHECKED = create("torreya_tree_checked");
 	public static final ResourceKey<PlacedFeature> TORREYA_STARFIRE_BIRDS_TREE_CHECKED = create("torreya_starfire_birds_tree_checked");
@@ -158,7 +158,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, LOWER_STARCORE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARCORE_ORE), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, FALLEN_LUNAR_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_LUNAR_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, FALLEN_NORTHLAND_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_NORTHLAND_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-		PlacementUtils.register(context, FALLEN_STARLIGHT_MANGROVE_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_STARLIGHT_MANGROVE_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, FALLEN_BANYIN_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_BANYIN_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, FALLEN_SCARLET_LOG, configuredFeatures.getOrThrow(ESConfiguredFeatures.FALLEN_SCARLET_LOG), RarityFilter.onAverageOnceEvery(12), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, SCARLET_LEAVES_PILE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_LEAVES_PILE), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, ASHEN_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.ASHEN_SNOW), CountPlacement.of(30), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
@@ -189,7 +189,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, LUNAR_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
 		PlacementUtils.register(context, LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
 		PlacementUtils.register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()));
-		PlacementUtils.register(context, STARLIGHT_MANGROVE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_MANGROVE), PlacementUtils.filteredByBlockSurvival(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get()));
+		PlacementUtils.register(context, BANYIN_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.BANYIN), PlacementUtils.filteredByBlockSurvival(ESBlocks.BANYIN_SAPLING.get()));
 		PlacementUtils.register(context, SCARLET_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET), PlacementUtils.filteredByBlockSurvival(ESBlocks.SCARLET_SAPLING.get()));
 		PlacementUtils.register(context, TORREYA_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));
 		PlacementUtils.register(context, TORREYA_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));

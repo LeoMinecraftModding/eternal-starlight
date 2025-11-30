@@ -43,7 +43,7 @@ public class ESBoat extends Boat {
 		return switch (this.getESBoatType()) {
 			case LUNAR -> ESItems.LUNAR_BOAT.get();
 			case NORTHLAND -> ESItems.NORTHLAND_BOAT.get();
-			case STARLIGHT_MANGROVE -> ESItems.STARLIGHT_MANGROVE_BOAT.get();
+			case BANYIN -> ESItems.BANYIN_BOAT.get();
 			case SCARLET -> ESItems.SCARLET_BOAT.get();
 			case TORREYA -> ESItems.TORREYA_BOAT.get();
 			case JINGLESTEM -> ESItems.JINGLESTEM_RAFT.get();
@@ -85,7 +85,7 @@ public class ESBoat extends Boat {
 	public enum Type {
 		LUNAR(ESBlocks.LUNAR_PLANKS.get(), "lunar"),
 		NORTHLAND(ESBlocks.NORTHLAND_PLANKS.get(), "northland"),
-		STARLIGHT_MANGROVE(ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(), "starlight_mangrove"),
+		BANYIN(ESBlocks.BANYIN_PLANKS.get(), "banyin"),
 		SCARLET(ESBlocks.SCARLET_PLANKS.get(), "scarlet"),
 		TORREYA(ESBlocks.TORREYA_PLANKS.get(), "torreya"),
 		JINGLESTEM(ESBlocks.JINGLESTEM_PLANKS.get(), "jinglestem"),

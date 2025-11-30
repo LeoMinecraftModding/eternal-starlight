@@ -427,7 +427,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		// mod tags
 		copy(ESTags.Blocks.LUNAR_LOGS, ESTags.Items.LUNAR_LOGS);
 		copy(ESTags.Blocks.NORTHLAND_LOGS, ESTags.Items.NORTHLAND_LOGS);
-		copy(ESTags.Blocks.STARLIGHT_MANGROVE_LOGS, ESTags.Items.STARLIGHT_MANGROVE_LOGS);
+		copy(ESTags.Blocks.BANYIN_LOGS, ESTags.Items.BANYIN_LOGS);
 		copy(ESTags.Blocks.SCARLET_LOGS, ESTags.Items.SCARLET_LOGS);
 		copy(ESTags.Blocks.TORREYA_LOGS, ESTags.Items.TORREYA_LOGS);
 		copy(ESTags.Blocks.JINGLESTEM_LOGS, ESTags.Items.JINGLESTEM_LOGS);
@@ -1050,7 +1050,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.LUNAR_BOAT.get(),
 				ESItems.NORTHLAND_BOAT.get(),
-				ESItems.STARLIGHT_MANGROVE_BOAT.get(),
+				ESItems.BANYIN_BOAT.get(),
 				ESItems.SCARLET_BOAT.get(),
 				ESItems.TORREYA_BOAT.get(),
 				ESItems.JINGLESTEM_RAFT.get(),
@@ -1060,7 +1060,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.LUNAR_CHEST_BOAT.get(),
 				ESItems.NORTHLAND_CHEST_BOAT.get(),
-				ESItems.STARLIGHT_MANGROVE_CHEST_BOAT.get(),
+				ESItems.BANYIN_CHEST_BOAT.get(),
 				ESItems.SCARLET_CHEST_BOAT.get(),
 				ESItems.TORREYA_CHEST_BOAT.get(),
 				ESItems.JINGLESTEM_CHEST_RAFT.get(),

@@ -44,12 +44,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.NORTHLAND_SAPLING.get());
 		pottedPlant(ESBlocks.POTTED_NORTHLAND_SAPLING.get(), blockTexture(ESBlocks.NORTHLAND_SAPLING.get()));
 
-		leaves(ESBlocks.STARLIGHT_MANGROVE_LEAVES.get());
-		woodSet(ESBlocks.STARLIGHT_MANGROVE_LOG.get(), ESBlocks.STARLIGHT_MANGROVE_WOOD.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(), ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get(), ESBlocks.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(), ESBlocks.STARLIGHT_MANGROVE_DOOR.get(), true, ESBlocks.STARLIGHT_MANGROVE_TRAPDOOR.get(), true, ESBlocks.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(), ESBlocks.STARLIGHT_MANGROVE_BUTTON.get(), ESBlocks.STARLIGHT_MANGROVE_FENCE.get(), ESBlocks.STARLIGHT_MANGROVE_FENCE_GATE.get(), ESBlocks.STARLIGHT_MANGROVE_SLAB.get(), ESBlocks.STARLIGHT_MANGROVE_STAIRS.get(), ESBlocks.STARLIGHT_MANGROVE_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_HANGING_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_WALL_HANGING_SIGN.get());
-		cross(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get());
-		pottedPlant(ESBlocks.POTTED_STARLIGHT_MANGROVE_SAPLING.get(), blockTexture(ESBlocks.STARLIGHT_MANGROVE_SAPLING.get()));
-		mangroveRoots(ESBlocks.STARLIGHT_MANGROVE_ROOTS.get());
-		muddyMangroveRoots(ESBlocks.MUDDY_STARLIGHT_MANGROVE_ROOTS.get());
+		leaves(ESBlocks.BANYIN_LEAVES.get());
+		woodSet(ESBlocks.BANYIN_LOG.get(), ESBlocks.BANYIN_WOOD.get(), ESBlocks.BANYIN_PLANKS.get(), ESBlocks.STRIPPED_BANYIN_LOG.get(), ESBlocks.STRIPPED_BANYIN_WOOD.get(), ESBlocks.BANYIN_DOOR.get(), true, ESBlocks.BANYIN_TRAPDOOR.get(), true, ESBlocks.BANYIN_PRESSURE_PLATE.get(), ESBlocks.BANYIN_BUTTON.get(), ESBlocks.BANYIN_FENCE.get(), ESBlocks.BANYIN_FENCE_GATE.get(), ESBlocks.BANYIN_SLAB.get(), ESBlocks.BANYIN_STAIRS.get(), ESBlocks.BANYIN_SIGN.get(), ESBlocks.BANYIN_WALL_SIGN.get(), ESBlocks.BANYIN_HANGING_SIGN.get(), ESBlocks.BANYIN_WALL_HANGING_SIGN.get());
+		cross(ESBlocks.BANYIN_SAPLING.get());
+		pottedPlant(ESBlocks.POTTED_BANYIN_SAPLING.get(), blockTexture(ESBlocks.BANYIN_SAPLING.get()));
+		mangroveRoots(ESBlocks.BANYIN_ROOTS.get());
+		muddyMangroveRoots(ESBlocks.MUDDY_BANYIN_ROOTS.get());
 
 		leaves(ESBlocks.SCARLET_LEAVES.get());
 		layered(ESBlocks.SCARLET_LEAVES_PILE.get(), blockTexture(ESBlocks.SCARLET_LEAVES.get()));
@@ -437,7 +437,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		starfireBirdAviary(ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY.get(), ResourceLocation.withDefaultNamespace("bamboo"), "block");
 		starfireBirdAviary(ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("lunar"));
 		starfireBirdAviary(ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("northland"));
-		starfireBirdAviary(ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("starlight_mangrove"));
+		starfireBirdAviary(ESBlocks.BANYIN_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("banyin"));
 		starfireBirdAviary(ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("scarlet"));
 		starfireBirdAviary(ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("torreya"));
 		starfireBirdAviary(ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), EternalStarlight.id("jinglestem"));

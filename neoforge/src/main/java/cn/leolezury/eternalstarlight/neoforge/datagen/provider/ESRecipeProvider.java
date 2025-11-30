@@ -187,7 +187,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 
 		// misc
-		addShapeless(recipeOutput, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.MUDDY_STARLIGHT_MANGROVE_ROOTS.get(), 1, ESItems.STARLIGHT_MANGROVE_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
+		addShapeless(recipeOutput, ESItems.BANYIN_ROOTS.get(), ESItems.MUDDY_BANYIN_ROOTS.get(), 1, ESItems.BANYIN_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FROZEN_BOMB.get(), 12)
 			.pattern("SG ")
 			.pattern("GAG")
@@ -586,20 +586,20 @@ public class ESRecipeProvider extends RecipeProvider {
 		hangingSign(recipeOutput, ESItems.NORTHLAND_HANGING_SIGN.get(), ESBlocks.STRIPPED_NORTHLAND_LOG.get());
 		addBoat(recipeOutput, ESItems.NORTHLAND_BOAT.get(), ESItems.NORTHLAND_CHEST_BOAT.get(), ESBlocks.NORTHLAND_PLANKS.get());
 
-		addButton(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_BUTTON.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		addDoor(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_DOOR.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		addFence(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_FENCE.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		addFenceGate(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_FENCE_GATE.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		addPlanks(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_PLANKS.get(), ESTags.Items.STARLIGHT_MANGROVE_LOGS);
-		addWood(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_WOOD.get(), ESBlocks.STARLIGHT_MANGROVE_LOG.get());
-		addStrippedWood(recipeOutput, ESBlocks.STRIPPED_STARLIGHT_MANGROVE_WOOD.get(), ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
-		addPressurePlate(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_PRESSURE_PLATE.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		addSlab(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_SLAB.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		addStairs(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_STAIRS.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		addTrapdoor(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_TRAPDOOR.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		addSign(recipeOutput, ESItems.STARLIGHT_MANGROVE_SIGN.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
-		hangingSign(recipeOutput, ESItems.STARLIGHT_MANGROVE_HANGING_SIGN.get(), ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get());
-		addBoat(recipeOutput, ESItems.STARLIGHT_MANGROVE_BOAT.get(), ESItems.STARLIGHT_MANGROVE_CHEST_BOAT.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
+		addButton(recipeOutput, ESBlocks.BANYIN_BUTTON.get(), ESBlocks.BANYIN_PLANKS.get());
+		addDoor(recipeOutput, ESBlocks.BANYIN_DOOR.get(), ESBlocks.BANYIN_PLANKS.get());
+		addFence(recipeOutput, ESBlocks.BANYIN_FENCE.get(), ESBlocks.BANYIN_PLANKS.get());
+		addFenceGate(recipeOutput, ESBlocks.BANYIN_FENCE_GATE.get(), ESBlocks.BANYIN_PLANKS.get());
+		addPlanks(recipeOutput, ESBlocks.BANYIN_PLANKS.get(), ESTags.Items.BANYIN_LOGS);
+		addWood(recipeOutput, ESBlocks.BANYIN_WOOD.get(), ESBlocks.BANYIN_LOG.get());
+		addStrippedWood(recipeOutput, ESBlocks.STRIPPED_BANYIN_WOOD.get(), ESBlocks.STRIPPED_BANYIN_LOG.get());
+		addPressurePlate(recipeOutput, ESBlocks.BANYIN_PRESSURE_PLATE.get(), ESBlocks.BANYIN_PLANKS.get());
+		addSlab(recipeOutput, ESBlocks.BANYIN_SLAB.get(), ESBlocks.BANYIN_PLANKS.get());
+		addStairs(recipeOutput, ESBlocks.BANYIN_STAIRS.get(), ESBlocks.BANYIN_PLANKS.get());
+		addTrapdoor(recipeOutput, ESBlocks.BANYIN_TRAPDOOR.get(), ESBlocks.BANYIN_PLANKS.get());
+		addSign(recipeOutput, ESItems.BANYIN_SIGN.get(), ESBlocks.BANYIN_PLANKS.get());
+		hangingSign(recipeOutput, ESItems.BANYIN_HANGING_SIGN.get(), ESBlocks.STRIPPED_BANYIN_LOG.get());
+		addBoat(recipeOutput, ESItems.BANYIN_BOAT.get(), ESItems.BANYIN_CHEST_BOAT.get(), ESBlocks.BANYIN_PLANKS.get());
 
 		addButton(recipeOutput, ESBlocks.SCARLET_BUTTON.get(), ESBlocks.SCARLET_PLANKS.get());
 		addDoor(recipeOutput, ESBlocks.SCARLET_DOOR.get(), ESBlocks.SCARLET_PLANKS.get());
@@ -1647,7 +1647,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addStarfireBirdAviary(recipeOutput, ESBlocks.BAMBOO_STARFIRE_BIRD_AVIARY.get(), Blocks.BAMBOO_PLANKS);
 		addStarfireBirdAviary(recipeOutput, ESBlocks.LUNAR_STARFIRE_BIRD_AVIARY.get(), ESBlocks.LUNAR_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.NORTHLAND_STARFIRE_BIRD_AVIARY.get(), ESBlocks.NORTHLAND_PLANKS.get());
-		addStarfireBirdAviary(recipeOutput, ESBlocks.STARLIGHT_MANGROVE_STARFIRE_BIRD_AVIARY.get(), ESBlocks.STARLIGHT_MANGROVE_PLANKS.get());
+		addStarfireBirdAviary(recipeOutput, ESBlocks.BANYIN_STARFIRE_BIRD_AVIARY.get(), ESBlocks.BANYIN_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.SCARLET_STARFIRE_BIRD_AVIARY.get(), ESBlocks.SCARLET_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.TORREYA_STARFIRE_BIRD_AVIARY.get(), ESBlocks.TORREYA_PLANKS.get());
 		addStarfireBirdAviary(recipeOutput, ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(), ESBlocks.JINGLESTEM_PLANKS.get());

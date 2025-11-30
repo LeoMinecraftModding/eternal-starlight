@@ -14,7 +14,7 @@ public class TorreyaVinesDecorator extends TreeDecorator {
 
 	@Override
 	protected TreeDecoratorType<?> type() {
-		return ESTreeDecorators.TORRETA_VINES.get();
+		return ESTreeDecorators.TORREYA_VINES.get();
 	}
 
 	@Override

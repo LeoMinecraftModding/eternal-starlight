@@ -266,7 +266,7 @@ public class ESBiomes {
 	private static BiomeGenerationSettings.Builder swampGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter);
 
-		builder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ESPlacedFeatures.FALLEN_STARLIGHT_MANGROVE_LOG);
+		builder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ESPlacedFeatures.FALLEN_BANYIN_LOG);
 		builder.addFeature(GenerationStep.Decoration.LAKES, ESPlacedFeatures.SWAMP_WATER);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.UPPER_MALARITE_ORE);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ESPlacedFeatures.LOWER_MALARITE_ORE);

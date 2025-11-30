@@ -68,8 +68,8 @@ public class CommonSetupHandlers {
 		Map.entry(ESBlocks.LUNAR_WOOD.get(), ESBlocks.STRIPPED_LUNAR_WOOD.get()),
 		Map.entry(ESBlocks.NORTHLAND_LOG.get(), ESBlocks.STRIPPED_NORTHLAND_LOG.get()),
 		Map.entry(ESBlocks.NORTHLAND_WOOD.get(), ESBlocks.STRIPPED_NORTHLAND_WOOD.get()),
-		Map.entry(ESBlocks.STARLIGHT_MANGROVE_LOG.get(), ESBlocks.STRIPPED_STARLIGHT_MANGROVE_LOG.get()),
-		Map.entry(ESBlocks.STARLIGHT_MANGROVE_WOOD.get(), ESBlocks.STRIPPED_STARLIGHT_MANGROVE_WOOD.get()),
+		Map.entry(ESBlocks.BANYIN_LOG.get(), ESBlocks.STRIPPED_BANYIN_LOG.get()),
+		Map.entry(ESBlocks.BANYIN_WOOD.get(), ESBlocks.STRIPPED_BANYIN_WOOD.get()),
 		Map.entry(ESBlocks.SCARLET_LOG.get(), ESBlocks.STRIPPED_SCARLET_LOG.get()),
 		Map.entry(ESBlocks.SCARLET_WOOD.get(), ESBlocks.STRIPPED_SCARLET_WOOD.get()),
 		Map.entry(ESBlocks.TORREYA_LOG.get(), ESBlocks.STRIPPED_TORREYA_LOG.get()),
@@ -122,8 +122,8 @@ public class CommonSetupHandlers {
 		DispenserBlock.registerBehavior(ESItems.LUNAR_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.LUNAR, true));
 		DispenserBlock.registerBehavior(ESItems.NORTHLAND_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.NORTHLAND));
 		DispenserBlock.registerBehavior(ESItems.NORTHLAND_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.NORTHLAND, true));
-		DispenserBlock.registerBehavior(ESItems.STARLIGHT_MANGROVE_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.STARLIGHT_MANGROVE));
-		DispenserBlock.registerBehavior(ESItems.STARLIGHT_MANGROVE_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.STARLIGHT_MANGROVE, true));
+		DispenserBlock.registerBehavior(ESItems.BANYIN_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.BANYIN));
+		DispenserBlock.registerBehavior(ESItems.BANYIN_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.BANYIN, true));
 		DispenserBlock.registerBehavior(ESItems.SCARLET_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.SCARLET));
 		DispenserBlock.registerBehavior(ESItems.SCARLET_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.SCARLET, true));
 		DispenserBlock.registerBehavior(ESItems.TORREYA_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.TORREYA));

@@ -18,7 +18,7 @@ public class ESTags {
 	public static class Items {
 		public static final TagKey<Item> LUNAR_LOGS = create("lunar_logs");
 		public static final TagKey<Item> NORTHLAND_LOGS = create("northland_logs");
-		public static final TagKey<Item> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
+		public static final TagKey<Item> BANYIN_LOGS = create("banyin_logs");
 		public static final TagKey<Item> SCARLET_LOGS = create("scarlet_logs");
 		public static final TagKey<Item> TORREYA_LOGS = create("torreya_logs");
 		public static final TagKey<Item> JINGLESTEM_LOGS = create("jinglestem_logs");
@@ -97,7 +97,7 @@ public class ESTags {
 	public static class Blocks {
 		public static final TagKey<Block> LUNAR_LOGS = create("lunar_logs");
 		public static final TagKey<Block> NORTHLAND_LOGS = create("northland_logs");
-		public static final TagKey<Block> STARLIGHT_MANGROVE_LOGS = create("starlight_mangrove_logs");
+		public static final TagKey<Block> BANYIN_LOGS = create("banyin_logs");
 		public static final TagKey<Block> SCARLET_LOGS = create("scarlet_logs");
 		public static final TagKey<Block> TORREYA_LOGS = create("torreya_logs");
 		public static final TagKey<Block> JINGLESTEM_LOGS = create("jinglestem_logs");

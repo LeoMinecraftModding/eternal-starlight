@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "eggs=0,facing=east,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary",
+      "y": 90
+    },
+    "eggs=0,facing=east,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_open",
+      "y": 90
+    },
+    "eggs=0,facing=north,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary"
+    },
+    "eggs=0,facing=north,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_open"
+    },
+    "eggs=0,facing=south,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary",
+      "y": 180
+    },
+    "eggs=0,facing=south,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_open",
+      "y": 180
+    },
+    "eggs=0,facing=west,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary",
+      "y": 270
+    },
+    "eggs=0,facing=west,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_open",
+      "y": 270
+    },
+    "eggs=1,facing=east,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs1",
+      "y": 90
+    },
+    "eggs=1,facing=east,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs1_open",
+      "y": 90
+    },
+    "eggs=1,facing=north,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs1"
+    },
+    "eggs=1,facing=north,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs1_open"
+    },
+    "eggs=1,facing=south,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs1",
+      "y": 180
+    },
+    "eggs=1,facing=south,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs1_open",
+      "y": 180
+    },
+    "eggs=1,facing=west,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs1",
+      "y": 270
+    },
+    "eggs=1,facing=west,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs1_open",
+      "y": 270
+    },
+    "eggs=2,facing=east,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs2",
+      "y": 90
+    },
+    "eggs=2,facing=east,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs2_open",
+      "y": 90
+    },
+    "eggs=2,facing=north,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs2"
+    },
+    "eggs=2,facing=north,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs2_open"
+    },
+    "eggs=2,facing=south,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs2",
+      "y": 180
+    },
+    "eggs=2,facing=south,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs2_open",
+      "y": 180
+    },
+    "eggs=2,facing=west,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs2",
+      "y": 270
+    },
+    "eggs=2,facing=west,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs2_open",
+      "y": 270
+    },
+    "eggs=3,facing=east,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs3",
+      "y": 90
+    },
+    "eggs=3,facing=east,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs3_open",
+      "y": 90
+    },
+    "eggs=3,facing=north,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs3"
+    },
+    "eggs=3,facing=north,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs3_open"
+    },
+    "eggs=3,facing=south,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs3",
+      "y": 180
+    },
+    "eggs=3,facing=south,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs3_open",
+      "y": 180
+    },
+    "eggs=3,facing=west,open=false": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs3",
+      "y": 270
+    },
+    "eggs=3,facing=west,open=true": {
+      "model": "eternal_starlight:block/banyin_starfire_bird_aviary_eggs3_open",
+      "y": 270
+    }
+  }
+}

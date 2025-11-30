@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "eternal_starlight:block/starlight_mangrove_planks",
-    "side": "eternal_starlight:block/starlight_mangrove_planks",
-    "top": "eternal_starlight:block/starlight_mangrove_planks"
-  }
-}

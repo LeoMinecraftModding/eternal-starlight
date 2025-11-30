@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "log": "eternal_starlight:block/stripped_starlight_mangrove_log",
+    "log": "eternal_starlight:block/stripped_banyin_log",
     "rack": "eternal_starlight:block/drying_rack",
-    "particle": "eternal_starlight:block/stripped_starlight_mangrove_log"
+    "particle": "eternal_starlight:block/stripped_banyin_log"
   },
   "elements": [
     {

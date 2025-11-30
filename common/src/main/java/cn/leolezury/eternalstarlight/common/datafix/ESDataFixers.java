@@ -16,5 +16,7 @@ public class ESDataFixers {
 		builder.addFixer(BlockRenameFix.create(schema, "Rename atalphaite in block ids to starcore", id -> id.startsWith(EternalStarlight.ID + ":") ? id.replaceAll("atalphaite", "starcore") : id));
 		builder.addFixer(ItemRenameFix.create(schema, "Rename atalphaite in item ids to starcore", id -> id.startsWith(EternalStarlight.ID + ":") ? id.replaceAll("atalphaite", "starcore") : id));
 		builder.addFixer(ItemRenameFix.create(schema, "Rename trapped_soul to soul_dew", id -> id.equals(EternalStarlight.id("trapped_soul").toString()) ? EternalStarlight.id("soul_dew").toString() : id));
+		builder.addFixer(BlockRenameFix.create(schema, "Rename starlight_mangrove in block ids to banyin", id -> id.startsWith(EternalStarlight.ID + ":") ? id.replaceAll("starlight_mangrove", "banyin") : id));
+		builder.addFixer(ItemRenameFix.create(schema, "Rename starlight_mangrove in item ids to banyin", id -> id.startsWith(EternalStarlight.ID + ":") ? id.replaceAll("starlight_mangrove", "banyin") : id));
 	}
 }
