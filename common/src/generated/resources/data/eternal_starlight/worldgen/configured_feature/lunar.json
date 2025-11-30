@@ -57,7 +57,8 @@
       },
       "height_rand_a": 2,
       "height_rand_b": 10,
-      "trunk_radius": 0
+      "trunk_size": 0,
+      "vanilla_giant_trunk": false
     },
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",

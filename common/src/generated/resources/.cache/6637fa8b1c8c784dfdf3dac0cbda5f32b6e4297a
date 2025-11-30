@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-30T14:59:25.4828572	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2025-11-30T16:59:21.6460969	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -111,8 +111,8 @@ b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/inside_step_s
 b503cc4b594242e321f7797ca2925502c5f661bb data/minecraft/tags/block/logs.json
 b503cc4b594242e321f7797ca2925502c5f661bb data/minecraft/tags/block/logs_that_burn.json
 25a4e55c3725e21769cabf0ef2b970a8b9f82da2 data/minecraft/tags/block/maintains_farmland.json
-cc2bdbde3e70df3cf2f3175e5a08dbd677b2d9c3 data/minecraft/tags/block/mangrove_logs_can_grow_through.json
-6d6b17a6dd3f0d3b2f25b0712f19ee9b70dbfb5f data/minecraft/tags/block/mangrove_roots_can_grow_through.json
+9d07ba2486b21ef36a9a45349d995c53ebb8d993 data/minecraft/tags/block/mangrove_logs_can_grow_through.json
+5ef3cb9fff3c655ae421959e13f0b8c3335c2a94 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
 895b759561d79925305f06225f2b94c737eed23e data/minecraft/tags/block/mineable/axe.json
 6a900b68ce8ca8bc8fe8f8dcc2f4db267769b71d data/minecraft/tags/block/mineable/hoe.json
 343c36aa9c8d60fb0de163a2df9988e357d7a28e data/minecraft/tags/block/mineable/pickaxe.json

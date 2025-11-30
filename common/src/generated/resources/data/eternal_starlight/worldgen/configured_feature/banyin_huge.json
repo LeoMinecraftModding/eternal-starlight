@@ -3,7 +3,19 @@
   "config": {
     "decorators": [
       {
-        "type": "eternal_starlight:torreya_vines"
+        "type": "eternal_starlight:banyin_roots"
+      },
+      {
+        "type": "eternal_starlight:hanging_plant",
+        "chance": 0.3,
+        "leaves": true,
+        "length": {
+          "type": "minecraft:uniform",
+          "max_inclusive": 5,
+          "min_inclusive": 2
+        },
+        "plant_body": "eternal_starlight:hanging_fantagrass_plant",
+        "plant_head": "eternal_starlight:hanging_fantagrass"
       }
     ],
     "dirt_provider": {
@@ -13,14 +25,14 @@
       }
     },
     "foliage_placer": {
-      "type": "eternal_starlight:torreya",
+      "type": "eternal_starlight:spheroid",
       "offset": 0,
-      "radius": 5
+      "radius": 2
     },
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "eternal_starlight:torreya_leaves",
+        "Name": "eternal_starlight:banyin_leaves",
         "Properties": {
           "distance": "7",
           "persistent": "false",
@@ -29,7 +41,7 @@
       }
     },
     "force_dirt": false,
-    "ignore_vines": false,
+    "ignore_vines": true,
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size",
       "limit": 4,
@@ -38,27 +50,27 @@
     },
     "trunk_placer": {
       "type": "eternal_starlight:branching",
-      "base_height": 32,
-      "branch_layer_num": 4,
+      "base_height": 7,
+      "branch_layer_num": 1,
       "branch_length": {
         "type": "minecraft:uniform",
-        "max_inclusive": 4,
-        "min_inclusive": 3
+        "max_inclusive": 5,
+        "min_inclusive": 4
       },
       "branch_num": {
         "type": "minecraft:uniform",
-        "max_inclusive": 4,
-        "min_inclusive": 2
+        "max_inclusive": 6,
+        "min_inclusive": 5
       },
       "height_rand_a": 2,
-      "height_rand_b": 10,
-      "trunk_size": 1,
-      "vanilla_giant_trunk": false
+      "height_rand_b": 4,
+      "trunk_size": 2,
+      "vanilla_giant_trunk": true
     },
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "eternal_starlight:torreya_log",
+        "Name": "eternal_starlight:banyin_log",
         "Properties": {
           "axis": "y"
         }

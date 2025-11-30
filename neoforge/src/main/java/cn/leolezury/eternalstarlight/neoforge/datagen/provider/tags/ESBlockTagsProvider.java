@@ -1673,6 +1673,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.HANGING_FANTAGRASS.get(),
 				ESBlocks.HANGING_FANTAGRASS_PLANT.get(),
 				ESBlocks.NIGHTFALL_MUD.get(),
+				ESBlocks.FANTASY_GRASS_BLOCK.get(),
 				ESBlocks.FANTASY_GRASS_CARPET.get()
 			);
 		tag(BlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH)
@@ -1682,6 +1683,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.HANGING_FANTAGRASS.get(),
 				ESBlocks.HANGING_FANTAGRASS_PLANT.get(),
 				ESBlocks.NIGHTFALL_MUD.get(),
+				ESBlocks.FANTASY_GRASS_BLOCK.get(),
 				ESBlocks.FANTASY_GRASS_CARPET.get()
 			);
 		tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS)

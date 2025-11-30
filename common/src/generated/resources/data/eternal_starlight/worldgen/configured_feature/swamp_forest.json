@@ -4,8 +4,12 @@
     "default": "eternal_starlight:banyin_tree_checked",
     "features": [
       {
-        "chance": 0.9,
+        "chance": 0.6,
         "feature": "eternal_starlight:banyin_tree_checked"
+      },
+      {
+        "chance": 0.3,
+        "feature": "eternal_starlight:banyin_huge_tree_checked"
       },
       {
         "chance": 0.1,

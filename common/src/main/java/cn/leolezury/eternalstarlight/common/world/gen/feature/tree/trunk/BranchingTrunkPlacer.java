@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.world.gen.feature.tree.trunk;
 import cn.leolezury.eternalstarlight.common.registry.ESTreePlacers;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.google.common.collect.Lists;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -27,28 +28,31 @@ import java.util.function.BiConsumer;
 
 public class BranchingTrunkPlacer extends TrunkPlacer {
 	public static final MapCodec<BranchingTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> trunkPlacerParts(instance)
-		.and(IntProvider.codec(0, 3).fieldOf("trunk_radius").forGetter((placer) -> placer.trunkRadius))
+		.and(IntProvider.codec(0, 3).fieldOf("trunk_size").forGetter((placer) -> placer.trunkSize))
 		.and(IntProvider.codec(0, 24).fieldOf("branch_length").forGetter((placer) -> placer.branchLen))
 		.and(IntProvider.codec(0, 10).fieldOf("branch_layer_num").forGetter((placer) -> placer.branchLayerNum))
 		.and(IntProvider.codec(0, 10).fieldOf("branch_num").forGetter((placer) -> placer.branchNum))
+		.and(Codec.BOOL.fieldOf("vanilla_giant_trunk").forGetter((placer) -> placer.vanillaGiantTrunk))
 		.apply(instance, BranchingTrunkPlacer::new));
 
-	private final IntProvider trunkRadius;
+	private final IntProvider trunkSize;
 	private final IntProvider branchLen;
 	private final IntProvider branchLayerNum;
 	private final IntProvider branchNum;
+	private final boolean vanillaGiantTrunk;
 	private static final double SQRT_3 = Math.sqrt(3);
 
 	public BranchingTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB, IntProvider branchLen, IntProvider branchNum) {
-		this(baseHeight, randomHeightA, randomHeightB, ConstantInt.of(1), branchLen, ConstantInt.of(4), branchNum);
+		this(baseHeight, randomHeightA, randomHeightB, ConstantInt.of(1), branchLen, ConstantInt.of(4), branchNum, false);
 	}
 
-	public BranchingTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB, IntProvider trunkRadius, IntProvider branchLen, IntProvider branchLayerNum, IntProvider branchNum) {
+	public BranchingTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB, IntProvider trunkSize, IntProvider branchLen, IntProvider branchLayerNum, IntProvider branchNum, boolean vanillaGiantTrunk) {
 		super(baseHeight, randomHeightA, randomHeightB);
-		this.trunkRadius = trunkRadius;
+		this.trunkSize = trunkSize;
 		this.branchLen = branchLen;
 		this.branchLayerNum = branchLayerNum;
 		this.branchNum = branchNum;
+		this.vanillaGiantTrunk = vanillaGiantTrunk;
 	}
 
 	@Override
@@ -79,16 +83,18 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 		List<FoliagePlacer.FoliageAttachment> leafAttachments = Lists.newArrayList();
 
 		int distBetweenLayers = height / (2 * numBranchesLayer);
-		int radius = trunkRadius.sample(random);
+		int size = trunkSize.sample(random);
 
 		leafAttachments.add(new FoliagePlacer.FoliageAttachment(origin.offset(0, height, 0), 2, false));
 
 		for (int y = 0; y <= height; y++) {
 			boolean shouldAddLayer = (y >= height / 2 && y < height - distBetweenLayers && y % distBetweenLayers == 0) || y == height - 2;
 			boolean bigLayer = y == height - 2;
-			for (int x = -radius; x <= radius; x++) {
-				for (int z = -radius; z <= radius; z++) {
-					if (radius != 0 && (x == radius && (z == radius || z == -radius) || x == -radius && (z == radius || z == -radius))) {
+			int startValue = vanillaGiantTrunk ? -(int) Math.floor((size - 1) / 2.0) : -size;
+			int endValue = vanillaGiantTrunk ? (int) Math.ceil((size - 1) / 2.0) : size;
+			for (int x = startValue; x <= endValue; x++) {
+				for (int z = startValue; z <= endValue; z++) {
+					if (size != 0 && !vanillaGiantTrunk && (x == size && (z == size || z == -size) || x == -size && (z == size || z == -size))) {
 						continue;
 					}
 					safeSetDirt(level, placer, random, origin.offset(x, -1, z), config);
@@ -105,9 +111,6 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 								placeLog(level, placer, random, new BlockPos(point[0], point[1], point[2]), config);
 							}
 							int len = points.size();
-							if (radius == 0) {
-								placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0], points.get(len - 1)[1], points.get(len - 1)[2]), config);
-							}
 							placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);
 							placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] + 1, points.get(len - 1)[1], points.get(len - 1)[2] - 1), config);
 							placeLog(level, placer, random, new BlockPos(points.get(len - 1)[0] - 1, points.get(len - 1)[1], points.get(len - 1)[2] + 1), config);

@@ -44,6 +44,9 @@ public class BanyinRootsDecorator extends TreeDecorator {
 							if (!rootPos.equals(pos)) {
 								if (level.isStateAtPosition(rootPos, state -> state.is(BlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH) || state.is(BlockTags.LEAVES) || state.isAir() || state.canBeReplaced() || state.getBlock() instanceof LiquidBlock)) {
 									context.setBlock(rootPos, level.isStateAtPosition(rootPos, state -> state.is(BlockTags.DIRT)) ? ESBlocks.MUDDY_BANYIN_ROOTS.get().defaultBlockState() : ESBlocks.BANYIN_ROOTS.get().defaultBlockState().setValue(MangroveRootsBlock.WATERLOGGED, level.isStateAtPosition(rootPos, state -> state.getBlock() instanceof LiquidBlock)));
+									if (context.isAir(rootPos.above()) && random.nextInt(5) == 0) {
+										context.setBlock(rootPos.above(), ESBlocks.FANTASY_GRASS_CARPET.get().defaultBlockState());
+									}
 								} else {
 									break;
 								}

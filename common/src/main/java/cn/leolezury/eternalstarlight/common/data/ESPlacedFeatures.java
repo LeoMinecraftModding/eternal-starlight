@@ -83,6 +83,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED = create("lunar_huge_starfire_birds_tree_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = create("northland_tree_checked");
 	public static final ResourceKey<PlacedFeature> BANYIN_TREE_CHECKED = create("banyin_tree_checked");
+	public static final ResourceKey<PlacedFeature> BANYIN_HUGE_TREE_CHECKED = create("banyin_huge_tree_checked");
 	public static final ResourceKey<PlacedFeature> SCARLET_TREE_CHECKED = create("scarlet_tree_checked");
 	public static final ResourceKey<PlacedFeature> TORREYA_TREE_CHECKED = create("torreya_tree_checked");
 	public static final ResourceKey<PlacedFeature> TORREYA_STARFIRE_BIRDS_TREE_CHECKED = create("torreya_starfire_birds_tree_checked");
@@ -190,6 +191,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
 		PlacementUtils.register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()));
 		PlacementUtils.register(context, BANYIN_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.BANYIN), PlacementUtils.filteredByBlockSurvival(ESBlocks.BANYIN_SAPLING.get()));
+		PlacementUtils.register(context, BANYIN_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.BANYIN_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.BANYIN_SAPLING.get()));
 		PlacementUtils.register(context, SCARLET_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET), PlacementUtils.filteredByBlockSurvival(ESBlocks.SCARLET_SAPLING.get()));
 		PlacementUtils.register(context, TORREYA_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));
 		PlacementUtils.register(context, TORREYA_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.TORREYA_SAPLING.get()));
