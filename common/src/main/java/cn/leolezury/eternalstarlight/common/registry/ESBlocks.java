@@ -535,10 +535,11 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WallBlock> DUSTED_BRICK_WALL = BLOCKS.register("dusted_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_WALL).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, Block> MOSSY_DUSTED_GRAVEL = BLOCKS.register("mossy_dusted_gravel", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRAVEL).mapColor(MapColor.GRASS)));
 	public static final RegistryObject<Block, Block> GLOWING_MOSSY_DUSTED_GRAVEL = BLOCKS.register("glowing_mossy_dusted_gravel", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRAVEL).mapColor(MapColor.GRASS).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, ESBrushableBlock> SUSPICIOUS_DUSTED_GRAVEL = BLOCKS.register("suspicious_dusted_gravel", () -> new ESBrushableBlock(DUSTED_GRAVEL.get(), SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED, BlockBehaviour.Properties.ofFullCopy(Blocks.SUSPICIOUS_GRAVEL).mapColor(MapColor.COLOR_PURPLE)));
 
 	// slag
-	public static final RegistryObject<Block, ColoredFallingBlock> DUSTED_SLAG = BLOCKS.register("dusted_slag", () -> new ColoredFallingBlock(new ColorRGBA(0x514c5d), BlockBehaviour.Properties.ofFullCopy(Blocks.GRAVEL).mapColor(MapColor.COLOR_PURPLE)));
-	public static final RegistryObject<Block, ESBrushableBlock> SUSPICIOUS_DUSTED_SLAG = BLOCKS.register("suspicious_dusted_slag", () -> new ESBrushableBlock(DUSTED_SLAG.get(), SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED, BlockBehaviour.Properties.ofFullCopy(Blocks.SUSPICIOUS_GRAVEL).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, ColoredFallingBlock> DIMSLAG = BLOCKS.register("dimslag", () -> new ColoredFallingBlock(new ColorRGBA(0x514c5d), BlockBehaviour.Properties.ofFullCopy(Blocks.GRAVEL).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, ESBrushableBlock> SUSPICIOUS_DIMSLAG = BLOCKS.register("suspicious_dimslag", () -> new ESBrushableBlock(DIMSLAG.get(), SoundEvents.BRUSH_GRAVEL, SoundEvents.BRUSH_GRAVEL_COMPLETED, BlockBehaviour.Properties.ofFullCopy(Blocks.SUSPICIOUS_GRAVEL).mapColor(MapColor.COLOR_PURPLE)));
 
 	// common plant
 	public static final RegistryObject<Block, FlowerBlock> STARLIGHT_FLOWER = BLOCKS.register("starlight_flower", () -> new FlowerBlock(MobEffects.DAMAGE_RESISTANCE, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.COLOR_BLUE).lightLevel(state -> 15)));

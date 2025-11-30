@@ -449,10 +449,11 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> DUSTED_BRICK_WALL = registerItem("dusted_brick_wall", () -> new BlockItem(ESBlocks.DUSTED_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MOSSY_DUSTED_GRAVEL = registerItem("mossy_dusted_gravel", () -> new BlockItem(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MOSSY_DUSTED_GRAVEL = registerItem("glowing_mossy_dusted_gravel", () -> new BlockItem(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SUSPICIOUS_DUSTED_GRAVEL = registerItem("suspicious_dusted_gravel", () -> new BlockItem(ESBlocks.SUSPICIOUS_DUSTED_GRAVEL.get(), new Item.Properties()));
 
 	// slag
-	public static final RegistryObject<Item, Item> DUSTED_SLAG = registerItem("dusted_slag", () -> new BlockItem(ESBlocks.DUSTED_SLAG.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> SUSPICIOUS_DUSTED_SLAG = registerItem("suspicious_dusted_slag", () -> new BlockItem(ESBlocks.SUSPICIOUS_DUSTED_SLAG.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> DIMSLAG = registerItem("dimslag", () -> new BlockItem(ESBlocks.DIMSLAG.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SUSPICIOUS_DIMSLAG = registerItem("suspicious_dimslag", () -> new BlockItem(ESBlocks.SUSPICIOUS_DIMSLAG.get(), new Item.Properties()));
 
 	// common plant
 	public static final RegistryObject<Item, Item> STARLIGHT_FLOWER = registerItem("starlight_flower", () -> new BlockItem(ESBlocks.STARLIGHT_FLOWER.get(), new Item.Properties()));

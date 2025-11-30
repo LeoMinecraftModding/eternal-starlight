@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class EternalStarlight {
 	public static final String ID = "eternal_starlight";
 	public static final Logger LOGGER = LogUtils.getLogger();
-	public static final int VERSION = 2;
+	public static final int VERSION = 3;
 
 	public static void init() {
 		ESConfig.load();

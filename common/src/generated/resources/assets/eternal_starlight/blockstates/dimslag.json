@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "eternal_starlight:block/dimslag"
+      },
+      {
+        "model": "eternal_starlight:block/dimslag",
+        "y": 270
+      },
+      {
+        "model": "eternal_starlight:block/dimslag",
+        "y": 180
+      },
+      {
+        "model": "eternal_starlight:block/dimslag",
+        "y": 90
+      }
+    ]
+  }
+}

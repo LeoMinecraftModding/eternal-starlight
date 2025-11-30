@@ -68,7 +68,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_VOIDSTONE_ORE = create("glowing_voidstone_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWING_NIGHTFALL_MUD_ORE = create("glowing_nightfall_mud_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> NIGHTFALL_DIRT_ORE = create("nightfall_dirt_ore");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> DUSTED_SLAG_ORE = create("dusted_slag_ore");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DIMSLAG_ORE = create("dimslag_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SAND_ORE = create("sand_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIT_DIAMOND_ORE = create("starlit_diamond_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSILVER_ORE = create("deepsilver_ore");
@@ -176,7 +176,7 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, GLOWING_VOIDSTONE_ORE, Feature.ORE, new OreConfiguration(voidstone, ESBlocks.GLOWING_VOIDSTONE.get().defaultBlockState(), 20));
 		FeatureUtils.register(context, GLOWING_NIGHTFALL_MUD_ORE, Feature.ORE, new OreConfiguration(nightfallMud, ESBlocks.GLOWING_NIGHTFALL_MUD.get().defaultBlockState(), 20));
 		FeatureUtils.register(context, NIGHTFALL_DIRT_ORE, Feature.ORE, new OreConfiguration(baseStone, ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState(), 33));
-		FeatureUtils.register(context, DUSTED_SLAG_ORE, Feature.ORE, new OreConfiguration(baseStone, ESBlocks.DUSTED_SLAG.get().defaultBlockState(), 25));
+		FeatureUtils.register(context, DIMSLAG_ORE, Feature.ORE, new OreConfiguration(baseStone, ESBlocks.DIMSLAG.get().defaultBlockState(), 25));
 		FeatureUtils.register(context, SAND_ORE, Feature.ORE, new OreConfiguration(dustedGravel, ESBlocks.TWILIGHT_SAND.get().defaultBlockState(), 64));
 		FeatureUtils.register(context, STARLIT_DIAMOND_ORE, Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(grimstone, ESBlocks.GRIMSTONE_STARLIT_DIAMOND_ORE.get().defaultBlockState()), OreConfiguration.target(voidstone, ESBlocks.VOIDSTONE_STARLIT_DIAMOND_ORE.get().defaultBlockState()), OreConfiguration.target(eternalIce, ESBlocks.ETERNAL_ICE_STARLIT_DIAMOND_ORE.get().defaultBlockState()), OreConfiguration.target(hazeIce, ESBlocks.HAZE_ICE_STARLIT_DIAMOND_ORE.get().defaultBlockState())), 6, 0.5F));
 		FeatureUtils.register(context, DEEPSILVER_ORE, Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(grimstone, ESBlocks.GRIMSTONE_DEEPSILVER_ORE.get().defaultBlockState()), OreConfiguration.target(voidstone, ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get().defaultBlockState()), OreConfiguration.target(eternalIce, ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get().defaultBlockState()), OreConfiguration.target(hazeIce, ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get().defaultBlockState()), OreConfiguration.target(nightfallMud, ESBlocks.NIGHTFALL_MUD_DEEPSILVER_ORE.get().defaultBlockState()), OreConfiguration.target(packedNightfallMud, ESBlocks.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get().defaultBlockState())), 10));

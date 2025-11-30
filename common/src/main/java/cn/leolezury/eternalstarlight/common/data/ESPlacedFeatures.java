@@ -35,7 +35,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> GLOWING_VOIDSTONE_ORE = create("glowing_voidstone_ore");
 	public static final ResourceKey<PlacedFeature> GLOWING_NIGHTFALL_MUD_ORE = create("glowing_nightfall_mud_ore");
 	public static final ResourceKey<PlacedFeature> NIGHTFALL_DIRT_ORE = create("nightfall_dirt_ore");
-	public static final ResourceKey<PlacedFeature> DUSTED_SLAG_ORE = create("dusted_slag_ore");
+	public static final ResourceKey<PlacedFeature> DIMSLAG_ORE = create("dimslag_ore");
 	public static final ResourceKey<PlacedFeature> SAND_ORE = create("sand_ore");
 	public static final ResourceKey<PlacedFeature> UPPER_STARLIT_DIAMOND_ORE = create("upper_starlit_diamond_ore");
 	public static final ResourceKey<PlacedFeature> LOWER_STARLIT_DIAMOND_ORE = create("lower_starlit_diamond_ore");
@@ -143,7 +143,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, GLOWING_VOIDSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_VOIDSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, GLOWING_NIGHTFALL_MUD_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_NIGHTFALL_MUD_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, NIGHTFALL_DIRT_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.NIGHTFALL_DIRT_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
-		PlacementUtils.register(context, DUSTED_SLAG_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DUSTED_SLAG_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
+		PlacementUtils.register(context, DIMSLAG_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DIMSLAG_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
 		PlacementUtils.register(context, SAND_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.SAND_ORE), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, UPPER_STARLIT_DIAMOND_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIT_DIAMOND_ORE), commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, LOWER_STARLIT_DIAMOND_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIT_DIAMOND_ORE), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0))));

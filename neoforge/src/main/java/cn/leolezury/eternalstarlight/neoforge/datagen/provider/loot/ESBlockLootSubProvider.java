@@ -450,15 +450,16 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.DUSTED_BRICK_WALL.get());
 		add(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.DUSTED_SHARD.get()).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantments.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F)).otherwise(LootItem.lootTableItem(ESBlocks.DUSTED_GRAVEL.get())))));
 		add(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(ESItems.DUSTED_SHARD.get()).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantments.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F)).otherwise(LootItem.lootTableItem(ESBlocks.DUSTED_GRAVEL.get())))));
+		add(ESBlocks.SUSPICIOUS_DUSTED_GRAVEL.get(), noDrop());
 
-		add(ESBlocks.DUSTED_SLAG.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, AlternativesEntry.alternatives(
+		add(ESBlocks.DIMSLAG.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, AlternativesEntry.alternatives(
 			AlternativesEntry.alternatives(
 				LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get()).when(LootItemRandomChanceCondition.randomChance(0.05f)),
 				LootItem.lootTableItem(ESItems.DEEPSILVER_NUGGET.get())
 			).when(BonusLevelTableCondition.bonusLevelFlatChance(enchantments.getOrThrow(Enchantments.FORTUNE), 0.15F, 0.25F, 0.5F, 1.0F)),
 			LootItem.lootTableItem(block)
 		))));
-		add(ESBlocks.SUSPICIOUS_DUSTED_SLAG.get(), noDrop());
+		add(ESBlocks.SUSPICIOUS_DIMSLAG.get(), noDrop());
 
 		dropSelf(ESBlocks.STARLIGHT_FLOWER.get());
 		dropPottedContents(ESBlocks.POTTED_STARLIGHT_FLOWER.get());

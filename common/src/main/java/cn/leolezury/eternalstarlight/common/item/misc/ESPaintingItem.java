@@ -58,8 +58,9 @@ public class ESPaintingItem extends HangingEntityItem {
 					hangingEntity.playPlacementSound();
 					level.gameEvent(player, GameEvent.ENTITY_PLACE, hangingEntity.position());
 					level.addFreshEntity(hangingEntity);
+					// [ES] Fix incorrect shrinking on clientside
+					itemStack.shrink(1);
 				}
-				itemStack.shrink(1);
 				return InteractionResult.sidedSuccess(level.isClientSide);
 			} else {
 				return InteractionResult.CONSUME;

@@ -183,9 +183,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stoneSet(ESBlocks.DUSTED_BRICKS.get(), ESBlocks.DUSTED_BRICK_SLAB.get(), ESBlocks.DUSTED_BRICK_STAIRS.get(), ESBlocks.DUSTED_BRICK_WALL.get());
 		simpleGrassBlock(ESBlocks.MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
 		simpleGrassBlock(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get(), blockTexture(ESBlocks.MOSSY_DUSTED_GRAVEL.get()).withSuffix("_side"), blockTexture(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get()).withSuffix("_top"), blockTexture(ESBlocks.DUSTED_GRAVEL.get()));
+		suspiciousBlock(ESBlocks.SUSPICIOUS_DUSTED_GRAVEL.get());
 
-		sand(ESBlocks.DUSTED_SLAG.get());
-		suspiciousBlock(ESBlocks.SUSPICIOUS_DUSTED_SLAG.get());
+		sand(ESBlocks.DIMSLAG.get());
+		suspiciousBlock(ESBlocks.SUSPICIOUS_DIMSLAG.get());
 
 		cross(ESBlocks.STARLIGHT_FLOWER.get());
 		pottedPlant(ESBlocks.POTTED_STARLIGHT_FLOWER.get(), blockTexture(ESBlocks.STARLIGHT_FLOWER.get()));

@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "eternal_starlight:dusted_slag"
+              "name": "eternal_starlight:dimslag"
             },
             {
               "type": "minecraft:alternatives",
@@ -64,7 +64,7 @@
                 },
                 {
                   "type": "minecraft:item",
-                  "name": "eternal_starlight:dusted_slag"
+                  "name": "eternal_starlight:dimslag"
                 }
               ],
               "conditions": [
@@ -79,5 +79,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "eternal_starlight:blocks/dusted_slag"
+  "random_sequence": "eternal_starlight:blocks/dimslag"
 }
