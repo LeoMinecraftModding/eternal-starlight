@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class GuiMixin {
 	@Inject(method = "renderCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getTicksFrozen()I", shift = At.Shift.AFTER))
 	private void renderCameraOverlays(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-		ClientHandlers.renderOffhandAttackCrosshair(guiGraphics);
+		ClientHandlers.renderOffhandAttackIndicator(guiGraphics);
 		ClientHandlers.renderSpellCrosshair(guiGraphics, guiGraphics.guiWidth(), guiGraphics.guiHeight());
 		ClientHandlers.renderEtherErosion(guiGraphics);
 		ClientHandlers.renderOrbOfProphecyUse(guiGraphics);
