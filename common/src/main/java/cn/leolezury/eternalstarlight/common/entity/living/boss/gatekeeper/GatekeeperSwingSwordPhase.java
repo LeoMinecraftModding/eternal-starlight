@@ -57,6 +57,7 @@ public class GatekeeperSwingSwordPhase extends BehaviorPhase<TheGatekeeper> {
 			if (entity.getBehaviorTicks() >= 47 && entity.getBehaviorTicks() <= 51 && performMeleeAttack(entity, 3)) {
 				target.hurtMarked = true;
 				target.setDeltaMovement(target.getDeltaMovement().add(entity.position().subtract(target.position()).normalize().scale(-3).add(0, 0.2, 0)));
+				entity.spawnMeleeAttackParticles();
 			}
 		}
 	}

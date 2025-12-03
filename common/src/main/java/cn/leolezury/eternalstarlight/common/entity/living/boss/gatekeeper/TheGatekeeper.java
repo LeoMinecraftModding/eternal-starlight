@@ -400,9 +400,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			float lookYaw = getYHeadRot() + 90.0f;
 			float lookPitch = -getXRot();
 			Vec3 initialEndPos = ESMathUtil.rotationToPosition(getEyePosition(), 1f, lookPitch, lookYaw);
-			for (int i = 0; i < 15; i++) {
-				Vec3 endPos = initialEndPos.offsetRandom(getRandom(), 0.8f);
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.BLADE_SHOCKWAVE.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
+			for (int i = 0; i < 3; i++) {
+				Vec3 endPos = initialEndPos.offsetRandom(getRandom(), 0.25f);
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.LUNAR_SLASH.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
 			}
 		}
 	}

@@ -26,7 +26,6 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		sprite(ESParticles.ENERGY.get(), loc("energy"));
 		sprite(ESParticles.ELECTRIC_SPARK.get(), loc("electric_spark"));
 		sprite(ESParticles.LUNAR_SLASH.get(), loc("electric_spark"));
-		spriteSet(ESParticles.BLADE_SHOCKWAVE.get(), mcLoc("sweep"), 8, false);
 		sprite(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), loc("crystallized_moth_sonar"));
 		sprite(ESParticles.AMARAMBER_FLAME.get(), loc("amaramber_flame"));
 		spriteSet(ESParticles.EXPLOSION.get(), mcLoc("explosion"), 16, false);

@@ -23,7 +23,10 @@ public class GatekeeperComboPhase extends BehaviorPhase<TheGatekeeper> {
 	public void tick(TheGatekeeper entity) {
 		int ticks = entity.getBehaviorTicks();
 		if ((ticks >= 30 && ticks <= 33) || (ticks >= 35 && ticks <= 40) || (ticks >= 44 && ticks <= 47) || (ticks >= 60 && ticks <= 65)) {
-			performMeleeAttack(entity, 2);
+			boolean flag = performMeleeAttack(entity, 2);
+			if (flag) {
+				entity.spawnMeleeAttackParticles();
+			}
 		}
 	}
 
