@@ -46,10 +46,11 @@ public class TheGatekeeperClothingLayer<T extends TheGatekeeper> extends RenderL
 			model = skinManager.getInsecureSkin(profile.get()).model() == PlayerSkin.Model.SLIM ? slimModel : normalModel;
 		}
 		if (!entity.isInvisible()) {
+			model.alphaFactor = getParentModel().alphaFactor;
 			getParentModel().copyPropertiesTo(model);
 			model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
 			model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-			VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
+			VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityTranslucent(texture));
 			model.renderToBuffer(poseStack, consumer, packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F));
 		}
 	}

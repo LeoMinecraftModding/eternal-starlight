@@ -1,7 +1,7 @@
 {
   "values": [
-    "#minecraft:meat",
     "minecraft:glow_lichen",
-    "eternal_starlight:cave_moss"
+    "eternal_starlight:cave_moss",
+    "eternal_starlight:crinoa"
   ]
 }

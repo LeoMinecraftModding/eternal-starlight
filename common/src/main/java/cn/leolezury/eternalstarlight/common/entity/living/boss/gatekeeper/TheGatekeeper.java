@@ -86,12 +86,13 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
 	private int noTargetTime;
+	public int viewBlockedTime;
 
 	public TheGatekeeper(EntityType<? extends TheGatekeeper> entityType, Level level) {
 		super(entityType, level);
 	}
 
-	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, false);
+	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.WHITE, false);
 
 	protected static final EntityDataAccessor<Float> FIXED_Y_ROT = SynchedEntityData.defineId(TheGatekeeper.class, EntityDataSerializers.FLOAT);
 
@@ -110,7 +111,8 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		new GatekeeperCastFireballPhase(),
 		new GatekeeperDanceFightPhase(),
 		new GatekeeperSwingSwordPhase(),
-		new GatekeeperComboPhase()
+		new GatekeeperComboPhase(),
+		new GatekeeperTeleportPhase()
 	));
 
 	public AnimationState idleAnimationState = new AnimationState();
@@ -123,6 +125,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public AnimationState danceFightAnimationState = new AnimationState();
 	public AnimationState swingSwordAnimationState = new AnimationState();
 	public AnimationState comboAnimationState = new AnimationState();
+	public AnimationState teleportAnimationState = new AnimationState();
 	private String gatekeeperName = "TheGatekeeper";
 	@Nullable
 	private Player customer;
@@ -286,6 +289,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		danceFightAnimationState.stop();
 		swingSwordAnimationState.stop();
 		comboAnimationState.stop();
+		teleportAnimationState.stop();
 	}
 
 	@Override
@@ -306,6 +310,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				case GatekeeperDanceFightPhase.ID -> danceFightAnimationState.start(tickCount);
 				case GatekeeperSwingSwordPhase.ID -> swingSwordAnimationState.start(tickCount);
 				case GatekeeperComboPhase.ID -> comboAnimationState.start(tickCount);
+				case GatekeeperTeleportPhase.ID -> teleportAnimationState.start(tickCount);
 			}
 		}
 		super.onSyncedDataUpdated(accessor);
@@ -318,7 +323,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public void setDeltaMovement(Vec3 vec3) {
-		boolean cantMove = getBehaviorState() == GatekeeperDanceFightPhase.ID || getBehaviorState() == GatekeeperSwingSwordPhase.ID;
+		boolean cantMove = getBehaviorState() == GatekeeperDanceFightPhase.ID || getBehaviorState() == GatekeeperSwingSwordPhase.ID || getBehaviorState() == GatekeeperTeleportPhase.ID;
 		super.setDeltaMovement(cantMove ? new Vec3(0, vec3.y, 0) : vec3);
 	}
 
@@ -433,7 +438,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (source.getEntity() == null || getTarget() == null)) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (source.getEntity() == null || getTarget() == null || getBehaviorState() == GatekeeperTeleportPhase.ID)) {
 			return false;
 		}
 		return super.hurt(source, amount);
@@ -535,6 +540,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 					noTargetTime = 0;
 				}
 			}
+			if (getTarget() != null && !hasLineOfSight(getTarget())) {
+				viewBlockedTime++;
+			} else {
+				viewBlockedTime = 0;
+			}
 			if (restockCooldown > 0) {
 				restockCooldown--;
 			} else {
@@ -551,6 +561,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			}
 			if (isActivated() && !isNoAi() && isAlive()) {
 				behaviorManager.tick();
+			} else {
+				setBehaviorState(0);
+				setBehaviorTicks(0);
 			}
 		} else {
 			idleAnimationState.startIfStopped(tickCount);

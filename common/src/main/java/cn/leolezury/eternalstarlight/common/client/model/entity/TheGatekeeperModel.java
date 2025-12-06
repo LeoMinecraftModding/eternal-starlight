@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntit
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.TheGatekeeperAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.*;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.ArmedModel;
@@ -12,6 +13,9 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
@@ -32,6 +36,8 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 	private final ModelPart leftLeg;
 	private final ModelPart rightLeg;
 	private final boolean slim;
+
+	public float alphaFactor = 1;
 
 	public TheGatekeeperModel(ModelPart root, boolean slim) {
 		this.root = root.getChild("root");
@@ -183,5 +189,15 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 	@Override
 	public ModelPart root() {
 		return root;
+	}
+
+	@Override
+	public RenderType renderType(ResourceLocation resourceLocation) {
+		return RenderType.entityTranslucent(resourceLocation);
+	}
+
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		super.renderToBuffer(poseStack, vertexConsumer, packedLight, packedOverlay, FastColor.ARGB32.color(Math.round(FastColor.ARGB32.alpha(color) * alphaFactor), FastColor.ARGB32.red(color), FastColor.ARGB32.green(color), FastColor.ARGB32.blue(color)));
 	}
 }

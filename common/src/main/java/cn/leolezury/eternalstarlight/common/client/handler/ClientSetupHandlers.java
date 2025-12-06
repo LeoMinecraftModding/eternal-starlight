@@ -362,13 +362,14 @@ public class ClientSetupHandlers {
 		ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY,
 		ESBlocks.AMARAMBER_LANTERN,
 		ESBlocks.AMARAMBER_FIRE,
+		ESBlocks.THIOQUARTZ_CLUSTER,
 		ESBlocks.THE_GATEKEEPER_SPAWNER,
 		ESBlocks.STARLIGHT_GOLEM_SPAWNER,
 		ESBlocks.LUNAR_MONSTROSITY_SPAWNER,
 		ESBlocks.GOLEM_STEEL_GRATE,
 		ESBlocks.WAXED_GOLEM_STEEL_GRATE,
 		ESBlocks.OXIDIZED_GOLEM_STEEL_GRATE,
-		ESBlocks.THIOQUARTZ_CLUSTER,
+		ESBlocks.MECHANICAL_SPAWNER,
 		ESBlocks.SHADEGRIEVE,
 		ESBlocks.BLOOMING_SHADEGRIEVE,
 		ESBlocks.FLARE_SPAWNER,
@@ -451,6 +452,7 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.BRUSHABLE_BLOCK.get(), BrushableBlockRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.ENERGY_TRANSMITTER.get(), EnergyTransmitterRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.MECHANICAL_SPAWNER.get(), MechanicalSpawnerRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.SOLAR_EGG.get(), SolarEggRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);

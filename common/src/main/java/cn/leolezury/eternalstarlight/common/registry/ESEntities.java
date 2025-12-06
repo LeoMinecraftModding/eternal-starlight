@@ -283,6 +283,7 @@ public class ESEntities {
 		"the_gatekeeper",
 		() -> EntityType.Builder.of(TheGatekeeper::new, MobCategory.MONSTER)
 			.sized(0.6f, 1.99f)
+			.clientTrackingRange(32)
 			.eyeHeight(1.74F)
 			.fireImmune()
 			.build(EternalStarlight.id("the_gatekeeper").toString())
@@ -299,6 +300,7 @@ public class ESEntities {
 		"starlight_golem",
 		() -> EntityType.Builder.of(StarlightGolem::new, MobCategory.MONSTER)
 			.sized(1.25f, 2.5f)
+			.clientTrackingRange(32)
 			.fireImmune()
 			.build(EternalStarlight.id("starlight_golem").toString())
 	);
@@ -313,7 +315,6 @@ public class ESEntities {
 		"energized_flame",
 		() -> EntityType.Builder.of(EnergizedFlame::new, MobCategory.MISC)
 			.sized(0f, 0f)
-			.clientTrackingRange(32)
 			.build(EternalStarlight.id("energized_flame").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<Freeze>> FREEZE = ENTITIES.register(
@@ -335,6 +336,7 @@ public class ESEntities {
 		"permafrost",
 		() -> EntityType.Builder.of(Permafrost::new, MobCategory.MONSTER)
 			.sized(0.75f, 2.25f)
+			.clientTrackingRange(32)
 			.fireImmune()
 			.build(EternalStarlight.id("permafrost").toString())
 	);
@@ -357,6 +359,7 @@ public class ESEntities {
 		"lunar_monstrosity",
 		() -> EntityType.Builder.of(LunarMonstrosity::new, MobCategory.MONSTER)
 			.sized(0.9f, 3.5f)
+			.clientTrackingRange(32)
 			.build(EternalStarlight.id("lunar_monstrosity").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<LunarMonstrosityBreath>> LUNAR_MONSTROSITY_BREATH = ENTITIES.register(

@@ -8,6 +8,7 @@ import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -973,6 +974,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.GOLEM_STEEL_CRATE.get());
 		basicItem(ESItems.ENERGY_TRANSMITTER.get());
 		block(ESItems.ACCUMULATOR.get());
+		otherBlock(ESItems.MECHANICAL_SPAWNER.get(), Items.SPAWNER);
 		block(ESItems.ENERGY_BLOCK.get());
 
 		basicItem(ESItems.TENACIOUS_PETAL.get());
@@ -1231,7 +1233,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 	}
 
 	private void otherBlock(Item item, Item other) {
-		withExistingParent(name(item), modLoc(ModelProvider.BLOCK_FOLDER + "/" + name(other)));
+		withExistingParent(name(item), ResourceLocation.fromNamespaceAndPath(key(other).getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name(other)));
 	}
 
 	private void layeredBlock(Item item) {

@@ -482,7 +482,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.AURORA_DEER_FOOD)
 			.add(
 				ESItems.LUNAR_BERRIES.get(),
-				ESItems.ABYSSAL_FRUIT.get()
+				ESItems.ABYSSAL_FRUIT.get(),
+				ESItems.CRINOA.get()
 			);
 		tag(ESTags.Items.CRYSTALLIZED_MOTH_FOOD)
 			.addTag(ItemTags.MEAT);
@@ -497,10 +498,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.ABYSSAL_FRUIT.get()
 			);
 		tag(ESTags.Items.RATLIN_FOOD)
-			.addTag(ItemTags.MEAT)
 			.add(
 				Items.GLOW_LICHEN,
-				ESItems.CAVE_MOSS.get()
+				ESItems.CAVE_MOSS.get(),
+				ESItems.CRINOA.get()
 			);
 		tag(ESTags.Items.SHADOW_SNAIL_FOOD)
 			.addTag(ItemTags.LEAVES)
@@ -511,7 +512,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.YETI_FOOD)
 			.add(
 				ESItems.LUNAR_BERRIES.get(),
-				ESItems.CAVE_MOSS.get()
+				ESItems.CAVE_MOSS.get(),
+				ESItems.CRINOA.get()
 			);
 		tag(ESTags.Items.UNTRIMMABLE_ARMOR)
 			.add(

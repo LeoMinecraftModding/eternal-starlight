@@ -1,13 +1,11 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.FlareSpawnerBlock;
+import cn.leolezury.eternalstarlight.common.block.MechanicalSpawnerBlock;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -35,27 +33,19 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
 import java.util.function.Function;
 
-public abstract class FlareSpawner {
+public abstract class MechanicalSpawner {
 	public static final String TAG_SPAWN_DATA = "spawn_data";
 	public static final String TAG_SPAWN_POTENTIALS = "spawn_potentials";
 	private static final String TAG_SPAWN_DELAY = "spawn_delay";
 	private static final String TAG_MIN_SPAWN_DELAY = "min_spawn_delay";
 	private static final String TAG_MAX_SPAWN_DELAY = "max_spawn_delay";
 	private static final String TAG_SPAWN_COUNT = "spawn_count";
-	private static final String TAG_TOTAL_SPAWN_COUNT = "total_spawn_count";
-	private static final String TAG_SPAWNED_COUNT = "spawned_count";
 	private static final String TAG_MAX_NEARBY_ENTITIES = "max_nearby_entities";
-	private static final String TAG_ACTIVATION_PLAYER_RANGE = "activation_player_range";
 	private static final String TAG_REQUIRED_PLAYER_RANGE = "required_player_range";
 	private static final String TAG_SPAWN_RANGE = "spawn_range";
-	private static final String TAG_COOLDOWN = "cooldown";
-	private static final String TAG_TRACKED_MOBS = "tracked_mobs";
 	private static final int EVENT_SPAWN = 1;
 	private int spawnDelay = 20;
 	private SimpleWeightedRandomList<SpawnData> spawnPotentials = SimpleWeightedRandomList.empty();
@@ -64,18 +54,13 @@ public abstract class FlareSpawner {
 	private double spin;
 	private double oSpin;
 	private int minSpawnDelay = 20;
-	private int maxSpawnDelay = 80;
-	private int spawnCount = 4;
-	private int totalSpawnCount = 10;
-	private int spawnedCount = 0;
+	private int maxSpawnDelay = 30;
+	private int spawnCount = 1;
 	@Nullable
 	private Entity displayEntity;
 	private int maxNearbyEntities = 6;
-	private int activationPlayerRange = 4;
 	private int requiredPlayerRange = 16;
 	private int spawnRange = 4;
-	private int cooldown = 0;
-	private final Set<UUID> trackedMobs = new HashSet<>();
 
 	public void setEntityId(EntityType<?> type, @Nullable Level level, RandomSource random, BlockPos pos) {
 		this.getOrCreateNextSpawnData(level, random, pos)
@@ -92,31 +77,12 @@ public abstract class FlareSpawner {
 		return blockHitResult.getBlockPos().equals(BlockPos.containing(block)) || blockHitResult.getType() == HitResult.Type.MISS;
 	}
 
-	private static boolean shouldMobBeUntracked(ServerLevel serverLevel, BlockPos blockPos, UUID uuid) {
-		Entity entity = serverLevel.getEntity(uuid);
-		return entity == null || !entity.isAlive() || !entity.level().dimension().equals(serverLevel.dimension()) || entity.blockPosition().distSqr(blockPos) > 32 * 32;
-	}
-
-	private void sendDuskSignal(Level level, BlockPos pos) {
-		BlockState state = level.getBlockState(pos);
-		if (state.hasProperty(FlareSpawnerBlock.LIT) && state.getValue(FlareSpawnerBlock.LIT)) {
-			if (level.getBlockEntity(pos.above()) instanceof DuskLightReceptor receptor) {
-				receptor.lightUp(level, pos.above(), Direction.DOWN);
-			}
-		}
-	}
-
 	public void clientTick(Level level, BlockPos pos) {
-		sendDuskSignal(level, pos);
 		this.oSpin = this.spin;
-		if (this.cooldown > 0) {
-			return;
-		}
-		BlockState state = level.getBlockState(pos);
-		if (this.isNearPlayer(level, pos, this.requiredPlayerRange) && state.hasProperty(FlareSpawnerBlock.LIT) && state.getValue(FlareSpawnerBlock.LIT)) {
+		if (this.isNearPlayer(level, pos, this.requiredPlayerRange)) {
 			RandomSource random = level.getRandom();
 			double x = pos.getX() + random.nextDouble();
-			double y = pos.getY() + random.nextDouble();
+			double y = pos.getY() + random.nextDouble() * 2 - 1;
 			double z = pos.getZ() + random.nextDouble();
 			level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
 			level.addParticle(ParticleTypes.FLAME, x, y, z, 0.0, 0.0, 0.0);
@@ -129,34 +95,8 @@ public abstract class FlareSpawner {
 	}
 
 	public void serverTick(ServerLevel serverLevel, BlockPos pos) {
-		sendDuskSignal(serverLevel, pos);
-		trackedMobs.removeIf(uuid -> shouldMobBeUntracked(serverLevel, pos, uuid));
-		BlockState state = serverLevel.getBlockState(pos);
-		if (this.cooldown > 0) {
-			this.cooldown--;
-			this.spawnedCount = 0;
-			if (state.hasProperty(FlareSpawnerBlock.LIT) && state.getValue(FlareSpawnerBlock.LIT)) {
-				serverLevel.setBlockAndUpdate(pos, state.setValue(FlareSpawnerBlock.LIT, false));
-			}
-			return;
-		}
 		RandomSource random = serverLevel.getRandom();
-		if (trackedMobs.isEmpty() && this.spawnedCount >= this.totalSpawnCount) {
-			ExperienceOrb.award(serverLevel, Vec3.atCenterOf(pos), random.nextInt(50, 101));
-			this.cooldown += 36000;
-		}
-		if (this.isNearPlayer(serverLevel, pos, this.activationPlayerRange)
-			&& state.hasProperty(FlareSpawnerBlock.LIT)
-			&& !state.getValue(FlareSpawnerBlock.LIT)
-			&& this.getOrCreateNextSpawnData(serverLevel, random, pos).getEntityToSpawn().contains("id", CompoundTag.TAG_STRING)
-			&& serverLevel.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
-			serverLevel.setBlockAndUpdate(pos, state.setValue(FlareSpawnerBlock.LIT, true));
-			for (int i = 0; i < 15; i++) {
-				Vec3 speed = new Vec3((random.nextFloat() - random.nextFloat()) * 0.1F, random.nextFloat() * 0.05F, (random.nextFloat() - random.nextFloat()) * 0.1F).normalize();
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.FLARE, pos.getX() + 0.5 + speed.x * 0.2, pos.getY() + 0.5 + speed.y * 0.2, pos.getZ() + 0.5 + speed.z * 0.2, speed.x, speed.y, speed.z));
-			}
-		}
-		if (this.isNearPlayer(serverLevel, pos, this.requiredPlayerRange) && state.hasProperty(FlareSpawnerBlock.LIT) && state.getValue(FlareSpawnerBlock.LIT)) {
+		if (this.isNearPlayer(serverLevel, pos, this.requiredPlayerRange)) {
 			if (this.spawnDelay == -1) {
 				this.delay(serverLevel, pos);
 			}
@@ -168,11 +108,6 @@ public abstract class FlareSpawner {
 				SpawnData spawnData = this.getOrCreateNextSpawnData(serverLevel, random, pos);
 
 				for (int i = 0; i < this.spawnCount; i++) {
-					if (this.spawnedCount >= this.totalSpawnCount) {
-						this.delay(serverLevel, pos);
-						return;
-					}
-
 					CompoundTag entityToSpawn = spawnData.getEntityToSpawn();
 					Optional<EntityType<?>> type = EntityType.by(entityToSpawn);
 					if (type.isEmpty()) {
@@ -244,10 +179,8 @@ public abstract class FlareSpawner {
 							mob.spawnAnim();
 						}
 						for (int j = 0; j <= 10; j++) {
-							ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.FLARE, entity.getX() + (random.nextFloat() - 0.5f) * entity.getBbWidth() * 1.2f, entity.getY(), entity.getZ() + (random.nextFloat() - 0.5f) * entity.getBbWidth() * 1.2f, 0, 1, 0));
+							ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.ENERGY, entity.getX() + (random.nextFloat() - 0.5f) * entity.getBbWidth() * 1.2f, entity.getY(), entity.getZ() + (random.nextFloat() - 0.5f) * entity.getBbWidth() * 1.2f, 0, 1, 0));
 						}
-						this.trackedMobs.add(entity.getUUID());
-						this.spawnedCount++;
 
 						success = true;
 					}
@@ -267,14 +200,14 @@ public abstract class FlareSpawner {
 		} else {
 			this.spawnDelay = this.minSpawnDelay + random.nextInt(this.maxSpawnDelay - this.minSpawnDelay);
 		}
+		BlockState state = level.getBlockState(pos);
+		this.spawnDelay *= state.hasProperty(MechanicalSpawnerBlock.POWER) ? (16 - state.getValue(MechanicalSpawnerBlock.POWER)) : 1;
 		this.spawnPotentials.getRandom(random).ifPresent(wrapper -> this.setNextSpawnData(level, pos, wrapper.data()));
 		this.broadcastEvent(level, pos, EVENT_SPAWN);
 	}
 
 	public void load(@Nullable Level level, BlockPos pos, CompoundTag tag) {
 		this.spawnDelay = tag.getShort(TAG_SPAWN_DELAY);
-		this.spawnedCount = tag.getShort(TAG_SPAWNED_COUNT);
-		this.cooldown = tag.getInt(TAG_COOLDOWN);
 		boolean hasSpawnData = tag.contains(TAG_SPAWN_DATA, CompoundTag.TAG_COMPOUND);
 		if (hasSpawnData) {
 			SpawnData data = SpawnData.CODEC
@@ -307,10 +240,6 @@ public abstract class FlareSpawner {
 			this.spawnCount = tag.getShort(TAG_SPAWN_COUNT);
 		}
 
-		if (tag.contains(TAG_TOTAL_SPAWN_COUNT, CompoundTag.TAG_ANY_NUMERIC)) {
-			this.totalSpawnCount = tag.getShort(TAG_TOTAL_SPAWN_COUNT);
-		}
-
 		if (tag.contains(TAG_MAX_NEARBY_ENTITIES, CompoundTag.TAG_ANY_NUMERIC)) {
 			this.maxNearbyEntities = tag.getShort(TAG_MAX_NEARBY_ENTITIES);
 		}
@@ -319,19 +248,8 @@ public abstract class FlareSpawner {
 			this.requiredPlayerRange = tag.getShort(TAG_REQUIRED_PLAYER_RANGE);
 		}
 
-		if (tag.contains(TAG_ACTIVATION_PLAYER_RANGE, CompoundTag.TAG_ANY_NUMERIC)) {
-			this.activationPlayerRange = tag.getShort(TAG_ACTIVATION_PLAYER_RANGE);
-		}
-
 		if (tag.contains(TAG_SPAWN_RANGE, CompoundTag.TAG_ANY_NUMERIC)) {
 			this.spawnRange = tag.getShort(TAG_SPAWN_RANGE);
-		}
-
-		if (tag.contains(TAG_TRACKED_MOBS)) {
-			trackedMobs.clear();
-			UUIDUtil.CODEC_SET.parse(NbtOps.INSTANCE, tag.get(TAG_TRACKED_MOBS))
-				.resultOrPartial(s -> EternalStarlight.LOGGER.warn("Invalid tracked mobs list: {}", s))
-				.ifPresent(trackedMobs::addAll);
 		}
 
 		this.displayEntity = null;
@@ -339,15 +257,11 @@ public abstract class FlareSpawner {
 
 	public CompoundTag save(CompoundTag tag) {
 		tag.putShort(TAG_SPAWN_DELAY, (short) this.spawnDelay);
-		tag.putShort(TAG_SPAWNED_COUNT, (short) this.spawnedCount);
-		tag.putInt(TAG_COOLDOWN, this.cooldown);
 		tag.putShort(TAG_MIN_SPAWN_DELAY, (short) this.minSpawnDelay);
 		tag.putShort(TAG_MAX_SPAWN_DELAY, (short) this.maxSpawnDelay);
 		tag.putShort(TAG_SPAWN_COUNT, (short) this.spawnCount);
-		tag.putShort(TAG_TOTAL_SPAWN_COUNT, (short) this.totalSpawnCount);
 		tag.putShort(TAG_MAX_NEARBY_ENTITIES, (short) this.maxNearbyEntities);
 		tag.putShort(TAG_REQUIRED_PLAYER_RANGE, (short) this.requiredPlayerRange);
-		tag.putShort(TAG_ACTIVATION_PLAYER_RANGE, (short) this.activationPlayerRange);
 		tag.putShort(TAG_SPAWN_RANGE, (short) this.spawnRange);
 		if (this.nextSpawnData != null) {
 			tag.put(
@@ -358,7 +272,6 @@ public abstract class FlareSpawner {
 			);
 		}
 		tag.put(TAG_SPAWN_POTENTIALS, SpawnData.LIST_CODEC.encodeStart(NbtOps.INSTANCE, this.spawnPotentials).getOrThrow());
-		tag.put(TAG_TRACKED_MOBS, UUIDUtil.CODEC_SET.encodeStart(NbtOps.INSTANCE, this.trackedMobs).getOrThrow());
 		return tag;
 	}
 
@@ -374,10 +287,10 @@ public abstract class FlareSpawner {
 		return this.displayEntity;
 	}
 
-	public boolean onEventTriggered(Level level, int id) {
+	public boolean onEventTriggered(Level level, BlockState state, int id) {
 		if (id == EVENT_SPAWN) {
 			if (level.isClientSide) {
-				this.spawnDelay = this.minSpawnDelay;
+				this.spawnDelay = this.minSpawnDelay * (state.hasProperty(MechanicalSpawnerBlock.POWER) ? (16 - state.getValue(MechanicalSpawnerBlock.POWER)) : 1);
 			}
 			return true;
 		} else {

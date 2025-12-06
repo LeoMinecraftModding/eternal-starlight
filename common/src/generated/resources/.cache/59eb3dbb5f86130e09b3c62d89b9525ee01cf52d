@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-30T18:28:23.1268249	Loot Tables
+// 1.21.1	2025-12-06T18:20:39.1619466	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -371,6 +371,7 @@ ae25b88123a0ed928821ccb9401206b0252ca6e7 data/eternal_starlight/loot_table/block
 c1c1e04c4c881aed135e3848dba58bc8c82460b9 data/eternal_starlight/loot_table/blocks/marimold_block.json
 ae553cc5c8d3dc686b09c33e72bb32571e6ba880 data/eternal_starlight/loot_table/blocks/marimold_stem.json
 6d7577ca660d1837097cd6c39620a3707da31bb0 data/eternal_starlight/loot_table/blocks/mauve_fern.json
+f259ef833ca89123f43883d9cd75933b5e0dd6ab data/eternal_starlight/loot_table/blocks/mechanical_spawner.json
 3ef17f32c6358db88dd5a4a708e6bd20767bbebb data/eternal_starlight/loot_table/blocks/molten_stellagmite.json
 29e325efa2544897e6399968d07d6bdfb9b463a3 data/eternal_starlight/loot_table/blocks/molten_stellagmite_slab.json
 7980ecabb3a43f95ccca6552b8377c39554b5a31 data/eternal_starlight/loot_table/blocks/molten_stellagmite_stairs.json

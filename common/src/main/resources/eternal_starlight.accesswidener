@@ -63,6 +63,7 @@ accessible field net/minecraft/client/renderer/blockentity/SkullBlockRenderer SK
 
 # blocks
 accessible method net/minecraft/world/level/block/GrowingPlantBlock canAttachTo (Lnet/minecraft/world/level/block/state/BlockState;)Z
+accessible method net/minecraft/world/level/block/DoublePlantBlock preventDropFromBottomPart (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
 
 # cave carver
 extendable method net/minecraft/world/level/levelgen/carver/WorldCarver getCarveState (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/Aquifer;)Lnet/minecraft/world/level/block/state/BlockState;

@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-30T11:27:14.1717662	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-12-06T16:42:31.3768232	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -115,7 +115,7 @@ ba9125aa546790a0582445879c658b228dbb763c data/eternal_starlight/tags/item/access
 237ae0010a21b6661acf9b44a30d8c6ff981d328 data/eternal_starlight/tags/item/accessory_applicable/chest_armor.json
 e18f783b117a7e13e931b76dc1175b8cbca5eddb data/eternal_starlight/tags/item/accessory_applicable/hammer.json
 89173160c0f37d36484b34cd74d0282331c9fe56 data/eternal_starlight/tags/item/arrow_feathers.json
-8296f8ceeab7662e69799ab272a14ec3b9dc60a0 data/eternal_starlight/tags/item/aurora_deer_food.json
+3b5e1ba4d158debd616c5654cce548bd80024eca data/eternal_starlight/tags/item/aurora_deer_food.json
 776391ce7ff5abc370ad57a3893c8600d8efb3d3 data/eternal_starlight/tags/item/banyin_logs.json
 6476dc8c8f16794818375a543d3fd5e751b77721 data/eternal_starlight/tags/item/blaze_crystals.json
 f211a2cd76e55fe185b298a1a6775abd132682fe data/eternal_starlight/tags/item/blaze_crystal_ingredients.json
@@ -152,7 +152,7 @@ eae704d1da56bc1aca7a40c4ab1fdace1a24d54e data/eternal_starlight/tags/item/mana_c
 65302a03ac276537a3de1af375b23648a2f7d9d4 data/eternal_starlight/tags/item/mends_naturally.json
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/item/northland_logs.json
 25966296f2ec08b0f37ad3f062c6708db05a7e84 data/eternal_starlight/tags/item/pungency_fruit_weapons.json
-0d01e2804a46c358d4a1ba82b72748d4e7e5b348 data/eternal_starlight/tags/item/ratlin_food.json
+3b32eccf4816fea869095ffbaf9d5fd6df1184e4 data/eternal_starlight/tags/item/ratlin_food.json
 a3fa424a65b171be7418698d2365fcb1911144aa data/eternal_starlight/tags/item/repaired_by_crescent_pendant.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/item/scarlet_logs.json
 e9754f7ded96f02aa3184a8e95b9f44395468c1e data/eternal_starlight/tags/item/scythes.json
@@ -179,7 +179,7 @@ a817a74907f3821adcfe7d00c24e392f4e73298e data/eternal_starlight/tags/item/water_
 4d857ddce6c70a82f2fcc6b2c7d86f2046a990ca data/eternal_starlight/tags/item/wind_crystals.json
 483102921c1f1e66011ddbe6dcb8af5f60766d18 data/eternal_starlight/tags/item/wind_crystal_ingredients.json
 8ed91d90dd981a5e198abffb5b59a30c636eb9f6 data/eternal_starlight/tags/item/wip.json
-e8a05a2294a1c67ba7684c0a12a203ddb8ee2ab3 data/eternal_starlight/tags/item/yeti_food.json
+965d68e0c46c33982d7533ba5de6476174053fa4 data/eternal_starlight/tags/item/yeti_food.json
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/item/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/item/yeti_fur_carpets.json
 d9a35d30d9fba8e0ea5bfc5497f25242f958fd9d data/minecraft/tags/item/arrows.json

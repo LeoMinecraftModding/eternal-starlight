@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "eternal_starlight:block/mechanical_spawner_bottom",
+    "front": "eternal_starlight:block/mechanical_spawner_lower_front",
+    "side": "eternal_starlight:block/mechanical_spawner_lower_side",
+    "top": "eternal_starlight:block/mechanical_spawner_top"
+  }
+}

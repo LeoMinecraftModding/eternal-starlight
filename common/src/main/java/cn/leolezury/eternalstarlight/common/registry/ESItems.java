@@ -1228,6 +1228,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_CRATE = registerItem("golem_steel_crate", () -> new ContainerBlockItem(ESBlocks.GOLEM_STEEL_CRATE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ENERGY_TRANSMITTER = registerItem("energy_transmitter", () -> new ContainerBlockItem(ESBlocks.ENERGY_TRANSMITTER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ACCUMULATOR = registerItem("accumulator", () -> new ContainerBlockItem(ESBlocks.ACCUMULATOR.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> MECHANICAL_SPAWNER = registerItem("mechanical_spawner", () -> new BlockItem(ESBlocks.MECHANICAL_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ENERGY_BLOCK = registerItem("energy_block", () -> new BlockItem(ESBlocks.ENERGY_BLOCK.get(), new Item.Properties()));
 
 	// lunar monstrosity

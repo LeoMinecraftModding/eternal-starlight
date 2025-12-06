@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.TheGatekeeperModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.TheGatekeeperClothingLayer;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.GatekeeperTeleportPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -15,8 +16,11 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.SkinManager;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;
+import org.joml.Vector3f;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,23 +30,66 @@ import java.util.Optional;
 public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<T, TheGatekeeperModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper.png");
 	private static final ResourceLocation SLIM_ENTITY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_slim.png");
+	private static final int PHANTOM_AMOUNT = 5;
 	private static final Map<String, GameProfile> PROFILES = new HashMap<>();
 	private final TheGatekeeperModel<T> normalModel;
 	private final TheGatekeeperModel<T> slimModel;
+
+	private boolean renderingPhantom = false;
 
 	public TheGatekeeperRenderer(EntityRendererProvider.Context context) {
 		super(context, new TheGatekeeperModel<>(context.bakeLayer(TheGatekeeperModel.LAYER_LOCATION), false), 0.5f);
 		normalModel = getModel();
 		slimModel = new TheGatekeeperModel<>(context.bakeLayer(TheGatekeeperModel.SLIM_LAYER_LOCATION), true);
-		this.addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()));
+		this.addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()) {
+			@Override
+			public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+				if (!renderingPhantom) {
+					super.render(poseStack, buffer, packedLight, livingEntity, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
+				}
+			}
+		});
 		this.addLayer(new TheGatekeeperClothingLayer<>(this, context.getModelSet()));
 	}
 
 	@Override
-	public void render(T entity, float f1, float f2, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
+	public void render(T entity, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLight) {
 		SkinManager skinManager = Minecraft.getInstance().getSkinManager();
 		getGameProfile(entity).ifPresent(p -> model = skinManager.getInsecureSkin(p).model() == PlayerSkin.Model.SLIM ? slimModel : normalModel);
-		super.render(entity, f1, f2, stack, bufferSource, packedLight);
+		if (entity.getBehaviorState() == GatekeeperTeleportPhase.ID) {
+			entity.teleportAnimationState.updateTime(entity.tickCount + partialTicks, 1);
+			float progress = Math.min((1 - Math.abs(Mth.clamp((float) entity.teleportAnimationState.getAccumulatedTime() / 1000f * 20f, 0, 60) / 60 - 0.5f) * 2) * 1.5f, 1);
+			float radius = progress * 0.5f;
+			renderingPhantom = true;
+			getModel().alphaFactor = 1 - progress;
+			super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLight);
+			getModel().alphaFactor = getModel().alphaFactor / 3;
+			for (int i = 0; i < PHANTOM_AMOUNT; i++) {
+				stack.pushPose();
+				float spin = progress * Mth.HALF_PI + i * Mth.TWO_PI / PHANTOM_AMOUNT;
+				Vector3f offset = new Vector3f(radius * Mth.sin(spin), radius * Mth.cos(spin), 0);
+				offset.rotate(this.entityRenderDispatcher.cameraOrientation());
+				stack.translate(offset.x, offset.y, offset.z);
+				super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLight);
+				stack.popPose();
+			}
+			renderingPhantom = false;
+			getModel().alphaFactor = 1;
+		} else {
+			super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLight);
+		}
+	}
+
+	@Override
+	protected void renderNameTag(T entity, Component displayName, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, float partialTick) {
+		if (!renderingPhantom) {
+			super.renderNameTag(entity, displayName, poseStack, bufferSource, packedLight, partialTick);
+		}
+	}
+
+	@Override
+	protected float getShadowRadius(T mob) {
+		return mob.getBehaviorState() == GatekeeperTeleportPhase.ID ? 0 : super.getShadowRadius(mob);
 	}
 
 	@Override

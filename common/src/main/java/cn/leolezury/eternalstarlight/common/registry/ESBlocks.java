@@ -964,6 +964,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, CrateBlock> GOLEM_STEEL_CRATE = BLOCKS.register("golem_steel_crate", () -> new CrateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).strength(4.0F, 1200.0F).mapColor(MapColor.COLOR_GRAY).strength(50.0F, 1200.0F)));
 	public static final RegistryObject<Block, EnergyTransmitterBlock> ENERGY_TRANSMITTER = BLOCKS.register("energy_transmitter", () -> new EnergyTransmitterBlock(BlockBehaviour.Properties.of().instabreak().lightLevel(state -> state.getValue(EnergyTransmitterBlock.POWERED) ? 7 : 0).sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)));
 	public static final RegistryObject<Block, AccumulatorBlock> ACCUMULATOR = BLOCKS.register("accumulator", () -> new AccumulatorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> state.getValue(AccumulatorBlock.POWER))));
+	public static final RegistryObject<Block, MechanicalSpawnerBlock> MECHANICAL_SPAWNER = BLOCKS.register("mechanical_spawner", () -> new MechanicalSpawnerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).strength(50.0F, 1200.0F).mapColor(MapColor.COLOR_BROWN).noOcclusion().lightLevel(state -> state.getValue(MechanicalSpawnerBlock.POWER))));
 	public static final RegistryObject<Block, EnergyBlock> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
 	// lunar monstrosity
