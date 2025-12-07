@@ -46,10 +46,12 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
@@ -58,6 +60,7 @@ import net.minecraft.world.phys.Vec3;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ServiceLoader;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
@@ -193,6 +196,18 @@ public interface ESPlatform {
 	}
 
 	Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
+
+	default int getBurnTime(ItemStack stack, RecipeType<?> type) {
+		return AbstractFurnaceBlockEntity.getFuel().get(stack.getItem());
+	}
+
+	default boolean hasCraftingRemainingItem(ItemStack stack) {
+		return stack.getItem().hasCraftingRemainingItem();
+	}
+
+	default Optional<ItemStack> getCraftingRemainingItem(ItemStack stack) {
+		return Optional.ofNullable(stack.getItem().getCraftingRemainingItem()).map(ItemStack::new);
+	}
 
 	// dispenser
 	default boolean canBoatInFluid(Boat boat, FluidState state) {

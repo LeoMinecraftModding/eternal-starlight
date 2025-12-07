@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AccumulatorBlock;
 import cn.leolezury.eternalstarlight.common.block.ESSkullType;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.AlloyFurnaceScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrateScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrystalbornCatalystScreen;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
@@ -996,6 +997,7 @@ public class ClientSetupHandlers {
 	public static void registerMenuScreens(MenuScreenRegisterStrategy strategy) {
 		strategy.register(ESMenuTypes.CRATE.get(), CrateScreen::new);
 		strategy.register(ESMenuTypes.CRYSTALBORN_CATALYST.get(), CrystalbornCatalystScreen::new);
+		strategy.register(ESMenuTypes.ALLOY_FURNACE.get(), AlloyFurnaceScreen::new);
 	}
 
 	public static void addClientReloadListeners(Consumer<PreparableReloadListener> strategy) {

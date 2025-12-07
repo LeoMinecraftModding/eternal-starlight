@@ -624,6 +624,9 @@ public class CommonHandlers {
 								ESBookUtil.unlock(serverPlayer, BuiltInRegistries.ITEM.getKey(inventoryItem.getItem()).withPrefix("item_"));
 							}
 						}
+						for (Entity e : level.getEntities(player, player.getBoundingBox().inflate(32))) {
+							ESBookUtil.unlock(serverPlayer, BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).withPrefix("entity_seen_"));
+						}
 					}
 					ServerPlayerGameMode gameMode = serverPlayer.gameMode;
 					ServerLevel serverLevel = serverPlayer.serverLevel();

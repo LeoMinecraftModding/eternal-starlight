@@ -9,7 +9,6 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -146,7 +145,7 @@ public class CrystalbornCatalystBlockEntity extends BaseContainerBlockEntity {
 	}
 
 	public static boolean isFuel(ItemStack stack) {
-		return stack.is(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()) || stack.is(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get());
+		return stack.is(ESTags.Items.CRYSTALBORN_CATALYST_FUELS);
 	}
 
 	@Override

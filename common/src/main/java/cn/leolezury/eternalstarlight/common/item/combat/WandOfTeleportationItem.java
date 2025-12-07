@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -64,6 +65,7 @@ public class WandOfTeleportationItem extends Item {
 				if (result.entities().get(i) != player) {
 					Vec3 target = result.entities().get(i).position();
 					teleportPlayer(level, player, stack, target);
+					player.awardStat(Stats.ITEM_USED.get(this));
 					return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
 				}
 			}
@@ -73,6 +75,7 @@ public class WandOfTeleportationItem extends Item {
 			Vec3 diff = player.position().subtract(target);
 			target = target.add(diff.normalize().scale(Math.max(diff.length() - 2, 0)));
 			teleportPlayer(level, player, stack, target);
+			player.awardStat(Stats.ITEM_USED.get(this));
 			return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
 		}
 		return super.use(level, player, hand);

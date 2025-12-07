@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -46,6 +47,7 @@ public class ShatteredSwordItem extends SwordItem {
 				itemStack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 				setHasBlade(itemStack, false);
 			}
+			player.awardStat(Stats.ITEM_USED.get(this));
 			return InteractionResultHolder.success(itemStack);
 		} else {
 			if (player.hasInfiniteMaterials()) {

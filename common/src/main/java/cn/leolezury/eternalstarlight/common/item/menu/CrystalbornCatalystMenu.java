@@ -14,6 +14,14 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
 public class CrystalbornCatalystMenu extends AbstractContainerMenu {
+	private static final int FUEL_SLOT = 0;
+	private static final int STORAGE_SLOT_START = 1;
+	private static final int STORAGE_SLOT_END = 15; // excluded
+	private static final int INV_SLOT_START = 15;
+	private static final int INV_SLOT_END = 42; // excluded
+	private static final int USE_ROW_SLOT_START = 42;
+	private static final int USE_ROW_SLOT_END = 51; // excluded
+
 	private final Container container;
 	private final ContainerData data;
 
@@ -27,7 +35,6 @@ public class CrystalbornCatalystMenu extends AbstractContainerMenu {
 		checkContainerDataCount(data, 1);
 		this.container = container;
 		this.data = data;
-		container.startOpen(inventory.player);
 
 		this.addSlot(new CrystalbornCatalystFuelSlot(container, 0, 8, 36));
 
@@ -43,8 +50,8 @@ public class CrystalbornCatalystMenu extends AbstractContainerMenu {
 			}
 		}
 
-		for (int y = 0; y < 9; y++) {
-			this.addSlot(new Slot(inventory, y, 8 + y * 18, 124));
+		for (int i = 0; i < 9; i++) {
+			this.addSlot(new Slot(inventory, i, 8 + i * 18, 124));
 		}
 
 		this.addDataSlots(data);
@@ -61,18 +68,28 @@ public class CrystalbornCatalystMenu extends AbstractContainerMenu {
 
 	@Override
 	public ItemStack quickMoveStack(Player player, int index) {
-		ItemStack itemStack = ItemStack.EMPTY;
+		ItemStack stack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
-		if (slot.hasItem()) {
+		if (slot != null && slot.hasItem()) {
 			ItemStack slotItem = slot.getItem();
-			itemStack = slotItem.copy();
-			if (index < this.container.getContainerSize()) {
-				if (!this.moveItemStackTo(slotItem, this.container.getContainerSize(), this.slots.size(), true)) {
+			stack = slotItem.copy();
+			if (index == FUEL_SLOT || index >= STORAGE_SLOT_START && index < STORAGE_SLOT_END) {
+				if (!this.moveItemStackTo(slotItem, INV_SLOT_START, USE_ROW_SLOT_END, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (CrystalbornCatalystBlockEntity.isFuel(slotItem) && !this.moveItemStackTo(slotItem, 0, 1, false) && !this.moveItemStackTo(slotItem, 1, this.container.getContainerSize(), false)) {
-				return ItemStack.EMPTY;
-			} else if (!this.moveItemStackTo(slotItem, 1, this.container.getContainerSize(), false)) {
+
+				slot.onQuickCraft(slotItem, stack);
+			} else if (index >= INV_SLOT_START && index < USE_ROW_SLOT_END) {
+				if (!((CrystalbornCatalystBlockEntity.isFuel(slotItem) && this.moveItemStackTo(slotItem, FUEL_SLOT, FUEL_SLOT + 1, false)) || this.moveItemStackTo(slotItem, STORAGE_SLOT_START, STORAGE_SLOT_END, false))) {
+					if (index < INV_SLOT_END) {
+						if (!this.moveItemStackTo(slotItem, USE_ROW_SLOT_START, USE_ROW_SLOT_END, false)) {
+							return ItemStack.EMPTY;
+						}
+					} else if (!this.moveItemStackTo(slotItem, INV_SLOT_START, INV_SLOT_END, false)) {
+						return ItemStack.EMPTY;
+					}
+				}
+			} else if (!this.moveItemStackTo(slotItem, INV_SLOT_START, USE_ROW_SLOT_END, false)) {
 				return ItemStack.EMPTY;
 			}
 
@@ -81,9 +98,15 @@ public class CrystalbornCatalystMenu extends AbstractContainerMenu {
 			} else {
 				slot.setChanged();
 			}
+
+			if (slotItem.getCount() == stack.getCount()) {
+				return ItemStack.EMPTY;
+			}
+
+			slot.onTake(player, slotItem);
 		}
 
-		return itemStack;
+		return stack;
 	}
 
 	public float getChargeProgress() {

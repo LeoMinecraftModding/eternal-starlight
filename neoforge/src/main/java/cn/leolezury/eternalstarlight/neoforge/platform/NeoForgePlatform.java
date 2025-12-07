@@ -56,6 +56,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -234,6 +235,21 @@ public class NeoForgePlatform implements ESPlatform {
 	}
 
 	@Override
+	public CreativeModeTab getESTab() {
+		return CreativeModeTab.builder().icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).title(Component.translatable("name.eternal_starlight")).displayItems((displayParameters, output) -> {
+			for (ResourceKey<Item> entry : ESItems.REGISTERED_ITEMS) {
+				Item item = BuiltInRegistries.ITEM.get(entry);
+				if (item != null) {
+					output.accept(item);
+					if (item == ESItems.STARLIT_PAINTING.get()) {
+						displayParameters.holders().lookup(Registries.PAINTING_VARIANT).ifPresent((registryLookup) -> ESCreativeModeTabs.generatePresetPaintings(output, displayParameters.holders(), registryLookup, holder -> holder.is(ESTags.PaintingVariants.PLACEABLE)));
+					}
+				}
+			}
+		}).build();
+	}
+
+	@Override
 	public FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
 		FlowerPotBlock block = new FlowerPotBlock(pot, flower, properties);
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BuiltInRegistries.BLOCK.getKey(flower.get()), () -> block);
@@ -350,26 +366,26 @@ public class NeoForgePlatform implements ESPlatform {
 	}
 
 	@Override
-	public CreativeModeTab getESTab() {
-		return CreativeModeTab.builder().icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).title(Component.translatable("name.eternal_starlight")).displayItems((displayParameters, output) -> {
-			for (ResourceKey<Item> entry : ESItems.REGISTERED_ITEMS) {
-				Item item = BuiltInRegistries.ITEM.get(entry);
-				if (item != null) {
-					output.accept(item);
-					if (item == ESItems.STARLIT_PAINTING.get()) {
-						displayParameters.holders().lookup(Registries.PAINTING_VARIANT).ifPresent((registryLookup) -> ESCreativeModeTabs.generatePresetPaintings(output, displayParameters.holders(), registryLookup, holder -> holder.is(ESTags.PaintingVariants.PLACEABLE)));
-					}
-				}
-			}
-		}).build();
-	}
-
-	@Override
 	public Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context) {
 		Level level = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
 		BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(context, ItemAbilities.HOE_TILL, false);
 		return toolModifiedState == null ? null : Pair.of(ctx -> true, ScytheItem.changeIntoState(toolModifiedState));
+	}
+
+	@Override
+	public int getBurnTime(ItemStack stack, RecipeType<?> type) {
+		return stack.getBurnTime(type);
+	}
+
+	@Override
+	public boolean hasCraftingRemainingItem(ItemStack stack) {
+		return stack.hasCraftingRemainingItem();
+	}
+
+	@Override
+	public Optional<ItemStack> getCraftingRemainingItem(ItemStack stack) {
+		return Optional.of(stack.getCraftingRemainingItem());
 	}
 
 	@Override

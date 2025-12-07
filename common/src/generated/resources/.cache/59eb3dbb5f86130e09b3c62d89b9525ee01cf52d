@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-06T18:20:39.1619466	Loot Tables
+// 1.21.1	2025-12-08T00:14:59.4264529	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -9,6 +9,7 @@
 e1aaf273fcd1263cb3cdfb422b78da9d893ded47 data/eternal_starlight/loot_table/blocks/accumulator.json
 0d7d8c3f6b3f49ca6b75e3961a37f41a5bc7472d data/eternal_starlight/loot_table/blocks/aethersent_block.json
 fd9b29b05cc7653d5a73b9b3b21d5d8c2c4ea7ef data/eternal_starlight/loot_table/blocks/algaleaves.json
+0c0175b0be11e8ca2c75ea0f2652f09d6258e3be data/eternal_starlight/loot_table/blocks/alloy_furnace.json
 abdd7917e37e69734a94990a696b5fadd938be76 data/eternal_starlight/loot_table/blocks/amaramber_bricks.json
 b9781e73a0b831ea28d78157b7e804a8a908435c data/eternal_starlight/loot_table/blocks/amaramber_brick_slab.json
 98a4d217f906c067a1539bb0325ed0088d716a15 data/eternal_starlight/loot_table/blocks/amaramber_brick_stairs.json
