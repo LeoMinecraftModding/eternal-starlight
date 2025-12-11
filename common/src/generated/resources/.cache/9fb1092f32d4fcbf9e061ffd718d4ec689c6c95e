@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-30T11:27:14.147593	Recipes
+// 1.21.1	2025-12-09T23:54:27.2785245	Recipes
 4bccc54e6fc73d27867afac4d5c55e5bfecfe3a0 data/eternal_starlight/advancement/recipes/brewing/cauldron_from_deepsilver_ingot.json
 e3ac56c58944a1e442e93eb25dcf634c25647417 data/eternal_starlight/advancement/recipes/building_blocks/acacia_starfire_bird_aviary.json
 eadb12aecf81885f07435504edfeb0e4ef368170 data/eternal_starlight/advancement/recipes/building_blocks/aethersent_block.json
@@ -2275,6 +2275,7 @@ c54b99efb79a915352eafd738940cbfa4c5b1be6 data/eternal_starlight/recipe/stripped_
 61247ecf63c5cf10c695df4257d44609a8d7605f data/eternal_starlight/recipe/tear_bomb.json
 c08e8c272604832405b82df6b4e909e2fef526ed data/eternal_starlight/recipe/terra_crystal.json
 b8bc65d0ef82ee32e68f501981456e712362401e data/eternal_starlight/recipe/terra_crystal_special.json
+e0ba6c159acb6cb27ee4d16d036987ee492cba77 data/eternal_starlight/recipe/test_alloy.json
 3ccf473a4c0141d71a3f6958dc82def61a7e8332 data/eternal_starlight/recipe/thermal_springstone_axe.json
 fe3c560cb250da6f98e42b790d8ec3950d402c55 data/eternal_starlight/recipe/thermal_springstone_boots.json
 1f9702889fcd07e8c3fa407de4c617c93252d0b8 data/eternal_starlight/recipe/thermal_springstone_bricks.json

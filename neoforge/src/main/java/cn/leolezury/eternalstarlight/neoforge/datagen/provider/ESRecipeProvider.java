@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.util.ConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -36,6 +37,9 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	@Override
 	protected void buildRecipes(RecipeOutput recipeOutput) {
+		// TODO: remove test recipe
+		recipeOutput.accept(EternalStarlight.id("test_alloy"), new AlloyRecipe(NonNullList.of(ItemStack.EMPTY, ESItems.THERMAL_SPRINGSTONE_INGOT.get().getDefaultInstance(), ESItems.DIMSLAG.get().getDefaultInstance()), NonNullList.of(Ingredient.EMPTY, Ingredient.of(ESItems.DEEPSILVER_INGOT.get()), Ingredient.of(ESItems.STARCORE.get())), 100), null);
+
 		addWoodRecipes(recipeOutput);
 		addStoneRecipes(recipeOutput);
 		addStarcoreRecipes(recipeOutput);

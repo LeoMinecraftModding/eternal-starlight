@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Inventory;
 @Environment(EnvType.CLIENT)
 public class CrystalbornCatalystScreen extends AbstractContainerScreen<CrystalbornCatalystMenu> implements MenuAccess<CrystalbornCatalystMenu> {
 	private static final ResourceLocation CONTAINER_BACKGROUND = EternalStarlight.id("textures/gui/screen/crystalborn_catalyst/background.png");
-	private static final ResourceLocation PROGRESS = EternalStarlight.id("textures/gui/screen/crystalborn_catalyst/progress.png");
+	private static final ResourceLocation PROGRESS = EternalStarlight.id("screen/crystalborn_catalyst/progress");
 
 	public CrystalbornCatalystScreen(CrystalbornCatalystMenu menu, Inventory inventory, Component title) {
 		super(menu, inventory, title);
@@ -36,7 +36,7 @@ public class CrystalbornCatalystScreen extends AbstractContainerScreen<Crystalbo
 		guiGraphics.blit(CONTAINER_BACKGROUND, x, y, 0, 0, this.imageWidth, this.imageHeight);
 		if (menu.getChargeProgress() > 0) {
 			int progress = (Mth.ceil(menu.getChargeProgress() * 13) + 1);
-			guiGraphics.blit(PROGRESS, x + 10, y + 20 + 14 - progress, 14, progress, 0, 14 - progress, 14, progress, 14, 14);
+			guiGraphics.blitSprite(PROGRESS, 14, 14, 0, 14 - progress, this.leftPos + 9, this.topPos + 34 - progress, 14, progress);
 		}
 	}
 }

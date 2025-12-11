@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.item.menu;
 
 import cn.leolezury.eternalstarlight.common.block.entity.AlloyFurnaceBlockEntity;
 import cn.leolezury.eternalstarlight.common.registry.ESMenuTypes;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -61,11 +62,35 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 		for (int i = 0; i < 9; i++) {
 			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
 		}
+
+		this.addDataSlots(data);
 	}
 
 	@Override
 	public boolean stillValid(Player player) {
 		return this.container.stillValid(player);
+	}
+
+	public float getLitProgress() {
+		int lit = this.data.get(0);
+		int total = this.data.get(1);
+		return total != 0 && lit != 0 ? Mth.clamp((float) lit / (float) total, 0.0F, 1.0F) : 0.0F;
+	}
+
+	public float getBurnProgress() {
+		int burn = this.data.get(2);
+		int total = this.data.get(3);
+		return total != 0 && burn != 0 ? Mth.clamp((float) burn / (float) total, 0.0F, 1.0F) : 0.0F;
+	}
+
+	public float getOverheatProgress() {
+		int overheat = this.data.get(4);
+		return Mth.clamp((float) overheat / AlloyFurnaceBlockEntity.TOTAL_OVERHEAT_TICKS, 0.0F, 1.0F);
+	}
+
+	public float getCoolingProgress() {
+		int cooling = this.data.get(5);
+		return Mth.clamp((float) cooling / AlloyFurnaceBlockEntity.TOTAL_COOLING_TICKS, 0.0F, 1.0F);
 	}
 
 	@Override

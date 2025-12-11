@@ -39,6 +39,9 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private static final String TAG_OVERHEAT_TICKS = "overheat_ticks";
 	private static final String TAG_COOLING_TICKS = "cooling_ticks";
 
+	public static final int TOTAL_OVERHEAT_TICKS = 1600;
+	public static final int TOTAL_COOLING_TICKS = 800;
+
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
 		public int get(int id) {
@@ -100,9 +103,6 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 			boolean changed = false;
 			if (entity.litTicks > 0) {
 				entity.litTicks--;
-				if (entity.overheatTicks < 1200 * 3) {
-					entity.overheatTicks++;
-				}
 			}
 			if (entity.coolingTicks > 0) {
 				entity.coolingTicks--;
@@ -135,10 +135,69 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 					changed = true;
 				}
 			}
+			if (entity.litTicks > 0 && entity.coolingTicks <= 0) {
+				ItemStack coolingItem = entity.getItem(AlloyFurnaceMenu.FREEZING_SLOT);
+				if (coolingItem.is(ESTags.Items.COOLS_ALLOY_FURNACE)) {
+					entity.coolingTicks = TOTAL_COOLING_TICKS;
+					coolingItem.shrink(1);
+					// TODO: wtf is this plz test it out
+					if (ESPlatform.INSTANCE.hasCraftingRemainingItem(coolingItem)) {
+						ESPlatform.INSTANCE.getCraftingRemainingItem(coolingItem).ifPresent(remaining -> {
+							if (coolingItem.isEmpty() || ItemStack.isSameItemSameComponents(coolingItem, remaining)) {
+								int remainingCount = (coolingItem.getCount() + remaining.getCount()) - remaining.getMaxStackSize();
+								entity.setItem(AlloyFurnaceMenu.FREEZING_SLOT, remaining.copyWithCount(Math.min(coolingItem.getCount() + remaining.getCount(), remaining.getMaxStackSize())));
+								if (remainingCount > 0) {
+									Block.popResource(level, pos, remaining.copyWithCount(remainingCount));
+								}
+							} else {
+								Block.popResource(level, pos, remaining.copy());
+							}
+						});
+					}
+					changed = true;
+				}
+			}
 			entity.burnTicks += (entity.litTicks > 0 && entity.canBurn()) ? 1 : -1;
 			entity.burnTicks = Mth.clamp(entity.burnTicks, 0, entity.totalBurnTicks);
+			entity.overheatTicks += (entity.litTicks > 0 && entity.coolingTicks <= 0) ? 1 : -1;
+			entity.overheatTicks = Mth.clamp(entity.overheatTicks, 0, TOTAL_OVERHEAT_TICKS);
 			if (entity.canBurn() && entity.burnTicks == entity.totalBurnTicks && recipeHolder != null) {
-				// TODO: set the results, shrink the ingredients, and don't forget about the CraftingRemainingItem
+				AlloyRecipe recipe = recipeHolder.value();
+				for (int i = 0; i < Math.min(recipe.results().size(), 3); i++) {
+					ItemStack stack = recipe.results().get(i);
+					if (stack.isEmpty()) {
+						break;
+					} else {
+						ItemStack existingResult = entity.getItem(AlloyFurnaceMenu.RESULT_SLOT_START + i);
+						entity.setItem(AlloyFurnaceMenu.RESULT_SLOT_START + i, stack.copyWithCount(stack.getCount() + existingResult.getCount()));
+					}
+				}
+				NonNullList<ItemStack> remaining = recipeHolder.value().getRemainingItems(CraftingInput.of(3, 3, ingredients));
+				for (int y = 0; y < 3; y++) {
+					for (int x = 0; x < 3; x++) {
+						int index = x + y * 3;
+						if (index >= remaining.size()) {
+							break;
+						}
+						ItemStack craftItem = entity.getItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index);
+						ItemStack remainingItem = remaining.get(index);
+						if (!craftItem.isEmpty()) {
+							craftItem.shrink(1);
+							entity.setItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index, craftItem);
+						}
+						if (!remainingItem.isEmpty()) {
+							if (craftItem.isEmpty()) {
+								entity.setItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index, remainingItem);
+							} else if (ItemStack.isSameItemSameComponents(craftItem, remainingItem)) {
+								remainingItem.grow(craftItem.getCount());
+								entity.setItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index, remainingItem);
+							} else {
+								Block.popResource(level, pos, remainingItem.copy());
+							}
+						}
+					}
+				}
+				entity.burnTicks = 0;
 			}
 			if (changed) {
 				entity.setChanged();
@@ -189,7 +248,9 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		ItemStack original = this.items.get(index);
 		boolean unchanged = !stack.isEmpty() && ItemStack.isSameItemSameComponents(original, stack);
 		if (level != null && index >= AlloyFurnaceMenu.INGREDIENT_SLOT_START && index < AlloyFurnaceMenu.INGREDIENT_SLOT_END && !unchanged) {
-			this.quickCheck.getRecipeFor(CraftingInput.of(3, 3, getIngredientItems()), level).ifPresentOrElse(holder -> this.totalBurnTicks = holder.value().burnTime(), () -> this.totalBurnTicks = 0);
+			List<ItemStack> ingredients = getItems().subList(AlloyFurnaceMenu.INGREDIENT_SLOT_START, AlloyFurnaceMenu.INGREDIENT_SLOT_END);
+			ingredients.set(index - AlloyFurnaceMenu.INGREDIENT_SLOT_START, stack);
+			this.quickCheck.getRecipeFor(CraftingInput.of(3, 3, ingredients), level).ifPresentOrElse(holder -> this.totalBurnTicks = holder.value().burnTime(), () -> this.totalBurnTicks = 0);
 			this.burnTicks = 0;
 			this.setChanged();
 		}
@@ -216,12 +277,24 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	public void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		super.loadAdditional(compoundTag, provider);
 		ContainerHelper.loadAllItems(compoundTag, this.items, provider);
+		this.litTicks = compoundTag.getShort(TAG_LIT_TICKS);
+		this.totalLitTicks = compoundTag.getShort(TAG_TOTAL_LIT_TICKS);
+		this.burnTicks = compoundTag.getShort(TAG_BURN_TICKS);
+		this.totalBurnTicks = compoundTag.getShort(TAG_TOTAL_BURN_TICKS);
+		this.overheatTicks = compoundTag.getShort(TAG_OVERHEAT_TICKS);
+		this.coolingTicks = compoundTag.getShort(TAG_COOLING_TICKS);
 	}
 
 	@Override
 	protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
 		super.saveAdditional(compoundTag, provider);
 		ContainerHelper.saveAllItems(compoundTag, this.items, provider);
+		compoundTag.putShort(TAG_LIT_TICKS, (short) this.litTicks);
+		compoundTag.putShort(TAG_TOTAL_LIT_TICKS, (short) this.totalLitTicks);
+		compoundTag.putShort(TAG_BURN_TICKS, (short) this.burnTicks);
+		compoundTag.putShort(TAG_TOTAL_BURN_TICKS, (short) this.totalBurnTicks);
+		compoundTag.putShort(TAG_OVERHEAT_TICKS, (short) this.overheatTicks);
+		compoundTag.putShort(TAG_COOLING_TICKS, (short) this.coolingTicks);
 	}
 
 	@Override

@@ -79,7 +79,7 @@ public record AlloyRecipe(NonNullList<ItemStack> results, NonNullList<Ingredient
 			Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap((list) -> {
 				Ingredient[] ingredients = list.stream().filter((ingredient) -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
 				if (ingredients.length == 0) {
-					return DataResult.error(() -> "No ingredients for alloy recipe");
+					return DataResult.error(() -> "No ingredient for alloy recipe");
 				} else {
 					return ingredients.length > 9 ? DataResult.error(() -> "Too many ingredients for alloy recipe") : DataResult.success(NonNullList.of(Ingredient.EMPTY, ingredients));
 				}
