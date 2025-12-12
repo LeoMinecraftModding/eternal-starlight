@@ -508,9 +508,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropWhenSilkTouch(ESBlocks.GLOWING_MUSHROOM_STEM.get());
 		add(ESBlocks.BERRIES_VINES.get(), this::createBerriesVinesDrop);
 		add(ESBlocks.BERRIES_VINES_PLANT.get(), this::createBerriesVinesDrop);
-		dropSelf(ESBlocks.CAVE_MOSS.get());
-		dropOther(ESBlocks.CAVE_MOSS_PLANT.get(), ESBlocks.CAVE_MOSS.get());
-		dropOther(ESBlocks.CAVE_MOSS_VEIN.get(), ESBlocks.CAVE_MOSS.get());
+		plant(ESBlocks.CAVE_MOSS.get());
+		plantDropOther(ESBlocks.CAVE_MOSS_PLANT.get(), ESBlocks.CAVE_MOSS.get());
+		plantDropOther(ESBlocks.CAVE_MOSS_VEIN.get(), ESBlocks.CAVE_MOSS.get());
 		dropSelf(ESBlocks.CAVE_MOSS_BLOCK.get());
 		dropSelf(ESBlocks.CAVE_MOSS_CARPET.get());
 		dropSelf(ESBlocks.BOULDERSHROOM.get());
@@ -530,8 +530,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_GREEN_FANTAFERN.get());
 		plant(ESBlocks.FANTAGRASS.get());
 		plant(ESBlocks.GREEN_FANTAGRASS.get());
-		add(ESBlocks.HANGING_FANTAGRASS.get(), noDrop());
-		add(ESBlocks.HANGING_FANTAGRASS_PLANT.get(), noDrop());
+		plant(ESBlocks.HANGING_FANTAGRASS.get());
+		plant(ESBlocks.HANGING_FANTAGRASS_PLANT.get());
 
 		plant(ESBlocks.ORANGE_SCARLET_BUD.get());
 		plant(ESBlocks.PURPLE_SCARLET_BUD.get());
@@ -916,8 +916,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(block, this::createSickleOrShearsOnlyDrop);
 	}
 
-	private LootTable.Builder createSickleOrShearsOnlyDrop(ItemLike arg) {
-		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_SHEARS_OR_SICKLE).add(LootItem.lootTableItem(arg)));
+	private void plantDropOther(Block block, ItemLike other) {
+		add(block, createSickleOrShearsOnlyDrop(other));
+	}
+
+	private LootTable.Builder createSickleOrShearsOnlyDrop(ItemLike item) {
+		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_SHEARS_OR_SICKLE).add(LootItem.lootTableItem(item)));
 	}
 
 	private void deadBush(Block block) {

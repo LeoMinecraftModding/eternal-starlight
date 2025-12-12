@@ -1548,6 +1548,14 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.STARLIT_LILY_PAD.get(),
 				ESBlocks.MOONLIGHT_DUCKWEED.get()
 			);
+		tag(BlockTags.NEEDS_STONE_TOOL)
+			.add(
+				ESBlocks.GRIMSTONE_DEEPSILVER_ORE.get(),
+				ESBlocks.VOIDSTONE_DEEPSILVER_ORE.get(),
+				ESBlocks.ETERNAL_ICE_DEEPSILVER_ORE.get(),
+				ESBlocks.HAZE_ICE_DEEPSILVER_ORE.get(),
+				ESBlocks.PACKED_NIGHTFALL_MUD_DEEPSILVER_ORE.get()
+			);
 		tag(BlockTags.NEEDS_IRON_TOOL)
 			.add(
 				ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(),

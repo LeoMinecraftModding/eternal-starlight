@@ -854,7 +854,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.LIGHT_CRYSTAL_INGREDIENTS)
 			.add(
-				Items.TORCH,
 				Items.SOUL_TORCH,
 				Items.TORCHFLOWER,
 				ESItems.STARLIGHT_TORCHFLOWER.get(),

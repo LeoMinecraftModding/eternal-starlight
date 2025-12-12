@@ -153,7 +153,6 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GOLEM_FORGE_CHIMNEY = create("golem_forge_chimney");
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-		HolderGetter<Block> blocks = context.lookup(Registries.BLOCK);
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 		HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 

@@ -68,7 +68,9 @@
       "eternal_starlight:lunaris_cactus",
       "eternal_starlight:crystal_caves_vegetation",
       "eternal_starlight:red_crystal_moss_patch",
-      "eternal_starlight:blue_crystal_moss_patch"
+      "eternal_starlight:red_crystal_moss_patch_ceiling",
+      "eternal_starlight:blue_crystal_moss_patch",
+      "eternal_starlight:blue_crystal_moss_patch_ceiling"
     ],
     [
       "minecraft:freeze_top_layer",

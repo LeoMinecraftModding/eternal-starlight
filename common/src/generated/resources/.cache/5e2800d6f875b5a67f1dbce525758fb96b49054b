@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-08T00:14:59.4516547	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2025-12-12T22:32:53.2334133	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -143,7 +143,7 @@ e0cd0402fcd0d7ce13ed1beae0d116cf592790d6 data/eternal_starlight/tags/item/golem_
 017ae840bfe376ec2f875ed07cc7abf20d57956a data/eternal_starlight/tags/item/hammers.json
 3ff30abe47687453e9cd64c18975ec53b04a2660 data/eternal_starlight/tags/item/jinglestem_logs.json
 902d4ce26868719dccef223f5ba82a060eea5bad data/eternal_starlight/tags/item/light_crystals.json
-1d30b0be528a480f71fc164e3ba240bfd9c6ab8c data/eternal_starlight/tags/item/light_crystal_ingredients.json
+87dbc5bfc7732dab2d2ee29212f411b54661f9c8 data/eternal_starlight/tags/item/light_crystal_ingredients.json
 268ba819acde1285c21f1f46ecca7bfa826fd7e2 data/eternal_starlight/tags/item/lunar_crystals.json
 739967060bad5429cd87a1aa6b8059735050e2fb data/eternal_starlight/tags/item/lunar_crystal_ingredients.json
 8803f19cd15c350ed6dd1fa0dc6dd70fb04aa42d data/eternal_starlight/tags/item/lunar_logs.json

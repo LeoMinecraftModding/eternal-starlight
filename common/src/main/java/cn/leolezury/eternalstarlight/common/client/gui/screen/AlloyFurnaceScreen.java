@@ -43,7 +43,7 @@ public class AlloyFurnaceScreen extends AbstractContainerScreen<AlloyFurnaceMenu
 		guiGraphics.blitSprite(BURN_PROGRESS, 24, 16, 0, 0, this.leftPos + 89, this.topPos + 18, burnProgress, 16);
 		int coolingProgress = Mth.ceil(this.menu.getCoolingProgress() * 15.0F) + 1;
 		guiGraphics.blitSprite(COOLING_PROGRESS, 16, 16, 0, 16 - coolingProgress, this.leftPos + 85, this.topPos + 50 - coolingProgress, 16, coolingProgress);
-		int overheatProgress = Mth.ceil(this.menu.getOverheatProgress() * 26.0F);
-		guiGraphics.blitSprite(OVERHEAT_PROGRESS, 26, 18, 0, 0, this.leftPos + 89, this.topPos + 16, overheatProgress, 18);
+		int overheatProgress = Mth.ceil(this.menu.getOverheatProgress() * 18.0F);
+		guiGraphics.blitSprite(OVERHEAT_PROGRESS, 26, 18, 0, 18 - overheatProgress, this.leftPos + 89, this.topPos + 34 - overheatProgress, 26, overheatProgress);
 	}
 }
