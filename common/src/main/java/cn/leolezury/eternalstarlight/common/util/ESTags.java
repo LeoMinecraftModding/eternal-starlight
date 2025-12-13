@@ -49,7 +49,6 @@ public class ESTags {
 		public static final TagKey<Item> FLOWGLAZE_WEAPONS = create("flowglaze_weapons");
 		public static final TagKey<Item> MENDS_NATURALLY = create("mends_naturally");
 		public static final TagKey<Item> CRYSTALBORN_CATALYST_FUELS = create("crystalborn_catalyst_fuels");
-		public static final TagKey<Item> COOLS_ALLOY_FURNACE = create("cools_alloy_furnace");
 		public static final TagKey<Item> CONSUMABLE_WHEN_WEARING_FUNGUS_AMULET = create("consumable_when_wearing_fungus_amulet");
 		public static final TagKey<Item> REPAIRED_BY_CRESCENT_PENDANT = create("repaired_by_crescent_pendant");
 		public static final TagKey<Item> LUNAR_MONSTROSITY_IGNITERS = create("lunar_monstrosity_igniters");

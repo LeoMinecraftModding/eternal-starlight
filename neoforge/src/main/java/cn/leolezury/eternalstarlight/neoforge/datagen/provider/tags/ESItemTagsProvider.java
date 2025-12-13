@@ -605,10 +605,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(),
 				ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()
 			);
-		tag(ESTags.Items.COOLS_ALLOY_FURNACE)
-			.add(
-				ESItems.FROZEN_TUBE.get()
-			);
 		tag(ESTags.Items.CONSUMABLE_WHEN_WEARING_FUNGUS_AMULET)
 			.addTag(Tags.Items.MUSHROOMS);
 		tag(ESTags.Items.REPAIRED_BY_CRESCENT_PENDANT)

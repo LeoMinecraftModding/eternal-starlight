@@ -18,7 +18,7 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 	public static final int INGREDIENT_SLOT_START = 0;
 	public static final int INGREDIENT_SLOT_END = 9; // excluded
 	public static final int FUEL_SLOT = 9;
-	public static final int FREEZING_SLOT = 10;
+	public static final int COOLING_SLOT = 10;
 	public static final int RESULT_SLOT_START = 11;
 	private static final int RESULT_SLOT_END = 14; // excluded
 	private static final int INV_SLOT_START = 14;
@@ -30,7 +30,7 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 	private final ContainerData data;
 
 	public AlloyFurnaceMenu(int containerId, Inventory playerInventory) {
-		this(containerId, playerInventory, new SimpleContainer(14), new SimpleContainerData(6));
+		this(containerId, playerInventory, new SimpleContainer(14), new SimpleContainerData(7));
 	}
 
 	public AlloyFurnaceMenu(int containerId, Inventory playerInventory, Container container, ContainerData data) {
@@ -38,7 +38,7 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 		this.container = container;
 		this.data = data;
 		checkContainerSize(container, 14);
-		checkContainerDataCount(data, 6);
+		checkContainerDataCount(data, 7);
 
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 3; x++) {
@@ -47,7 +47,7 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 		}
 
 		this.addSlot(new AlloyFurnaceFuelSlot(this.container, FUEL_SLOT, 10, 53));
-		this.addSlot(new AlloyFurnaceFreezingSlot(this.container, FREEZING_SLOT, 86, 53));
+		this.addSlot(new AlloyFurnaceCoolingSlot(this.container, COOLING_SLOT, 86, 53));
 
 		this.addSlot(new AlloyResultSlot(playerInventory.player, this.container, RESULT_SLOT_START, 124, 18));
 		this.addSlot(new AlloyResultSlot(playerInventory.player, this.container, RESULT_SLOT_START + 1, 115, 53));
@@ -90,7 +90,8 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 
 	public float getCoolingProgress() {
 		int cooling = this.data.get(5);
-		return Mth.clamp((float) cooling / AlloyFurnaceBlockEntity.TOTAL_COOLING_TICKS, 0.0F, 1.0F);
+		int total = this.data.get(6);
+		return total != 0 && cooling != 0 ? Mth.clamp((float) cooling / (float) total, 0.0F, 1.0F) : 0.0F;
 	}
 
 	@Override
@@ -107,7 +108,7 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 
 				slot.onQuickCraft(slotItem, stack);
 			} else if (index >= INV_SLOT_START && index < USE_ROW_SLOT_END) {
-				if (!((AlloyFurnaceBlockEntity.isFuel(slotItem) && this.moveItemStackTo(slotItem, FUEL_SLOT, FUEL_SLOT + 1, false)) || (AlloyFurnaceBlockEntity.isFreezingItem(slotItem) && this.moveItemStackTo(slotItem, FREEZING_SLOT, FREEZING_SLOT + 1, false)) || this.moveItemStackTo(slotItem, INGREDIENT_SLOT_START, INGREDIENT_SLOT_END, false))) {
+				if (!((AlloyFurnaceBlockEntity.isFuel(slotItem) && this.moveItemStackTo(slotItem, FUEL_SLOT, FUEL_SLOT + 1, false)) || (AlloyFurnaceBlockEntity.isCoolingItem(slotItem) && this.moveItemStackTo(slotItem, COOLING_SLOT, COOLING_SLOT + 1, false)) || this.moveItemStackTo(slotItem, INGREDIENT_SLOT_START, INGREDIENT_SLOT_END, false))) {
 					if (index < INV_SLOT_END) {
 						if (!this.moveItemStackTo(slotItem, USE_ROW_SLOT_START, USE_ROW_SLOT_END, false)) {
 							return ItemStack.EMPTY;

@@ -4,10 +4,14 @@ import cn.leolezury.eternalstarlight.common.block.entity.AlloyFurnaceBlockEntity
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -18,9 +22,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // TODO: WIP
 public class AlloyFurnaceBlock extends BaseEntityBlock {
 	public static final MapCodec<AlloyFurnaceBlock> CODEC = simpleCodec(AlloyFurnaceBlock::new);
+	private static final Map<Item, AlloyFurnaceCoolingItem> COOLING_REGISTRY = new HashMap<>();
 
 	public AlloyFurnaceBlock(Properties properties) {
 		super(properties);
@@ -29,6 +37,30 @@ public class AlloyFurnaceBlock extends BaseEntityBlock {
 	@Override
 	protected MapCodec<AlloyFurnaceBlock> codec() {
 		return CODEC;
+	}
+
+	public static void registerCoolingItem(Item item, AlloyFurnaceCoolingItem coolingItem) {
+		COOLING_REGISTRY.put(item, coolingItem);
+	}
+
+	public static void registerCoolingItem(TagKey<Item> itemTag, AlloyFurnaceCoolingItem coolingItem) {
+		for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(itemTag)) {
+			COOLING_REGISTRY.put(holder.value(), coolingItem);
+		}
+	}
+
+	public static AlloyFurnaceCoolingItem getCoolingItem(Item item) {
+		return COOLING_REGISTRY.get(item);
+	}
+
+	public static int getCoolDuration(Item item) {
+		AlloyFurnaceCoolingItem coolingItem = getCoolingItem(item);
+		return coolingItem == null ? 0 : coolingItem.duration();
+	}
+
+	public static int getCoolEfficiency(Item item) {
+		AlloyFurnaceCoolingItem coolingItem = getCoolingItem(item);
+		return coolingItem == null ? 0 : coolingItem.efficiency();
 	}
 
 	@Override

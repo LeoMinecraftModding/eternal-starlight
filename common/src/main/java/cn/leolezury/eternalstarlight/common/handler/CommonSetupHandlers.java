@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
+import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolingItem;
 import cn.leolezury.eternalstarlight.common.block.CarvedLunarisCactusFruitBlock;
 import cn.leolezury.eternalstarlight.common.command.ESCommand;
 import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
@@ -248,6 +250,32 @@ public class CommonSetupHandlers {
 				}
 			}
 		}
+
+		AlloyFurnaceBlock.registerCoolingItem(Items.SNOW, new AlloyFurnaceCoolingItem(800, 3));
+		AlloyFurnaceBlock.registerCoolingItem(Items.SNOWBALL, new AlloyFurnaceCoolingItem(800, 3));
+		AlloyFurnaceBlock.registerCoolingItem(Items.SNOW_BLOCK, new AlloyFurnaceCoolingItem(3200, 3));
+		AlloyFurnaceBlock.registerCoolingItem(Items.ICE, new AlloyFurnaceCoolingItem(800, 3));
+		AlloyFurnaceBlock.registerCoolingItem(Items.PACKED_ICE, new AlloyFurnaceCoolingItem(8000, 3));
+		AlloyFurnaceBlock.registerCoolingItem(Items.BLUE_ICE, new AlloyFurnaceCoolingItem(32000, 5));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.ICICLE.get(), new AlloyFurnaceCoolingItem(800, 3));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.ASHEN_SNOW.get(), new AlloyFurnaceCoolingItem(800, 3));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.ASHEN_SNOWBALL.get(), new AlloyFurnaceCoolingItem(800, 3));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE.get(), new AlloyFurnaceCoolingItem(7200, 5));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_SHARD.get(), new AlloyFurnaceCoolingItem(1200, 5));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_BLOCK.get(), new AlloyFurnaceCoolingItem(12000, 5));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_ARROW.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_SWORD.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_PICKAXE.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_AXE.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_HOE.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_SHOVEL.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_SCYTHE.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_HELMET.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_CHESTPLATE.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_LEGGINGS.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_BOOTS.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.GLACITE_SHIELD.get(), new AlloyFurnaceCoolingItem(300, 4));
+		AlloyFurnaceBlock.registerCoolingItem(ESItems.FROZEN_TUBE.get(), new AlloyFurnaceCoolingItem(1600, 4));
 	}
 
 	public interface NetworkRegisterStrategy {

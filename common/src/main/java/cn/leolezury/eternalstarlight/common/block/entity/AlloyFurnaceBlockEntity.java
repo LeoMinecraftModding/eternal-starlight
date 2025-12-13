@@ -1,12 +1,12 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
 import cn.leolezury.eternalstarlight.common.item.menu.AlloyFurnaceMenu;
 import cn.leolezury.eternalstarlight.common.item.recipe.AlloyRecipe;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -38,9 +38,10 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private static final String TAG_TOTAL_BURN_TICKS = "total_burn_ticks";
 	private static final String TAG_OVERHEAT_TICKS = "overheat_ticks";
 	private static final String TAG_COOLING_TICKS = "cooling_ticks";
+	private static final String TAG_TOTAL_COOLING_TICKS = "total_cooling_ticks";
+	private static final String TAG_COOLING_EFFICIENCY = "cooling_efficiency";
 
 	public static final int TOTAL_OVERHEAT_TICKS = 1600;
-	public static final int TOTAL_COOLING_TICKS = 800;
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -57,6 +58,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 				case 3 -> AlloyFurnaceBlockEntity.this.totalBurnTicks;
 				case 4 -> AlloyFurnaceBlockEntity.this.overheatTicks;
 				case 5 -> AlloyFurnaceBlockEntity.this.coolingTicks;
+				case 6 -> AlloyFurnaceBlockEntity.this.totalCoolingTicks;
 				default -> 0;
 			};
 		}
@@ -79,19 +81,21 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 					AlloyFurnaceBlockEntity.this.overheatTicks = value;
 				case 5:
 					AlloyFurnaceBlockEntity.this.coolingTicks = value;
+				case 6:
+					AlloyFurnaceBlockEntity.this.totalCoolingTicks = value;
 			}
 		}
 
 		@Override
 		public int getCount() {
-			return 6;
+			return 7;
 		}
 	};
 
 	private final RecipeManager.CachedCheck<CraftingInput, AlloyRecipe> quickCheck;
 
 	private NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
-	private int litTicks, totalLitTicks, burnTicks, totalBurnTicks, overheatTicks, coolingTicks;
+	private int litTicks, totalLitTicks, burnTicks, totalBurnTicks, overheatTicks, coolingTicks, totalCoolingTicks, coolingEfficiency;
 
 	public AlloyFurnaceBlockEntity(BlockPos pos, BlockState state) {
 		super(ESBlockEntities.ALLOY_FURNACE.get(), pos, state);
@@ -109,6 +113,10 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 			}
 			if (entity.litTicks <= 0) {
 				entity.totalLitTicks = 0;
+			}
+			if (entity.coolingTicks <= 0) {
+				entity.totalCoolingTicks = 0;
+				entity.coolingEfficiency = 0;
 			}
 			List<ItemStack> ingredients = entity.getIngredientItems();
 			RecipeHolder<AlloyRecipe> recipeHolder = entity.quickCheck.getRecipeFor(CraftingInput.of(3, 3, ingredients), level).orElse(null);
@@ -135,17 +143,19 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 					changed = true;
 				}
 			}
-			if (entity.litTicks > 0 && entity.coolingTicks <= 0) {
-				ItemStack coolingItem = entity.getItem(AlloyFurnaceMenu.FREEZING_SLOT);
-				if (coolingItem.is(ESTags.Items.COOLS_ALLOY_FURNACE)) {
-					entity.coolingTicks = TOTAL_COOLING_TICKS;
+			if (entity.overheatTicks > 0 && entity.coolingTicks <= 0) {
+				ItemStack coolingItem = entity.getItem(AlloyFurnaceMenu.COOLING_SLOT);
+				if (!coolingItem.isEmpty() && isCoolingItem(coolingItem)) {
+					entity.totalCoolingTicks = AlloyFurnaceBlock.getCoolDuration(coolingItem.getItem());
+					entity.coolingTicks = entity.totalCoolingTicks;
+					entity.coolingEfficiency = AlloyFurnaceBlock.getCoolEfficiency(coolingItem.getItem());
 					coolingItem.shrink(1);
 					// TODO: wtf is this plz test it out
 					if (ESPlatform.INSTANCE.hasCraftingRemainingItem(coolingItem)) {
 						ESPlatform.INSTANCE.getCraftingRemainingItem(coolingItem).ifPresent(remaining -> {
 							if (coolingItem.isEmpty() || ItemStack.isSameItemSameComponents(coolingItem, remaining)) {
 								int remainingCount = (coolingItem.getCount() + remaining.getCount()) - remaining.getMaxStackSize();
-								entity.setItem(AlloyFurnaceMenu.FREEZING_SLOT, remaining.copyWithCount(Math.min(coolingItem.getCount() + remaining.getCount(), remaining.getMaxStackSize())));
+								entity.setItem(AlloyFurnaceMenu.COOLING_SLOT, remaining.copyWithCount(Math.min(coolingItem.getCount() + remaining.getCount(), remaining.getMaxStackSize())));
 								if (remainingCount > 0) {
 									Block.popResource(level, pos, remaining.copyWithCount(remainingCount));
 								}
@@ -159,7 +169,12 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 			}
 			entity.burnTicks += (entity.litTicks > 0 && entity.canBurn()) ? 1 : -1;
 			entity.burnTicks = Mth.clamp(entity.burnTicks, 0, entity.totalBurnTicks);
-			entity.overheatTicks += (entity.litTicks > 0 && entity.coolingTicks <= 0) ? 1 : -1;
+			if (entity.litTicks > 0 && (entity.coolingTicks <= 0 || entity.litTicks % entity.coolingEfficiency == 0)) {
+				entity.overheatTicks += 1;
+			}
+			if (entity.litTicks <= 0) {
+				entity.overheatTicks -= (1 + entity.coolingTicks > 0 ? entity.coolingEfficiency : 0);
+			}
 			entity.overheatTicks = Mth.clamp(entity.overheatTicks, 0, TOTAL_OVERHEAT_TICKS);
 			if (entity.canBurn() && entity.burnTicks == entity.totalBurnTicks && recipeHolder != null) {
 				AlloyRecipe recipe = recipeHolder.value();
@@ -239,8 +254,8 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		return FurnaceBlockEntity.isFuel(stack);
 	}
 
-	public static boolean isFreezingItem(ItemStack stack) {
-		return stack.is(ESTags.Items.COOLS_ALLOY_FURNACE);
+	public static boolean isCoolingItem(ItemStack stack) {
+		return AlloyFurnaceBlock.getCoolingItem(stack.getItem()) != null;
 	}
 
 	@Override
@@ -262,7 +277,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		if (index == AlloyFurnaceMenu.FUEL_SLOT && !isFuel(stack)) {
 			return false;
 		}
-		if (index == AlloyFurnaceMenu.FREEZING_SLOT && !isFreezingItem(stack)) {
+		if (index == AlloyFurnaceMenu.COOLING_SLOT && !isCoolingItem(stack)) {
 			return false;
 		}
 		return super.canPlaceItem(index, stack);
@@ -283,6 +298,8 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		this.totalBurnTicks = compoundTag.getShort(TAG_TOTAL_BURN_TICKS);
 		this.overheatTicks = compoundTag.getShort(TAG_OVERHEAT_TICKS);
 		this.coolingTicks = compoundTag.getShort(TAG_COOLING_TICKS);
+		this.totalCoolingTicks = compoundTag.getShort(TAG_TOTAL_COOLING_TICKS);
+		this.coolingEfficiency = compoundTag.getShort(TAG_COOLING_EFFICIENCY);
 	}
 
 	@Override
@@ -295,6 +312,8 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		compoundTag.putShort(TAG_TOTAL_BURN_TICKS, (short) this.totalBurnTicks);
 		compoundTag.putShort(TAG_OVERHEAT_TICKS, (short) this.overheatTicks);
 		compoundTag.putShort(TAG_COOLING_TICKS, (short) this.coolingTicks);
+		compoundTag.putShort(TAG_TOTAL_COOLING_TICKS, (short) this.totalCoolingTicks);
+		compoundTag.putShort(TAG_COOLING_EFFICIENCY, (short) this.coolingEfficiency);
 	}
 
 	@Override
