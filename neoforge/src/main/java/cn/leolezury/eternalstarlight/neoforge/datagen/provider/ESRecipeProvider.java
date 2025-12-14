@@ -9,7 +9,6 @@ import cn.leolezury.eternalstarlight.common.util.ConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -17,6 +16,7 @@ import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -37,9 +37,6 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	@Override
 	protected void buildRecipes(RecipeOutput recipeOutput) {
-		// TODO: remove test recipe
-		recipeOutput.accept(EternalStarlight.id("test_alloy"), new AlloyRecipe(NonNullList.of(ItemStack.EMPTY, ESItems.THERMAL_SPRINGSTONE_INGOT.get().getDefaultInstance(), ESItems.DIMSLAG.get().getDefaultInstance()), NonNullList.of(Ingredient.EMPTY, Ingredient.of(ESItems.DEEPSILVER_INGOT.get()), Ingredient.of(ESItems.STARCORE.get())), 100), null);
-
 		addWoodRecipes(recipeOutput);
 		addStoneRecipes(recipeOutput);
 		addStarcoreRecipes(recipeOutput);
@@ -546,6 +543,44 @@ public class ESRecipeProvider extends RecipeProvider {
 		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.WET_SPONGE), Items.SPONGE.getDefaultInstance(), 100, true)).save(recipeOutput, EternalStarlight.id("drying/sponge"));
 		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.KELP), Items.DRIED_KELP.getDefaultInstance(), 100, true)).save(recipeOutput, EternalStarlight.id("drying/dried_kelp"));
 		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.CLAY_BALL), Items.BRICK.getDefaultInstance(), 150, true)).save(recipeOutput, EternalStarlight.id("drying/brick"));
+
+		// alloy furnace
+		AlloyRecipeBuilder.alloy(Items.IRON_INGOT.getDefaultInstance(), 5, 800)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
+			.requires(Tags.Items.ORES_IRON, 4)
+			.requires(ESItems.SALTPETER_POWDER.get(), 2)
+			.unlockedBy(getHasName(Items.IRON_ORE), Tags.Items.ORES_IRON)
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("iron"));
+		AlloyRecipeBuilder.alloy(ESItems.DEEPSILVER_INGOT.get().getDefaultInstance(), 5, 800)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
+			.requires(ESConventionalTags.Items.ORES_DEEPSILVER, 4)
+			.requires(ESItems.SALTPETER_POWDER.get(), 2)
+			.unlockedBy(getHasName(ESItems.GRIMSTONE_DEEPSILVER_ORE.get()), ESConventionalTags.Items.ORES_DEEPSILVER)
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("deepsilver"));
+		AlloyRecipeBuilder.alloy(Items.COPPER_INGOT.getDefaultInstance(), 6, 800)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.requires(Tags.Items.ORES_COPPER, 5)
+			.requires(ESItems.STARCORE.get(), 2)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
+			.unlockedBy(getHasName(Items.COPPER_ORE), Tags.Items.ORES_COPPER)
+			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("copper"));
+		AlloyRecipeBuilder.alloy(Items.GOLD_INGOT.getDefaultInstance(), 6, 800)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.requires(Tags.Items.ORES_GOLD, 5)
+			.requires(ESItems.STARCORE.get(), 2)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
+			.unlockedBy(getHasName(Items.GOLD_ORE), Tags.Items.ORES_GOLD)
+			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("gold"));
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

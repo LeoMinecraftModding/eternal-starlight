@@ -62,13 +62,13 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-		return new ESPortalBlockEntity(blockPos, blockState);
+		return blockState.getValue(CENTER) ? new ESPortalBlockEntity(blockPos, blockState) : null;
 	}
 
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-		return createTickerHelper(blockEntityType, ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalBlockEntity::tick);
+		return blockState.getValue(CENTER) ? createTickerHelper(blockEntityType, ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalBlockEntity::tick) : null;
 	}
 
 	@Override
@@ -78,10 +78,7 @@ public class ESPortalBlock extends BaseEntityBlock implements Portal {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return switch (state.getValue(AXIS)) {
-			case Z -> Z_AABB;
-			default -> X_AABB;
-		};
+		return state.getValue(AXIS) == Direction.Axis.X ? X_AABB : Z_AABB;
 	}
 
 	@Override

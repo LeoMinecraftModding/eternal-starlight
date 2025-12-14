@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -36,7 +37,8 @@ public class ESTeleporter {
 			for (int z = pos.getZ() - 16; z <= pos.getZ() + 16; z++) {
 				for (int y = minHeight; y <= maxHeight; y++) {
 					blockPos.set(x, y, z);
-					if (border.isWithinBounds(blockPos) && level.getBlockState(blockPos).is(ESBlocks.STARLIGHT_PORTAL.get())) {
+					BlockState state = level.getBlockState(blockPos);
+					if (border.isWithinBounds(blockPos) && state.is(ESBlocks.STARLIGHT_PORTAL.get()) && state.getValue(ESPortalBlock.CENTER)) {
 						return Optional.of(blockPos);
 					}
 				}

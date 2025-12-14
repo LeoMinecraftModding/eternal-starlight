@@ -52,10 +52,16 @@ public class ESBlockUtil {
 	}
 
 	public static VoxelShape rotateVoxelShape(VoxelShape shape, Direction direction) {
+		return rotateVoxelShape(shape, 0, 0, direction);
+	}
+
+	public static VoxelShape rotateVoxelShape(VoxelShape shape, int xRotOffset, int yRotOffset, Direction direction) {
 		AtomicReference<VoxelShape> result = new AtomicReference<>(Shapes.empty());
 		shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
-			float rotX = (direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90) * Mth.DEG_TO_RAD;
-			float rotY = (((int) -direction.toYRot() + 180) % 360) * Mth.DEG_TO_RAD;
+			float rotX = (direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90) * Mth.DEG_TO_RAD
+				+ xRotOffset * Mth.DEG_TO_RAD;
+			float rotY = (-direction.toYRot() + 180) * Mth.DEG_TO_RAD
+				+ yRotOffset * Mth.DEG_TO_RAD;
 			Vec3 min = new Vec3(minX - 0.5, minY - 0.5, minZ - 0.5);
 			min = min.xRot(rotX).yRot(rotY);
 			Vec3 max = new Vec3(maxX - 0.5, maxY - 0.5, maxZ - 0.5);

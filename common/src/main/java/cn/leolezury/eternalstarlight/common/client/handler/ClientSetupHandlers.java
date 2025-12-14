@@ -454,6 +454,7 @@ public class ClientSetupHandlers {
 		BlockEntityRenderers.register(ESBlockEntities.BRUSHABLE_BLOCK.get(), BrushableBlockRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.ENERGY_TRANSMITTER.get(), EnergyTransmitterRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.MECHANICAL_SPAWNER.get(), MechanicalSpawnerRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.ALLOY_FURNACE.get(), AlloyFurnaceRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.SOLAR_EGG.get(), SolarEggRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
@@ -989,6 +990,7 @@ public class ClientSetupHandlers {
 		strategy.register(CrescentSpearModel.LAYER_LOCATION, CrescentSpearModel::createBodyLayer);
 
 		// block entities
+		strategy.register(AlloyFurnaceRenderer.AlloyFurnaceModel.LAYER_LOCATION, AlloyFurnaceRenderer.AlloyFurnaceModel::createLayer);
 		strategy.register(SolarEggRenderer.SolarEggModel.LAYER_LOCATION, SolarEggRenderer.SolarEggModel::createLayer);
 		strategy.register(LunarVineRenderer.VineModel.LAYER_LOCATION, LunarVineRenderer.VineModel::createLayer);
 		strategy.register(LunarVineRenderer.FlowerModel.LAYER_LOCATION, LunarVineRenderer.FlowerModel::createLayer);

@@ -13,7 +13,6 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
-// TODO: WIP
 public class AlloyFurnaceMenu extends AbstractContainerMenu {
 	public static final int INGREDIENT_SLOT_START = 0;
 	public static final int INGREDIENT_SLOT_END = 9; // excluded

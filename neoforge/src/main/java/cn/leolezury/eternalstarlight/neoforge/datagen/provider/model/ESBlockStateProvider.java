@@ -558,6 +558,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		directionalOnOffBlock(ESBlocks.ENERGY_TRANSMITTER.get(), EnergyTransmitterBlock.POWERED, models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get()).withSuffix("_on")), models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get())));
 		accumulator(ESBlocks.ACCUMULATOR.get());
 		mechanicalSpawner(ESBlocks.MECHANICAL_SPAWNER.get());
+		particleOnly(ESBlocks.ALLOY_FURNACE.get(), itemTextureFromBlock(ESBlocks.ALLOY_FURNACE.get()));
 		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
 
 		shadegrieve(ESBlocks.SHADEGRIEVE.get());
@@ -1451,11 +1452,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		getVariantBuilder(block).forAllStatesExcept(state ->
 			ConfiguredModel.builder()
 				.modelFile(models().orientableWithBottom(
-					name(ESBlocks.MECHANICAL_SPAWNER.get()) + "_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName(),
-					blockTexture(ESBlocks.MECHANICAL_SPAWNER.get()).withSuffix("_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName() + "_side"),
-					blockTexture(ESBlocks.MECHANICAL_SPAWNER.get()).withSuffix("_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName() + "_front"),
-					blockTexture(ESBlocks.MECHANICAL_SPAWNER.get()).withSuffix("_bottom"),
-					blockTexture(ESBlocks.MECHANICAL_SPAWNER.get()).withSuffix("_top")
+					name(block) + "_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName(),
+					blockTexture(block).withSuffix("_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName() + "_side"),
+					blockTexture(block).withSuffix("_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName() + "_front"),
+					blockTexture(block).withSuffix("_bottom"),
+					blockTexture(block).withSuffix("_top")
 				))
 				.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
 				.build(), MechanicalSpawnerBlock.POWER);

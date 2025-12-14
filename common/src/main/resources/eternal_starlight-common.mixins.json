@@ -46,6 +46,7 @@
   ],
   "client": [
     "client.CameraMixin",
+    "client.ClientLevelMixin",
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",

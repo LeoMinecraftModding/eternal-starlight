@@ -89,7 +89,7 @@ public class PoisonousCloud extends Entity implements TraceableEntity {
 				float angle = this.random.nextFloat() * (float) (Math.PI * 2);
 				float scale = Mth.sqrt(this.random.nextFloat()) * bbWidth;
 				double x = this.getX() + Mth.cos(angle) * scale;
-				double y = this.getY();
+				double y = this.getY() + this.random.nextFloat() * getBbHeight();
 				double z = this.getZ() + Mth.sin(angle) * scale;
 				this.level().addAlwaysVisibleParticle(ESSmokeParticleOptions.LUNAR_ATTACK, x, y, z, 0.0, 0.0, 0.0);
 			}

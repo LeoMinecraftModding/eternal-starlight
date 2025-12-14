@@ -30,7 +30,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: WIP
 public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private static final String TAG_LIT_TICKS = "lit_ticks";
 	private static final String TAG_TOTAL_LIT_TICKS = "total_lit_ticks";
@@ -41,7 +40,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private static final String TAG_TOTAL_COOLING_TICKS = "total_cooling_ticks";
 	private static final String TAG_COOLING_EFFICIENCY = "cooling_efficiency";
 
-	public static final int TOTAL_OVERHEAT_TICKS = 1600;
+	public static final int TOTAL_OVERHEAT_TICKS = 32000;
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -96,6 +95,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 
 	private NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
 	private int litTicks, totalLitTicks, burnTicks, totalBurnTicks, overheatTicks, coolingTicks, totalCoolingTicks, coolingEfficiency;
+	private int checkStructureTicks;
 
 	public AlloyFurnaceBlockEntity(BlockPos pos, BlockState state) {
 		super(ESBlockEntities.ALLOY_FURNACE.get(), pos, state);
@@ -126,7 +126,6 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 					entity.totalLitTicks = ESPlatform.INSTANCE.getBurnTime(fuel, ESRecipes.ALLOY.get());
 					entity.litTicks = entity.totalLitTicks;
 					fuel.shrink(1);
-					// TODO: wtf is this plz test it out
 					if (ESPlatform.INSTANCE.hasCraftingRemainingItem(fuel)) {
 						ESPlatform.INSTANCE.getCraftingRemainingItem(fuel).ifPresent(remaining -> {
 							if (fuel.isEmpty() || ItemStack.isSameItemSameComponents(fuel, remaining)) {
@@ -150,7 +149,6 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 					entity.coolingTicks = entity.totalCoolingTicks;
 					entity.coolingEfficiency = AlloyFurnaceBlock.getCoolEfficiency(coolingItem.getItem());
 					coolingItem.shrink(1);
-					// TODO: wtf is this plz test it out
 					if (ESPlatform.INSTANCE.hasCraftingRemainingItem(coolingItem)) {
 						ESPlatform.INSTANCE.getCraftingRemainingItem(coolingItem).ifPresent(remaining -> {
 							if (coolingItem.isEmpty() || ItemStack.isSameItemSameComponents(coolingItem, remaining)) {
@@ -179,7 +177,8 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 			if (entity.canBurn() && entity.burnTicks == entity.totalBurnTicks && recipeHolder != null) {
 				AlloyRecipe recipe = recipeHolder.value();
 				for (int i = 0; i < Math.min(recipe.results().size(), 3); i++) {
-					ItemStack stack = recipe.results().get(i);
+					AlloyRecipe.Result result = recipe.results().get(i);
+					ItemStack stack = result.getResultItem(level.getRandom());
 					if (stack.isEmpty()) {
 						break;
 					} else {
@@ -217,6 +216,11 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 			if (changed) {
 				entity.setChanged();
 			}
+			entity.checkStructureTicks++;
+			if (entity.checkStructureTicks > 20 && state.getBlock() instanceof AlloyFurnaceBlock block) {
+				block.checkStructure(level, pos);
+				entity.checkStructureTicks = 0;
+			}
 		}
 	}
 
@@ -232,7 +236,8 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		if (getIngredientItems().stream().anyMatch(stack -> !stack.isEmpty()) && recipeHolder.isPresent()) {
 			AlloyRecipe recipe = recipeHolder.get().value();
 			for (int i = 0; i < Math.min(recipe.results().size(), 3); i++) {
-				ItemStack stack = recipe.results().get(i);
+				AlloyRecipe.Result result = recipe.results().get(i);
+				ItemStack stack = result.getMaxResultItem();
 				if (stack.isEmpty()) {
 					return false;
 				} else {

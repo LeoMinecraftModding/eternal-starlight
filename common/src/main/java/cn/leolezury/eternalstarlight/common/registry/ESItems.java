@@ -33,6 +33,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.material.Fluids;
 
@@ -988,7 +989,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> HAZE_ICE_REDSTONE_ORE = registerItem("haze_ice_redstone_ore", () -> new BlockItem(ESBlocks.HAZE_ICE_REDSTONE_ORE.get(), new Item.Properties()));
 
 	// mob stuff
-	public static final RegistryObject<Item, Item> ROOKFISH_BUCKET = registerItem("rookfish_bucket", () -> new MobBucketItem(ESEntities.ROOKFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> ROOKFISH_BUCKET = registerItem("rookfish_bucket", () -> new MobBucketItem(ESEntities.ROOKFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 	public static final RegistryObject<Item, Item> ROOKFISH = registerItem("rookfish", () -> new Item(new Item.Properties().food(ESFoods.ROOKFISH.get())));
 	public static final RegistryObject<Item, Item> COOKED_ROOKFISH = registerItem("cooked_rookfish", () -> new Item(new Item.Properties().food(ESFoods.COOKED_ROOKFISH.get())));
 	public static final RegistryObject<Item, Item> ROOKFISH_SKEWER = registerItem("rookfish_skewer", () -> new Item(new Item.Properties().food(ESFoods.ROOKFISH_SKEWER.get())));
@@ -999,10 +1000,10 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> AIR_SAC_BOOTS = registerItem("air_sac_boots",
 		() -> new AirSacArmorItem(ESArmorMaterials.AIR_SAC.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))));
 
-	public static final RegistryObject<Item, Item> LUMINOFISH_BUCKET = registerItem("luminofish_bucket", () -> new MobBucketItem(ESEntities.LUMINOFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> LUMINOFISH_BUCKET = registerItem("luminofish_bucket", () -> new MobBucketItem(ESEntities.LUMINOFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 	public static final RegistryObject<Item, Item> LUMINOFISH = registerItem("luminofish", () -> new Item(new Item.Properties().food(ESFoods.LUMINOFISH.get())));
 	public static final RegistryObject<Item, Item> COOKED_LUMINOFISH = registerItem("cooked_luminofish", () -> new Item(new Item.Properties().food(ESFoods.COOKED_LUMINOFISH.get())));
-	public static final RegistryObject<Item, Item> LUMINARIS_BUCKET = registerItem("luminaris_bucket", () -> new MobBucketItem(ESEntities.LUMINARIS.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> LUMINARIS_BUCKET = registerItem("luminaris_bucket", () -> new MobBucketItem(ESEntities.LUMINARIS.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 	public static final RegistryObject<Item, Item> LUMINARIS = registerItem("luminaris", () -> new Item(new Item.Properties().food(ESFoods.LUMINARIS.get())));
 	public static final RegistryObject<Item, Item> COOKED_LUMINARIS = registerItem("cooked_luminaris", () -> new Item(new Item.Properties().food(ESFoods.COOKED_LUMINARIS.get())));
 

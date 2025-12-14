@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-06T19:56:58.8814365	Item Models: eternal_starlight
+// 1.21.1	2025-12-14T14:00:02.4809342	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -41,6 +41,7 @@ ad13c23b754c73593c343b8dd57038bccb85d3c8 assets/eternal_starlight/models/item/ai
 2b3ff88d94a100e861ad32809d5e44542805344e assets/eternal_starlight/models/item/alchemist_mask.json
 1ac60f816f63567305302ea6bac47ed311ee4036 assets/eternal_starlight/models/item/alchemist_robe.json
 977eed562aeacf6cdca6b5f5edc032ea87bf3dca assets/eternal_starlight/models/item/algaleaves.json
+7f73d50011e9736d36c490bf6d78dbd4a63ec9f3 assets/eternal_starlight/models/item/alloy_furnace.json
 2c046baa4b0fe2767dd5d1fd022636fbeeaa6649 assets/eternal_starlight/models/item/amaramber_arrow.json
 e107cb9d3d7836bd5c199f7cfb90da7d594eb2f3 assets/eternal_starlight/models/item/amaramber_axe.json
 548d6a7184823b4b0278437283503bd1d116fd5b assets/eternal_starlight/models/item/amaramber_bricks.json

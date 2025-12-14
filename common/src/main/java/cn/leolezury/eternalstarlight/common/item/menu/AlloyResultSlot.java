@@ -52,34 +52,5 @@ public class AlloyResultSlot extends Slot {
 	public void onTake(Player player, ItemStack stack) {
 		super.onTake(player, stack);
 		this.checkTakeAchievements(stack);
-		// TODO: WIP
-        /*CraftingInput.Positioned positionedCraftInput = this.craftSlots.asPositionedCraftInput();
-        CraftingInput craftingInput = positionedCraftInput.input();
-        int left = positionedCraftInput.left();
-        int top = positionedCraftInput.top();
-        NonNullList<ItemStack> remains = player.level().getRecipeManager().getRemainingItemsFor(ESRecipes.ALLOY.get(), craftingInput, player.level());
-
-        for (int y = 0; y < craftingInput.height(); y++) {
-            for (int x = 0; x < craftingInput.width(); x++) {
-                int index = x + left + (y + top) * this.craftSlots.getWidth();
-                ItemStack craftItem = this.craftSlots.getItem(index);
-                ItemStack remainingItem = remains.get(x + y * craftingInput.width());
-                if (!craftItem.isEmpty()) {
-                    this.craftSlots.removeItem(index, 1);
-                    craftItem = this.craftSlots.getItem(index);
-                }
-
-                if (!remainingItem.isEmpty()) {
-                    if (craftItem.isEmpty()) {
-                        this.craftSlots.setItem(index, remainingItem);
-                    } else if (ItemStack.isSameItemSameComponents(craftItem, remainingItem)) {
-                        remainingItem.grow(craftItem.getCount());
-                        this.craftSlots.setItem(index, remainingItem);
-                    } else if (!this.player.getInventory().add(remainingItem)) {
-                        this.player.drop(remainingItem, false);
-                    }
-                }
-            }
-        }*/
 	}
 }

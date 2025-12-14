@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.recipe;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipeSerializers;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import com.mojang.serialization.Codec;
@@ -10,14 +11,17 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-// TODO: WIP
-public record AlloyRecipe(NonNullList<ItemStack> results, NonNullList<Ingredient> ingredients, int burnTime) implements Recipe<CraftingInput> {
+public record AlloyRecipe(NonNullList<Result> results, NonNullList<Ingredient> ingredients, int burnTime) implements Recipe<CraftingInput> {
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return ESRecipeSerializers.ALLOY.get();
@@ -38,8 +42,13 @@ public record AlloyRecipe(NonNullList<ItemStack> results, NonNullList<Ingredient
 	}
 
 	@Override
+	public ItemStack getToastSymbol() {
+		return ESItems.ALLOY_FURNACE.get().getDefaultInstance();
+	}
+
+	@Override
 	public ItemStack getResultItem(HolderLookup.Provider provider) {
-		return this.results.getFirst();
+		return this.results.getFirst().item();
 	}
 
 	@Override
@@ -58,7 +67,7 @@ public record AlloyRecipe(NonNullList<ItemStack> results, NonNullList<Ingredient
 
 	@Override
 	public ItemStack assemble(CraftingInput craftingInput, HolderLookup.Provider provider) {
-		return this.results.getFirst().copy();
+		return this.results.getFirst().item().copy();
 	}
 
 	@Override
@@ -66,14 +75,35 @@ public record AlloyRecipe(NonNullList<ItemStack> results, NonNullList<Ingredient
 		return i * j >= this.ingredients.size();
 	}
 
+	public record Result(ItemStack item, IntProvider amount) {
+		public static final Codec<Result> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ItemStack.STRICT_CODEC.fieldOf("item").forGetter(Result::item),
+			IntProvider.NON_NEGATIVE_CODEC.fieldOf("amount").forGetter(Result::amount)
+		).apply(instance, Result::new));
+
+		public static final StreamCodec<? super RegistryFriendlyByteBuf, Result> STREAM_CODEC = StreamCodec.composite(
+			ItemStack.STREAM_CODEC, Result::item,
+			ByteBufCodecs.fromCodec(IntProvider.NON_NEGATIVE_CODEC), Result::amount,
+			Result::new
+		);
+
+		public ItemStack getResultItem(RandomSource random) {
+			return item().copyWithCount(amount().sample(random));
+		}
+
+		public ItemStack getMaxResultItem() {
+			return item().copyWithCount(amount().getMaxValue());
+		}
+	}
+
 	public static class Serializer implements RecipeSerializer<AlloyRecipe> {
 		private static final MapCodec<AlloyRecipe> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-			ItemStack.STRICT_CODEC.listOf().fieldOf("results").flatXmap((list) -> {
-				ItemStack[] stacks = list.stream().filter((stack) -> !stack.isEmpty()).toArray(ItemStack[]::new);
-				if (stacks.length == 0) {
+			Result.CODEC.listOf().fieldOf("results").flatXmap((list) -> {
+				Result[] items = list.stream().filter((stack) -> !stack.item().isEmpty()).toArray(Result[]::new);
+				if (items.length == 0) {
 					return DataResult.error(() -> "No result for alloy recipe");
 				} else {
-					return stacks.length > 3 ? DataResult.error(() -> "Too many results for alloy recipe") : DataResult.success(NonNullList.of(ItemStack.EMPTY, stacks));
+					return items.length > 3 ? DataResult.error(() -> "Too many results for alloy recipe") : DataResult.success(NonNullList.of(new Result(ItemStack.EMPTY, ConstantInt.of(0)), items));
 				}
 			}, DataResult::success).forGetter(AlloyRecipe::results),
 			Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap((list) -> {
@@ -100,8 +130,8 @@ public record AlloyRecipe(NonNullList<ItemStack> results, NonNullList<Ingredient
 
 		private static AlloyRecipe fromNetwork(RegistryFriendlyByteBuf byteBuf) {
 			int resultSize = byteBuf.readVarInt();
-			NonNullList<ItemStack> results = NonNullList.withSize(resultSize, ItemStack.EMPTY);
-			results.replaceAll(stack -> ItemStack.STREAM_CODEC.decode(byteBuf));
+			NonNullList<Result> results = NonNullList.withSize(resultSize, new Result(ItemStack.EMPTY, ConstantInt.of(1)));
+			results.replaceAll(result -> Result.STREAM_CODEC.decode(byteBuf));
 			int ingredientSize = byteBuf.readVarInt();
 			NonNullList<Ingredient> ingredients = NonNullList.withSize(ingredientSize, Ingredient.EMPTY);
 			ingredients.replaceAll(ingredient -> Ingredient.CONTENTS_STREAM_CODEC.decode(byteBuf));
@@ -111,8 +141,8 @@ public record AlloyRecipe(NonNullList<ItemStack> results, NonNullList<Ingredient
 
 		private static void toNetwork(RegistryFriendlyByteBuf byteBuf, AlloyRecipe alloyRecipe) {
 			byteBuf.writeVarInt(alloyRecipe.results.size());
-			for (ItemStack result : alloyRecipe.results) {
-				ItemStack.STREAM_CODEC.encode(byteBuf, result);
+			for (Result result : alloyRecipe.results) {
+				Result.STREAM_CODEC.encode(byteBuf, result);
 			}
 			byteBuf.writeVarInt(alloyRecipe.ingredients.size());
 			for (Ingredient ingredient : alloyRecipe.ingredients) {

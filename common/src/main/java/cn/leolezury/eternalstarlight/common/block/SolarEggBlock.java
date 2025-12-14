@@ -1,7 +1,9 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.block.entity.SolarEggBlockEntity;
+import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -14,19 +16,36 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SolarEggBlock extends BaseEntityBlock {
 	public static final MapCodec<SolarEggBlock> CODEC = simpleCodec(SolarEggBlock::new);
 	public static final IntegerProperty X_OFFSET = IntegerProperty.create("x_offset", 0, 2);
 	public static final IntegerProperty Y_OFFSET = IntegerProperty.create("y_offset", 0, 2);
 	public static final IntegerProperty Z_OFFSET = IntegerProperty.create("z_offset", 0, 2);
+	private static final Map<Triple<Integer, Integer, Integer>, VoxelShape> SHAPES = Util.make(() -> {
+		Map<Triple<Integer, Integer, Integer>, VoxelShape> map = new HashMap<>();
+		for (int x = 0; x <= 2; x++) {
+			for (int z = 0; z <= 2; z++) {
+				for (int y = 0; y <= 2; y++) {
+					map.put(Triple.of(x, y, z), Block.box(Math.max(0.0, 1.0 - x), 0.0, Math.max(0.0, 1.0 - z), Math.min(16.0, 17.0 - x), y == 2 ? 14.0 : 16.0, Math.min(16.0, 17.0 - z)));
+				}
+			}
+		}
+		return map;
+	});
 
 	public SolarEggBlock(Properties properties) {
 		super(properties);
@@ -83,7 +102,7 @@ public class SolarEggBlock extends BaseEntityBlock {
 				for (int z = -1; z <= 1; z++) {
 					for (int y = 0; y <= 2; y++) {
 						if (level.getBlockState(pos.offset(x, y, z)).is(this) && !(x == 0 && y == 0 && z == 0)) {
-							level.destroyBlock(pos.offset(x, y, z), true);
+							level.destroyBlock(pos.offset(x, y, z), false);
 						}
 					}
 				}
@@ -94,7 +113,7 @@ public class SolarEggBlock extends BaseEntityBlock {
 		super.onRemove(state, level, pos, newState, movedByPiston);
 	}
 
-	private void checkStructure(LevelAccessor level, BlockPos pos) {
+	public void checkStructure(LevelAccessor level, BlockPos pos) {
 		BlockState state = level.getBlockState(pos);
 		if (state.is(this) && state.getValue(X_OFFSET) == 1 && state.getValue(Y_OFFSET) == 0 && state.getValue(Z_OFFSET) == 1) {
 			for (int x = -1; x <= 1; x++) {
@@ -102,7 +121,7 @@ public class SolarEggBlock extends BaseEntityBlock {
 					for (int y = 0; y <= 2; y++) {
 						BlockState partState = level.getBlockState(pos.offset(x, y, z));
 						if (!(partState.is(this) && partState.getValue(X_OFFSET) == x + 1 && partState.getValue(Y_OFFSET) == y && partState.getValue(Z_OFFSET) == z + 1)) {
-							level.destroyBlock(pos, true);
+							level.destroyBlock(pos, false);
 							return;
 						}
 					}
@@ -113,7 +132,7 @@ public class SolarEggBlock extends BaseEntityBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return Block.box(Math.max(0.0, 1.0 - state.getValue(X_OFFSET)), 0.0, Math.max(0.0, 1.0 - state.getValue(Z_OFFSET)), Math.min(16.0, 17.0 - state.getValue(X_OFFSET)), state.getValue(Y_OFFSET) == 2 ? 14.0 : 16.0, Math.min(16.0, 17.0 - state.getValue(Z_OFFSET)));
+		return SHAPES.getOrDefault(Triple.of(state.getValue(X_OFFSET), state.getValue(Y_OFFSET), state.getValue(Z_OFFSET)), Shapes.block());
 	}
 
 	@Override
@@ -129,6 +148,12 @@ public class SolarEggBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new SolarEggBlockEntity(pos, state);
+		return state.getValue(X_OFFSET) == 1 && state.getValue(Y_OFFSET) == 0 && state.getValue(Z_OFFSET) == 1 ? new SolarEggBlockEntity(pos, state) : null;
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+		return blockState.getValue(X_OFFSET) == 1 && blockState.getValue(Y_OFFSET) == 0 && blockState.getValue(Z_OFFSET) == 1 ? createTickerHelper(blockEntityType, ESBlockEntities.SOLAR_EGG.get(), SolarEggBlockEntity::tick) : null;
 	}
 }
