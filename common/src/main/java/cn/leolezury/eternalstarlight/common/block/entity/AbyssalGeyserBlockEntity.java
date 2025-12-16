@@ -60,6 +60,8 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
 							level.addFreshEntity(outputEntity);
 						});
 					}
+					entity.ticksSinceLastErupt = 0;
+					entity.setChanged();
 				}
 			}
 		}

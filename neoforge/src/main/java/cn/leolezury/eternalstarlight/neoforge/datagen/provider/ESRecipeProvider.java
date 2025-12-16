@@ -545,42 +545,79 @@ public class ESRecipeProvider extends RecipeProvider {
 		SpecialRecipeBuilder.special(category -> new DryingRecipe(Ingredient.of(Items.CLAY_BALL), Items.BRICK.getDefaultInstance(), 150, true)).save(recipeOutput, EternalStarlight.id("drying/brick"));
 
 		// alloy furnace
-		AlloyRecipeBuilder.alloy(Items.IRON_INGOT.getDefaultInstance(), 5, 800)
+		AlloyRecipeBuilder.alloy(Items.IRON_INGOT.getDefaultInstance(), 2, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
-			.requires(Tags.Items.ORES_IRON, 4)
-			.requires(ESItems.SALTPETER_POWDER.get(), 2)
+			.requires(Tags.Items.ORES_IRON, 1)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(Items.IRON_ORE), Tags.Items.ORES_IRON)
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("iron"));
-		AlloyRecipeBuilder.alloy(ESItems.DEEPSILVER_INGOT.get().getDefaultInstance(), 5, 800)
+			.save(recipeOutput, EternalStarlight.id("iron_from_ores"));
+		AlloyRecipeBuilder.alloy(ESItems.DEEPSILVER_INGOT.get().getDefaultInstance(), 2, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
-			.requires(ESConventionalTags.Items.ORES_DEEPSILVER, 4)
-			.requires(ESItems.SALTPETER_POWDER.get(), 2)
+			.requires(ESConventionalTags.Items.ORES_DEEPSILVER, 1)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(ESItems.GRIMSTONE_DEEPSILVER_ORE.get()), ESConventionalTags.Items.ORES_DEEPSILVER)
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("deepsilver"));
-		AlloyRecipeBuilder.alloy(Items.COPPER_INGOT.getDefaultInstance(), 6, 800)
+			.save(recipeOutput, EternalStarlight.id("deepsilver_from_ores"));
+		AlloyRecipeBuilder.alloy(Items.COPPER_INGOT.getDefaultInstance(), 3, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
-			.requires(Tags.Items.ORES_COPPER, 5)
-			.requires(ESItems.STARCORE.get(), 2)
+			.requires(Tags.Items.ORES_COPPER, 2)
+			.requires(ESItems.STARCORE.get(), 1)
 			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(Items.COPPER_ORE), Tags.Items.ORES_COPPER)
 			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("copper"));
-		AlloyRecipeBuilder.alloy(Items.GOLD_INGOT.getDefaultInstance(), 6, 800)
+			.save(recipeOutput, EternalStarlight.id("copper_from_ores"));
+		AlloyRecipeBuilder.alloy(Items.GOLD_INGOT.getDefaultInstance(), 3, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
-			.requires(Tags.Items.ORES_GOLD, 5)
-			.requires(ESItems.STARCORE.get(), 2)
+			.requires(Tags.Items.ORES_GOLD, 2)
+			.requires(ESItems.STARCORE.get(), 1)
 			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(Items.GOLD_ORE), Tags.Items.ORES_GOLD)
 			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("gold"));
+			.save(recipeOutput, EternalStarlight.id("gold_from_ores"));
+
+		AlloyRecipeBuilder.alloy(Items.IRON_INGOT.getDefaultInstance(), 3, 400)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
+			.requires(Tags.Items.RAW_MATERIALS_IRON, 2)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
+			.unlockedBy(getHasName(Items.IRON_ORE), Tags.Items.RAW_MATERIALS_IRON)
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("iron_from_raw_materials"));
+		AlloyRecipeBuilder.alloy(ESItems.DEEPSILVER_INGOT.get().getDefaultInstance(), 3, 400)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
+			.requires(ESConventionalTags.Items.RAW_MATERIALS_DEEPSILVER, 2)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
+			.unlockedBy(getHasName(ESItems.GRIMSTONE_DEEPSILVER_ORE.get()), ESConventionalTags.Items.RAW_MATERIALS_DEEPSILVER)
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("deepsilver_from_raw_materials"));
+		AlloyRecipeBuilder.alloy(Items.COPPER_INGOT.getDefaultInstance(), 4, 400)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.requires(Tags.Items.RAW_MATERIALS_COPPER, 3)
+			.requires(ESItems.STARCORE.get(), 1)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
+			.unlockedBy(getHasName(Items.COPPER_ORE), Tags.Items.RAW_MATERIALS_COPPER)
+			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("copper_from_raw_materials"));
+		AlloyRecipeBuilder.alloy(Items.GOLD_INGOT.getDefaultInstance(), 4, 400)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.requires(Tags.Items.RAW_MATERIALS_GOLD, 3)
+			.requires(ESItems.STARCORE.get(), 1)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
+			.unlockedBy(getHasName(Items.GOLD_ORE), Tags.Items.RAW_MATERIALS_GOLD)
+			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("gold_from_raw_materials"));
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

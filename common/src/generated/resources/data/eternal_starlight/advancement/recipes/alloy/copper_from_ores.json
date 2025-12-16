@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_gold_ore": {
+    "has_copper_ore": {
       "conditions": {
         "items": [
           {
-            "items": "#c:ores/gold"
+            "items": "#c:ores/copper"
           },
           {
             "items": "eternal_starlight:alloy_furnace"
@@ -42,7 +42,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "eternal_starlight:gold"
+        "recipe": "eternal_starlight:copper_from_ores"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -50,14 +50,14 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_gold_ore",
+      "has_copper_ore",
       "has_starcore",
       "has_saltpeter_powder"
     ]
   ],
   "rewards": {
     "recipes": [
-      "eternal_starlight:gold"
+      "eternal_starlight:copper_from_ores"
     ]
   }
 }

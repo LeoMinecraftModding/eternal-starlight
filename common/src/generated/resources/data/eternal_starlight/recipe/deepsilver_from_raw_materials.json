@@ -1,21 +1,12 @@
 {
   "type": "eternal_starlight:alloy",
-  "burn_time": 800,
+  "burn_time": 400,
   "ingredients": [
     {
-      "tag": "c:ores/iron"
+      "tag": "c:raw_materials/deepsilver"
     },
     {
-      "tag": "c:ores/iron"
-    },
-    {
-      "tag": "c:ores/iron"
-    },
-    {
-      "tag": "c:ores/iron"
-    },
-    {
-      "item": "eternal_starlight:saltpeter_powder"
+      "tag": "c:raw_materials/deepsilver"
     },
     {
       "item": "eternal_starlight:saltpeter_powder"
@@ -23,10 +14,10 @@
   ],
   "results": [
     {
-      "amount": 5,
+      "amount": 3,
       "item": {
         "count": 1,
-        "id": "minecraft:iron_ingot"
+        "id": "eternal_starlight:deepsilver_ingot"
       }
     },
     {

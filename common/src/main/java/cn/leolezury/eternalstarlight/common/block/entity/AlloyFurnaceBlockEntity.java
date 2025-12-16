@@ -12,6 +12,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
@@ -26,6 +29,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +44,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private static final String TAG_TOTAL_COOLING_TICKS = "total_cooling_ticks";
 	private static final String TAG_COOLING_EFFICIENCY = "cooling_efficiency";
 
-	public static final int TOTAL_OVERHEAT_TICKS = 32000;
+	public static final int TOTAL_OVERHEAT_TICKS = 6000;
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -102,8 +106,13 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		this.quickCheck = RecipeManager.createCheck(ESRecipes.ALLOY.get());
 	}
 
+	public boolean isLit() {
+		return this.litTicks > 0;
+	}
+
 	public static void tick(Level level, BlockPos pos, BlockState state, AlloyFurnaceBlockEntity entity) {
 		if (!level.isClientSide) {
+			boolean oldLit = entity.litTicks > 0;
 			boolean changed = false;
 			if (entity.litTicks > 0) {
 				entity.litTicks--;
@@ -212,6 +221,11 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 					}
 				}
 				entity.burnTicks = 0;
+				changed = true;
+			}
+			if ((entity.litTicks > 0) != oldLit) {
+				level.sendBlockUpdated(pos, state, state, 3);
+				changed = true;
 			}
 			if (changed) {
 				entity.setChanged();
@@ -319,6 +333,18 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		compoundTag.putShort(TAG_COOLING_TICKS, (short) this.coolingTicks);
 		compoundTag.putShort(TAG_TOTAL_COOLING_TICKS, (short) this.totalCoolingTicks);
 		compoundTag.putShort(TAG_COOLING_EFFICIENCY, (short) this.coolingEfficiency);
+	}
+
+
+	@Nullable
+	@Override
+	public Packet<ClientGamePacketListener> getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this);
+	}
+
+	@Override
+	public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+		return saveCustomOnly(provider);
 	}
 
 	@Override

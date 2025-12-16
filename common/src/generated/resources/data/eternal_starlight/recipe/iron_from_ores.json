@@ -1,27 +1,9 @@
 {
   "type": "eternal_starlight:alloy",
-  "burn_time": 800,
+  "burn_time": 400,
   "ingredients": [
     {
-      "tag": "c:ores/copper"
-    },
-    {
-      "tag": "c:ores/copper"
-    },
-    {
-      "tag": "c:ores/copper"
-    },
-    {
-      "tag": "c:ores/copper"
-    },
-    {
-      "tag": "c:ores/copper"
-    },
-    {
-      "item": "eternal_starlight:starcore"
-    },
-    {
-      "item": "eternal_starlight:starcore"
+      "tag": "c:ores/iron"
     },
     {
       "item": "eternal_starlight:saltpeter_powder"
@@ -29,16 +11,16 @@
   ],
   "results": [
     {
-      "amount": 6,
+      "amount": 2,
       "item": {
         "count": 1,
-        "id": "minecraft:copper_ingot"
+        "id": "minecraft:iron_ingot"
       }
     },
     {
       "amount": {
         "type": "minecraft:uniform",
-        "max_inclusive": 3,
+        "max_inclusive": 2,
         "min_inclusive": 0
       },
       "item": {
@@ -49,7 +31,7 @@
     {
       "amount": {
         "type": "minecraft:uniform",
-        "max_inclusive": 3,
+        "max_inclusive": 2,
         "min_inclusive": 0
       },
       "item": {

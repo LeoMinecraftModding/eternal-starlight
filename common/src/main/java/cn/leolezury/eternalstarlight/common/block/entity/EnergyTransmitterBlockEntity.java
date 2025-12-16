@@ -39,6 +39,7 @@ public class EnergyTransmitterBlockEntity extends BlockEntity {
 
 	public void setOutputOffset(Vec3i outputOffset) {
 		this.outputOffset = outputOffset;
+		setChanged();
 	}
 
 	public EnergyTransmitterBlockEntity(BlockPos blockPos, BlockState blockState) {

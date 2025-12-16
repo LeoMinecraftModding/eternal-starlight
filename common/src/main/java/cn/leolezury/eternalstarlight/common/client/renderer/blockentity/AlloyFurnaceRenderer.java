@@ -13,6 +13,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -26,6 +27,7 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 	private final AlloyFurnaceModel furnaceModel;
 
 	private static final ResourceLocation FURNACE_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace.png");
+	private static final ResourceLocation LIT_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace_lit.png");
 
 	public AlloyFurnaceRenderer(BlockEntityRendererProvider.Context context) {
 		this.furnaceModel = new AlloyFurnaceModel(context.bakeLayer(AlloyFurnaceModel.LAYER_LOCATION));
@@ -40,6 +42,9 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 			stack.translate(-0.5F, -1.5F, 0.5F);
 			stack.mulPose(Axis.YP.rotationDegrees(blockEntity.getBlockState().getValue(AlloyFurnaceBlock.FACING).toYRot() + 180));
 			this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityTranslucent(FURNACE_TEXTURE)), light, overlay);
+			if (blockEntity.isLit()) {
+				this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(LIT_TEXTURE)), LightTexture.FULL_BRIGHT, overlay);
+			}
 			stack.popPose();
 		}
 	}

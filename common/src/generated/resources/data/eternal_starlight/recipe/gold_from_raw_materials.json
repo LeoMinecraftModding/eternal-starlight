@@ -1,21 +1,18 @@
 {
   "type": "eternal_starlight:alloy",
-  "burn_time": 800,
+  "burn_time": 400,
   "ingredients": [
     {
-      "tag": "c:ores/deepsilver"
+      "tag": "c:raw_materials/gold"
     },
     {
-      "tag": "c:ores/deepsilver"
+      "tag": "c:raw_materials/gold"
     },
     {
-      "tag": "c:ores/deepsilver"
+      "tag": "c:raw_materials/gold"
     },
     {
-      "tag": "c:ores/deepsilver"
-    },
-    {
-      "item": "eternal_starlight:saltpeter_powder"
+      "item": "eternal_starlight:starcore"
     },
     {
       "item": "eternal_starlight:saltpeter_powder"
@@ -23,16 +20,16 @@
   ],
   "results": [
     {
-      "amount": 5,
+      "amount": 4,
       "item": {
         "count": 1,
-        "id": "eternal_starlight:deepsilver_ingot"
+        "id": "minecraft:gold_ingot"
       }
     },
     {
       "amount": {
         "type": "minecraft:uniform",
-        "max_inclusive": 2,
+        "max_inclusive": 3,
         "min_inclusive": 0
       },
       "item": {
@@ -43,7 +40,7 @@
     {
       "amount": {
         "type": "minecraft:uniform",
-        "max_inclusive": 2,
+        "max_inclusive": 3,
         "min_inclusive": 0
       },
       "item": {
