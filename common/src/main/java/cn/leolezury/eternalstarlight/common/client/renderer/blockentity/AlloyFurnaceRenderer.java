@@ -19,15 +19,27 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlockEntity> {
 	private final AlloyFurnaceModel furnaceModel;
 
-	private static final ResourceLocation FURNACE_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace.png");
-	private static final ResourceLocation LIT_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace_lit.png");
+	private static final ResourceLocation FURNACE_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace.png");
+	private static final List<ResourceLocation> LIT_TEXTURES = List.of(
+		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_lit_0.png"),
+		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_lit_1.png"),
+		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_lit_2.png")
+	);
+	private static final List<ResourceLocation> FAN_TEXTURES = List.of(
+		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_fan_0.png"),
+		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_fan_1.png")
+	);
 
 	public AlloyFurnaceRenderer(BlockEntityRendererProvider.Context context) {
 		this.furnaceModel = new AlloyFurnaceModel(context.bakeLayer(AlloyFurnaceModel.LAYER_LOCATION));
@@ -40,10 +52,19 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 			stack.pushPose();
 			stack.scale(-1.0F, -1.0F, 1.0F);
 			stack.translate(-0.5F, -1.5F, 0.5F);
+			float overheatAmplitude = Mth.lerp(partialTicks, blockEntity.oldClientOverheatAmplitude, blockEntity.clientOverheatAmplitude);
+			float animationTicks = Mth.lerp(partialTicks, blockEntity.oldClientAnimationTicks, blockEntity.clientAnimationTicks);
 			stack.mulPose(Axis.YP.rotationDegrees(blockEntity.getBlockState().getValue(AlloyFurnaceBlock.FACING).toYRot() + 180));
-			this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityTranslucent(FURNACE_TEXTURE)), light, overlay);
+			int lightWithOverheat = light;
+			if (overheatAmplitude > 0) {
+				lightWithOverheat = LightTexture.pack(Mth.ceil(Mth.lerp(overheatAmplitude, LightTexture.block(light), 15)), Mth.ceil(Mth.lerp(overheatAmplitude, LightTexture.sky(light), 15)));
+				stack.scale(1 + (float) Math.cos(animationTicks * 3.25) * overheatAmplitude * 0.02f, 1 + (float) Math.cos(animationTicks * 2.25) * overheatAmplitude * 0.02f, 1 + (float) Math.cos(animationTicks * 3.25) * overheatAmplitude * 0.02f);
+			}
+			int overheatColor = FastColor.ARGB32.lerp(overheatAmplitude, -1, 0xffee7044);
+			this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityTranslucent(FURNACE_TEXTURE)), lightWithOverheat, overlay, overheatColor);
+			this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(FAN_TEXTURES.get((blockEntity.isCooling() ? blockEntity.clientAnimationTicks / 2 : 0) % FAN_TEXTURES.size()))), lightWithOverheat, overlay);
 			if (blockEntity.isLit()) {
-				this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(LIT_TEXTURE)), LightTexture.FULL_BRIGHT, overlay);
+				this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(LIT_TEXTURES.get((blockEntity.clientAnimationTicks / 2) % LIT_TEXTURES.size()))), LightTexture.FULL_BRIGHT, overlay);
 			}
 			stack.popPose();
 		}

@@ -45,6 +45,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private static final String TAG_COOLING_EFFICIENCY = "cooling_efficiency";
 
 	public static final int TOTAL_OVERHEAT_TICKS = 6000;
+	public static final int OVERHEAT_ANIMATION_THRESHOLD = 5000;
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -100,6 +101,8 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
 	private int litTicks, totalLitTicks, burnTicks, totalBurnTicks, overheatTicks, coolingTicks, totalCoolingTicks, coolingEfficiency;
 	private int checkStructureTicks;
+	public float oldClientOverheatAmplitude, clientOverheatAmplitude;
+	public int oldClientAnimationTicks, clientAnimationTicks;
 
 	public AlloyFurnaceBlockEntity(BlockPos pos, BlockState state) {
 		super(ESBlockEntities.ALLOY_FURNACE.get(), pos, state);
@@ -110,9 +113,15 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		return this.litTicks > 0;
 	}
 
+	public boolean isCooling() {
+		return this.coolingTicks > 0;
+	}
+
 	public static void tick(Level level, BlockPos pos, BlockState state, AlloyFurnaceBlockEntity entity) {
 		if (!level.isClientSide) {
 			boolean oldLit = entity.litTicks > 0;
+			boolean oldCooling = entity.coolingTicks > 0;
+			boolean oldShowOverheatAnimation = entity.overheatTicks >= OVERHEAT_ANIMATION_THRESHOLD;
 			boolean changed = false;
 			if (entity.litTicks > 0) {
 				entity.litTicks--;
@@ -223,7 +232,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 				entity.burnTicks = 0;
 				changed = true;
 			}
-			if ((entity.litTicks > 0) != oldLit) {
+			if ((entity.litTicks > 0) != oldLit || (entity.coolingTicks > 0) != oldCooling || (entity.overheatTicks >= OVERHEAT_ANIMATION_THRESHOLD) != oldShowOverheatAnimation) {
 				level.sendBlockUpdated(pos, state, state, 3);
 				changed = true;
 			}
@@ -235,6 +244,12 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 				block.checkStructure(level, pos);
 				entity.checkStructureTicks = 0;
 			}
+		} else {
+			entity.oldClientOverheatAmplitude = entity.clientOverheatAmplitude;
+			entity.clientOverheatAmplitude += entity.overheatTicks >= OVERHEAT_ANIMATION_THRESHOLD ? 0.002f : -0.002f;
+			entity.clientOverheatAmplitude = Mth.clamp(entity.clientOverheatAmplitude, 0, 1);
+			entity.oldClientAnimationTicks = entity.clientAnimationTicks;
+			entity.clientAnimationTicks++;
 		}
 	}
 
