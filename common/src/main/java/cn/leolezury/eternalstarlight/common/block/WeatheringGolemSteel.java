@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -38,6 +39,7 @@ public interface WeatheringGolemSteel {
 		.put(ESBlocks.GOLEM_STEEL_BARS.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_BARS.get())
 		.put(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.OXIDIZED_CHISELED_GOLEM_STEEL_BLOCK.get())
 		.put(ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get())
+		.put(ESBlocks.ALLOY_FURNACE.get(), ESBlocks.OXIDIZED_ALLOY_FURNACE.get())
 		.build());
 
 	Supplier<ImmutableMap<Block, Block>> TO_WAXED = Suppliers.memoize(() -> ImmutableMap.<Block, Block>builder()
@@ -52,6 +54,7 @@ public interface WeatheringGolemSteel {
 		.put(ESBlocks.GOLEM_STEEL_BARS.get(), ESBlocks.WAXED_GOLEM_STEEL_BARS.get())
 		.put(ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get())
 		.put(ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.WAXED_GOLEM_STEEL_JET.get())
+		.put(ESBlocks.ALLOY_FURNACE.get(), ESBlocks.WAXED_ALLOY_FURNACE.get())
 		.build());
 
 	default ItemInteractionResult use(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player) {
@@ -67,8 +70,8 @@ public interface WeatheringGolemSteel {
 				waxSound = true;
 			}
 			if (result != null) {
-				level.setBlockAndUpdate(pos, result.withPropertiesOf(state));
-				ParticleUtils.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.WAX_OFF, UniformInt.of(3, 5));
+				placeTransformedBlock(level, pos, result.withPropertiesOf(state));
+				spawnWaxOrScrapeParticles(level, pos, ParticleTypes.WAX_OFF);
 				player.playSound(waxSound ? SoundEvents.AXE_WAX_OFF : SoundEvents.AXE_SCRAPE);
 				stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
 				return ItemInteractionResult.sidedSuccess(level.isClientSide);
@@ -76,13 +79,21 @@ public interface WeatheringGolemSteel {
 		}
 		Optional<BlockState> waxed = getWaxedState(state);
 		if ((stack.is(Items.HONEYCOMB) || stack.is(ESItems.RAW_AMARAMBER.get())) && waxed.isPresent()) {
-			level.setBlockAndUpdate(pos, waxed.get());
-			ParticleUtils.spawnParticlesOnBlockFaces(level, pos, stack.is(Items.HONEYCOMB) ? ParticleTypes.WAX_ON : ESParticles.AMARAMBER_WAX_ON.get(), UniformInt.of(3, 5));
+			placeTransformedBlock(level, pos, waxed.get());
+			spawnWaxOrScrapeParticles(level, pos, stack.is(Items.HONEYCOMB) ? ParticleTypes.WAX_ON : ESParticles.AMARAMBER_WAX_ON.get());
 			player.playSound(SoundEvents.HONEYCOMB_WAX_ON);
 			stack.consume(1, player);
 			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+	}
+
+	default void spawnWaxOrScrapeParticles(Level level, BlockPos pos, ParticleOptions particle) {
+		ParticleUtils.spawnParticlesOnBlockFaces(level, pos, particle, UniformInt.of(3, 5));
+	}
+
+	default void placeTransformedBlock(Level level, BlockPos pos, BlockState state) {
+		level.setBlockAndUpdate(pos, state);
 	}
 
 	default boolean isOxidized() {
@@ -118,7 +129,7 @@ public interface WeatheringGolemSteel {
 	default void changeOverTime(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
 		if (randomSource.nextFloat() < 0.05688889F) {
 			this.getNextState(blockState, serverLevel, blockPos, randomSource).ifPresent((state) -> {
-				serverLevel.setBlockAndUpdate(blockPos, state);
+				placeTransformedBlock(serverLevel, blockPos, state);
 			});
 		}
 	}

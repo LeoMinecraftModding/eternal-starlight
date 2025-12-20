@@ -559,6 +559,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		accumulator(ESBlocks.ACCUMULATOR.get());
 		mechanicalSpawner(ESBlocks.MECHANICAL_SPAWNER.get());
 		particleOnly(ESBlocks.ALLOY_FURNACE.get(), itemTextureFromBlock(ESBlocks.ALLOY_FURNACE.get()));
+		particleOnly(ESBlocks.WAXED_ALLOY_FURNACE.get(), itemTextureFromBlock(ESBlocks.ALLOY_FURNACE.get()));
+		particleOnly(ESBlocks.OXIDIZED_ALLOY_FURNACE.get(), itemTextureFromBlock(ESBlocks.OXIDIZED_ALLOY_FURNACE.get()));
 		onOffBlock(ESBlocks.ENERGY_BLOCK.get());
 
 		shadegrieve(ESBlocks.SHADEGRIEVE.get());

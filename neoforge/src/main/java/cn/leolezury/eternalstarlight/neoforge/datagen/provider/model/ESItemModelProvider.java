@@ -976,6 +976,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.ACCUMULATOR.get());
 		otherBlock(ESItems.MECHANICAL_SPAWNER.get(), Items.SPAWNER);
 		basicItem(ESItems.ALLOY_FURNACE.get());
+		basicItem(ESItems.WAXED_ALLOY_FURNACE.get(), itemTexture(ESItems.ALLOY_FURNACE.get()));
+		basicItem(ESItems.OXIDIZED_ALLOY_FURNACE.get());
 		block(ESItems.ENERGY_BLOCK.get());
 
 		basicItem(ESItems.TENACIOUS_PETAL.get());

@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.blockentity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
+import cn.leolezury.eternalstarlight.common.block.WeatheringGolemSteel;
 import cn.leolezury.eternalstarlight.common.block.entity.AlloyFurnaceBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -31,6 +32,7 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 	private final AlloyFurnaceModel furnaceModel;
 
 	private static final ResourceLocation FURNACE_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace.png");
+	private static final ResourceLocation OXIDIZED_FURNACE_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace/oxidized_alloy_furnace.png");
 	private static final List<ResourceLocation> LIT_TEXTURES = List.of(
 		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_lit_0.png"),
 		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_lit_1.png"),
@@ -40,6 +42,10 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_fan_0.png"),
 		EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace_fan_1.png")
 	);
+	private static final List<ResourceLocation> OXIDIZED_FAN_TEXTURES = List.of(
+		EternalStarlight.id("textures/entity/alloy_furnace/oxidized_alloy_furnace_fan_0.png"),
+		EternalStarlight.id("textures/entity/alloy_furnace/oxidized_alloy_furnace_fan_1.png")
+	);
 
 	public AlloyFurnaceRenderer(BlockEntityRendererProvider.Context context) {
 		this.furnaceModel = new AlloyFurnaceModel(context.bakeLayer(AlloyFurnaceModel.LAYER_LOCATION));
@@ -48,6 +54,7 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 	@Override
 	public void render(AlloyFurnaceBlockEntity blockEntity, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int light, int overlay) {
 		BlockState state = blockEntity.getBlockState();
+		boolean oxidized = state.getBlock() instanceof WeatheringGolemSteel weathering && weathering.isOxidized();
 		if (state.getValue(AlloyFurnaceBlock.X_OFFSET) == 0 && state.getValue(AlloyFurnaceBlock.Y_OFFSET) == 0 && state.getValue(AlloyFurnaceBlock.Z_OFFSET) == 1) {
 			stack.pushPose();
 			stack.scale(-1.0F, -1.0F, 1.0F);
@@ -61,8 +68,8 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 				stack.scale(1 + (float) Math.cos(animationTicks * 3.25) * overheatAmplitude * 0.02f, 1 + (float) Math.cos(animationTicks * 2.25) * overheatAmplitude * 0.02f, 1 + (float) Math.cos(animationTicks * 3.25) * overheatAmplitude * 0.02f);
 			}
 			int overheatColor = FastColor.ARGB32.lerp(overheatAmplitude, -1, 0xffee7044);
-			this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityTranslucent(FURNACE_TEXTURE)), lightWithOverheat, overlay, overheatColor);
-			this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(FAN_TEXTURES.get((blockEntity.isCooling() ? blockEntity.clientAnimationTicks / 2 : 0) % FAN_TEXTURES.size()))), lightWithOverheat, overlay);
+			this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityTranslucent(oxidized ? OXIDIZED_FURNACE_TEXTURE : FURNACE_TEXTURE)), lightWithOverheat, overlay, overheatColor);
+			this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull((oxidized ? OXIDIZED_FAN_TEXTURES : FAN_TEXTURES).get((blockEntity.isCooling() ? blockEntity.clientAnimationTicks / 2 : 0) % (oxidized ? OXIDIZED_FAN_TEXTURES : FAN_TEXTURES).size()))), lightWithOverheat, overlay, overheatColor);
 			if (blockEntity.isLit()) {
 				this.furnaceModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(LIT_TEXTURES.get((blockEntity.clientAnimationTicks / 2) % LIT_TEXTURES.size()))), LightTexture.FULL_BRIGHT, overlay);
 			}

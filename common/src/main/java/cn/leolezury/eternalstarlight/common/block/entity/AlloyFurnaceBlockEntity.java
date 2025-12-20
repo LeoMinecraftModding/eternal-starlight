@@ -2,10 +2,13 @@ package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.item.menu.AlloyFurnaceMenu;
 import cn.leolezury.eternalstarlight.common.item.recipe.AlloyRecipe;
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -15,6 +18,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
@@ -43,9 +48,6 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private static final String TAG_COOLING_TICKS = "cooling_ticks";
 	private static final String TAG_TOTAL_COOLING_TICKS = "total_cooling_ticks";
 	private static final String TAG_COOLING_EFFICIENCY = "cooling_efficiency";
-
-	public static final int TOTAL_OVERHEAT_TICKS = 6000;
-	public static final int OVERHEAT_ANIMATION_THRESHOLD = 5000;
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -109,6 +111,14 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		this.quickCheck = RecipeManager.createCheck(ESRecipes.ALLOY.get());
 	}
 
+	public static int getTotalOverheatTicks() {
+		return ESConfig.INSTANCE.itemsConfig.alloyFurnace.totalOverheatTicks();
+	}
+
+	public static int getOverheatAnimationThreshold() {
+		return getTotalOverheatTicks() * 5 / 6;
+	}
+
 	public boolean isLit() {
 		return this.litTicks > 0;
 	}
@@ -121,7 +131,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 		if (!level.isClientSide) {
 			boolean oldLit = entity.litTicks > 0;
 			boolean oldCooling = entity.coolingTicks > 0;
-			boolean oldShowOverheatAnimation = entity.overheatTicks >= OVERHEAT_ANIMATION_THRESHOLD;
+			boolean oldShowOverheatAnimation = entity.overheatTicks >= getOverheatAnimationThreshold();
 			boolean changed = false;
 			if (entity.litTicks > 0) {
 				entity.litTicks--;
@@ -191,7 +201,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 			if (entity.litTicks <= 0) {
 				entity.overheatTicks -= (1 + entity.coolingTicks > 0 ? entity.coolingEfficiency : 0);
 			}
-			entity.overheatTicks = Mth.clamp(entity.overheatTicks, 0, TOTAL_OVERHEAT_TICKS);
+			entity.overheatTicks = Mth.clamp(entity.overheatTicks, 0, getTotalOverheatTicks());
 			if (entity.canBurn() && entity.burnTicks == entity.totalBurnTicks && recipeHolder != null) {
 				AlloyRecipe recipe = recipeHolder.value();
 				for (int i = 0; i < Math.min(recipe.results().size(), 3); i++) {
@@ -232,7 +242,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 				entity.burnTicks = 0;
 				changed = true;
 			}
-			if ((entity.litTicks > 0) != oldLit || (entity.coolingTicks > 0) != oldCooling || (entity.overheatTicks >= OVERHEAT_ANIMATION_THRESHOLD) != oldShowOverheatAnimation) {
+			if ((entity.litTicks > 0) != oldLit || (entity.coolingTicks > 0) != oldCooling || (entity.overheatTicks >= getOverheatAnimationThreshold()) != oldShowOverheatAnimation) {
 				level.sendBlockUpdated(pos, state, state, 3);
 				changed = true;
 			}
@@ -244,9 +254,17 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 				block.checkStructure(level, pos);
 				entity.checkStructureTicks = 0;
 			}
+			if (entity.overheatTicks >= getTotalOverheatTicks()) {
+				level.destroyBlock(pos, false);
+				if (level instanceof ServerLevel serverLevel) {
+					serverLevel.sendParticles(ESExplosionParticleOptions.LAVA, pos.getX() + level.getRandom().nextFloat(), pos.getY() + level.getRandom().nextFloat() + 1.5, pos.getZ() + level.getRandom().nextFloat(), 20, 1.5, 1.5, 1.5, 0);
+					serverLevel.sendParticles(ESParticles.SMOKE_TRAIL.get(), pos.getX() + level.getRandom().nextFloat(), pos.getY() + level.getRandom().nextFloat(), pos.getZ() + level.getRandom().nextFloat(), 20, 0, 0, 0, 0.5);
+				}
+				level.explode(null, null, null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ESConfig.INSTANCE.itemsConfig.alloyFurnace.explosionRadius(), true, Level.ExplosionInteraction.BLOCK, ESExplosionParticleOptions.LAVA, ESExplosionParticleOptions.LAVA, SoundEvents.GENERIC_EXPLODE);
+			}
 		} else {
 			entity.oldClientOverheatAmplitude = entity.clientOverheatAmplitude;
-			entity.clientOverheatAmplitude += entity.overheatTicks >= OVERHEAT_ANIMATION_THRESHOLD ? 0.002f : -0.002f;
+			entity.clientOverheatAmplitude += entity.overheatTicks >= getOverheatAnimationThreshold() ? 0.003f : -0.003f;
 			entity.clientOverheatAmplitude = Mth.clamp(entity.clientOverheatAmplitude, 0, 1);
 			entity.oldClientAnimationTicks = entity.clientAnimationTicks;
 			entity.clientAnimationTicks++;

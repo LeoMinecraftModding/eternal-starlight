@@ -8,12 +8,18 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -43,7 +49,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AlloyFurnaceBlock extends BaseEntityBlock {
+public class AlloyFurnaceBlock extends BaseEntityBlock implements WeatheringGolemSteel {
 	public static final MapCodec<AlloyFurnaceBlock> CODEC = simpleCodec(AlloyFurnaceBlock::new);
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final IntegerProperty X_OFFSET = IntegerProperty.create("x_offset", 0, 1);
@@ -196,6 +202,67 @@ public class AlloyFurnaceBlock extends BaseEntityBlock {
 	}
 
 	@Override
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		return use(stack, state, level, pos, player);
+	}
+
+	@Override
+	public void spawnWaxOrScrapeParticles(Level level, BlockPos pos, ParticleOptions particle) {
+		BlockState state = level.getBlockState(pos);
+		Direction facing = state.getValue(FACING);
+		Vec3 centerRotated = new Vec3(state.getValue(X_OFFSET), 0, state.getValue(Z_OFFSET) - 1).yRot((-facing.toYRot() + 90) * Mth.DEG_TO_RAD);
+		BlockPos centerPos = pos.offset(-Math.round((float) centerRotated.x), -state.getValue(Y_OFFSET), -Math.round((float) centerRotated.z));
+		for (int x = 0; x <= 1; x++) {
+			for (int z = -1; z <= 1; z++) {
+				for (int y = 0; y <= 1; y++) {
+					Vec3 rotated = new Vec3(x, 0, z).yRot((-facing.toYRot() + 90) * Mth.DEG_TO_RAD);
+					int rotatedX = Math.round((float) rotated.x);
+					int rotatedZ = Math.round((float) rotated.z);
+					BlockPos partPos = centerPos.offset(rotatedX, y, rotatedZ);
+					if (z == 1) {
+						ParticleUtils.spawnParticleInBlock(level, partPos, 3, particle);
+					} else {
+						ParticleUtils.spawnParticlesOnBlockFaces(level, partPos, particle, UniformInt.of(3, 5));
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void placeTransformedBlock(Level level, BlockPos pos, BlockState state) {
+		Direction facing = state.getValue(FACING);
+		Vec3 centerRotated = new Vec3(state.getValue(X_OFFSET), 0, state.getValue(Z_OFFSET) - 1).yRot((-facing.toYRot() + 90) * Mth.DEG_TO_RAD);
+		BlockPos centerPos = pos.offset(-Math.round((float) centerRotated.x), -state.getValue(Y_OFFSET), -Math.round((float) centerRotated.z));
+		level.setBlockAndUpdate(centerPos, state.setValue(X_OFFSET, 0).setValue(Y_OFFSET, 0).setValue(Z_OFFSET, 1));
+		for (int x = 0; x <= 1; x++) {
+			for (int z = -1; z <= 1; z++) {
+				for (int y = 0; y <= 2; y++) {
+					if (!(x == 0 && y == 0 && z == 0)) {
+						Vec3 rotated = new Vec3(x, 0, z).yRot((-facing.toYRot() + 90) * Mth.DEG_TO_RAD);
+						int rotatedX = Math.round((float) rotated.x);
+						int rotatedZ = Math.round((float) rotated.z);
+						BlockPos partPos = centerPos.offset(rotatedX, y, rotatedZ);
+						if (level.getBlockState(partPos).canBeReplaced() && level.getWorldBorder().isWithinBounds(partPos)) {
+							level.setBlockAndUpdate(partPos, state.setValue(X_OFFSET, x).setValue(Y_OFFSET, y).setValue(Z_OFFSET, z + 1));
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+		this.changeOverTime(blockState, serverLevel, blockPos, randomSource);
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return !isOxidized() && !isWaxed();
+	}
+
+	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		if (level.isClientSide) {
 			return InteractionResult.SUCCESS;
@@ -218,12 +285,14 @@ public class AlloyFurnaceBlock extends BaseEntityBlock {
 	@Override
 	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (!state.is(newState.getBlock())) {
-			BlockEntity blockentity = level.getBlockEntity(pos);
-			if (blockentity instanceof AlloyFurnaceBlockEntity entity) {
-				if (level instanceof ServerLevel) {
-					Containers.dropContents(level, pos, entity);
+			BlockEntity blockEntity = level.getBlockEntity(pos);
+			if (blockEntity instanceof AlloyFurnaceBlockEntity entity) {
+				if (!entity.isValidBlockState(newState)) {
+					if (level instanceof ServerLevel) {
+						Containers.dropContents(level, pos, entity);
+					}
+					super.onRemove(state, level, pos, newState, isMoving);
 				}
-				super.onRemove(state, level, pos, newState, isMoving);
 			} else {
 				super.onRemove(state, level, pos, newState, isMoving);
 			}

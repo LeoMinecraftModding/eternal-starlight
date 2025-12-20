@@ -718,6 +718,8 @@
   "block.eternal_starlight.accumulator": "蓄能箱",
   "block.eternal_starlight.mechanical_spawner": "机械刷怪笼",
   "block.eternal_starlight.alloy_furnace": "合金炉",
+  "block.eternal_starlight.waxed_alloy_furnace": "涂蜡的合金炉",
+  "block.eternal_starlight.oxidized_alloy_furnace": "氧化的合金炉",
   "block.eternal_starlight.energy_block": "能量方块",
   "block.eternal_starlight.shadegrieve": "阴怨叶",
   "block.eternal_starlight.blooming_shadegrieve": "开花阴怨叶",

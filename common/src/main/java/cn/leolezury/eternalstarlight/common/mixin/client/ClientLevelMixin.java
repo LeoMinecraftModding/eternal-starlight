@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -29,7 +28,7 @@ public abstract class ClientLevelMixin {
 	private void destroyBlockProgress(int breakerId, BlockPos pos, int progress, CallbackInfo ci) {
 		ClientLevel level = (ClientLevel) (Object) this;
 		BlockState state = level.getBlockState(pos);
-		if (state.is(ESBlocks.ALLOY_FURNACE.get())) {
+		if (state.getBlock() instanceof AlloyFurnaceBlock) {
 			Direction facing = state.getValue(AlloyFurnaceBlock.FACING);
 			int x = state.getValue(AlloyFurnaceBlock.X_OFFSET);
 			int z = state.getValue(AlloyFurnaceBlock.Z_OFFSET) - 1;

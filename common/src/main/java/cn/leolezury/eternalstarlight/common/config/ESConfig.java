@@ -75,11 +75,15 @@ public class ESConfig {
 	public static class ItemsConfig {
 		public final ChainOfSoulsConfig chainOfSouls = new ChainOfSoulsConfig(64, 2, 0.5);
 		public final CrystalbornCatalystConfig crystalbornCatalyst = new CrystalbornCatalystConfig(128, 50);
+		public final AlloyFurnaceConfig alloyFurnace = new AlloyFurnaceConfig(6000, 3);
 
 		public record ChainOfSoulsConfig(double maxRange, double soulAbsorbDamage, double healPercentage) {
 		}
 
 		public record CrystalbornCatalystConfig(int maxRange, int energyPerShard) {
+		}
+
+		public record AlloyFurnaceConfig(int totalOverheatTicks, int explosionRadius) {
 		}
 	}
 
@@ -93,18 +97,18 @@ public class ESConfig {
 					write(gson, file, INSTANCE);
 				}
 			} catch (IOException e) {
-				EternalStarlight.LOGGER.error("Error while loading config");
+				EternalStarlight.LOGGER.error("Failed to load config");
 			}
 		} else {
 			write(gson, file, INSTANCE);
 		}
 	}
 
-	private static void write(Gson gson, File cfgFile, ESConfig config) {
-		try (FileWriter writer = new FileWriter(cfgFile)) {
+	private static void write(Gson gson, File file, ESConfig config) {
+		try (FileWriter writer = new FileWriter(file)) {
 			gson.toJson(config, writer);
 		} catch (IOException e) {
-			EternalStarlight.LOGGER.error("Error while writing config");
+			EternalStarlight.LOGGER.error("Failed to write config");
 		}
 	}
 }

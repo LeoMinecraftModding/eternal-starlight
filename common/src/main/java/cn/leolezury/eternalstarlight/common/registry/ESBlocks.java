@@ -966,6 +966,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, AccumulatorBlock> ACCUMULATOR = BLOCKS.register("accumulator", () -> new AccumulatorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> state.getValue(AccumulatorBlock.POWER))));
 	public static final RegistryObject<Block, MechanicalSpawnerBlock> MECHANICAL_SPAWNER = BLOCKS.register("mechanical_spawner", () -> new MechanicalSpawnerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).strength(50.0F, 1200.0F).mapColor(MapColor.COLOR_BROWN).noOcclusion().lightLevel(state -> state.getValue(MechanicalSpawnerBlock.POWER))));
 	public static final RegistryObject<Block, AlloyFurnaceBlock> ALLOY_FURNACE = BLOCKS.register("alloy_furnace", () -> new AlloyFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).strength(4.0F, 1200.0F).noOcclusion().mapColor(MapColor.COLOR_BLUE)));
+	public static final RegistryObject<Block, AlloyFurnaceBlock> WAXED_ALLOY_FURNACE = BLOCKS.register("waxed_alloy_furnace", () -> new AlloyFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WAXED_COPPER_BLOCK).strength(4.0F, 1200.0F).noOcclusion().mapColor(MapColor.COLOR_BLUE)));
+	public static final RegistryObject<Block, AlloyFurnaceBlock> OXIDIZED_ALLOY_FURNACE = BLOCKS.register("oxidized_alloy_furnace", () -> new AlloyFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).strength(4.0F, 1200.0F).noOcclusion().mapColor(MapColor.COLOR_GRAY)));
 	public static final RegistryObject<Block, EnergyBlock> ENERGY_BLOCK = BLOCKS.register("energy_block", () -> new EnergyBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).pushReaction(PushReaction.IGNORE).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
 	// lunar monstrosity

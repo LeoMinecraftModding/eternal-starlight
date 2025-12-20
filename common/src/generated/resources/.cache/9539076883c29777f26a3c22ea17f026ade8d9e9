@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-14T14:00:02.4809342	Item Models: eternal_starlight
+// 1.21.1	2025-12-20T18:27:59.6212272	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -697,6 +697,7 @@ f5468a421903c180522fb297ab2aedbf7d7fda46 assets/eternal_starlight/models/item/oa
 b5868abf621001f9d143cd79b959a29a96170d2c assets/eternal_starlight/models/item/orbflora.json
 69ff60162a0b12b73a5497db61faeca5ab707171 assets/eternal_starlight/models/item/orbflora_light.json
 c3de4f28ff260806a0081575fa65673af5e9ff42 assets/eternal_starlight/models/item/orb_of_prophecy_inventory.json
+b003b46a804dfe13de5500a2d308334603eb8225 assets/eternal_starlight/models/item/oxidized_alloy_furnace.json
 118cd5ace9865fbafccd89ac3b8557b1f0eac748 assets/eternal_starlight/models/item/oxidized_chiseled_golem_steel_block.json
 b0e2062bd88828899ca7953fc81e0690e24923bd assets/eternal_starlight/models/item/oxidized_golem_steel_bars.json
 2a96367af7ba94b802a130568f95cbd64e7da460 assets/eternal_starlight/models/item/oxidized_golem_steel_block.json
@@ -1074,6 +1075,7 @@ ddd3d94feb218419c6033553ca8dec1d38aa2676 assets/eternal_starlight/models/item/vo
 dfd371b1b2f09a2dfe2f07e69d0ed88db1f724ff assets/eternal_starlight/models/item/warhammer_pendant.json
 84e3ab406f55fbc2835a33940ca89ffecbb71057 assets/eternal_starlight/models/item/warped_starfire_bird_aviary.json
 2105248e929b0146d7c2e7f26303c95a9896b0ab assets/eternal_starlight/models/item/water_crystal.json
+7f73d50011e9736d36c490bf6d78dbd4a63ec9f3 assets/eternal_starlight/models/item/waxed_alloy_furnace.json
 f4d995966d695cc91771620ceb6e9d1dfe2b0f03 assets/eternal_starlight/models/item/waxed_chiseled_golem_steel_block.json
 d23dc824a514f819ba5f8f358807a6cdf0b85e64 assets/eternal_starlight/models/item/waxed_golem_steel_bars.json
 1ceffc9cb18bb93f4ede21a93db2b6f9ad244e24 assets/eternal_starlight/models/item/waxed_golem_steel_block.json

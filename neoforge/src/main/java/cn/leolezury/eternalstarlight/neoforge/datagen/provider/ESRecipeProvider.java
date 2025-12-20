@@ -1397,6 +1397,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_BARS.get(), ESBlocks.WAXED_GOLEM_STEEL_BARS.get(), 1, ESBlocks.GOLEM_STEEL_BARS.get(), Items.HONEYCOMB);
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), 1, ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), Items.HONEYCOMB);
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.WAXED_GOLEM_STEEL_JET.get(), 1, ESBlocks.GOLEM_STEEL_JET.get(), Items.HONEYCOMB);
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.ALLOY_FURNACE.get(), ESBlocks.WAXED_ALLOY_FURNACE.get(), 1, ESBlocks.ALLOY_FURNACE.get(), Items.HONEYCOMB);
 
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), 1, ESBlocks.GOLEM_STEEL_BLOCK.get(), ESItems.RAW_AMARAMBER.get());
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_SLAB.get(), ESBlocks.WAXED_GOLEM_STEEL_SLAB.get(), 1, ESBlocks.GOLEM_STEEL_SLAB.get(), ESItems.RAW_AMARAMBER.get());
@@ -1409,6 +1410,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_BARS.get(), ESBlocks.WAXED_GOLEM_STEEL_BARS.get(), 1, ESBlocks.GOLEM_STEEL_BARS.get(), ESItems.RAW_AMARAMBER.get());
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESBlocks.WAXED_CHISELED_GOLEM_STEEL_BLOCK.get(), 1, ESBlocks.CHISELED_GOLEM_STEEL_BLOCK.get(), ESItems.RAW_AMARAMBER.get());
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.WAXED_GOLEM_STEEL_JET.get(), 1, ESBlocks.GOLEM_STEEL_JET.get(), ESItems.RAW_AMARAMBER.get());
+		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, "_from_raw_amaramber", ESBlocks.ALLOY_FURNACE.get(), ESBlocks.WAXED_ALLOY_FURNACE.get(), 1, ESBlocks.ALLOY_FURNACE.get(), ESItems.RAW_AMARAMBER.get());
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.GOLEM_STEEL_BARS.get(), 16)
 			.pattern("###")

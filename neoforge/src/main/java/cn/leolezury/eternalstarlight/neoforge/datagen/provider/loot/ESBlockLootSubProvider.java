@@ -860,6 +860,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.ACCUMULATOR.get());
 		add(ESBlocks.MECHANICAL_SPAWNER.get(), noDrop());
 		dropSelf(ESBlocks.ALLOY_FURNACE.get());
+		dropSelf(ESBlocks.WAXED_ALLOY_FURNACE.get());
+		dropSelf(ESBlocks.OXIDIZED_ALLOY_FURNACE.get());
 		add(ESBlocks.ENERGY_BLOCK.get(), noDrop());
 
 		dropSelf(ESBlocks.SHADEGRIEVE.get());

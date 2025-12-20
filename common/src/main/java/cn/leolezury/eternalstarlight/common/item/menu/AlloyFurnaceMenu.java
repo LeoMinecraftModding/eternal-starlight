@@ -84,7 +84,7 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 
 	public float getOverheatProgress() {
 		int overheat = this.data.get(4);
-		return Mth.clamp((float) overheat / AlloyFurnaceBlockEntity.TOTAL_OVERHEAT_TICKS, 0.0F, 1.0F);
+		return Mth.clamp((float) overheat / AlloyFurnaceBlockEntity.getTotalOverheatTicks(), 0.0F, 1.0F);
 	}
 
 	public float getCoolingProgress() {
