@@ -718,6 +718,8 @@
   "block.eternal_starlight.accumulator": "Acumulador",
   "block.eternal_starlight.mechanical_spawner": "Mechanical Spawner",
   "block.eternal_starlight.alloy_furnace": "Alloy Furnace",
+  "block.eternal_starlight.waxed_alloy_furnace": "Waxed Alloy Furnace",
+  "block.eternal_starlight.oxidized_alloy_furnace": "Oxidized Alloy Furnace",
   "block.eternal_starlight.energy_block": "Bloco de Energia",
   "block.eternal_starlight.shadegrieve": "Pesar Sombrio",
   "block.eternal_starlight.blooming_shadegrieve": "Pesar Sombrio Florescendo",
