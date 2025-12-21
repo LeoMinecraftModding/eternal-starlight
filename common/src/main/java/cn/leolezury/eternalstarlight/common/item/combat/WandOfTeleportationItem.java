@@ -73,7 +73,7 @@ public class WandOfTeleportationItem extends Item {
 		if (result.blockHitResult() != null) {
 			Vec3 target = result.blockHitResult().getLocation();
 			Vec3 diff = player.position().subtract(target);
-			target = target.add(diff.normalize().scale(Math.max(diff.length() - 2, 0)));
+			target = target.add(diff.normalize().scale(Math.min(diff.length(), 2)));
 			teleportPlayer(level, player, stack, target);
 			player.awardStat(Stats.ITEM_USED.get(this));
 			return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);

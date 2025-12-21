@@ -20,6 +20,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
@@ -199,7 +200,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 				entity.overheatTicks += 1;
 			}
 			if (entity.litTicks <= 0) {
-				entity.overheatTicks -= (1 + entity.coolingTicks > 0 ? entity.coolingEfficiency : 0);
+				entity.overheatTicks -= (1 + (entity.coolingTicks > 0 ? entity.coolingEfficiency : 0));
 			}
 			entity.overheatTicks = Mth.clamp(entity.overheatTicks, 0, getTotalOverheatTicks());
 			if (entity.canBurn() && entity.burnTicks == entity.totalBurnTicks && recipeHolder != null) {
@@ -268,6 +269,9 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 			entity.clientOverheatAmplitude = Mth.clamp(entity.clientOverheatAmplitude, 0, 1);
 			entity.oldClientAnimationTicks = entity.clientAnimationTicks;
 			entity.clientAnimationTicks++;
+			if (level.getRandom().nextDouble() < 0.1) {
+				level.playLocalSound(pos.getX() + 0.5, pos.getY(), pos.getX() + 0.5, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+			}
 		}
 	}
 
