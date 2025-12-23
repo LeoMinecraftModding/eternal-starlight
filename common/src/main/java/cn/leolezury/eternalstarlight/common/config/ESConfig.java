@@ -30,6 +30,7 @@ public class ESConfig {
 		public final AttackingMobConfig gleech = new AttackingMobConfig(8, 0, 1, 16, true);
 		public final AttackingMobConfig lonestarSkeleton = new AttackingMobConfig(20, 0, 3.2, 16, true);
 		public final AttackingMobConfig nightfallSpider = new AttackingMobConfig(10, 0, 2, 16, true);
+		public final AttackingMobConfig seeker = new AttackingMobConfig(15, 0, 2, 16, true);
 		public final AttackingMobConfig thirstWalker = new AttackingMobConfig(40, 0, 4.5, 32, true);
 		public final CreteorConfig creteor = new CreteorConfig(15, 0, 5, 48, true, 0.7);
 		public final AttackingMobConfig tinyCreteor = new AttackingMobConfig(5, 0, 2, 48, true);

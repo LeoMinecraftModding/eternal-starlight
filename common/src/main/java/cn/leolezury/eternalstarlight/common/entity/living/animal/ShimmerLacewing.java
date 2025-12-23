@@ -1,15 +1,18 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
-import cn.leolezury.eternalstarlight.common.data.ESBiomes;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.data.ESShimmerLacewingVariants;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -29,23 +32,42 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class ShimmerLacewing extends Animal implements FlyingAnimal {
+import java.util.Optional;
+
+public class ShimmerLacewing extends Animal implements VariantHolder<Holder<ShimmerLacewingVariant>>, FlyingAnimal {
 	private static final String TAG_VARIANT = "variant";
 
-	public static final int VARIANT_NORMAL = 0;
-	public static final int VARIANT_SWAMP = 1;
-	protected static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(ShimmerLacewing.class, EntityDataSerializers.INT);
+	protected static final EntityDataAccessor<String> VARIANT = SynchedEntityData.defineId(ShimmerLacewing.class, EntityDataSerializers.STRING);
 
-	public int getVariant() {
-		return this.getEntityData().get(VARIANT);
+	public ResourceLocation getVariantId() {
+		return ResourceLocation.parse(this.getEntityData().get(VARIANT));
 	}
 
-	public void setVariant(int variant) {
-		this.getEntityData().set(VARIANT, variant);
+	public void setVariantId(ResourceLocation variant) {
+		this.getEntityData().set(VARIANT, variant.toString());
+	}
+
+	@Override
+	public void setVariant(Holder<ShimmerLacewingVariant> variant) {
+		if (variant.isBound()) {
+			ResourceLocation key = level().registryAccess().registryOrThrow(ESRegistries.SHIMMER_LACEWING_VARIANT).getKey(variant.value());
+			if (key != null) {
+				setVariantId(key);
+			}
+		}
+	}
+
+	@Override
+	public Holder<ShimmerLacewingVariant> getVariant() {
+		ResourceLocation key = getVariantId();
+		Registry<ShimmerLacewingVariant> variants = level().registryAccess().registryOrThrow(ESRegistries.SHIMMER_LACEWING_VARIANT);
+		Optional<Holder.Reference<ShimmerLacewingVariant>> optional = variants.getHolder(key);
+		return optional.orElse(variants.getHolder(ESShimmerLacewingVariants.RIVER).orElseThrow());
 	}
 
 	public ShimmerLacewing(EntityType<? extends ShimmerLacewing> entityType, Level level) {
@@ -76,7 +98,7 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(VARIANT, VARIANT_NORMAL);
+		builder.define(VARIANT, ESShimmerLacewingVariants.RIVER.location().toString());
 	}
 
 	@Override
@@ -132,25 +154,21 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
-		if (serverLevelAccessor.getBiome(blockPosition()).is(ESBiomes.DARK_SWAMP)) {
-			setVariant(VARIANT_SWAMP);
-		}
-		return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
+		setVariant(ShimmerLacewingVariant.getSpawnVariant(level.registryAccess(), level.getBiome(blockPosition())));
+		return super.finalizeSpawn(level, instance, spawnType, data);
 	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
-		if (compoundTag.contains(TAG_VARIANT, CompoundTag.TAG_INT)) {
-			this.getEntityData().set(VARIANT, compoundTag.getInt(TAG_VARIANT));
-		}
+		setVariantId(ResourceLocation.read(compoundTag.getString(TAG_VARIANT)).getOrThrow());
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putInt(TAG_VARIANT, getVariant());
+		compoundTag.putString(TAG_VARIANT, getVariantId().toString());
 	}
 
 	@Override
@@ -170,6 +188,6 @@ public class ShimmerLacewing extends Animal implements FlyingAnimal {
 	}
 
 	public static boolean checkLacewingSpawnRules(EntityType<? extends ShimmerLacewing> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return (level.getBiome(pos).is(ESBiomes.DARK_SWAMP) ? level.getBlockState(pos.below()).is(BlockTags.DIRT) : level.getBlockState(pos.below()).is(BlockTags.SAND)) && ESConfig.INSTANCE.mobsConfig.shimmerLacewing.canSpawn();
+		return pos.getY() >= level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, pos).getY() && ESConfig.INSTANCE.mobsConfig.shimmerLacewing.canSpawn();
 	}
 }

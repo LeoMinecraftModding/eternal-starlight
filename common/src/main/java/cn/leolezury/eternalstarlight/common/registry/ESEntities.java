@@ -121,6 +121,14 @@ public class ESEntities {
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("nightfall_spider").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<Seeker>> SEEKER = ENTITIES.register(
+		"seeker",
+		() -> EntityType.Builder.of(Seeker::new, MobCategory.MONSTER)
+			.sized(1.0F, 1.0F)
+			.clientTrackingRange(8)
+			.fireImmune()
+			.build(EternalStarlight.id("seeker").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<ThirstWalker>> THIRST_WALKER = ENTITIES.register(
 		"thirst_walker",
 		() -> EntityType.Builder.of(ThirstWalker::new, MobCategory.MONSTER)

@@ -16,10 +16,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -49,7 +46,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AlloyFurnaceBlock extends BaseEntityBlock implements WeatheringGolemSteel {
+public class AlloyFurnaceBlock extends BaseEntityBlock implements WorldlyContainerHolder, WeatheringGolemSteel {
 	public static final MapCodec<AlloyFurnaceBlock> CODEC = simpleCodec(AlloyFurnaceBlock::new);
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final IntegerProperty X_OFFSET = IntegerProperty.create("x_offset", 0, 1);
@@ -365,7 +362,7 @@ public class AlloyFurnaceBlock extends BaseEntityBlock implements WeatheringGole
 
 	@Override
 	public RenderShape getRenderShape(BlockState blockState) {
-		return RenderShape.ENTITYBLOCK_ANIMATED;
+		return blockState.getValue(X_OFFSET) == 0 && blockState.getValue(Y_OFFSET) == 0 && blockState.getValue(Z_OFFSET) == 1 ? RenderShape.ENTITYBLOCK_ANIMATED : RenderShape.INVISIBLE;
 	}
 
 	@Nullable
@@ -378,5 +375,42 @@ public class AlloyFurnaceBlock extends BaseEntityBlock implements WeatheringGole
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
 		return blockState.getValue(X_OFFSET) == 0 && blockState.getValue(Y_OFFSET) == 0 && blockState.getValue(Z_OFFSET) == 1 ? createTickerHelper(blockEntityType, ESBlockEntities.ALLOY_FURNACE.get(), AlloyFurnaceBlockEntity::tick) : null;
+	}
+
+	@Override
+	public WorldlyContainer getContainer(BlockState state, LevelAccessor level, BlockPos pos) {
+		Direction facing = state.getValue(AlloyFurnaceBlock.FACING);
+		int x = state.getValue(AlloyFurnaceBlock.X_OFFSET);
+		int y = state.getValue(AlloyFurnaceBlock.Y_OFFSET);
+		int z = state.getValue(AlloyFurnaceBlock.Z_OFFSET) - 1;
+		Vec3 rotated = new Vec3(x, 0, z).yRot((((int) -facing.toYRot() + 90) % 360) * Mth.DEG_TO_RAD);
+		int rotatedX = Math.round((float) rotated.x);
+		int rotatedZ = Math.round((float) rotated.z);
+		BlockPos centerPos = pos.offset(-rotatedX, -y, -rotatedZ);
+		if (level.getBlockEntity(centerPos) instanceof AlloyFurnaceBlockEntity entity) {
+			return entity;
+		}
+		return new EmptyContainer();
+	}
+
+	static class EmptyContainer extends SimpleContainer implements WorldlyContainer {
+		public EmptyContainer() {
+			super(0);
+		}
+
+		@Override
+		public int[] getSlotsForFace(Direction side) {
+			return new int[0];
+		}
+
+		@Override
+		public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
+			return false;
+		}
+
+		@Override
+		public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+			return false;
+		}
 	}
 }

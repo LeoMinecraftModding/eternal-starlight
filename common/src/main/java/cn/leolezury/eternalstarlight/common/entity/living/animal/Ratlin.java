@@ -68,6 +68,6 @@ public class Ratlin extends Animal {
 	}
 
 	public static boolean checkRatlinSpawnRules(EntityType<? extends Ratlin> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return level.getBlockState(pos.below()).is(BlockTags.DIRT) && ESConfig.INSTANCE.mobsConfig.ratlin.canSpawn();
+		return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && ESConfig.INSTANCE.mobsConfig.ratlin.canSpawn();
 	}
 }

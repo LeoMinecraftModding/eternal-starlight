@@ -155,6 +155,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 		tag(EntityTypeTags.FALL_DAMAGE_IMMUNE)
 			.add(
 				ESEntities.ASTRAL_GOLEM.get(),
+				ESEntities.SEEKER.get(),
 				ESEntities.CRETEOR.get(),
 				ESEntities.TINY_CRETEOR.get(),
 				ESEntities.CRYSTALLIZED_MOTH.get(),

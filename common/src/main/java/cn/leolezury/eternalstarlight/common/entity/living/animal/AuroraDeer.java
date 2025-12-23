@@ -274,13 +274,13 @@ public class AuroraDeer extends Animal implements Charger {
 		return ESSoundEvents.AURORA_DEER_DEATH.get();
 	}
 
-	public static boolean checkAuroraDeerSpawnRules(EntityType<? extends AuroraDeer> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return level.getBlockState(pos.below()).is(BlockTags.DIRT) && ESConfig.INSTANCE.mobsConfig.auroraDeer.canSpawn();
-	}
-
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
 		return ESEntities.AURORA_DEER.get().create(serverLevel);
+	}
+
+	public static boolean checkAuroraDeerSpawnRules(EntityType<? extends AuroraDeer> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+		return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && ESConfig.INSTANCE.mobsConfig.auroraDeer.canSpawn();
 	}
 }

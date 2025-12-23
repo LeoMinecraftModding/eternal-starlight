@@ -309,6 +309,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.GLEECH.get(), Gleech.createAttributes().build());
 		strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeleton.createAttributes().build());
 		strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpider.createNightfallSpider().build());
+		strategy.register(ESEntities.SEEKER.get(), Seeker.createAttributes().build());
 		strategy.register(ESEntities.THIRST_WALKER.get(), ThirstWalker.createAttributes().build());
 		strategy.register(ESEntities.CRETEOR.get(), Creteor.createAttributes().build());
 		strategy.register(ESEntities.TINY_CRETEOR.get(), TinyCreteor.createAttributes().build());
@@ -348,6 +349,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.GLEECH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Gleech::checkGleechSpawnRules);
 		strategy.register(ESEntities.LONESTAR_SKELETON.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LonestarSkeleton::checkLonestarSkeletonSpawnRules);
 		strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NightfallSpider::checkNightfallSpiderSpawnRules);
+		strategy.register(ESEntities.SEEKER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Seeker::checkSeekerSpawnRules);
 		strategy.register(ESEntities.THIRST_WALKER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ThirstWalker::checkThirstWalkerSpawnRules);
 		strategy.register(ESEntities.CRETEOR.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Creteor::checkCreteorSpawnRules);
 		strategy.register(ESEntities.STRANGHOUL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Stranghoul::checkStranghoulSpawnRules);
@@ -358,11 +360,11 @@ public class CommonSetupHandlers {
 		strategy.register(ESEntities.YETI.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yeti::checkYetiSpawnRules);
 		strategy.register(ESEntities.AURORA_DEER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AuroraDeer::checkAuroraDeerSpawnRules);
 		strategy.register(ESEntities.CRYSTALLIZED_MOTH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CrystallizedMoth::checkMothSpawnRules);
-		strategy.register(ESEntities.SHIMMER_LACEWING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ShimmerLacewing::checkLacewingSpawnRules);
+		strategy.register(ESEntities.SHIMMER_LACEWING.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.WORLD_SURFACE, ShimmerLacewing::checkLacewingSpawnRules);
 		strategy.register(ESEntities.STARFIRE_BIRD.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, StarfireBird::checkStarfireBirdSpawnRules);
 		strategy.register(ESEntities.GRIMSTONE_GOLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
 		strategy.register(ESEntities.AETHERSENT_GOLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
-		strategy.register(ESEntities.ROOKFISH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Rookfish::checkTowerSquidSpawnRules);
+		strategy.register(ESEntities.ROOKFISH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Rookfish::checkRookfishSpawnRules);
 		strategy.register(ESEntities.LUMINOFISH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminofish::checkLuminoFishSpawnRules);
 		strategy.register(ESEntities.LUMINARIS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminaris::checkLuminarisSpawnRules);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TwilightGaze::checkTwilightGazeSpawnRules);

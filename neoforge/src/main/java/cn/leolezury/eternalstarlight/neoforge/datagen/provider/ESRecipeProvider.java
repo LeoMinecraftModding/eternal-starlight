@@ -618,6 +618,32 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
 			.save(recipeOutput, EternalStarlight.id("gold_from_raw_materials"));
+
+		AlloyRecipeBuilder.alloy(Items.NETHERITE_INGOT.getDefaultInstance(), 1, 400)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.requires(Tags.Items.INGOTS_GOLD, 4)
+			.requires(Items.NETHERITE_SCRAP, 2)
+			.requires(ESItems.STARCORE.get(), 1)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
+			.unlockedBy(getHasName(Items.GOLD_INGOT), Tags.Items.INGOTS_GOLD)
+			.unlockedBy(getHasName(Items.NETHERITE_SCRAP), Items.NETHERITE_SCRAP)
+			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("netherite"));
+
+		AlloyRecipeBuilder.alloy(ESItems.GOLEM_STEEL_INGOT.get().getDefaultInstance(), 1, 400)
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
+			.requires(ESConventionalTags.Items.INGOTS_DEEPSILVER, 3)
+			.requires(ESConventionalTags.Items.NUGGETS_GOLEM_STEEL, 2)
+			.requires(ESItems.STARCORE.get(), 1)
+			.requires(ESItems.SALTPETER_POWDER.get(), 1)
+			.unlockedBy(getHasName(ESItems.DEEPSILVER_INGOT.get()), ESConventionalTags.Items.INGOTS_DEEPSILVER)
+			.unlockedBy(getHasName(ESItems.GOLEM_STEEL_NUGGET.get()), ESConventionalTags.Items.NUGGETS_GOLEM_STEEL)
+			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.save(recipeOutput, EternalStarlight.id("golem_steel"));
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

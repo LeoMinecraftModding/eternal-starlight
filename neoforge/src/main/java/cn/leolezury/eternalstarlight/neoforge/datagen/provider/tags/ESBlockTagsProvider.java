@@ -1105,6 +1105,16 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.FANTASY_GRASS_BLOCK.get(),
 				ESBlocks.GOLDEN_GRASS_BLOCK.get()
 			);
+		tag(BlockTags.ANIMALS_SPAWNABLE_ON)
+			.add(
+				ESBlocks.NIGHTFALL_MUD.get(),
+				ESBlocks.GLOWING_NIGHTFALL_MUD.get(),
+				ESBlocks.NIGHTFALL_DIRT.get(),
+				ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+				ESBlocks.NIGHTFALL_PODZOL.get(),
+				ESBlocks.FANTASY_GRASS_BLOCK.get(),
+				ESBlocks.GOLDEN_GRASS_BLOCK.get()
+			);
 		tag(BlockTags.SAND)
 			.add(
 				ESBlocks.TWILIGHT_SAND.get()

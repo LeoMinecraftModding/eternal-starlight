@@ -151,6 +151,6 @@ public class ShadowSnail extends Animal {
 	}
 
 	public static boolean checkShadowSnailSpawnRules(EntityType<? extends ShadowSnail> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return level.getBlockState(pos.below()).is(BlockTags.DIRT) && ESConfig.INSTANCE.mobsConfig.shadowSnail.canSpawn();
+		return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && ESConfig.INSTANCE.mobsConfig.shadowSnail.canSpawn();
 	}
 }

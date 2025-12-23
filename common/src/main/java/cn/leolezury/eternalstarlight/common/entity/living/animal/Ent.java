@@ -190,6 +190,6 @@ public class Ent extends Animal implements VariantHolder<Holder<EntVariant>> {
 	}
 
 	public static boolean checkEntSpawnRules(EntityType<? extends Ent> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return level.getBlockState(pos.below()).is(BlockTags.DIRT) && ESConfig.INSTANCE.mobsConfig.ent.canSpawn();
+		return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && ESConfig.INSTANCE.mobsConfig.ent.canSpawn();
 	}
 }

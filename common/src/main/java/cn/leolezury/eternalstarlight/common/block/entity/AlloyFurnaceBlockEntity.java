@@ -11,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -23,6 +24,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
@@ -40,7 +42,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
+public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
 	private static final String TAG_LIT_TICKS = "lit_ticks";
 	private static final String TAG_TOTAL_LIT_TICKS = "total_lit_ticks";
 	private static final String TAG_BURN_TICKS = "burn_ticks";
@@ -49,6 +51,29 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	private static final String TAG_COOLING_TICKS = "cooling_ticks";
 	private static final String TAG_TOTAL_COOLING_TICKS = "total_cooling_ticks";
 	private static final String TAG_COOLING_EFFICIENCY = "cooling_efficiency";
+
+	private static final int[] SLOTS_FOR_DOWN = new int[]{
+		AlloyFurnaceMenu.RESULT_SLOT_START,
+		AlloyFurnaceMenu.RESULT_SLOT_START + 1,
+		AlloyFurnaceMenu.RESULT_SLOT_START + 2
+	};
+	private static final int[] SLOTS_FOR_UP = new int[]{
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START,
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START + 1,
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START + 2,
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START + 3,
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START + 4,
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START + 5,
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START + 6,
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START + 7,
+		AlloyFurnaceMenu.INGREDIENT_SLOT_START + 8
+	};
+	private static final int[] SLOTS_FOR_FRONT_AND_BACK = new int[]{
+		AlloyFurnaceMenu.FUEL_SLOT
+	};
+	private static final int[] SLOTS_FOR_SIDES = new int[]{
+		AlloyFurnaceMenu.COOLING_SLOT
+	};
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -402,5 +427,28 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity {
 	@Override
 	protected AbstractContainerMenu createMenu(int id, Inventory player) {
 		return new AlloyFurnaceMenu(id, player.player.getInventory(), this, dataAccess);
+	}
+
+	@Override
+	public int[] getSlotsForFace(Direction side) {
+		if (side == Direction.DOWN) {
+			return SLOTS_FOR_DOWN;
+		} else if (side == Direction.UP) {
+			return SLOTS_FOR_UP;
+		} else if (side.getAxis() == getBlockState().getValue(AlloyFurnaceBlock.FACING).getAxis()) {
+			return SLOTS_FOR_FRONT_AND_BACK;
+		} else {
+			return SLOTS_FOR_SIDES;
+		}
+	}
+
+	@Override
+	public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
+		return canPlaceItem(index, stack);
+	}
+
+	@Override
+	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+		return true;
 	}
 }

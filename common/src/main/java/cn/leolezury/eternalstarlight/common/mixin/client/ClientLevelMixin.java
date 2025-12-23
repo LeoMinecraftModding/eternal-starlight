@@ -31,9 +31,9 @@ public abstract class ClientLevelMixin {
 		if (state.getBlock() instanceof AlloyFurnaceBlock) {
 			Direction facing = state.getValue(AlloyFurnaceBlock.FACING);
 			int x = state.getValue(AlloyFurnaceBlock.X_OFFSET);
-			int z = state.getValue(AlloyFurnaceBlock.Z_OFFSET) - 1;
 			int y = state.getValue(AlloyFurnaceBlock.Y_OFFSET);
-			if (!(x == 0 && y == 0 && z == 1)) {
+			int z = state.getValue(AlloyFurnaceBlock.Z_OFFSET) - 1;
+			if (!(x == 0 && y == 0 && z == 0)) {
 				Vec3 rotated = new Vec3(x, 0, z).yRot((((int) -facing.toYRot() + 90) % 360) * Mth.DEG_TO_RAD);
 				int rotatedX = Math.round((float) rotated.x);
 				int rotatedZ = Math.round((float) rotated.z);

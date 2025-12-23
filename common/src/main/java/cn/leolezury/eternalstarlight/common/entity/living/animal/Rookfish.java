@@ -102,7 +102,7 @@ public class Rookfish extends Squid implements Bucketable {
 		}
 	}
 
-	public static boolean checkTowerSquidSpawnRules(EntityType<? extends Rookfish> type, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
+	public static boolean checkRookfishSpawnRules(EntityType<? extends Rookfish> type, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, RandomSource randomSource) {
 		int seaLevel = ESDimensions.SEA_LEVEL;
 		int minY = seaLevel - 13;
 		return blockPos.getY() >= minY && blockPos.getY() <= seaLevel && levelAccessor.getFluidState(blockPos.below()).is(FluidTags.WATER) && levelAccessor.getBlockState(blockPos.above()).is(Blocks.WATER);
