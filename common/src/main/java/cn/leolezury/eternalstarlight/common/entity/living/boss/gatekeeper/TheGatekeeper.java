@@ -323,7 +323,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public void setDeltaMovement(Vec3 vec3) {
-		boolean cantMove = getBehaviorState() == GatekeeperDanceFightPhase.ID || getBehaviorState() == GatekeeperSwingSwordPhase.ID || getBehaviorState() == GatekeeperTeleportPhase.ID;
+		boolean cantMove = !isActivated() || getBehaviorState() == GatekeeperDanceFightPhase.ID || getBehaviorState() == GatekeeperSwingSwordPhase.ID || getBehaviorState() == GatekeeperTeleportPhase.ID;
 		super.setDeltaMovement(cantMove ? new Vec3(0, vec3.y, 0) : vec3);
 	}
 

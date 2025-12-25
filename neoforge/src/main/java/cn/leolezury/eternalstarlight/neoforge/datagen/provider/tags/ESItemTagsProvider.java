@@ -683,6 +683,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.SEEDS_LAUNCHER_AMMO)
 			.addTag(Tags.Items.SEEDS);
+		tag(ESTags.Items.ALLOY_FURNACES)
+			.add(
+				ESItems.ALLOY_FURNACE.get(),
+				ESItems.WAXED_ALLOY_FURNACE.get(),
+				ESItems.OXIDIZED_ALLOY_FURNACE.get()
+			);
 		tag(ESTags.Items.DOOMEDEN_KEYS)
 			.add(
 				ESItems.EYE_OF_DOOM.get(),

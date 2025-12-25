@@ -8,7 +8,7 @@
             "items": "#c:ores/deepsilver"
           },
           {
-            "items": "eternal_starlight:alloy_furnace"
+            "items": "#eternal_starlight:alloy_furnaces"
           }
         ]
       },
@@ -21,7 +21,7 @@
             "items": "eternal_starlight:saltpeter_powder"
           },
           {
-            "items": "eternal_starlight:alloy_furnace"
+            "items": "#eternal_starlight:alloy_furnaces"
           }
         ]
       },

@@ -397,7 +397,6 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity implements
 		compoundTag.putShort(TAG_COOLING_EFFICIENCY, (short) this.coolingEfficiency);
 	}
 
-
 	@Nullable
 	@Override
 	public Packet<ClientGamePacketListener> getUpdatePacket() {
@@ -444,7 +443,16 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity implements
 
 	@Override
 	public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-		return canPlaceItem(index, stack);
+		if (index == AlloyFurnaceMenu.FUEL_SLOT || index == AlloyFurnaceMenu.COOLING_SLOT || level == null) {
+			return canPlaceItem(index, stack);
+		} else {
+			Optional<RecipeHolder<AlloyRecipe>> recipeHolder = quickCheck.getRecipeFor(CraftingInput.of(3, 3, getIngredientItems()), level);
+			if (recipeHolder.isPresent()) {
+				return !getItem(index).isEmpty() && canPlaceItem(index, stack);
+			} else {
+				return canPlaceItem(index, stack);
+			}
+		}
 	}
 
 	@Override

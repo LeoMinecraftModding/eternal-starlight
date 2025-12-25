@@ -1,17 +1,22 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.data.ESSeekerVariants;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -22,14 +27,47 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
-public class Seeker extends Monster {
+import java.util.Optional;
+
+public class Seeker extends Monster implements VariantHolder<Holder<SeekerVariant>> {
+	private static final String TAG_VARIANT = "variant";
 	private static final int MOVE_INTERVAL = 50;
 	private static final byte EVENT_MOVE = 100;
+
+	protected static final EntityDataAccessor<String> VARIANT = SynchedEntityData.defineId(Seeker.class, EntityDataSerializers.STRING);
+
+	public ResourceLocation getVariantId() {
+		return ResourceLocation.parse(this.getEntityData().get(VARIANT));
+	}
+
+	public void setVariantId(ResourceLocation variant) {
+		this.getEntityData().set(VARIANT, variant.toString());
+	}
+
+	@Override
+	public void setVariant(Holder<SeekerVariant> variant) {
+		if (variant.isBound()) {
+			ResourceLocation key = level().registryAccess().registryOrThrow(ESRegistries.SEEKER_VARIANT).getKey(variant.value());
+			if (key != null) {
+				setVariantId(key);
+			}
+		}
+	}
+
+	@Override
+	public Holder<SeekerVariant> getVariant() {
+		ResourceLocation key = getVariantId();
+		Registry<SeekerVariant> variants = level().registryAccess().registryOrThrow(ESRegistries.SEEKER_VARIANT);
+		Optional<Holder.Reference<SeekerVariant>> optional = variants.getHolder(key);
+		return optional.orElse(variants.getHolder(ESSeekerVariants.LUNAR).orElseThrow());
+	}
 
 	protected static final EntityDataAccessor<Float> SEEKER_Y_ROT = SynchedEntityData.defineId(Seeker.class, EntityDataSerializers.FLOAT);
 
@@ -64,7 +102,8 @@ public class Seeker extends Monster {
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(SEEKER_X_ROT, 0f)
+		builder.define(VARIANT, ESSeekerVariants.LUNAR.location().toString())
+			.define(SEEKER_X_ROT, 0f)
 			.define(SEEKER_Y_ROT, 0f);
 	}
 
@@ -144,6 +183,24 @@ public class Seeker extends Monster {
 	@Override
 	protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
 
+	}
+
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
+		setVariant(SeekerVariant.getSpawnVariant(level.registryAccess(), level.getBiome(blockPosition())));
+		return super.finalizeSpawn(level, instance, spawnType, data);
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		setVariantId(ResourceLocation.read(compoundTag.getString(TAG_VARIANT)).getOrThrow());
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putString(TAG_VARIANT, getVariantId().toString());
 	}
 
 	public static boolean checkSeekerSpawnRules(EntityType<? extends Seeker> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

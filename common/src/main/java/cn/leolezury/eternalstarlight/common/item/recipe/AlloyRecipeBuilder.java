@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.recipe;
 
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
@@ -114,7 +114,7 @@ public class AlloyRecipeBuilder {
 			.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
 			.rewards(AdvancementRewards.Builder.recipe(id))
 			.requirements(AdvancementRequirements.Strategy.OR);
-		this.itemPredicates.forEach((name, predicate) -> advancementBuilder.addCriterion(name, InventoryChangeTrigger.TriggerInstance.hasItems(predicate, ItemPredicate.Builder.item().of(ESItems.ALLOY_FURNACE.get()).build())));
+		this.itemPredicates.forEach((name, predicate) -> advancementBuilder.addCriterion(name, InventoryChangeTrigger.TriggerInstance.hasItems(predicate, ItemPredicate.Builder.item().of(ESTags.Items.ALLOY_FURNACES).build())));
 		AlloyRecipe recipe = new AlloyRecipe(this.results, this.ingredients, this.burnTime);
 		recipeOutput.accept(id, recipe, advancementBuilder.build(id.withPrefix("recipes/alloy/")));
 	}

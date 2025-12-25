@@ -73,12 +73,14 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get())))
 				.withPool(LootPool.lootPool()
-					.setRolls(UniformGenerator.between(0, 1))
+					.when(LootItemRandomChanceCondition.randomChance(0.75f))
 					.add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get())))
 				.withPool(LootPool.lootPool()
+					.when(LootItemRandomChanceCondition.randomChance(0.5f))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get())))
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ENERGIZED)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
+					.when(LootItemRandomChanceCondition.randomChance(0.5f))
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ENERGIZED)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
 
 		consumer.accept(ESLootTables.BOSS_LUNAR_MONSTROSITY,
 			LootTable.lootTable()
@@ -99,21 +101,23 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 					.setRolls(UniformGenerator.between(5, 8))
 					.add(LootItem.lootTableItem(ESItems.TANGLED_SKULL.get())))
 				.withPool(LootPool.lootPool()
-					.setRolls(UniformGenerator.between(0, 1))
+					.when(LootItemRandomChanceCondition.randomChance(0.75f))
 					.add(LootItem.lootTableItem(ESItems.WAND_OF_TELEPORTATION.get())))
 				.withPool(LootPool.lootPool()
-					.setRolls(UniformGenerator.between(0, 1))
-					.when(LootItemRandomChanceCondition.randomChance(0.4f))
+					.when(LootItemRandomChanceCondition.randomChance(0.75f))
 					.add(LootItem.lootTableItem(ESItems.CRESCENT_SPEAR.get())))
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.CRESCENT_PENDANT.get())))
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.TWINING_ARMOR_TRIM_SMITHING_TEMPLATE.get())))
 				.withPool(LootPool.lootPool()
+					.when(LootItemRandomChanceCondition.randomChance(0.5f))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_MOONLIGHT.get())))
 				.withPool(LootPool.lootPool()
+					.when(LootItemRandomChanceCondition.randomChance(0.5f))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_FAKE_LIGHT.get())))
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).when(LootItemRandomChanceCondition.randomChance(0.2f)).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.MONSTROUS)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
+					.when(LootItemRandomChanceCondition.randomChance(0.5f))
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.MONSTROUS)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
 	}
 }

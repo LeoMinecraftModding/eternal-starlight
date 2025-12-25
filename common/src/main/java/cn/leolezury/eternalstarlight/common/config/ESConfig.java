@@ -76,7 +76,7 @@ public class ESConfig {
 	public static class ItemsConfig {
 		public final ChainOfSoulsConfig chainOfSouls = new ChainOfSoulsConfig(64, 2, 0.5);
 		public final CrystalbornCatalystConfig crystalbornCatalyst = new CrystalbornCatalystConfig(128, 50);
-		public final AlloyFurnaceConfig alloyFurnace = new AlloyFurnaceConfig(6000, 3);
+		public final AlloyFurnaceConfig alloyFurnace = new AlloyFurnaceConfig(12000, 3);
 
 		public record ChainOfSoulsConfig(double maxRange, double soulAbsorbDamage, double healPercentage) {
 		}

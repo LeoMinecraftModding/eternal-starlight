@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.SeekerModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.SeekerGlowLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Seeker;
@@ -15,8 +14,6 @@ import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
 public class SeekerRenderer<T extends Seeker> extends MobRenderer<T, SeekerModel<T>> {
-	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/seeker.png");
-
 	public SeekerRenderer(EntityRendererProvider.Context context) {
 		super(context, new SeekerModel<>(context.bakeLayer(SeekerModel.LAYER_LOCATION)), 0.5f);
 		this.addLayer(new SeekerGlowLayer<>(this));
@@ -40,6 +37,6 @@ public class SeekerRenderer<T extends Seeker> extends MobRenderer<T, SeekerModel
 
 	@Override
 	public ResourceLocation getTextureLocation(T entity) {
-		return ENTITY_TEXTURE;
+		return entity.getVariant().value().texture().withSuffix(".png");
 	}
 }

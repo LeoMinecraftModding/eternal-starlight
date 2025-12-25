@@ -60,6 +60,7 @@ public class ESTags {
 		public static final TagKey<Item> STRANGHOUL_CURRENCIES = create("stranghoul_currencies");
 		public static final TagKey<Item> STRANGHOUL_VULNERABLE_TO = create("stranghoul_vulnerable_to");
 		public static final TagKey<Item> SEEDS_LAUNCHER_AMMO = create("seeds_launcher_ammo");
+		public static final TagKey<Item> ALLOY_FURNACES = create("alloy_furnaces");
 		public static final TagKey<Item> DOOMEDEN_KEYS = create("doomeden_keys");
 		public static final TagKey<Item> SCYTHE_ENCHANTABLE = create("enchantable/scythe");
 		public static final TagKey<Item> GREATSWORD_ENCHANTABLE = create("enchantable/greatsword");

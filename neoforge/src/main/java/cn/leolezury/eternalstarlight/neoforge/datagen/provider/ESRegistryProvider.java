@@ -37,6 +37,7 @@ public class ESRegistryProvider extends DatapackBuiltinEntriesProvider {
 		.add(ESRegistries.ASTRAL_GOLEM_MATERIAL, ESAstralGolemMaterials::bootstrap)
 		.add(ESRegistries.ENT_VARIANT, ESEntVariants::bootstrap)
 		.add(ESRegistries.SHIMMER_LACEWING_VARIANT, ESShimmerLacewingVariants::bootstrap)
+		.add(ESRegistries.SEEKER_VARIANT, ESSeekerVariants::bootstrap)
 		.add(ESRegistries.CREST, ESCrests::bootstrap)
 		.add(ESRegistries.SEEDS_LAUNCHER_AMMO_TYPE, ESSeedsLauncherAmmoTypes::bootstrap);
 

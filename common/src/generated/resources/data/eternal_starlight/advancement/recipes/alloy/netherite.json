@@ -8,7 +8,7 @@
             "items": "#c:ingots/gold"
           },
           {
-            "items": "eternal_starlight:alloy_furnace"
+            "items": "#eternal_starlight:alloy_furnaces"
           }
         ]
       },
@@ -21,7 +21,7 @@
             "items": "minecraft:netherite_scrap"
           },
           {
-            "items": "eternal_starlight:alloy_furnace"
+            "items": "#eternal_starlight:alloy_furnaces"
           }
         ]
       },
@@ -34,7 +34,7 @@
             "items": "eternal_starlight:saltpeter_powder"
           },
           {
-            "items": "eternal_starlight:alloy_furnace"
+            "items": "#eternal_starlight:alloy_furnaces"
           }
         ]
       },
@@ -47,7 +47,7 @@
             "items": "eternal_starlight:starcore"
           },
           {
-            "items": "eternal_starlight:alloy_furnace"
+            "items": "#eternal_starlight:alloy_furnaces"
           }
         ]
       },
