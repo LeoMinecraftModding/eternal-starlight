@@ -1,4 +1,6 @@
 {
   "biomes": "eternal_starlight:scarlet_forest",
-  "texture": "eternal_starlight:textures/entity/seeker/scarlet"
+  "glow_texture": "eternal_starlight:entity/seeker/scarlet_glow",
+  "tentacle_texture": "eternal_starlight:entity/seeker/scarlet_tentacle",
+  "texture": "eternal_starlight:entity/seeker/scarlet"
 }

@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.registry;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.entity.*;
 import cn.leolezury.eternalstarlight.common.block.entity.spawner.LunarMonstrositySpawnerBlockEntity;
+import cn.leolezury.eternalstarlight.common.block.entity.spawner.PermafrostSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.spawner.StarlightGolemSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.spawner.TheGatekeeperSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
@@ -43,6 +44,7 @@ public class ESBlockEntities {
 	).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TheGatekeeperSpawnerBlockEntity>> THE_GATEKEEPER_SPAWNER = BLOCK_ENTITIES.register("the_gatekeeper_spawner", () -> BlockEntityType.Builder.of(TheGatekeeperSpawnerBlockEntity::new, ESBlocks.THE_GATEKEEPER_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarlightGolemSpawnerBlockEntity>> STARLIGHT_GOLEM_SPAWNER = BLOCK_ENTITIES.register("starlight_golem_spawner", () -> BlockEntityType.Builder.of(StarlightGolemSpawnerBlockEntity::new, ESBlocks.STARLIGHT_GOLEM_SPAWNER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<PermafrostSpawnerBlockEntity>> PERMAFROST_SPAWNER = BLOCK_ENTITIES.register("permafrost_spawner", () -> BlockEntityType.Builder.of(PermafrostSpawnerBlockEntity::new, ESBlocks.PERMAFROST_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LunarMonstrositySpawnerBlockEntity>> LUNAR_MONSTROSITY_SPAWNER = BLOCK_ENTITIES.register("lunar_monstrosity_spawner", () -> BlockEntityType.Builder.of(LunarMonstrositySpawnerBlockEntity::new, ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<GolemSteelJetBlockEntity>> GOLEM_STEEL_JET = BLOCK_ENTITIES.register("golem_steel_jet", () -> BlockEntityType.Builder.of(GolemSteelJetBlockEntity::new, ESBlocks.GOLEM_STEEL_JET.get(), ESBlocks.WAXED_GOLEM_STEEL_JET.get(), ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<EnergyTransmitterBlockEntity>> ENERGY_TRANSMITTER = BLOCK_ENTITIES.register("energy_transmitter", () -> BlockEntityType.Builder.of(EnergyTransmitterBlockEntity::new, ESBlocks.ENERGY_TRANSMITTER.get()).build(null));

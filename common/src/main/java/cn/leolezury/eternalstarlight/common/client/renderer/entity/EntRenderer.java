@@ -16,6 +16,6 @@ public class EntRenderer<T extends Ent> extends MobRenderer<T, EntModel<T>> {
 
 	@Override
 	public ResourceLocation getTextureLocation(T entity) {
-		return entity.getVariant().value().texture().withSuffix(".png");
+		return entity.getVariant().value().textureFull();
 	}
 }

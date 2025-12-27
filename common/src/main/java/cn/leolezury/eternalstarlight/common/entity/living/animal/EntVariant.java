@@ -14,12 +14,20 @@ import net.minecraft.world.level.biome.Biome;
 import java.util.Objects;
 import java.util.Optional;
 
-public record EntVariant(HolderSet<Biome> biomes, Holder<Item> leaves, ResourceLocation texture) {
+public record EntVariant(Holder<Item> leaves, ResourceLocation texture, ResourceLocation textureFull, HolderSet<Biome> biomes) {
 	public static final Codec<EntVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(EntVariant::biomes),
 		BuiltInRegistries.ITEM.holderByNameCodec().fieldOf("leaves").forGetter(EntVariant::leaves),
-		ResourceLocation.CODEC.fieldOf("texture").forGetter(EntVariant::texture)
+		ResourceLocation.CODEC.fieldOf("texture").forGetter(EntVariant::texture),
+		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(EntVariant::biomes)
 	).apply(instance, EntVariant::new));
+
+	public EntVariant(Holder<Item> leaves, ResourceLocation texture, HolderSet<Biome> biomes) {
+		this(leaves, texture, fullTextureId(texture), biomes);
+	}
+
+	private static ResourceLocation fullTextureId(ResourceLocation location) {
+		return location.withPath((string) -> "textures/" + string + ".png");
+	}
 
 	public static Holder<EntVariant> getSpawnVariant(RegistryAccess registryAccess, Holder<Biome> holder) {
 		Registry<EntVariant> registry = registryAccess.registryOrThrow(ESRegistries.ENT_VARIANT);

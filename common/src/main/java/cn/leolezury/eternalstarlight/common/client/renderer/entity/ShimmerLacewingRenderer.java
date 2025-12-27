@@ -18,6 +18,6 @@ public class ShimmerLacewingRenderer<T extends ShimmerLacewing> extends MobRende
 
 	@Override
 	public ResourceLocation getTextureLocation(T entity) {
-		return entity.getVariant().value().texture().withSuffix(".png");
+		return entity.getVariant().value().textureFull();
 	}
 }

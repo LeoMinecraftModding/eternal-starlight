@@ -15,9 +15,9 @@ public class ESBoarwarfTypes {
 
 	public static void bootstrap(BootstrapContext<BoarwarfType> context) {
 		HolderGetter<Biome> biomeHolderGetter = context.lookup(Registries.BIOME);
-		context.register(FOREST, new BoarwarfType(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_FOREST), EternalStarlight.id("textures/entity/boarwarf/biome/forest.png")));
-		context.register(FROZEN, new BoarwarfType(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST), EternalStarlight.id("textures/entity/boarwarf/biome/frozen.png")));
-		context.register(SWAMP, new BoarwarfType(biomeHolderGetter.getOrThrow(ESBiomes.DARK_SWAMP), EternalStarlight.id("textures/entity/boarwarf/biome/swamp.png")));
+		context.register(FOREST, new BoarwarfType(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_FOREST), EternalStarlight.id("entity/boarwarf/biome/forest")));
+		context.register(FROZEN, new BoarwarfType(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST), EternalStarlight.id("entity/boarwarf/biome/frozen")));
+		context.register(SWAMP, new BoarwarfType(biomeHolderGetter.getOrThrow(ESBiomes.DARK_SWAMP), EternalStarlight.id("entity/boarwarf/biome/swamp")));
 	}
 
 	public static ResourceKey<BoarwarfType> create(String name) {

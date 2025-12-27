@@ -819,6 +819,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 		add(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), noDrop());
 		add(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), noDrop());
+		add(ESBlocks.PERMAFROST_SPAWNER.get(), noDrop());
 		add(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), noDrop());
 		add(ESBlocks.SOLAR_EGG.get(), noDrop());
 

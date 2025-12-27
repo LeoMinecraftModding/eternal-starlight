@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-24T22:18:47.6510068	Loot Tables
+// 1.21.1	2025-12-27T19:03:57.248497	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -443,6 +443,7 @@ d2c662afdf3a5bc8e0036f0b189d4712e830dc6b data/eternal_starlight/loot_table/block
 2970485d668980cfbb1fac992481751867cb263e data/eternal_starlight/loot_table/blocks/packed_nightfall_mud_deepsilver_ore.json
 48d0d3242444da8499786733e89921c48392eaa6 data/eternal_starlight/loot_table/blocks/packed_nightfall_mud_malarite_ore.json
 9898711812c07704cd98c4e1a5b37190b6561d4f data/eternal_starlight/loot_table/blocks/parasol_grass.json
+efe7f0af28ff36d34a6cd330662113282176c15b data/eternal_starlight/loot_table/blocks/permafrost_spawner.json
 af221e3addae5e2839e23a58bc77794e891b2c9a data/eternal_starlight/loot_table/blocks/pink_rose.json
 42c55e4df07f7596bffe2d25a424bbf5021ce703 data/eternal_starlight/loot_table/blocks/pink_rose_bush.json
 c950cad7e42d0a1aa994afe61f4e6d7ce6e35c83 data/eternal_starlight/loot_table/blocks/pink_yeti_fur.json

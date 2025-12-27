@@ -6,9 +6,17 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 
-public record BoarwarfType(Holder<Biome> biome, ResourceLocation texture) {
+public record BoarwarfType(Holder<Biome> biome, ResourceLocation texture, ResourceLocation textureFull) {
 	public static final Codec<BoarwarfType> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Biome.CODEC.fieldOf("biome").forGetter(BoarwarfType::biome),
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(BoarwarfType::texture)
 	).apply(instance, BoarwarfType::new));
+
+	public BoarwarfType(Holder<Biome> biome, ResourceLocation texture) {
+		this(biome, texture, fullTextureId(texture));
+	}
+
+	private static ResourceLocation fullTextureId(ResourceLocation location) {
+		return location.withPath((string) -> "textures/" + string + ".png");
+	}
 }

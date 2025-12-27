@@ -45,6 +45,7 @@ public class SeekerModel<T extends Seeker> extends AnimatedEntityModel<T> {
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		animate(entity.moveAnimationState, SeekerAnimation.MOVE, ageInTicks);
+		animate(entity.attackAnimationState, SeekerAnimation.ATTACK, ageInTicks);
 	}
 
 	@Override

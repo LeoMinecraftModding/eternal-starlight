@@ -57,6 +57,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLEECH_SPAWN_EGG = registerItem("gleech_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.GLEECH::get, 0x86a6bc, 0xaa6b9c, new Item.Properties()));
 	public static final RegistryObject<Item, Item> LONESTAR_SKELETON_SPAWN_EGG = registerItem("lonestar_skeleton_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.LONESTAR_SKELETON::get, 0xd9d9d9, 0x4f5158, new Item.Properties()));
 	public static final RegistryObject<Item, Item> NIGHTFALL_SPIDER_SPAWN_EGG = registerItem("nightfall_spider_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.NIGHTFALL_SPIDER::get, 0x233e47, 0x879cca, new Item.Properties()));
+	public static final RegistryObject<Item, Item> SEEKER_SPAWN_EGG = registerItem("seeker_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.SEEKER::get, 0x42447d, 0xe9a4c8, new Item.Properties()));
 	public static final RegistryObject<Item, Item> THIRST_WALKER_SPAWN_EGG = registerItem("thirst_walker_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.THIRST_WALKER::get, 0x352b2f, 0xa4e0f2, new Item.Properties()));
 	public static final RegistryObject<Item, Item> CRETEOR_SPAWN_EGG = registerItem("creteor_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.CRETEOR::get, 0x53235b, 0xe9aded, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TINY_CRETEOR_SPAWN_EGG = registerItem("tiny_creteor_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TINY_CRETEOR::get, 0x53235b, 0xe9aded, new Item.Properties()));
@@ -76,8 +77,11 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> LUMINOFISH_SPAWN_EGG = registerItem("luminofish_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.LUMINOFISH::get, 0x35293a, 0xf1ffc8, new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUMINARIS_SPAWN_EGG = registerItem("luminaris_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.LUMINARIS::get, 0x3e3a46, 0x91807c, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TWILIGHT_GAZE_SPAWN_EGG = registerItem("twilight_gaze_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TWILIGHT_GAZE::get, 0x1e135a, 0x8f56ec, new Item.Properties()));
+	public static final RegistryObject<Item, Item> THE_GATEKEEPER_SPAWN_EGG = registerItem("the_gatekeeper_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.THE_GATEKEEPER::get, 0x1a1932, 0xffffff, new Item.Properties()));
+	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWN_EGG = registerItem("starlight_golem_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.STARLIGHT_GOLEM::get, 0x525050, 0x00fff4, new Item.Properties()));
 	public static final RegistryObject<Item, Item> FREEZE_SPAWN_EGG = registerItem("freeze_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.FREEZE::get, 0x525050, 0x68ccff, new Item.Properties()));
 	public static final RegistryObject<Item, Item> PERMAFROST_SPAWN_EGG = registerItem("permafrost_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.PERMAFROST::get, 0x525050, 0x68ccff, new Item.Properties()));
+	public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWN_EGG = registerItem("lunar_monstrosity_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.LUNAR_MONSTROSITY::get, 0x322579, 0x99bbe5, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TANGLED_SPAWN_EGG = registerItem("tangled_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED::get, 0x96b3bb, 0x6275c1, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TANGLED_SKULL_SPAWN_EGG = registerItem("tangled_skull_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED_SKULL::get, 0x838c8d, 0x445955, new Item.Properties()));
 
@@ -1171,6 +1175,7 @@ public class ESItems {
 	// boss spawners
 	public static final RegistryObject<Item, Item> THE_GATEKEEPER_SPAWNER = registerItem("the_gatekeeper_spawner", () -> new BlockItem(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> PERMAFROST_SPAWNER = registerItem("permafrost_spawner", () -> new BlockItem(ESBlocks.PERMAFROST_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWNER = registerItem("lunar_monstrosity_spawner", () -> new BlockItem(ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> SOLAR_EGG = registerItem("solar_egg", () -> new BlockItem(ESBlocks.SOLAR_EGG.get(), new Item.Properties()));
 

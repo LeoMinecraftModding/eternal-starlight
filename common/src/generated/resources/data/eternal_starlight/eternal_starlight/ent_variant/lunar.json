@@ -4,5 +4,5 @@
     "eternal_starlight:starlight_dense_forest"
   ],
   "leaves": "eternal_starlight:lunar_leaves",
-  "texture": "eternal_starlight:textures/entity/ent/lunar"
+  "texture": "eternal_starlight:entity/ent/lunar"
 }

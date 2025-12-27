@@ -29,6 +29,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -38,8 +39,9 @@ import java.util.Optional;
 
 public class Seeker extends Monster implements VariantHolder<Holder<SeekerVariant>> {
 	private static final String TAG_VARIANT = "variant";
-	private static final int MOVE_INTERVAL = 50;
+	public static final float TENTACLE_LENGTH = 5;
 	private static final byte EVENT_MOVE = 100;
+	private static final byte EVENT_ATTACK = 101;
 
 	protected static final EntityDataAccessor<String> VARIANT = SynchedEntityData.defineId(Seeker.class, EntityDataSerializers.STRING);
 
@@ -91,8 +93,11 @@ public class Seeker extends Monster implements VariantHolder<Holder<SeekerVarian
 
 	private float oldSeekerXRot, seekerXRot, oldSeekerYRot, seekerYRot;
 	public AnimationState moveAnimationState = new AnimationState();
+	public AnimationState attackAnimationState = new AnimationState();
 
 	private Vec3 nextMovement = Vec3.ZERO;
+	private int moveTicks, moveCooldown, attackTicks, attackCooldown;
+	private float attackXRot, attackYRot;
 
 	public Seeker(EntityType<? extends Seeker> entityType, Level level) {
 		super(entityType, level);
@@ -138,14 +143,42 @@ public class Seeker extends Monster implements VariantHolder<Holder<SeekerVarian
 		this.setNoGravity(true);
 		if (!level().isClientSide) {
 			if (isAlive() && !isNoAi()) {
-				if (tickCount % MOVE_INTERVAL == MOVE_INTERVAL - 5) {
+				LivingEntity target = getTarget();
+				if (target != null && !target.isAlive()) {
+					setTarget(null);
+					target = null;
+				}
+				if (moveTicks > 0) {
+					moveTicks--;
+				}
+				if (moveCooldown > 0) {
+					moveCooldown--;
+				}
+				if (attackTicks > 0) {
+					attackTicks--;
+				}
+				if (attackCooldown > 0) {
+					attackCooldown--;
+				}
+				if (moveTicks <= 0 && attackTicks <= 0 && moveCooldown <= 0) {
 					level().broadcastEntityEvent(this, EVENT_MOVE);
+					moveTicks = 20;
+					moveCooldown = target == null ? 50 : 30;
 					BlockHitResult heightResult = level().clip(new ClipContext(position(), position().subtract(0, 10, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, this));
 					boolean tooHigh = heightResult.getType() == HitResult.Type.MISS;
 					for (int i = 0; i < 32; i++) {
-						nextMovement = new Vec3(getRandom().nextFloat() - 0.5F, tooHigh ? -Math.abs(getRandom().nextFloat() - 0.5F) : getRandom().nextFloat() - 0.5F, getRandom().nextFloat() - 0.5F).normalize();
-						BlockHitResult result = level().clip(new ClipContext(position(), position().add(nextMovement.scale(getBoundingBox().getSize() + 2)), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, this));
-						if (result.getType() == HitResult.Type.MISS && Mth.degreesDifferenceAbs(getSeekerXRot(), ESMathUtil.positionToPitch(nextMovement)) <= 90 && Mth.degreesDifferenceAbs(getSeekerYRot(), ESMathUtil.positionToYaw(nextMovement)) <= 90) {
+						if (target != null && i == 0) {
+							Vec3 targetPos = target.position().add(0, target.getBbHeight() / 2f, 0);
+							Vec3 selfPos = position().add(0, getBbHeight() / 2f, 0);
+							Vec3 wanted = ESMathUtil.rotationToPosition(targetPos, TENTACLE_LENGTH * 0.6f, (getRandom().nextFloat() - 0.5F) * 30, ESMathUtil.positionToYaw(targetPos, selfPos) + 15);
+							nextMovement = wanted.subtract(position()).normalize();
+						} else {
+							nextMovement = new Vec3(getRandom().nextFloat() - 0.5F, tooHigh ? -Math.abs(getRandom().nextFloat() - 0.5F) : getRandom().nextFloat() - 0.5F, getRandom().nextFloat() - 0.5F).normalize();
+						}
+						BlockHitResult result = level().clip(new ClipContext(position(), position().add(nextMovement.scale(getBoundingBox().getSize() + 3)), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, this));
+						if (result.getType() == HitResult.Type.MISS
+							&& ((target != null && i == 0) || (Mth.degreesDifferenceAbs(getSeekerXRot(), ESMathUtil.positionToPitch(nextMovement)) <= 90
+							&& Mth.degreesDifferenceAbs(getSeekerYRot(), ESMathUtil.positionToYaw(nextMovement)) <= 90))) {
 							break;
 						}
 					}
@@ -153,9 +186,39 @@ public class Seeker extends Monster implements VariantHolder<Holder<SeekerVarian
 					setSeekerYRot(ESMathUtil.positionToYaw(nextMovement));
 					setYRot(getSeekerYRot() - 90);
 				}
-				if (tickCount % MOVE_INTERVAL == 0) {
+				if (moveTicks == 15) {
 					this.hurtMarked = true;
-					setDeltaMovement(nextMovement.scale(getAttributeValue(Attributes.FLYING_SPEED) * 0.3));
+					setDeltaMovement(nextMovement.scale(getAttributeValue(Attributes.FLYING_SPEED) * (target == null ? 0.2 : 0.4)));
+				}
+				if (target != null) {
+					Vec3 targetPos = target.position().add(0, target.getBbHeight() / 2f, 0);
+					Vec3 selfPos = position().add(0, getBbHeight() / 2f, 0);
+					if (attackTicks <= 0) {
+						attackXRot = ESMathUtil.positionToPitch(selfPos, targetPos);
+						attackYRot = ESMathUtil.positionToYaw(selfPos, targetPos);
+					}
+					AABB aabb = target.getBoundingBox().inflate(target.getPickRadius() + 0.5f);
+					Vec3 endPos = ESMathUtil.rotationToPosition(selfPos, TENTACLE_LENGTH, attackXRot, attackYRot);
+					boolean canReachTarget = (aabb.contains(selfPos) || aabb.clip(selfPos, endPos).isPresent()) && hasLineOfSight(target);
+					if (moveTicks <= 0 && attackTicks <= 0 && attackCooldown <= 0 && canReachTarget) {
+						attackTicks = 30;
+						attackCooldown = 50;
+						setDeltaMovement(Vec3.ZERO);
+						level().broadcastEntityEvent(this, EVENT_ATTACK);
+					}
+					if (attackTicks > 10) {
+						setSeekerXRot(Mth.rotLerp(0.2f, getSeekerXRot(), -attackXRot));
+						setSeekerYRot(Mth.rotLerp(0.2f, getSeekerYRot(), attackYRot + 180));
+						setYRot(getSeekerYRot() - 90);
+					}
+					if (attackTicks == 10) {
+						setSeekerXRot(-attackXRot);
+						setSeekerYRot(attackYRot + 180);
+						setYRot(getSeekerYRot() - 90);
+						if (canReachTarget) {
+							doHurtTarget(target);
+						}
+					}
 				}
 			}
 		} else {
@@ -170,6 +233,8 @@ public class Seeker extends Monster implements VariantHolder<Holder<SeekerVarian
 	public void handleEntityEvent(byte b) {
 		if (b == EVENT_MOVE) {
 			moveAnimationState.start(tickCount);
+		} else if (b == EVENT_ATTACK) {
+			attackAnimationState.start(tickCount);
 		} else {
 			super.handleEntityEvent(b);
 		}

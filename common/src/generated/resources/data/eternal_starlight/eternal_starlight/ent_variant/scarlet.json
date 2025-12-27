@@ -1,5 +1,5 @@
 {
   "biomes": "eternal_starlight:scarlet_forest",
   "leaves": "eternal_starlight:scarlet_leaves",
-  "texture": "eternal_starlight:textures/entity/ent/scarlet"
+  "texture": "eternal_starlight:entity/ent/scarlet"
 }

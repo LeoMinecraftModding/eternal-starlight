@@ -86,6 +86,10 @@
     "eternal_starlight:nightfall_spider": {
       "charge": 1.0,
       "energy_budget": 0.75
+    },
+    "eternal_starlight:seeker": {
+      "charge": 1.0,
+      "energy_budget": 0.5
     }
   },
   "spawners": {
@@ -143,6 +147,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 20
+      },
+      {
+        "type": "eternal_starlight:seeker",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 15
       }
     ],
     "underground_water_creature": [],

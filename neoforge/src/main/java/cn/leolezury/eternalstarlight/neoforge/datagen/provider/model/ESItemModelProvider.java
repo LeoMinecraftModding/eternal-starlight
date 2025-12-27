@@ -28,6 +28,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.GLEECH_SPAWN_EGG.get());
 		basicItem(ESItems.LONESTAR_SKELETON_SPAWN_EGG.get());
 		basicItem(ESItems.NIGHTFALL_SPIDER_SPAWN_EGG.get());
+		basicItem(ESItems.SEEKER_SPAWN_EGG.get());
 		basicItem(ESItems.THIRST_WALKER_SPAWN_EGG.get());
 		basicItem(ESItems.CRETEOR_SPAWN_EGG.get());
 		basicItem(ESItems.TINY_CRETEOR_SPAWN_EGG.get());
@@ -47,8 +48,11 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LUMINOFISH_SPAWN_EGG.get());
 		basicItem(ESItems.LUMINARIS_SPAWN_EGG.get());
 		basicItem(ESItems.TWILIGHT_GAZE_SPAWN_EGG.get());
+		basicItem(ESItems.THE_GATEKEEPER_SPAWN_EGG.get());
+		basicItem(ESItems.STARLIGHT_GOLEM_SPAWN_EGG.get());
 		basicItem(ESItems.FREEZE_SPAWN_EGG.get());
 		basicItem(ESItems.PERMAFROST_SPAWN_EGG.get());
+		basicItem(ESItems.LUNAR_MONSTROSITY_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
 
@@ -917,6 +921,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		block(ESItems.THE_GATEKEEPER_SPAWNER.get());
 		block(ESItems.STARLIGHT_GOLEM_SPAWNER.get());
+		block(ESItems.PERMAFROST_SPAWNER.get());
 		block(ESItems.LUNAR_MONSTROSITY_SPAWNER.get());
 		basicItem(ESItems.SOLAR_EGG.get());
 

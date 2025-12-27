@@ -15,8 +15,8 @@ public class ESSeekerVariants {
 
 	public static void bootstrap(BootstrapContext<SeekerVariant> context) {
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
-		context.register(LUNAR, new SeekerVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_FOREST), biomes.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST)), EternalStarlight.id("textures/entity/seeker/lunar")));
-		context.register(SCARLET, new SeekerVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST)), EternalStarlight.id("textures/entity/seeker/scarlet")));
+		context.register(LUNAR, new SeekerVariant(EternalStarlight.id("entity/seeker/lunar"), EternalStarlight.id("entity/seeker/lunar_glow"), EternalStarlight.id("entity/seeker/lunar_tentacle"), HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_FOREST), biomes.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST))));
+		context.register(SCARLET, new SeekerVariant(EternalStarlight.id("entity/seeker/scarlet"), EternalStarlight.id("entity/seeker/scarlet_glow"), EternalStarlight.id("entity/seeker/scarlet_tentacle"), HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST))));
 	}
 
 	public static ResourceKey<SeekerVariant> create(String name) {

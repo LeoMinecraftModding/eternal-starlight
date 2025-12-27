@@ -1,4 +1,5 @@
 {
   "biomes": "eternal_starlight:dark_swamp",
-  "texture": "eternal_starlight:textures/entity/shimmer_lacewing/swamp"
+  "glow_texture": "eternal_starlight:entity/shimmer_lacewing/swamp_glow",
+  "texture": "eternal_starlight:entity/shimmer_lacewing/swamp"
 }

@@ -15,8 +15,8 @@ public class ESShimmerLacewingVariants {
 
 	public static void bootstrap(BootstrapContext<ShimmerLacewingVariant> context) {
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
-		context.register(RIVER, new ShimmerLacewingVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.SHIMMER_RIVER)), EternalStarlight.id("textures/entity/shimmer_lacewing/river")));
-		context.register(SWAMP, new ShimmerLacewingVariant(HolderSet.direct(biomes.getOrThrow(ESBiomes.DARK_SWAMP)), EternalStarlight.id("textures/entity/shimmer_lacewing/swamp")));
+		context.register(RIVER, new ShimmerLacewingVariant(EternalStarlight.id("entity/shimmer_lacewing/river"), EternalStarlight.id("entity/shimmer_lacewing/river_glow"), HolderSet.direct(biomes.getOrThrow(ESBiomes.SHIMMER_RIVER))));
+		context.register(SWAMP, new ShimmerLacewingVariant(EternalStarlight.id("entity/shimmer_lacewing/swamp"), EternalStarlight.id("entity/shimmer_lacewing/swamp_glow"), HolderSet.direct(biomes.getOrThrow(ESBiomes.DARK_SWAMP))));
 	}
 
 	public static ResourceKey<ShimmerLacewingVariant> create(String name) {

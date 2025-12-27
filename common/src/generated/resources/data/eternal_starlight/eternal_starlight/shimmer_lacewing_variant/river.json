@@ -1,4 +1,5 @@
 {
   "biomes": "eternal_starlight:shimmer_river",
-  "texture": "eternal_starlight:textures/entity/shimmer_lacewing/river"
+  "glow_texture": "eternal_starlight:entity/shimmer_lacewing/river_glow",
+  "texture": "eternal_starlight:entity/shimmer_lacewing/river"
 }

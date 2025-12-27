@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.registry;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.*;
 import cn.leolezury.eternalstarlight.common.block.spawner.LunarMonstrositySpawnerBlock;
+import cn.leolezury.eternalstarlight.common.block.spawner.PermafrostSpawnerBlock;
 import cn.leolezury.eternalstarlight.common.block.spawner.StarlightGolemSpawnerBlock;
 import cn.leolezury.eternalstarlight.common.block.spawner.TheGatekeeperSpawnerBlock;
 import cn.leolezury.eternalstarlight.common.data.ESConfiguredFeatures;
@@ -924,6 +925,7 @@ public class ESBlocks {
 	// boss spawners
 	public static final RegistryObject<Block, TheGatekeeperSpawnerBlock> THE_GATEKEEPER_SPAWNER = BLOCKS.register("the_gatekeeper_spawner", () -> new TheGatekeeperSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, StarlightGolemSpawnerBlock> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, PermafrostSpawnerBlock> PERMAFROST_SPAWNER = BLOCKS.register("permafrost_spawner", () -> new PermafrostSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, LunarMonstrositySpawnerBlock> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, SolarEggBlock> SOLAR_EGG = BLOCKS.register("solar_egg", () -> new SolarEggBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_PURPLE)));
 
