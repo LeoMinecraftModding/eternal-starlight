@@ -23,7 +23,7 @@ public class ESBookUtil {
 			ServerLevel level = player.getServer().getLevel(Level.OVERWORLD);
 			if (level != null) {
 				BookProgressions progressions = getOrCreateBookProgressions(level);
-				return new HashSet<>(progressions.getProgressions().getOrDefault(player.getUUID(), new HashSet<>()));
+				return progressions.getProgressions().getOrDefault(player.getUUID(), new HashSet<>());
 			}
 		}
 		return new HashSet<>();
@@ -36,12 +36,12 @@ public class ESBookUtil {
 			if (level != null) {
 				BookProgressions progressions = getOrCreateBookProgressions(level);
 				Set<ResourceLocation> unlocked = getUnlockedParts(player);
-				Set<ResourceLocation> oldUnlocked = new HashSet<>(unlocked);
-				unlocked.addAll(Set.of(locations));
-				if (!unlocked.equals(oldUnlocked)) {
+				if (!unlocked.containsAll(Set.of(locations))) {
+					Set<ResourceLocation> oldUnlocked = new HashSet<>(unlocked);
+					unlocked.addAll(Set.of(locations));
 					progressions.getProgressions().put(player.getUUID(), unlocked);
 					progressions.setDirty();
-					ESPlatform.INSTANCE.sendToClient(player, new UpdateBookPacket(new HashSet<>(oldUnlocked), new HashSet<>(unlocked)));
+					ESPlatform.INSTANCE.sendToClient(player, new UpdateBookPacket(oldUnlocked, unlocked));
 				}
 			}
 		}
