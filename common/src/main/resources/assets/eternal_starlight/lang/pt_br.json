@@ -1367,6 +1367,8 @@
   "subtitles.entity.eternal_starlight.aethersent_golem.hurt": "Golem Aethersent se machuca",
   "subtitles.entity.eternal_starlight.aethersent_golem.death": "Golem Aethersent morre",
   "subtitles.entity.eternal_starlight.aethersent_golem.shoot": "Golem Aethersent atira",
+  "subtitles.entity.eternal_starlight.seeker.hurt": "Seeker hurts",
+  "subtitles.entity.eternal_starlight.seeker.death": "Seeker dies",
   "subtitles.entity.eternal_starlight.thirst_walker.ambient": "Andarilho Sedento geme",
   "subtitles.entity.eternal_starlight.thirst_walker.hurt": "Andarilho Sedento se machuca",
   "subtitles.entity.eternal_starlight.thirst_walker.death": "Andarilho Sedento morre",
