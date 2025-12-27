@@ -38,10 +38,11 @@ public class ESBookUtil {
 				Set<ResourceLocation> unlocked = getUnlockedParts(player);
 				if (!unlocked.containsAll(Set.of(locations))) {
 					Set<ResourceLocation> oldUnlocked = new HashSet<>(unlocked);
-					unlocked.addAll(Set.of(locations));
-					progressions.getProgressions().put(player.getUUID(), unlocked);
+					Set<ResourceLocation> newUnlocked = new HashSet<>(unlocked);
+					newUnlocked.addAll(Set.of(locations));
+					progressions.getProgressions().put(player.getUUID(), newUnlocked);
 					progressions.setDirty();
-					ESPlatform.INSTANCE.sendToClient(player, new UpdateBookPacket(oldUnlocked, unlocked));
+					ESPlatform.INSTANCE.sendToClient(player, new UpdateBookPacket(oldUnlocked, newUnlocked));
 				}
 			}
 		}

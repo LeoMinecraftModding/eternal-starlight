@@ -106,6 +106,9 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.AETHERSENT_GOLEM_DEATH.get(), definition().with(sound(mcLoc("mob/irongolem/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aethersent_golem.death"));
 		add(ESSoundEvents.AETHERSENT_GOLEM_SHOOT.get(), definition().with(sound(loc("mob/aethersent_golem/shoot"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aethersent_golem.shoot"));
 
+		add(ESSoundEvents.SEEKER_HURT.get(), definition().with(sound(mcLoc("mob/slime/big1")), sound(mcLoc("mob/slime/big2")), sound(mcLoc("mob/slime/big3")), sound(mcLoc("mob/slime/big4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".seeker.hurt"));
+		add(ESSoundEvents.SEEKER_DEATH.get(), definition().with(sound(mcLoc("mob/slime/big1")), sound(mcLoc("mob/slime/big2")), sound(mcLoc("mob/slime/big3")), sound(mcLoc("mob/slime/big4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".seeker.death"));
+
 		add(ESSoundEvents.THIRST_WALKER_AMBIENT.get(), definition().with(sound(loc("mob/thirst_walker/idle1")), sound(loc("mob/thirst_walker/idle2")), sound(loc("mob/thirst_walker/idle3"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.ambient"));
 		add(ESSoundEvents.THIRST_WALKER_HURT.get(), definition().with(sound(loc("mob/thirst_walker/hurt1")), sound(loc("mob/thirst_walker/hurt2"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.hurt"));
 		add(ESSoundEvents.THIRST_WALKER_DEATH.get(), definition().with(sound(loc("mob/thirst_walker/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".thirst_walker.death"));

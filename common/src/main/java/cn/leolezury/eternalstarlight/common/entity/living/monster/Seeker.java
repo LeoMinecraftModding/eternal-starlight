@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.data.ESSeekerVariants;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -12,6 +13,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -254,6 +256,16 @@ public class Seeker extends Monster implements VariantHolder<Holder<SeekerVarian
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
 		setVariant(SeekerVariant.getSpawnVariant(level.registryAccess(), level.getBiome(blockPosition())));
 		return super.finalizeSpawn(level, instance, spawnType, data);
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return ESSoundEvents.SEEKER_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ESSoundEvents.SEEKER_DEATH.get();
 	}
 
 	@Override

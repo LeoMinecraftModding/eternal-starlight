@@ -13,6 +13,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+import java.util.HashSet;
+
 public class ESBookItem extends Item {
 	public ESBookItem(Properties properties) {
 		super(properties);
@@ -24,7 +26,7 @@ public class ESBookItem extends Item {
 		if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
 			ResourceLocation bookId = stack.get(ESDataComponents.BOOK.get());
 			if (bookId != null) {
-				ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenBookPacket(bookId, ESBookUtil.getUnlockedParts(serverPlayer)));
+				ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenBookPacket(bookId, new HashSet<>(ESBookUtil.getUnlockedParts(serverPlayer))));
 			}
 		}
 		return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
