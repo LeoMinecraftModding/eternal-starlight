@@ -28,7 +28,6 @@ import cn.leolezury.eternalstarlight.common.client.renderer.layer.accessory.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.item.combat.ChainOfSoulsItem;
 import cn.leolezury.eternalstarlight.common.item.combat.ShatteredSwordItem;
@@ -574,13 +573,13 @@ public class ClientSetupHandlers {
 			if (entity == null) {
 				return 0.0F;
 			} else {
-				boolean bl = entity.getMainHandItem() == stack;
-				boolean bl2 = entity.getOffhandItem() == stack;
+				boolean mainHand = entity.getMainHandItem() == stack;
+				boolean offhand = entity.getOffhandItem() == stack;
 				if (entity.getMainHandItem().getItem() instanceof ChainOfSoulsItem) {
-					bl2 = false;
+					offhand = false;
 				}
 
-				return (bl || bl2) && entity instanceof GrapplingOwner owner && owner.getESGrappling() != null ? 1.0F : 0.0F;
+				return (mainHand || offhand) && ESDataAttachments.GRAPPLING.getData(entity).isPresent() ? 1.0F : 0.0F;
 			}
 		});
 

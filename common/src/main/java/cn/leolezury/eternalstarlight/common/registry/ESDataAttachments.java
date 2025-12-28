@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -18,6 +19,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class ESDataAttachments {
 	private static final List<EntityDataAttachment<?>> ATTACHMENTS = new ArrayList<>();
@@ -56,6 +58,7 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Boolean> OFFHAND_ATTACK = register(ESPlatform.INSTANCE.registerDataAttachment("offhand_attack", () -> false, null, null, false));
 	public static final EntityDataAttachment<ItemStack> LAST_OFFHAND_ITEM = register(ESPlatform.INSTANCE.registerDataAttachment("last_offhand_item", () -> ItemStack.EMPTY, null, null, false));
 	public static final EntityDataAttachment<Integer> OFFHAND_ATTACK_STRENGTH_TIMER = register(ESPlatform.INSTANCE.registerDataAttachment("offhand_attack_strength_timer", () -> 0, null, ByteBufCodecs.INT, false));
+	public static final EntityDataAttachment<Optional<Entity>> GRAPPLING = register(ESPlatform.INSTANCE.registerDataAttachment("grappling", Optional::empty, null, null, false));
 
 	private static <T> EntityDataAttachment<T> register(EntityDataAttachment<T> attachment) {
 		ATTACHMENTS.add(attachment);

@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.GrapplingOwner;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
@@ -33,6 +33,7 @@ import net.minecraft.world.phys.HitResult.Type;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -323,8 +324,8 @@ public class ChainOfSouls extends Projectile implements Grappling {
 
 	private void updateOwnerInfo(@Nullable ChainOfSouls chain) {
 		Player player = this.getPlayerOwner();
-		if (player instanceof GrapplingOwner owner) {
-			owner.setESGrappling(chain);
+		if (player != null) {
+			ESDataAttachments.GRAPPLING.setData(player, Optional.ofNullable(chain));
 		}
 	}
 

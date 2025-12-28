@@ -86,13 +86,13 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 			return player.getEyePosition(partialTicks).add(vec3);
 		} else {
 			float f = Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot) * (float) (Math.PI / 180.0);
-			double d0 = Mth.sin(f);
-			double d1 = Mth.cos(f);
-			float f1 = player.getScale();
-			double d2 = arm * 0.35 * (double) f1;
-			double d3 = 0.8 * (double) f1;
-			float f2 = player.isCrouching() ? -0.1875F : 0.0F;
-			return player.getEyePosition(partialTicks).add(-d1 * d2 - d0 * d3, (double) f2 - 0.45 * (double) f1, -d0 * d2 + d1 * d3);
+			double sin = Mth.sin(f);
+			double cos = Mth.cos(f);
+			float playerScale = player.getScale();
+			double sideOffset = arm * 0.35 * (double) playerScale;
+			double forwardOffset = 0.35 * (double) playerScale;
+			float crouchingFactor = player.isCrouching() ? -0.1875F : 0.0F;
+			return player.getEyePosition(partialTicks).add(-cos * sideOffset - sin * forwardOffset, (double) crouchingFactor - 0.85 * (double) playerScale, -sin * sideOffset + cos * forwardOffset);
 		}
 	}
 
