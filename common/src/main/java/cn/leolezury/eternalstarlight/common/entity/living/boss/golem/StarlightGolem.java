@@ -18,6 +18,7 @@ import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
@@ -57,6 +58,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public StarlightGolem(EntityType<? extends StarlightGolem> entityType, Level level) {
@@ -84,6 +86,13 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	public int oldDeathAnimationTime;
 	public int deathAnimationTime;
+
+	public final List<Pair<Vec3, Map<String, ModelPartPose>>> trailSnapshots = new ArrayList<>();
+	public float lastTrailTick = 0;
+
+	public boolean shouldAddTrailSnapshot() {
+		return getPhase() == 1 && getBehaviorState() == StarlightGolemSmashPhase.ID && getBehaviorTicks() >= 37;
+	}
 
 	private int attackEnergy;
 	private int lastHurtCount;

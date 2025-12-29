@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.ModelUtils;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.AethersentGolemModel;
 import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -26,8 +26,8 @@ public class AethersentGolemRenderer<T extends AethersentGolem> extends MobRende
 	public void render(T entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
 		if (entity.shootAnimationState.isStarted() && !entity.shootPosTracked) {
-			entity.leftMuzzlePos = ModelUtils.getModelPosition(entity, entity.yBodyRot, List.of(getModel().upper, getModel().body, getModel().leftArm, getModel().leftMuzzle));
-			entity.rightMuzzlePos = ModelUtils.getModelPosition(entity, entity.yBodyRot, List.of(getModel().upper, getModel().body, getModel().rightArm, getModel().rightMuzzle));
+			entity.leftMuzzlePos = ESModelUtil.getModelPosition(entity, entity.yBodyRot, List.of(getModel().upper, getModel().body, getModel().leftArm, getModel().leftMuzzle));
+			entity.rightMuzzlePos = ESModelUtil.getModelPosition(entity, entity.yBodyRot, List.of(getModel().upper, getModel().body, getModel().rightArm, getModel().rightMuzzle));
 			entity.shootPosTracked = true;
 			entity.shouldAddShootParticle = true;
 		}

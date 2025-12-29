@@ -1,29 +1,39 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.StarlightGolemAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.*;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import org.joml.Vector3f;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 @Environment(EnvType.CLIENT)
 public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("starlight_golem"), "main");
 	private final ModelPart root;
 	private final ModelPart head;
+	public final List<String> allPartNames;
+
+	public float alphaFactor = 1;
 
 	public StarlightGolemModel(ModelPart root) {
 		this.root = root;
 		this.head = root.getChild("upper").getChild("head");
+		this.allPartNames = Stream.concat(Stream.of("root"), ESModelUtil.getAllPartNames(this.root)).toList();
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -68,7 +78,7 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
 					animate(entity.summonFlameAnimationState, StarlightGolemAnimation.ENERGIZED_FLAME, ageInTicks);
 				}
 				case StarlightGolemSmashPhase.ID -> {
-					animate(entity.smashAnimationState, StarlightGolemAnimation.SMASH, ageInTicks);
+					animate(entity.smashAnimationState, entity.getPhase() == 1 ? StarlightGolemAnimation.SMASH_LEAP : StarlightGolemAnimation.SMASH, ageInTicks);
 				}
 				case StarlightGolemChargeStartPhase.ID -> {
 					animate(entity.chargeStartAnimationState, StarlightGolemAnimation.CHARGE_START, ageInTicks);
@@ -89,5 +99,10 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
 	@Override
 	public ModelPart root() {
 		return root;
+	}
+
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		root().render(poseStack, vertexConsumer, packedLight, packedOverlay, FastColor.ARGB32.color(Math.round(FastColor.ARGB32.alpha(color) * alphaFactor), FastColor.ARGB32.red(color), FastColor.ARGB32.green(color), FastColor.ARGB32.blue(color)));
 	}
 }

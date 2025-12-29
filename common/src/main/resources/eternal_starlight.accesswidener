@@ -177,3 +177,6 @@ mutable field net/minecraft/client/renderer/entity/LivingEntityRenderer model Ln
 
 # layer attachment
 accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
+
+# model utils
+accessible field net/minecraft/client/model/geom/ModelPart children Ljava/util/Map;

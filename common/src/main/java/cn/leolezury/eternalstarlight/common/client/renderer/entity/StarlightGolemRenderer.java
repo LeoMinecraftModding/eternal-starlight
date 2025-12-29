@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemEyesLayer;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemGlowLayer;
@@ -8,22 +9,32 @@ import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolem
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemChargePhase;
 import cn.leolezury.eternalstarlight.common.util.Easing;
+import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
+
+import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRenderer<T, StarlightGolemModel<T>> {
+	private static final int SNAPSHOT_LIFESPAN = 15;
+
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/starlight_golem/starlight_golem.png");
 	private static final ResourceLocation CRACKED_TEXTURE = EternalStarlight.id("textures/entity/starlight_golem/starlight_golem_cracked.png");
 
@@ -54,6 +65,45 @@ public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRendere
 			poseStack.popPose();
 		}
 		super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
+		if (deathProgress <= 0) {
+			Vec3 currentPos = new Vec3(
+				Mth.lerp(partialTicks, entity.xo, entity.getX()),
+				Mth.lerp(partialTicks, entity.yo, entity.getY()),
+				Mth.lerp(partialTicks, entity.zo, entity.getZ())
+			);
+			float currentTick = getBob(entity, partialTicks);
+			if (entity.shouldAddTrailSnapshot() && (entity.trailSnapshots.isEmpty() || getBob(entity, partialTicks) - entity.lastTrailTick > 4)) {
+				Map<String, ModelPartPose> snapshot = ESModelUtil.saveModelSnapshot(getModel().allPartNames, getModel()::getAnyDescendantWithName);
+				snapshot.put("rotations", new ModelPartPose(0, 0, 0, 0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, 0, 0, 0, false));
+				entity.trailSnapshots.addFirst(Pair.of(currentPos, snapshot));
+				entity.lastTrailTick = currentTick;
+			}
+			entity.trailSnapshots.removeIf(p -> p.getSecond().containsKey("rotations") && currentTick - p.getSecond().get("rotations").zRot() > SNAPSHOT_LIFESPAN);
+			while (entity.trailSnapshots.size() > 32) {
+				entity.trailSnapshots.removeLast();
+			}
+			getModel().root().getAllParts().forEach(ModelPart::resetPose);
+			for (int i = 0; i < entity.trailSnapshots.size(); i++) {
+				poseStack.pushPose();
+				Vec3 trailPos = entity.trailSnapshots.get(i).getFirst();
+				Map<String, ModelPartPose> snapshot = entity.trailSnapshots.get(i).getSecond();
+				ESModelUtil.loadPoseFromSnapshot(snapshot, getModel()::getAnyDescendantWithName);
+				poseStack.translate(trailPos.x - currentPos.x, trailPos.y - currentPos.y, trailPos.z - currentPos.z);
+				if (snapshot.containsKey("rotations")) {
+					ModelPartPose pose = snapshot.get("rotations");
+					getModel().alphaFactor = (1 - Mth.clamp(currentTick - pose.zRot(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
+					poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - pose.yRot()));
+				}
+				poseStack.scale(-1.0F, -1.0F, 1.0F);
+				this.scale(entity, poseStack, partialTicks);
+				poseStack.translate(0.0F, -1.5F, 0.0F);
+				RenderType renderType = RenderType.entityTranslucent(getTextureLocation(entity));
+				VertexConsumer vertexConsumer = buffer.getBuffer(renderType);
+				getModel().renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
+				poseStack.popPose();
+			}
+			getModel().alphaFactor = 1;
+		}
 	}
 
 	@Override

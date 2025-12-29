@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.ModelUtils;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.PermafrostModel;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -25,7 +25,7 @@ public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, Per
 	@Override
 	public void render(T entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
-		entity.smokePos = ModelUtils.getModelPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().lower, getModel().armature));
+		entity.smokePos = ESModelUtil.getModelPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().lower, getModel().armature));
 	}
 
 	@Override

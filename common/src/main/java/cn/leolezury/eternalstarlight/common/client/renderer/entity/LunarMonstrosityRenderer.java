@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.ModelUtils;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.LunarMonstrosityModel;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -25,7 +25,7 @@ public class LunarMonstrosityRenderer<T extends LunarMonstrosity> extends MobRen
 	@Override
 	public void render(T entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
-		entity.headPos = ModelUtils.getModelPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().stemAll, getModel().stemMiddle, getModel().stemTop, getModel().head));
+		entity.headPos = ESModelUtil.getModelPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().stemAll, getModel().stemMiddle, getModel().stemTop, getModel().head));
 	}
 
 	@Override
