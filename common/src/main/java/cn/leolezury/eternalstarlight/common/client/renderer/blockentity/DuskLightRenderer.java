@@ -55,7 +55,7 @@ public class DuskLightRenderer<T extends AbstractDuskLightBlockEntity> implement
 	}
 
 	@Override
-	public boolean shouldRender(T blockEntity, Vec3 vec3) {
-		return true;
+	public int getViewDistance() {
+		return 256;
 	}
 }

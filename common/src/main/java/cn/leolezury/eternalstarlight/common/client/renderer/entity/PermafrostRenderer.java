@@ -4,18 +4,30 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.PermafrostModel;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
+import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, PermafrostModel<T>> {
+	private static final int SNAPSHOT_LIFESPAN = 8;
+
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/permafrost.png");
 
 	public PermafrostRenderer(EntityRendererProvider.Context context) {
@@ -26,6 +38,45 @@ public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, Per
 	public void render(T entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
 		entity.smokePos = ESModelUtil.getModelPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().lower, getModel().armature));
+		if (entity.isAlive()) {
+			Vec3 currentPos = new Vec3(
+				Mth.lerp(partialTicks, entity.xo, entity.getX()),
+				Mth.lerp(partialTicks, entity.yo, entity.getY()),
+				Mth.lerp(partialTicks, entity.zo, entity.getZ())
+			);
+			float currentTick = getBob(entity, partialTicks);
+			if (entity.shouldAddTrailSnapshot() && (entity.trailSnapshots.isEmpty() || getBob(entity, partialTicks) - entity.lastTrailTick > 1.5)) {
+				Map<String, ModelPartPose> snapshot = ESModelUtil.saveModelSnapshot(getModel().allPartNames, getModel()::getAnyDescendantWithName);
+				snapshot.put("rotations", new ModelPartPose(0, 0, 0, 0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, 0, 0, 0, false));
+				entity.trailSnapshots.addFirst(Pair.of(currentPos, snapshot));
+				entity.lastTrailTick = currentTick;
+			}
+			entity.trailSnapshots.removeIf(p -> p.getSecond().containsKey("rotations") && currentTick - p.getSecond().get("rotations").zRot() > SNAPSHOT_LIFESPAN);
+			while (entity.trailSnapshots.size() > 32) {
+				entity.trailSnapshots.removeLast();
+			}
+			getModel().root().getAllParts().forEach(ModelPart::resetPose);
+			for (int i = 0; i < entity.trailSnapshots.size(); i++) {
+				poseStack.pushPose();
+				Vec3 trailPos = entity.trailSnapshots.get(i).getFirst();
+				Map<String, ModelPartPose> snapshot = entity.trailSnapshots.get(i).getSecond();
+				ESModelUtil.loadPoseFromSnapshot(snapshot, getModel()::getAnyDescendantWithName);
+				poseStack.translate(trailPos.x - currentPos.x, trailPos.y - currentPos.y, trailPos.z - currentPos.z);
+				if (snapshot.containsKey("rotations")) {
+					ModelPartPose pose = snapshot.get("rotations");
+					getModel().alphaFactor = (1 - Mth.clamp(currentTick - pose.zRot(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
+					poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - pose.yRot()));
+				}
+				poseStack.scale(-1.0F, -1.0F, 1.0F);
+				this.scale(entity, poseStack, partialTicks);
+				poseStack.translate(0.0F, -1.5F, 0.0F);
+				RenderType renderType = RenderType.entityTranslucent(getTextureLocation(entity));
+				VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
+				getModel().renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+				poseStack.popPose();
+			}
+			getModel().alphaFactor = 1;
+		}
 	}
 
 	@Override

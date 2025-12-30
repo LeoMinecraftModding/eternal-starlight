@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -47,7 +49,7 @@ public class AirSacArrow extends AbstractArrow {
 		if (this.level().isClientSide && !this.inGround && isInWater()) {
 			Vec3 pos = getBoundingBox().getBottomCenter().offsetRandom(getRandom(), getBbWidth());
 			Vec3 speed = getDeltaMovement().normalize().offsetRandom(getRandom(), 0.3f).scale(-0.2);
-			level().addParticle(ESParticles.ROOKFISH_INK.get(), pos.x, pos.y, pos.z, speed.x, speed.y, speed.z);
+			level().addParticle(ColorParticleOption.create(ESParticles.COLORED_INK.get(), FastColor.ARGB32.color(255, 51, 61, 58)), pos.x, pos.y, pos.z, speed.x, speed.y, speed.z);
 		}
 	}
 

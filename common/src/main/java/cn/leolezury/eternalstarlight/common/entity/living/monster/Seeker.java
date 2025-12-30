@@ -3,16 +3,21 @@ package cn.leolezury.eternalstarlight.common.entity.living.monster;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.data.ESSeekerVariants;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -188,9 +193,14 @@ public class Seeker extends Monster implements VariantHolder<Holder<SeekerVarian
 					setSeekerYRot(ESMathUtil.positionToYaw(nextMovement));
 					setYRot(getSeekerYRot() - 90);
 				}
-				if (moveTicks == 15) {
+				if (moveTicks == 15 && level() instanceof ServerLevel serverLevel) {
 					this.hurtMarked = true;
 					setDeltaMovement(nextMovement.scale(getAttributeValue(Attributes.FLYING_SPEED) * (target == null ? 0.2 : 0.4)));
+					for (int i = 0; i < 64; i++) {
+						Vec3 particleMovement = nextMovement.add((getRandom().nextDouble() - 0.5) * 0.5, (getRandom().nextDouble() - 0.5) * 0.5, (getRandom().nextDouble() - 0.5) * 0.5).normalize();
+						double particleSpeed = 0.1 + getRandom().nextDouble() * 0.4;
+						ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, this, new ParticlePacket(ColorParticleOption.create(ESParticles.COLORED_INK.get(), getVariant().value().particleColor()), getX() - nextMovement.x() * 0.5, getY() + getBbHeight() / 2 - nextMovement.y() * 0.5, getZ() - nextMovement.z() * 0.5, -particleMovement.x() * particleSpeed, -particleMovement.y() * particleSpeed, -particleMovement.z() * particleSpeed));
+					}
 				}
 				if (target != null) {
 					Vec3 targetPos = target.position().add(0, target.getBbHeight() / 2f, 0);

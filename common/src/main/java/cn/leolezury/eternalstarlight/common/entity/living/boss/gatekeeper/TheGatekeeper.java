@@ -19,6 +19,8 @@ import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
+import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DataResult;
 import net.minecraft.Util;
 import net.minecraft.advancements.AdvancementHolder;
@@ -126,6 +128,14 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public AnimationState swingSwordAnimationState = new AnimationState();
 	public AnimationState comboAnimationState = new AnimationState();
 	public AnimationState teleportAnimationState = new AnimationState();
+
+	public final List<Pair<Vec3, Map<String, ModelPartPose>>> trailSnapshots = new ArrayList<>();
+	public float lastTrailTick = 0;
+
+	public boolean shouldAddTrailSnapshot() {
+		return getBehaviorState() == GatekeeperDodgePhase.ID || getBehaviorState() == GatekeeperDashPhase.ID;
+	}
+
 	private String gatekeeperName = "TheGatekeeper";
 	@Nullable
 	private Player customer;

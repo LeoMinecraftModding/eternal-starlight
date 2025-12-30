@@ -57,7 +57,7 @@ public class EnergyTransmitterRenderer<T extends EnergyTransmitterBlockEntity> i
 	}
 
 	@Override
-	public boolean shouldRender(T blockEntity, Vec3 vec3) {
-		return true;
+	public int getViewDistance() {
+		return 256;
 	}
 }

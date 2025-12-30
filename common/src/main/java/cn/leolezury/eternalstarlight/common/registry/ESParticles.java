@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.particle.*;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
@@ -99,7 +100,17 @@ public class ESParticles {
 			return ExplosionShockParticleOptions.STREAM_CODEC;
 		}
 	});
-	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ROOKFISH_INK = PARTICLE_TYPES.register("rookfish_ink", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, ParticleType<ColorParticleOption>> COLORED_INK = PARTICLE_TYPES.register("colored_ink", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<ColorParticleOption> codec() {
+			return ColorParticleOption.codec(ESParticles.COLORED_INK.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, ColorParticleOption> streamCodec() {
+			return ColorParticleOption.streamCodec(ESParticles.COLORED_INK.get());
+		}
+	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AMARAMBER_WAX_ON = PARTICLE_TYPES.register("amaramber_wax_on", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> DRIPPING_MUD = PARTICLE_TYPES.register("dripping_mud", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> FALLING_MUD = PARTICLE_TYPES.register("falling_mud", () -> new SimpleParticleType(false));

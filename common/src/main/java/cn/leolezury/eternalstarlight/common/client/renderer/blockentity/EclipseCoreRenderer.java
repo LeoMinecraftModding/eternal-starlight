@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.world.phys.Vec3;
 
 @Environment(EnvType.CLIENT)
 public class EclipseCoreRenderer extends DuskLightRenderer<EclipseCoreBlockEntity> {
@@ -38,7 +37,7 @@ public class EclipseCoreRenderer extends DuskLightRenderer<EclipseCoreBlockEntit
 	}
 
 	@Override
-	public boolean shouldRender(EclipseCoreBlockEntity blockEntity, Vec3 vec3) {
-		return true;
+	public int getViewDistance() {
+		return 256;
 	}
 }

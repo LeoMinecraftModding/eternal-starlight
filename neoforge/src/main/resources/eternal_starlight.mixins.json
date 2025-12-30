@@ -6,7 +6,8 @@
   "mixins": [
     "AxeItemMixin",
     "ExtendedBlockMixin",
-    "ProjectileWeaponItemMixin"
+    "ProjectileWeaponItemMixin",
+    "client.IBlockEntityRendererExtensionMixin"
   ],
   "client": [
     "client.GuiMixin",

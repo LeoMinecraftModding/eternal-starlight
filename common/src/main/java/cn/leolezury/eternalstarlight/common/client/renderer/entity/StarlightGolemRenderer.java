@@ -65,7 +65,7 @@ public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRendere
 			poseStack.popPose();
 		}
 		super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
-		if (deathProgress <= 0) {
+		if (entity.isAlive()) {
 			Vec3 currentPos = new Vec3(
 				Mth.lerp(partialTicks, entity.xo, entity.getX()),
 				Mth.lerp(partialTicks, entity.yo, entity.getY()),

@@ -1,9 +1,12 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PermafrostAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.*;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -12,7 +15,11 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 @Environment(EnvType.CLIENT)
 public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T> {
@@ -21,12 +28,16 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 	private final ModelPart head;
 	public final ModelPart lower;
 	public final ModelPart armature;
+	public final List<String> allPartNames;
+
+	public float alphaFactor = 1;
 
 	public PermafrostModel(ModelPart root) {
 		this.root = root.getChild("root");
 		this.head = root.getChild("root").getChild("head");
 		this.lower = root.getChild("root").getChild("lower");
 		this.armature = root.getChild("root").getChild("lower").getChild("armature");
+		this.allPartNames = Stream.concat(Stream.of("root"), ESModelUtil.getAllPartNames(this.root)).toList();
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -149,5 +160,10 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 	@Override
 	public ModelPart root() {
 		return root;
+	}
+
+	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+		root().render(poseStack, vertexConsumer, packedLight, packedOverlay, FastColor.ARGB32.color(Math.round(FastColor.ARGB32.alpha(color) * alphaFactor), FastColor.ARGB32.red(color), FastColor.ARGB32.green(color), FastColor.ARGB32.blue(color)));
 	}
 }

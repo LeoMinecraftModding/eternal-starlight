@@ -15,7 +15,7 @@ public class PermafrostRangedPhase extends BehaviorPhase<Permafrost> {
 	public static final int ID = 4;
 
 	public PermafrostRangedPhase() {
-		super(ID, 1, 65, 100);
+		super(ID, 1, 65, 200);
 	}
 
 	@Override

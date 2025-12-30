@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.TheGatekeeperAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.*;
@@ -19,6 +20,9 @@ import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 @Environment(EnvType.CLIENT)
 public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityModel<T> implements ArmedModel {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("the_gatekeeper"), "main");
@@ -36,6 +40,7 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 	private final ModelPart leftLeg;
 	private final ModelPart rightLeg;
 	private final boolean slim;
+	public final List<String> allPartNames;
 
 	public float alphaFactor = 1;
 
@@ -50,6 +55,7 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 		this.leftLeg = root.getChild("root").getChild("left_leg");
 		this.rightLeg = root.getChild("root").getChild("right_leg");
 		this.slim = slim;
+		this.allPartNames = Stream.concat(Stream.of("root"), ESModelUtil.getAllPartNames(this.root)).toList();
 	}
 
 	public static LayerDefinition createBodyLayer(boolean slim) {

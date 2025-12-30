@@ -63,9 +63,9 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.util.FastColor;
@@ -775,10 +775,10 @@ public class ClientSetupHandlers {
 		strategy.register(ESParticles.ASHEN_SNOW.get(), AshenSnowParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_ASHEN_SNOW.get(), OrbitalAshenSnowParticle.Provider::new);
 		strategy.register(ESParticles.EXPLOSION_SHOCK.get(), ExplosionShockParticle.Provider::new);
-		strategy.register(ESParticles.ROOKFISH_INK.get(), spriteSet -> new ParticleProvider<>() {
+		strategy.register(ESParticles.COLORED_INK.get(), spriteSet -> new ParticleProvider<>() {
 			@Override
-			public @NotNull Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
-				return new SquidInkParticle(level, x, y, z, dx, dy, dz, FastColor.ARGB32.color(255, 255 - 51, 255 - 61, 255 - 58), spriteSet);
+			public @NotNull Particle createParticle(ColorParticleOption option, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
+				return new SquidInkParticle(level, x, y, z, dx, dy, dz, FastColor.ARGB32.colorFromFloat(option.getAlpha(), 1 - option.getRed(), 1 - option.getGreen(), 1 - option.getBlue()), spriteSet);
 			}
 		});
 		strategy.register(ESParticles.AMARAMBER_WAX_ON.get(), spriteSet -> (type, level, x, y, z, dx, dy, dz) -> {

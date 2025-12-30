@@ -1,25 +1,34 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.TheGatekeeperModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.TheGatekeeperClothingLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.GatekeeperTeleportPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.SkinManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
 import java.util.HashMap;
@@ -31,6 +40,7 @@ public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper.png");
 	private static final ResourceLocation SLIM_ENTITY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_slim.png");
 	private static final int PHANTOM_AMOUNT = 5;
+	private static final int SNAPSHOT_LIFESPAN = 15;
 	private static final Map<String, GameProfile> PROFILES = new HashMap<>();
 	private final TheGatekeeperModel<T> normalModel;
 	private final TheGatekeeperModel<T> slimModel;
@@ -77,6 +87,45 @@ public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<
 			getModel().alphaFactor = 1;
 		} else {
 			super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLight);
+		}
+		if (entity.isAlive()) {
+			Vec3 currentPos = new Vec3(
+				Mth.lerp(partialTicks, entity.xo, entity.getX()),
+				Mth.lerp(partialTicks, entity.yo, entity.getY()),
+				Mth.lerp(partialTicks, entity.zo, entity.getZ())
+			);
+			float currentTick = getBob(entity, partialTicks);
+			if (entity.shouldAddTrailSnapshot() && (entity.trailSnapshots.isEmpty() || getBob(entity, partialTicks) - entity.lastTrailTick > 3)) {
+				Map<String, ModelPartPose> snapshot = ESModelUtil.saveModelSnapshot(getModel().allPartNames, getModel()::getAnyDescendantWithName);
+				snapshot.put("rotations", new ModelPartPose(0, 0, 0, 0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, 0, 0, 0, false));
+				entity.trailSnapshots.addFirst(Pair.of(currentPos, snapshot));
+				entity.lastTrailTick = currentTick;
+			}
+			entity.trailSnapshots.removeIf(p -> p.getSecond().containsKey("rotations") && currentTick - p.getSecond().get("rotations").zRot() > SNAPSHOT_LIFESPAN);
+			while (entity.trailSnapshots.size() > 32) {
+				entity.trailSnapshots.removeLast();
+			}
+			getModel().root().getAllParts().forEach(ModelPart::resetPose);
+			for (int i = 0; i < entity.trailSnapshots.size(); i++) {
+				stack.pushPose();
+				Vec3 trailPos = entity.trailSnapshots.get(i).getFirst();
+				Map<String, ModelPartPose> snapshot = entity.trailSnapshots.get(i).getSecond();
+				ESModelUtil.loadPoseFromSnapshot(snapshot, getModel()::getAnyDescendantWithName);
+				stack.translate(trailPos.x - currentPos.x, trailPos.y - currentPos.y, trailPos.z - currentPos.z);
+				if (snapshot.containsKey("rotations")) {
+					ModelPartPose pose = snapshot.get("rotations");
+					getModel().alphaFactor = (1 - Mth.clamp(currentTick - pose.zRot(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
+					stack.mulPose(Axis.YP.rotationDegrees(180.0F - pose.yRot()));
+				}
+				stack.scale(-1.0F, -1.0F, 1.0F);
+				this.scale(entity, stack, partialTicks);
+				stack.translate(0.0F, -1.5F, 0.0F);
+				RenderType renderType = RenderType.entityTranslucent(getTextureLocation(entity));
+				VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
+				getModel().renderToBuffer(stack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
+				stack.popPose();
+			}
+			getModel().alphaFactor = 1;
 		}
 	}
 

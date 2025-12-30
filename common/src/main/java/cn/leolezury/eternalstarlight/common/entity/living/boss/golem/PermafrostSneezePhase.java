@@ -12,7 +12,7 @@ public class PermafrostSneezePhase extends BehaviorPhase<Permafrost> {
 	public static final int ID = 5;
 
 	public PermafrostSneezePhase() {
-		super(ID, 1, 99, 200);
+		super(ID, 1, 99, 300);
 	}
 
 	@Override

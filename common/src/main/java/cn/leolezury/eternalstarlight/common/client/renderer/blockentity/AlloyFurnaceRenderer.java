@@ -23,7 +23,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
@@ -115,7 +114,7 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 	}
 
 	@Override
-	public boolean shouldRender(AlloyFurnaceBlockEntity blockEntity, Vec3 vec3) {
-		return true;
+	public int getViewDistance() {
+		return 256;
 	}
 }

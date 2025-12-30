@@ -18,7 +18,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 
 @Environment(EnvType.CLIENT)
 public class SolarEggRenderer implements BlockEntityRenderer<SolarEggBlockEntity> {
@@ -73,7 +72,7 @@ public class SolarEggRenderer implements BlockEntityRenderer<SolarEggBlockEntity
 	}
 
 	@Override
-	public boolean shouldRender(SolarEggBlockEntity blockEntity, Vec3 vec3) {
-		return true;
+	public int getViewDistance() {
+		return 256;
 	}
 }
