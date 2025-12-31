@@ -15,8 +15,8 @@ public class ESSeekerVariants {
 
 	public static void bootstrap(BootstrapContext<SeekerVariant> context) {
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
-		context.register(LUNAR, new SeekerVariant(EternalStarlight.id("entity/seeker/lunar"), EternalStarlight.id("entity/seeker/lunar_glow"), EternalStarlight.id("entity/seeker/lunar_tentacle"), 0x8db7d7, HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_FOREST), biomes.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST))));
-		context.register(SCARLET, new SeekerVariant(EternalStarlight.id("entity/seeker/scarlet"), EternalStarlight.id("entity/seeker/scarlet_glow"), EternalStarlight.id("entity/seeker/scarlet_tentacle"), 0xe9a4c8, HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST))));
+		context.register(LUNAR, new SeekerVariant(EternalStarlight.id("entity/seeker/lunar"), EternalStarlight.id("entity/seeker/lunar_glow"), EternalStarlight.id("entity/seeker/lunar_tentacle"), EternalStarlight.id("entity/seeker/lunar_tentacle_end"), 0x8db7d7, HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_FOREST), biomes.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST))));
+		context.register(SCARLET, new SeekerVariant(EternalStarlight.id("entity/seeker/scarlet"), EternalStarlight.id("entity/seeker/scarlet_glow"), EternalStarlight.id("entity/seeker/scarlet_tentacle"), EternalStarlight.id("entity/seeker/scarlet_tentacle_end"), 0xe9a4c8, HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST))));
 	}
 
 	public static ResourceKey<SeekerVariant> create(String name) {

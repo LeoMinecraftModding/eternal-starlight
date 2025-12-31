@@ -5,6 +5,7 @@
   ],
   "glow_texture": "eternal_starlight:entity/seeker/lunar_glow",
   "particle_color": 9287639,
+  "tentacle_end_texture": "eternal_starlight:entity/seeker/lunar_tentacle_end",
   "tentacle_texture": "eternal_starlight:entity/seeker/lunar_tentacle",
   "texture": "eternal_starlight:entity/seeker/lunar"
 }

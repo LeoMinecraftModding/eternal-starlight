@@ -30,13 +30,13 @@ public class SeekerModel<T extends Seeker> extends AnimatedEntityModel<T> {
 
 		head.addOrReplaceChild("head_decoration", CubeListBuilder.create().texOffs(0, 22).addBox(-7.0F, -7.0F, -0.5F, 14.0F, 14.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -7.0F, 0.0F, 0.0F, 0.0F, 0.7854F));
 
-		root.addOrReplaceChild("tentacle1", CubeListBuilder.create().texOffs(30, 34).addBox(-4.5F, 0.0F, 0.0F, 9.0F, 21.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.0F, -2.0F));
+		root.addOrReplaceChild("tentacle1", CubeListBuilder.create().texOffs(30, 34).addBox(-4.5F, -1.0F, 0.0F, 9.0F, 22.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.0F, -3.0F));
 
-		root.addOrReplaceChild("tentacle2", CubeListBuilder.create().texOffs(30, 34).addBox(-4.5F, 0.0F, 0.0F, 9.0F, 21.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.0F, 2.0F));
+		root.addOrReplaceChild("tentacle2", CubeListBuilder.create().texOffs(30, 34).addBox(-4.5F, -1.0F, 0.0F, 9.0F, 22.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 7.0F, 3.0F));
 
-		root.addOrReplaceChild("tentacle3", CubeListBuilder.create().texOffs(30, 25).addBox(0.0F, 0.0F, -4.5F, 0.0F, 21.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 7.0F, 0.0F));
+		root.addOrReplaceChild("tentacle3", CubeListBuilder.create().texOffs(30, 25).addBox(0.0F, -1.0F, -4.5F, 0.0F, 22.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, 7.0F, 0.0F));
 
-		root.addOrReplaceChild("tentacle4", CubeListBuilder.create().texOffs(30, 25).addBox(0.0F, 0.0F, -4.5F, 0.0F, 21.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, 7.0F, 0.0F));
+		root.addOrReplaceChild("tentacle4", CubeListBuilder.create().texOffs(30, 25).addBox(0.0F, -1.0F, -4.5F, 0.0F, 22.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, 7.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}

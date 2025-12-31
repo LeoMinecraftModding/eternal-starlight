@@ -980,7 +980,6 @@ public class ClientSetupHandlers {
 		strategy.register(BallLightningModel.LAYER_LOCATION, BallLightningModel::createBodyLayer);
 
 		// vanilla entities
-		strategy.register(DarkSwampWitchModel.LAYER_LOCATION, DarkSwampWitchModel::createBodyLayer);
 		strategy.register(ArmorLikeAccessoryLayer.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.0F)), 64, 32));
 		strategy.register(ArmorLikeAccessoryLayer.OUTER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.5F)), 64, 32));
 

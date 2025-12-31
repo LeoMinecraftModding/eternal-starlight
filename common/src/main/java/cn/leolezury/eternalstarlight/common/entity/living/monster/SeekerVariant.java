@@ -12,17 +12,18 @@ import net.minecraft.world.level.biome.Biome;
 import java.util.Objects;
 import java.util.Optional;
 
-public record SeekerVariant(ResourceLocation texture, ResourceLocation textureFull, ResourceLocation glowTexture, ResourceLocation glowTextureFull, ResourceLocation tentacleTexture, ResourceLocation tentacleTextureFull, int particleColor, HolderSet<Biome> biomes) {
+public record SeekerVariant(ResourceLocation texture, ResourceLocation textureFull, ResourceLocation glowTexture, ResourceLocation glowTextureFull, ResourceLocation tentacleTexture, ResourceLocation tentacleTextureFull, ResourceLocation tentacleEndTexture, ResourceLocation tentacleEndTextureFull, int particleColor, HolderSet<Biome> biomes) {
 	public static final Codec<SeekerVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(SeekerVariant::texture),
 		ResourceLocation.CODEC.fieldOf("glow_texture").forGetter(SeekerVariant::glowTexture),
 		ResourceLocation.CODEC.fieldOf("tentacle_texture").forGetter(SeekerVariant::tentacleTexture),
+		ResourceLocation.CODEC.fieldOf("tentacle_end_texture").forGetter(SeekerVariant::tentacleEndTexture),
 		Codec.INT.fieldOf("particle_color").forGetter(SeekerVariant::particleColor),
 		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(SeekerVariant::biomes)
 	).apply(instance, SeekerVariant::new));
 
-	public SeekerVariant(ResourceLocation texture, ResourceLocation glowTexture, ResourceLocation tentacleTexture, int particleColor, HolderSet<Biome> biomes) {
-		this(texture, fullTextureId(texture), glowTexture, fullTextureId(glowTexture), tentacleTexture, fullTextureId(tentacleTexture), particleColor, biomes);
+	public SeekerVariant(ResourceLocation texture, ResourceLocation glowTexture, ResourceLocation tentacleTexture, ResourceLocation tentacleEndTexture, int particleColor, HolderSet<Biome> biomes) {
+		this(texture, fullTextureId(texture), glowTexture, fullTextureId(glowTexture), tentacleTexture, fullTextureId(tentacleTexture), tentacleEndTexture, fullTextureId(tentacleEndTexture), particleColor, biomes);
 	}
 
 	private static ResourceLocation fullTextureId(ResourceLocation location) {

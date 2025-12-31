@@ -32,7 +32,6 @@
     "PlayerMixin",
     "ProjectileMixin",
     "ProjectileWeaponItemMixin",
-    "RaiderMixin",
     "RandomStateMixin",
     "ServerEntityMixin",
     "ServerLevelMixin",
@@ -65,8 +64,7 @@
     "client.SkullBlockRendererMixin",
     "client.SpinAttackEffectLayerMixin",
     "client.SpriteSourceListMixin",
-    "client.SpriteSourceListMixin$PalettedPermutationsAccessor",
-    "client.WitchRendererMixin"
+    "client.SpriteSourceListMixin$PalettedPermutationsAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

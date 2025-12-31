@@ -32,7 +32,6 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Integer> CONCENTRATION_LEVEL = register(ESPlatform.INSTANCE.registerDataAttachment("concentration_level", () -> 0, null, null, false));
 	public static final EntityDataAttachment<BlockPos> FLOWGLAZE_DESTROY_BLOCK_TARGET = register(ESPlatform.INSTANCE.registerDataAttachment("flowglaze_destroy_block_target", () -> null, null, null, false));
 	public static final EntityDataAttachment<Integer> FLOWGLAZE_DESTROY_BLOCK_TICKS = register(ESPlatform.INSTANCE.registerDataAttachment("flowglaze_destroy_block_ticks", () -> 0, null, null, false));
-	public static final EntityDataAttachment<String> WITCH_TYPE = register(ESPlatform.INSTANCE.registerDataAttachment("witch_type", () -> "", Codec.STRING, ByteBufCodecs.STRING_UTF8, false));
 	public static final EntityDataAttachment<SpellCastData> SPELL_CAST_DATA = register(ESPlatform.INSTANCE.registerDataAttachment("spell_cast_data", SpellCastData::getDefault, null, SpellCastData.STREAM_CODEC, false));
 	public static final EntityDataAttachment<List<SpellCooldown>> SPELL_COOLDOWNS = register(ESPlatform.INSTANCE.registerDataAttachment("spell_cooldowns", List::of, SpellCooldown.LIST_CODEC, null, false));
 	public static final EntityDataAttachment<SpellCastData.SpellSource> SPELL_SOURCE = register(ESPlatform.INSTANCE.registerDataAttachment("spell_source", () -> e -> false, null, null, false));
