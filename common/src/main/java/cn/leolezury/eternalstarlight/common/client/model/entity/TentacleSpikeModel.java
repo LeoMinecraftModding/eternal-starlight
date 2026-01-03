@@ -18,6 +18,7 @@ import net.minecraft.util.Mth;
 public class TentacleSpikeModel<T extends TentacleSpike> extends EntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("tentacle_spike"), "main");
 	private static final int NUM_SEGMENTS = 20;
+	private static final int NUM_SPIKED_SEGMENTS = 5;
 	private final ModelPart root;
 	private final ModelPart[] segments;
 
@@ -38,13 +39,15 @@ public class TentacleSpikeModel<T extends TentacleSpike> extends EntityModel<T> 
 
 		PartDefinition last = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
+		int spikeCount = 0;
 		for (int i = 0; i < NUM_SEGMENTS; i++) {
 			last = last.addOrReplaceChild("segment" + (i + 1), CubeListBuilder.create().texOffs(0, 12).addBox(-2.0F, -12.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, i == 0 ? 0.0F : -12.0F, 0.0F));
+			if (i >= NUM_SEGMENTS - NUM_SPIKED_SEGMENTS) {
+				last.addOrReplaceChild("spike" + (spikeCount + 1), CubeListBuilder.create().texOffs(0, -16).addBox(0.0F, -12.0F, -8.0F, 0.0F, 12.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
+				last.addOrReplaceChild("spike" + (spikeCount + 2), CubeListBuilder.create().texOffs(0, -16).addBox(0.0F, -12.0F, -8.0F, 0.0F, 12.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
+				spikeCount += 2;
+			}
 		}
-
-		last.addOrReplaceChild("spike1", CubeListBuilder.create().texOffs(0, -16).addBox(0.0F, -12.0F, -8.0F, 0.0F, 12.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
-
-		last.addOrReplaceChild("spike2", CubeListBuilder.create().texOffs(0, -16).addBox(0.0F, -12.0F, -8.0F, 0.0F, 12.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
