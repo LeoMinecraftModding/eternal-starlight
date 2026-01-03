@@ -28,8 +28,9 @@ import cn.leolezury.eternalstarlight.common.client.renderer.layer.accessory.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
+import cn.leolezury.eternalstarlight.common.entity.attack.TentacleSpike;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
-import cn.leolezury.eternalstarlight.common.item.combat.ChainOfSoulsItem;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
 import cn.leolezury.eternalstarlight.common.item.combat.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.item.misc.GalacticQuiverItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -510,6 +511,14 @@ public class ClientSetupHandlers {
 
 		ItemProperties.register(ESItems.FLOWGLAZE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
+		ItemProperties.register(ESItems.TENTACLE_SPIKE.get(), EternalStarlight.id("extended"), (stack, level, entity, i) -> {
+			if (entity == null || level == null) {
+				return 0.0F;
+			} else {
+				return entity.getMainHandItem() == stack && level.getEntity(ESDataAttachments.WHIP.getData(entity)) instanceof TentacleSpike ? 1.0F : 0.0F;
+			}
+		});
+
 		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
 
 		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), EternalStarlight.id("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
@@ -570,16 +579,16 @@ public class ClientSetupHandlers {
 		ItemProperties.register(ESItems.MOONRING_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.CHAIN_OF_SOULS.get(), EternalStarlight.id("extended"), (stack, level, entity, i) -> {
-			if (entity == null) {
+			if (entity == null || level == null) {
 				return 0.0F;
 			} else {
 				boolean mainHand = entity.getMainHandItem() == stack;
 				boolean offhand = entity.getOffhandItem() == stack;
-				if (entity.getMainHandItem().getItem() instanceof ChainOfSoulsItem) {
+				if (entity.getMainHandItem().is(ESItems.CHAIN_OF_SOULS.get())) {
 					offhand = false;
 				}
 
-				return (mainHand || offhand) && ESDataAttachments.GRAPPLING.getData(entity).isPresent() ? 1.0F : 0.0F;
+				return (mainHand || offhand) && level.getEntity(ESDataAttachments.GRAPPLING.getData(entity)) instanceof ChainOfSouls ? 1.0F : 0.0F;
 			}
 		});
 
@@ -887,6 +896,7 @@ public class ClientSetupHandlers {
 		strategy.register(ESEntities.WILTED_PETAL.get(), WiltedPetalRenderer::new);
 		strategy.register(ESEntities.SHOT_SEEDS.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.STARFIRE.get(), ThrownItemRenderer::new);
+		strategy.register(ESEntities.TENTACLE_SPIKE.get(), TentacleSpikeRenderer::new);
 		strategy.register(ESEntities.ENERGY_SPARK.get(), EnergySparkRenderer::new);
 		strategy.register(ESEntities.BALL_LIGHTNING.get(), BallLightningRenderer::new);
 		strategy.register(ESEntities.CRYSTAL_CLUSTER.get(), CrystalClusterRenderer::new);
@@ -960,6 +970,7 @@ public class ClientSetupHandlers {
 		strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
 		strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
 		strategy.register(TwilightGazeModel.LAYER_LOCATION, TwilightGazeModel::createBodyLayer);
+		strategy.register(TentacleSpikeModel.LAYER_LOCATION, TentacleSpikeModel::createBodyLayer);
 		strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));
 		strategy.register(TheGatekeeperModel.SLIM_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(true));
 		strategy.register(TheGatekeeperModel.OUTER_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false, 0.5f));

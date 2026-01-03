@@ -28,8 +28,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Optional;
-
 @Mixin(Player.class)
 public abstract class PlayerMixin implements SpellCaster {
 	@Shadow
@@ -91,17 +89,19 @@ public abstract class PlayerMixin implements SpellCaster {
 	@Inject(method = "aiStep", at = @At(value = "TAIL"))
 	private void aiStep(CallbackInfo ci) {
 		Player player = (Player) (Object) this;
-		Optional<Entity> optional = ESDataAttachments.GRAPPLING.getData(player);
-		if (optional.isPresent() && (optional.get() instanceof Grappling grappling && grappling.reachedTarget() && grappling.shouldPull())) {
-			player.resetFallDistance();
-			if (!player.level().isClientSide) {
-				float length = grappling.length();
-				double d = optional.get().position().subtract(player.getEyePosition()).length();
-				if (d > (double) length) {
-					double e = d / (double) length * 0.1;
-					boolean crouch = player.isCrouching();
-					player.addDeltaMovement(optional.get().position().subtract(player.getEyePosition()).scale(1.0 / d).multiply(e, e * 1.1, e).scale(crouch ? 0.6 : (player.onGround() ? 1.8 : 1)));
-					player.hurtMarked = true;
+		if (!player.level().isClientSide) {
+			Entity entity = player.level().getEntity(ESDataAttachments.GRAPPLING.getData(player));
+			if (entity instanceof Grappling grappling && grappling.reachedTarget() && grappling.shouldPull()) {
+				player.resetFallDistance();
+				if (!player.level().isClientSide) {
+					float length = grappling.length();
+					double d = entity.position().subtract(player.getEyePosition()).length();
+					if (d > (double) length) {
+						double e = d / (double) length * 0.1;
+						boolean crouch = player.isCrouching();
+						player.addDeltaMovement(entity.position().subtract(player.getEyePosition()).scale(1.0 / d).multiply(e, e * 1.1, e).scale(crouch ? 0.6 : (player.onGround() ? 1.8 : 1)));
+						player.hurtMarked = true;
+					}
 				}
 			}
 		}

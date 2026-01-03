@@ -42,7 +42,6 @@ public abstract class ThrownSpear extends AbstractArrow {
 	public ThrownSpear(EntityType<? extends ThrownSpear> type, Level level, @Nullable LivingEntity owner, double x, double y, double z, ItemStack pickupItemStack) {
 		super(type, x, y, z, level, pickupItemStack, pickupItemStack);
 		this.setOwner(owner);
-		this.entityData.set(FOIL, pickupItemStack.hasFoil());
 	}
 
 	@Override
@@ -57,6 +56,12 @@ public abstract class ThrownSpear extends AbstractArrow {
 			this.dealtDamage = true;
 		}
 		super.tick();
+	}
+
+	@Override
+	protected void setPickupItemStack(ItemStack stack) {
+		super.setPickupItemStack(stack);
+		this.entityData.set(FOIL, stack.hasFoil());
 	}
 
 	public boolean isFoil() {

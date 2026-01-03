@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-27T19:33:47.3961329	Item Models: eternal_starlight
+// 1.21.1	2026-01-03T18:54:47.928613	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -978,6 +978,8 @@ f8193be01977984cf8e5f49f21a527a9ea720e78 assets/eternal_starlight/models/item/te
 029ce34615408c512d4c00688934552e54adaeb1 assets/eternal_starlight/models/item/tentacles_coral.json
 cf60889e6922146c44b7f86af2190087d5ca1657 assets/eternal_starlight/models/item/tentacles_coral_block.json
 77a2053608506d4bf75e117145fc6b90ea198436 assets/eternal_starlight/models/item/tentacles_coral_fan.json
+f65b1abc9597c5956b3ba505fb6fb59d823bc96e assets/eternal_starlight/models/item/tentacle_spike.json
+65eac0aaec0c1a0935eb9184a6b979093e832580 assets/eternal_starlight/models/item/tentacle_spike_extended.json
 2658f386582d0718304ed2a8e47734d434375e90 assets/eternal_starlight/models/item/terra_crystal.json
 457ed3d123a50d4c6fb1adf55f54df13571f1510 assets/eternal_starlight/models/item/thermabyssal_geyser.json
 81e70f9ed3cc1635e355348cc10df895cf0af2c4 assets/eternal_starlight/models/item/thermabyssal_magma_block.json

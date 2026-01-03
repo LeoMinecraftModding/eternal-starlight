@@ -93,6 +93,9 @@ accessible method net/minecraft/world/entity/LivingEntity getLastArmorItem (Lnet
 accessible field net/minecraft/server/level/ServerPlayerGameMode isDestroyingBlock Z
 accessible field net/minecraft/server/level/ServerPlayerGameMode destroyPos Lnet/minecraft/core/BlockPos;
 
+# whip knockback
+accessible method net/minecraft/world/entity/LivingEntity getKnockback (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;)F
+
 # chain of souls
 accessible method net/minecraft/world/entity/projectile/Projectile <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 
@@ -180,3 +183,4 @@ accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addL
 
 # model utils
 accessible field net/minecraft/client/model/geom/ModelPart children Ljava/util/Map;
+accessible method net/minecraft/client/renderer/entity/player/PlayerRenderer scale (Lnet/minecraft/client/player/AbstractClientPlayer;Lcom/mojang/blaze3d/vertex/PoseStack;F)V

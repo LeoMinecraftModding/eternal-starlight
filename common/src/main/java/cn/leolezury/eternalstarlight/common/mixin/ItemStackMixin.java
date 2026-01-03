@@ -1,24 +1,28 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.item.component.Accessory;
+import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESAccessoryUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,6 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
@@ -57,6 +62,36 @@ public abstract class ItemStackMixin {
 	private void canBeHurtBy(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
 		if (is(ESItems.LOOT_BAG.get()) && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			cir.setReturnValue(false);
+		}
+	}
+
+	@Inject(method = "forEachModifier(Lnet/minecraft/world/entity/EquipmentSlot;Ljava/util/function/BiConsumer;)V", at = @At(value = "RETURN"))
+	private void forEachModifier(EquipmentSlot slot, BiConsumer<Holder<Attribute>, AttributeModifier> action, CallbackInfo ci) {
+		ItemStack stack = (ItemStack) (Object) this;
+		List<ItemStack> accessories = stack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of());
+		for (ItemStack accessory : accessories) {
+			Accessory data = accessory.get(ESDataComponents.ACCESSORY.get());
+			if (data != null) {
+				ItemAttributeModifiers modifiers = data.attributeModifiers();
+				if (!modifiers.modifiers().isEmpty()) {
+					modifiers.forEach(slot, action);
+				}
+			}
+		}
+	}
+
+	@Inject(method = "forEachModifier(Lnet/minecraft/world/entity/EquipmentSlotGroup;Ljava/util/function/BiConsumer;)V", at = @At(value = "RETURN"))
+	private void forEachModifier(EquipmentSlotGroup slotGroup, BiConsumer<Holder<Attribute>, AttributeModifier> action, CallbackInfo ci) {
+		ItemStack stack = (ItemStack) (Object) this;
+		List<ItemStack> accessories = stack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of());
+		for (ItemStack accessory : accessories) {
+			Accessory data = accessory.get(ESDataComponents.ACCESSORY.get());
+			if (data != null) {
+				ItemAttributeModifiers modifiers = data.attributeModifiers();
+				if (!modifiers.modifiers().isEmpty()) {
+					modifiers.forEach(slotGroup, action);
+				}
+			}
 		}
 	}
 

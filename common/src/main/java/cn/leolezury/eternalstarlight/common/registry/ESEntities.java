@@ -578,6 +578,14 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("starfire").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<TentacleSpike>> TENTACLE_SPIKE = ENTITIES.register(
+		"tentacle_spike",
+		() -> EntityType.Builder.<TentacleSpike>of(TentacleSpike::new, MobCategory.MISC)
+			.sized(0.0f, 0.0f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("tentacle_spike").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<EnergySpark>> ENERGY_SPARK = ENTITIES.register(
 		"energy_spark",
 		() -> EntityType.Builder.<EnergySpark>of(EnergySpark::new, MobCategory.MISC)

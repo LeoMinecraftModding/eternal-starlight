@@ -897,6 +897,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.NIGHTFALL_SPIDER_EYE.get());
 
+		extendable(ESItems.TENTACLE_SPIKE.get());
+
 		templateSkull(ESItems.TANGLED_SKULL.get());
 
 		basicItem(ESItems.GLEECH_EGG.get());
@@ -996,7 +998,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		largeHandheld(ESItems.PETAL_SCYTHE.get());
 		inventoryHandheld(ESItems.PETAL_SCYTHE.get());
 		handheld(ESItems.WAND_OF_TELEPORTATION.get());
-		chainOfSouls(ESItems.CHAIN_OF_SOULS.get());
+		extendable(ESItems.CHAIN_OF_SOULS.get());
 		inventoryHandheld(ESItems.CRESCENT_SPEAR.get());
 		block(ESItems.SHADEGRIEVE.get());
 		block(ESItems.BLOOMING_SHADEGRIEVE.get());
@@ -1116,7 +1118,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 			.texture("layer0", itemTexture(item).withSuffix("_inventory"));
 	}
 
-	private void chainOfSouls(Item item) {
+	private void extendable(Item item) {
 		ModelFile extendedModel = withExistingParent(name(item) + "_extended", "item/handheld")
 			.texture("layer0", itemTexture(item).withSuffix("_extended"));
 		withExistingParent(name(item), "item/handheld")

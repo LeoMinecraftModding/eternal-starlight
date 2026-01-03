@@ -3,9 +3,7 @@ package cn.leolezury.eternalstarlight.common.util;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.item.component.ItemStackList;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
@@ -13,7 +11,6 @@ import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -43,30 +40,12 @@ public class ESAccessoryUtil {
 		if (accessoryStack.isEmpty()) {
 			return;
 		}
-		ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
-		Accessory data = accessoryStack.get(ESDataComponents.ACCESSORY.get());
-		ItemAttributeModifiers accessoryModifiers = data != null ? data.attributeModifiers() : ItemAttributeModifiers.EMPTY;
-		for (EquipmentSlotGroup slotGroup : EquipmentSlotGroup.values()) {
-			equipmentStack.forEachModifier(slotGroup, (attribute, modifier) -> {
-				builder.add(attribute, modifier, slotGroup);
-			});
-		}
-		for (ItemAttributeModifiers.Entry entry : accessoryModifiers.modifiers()) {
-			builder.add(entry.attribute(), entry.modifier(), entry.slot());
-		}
-		equipmentStack.set(DataComponents.ATTRIBUTE_MODIFIERS, builder.build());
 		List<ItemStack> accessories = new ArrayList<>(equipmentStack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of()));
 		accessories.add(accessoryStack.copyWithCount(1));
 		equipmentStack.set(ESDataComponents.ACCESSORIES.get(), new ItemStackList(Collections.unmodifiableList(accessories)));
 	}
 
 	public static void removeAccessory(ItemStack equipmentStack, ItemStack accessoryStack) {
-		Accessory data = accessoryStack.get(ESDataComponents.ACCESSORY.get());
-		ItemAttributeModifiers accessoryModifiers = data != null ? data.attributeModifiers() : ItemAttributeModifiers.EMPTY;
-		ItemAttributeModifiers modifiers = equipmentStack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
-		List<ItemAttributeModifiers.Entry> entries = new ArrayList<>(modifiers.modifiers());
-		entries.removeIf(entry -> accessoryModifiers.modifiers().stream().anyMatch(e -> entry.modifier().id().equals(e.modifier().id())));
-		equipmentStack.set(DataComponents.ATTRIBUTE_MODIFIERS, new ItemAttributeModifiers(Collections.unmodifiableList(entries), modifiers.showInTooltip()));
 		List<ItemStack> accessories = new ArrayList<>(equipmentStack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of()));
 		accessories.removeIf(stack -> stack.getItem() == accessoryStack.getItem());
 		equipmentStack.set(ESDataComponents.ACCESSORIES.get(), new ItemStackList(Collections.unmodifiableList(accessories)));

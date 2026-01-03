@@ -26,8 +26,8 @@ public class AethersentGolemRenderer<T extends AethersentGolem> extends MobRende
 	public void render(T entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
 		if (entity.shootAnimationState.isStarted() && !entity.shootPosTracked) {
-			entity.leftMuzzlePos = ESModelUtil.getModelPosition(entity, entity.yBodyRot, List.of(getModel().upper, getModel().body, getModel().leftArm, getModel().leftMuzzle));
-			entity.rightMuzzlePos = ESModelUtil.getModelPosition(entity, entity.yBodyRot, List.of(getModel().upper, getModel().body, getModel().rightArm, getModel().rightMuzzle));
+			entity.leftMuzzlePos = ESModelUtil.getModelPartWorldPosition(entity, entity.yBodyRot, List.of(getModel().upper, getModel().body, getModel().leftArm, getModel().leftMuzzle));
+			entity.rightMuzzlePos = ESModelUtil.getModelPartWorldPosition(entity, entity.yBodyRot, List.of(getModel().upper, getModel().body, getModel().rightArm, getModel().rightMuzzle));
 			entity.shootPosTracked = true;
 			entity.shouldAddShootParticle = true;
 		}

@@ -2,7 +2,9 @@ package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
+import cn.leolezury.eternalstarlight.common.entity.attack.Whip;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESAccessoryUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -74,13 +76,16 @@ public abstract class ItemInHandRendererMixin {
 		if (flag || flag1) {
 			if (player.isUsingItem()) {
 				ItemStack useItem = player.getUseItem();
-				InteractionHand interactionhand = player.getUsedItemHand();
+				InteractionHand hand = player.getUsedItemHand();
 				if (useItem.is(ESItems.STARFIRE_CROSSBOW.get()) || useItem.is(ESItems.CRYSTAL_CROSSBOW.get()) || useItem.is(ESItems.MECHANICAL_CROSSBOW.get()) || useItem.is(ESItems.WILTED_CROSSBOW.get()) || useItem.is(ESItems.STARFALL_LONGBOW.get()) || useItem.is(ESItems.FLOWGLAZE_BOW.get()) || useItem.is(ESItems.MOONRING_BOW.get()) || useItem.is(ESItems.BOW_OF_BLOOD.get())) {
-					cir.setReturnValue(ItemInHandRenderer.HandRenderSelection.onlyForHand(interactionhand));
+					cir.setReturnValue(ItemInHandRenderer.HandRenderSelection.onlyForHand(hand));
 				}
 			} else {
 				cir.setReturnValue(((mainhand.is(ESItems.STARFIRE_CROSSBOW.get()) || mainhand.is(ESItems.CRYSTAL_CROSSBOW.get()) || mainhand.is(ESItems.MECHANICAL_CROSSBOW.get()) || mainhand.is(ESItems.WILTED_CROSSBOW.get())) && CrossbowItem.isCharged(mainhand)) ? ItemInHandRenderer.HandRenderSelection.RENDER_MAIN_HAND_ONLY : ItemInHandRenderer.HandRenderSelection.RENDER_BOTH_HANDS);
 			}
+		}
+		if (player.level().getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip) {
+			cir.setReturnValue(ItemInHandRenderer.HandRenderSelection.onlyForHand(InteractionHand.OFF_HAND));
 		}
 	}
 

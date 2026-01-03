@@ -25,7 +25,7 @@ public class LunarMonstrosityRenderer<T extends LunarMonstrosity> extends MobRen
 	@Override
 	public void render(T entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
-		entity.headPos = ESModelUtil.getModelPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().stemAll, getModel().stemMiddle, getModel().stemTop, getModel().head));
+		entity.headPos = ESModelUtil.getModelPartWorldPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().stemAll, getModel().stemMiddle, getModel().stemTop, getModel().head));
 	}
 
 	@Override

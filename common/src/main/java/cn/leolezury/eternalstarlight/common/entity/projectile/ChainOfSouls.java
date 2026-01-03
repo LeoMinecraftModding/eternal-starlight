@@ -33,7 +33,6 @@ import net.minecraft.world.phys.HitResult.Type;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -188,7 +187,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	}
 
 	private boolean shouldRetract(Player player) {
-		if (!player.isRemoved() && player.isAlive() && (player.getMainHandItem() == firedFromWeapon || player.getOffhandItem() == firedFromWeapon) && !(this.distanceToSqr(player) > getMaxRange() * getMaxRange())) {
+		if (!player.isRemoved() && player.isAlive() && (firedFromWeapon != null && (ItemStack.isSameItemSameComponents(player.getMainHandItem(), firedFromWeapon) || ItemStack.isSameItemSameComponents(player.getOffhandItem(), firedFromWeapon))) && !(this.distanceToSqr(player) > getMaxRange() * getMaxRange())) {
 			return false;
 		} else {
 			this.discard();
@@ -245,6 +244,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putBoolean(TAG_REACHED_TARGET, this.reachedTarget());
 		compoundTag.putFloat(TAG_LENGTH, this.length());
 		if (target != null) {
@@ -257,6 +257,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
 		this.setReachedTarget(compoundTag.getBoolean(TAG_REACHED_TARGET));
 		this.setLength(compoundTag.getFloat(TAG_LENGTH));
 		if (compoundTag.hasUUID(TAG_TARGET)) {
@@ -312,11 +313,6 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	}
 
 	@Override
-	public void onClientRemoval() {
-		this.updateOwnerInfo(null);
-	}
-
-	@Override
 	public void setOwner(@Nullable Entity entity) {
 		super.setOwner(entity);
 		this.updateOwnerInfo(this);
@@ -325,7 +321,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	private void updateOwnerInfo(@Nullable ChainOfSouls chain) {
 		Player player = this.getPlayerOwner();
 		if (player != null) {
-			ESDataAttachments.GRAPPLING.setData(player, Optional.ofNullable(chain));
+			ESDataAttachments.GRAPPLING.setData(player, chain == null ? -1 : chain.getId());
 		}
 	}
 

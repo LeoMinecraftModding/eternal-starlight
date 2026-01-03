@@ -8,7 +8,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -17,8 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public class ChainOfSoulsItem extends Item {
 	public ChainOfSoulsItem(Properties properties) {
 		super(properties);
@@ -26,19 +23,17 @@ public class ChainOfSoulsItem extends Item {
 
 	@NotNull
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
-		ItemStack itemStack = player.getItemInHand(interactionHand);
-		Optional<Entity> grappling = ESDataAttachments.GRAPPLING.getData(player);
-		ChainOfSouls hook = grappling.isPresent() && grappling.get() instanceof ChainOfSouls chain ? chain : null;
-		if (hook != null) {
-			retrieve(level, player, hook);
-		} else {
-			if (!level.isClientSide) {
-				itemStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(interactionHand));
+		ItemStack stack = player.getItemInHand(interactionHand);
+		if (!level.isClientSide) {
+			ChainOfSouls hook = level.getEntity(ESDataAttachments.GRAPPLING.getData(player)) instanceof ChainOfSouls chain ? chain : null;
+			if (hook != null) {
+				retrieve(level, player, hook);
+			} else {
+				stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(interactionHand));
+				this.shoot(level, player, stack);
 			}
-			this.shoot(level, player, itemStack);
 		}
-
-		return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide);
+		return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
 	}
 
 	private void shoot(Level level, Player player, ItemStack weapon) {
@@ -54,7 +49,7 @@ public class ChainOfSoulsItem extends Item {
 	private static void retrieve(Level level, Player player, ChainOfSouls hook) {
 		if (!level.isClientSide()) {
 			hook.discard();
-			ESDataAttachments.GRAPPLING.setData(player, Optional.empty());
+			ESDataAttachments.GRAPPLING.setData(player, -1);
 		}
 
 		level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1.0F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));

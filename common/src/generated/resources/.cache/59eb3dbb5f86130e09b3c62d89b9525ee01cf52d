@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-31T12:54:23.4942637	Loot Tables
+// 1.21.1	2026-01-03T21:28:56.5571768	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -781,7 +781,7 @@ e84177efa08c636a037bd1a440289d31e3c42fc0 data/eternal_starlight/loot_table/entit
 04b0ec4992099198667c31398d38fbaed310abbc data/eternal_starlight/loot_table/entities/permafrost.json
 318be7f64d350c9f5cd183325a91a5ab456b2dda data/eternal_starlight/loot_table/entities/ratlin.json
 e06d1c60bf7db51e793c9afa33eef2fa3f2dabdf data/eternal_starlight/loot_table/entities/rookfish.json
-8205c791dc1a9fb149792c50454d0b556b1306de data/eternal_starlight/loot_table/entities/seeker.json
+2a7a40217586d244df0c4a93387fa5c55664e881 data/eternal_starlight/loot_table/entities/seeker.json
 e250ca10b16bd4a2c083a9fd16ff9aa5006a543f data/eternal_starlight/loot_table/entities/shadow_snail.json
 876793df6ca04dce0b1bd2d60ed8976f29797a03 data/eternal_starlight/loot_table/entities/shimmer_lacewing.json
 511101dbbe5019fca06a307bf3bcfc1aeb242e98 data/eternal_starlight/loot_table/entities/starfire_bird.json

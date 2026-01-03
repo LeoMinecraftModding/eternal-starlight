@@ -1068,6 +1068,8 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> NIGHTFALL_SPIDER_EYE = registerItem("nightfall_spider_eye", () -> new Item(new Item.Properties()));
 
+	public static final RegistryObject<Item, Item> TENTACLE_SPIKE = registerItem("tentacle_spike", () -> new TentacleSpikeItem(new Item.Properties().durability(480)));
+
 	public static final RegistryObject<Item, Item> TANGLED_SKULL = registerItem("tangled_skull", () -> new TangledSkullItem(ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
 
 	public static final RegistryObject<Item, Item> GLEECH_EGG = registerItem("gleech_egg", () -> new GleechEggItem(new Item.Properties().stacksTo(16)));

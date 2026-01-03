@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -25,6 +26,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
+
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
@@ -76,8 +79,8 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 
 	private Vec3 getPlayerHandPos(Player player, float attackAnim, float partialTicks) {
 		int arm = player.getMainArm() == HumanoidArm.RIGHT ? 1 : -1;
-		ItemStack itemStack = player.getMainHandItem();
-		if (!itemStack.is(ESItems.CHAIN_OF_SOULS.get())) {
+		ItemStack mainHandItem = player.getMainHandItem();
+		if (!mainHandItem.is(ESItems.CHAIN_OF_SOULS.get())) {
 			arm = -arm;
 		}
 		if (this.entityRenderDispatcher.options.getCameraType().isFirstPerson() && player == Minecraft.getInstance().player) {
@@ -85,9 +88,13 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 			Vec3 vec3 = this.entityRenderDispatcher.camera.getNearPlane().getPointOnPlane((float) arm * 0.85f, -0.95f).scale(fovFactor).yRot(attackAnim * 0.5f).xRot(-attackAnim * 0.7f);
 			return player.getEyePosition(partialTicks).add(vec3);
 		} else {
-			float f = Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot) * (float) (Math.PI / 180.0);
-			double sin = Mth.sin(f);
-			double cos = Mth.cos(f);
+			Optional<Vec3> handPos = ESModelUtil.getThirdPersonPlayerHandPosition(player, entityRenderDispatcher, Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot), partialTicks, mainHandItem.is(ESItems.CHAIN_OF_SOULS.get()) ? player.getMainArm() : player.getMainArm().getOpposite(), new Vec3(0, 0.6, -0.15));
+			if (handPos.isPresent()) {
+				return handPos.get();
+			}
+			float yaw = Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot) * (float) (Math.PI / 180.0);
+			double sin = Mth.sin(yaw);
+			double cos = Mth.cos(yaw);
 			float playerScale = player.getScale();
 			double sideOffset = arm * 0.35 * (double) playerScale;
 			double forwardOffset = 0.35 * (double) playerScale;
