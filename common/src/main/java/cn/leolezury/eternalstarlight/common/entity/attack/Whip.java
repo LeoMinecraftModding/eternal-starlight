@@ -164,8 +164,9 @@ public abstract class Whip extends Entity {
 								if (level() instanceof ServerLevel serverLevel) {
 									EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
 								}
-								if (entity instanceof LivingEntity livingEntity && knockback > 0.0F) {
+								if (entity instanceof LivingEntity livingEntity) {
 									livingEntity.knockback(knockback * 0.5F, Mth.sin(player.getYRot() * Mth.DEG_TO_RAD), -Mth.cos(player.getYRot() * Mth.DEG_TO_RAD));
+									doPostHurtEffects(livingEntity);
 								}
 							}
 						}
@@ -184,6 +185,9 @@ public abstract class Whip extends Entity {
 				animationTicks++;
 			}
 		}
+	}
+
+	protected void doPostHurtEffects(LivingEntity living) {
 	}
 
 	public abstract int getLifespan();

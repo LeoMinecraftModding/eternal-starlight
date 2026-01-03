@@ -17,7 +17,7 @@ import net.minecraft.util.Mth;
 @Environment(EnvType.CLIENT)
 public class TentacleSpikeModel<T extends TentacleSpike> extends EntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("tentacle_spike"), "main");
-	private static final int NUM_SEGMENTS = 15;
+	private static final int NUM_SEGMENTS = 20;
 	private final ModelPart root;
 	private final ModelPart[] segments;
 
@@ -55,10 +55,10 @@ public class TentacleSpikeModel<T extends TentacleSpike> extends EntityModel<T> 
 		float progress = Mth.clamp(entity.getAnimationTicks(Mth.frac(ageInTicks)) / entity.getLifespan(), 0, 1);
 		for (int i = 0; i < NUM_SEGMENTS; i++) {
 			ModelPart segment = segments[i];
-			segment.xRot = Mth.lerp(progress, 60f / (i + 1), -60f / (i + 1)) * Mth.DEG_TO_RAD;
+			segment.xRot = Mth.lerp(progress, 120f / (i + 1), -120f / (i + 1)) * Mth.DEG_TO_RAD;
 			if (i == 0) {
 				float scale = Easing.IN_OUT_SINE.calculate(1 - Math.abs(progress - 0.5f) * 2);
-				segment.xScale = segment.yScale = segment.zScale = scale;
+				segment.xScale = segment.yScale = segment.zScale = scale * 0.75f;
 			}
 		}
 	}
