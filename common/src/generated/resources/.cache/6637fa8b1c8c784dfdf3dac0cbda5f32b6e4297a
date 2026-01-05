@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-27T19:03:57.2651399	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2026-01-05T23:11:11.534205	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -120,7 +120,7 @@ b503cc4b594242e321f7797ca2925502c5f661bb data/minecraft/tags/block/logs_that_bur
 3e6601628845a5a34c25897e818b128b3ce95175 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json
 f1a357ab1926778d96e01ccd9e41a6a26437047d data/minecraft/tags/block/mushroom_grow_block.json
-e71ffee2c515b9f14fec2efb774a5f2b5d5871f7 data/minecraft/tags/block/needs_iron_tool.json
+dc6bd76115e4aaab2c70976e534c916364fa938f data/minecraft/tags/block/needs_iron_tool.json
 5dc8a9d104ce361bc78b236eede58697b748f4d3 data/minecraft/tags/block/needs_stone_tool.json
 90de9afe0872027063bcb6f66d1fe2a0ff06b5e0 data/minecraft/tags/block/occludes_vibration_signals.json
 3f55dc7d70a4a89e7d51106b6d13e80f65fc957b data/minecraft/tags/block/planks.json
