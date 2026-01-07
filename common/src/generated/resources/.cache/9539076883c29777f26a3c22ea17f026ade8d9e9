@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-03T18:54:47.928613	Item Models: eternal_starlight
+// 1.21.1	2026-01-07T23:10:54.716282	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -151,6 +151,7 @@ fac23ac73d84fbcf5af72b926a0a01541536f009 assets/eternal_starlight/models/item/ch
 12b395c436c78867ff0c60198d9bb0434e333da0 assets/eternal_starlight/models/item/chiseled_radianite.json
 e3cd1adbd712e282cae3f91ffef56987fb6dd84f assets/eternal_starlight/models/item/chiseled_springstone.json
 5c4fae9e52b068718e5cb19a3f2836602b58d6bf assets/eternal_starlight/models/item/chiseled_tooth_of_hunger_tiles.json
+0a446e6c19f45ddffa4e648e69a4cf78c466bb15 assets/eternal_starlight/models/item/chiseled_toxite.json
 851e5097396755c2e9e2233459735d0111662830 assets/eternal_starlight/models/item/chiseled_twilight_sandstone.json
 1b1a3a009c15ffa08c16dad3730e01dc31b61c06 assets/eternal_starlight/models/item/chiseled_voidstone.json
 fd0e7eb943c7623f877043be067194927913acba assets/eternal_starlight/models/item/cinder_brick.json
@@ -1043,6 +1044,10 @@ d3529ae907735b2b633f58203e8f0324aa8351ee assets/eternal_starlight/models/item/to
 02c19cd59ece87d5642498eb7ed7f1a79be8cb48 assets/eternal_starlight/models/item/torreya_vines.json
 9c8cfc29e76e353c1867a0a6c1d563fcc3cf8bf9 assets/eternal_starlight/models/item/torreya_wood.json
 6c3e75a16cd0cfc8483ce83da1416c576ef8438e assets/eternal_starlight/models/item/toxite.json
+7649c76347b25bd67148744a8898b62d4495174e assets/eternal_starlight/models/item/toxite_bricks.json
+372e5bd23ca75353c8cf6b3a1f6929f887ee8d00 assets/eternal_starlight/models/item/toxite_brick_slab.json
+ab095d5ef5722ccbc563d4d987a84f03f2ec6b64 assets/eternal_starlight/models/item/toxite_brick_stairs.json
+51f391eb45cb843c9fea32682cdba1c1c0377d11 assets/eternal_starlight/models/item/toxite_brick_wall.json
 4a8adb4eeb7466639052f85086015868b7afbb6d assets/eternal_starlight/models/item/toxite_slab.json
 c67ebe328354a20488f5a7bd99f9e2fc3ae14d73 assets/eternal_starlight/models/item/toxite_stairs.json
 bd240fd6b77a60eb57ea27089c9441ea3d5adf56 assets/eternal_starlight/models/item/toxite_wall.json

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_grimstone_brick_slab": {
+    "has_cobbled_grimstone_slab": {
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:grimstone_brick_slab"
+            "items": "eternal_starlight:cobbled_grimstone_slab"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_grimstone_brick_slab"
+      "has_cobbled_grimstone_slab"
     ]
   ],
   "rewards": {

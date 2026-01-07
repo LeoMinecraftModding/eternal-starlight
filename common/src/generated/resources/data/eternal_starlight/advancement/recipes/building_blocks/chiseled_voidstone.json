@@ -1,27 +1,27 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_cobbled_voidstone_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:cobbled_voidstone_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "eternal_starlight:chiseled_voidstone"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_voidstone_brick_slab": {
-      "conditions": {
-        "items": [
-          {
-            "items": "eternal_starlight:voidstone_brick_slab"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_voidstone_brick_slab"
+      "has_cobbled_voidstone_slab"
     ]
   ],
   "rewards": {

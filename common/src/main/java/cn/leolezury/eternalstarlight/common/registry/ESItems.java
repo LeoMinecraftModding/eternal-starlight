@@ -978,10 +978,15 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> TOXITE_SLAB = registerItem("toxite_slab", () -> new BlockItem(ESBlocks.TOXITE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TOXITE_STAIRS = registerItem("toxite_stairs", () -> new BlockItem(ESBlocks.TOXITE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TOXITE_WALL = registerItem("toxite_wall", () -> new BlockItem(ESBlocks.TOXITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOXITE_BRICKS = registerItem("toxite_bricks", () -> new BlockItem(ESBlocks.TOXITE_BRICKS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOXITE_BRICK_SLAB = registerItem("toxite_brick_slab", () -> new BlockItem(ESBlocks.TOXITE_BRICK_SLAB.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOXITE_BRICK_STAIRS = registerItem("toxite_brick_stairs", () -> new BlockItem(ESBlocks.TOXITE_BRICK_STAIRS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> TOXITE_BRICK_WALL = registerItem("toxite_brick_wall", () -> new BlockItem(ESBlocks.TOXITE_BRICK_WALL.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_TOXITE = registerItem("polished_toxite", () -> new BlockItem(ESBlocks.POLISHED_TOXITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_TOXITE_SLAB = registerItem("polished_toxite_slab", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_TOXITE_STAIRS = registerItem("polished_toxite_stairs", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_STAIRS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> POLISHED_TOXITE_WALL = registerItem("polished_toxite_wall", () -> new BlockItem(ESBlocks.POLISHED_TOXITE_WALL.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CHISELED_TOXITE = registerItem("chiseled_toxite", () -> new BlockItem(ESBlocks.CHISELED_TOXITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ALCHEMIST_MASK = registerItem("alchemist_mask",
 		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(10))));
 	public static final RegistryObject<Item, Item> ALCHEMIST_ROBE = registerItem("alchemist_robe",

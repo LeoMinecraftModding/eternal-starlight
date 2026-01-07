@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_springstone_brick_slab": {
+    "has_springstone_slab": {
       "conditions": {
         "items": [
           {
-            "items": "eternal_starlight:springstone_brick_slab"
+            "items": "eternal_starlight:springstone_slab"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_springstone_brick_slab"
+      "has_springstone_slab"
     ]
   ],
   "rewards": {

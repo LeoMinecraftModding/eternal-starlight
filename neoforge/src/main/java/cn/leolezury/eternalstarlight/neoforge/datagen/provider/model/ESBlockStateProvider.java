@@ -467,10 +467,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.BUDDING_THIOQUARTZ.get());
 		directionalBud(ESBlocks.THIOQUARTZ_CLUSTER.get());
 		stoneSet(ESBlocks.TOXITE.get(), ESBlocks.TOXITE_SLAB.get(), ESBlocks.TOXITE_STAIRS.get(), ESBlocks.TOXITE_WALL.get());
+		stoneSet(ESBlocks.TOXITE_BRICKS.get(), ESBlocks.TOXITE_BRICK_SLAB.get(), ESBlocks.TOXITE_BRICK_STAIRS.get(), ESBlocks.TOXITE_BRICK_WALL.get());
 		polishedToxite(ESBlocks.POLISHED_TOXITE.get());
 		slabBlock(ESBlocks.POLISHED_TOXITE_SLAB.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
 		stairsBlock(ESBlocks.POLISHED_TOXITE_STAIRS.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
 		wallBlock(ESBlocks.POLISHED_TOXITE_WALL.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
+		simpleBlock(ESBlocks.CHISELED_TOXITE.get());
 
 		redstoneOre(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());
 		redstoneOre(ESBlocks.VOIDSTONE_REDSTONE_ORE.get());

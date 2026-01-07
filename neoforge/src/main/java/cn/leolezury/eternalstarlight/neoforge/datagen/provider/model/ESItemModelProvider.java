@@ -812,10 +812,15 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.TOXITE_SLAB.get());
 		block(ESItems.TOXITE_STAIRS.get());
 		wall(ESItems.TOXITE_WALL.get(), ESItems.TOXITE.get());
+		block(ESItems.TOXITE_BRICKS.get());
+		block(ESItems.TOXITE_BRICK_SLAB.get());
+		block(ESItems.TOXITE_BRICK_STAIRS.get());
+		wall(ESItems.TOXITE_BRICK_WALL.get(), ESItems.TOXITE_BRICKS.get());
 		block(ESItems.POLISHED_TOXITE.get());
 		block(ESItems.POLISHED_TOXITE_SLAB.get());
 		block(ESItems.POLISHED_TOXITE_STAIRS.get());
 		wall(ESItems.POLISHED_TOXITE_WALL.get(), ESItems.POLISHED_TOXITE.get());
+		block(ESItems.CHISELED_TOXITE.get());
 		basicItem(ESItems.ALCHEMIST_MASK.get());
 		basicItem(ESItems.ALCHEMIST_ROBE.get());
 

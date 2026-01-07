@@ -762,10 +762,15 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.TOXITE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.TOXITE_STAIRS.get());
 		dropSelf(ESBlocks.TOXITE_WALL.get());
+		dropSelf(ESBlocks.TOXITE_BRICKS.get());
+		add(ESBlocks.TOXITE_BRICK_SLAB.get(), this::createSlabItemTable);
+		dropSelf(ESBlocks.TOXITE_BRICK_STAIRS.get());
+		dropSelf(ESBlocks.TOXITE_BRICK_WALL.get());
 		dropSelf(ESBlocks.POLISHED_TOXITE.get());
 		add(ESBlocks.POLISHED_TOXITE_SLAB.get(), this::createSlabItemTable);
 		dropSelf(ESBlocks.POLISHED_TOXITE_STAIRS.get());
 		dropSelf(ESBlocks.POLISHED_TOXITE_WALL.get());
+		dropSelf(ESBlocks.CHISELED_TOXITE.get());
 
 		add(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
