@@ -361,7 +361,7 @@ public class CommonHandlers {
 		if (meteorChance != null && entity.getRandom().nextDouble() < meteorChance.getValue()) {
 			if (source.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
 				Vec3 location = livingEntity.position();
-				AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 30);
+				AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 30, 120);
 			}
 		}
 
@@ -839,7 +839,7 @@ public class CommonHandlers {
 			if (ESDataAttachments.ARROW_TYPE.getData(projectile).equals(STARFALL_ARROW) && projectile.getOwner() instanceof LivingEntity owner) {
 				ESDataAttachments.ARROW_TYPE.setData(projectile, "");
 				Vec3 location = result.getLocation();
-				AethersentMeteor.createMeteorShower(serverLevel, owner, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 30);
+				AethersentMeteor.createMeteorShower(serverLevel, owner, result instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingEntity ? livingEntity : null, location.x, location.y, location.z, 30, 60);
 			}
 		}
 	}

@@ -82,7 +82,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		}
 	}
 
-	private Vec3 targetPos = Vec3.ZERO;
+	private Vec3 targetPos = null;
 
 	public void setTargetPos(Vec3 targetPos) {
 		this.targetPos = targetPos;
@@ -107,12 +107,12 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 		setOwner(entity);
 	}
 
-	public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height) {
+	public static void createMeteorShower(Level level, LivingEntity entity, LivingEntity target, double targetX, double targetY, double targetZ, double height, int cooldown) {
 		if (!level.isClientSide) {
 			if (ESDataAttachments.METEOR_COOLDOWN.getData(entity) > 0) {
 				return;
 			}
-			ESDataAttachments.METEOR_COOLDOWN.setData(entity, 20);
+			ESDataAttachments.METEOR_COOLDOWN.setData(entity, cooldown);
 			for (int x = -1; x <= 1; x++) {
 				for (int z = -1; z <= 1; z++) {
 					RandomSource random = entity.getRandom();
@@ -163,70 +163,67 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	}
 
 	public void dropAndDiscard(boolean clean) {
-		if (!isRemoved()) {
-			if (!level().isClientSide) {
-				if (natural && getSize() >= 10) {
-					ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(20, 30)));
-					if (entity != null) {
-						entity.setGlowingTag(true);
-					}
-					if (!clean) {
-						if (ESConfig.INSTANCE.aethersentMeteorReplaceBlocks) {
-							for (int x = -3; x <= 3; x++) {
-								for (int y = -3; y <= 3; y++) {
-									for (int z = -3; z <= 3; z++) {
-										BlockPos pos = blockPosition().offset(x, y, z);
-										boolean canDestroy = ESPlatform.INSTANCE.postEntityDestroyBlockEvent(this.level(), pos, this);
-										if (canDestroy && pos.distToCenterSqr(blockPosition().getCenter()) <= 3.5 && level().getBlockState(pos).is(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLES)) {
-											level().setBlockAndUpdate(pos, random.nextBoolean() ? ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState() : ESBlocks.NEBULAITE.get().defaultBlockState());
-										}
+		if (!isRemoved() && !level().isClientSide) {
+			if (natural && getSize() >= 10) {
+				ItemEntity entity = spawnAtLocation(new ItemStack(ESItems.RAW_AETHERSENT.get(), random.nextInt(20, 30)));
+				if (entity != null) {
+					entity.setGlowingTag(true);
+				}
+				if (!clean) {
+					if (ESConfig.INSTANCE.aethersentMeteorReplaceBlocks) {
+						for (int x = -3; x <= 3; x++) {
+							for (int y = -3; y <= 3; y++) {
+								for (int z = -3; z <= 3; z++) {
+									BlockPos pos = blockPosition().offset(x, y, z);
+									boolean canDestroy = ESPlatform.INSTANCE.postEntityDestroyBlockEvent(this.level(), pos, this);
+									if (canDestroy && pos.distToCenterSqr(blockPosition().getCenter()) <= 3.5 && level().getBlockState(pos).is(ESTags.Blocks.AETHERSENT_METEOR_REPLACEABLES)) {
+										level().setBlockAndUpdate(pos, random.nextBoolean() ? ESBlocks.RAW_AETHERSENT_BLOCK.get().defaultBlockState() : ESBlocks.NEBULAITE.get().defaultBlockState());
 									}
 								}
 							}
 						}
-						if (ESConfig.INSTANCE.mobsConfig.creteor.canSpawn() && random.nextFloat() < ESConfig.INSTANCE.mobsConfig.creteor.spawnChance() && level().getEntitiesOfClass(Creteor.class, getBoundingBox().inflate(32)).isEmpty()) {
-							Creteor creteor = new Creteor(ESEntities.CRETEOR.get(), level());
-							creteor.setPos(position());
-							creteor.setPersistenceRequired();
-							level().addFreshEntity(creteor);
-						}
-						for (int m = 0; m < ((ServerLevel) level()).players().size(); ++m) {
-							ServerPlayer serverPlayer = ((ServerLevel) level()).players().get(m);
-							((ServerLevel) level()).sendParticles(serverPlayer, ESParticles.AETHERSENT_EXPLOSION.get(), true, getX(), getY(), getZ(), 1, 0, 0, 0, 0);
-						}
-					} else if (level() instanceof ServerLevel serverLevel) {
-						for (int i = 0; i < 25; i++) {
-							Vec3 speed = new Vec3((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F).normalize();
-							ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.AETHERSENT, position().x + speed.x * 1.2, position().y + speed.y * 1.2, position().z + speed.z * 1.2, speed.x, speed.y, speed.z));
-						}
+					}
+					if (ESConfig.INSTANCE.mobsConfig.creteor.canSpawn() && random.nextFloat() < ESConfig.INSTANCE.mobsConfig.creteor.spawnChance() && level().getEntitiesOfClass(Creteor.class, getBoundingBox().inflate(32)).isEmpty()) {
+						Creteor creteor = new Creteor(ESEntities.CRETEOR.get(), level());
+						creteor.setPos(position());
+						creteor.setPersistenceRequired();
+						level().addFreshEntity(creteor);
+					}
+					for (int m = 0; m < ((ServerLevel) level()).players().size(); ++m) {
+						ServerPlayer serverPlayer = ((ServerLevel) level()).players().get(m);
+						((ServerLevel) level()).sendParticles(serverPlayer, ESParticles.AETHERSENT_EXPLOSION.get(), true, getX(), getY(), getZ(), 1, 0, 0, 0, 0);
+					}
+				} else if (level() instanceof ServerLevel serverLevel) {
+					for (int i = 0; i < 25; i++) {
+						Vec3 speed = new Vec3((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F).normalize();
+						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.AETHERSENT, position().x + speed.x * 1.2, position().y + speed.y * 1.2, position().z + speed.z * 1.2, speed.x, speed.y, speed.z));
 					}
 				}
-				discard();
 			}
+			discard();
 		}
 	}
 
 	@Override
 	protected void onHit(HitResult hitResult) {
 		super.onHit(hitResult);
-		if (level() instanceof ServerLevel serverLevel) {
-			ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
-		}
-		for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize(), 0, getSize()))) {
-			if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
-				livingEntity.invulnerableTime = 0;
-				livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.08f : 1f));
+		if (hitResult.getType() != HitResult.Type.MISS) {
+			if (level() instanceof ServerLevel serverLevel) {
+				ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
 			}
-		}
-		if ((getTarget() != null && getY() < getTarget().getY()) || getY() < targetPos.y) {
-			playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
-			if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
-				serverLevel.sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ESExplosionParticleOptions.AETHERSENT, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
-				discard();
+			if (natural || (getTarget() == null && targetPos == null) || (getTarget() != null && getY() <= (getTarget().getY() + getTarget().getBbHeight())) || (targetPos != null && getY() <= targetPos.y + 1)) {
+				playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
+				if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
+					for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize(), 0, getSize()))) {
+						if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
+							livingEntity.invulnerableTime = 0;
+							livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.08f : 1f));
+						}
+					}
+					serverLevel.sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ESExplosionParticleOptions.AETHERSENT, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
+					dropAndDiscard(false);
+				}
 			}
-		}
-		if (natural) {
-			dropAndDiscard(false);
 		}
 	}
 

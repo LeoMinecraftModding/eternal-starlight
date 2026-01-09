@@ -10,6 +10,7 @@ import cn.leolezury.eternalstarlight.common.data.ESConfiguredFeatures;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
@@ -17,9 +18,11 @@ import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -970,7 +973,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WeatheringGolemSteelJetBlock> OXIDIZED_GOLEM_STEEL_JET = BLOCKS.register("oxidized_golem_steel_jet", () -> new WeatheringGolemSteelJetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).strength(4.0F, 1200.0F).mapColor(MapColor.COLOR_GRAY)));
 	public static final RegistryObject<Block, CrateBlock> GOLEM_STEEL_CRATE = BLOCKS.register("golem_steel_crate", () -> new CrateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).strength(4.0F, 1200.0F).mapColor(MapColor.COLOR_GRAY).strength(50.0F, 1200.0F)));
 	public static final RegistryObject<Block, EnergyTransmitterBlock> ENERGY_TRANSMITTER = BLOCKS.register("energy_transmitter", () -> new EnergyTransmitterBlock(BlockBehaviour.Properties.of().instabreak().lightLevel(state -> state.getValue(EnergyTransmitterBlock.POWERED) ? 7 : 0).sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)));
-	public static final RegistryObject<Block, AccumulatorBlock> ACCUMULATOR = BLOCKS.register("accumulator", () -> new AccumulatorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> state.getValue(AccumulatorBlock.POWER))));
+	public static final RegistryObject<Block, AccumulatorBlock> ACCUMULATOR = BLOCKS.register("accumulator", () -> new AccumulatorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).lightLevel(state -> state.getValue(AccumulatorBlock.POWER)).isRedstoneConductor(ESBlocks::never)));
 	public static final RegistryObject<Block, MechanicalSpawnerBlock> MECHANICAL_SPAWNER = BLOCKS.register("mechanical_spawner", () -> new MechanicalSpawnerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).strength(50.0F, 1200.0F).mapColor(MapColor.COLOR_BROWN).noOcclusion().lightLevel(state -> state.getValue(MechanicalSpawnerBlock.POWER))));
 	public static final RegistryObject<Block, AlloyFurnaceBlock> ALLOY_FURNACE = BLOCKS.register("alloy_furnace", () -> new AlloyFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).strength(4.0F, 1200.0F).noOcclusion().mapColor(MapColor.COLOR_BLUE)));
 	public static final RegistryObject<Block, AlloyFurnaceBlock> WAXED_ALLOY_FURNACE = BLOCKS.register("waxed_alloy_furnace", () -> new AlloyFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WAXED_COPPER_BLOCK).strength(4.0F, 1200.0F).noOcclusion().mapColor(MapColor.COLOR_BLUE)));
@@ -1024,6 +1027,10 @@ public class ESBlocks {
 	public static final RegistryObject<Block, StellarRackBlock> STELLAR_RACK = BLOCKS.register("stellar_rack", () -> new StellarRackBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN).lightLevel(state -> 12)));
 	public static final RegistryObject<Block, EnchantedGrimstoneBricksBlock> ENCHANTED_GRIMSTONE_BRICKS = BLOCKS.register("enchanted_grimstone_bricks", () -> new EnchantedGrimstoneBricksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
 	public static final RegistryObject<Block, ESPortalBlock> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel(state -> 10)));
+
+	private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
+		return false;
+	}
 
 	public static void loadClass() {
 	}

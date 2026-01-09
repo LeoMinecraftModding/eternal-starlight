@@ -27,12 +27,12 @@ public class RageOfStarsItem extends SwordItem implements Swingable {
 		EntityHitResult entityHitResult = ProjectileUtil.getEntityHitResult(entity, eyePosition, vec3, aabb, (entity1) -> !entity1.isSpectator() && entity1 instanceof LivingEntity, range * range);
 		if (entityHitResult != null && entityHitResult.getEntity() instanceof LivingEntity livingEntity && livingEntity.level() instanceof ServerLevel serverLevel) {
 			Vec3 location = livingEntity.position();
-			AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 30);
+			AethersentMeteor.createMeteorShower(serverLevel, entity, livingEntity, location.x, location.y, location.z, 30, 60);
 			return;
 		}
 		if (entity.level() instanceof ServerLevel serverLevel) {
 			Vec3 location = eyePosition.add(viewVector.x * 10, viewVector.y * 10, viewVector.z * 10);
-			AethersentMeteor.createMeteorShower(serverLevel, entity, null, location.x, location.y, location.z, 30);
+			AethersentMeteor.createMeteorShower(serverLevel, entity, null, location.x, location.y, location.z, 30, 60);
 		}
 	}
 
