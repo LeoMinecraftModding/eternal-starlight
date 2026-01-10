@@ -4,6 +4,8 @@ import cn.leolezury.eternalstarlight.common.block.entity.EnergyTransmitterBlockE
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
+import com.mojang.math.OctahedralGroup;
+import com.mojang.math.SymmetricGroup3;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,10 +24,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -34,11 +33,15 @@ import org.jetbrains.annotations.Nullable;
 
 public class EnergyTransmitterBlock extends BaseEntityBlock {
 	public static final MapCodec<EnergyTransmitterBlock> CODEC = simpleCodec(EnergyTransmitterBlock::new);
+
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+	public static final EnumProperty<OctahedralGroup> OFFSET_TRANSFORMATION = EnumProperty.create("offset_transformation", OctahedralGroup.class, group -> !group.inverts(Direction.Axis.Y) && (group.permutation == SymmetricGroup3.P123 || group.permutation == SymmetricGroup3.P321));
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 	public static final IntegerProperty POWER = BlockStateProperties.POWER;
 	public static final IntegerProperty DIRECT_POWER = IntegerProperty.create("direct_power", 0, 15);
+
 	public static final int MAX_CONNECTION_DISTANCE = 64;
+
 	private static final VoxelShape UP_SHAPE = Shapes.or(Block.box(3, 0, 3, 13, 2, 13), Block.box(6, 2, 6, 10, 3, 10));
 	private static final VoxelShape DOWN_SHAPE = ESBlockUtil.rotateVoxelShape(UP_SHAPE, Direction.DOWN);
 	private static final VoxelShape SOUTH_SHAPE = ESBlockUtil.rotateVoxelShape(UP_SHAPE, Direction.SOUTH);
@@ -48,7 +51,7 @@ public class EnergyTransmitterBlock extends BaseEntityBlock {
 
 	public EnergyTransmitterBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(POWERED, false).setValue(POWER, 0).setValue(DIRECT_POWER, 0));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(OFFSET_TRANSFORMATION, OctahedralGroup.IDENTITY).setValue(POWERED, false).setValue(POWER, 0).setValue(DIRECT_POWER, 0));
 	}
 
 	@Override
@@ -147,17 +150,17 @@ public class EnergyTransmitterBlock extends BaseEntityBlock {
 
 	@Override
 	protected BlockState rotate(BlockState state, Rotation rotation) {
-		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+		return state.setValue(FACING, rotation.rotate(state.getValue(FACING))).setValue(OFFSET_TRANSFORMATION, rotation.rotation().compose(state.getValue(OFFSET_TRANSFORMATION)));
 	}
 
 	@Override
 	protected BlockState mirror(BlockState state, Mirror mirror) {
-		return state.rotate(mirror.getRotation(state.getValue(FACING)));
+		return state.setValue(FACING, mirror.getRotation(state.getValue(FACING)).rotate(state.getValue(FACING))).setValue(OFFSET_TRANSFORMATION, mirror.rotation().compose(state.getValue(OFFSET_TRANSFORMATION)));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, POWERED, POWER, DIRECT_POWER);
+		builder.add(FACING, OFFSET_TRANSFORMATION, POWERED, POWER, DIRECT_POWER);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -558,7 +559,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		directionalBlock(ESBlocks.WAXED_GOLEM_STEEL_JET.get(), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_JET.get())));
 		jetBlock(ESBlocks.OXIDIZED_GOLEM_STEEL_JET.get());
 		directionalOnOffBlock(ESBlocks.GOLEM_STEEL_CRATE.get(), CrateBlock.OPEN, models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_CRATE.get()).withSuffix("_open")), models().getExistingFile(blockTexture(ESBlocks.GOLEM_STEEL_CRATE.get())));
-		directionalOnOffBlock(ESBlocks.ENERGY_TRANSMITTER.get(), EnergyTransmitterBlock.POWERED, models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get()).withSuffix("_on")), models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get())));
+		directionalOnOffBlock(ESBlocks.ENERGY_TRANSMITTER.get(), EnergyTransmitterBlock.POWERED, models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get()).withSuffix("_on")), models().getExistingFile(blockTexture(ESBlocks.ENERGY_TRANSMITTER.get())),
+			EnergyTransmitterBlock.OFFSET_TRANSFORMATION,
+			EnergyTransmitterBlock.POWER,
+			EnergyTransmitterBlock.DIRECT_POWER
+		);
 		accumulator(ESBlocks.ACCUMULATOR.get());
 		mechanicalSpawner(ESBlocks.MECHANICAL_SPAWNER.get());
 		particleOnly(ESBlocks.ALLOY_FURNACE.get(), itemTextureFromBlock(ESBlocks.ALLOY_FURNACE.get()));
@@ -1422,12 +1427,12 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			.modelForState().modelFile(on).addModel();
 	}
 
-	private void directionalOnOffBlock(Block block, BooleanProperty property, ModelFile on, ModelFile off) {
-		getVariantBuilder(block).forAllStates(state -> {
+	private void directionalOnOffBlock(Block block, BooleanProperty property, ModelFile on, ModelFile off, Property<?>... ignored) {
+		getVariantBuilder(block).forAllStatesExcept(state -> {
 			Direction direction = state.getValue(BlockStateProperties.FACING);
 			int rotX = direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90;
 			return ConfiguredModel.builder().modelFile(state.getValue(property) ? on : off).rotationX(rotX).rotationY(((int) direction.toYRot() + 180) % 360).build();
-		});
+		}, ignored);
 	}
 
 	private void accumulator(Block block) {
