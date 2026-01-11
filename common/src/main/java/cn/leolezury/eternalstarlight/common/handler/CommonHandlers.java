@@ -19,9 +19,11 @@ import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorIt
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
+import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
+import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
@@ -617,13 +619,19 @@ public class CommonHandlers {
 					}
 				}
 				if (player instanceof ServerPlayer serverPlayer) {
-					if (player.tickCount % 200 == 0) {
+					if (player.tickCount % 600 == 0) {
+						List<String> listeningNamespaces = new ArrayList<>();
 						for (int i = 0; i < inventory.getContainerSize(); ++i) {
 							ItemStack inventoryItem = inventory.getItem(i);
 							if (!inventoryItem.isEmpty()) {
 								ESBookUtil.unlock(serverPlayer, BuiltInRegistries.ITEM.getKey(inventoryItem.getItem()).withPrefix("item_"));
 							}
+							GuideBook guideBook = inventoryItem.get(ESDataComponents.BOOK.get());
+							if (guideBook != null) {
+								listeningNamespaces.addAll(guideBook.listeningNamespaces());
+							}
 						}
+						ESDataAttachments.GUIDEBOOK_LISTENING_NAMESPACES.setData(player, listeningNamespaces);
 						for (Entity e : level.getEntities(player, player.getBoundingBox().inflate(32))) {
 							ESBookUtil.unlock(serverPlayer, BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).withPrefix("entity_seen_"));
 						}

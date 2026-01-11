@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.DeepsilverArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.*;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
+import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.item.magic.LivingArmItem;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.item.misc.*;
@@ -37,9 +38,7 @@ import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.material.Fluids;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class ESItems {
@@ -1189,7 +1188,7 @@ public class ESItems {
 	// gatekeeper
 	public static final RegistryObject<Item, Item> LOOT_BAG = registerItem("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = registerItem("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().component(ESDataComponents.BOOK.get(), EternalStarlight.id("main")).rarity(Rarity.RARE).stacksTo(1)));
+	public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().component(ESDataComponents.BOOK.get(), new GuideBook(EternalStarlight.id("main"), new HashSet<>(Set.of(EternalStarlight.ID)))).rarity(Rarity.RARE).stacksTo(1)));
 	public static final RegistryObject<Item, Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(ESItemTiers.DEEPSILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.DEEPSILVER, 3, -2.4F))));
 	public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));

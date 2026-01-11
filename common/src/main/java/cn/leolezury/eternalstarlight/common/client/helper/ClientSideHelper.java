@@ -14,6 +14,7 @@ import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
+import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.network.*;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -120,9 +121,9 @@ public class ClientSideHelper implements ClientHelper {
 			Inventory inventory = player.getInventory();
 			for (int i = 0; i < inventory.getContainerSize(); i++) {
 				ItemStack stack = inventory.getItem(i);
-				ResourceLocation bookId = stack.get(ESDataComponents.BOOK.get());
-				if (bookId != null) {
-					bookIds.add(bookId);
+				GuideBook guideBook = stack.get(ESDataComponents.BOOK.get());
+				if (guideBook != null) {
+					bookIds.add(guideBook.id());
 				}
 			}
 		}

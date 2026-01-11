@@ -57,6 +57,7 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Integer> OFFHAND_ATTACK_STRENGTH_TIMER = register(ESPlatform.INSTANCE.registerDataAttachment("offhand_attack_strength_timer", () -> 0, null, ByteBufCodecs.INT, false));
 	public static final EntityDataAttachment<Integer> GRAPPLING = register(ESPlatform.INSTANCE.registerDataAttachment("grappling", () -> -1, null, ByteBufCodecs.INT, false));
 	public static final EntityDataAttachment<Integer> WHIP = register(ESPlatform.INSTANCE.registerDataAttachment("whip", () -> -1, null, ByteBufCodecs.INT, false));
+	public static final EntityDataAttachment<List<String>> GUIDEBOOK_LISTENING_NAMESPACES = register(ESPlatform.INSTANCE.registerDataAttachment("guidebook_listening_namespaces", List::of, null, null, false));
 
 	private static <T> EntityDataAttachment<T> register(EntityDataAttachment<T> attachment) {
 		ATTACHMENTS.add(attachment);
