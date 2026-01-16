@@ -30,6 +30,7 @@ public class DyedArmorTrade implements VillagerTrades.ItemListing {
 		this.maxUses = maxUses;
 	}
 
+	@Override
 	public MerchantOffer getOffer(Entity entity, RandomSource randomSource) {
 		ItemStack stack = new ItemStack(this.item);
 		if (stack.is(ItemTags.DYEABLE)) {

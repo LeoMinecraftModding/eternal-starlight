@@ -2,9 +2,8 @@ package cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.professi
 
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.AbstractBoarwarfProfession;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
-import cn.leolezury.eternalstarlight.common.entity.living.npc.trade.BuyItemTrade;
-import cn.leolezury.eternalstarlight.common.entity.living.npc.trade.SellItemTrade;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Items;
 
@@ -12,18 +11,18 @@ public class BoarwarfBlacksmithProfession extends AbstractBoarwarfProfession {
 	@Override
 	public VillagerTrades.ItemListing[] getTrades(Boarwarf boarwarf) {
 		return new VillagerTrades.ItemListing[]{
-			new BuyItemTrade(Items.IRON_INGOT, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 2, 20),
-			new BuyItemTrade(Items.RAW_IRON, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 3, 20),
-			new BuyItemTrade(Items.IRON_ORE, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 4, 20),
-			new BuyItemTrade(ESItems.THERMAL_SPRINGSTONE_INGOT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 3, 1, 10),
-			new BuyItemTrade(ESItems.GOLEM_STEEL_INGOT.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 15, 1, 10),
-			new BuyItemTrade(ESItems.TENACIOUS_PETAL.get(), ESItems.STARLIGHT_SILVER_COIN.get(), 18, 1, 10),
-			new SellItemTrade(Items.SHEARS, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 1, 10),
-			new SellItemTrade(Items.IRON_SWORD, ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 10),
-			new SellItemTrade(Items.IRON_AXE, ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 10),
-			new SellItemTrade(Items.IRON_PICKAXE, ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 10),
-			new SellItemTrade(Items.IRON_SHOVEL, ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 10),
-			new SellItemTrade(Items.IRON_HOE, ESItems.STARLIGHT_SILVER_COIN.get(), 2, 1, 10)
+			ESEntityUtil.simpleTrade(Items.IRON_INGOT, 2, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 20),
+			ESEntityUtil.simpleTrade(Items.RAW_IRON, 3, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 20),
+			ESEntityUtil.simpleTrade(Items.IRON_ORE, 4, ESItems.STARLIGHT_SILVER_COIN.get(), 1, 20),
+			ESEntityUtil.simpleTrade(ESItems.THERMAL_SPRINGSTONE_INGOT.get(), 1, ESItems.STARLIGHT_SILVER_COIN.get(), 3, 10),
+			ESEntityUtil.simpleTrade(ESItems.GOLEM_STEEL_INGOT.get(), 1, ESItems.STARLIGHT_SILVER_COIN.get(), 15, 10),
+			ESEntityUtil.simpleTrade(ESItems.TENACIOUS_PETAL.get(), 1, ESItems.STARLIGHT_SILVER_COIN.get(), 18, 10),
+			ESEntityUtil.simpleTrade(ESItems.STARLIGHT_SILVER_COIN.get(), 1, Items.SHEARS, 1, 10),
+			ESEntityUtil.simpleTrade(ESItems.STARLIGHT_SILVER_COIN.get(), 2, Items.IRON_SWORD, 1, 10),
+			ESEntityUtil.simpleTrade(ESItems.STARLIGHT_SILVER_COIN.get(), 2, Items.IRON_AXE, 1, 10),
+			ESEntityUtil.simpleTrade(ESItems.STARLIGHT_SILVER_COIN.get(), 2, Items.IRON_PICKAXE, 1, 10),
+			ESEntityUtil.simpleTrade(ESItems.STARLIGHT_SILVER_COIN.get(), 2, Items.IRON_SHOVEL, 1, 10),
+			ESEntityUtil.simpleTrade(ESItems.STARLIGHT_SILVER_COIN.get(), 2, Items.IRON_HOE, 1, 10)
 		};
 	}
 }

@@ -8,7 +8,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
-import cn.leolezury.eternalstarlight.common.entity.living.npc.trade.SellItemTrade;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
@@ -16,10 +15,7 @@ import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
-import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
-import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
+import cn.leolezury.eternalstarlight.common.util.*;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DataResult;
 import net.minecraft.Util;
@@ -640,11 +636,15 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		MerchantOffers merchantoffers = this.getOffers();
 		this.addTrades(merchantoffers, GatekeeperTrades.TRADES, 50);
 		this.addTrades(merchantoffers, new VillagerTrades.ItemListing[]{
-			new SellItemTrade(Util.make(() -> {
-				ItemStack stack = ESItems.STARLIT_PAINTING.get().getDefaultInstance();
-				stack.set(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(level().registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level().registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.GUARDIAN)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")));
-				return stack;
-			}), new ItemStack(ESItems.STARLIGHT_SILVER_COIN.get(), 10), 10),
+			ESEntityUtil.simpleTrade(
+				new ItemStack(ESItems.STARLIGHT_SILVER_COIN.get(), 10),
+				Util.make(() -> {
+					ItemStack stack = ESItems.STARLIT_PAINTING.get().getDefaultInstance();
+					stack.set(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(level().registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level().registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.GUARDIAN)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")));
+					return stack;
+				}),
+				10
+			),
 		}, 50);
 	}
 

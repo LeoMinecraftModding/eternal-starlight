@@ -1,7 +1,12 @@
 package cn.leolezury.eternalstarlight.common.util;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.AABB;
@@ -32,6 +37,9 @@ public class ESEntityUtil {
 		return result;
 	}
 
+	public record RaytraceResult(List<Entity> entities, BlockHitResult blockHitResult) {
+	}
+
 	public static boolean shouldHarm(Entity attacker, Entity victim) {
 		if (attacker == null || victim == null) {
 			return true;
@@ -48,6 +56,11 @@ public class ESEntityUtil {
 		return true;
 	}
 
-	public record RaytraceResult(List<Entity> entities, BlockHitResult blockHitResult) {
+	public static VillagerTrades.ItemListing simpleTrade(Item cost, int costCount, Item result, int resultCount, int maxUses) {
+		return simpleTrade(new ItemStack(cost, costCount), new ItemStack(result, resultCount), maxUses);
+	}
+
+	public static VillagerTrades.ItemListing simpleTrade(ItemStack cost, ItemStack result, int maxUses) {
+		return (entity, random) -> new MerchantOffer(new ItemCost(cost.getItem(), cost.getCount()), result, maxUses, 0, 0);
 	}
 }
