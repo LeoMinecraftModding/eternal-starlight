@@ -1669,5 +1669,8 @@
   "book.eternal_starlight.seeds_launcher": "この特異な武器は、あらゆる種類の種を高速で発射することができる。主にパンジェンシーフルーツから作られているが、その製造方法は不明であるため、入手するには製作者と物々交換するしかない。\nこの武器はエンチャントが可能で、エンチャントすると特殊な効果を持つ種を発射できるようになる。",
   "book.eternal_starlight.drying_rack": "ストレングールはこれを使って腐った肉を乾燥させ、防具用の革を作っている。\nまた、焚き火の上に設置すると、腐った肉のジャーキーを作ることができる。このジャーキーは、元の腐った肉より風味は増すものの、硬く噛み切りにくい。",
   "book.eternal_starlight.shimmer_lacewing": "薄明りの川や闇の沼地を飛び回る昆虫で、青色や紫色に輝く四対の翅を持っている。彼らの存在は他の生物にとって脅威でも有用なものでもなかったが、星明りの文明が存在していた時代、この小さな生物は子供たちに愛されていた。",
-  "book.eternal_starlight.twilight_gaze": "タソガレガンギョは、輝く紫色の瞳を持つことで知られている。この神秘的な魚は、生息地である深淵の暗闇の中でもその瞳で周囲を見渡すことができる。\nタソガレガンギョは深淵の環境を好み、その領域を超えて彷徨いすぎると、深淵へと戻る道を探し求めるという性質を持つ。人間に対して攻撃的な性質は持たないが、その身に危害を加えられると、迷わず反撃を試みる。"
+  "book.eternal_starlight.twilight_gaze": "タソガレガンギョは、輝く紫色の瞳を持つことで知られている。この神秘的な魚は、生息地である深淵の暗闇の中でもその瞳で周囲を見渡すことができる。\nタソガレガンギョは深淵の環境を好み、その領域を超えて彷徨いすぎると、深淵へと戻る道を探し求めるという性質を持つ。人間に対して攻撃的な性質は持たないが、その身に危害を加えられると、迷わず反撃を試みる。",
+  "gui.eternal_starlight.jei.category.alloy": "Alloy",
+  "gui.eternal_starlight.jei.category.alloy_furnace_cooling": "Alloy Furnace Cooling",
+  "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "%sx Overheat Time"
 }
