@@ -61,20 +61,12 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 						ItemStack stack = ESItems.CRESCENT_PENDANT.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
 					})),
-					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), EternalStarlight.id("starlight_golem_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), EternalStarlight.id("starlight_golem_display"), Sets.newHashSet(EternalStarlight.id("freeze_display"), EternalStarlight.id("energy_transmitter_display"), EternalStarlight.id("accumulator_display")), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
 						ItemStack stack = ESItems.CHISELED_GOLEM_STEEL_BLOCK.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
 					})),
-					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.FREEZE.get().getDescriptionId()), EternalStarlight.id("freeze_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
-						ItemStack stack = ESItems.FROZEN_TUBE.get().getDefaultInstance();
-						return (CompoundTag) stack.save(provider);
-					})),
-					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId()), EternalStarlight.id("lunar_monstrosity_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId()), EternalStarlight.id("lunar_monstrosity_display"), Sets.newHashSet(EternalStarlight.id("tangled_display")), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
 						ItemStack stack = ESItems.PARASOL_GRASS.get().getDefaultInstance();
-						return (CompoundTag) stack.save(provider);
-					})),
-					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.TANGLED.get().getDescriptionId()), EternalStarlight.id("tangled_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
-						ItemStack stack = ESItems.TANGLED_SKULL.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
 					})),
 					new IndexBookComponent.Entry(simpleColoredTranslated(ESWeathers.METEOR_SHOWER.get().getDescriptionId()), EternalStarlight.id("meteor_shower_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
@@ -196,7 +188,21 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				), 150, 65, 24, 12, 6, 10, EternalStarlight.id("textures/gui/screen/book/left.png"), EternalStarlight.id("textures/gui/screen/book/right.png"))),
 				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("starlight_golem"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"))
-				)), simpleColoredTranslatedBookContent("starlight_golem"), 10, 20, 130, 12))
+				)), simpleColoredTranslatedBookContent("starlight_golem"), 10, 5, 130, 12)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.INDEX, new IndexBookComponent.Config(EternalStarlight.id("starlight_golem_index"), new HashSet<>(), List.of(
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.FREEZE.get().getDescriptionId()), EternalStarlight.id("freeze_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+						ItemStack stack = ESItems.FROZEN_TUBE.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
+					})),
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESItems.ENERGY_TRANSMITTER.get().getDescriptionId()), EternalStarlight.id("energy_transmitter_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+						ItemStack stack = ESItems.ENERGY_TRANSMITTER.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
+					})),
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESItems.ACCUMULATOR.get().getDescriptionId()), EternalStarlight.id("accumulator_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+						ItemStack stack = ESItems.ACCUMULATOR.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
+					}))
+				), 0, 20, 125, 12))
 			),
 			// freeze
 			List.of(
@@ -223,6 +229,54 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("entity_seen_freeze"))
 				)), simpleColoredTranslatedBookContent("freeze"), 10, 20, 130, 12))
 			),
+			// energy transmitter
+			List.of(
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("energy_transmitter_display"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_ingot")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_nugget"))
+				)), 60)
+					.textDisplay(simpleColoredTranslated(ESItems.ENERGY_TRANSMITTER.get().getDescriptionId()), true, 65, 45, 110, 12, 3, 1.5f)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 10, 20, 20)
+					.itemDisplay(Util.make(() -> {
+						ItemStack stack = ESItems.ENERGY_TRANSMITTER.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
+					}), 55 + 2, 10 + 2)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("energy_transmitter_recipe"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_ingot")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_nugget"))
+				)), 90)
+					.craftingRecipeDisplay(EternalStarlight.id("energy_transmitter"), 35, 10, 20, 20)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/crafting_3.png"), 35, 10, 60, 60)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/recipe_crafting.png"), 59, 75, 12, 12)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("energy_transmitter"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_ingot")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_nugget"))
+				)), simpleColoredTranslatedBookContent("energy_transmitter"), 10, 20, 130, 12))
+			),
+			// accumulator
+			List.of(
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("accumulator_display"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_ingot")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_nugget"))
+				)), 60)
+					.textDisplay(simpleColoredTranslated(ESItems.ACCUMULATOR.get().getDescriptionId()), true, 65, 45, 110, 12, 3, 1.5f)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 10, 20, 20)
+					.itemDisplay(Util.make(() -> {
+						ItemStack stack = ESItems.ACCUMULATOR.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
+					}), 55 + 2, 10 + 2)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("accumulator_recipe"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_ingot")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_nugget"))
+				)), 90)
+					.craftingRecipeDisplay(EternalStarlight.id("accumulator"), 35, 10, 20, 20)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/crafting_3.png"), 35, 10, 60, 60)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/recipe_crafting.png"), 59, 75, 12, 12)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("accumulator"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_ingot")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_golem_steel_nugget"))
+				)), simpleColoredTranslatedBookContent("accumulator"), 10, 20, 130, 12))
+			),
 			// lunar monstrosity
 			List.of(
 				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("lunar_monstrosity_display"), new HashSet<>(Set.of(
@@ -245,7 +299,13 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				), 150, 65, 24, 12, 6, 10, EternalStarlight.id("textures/gui/screen/book/left.png"), EternalStarlight.id("textures/gui/screen/book/right.png"))),
 				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("lunar_monstrosity"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"))
-				)), simpleColoredTranslatedBookContent("lunar_monstrosity"), 10, 20, 130, 12))
+				)), simpleColoredTranslatedBookContent("lunar_monstrosity"), 10, 5, 130, 12)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.INDEX, new IndexBookComponent.Config(EternalStarlight.id("lunar_monstrosity_index"), new HashSet<>(), List.of(
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.TANGLED.get().getDescriptionId()), EternalStarlight.id("tangled_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+						ItemStack stack = ESItems.TANGLED_SKULL.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
+					}))
+				), 0, 20, 125, 12))
 			),
 			// tangled
 			List.of(

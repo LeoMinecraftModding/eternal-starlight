@@ -1653,6 +1653,8 @@
   "book.eternal_starlight.starlight_golem.speed": "作为残缺的造物，它无法移动，这使得与它的战斗难度显著降低。",
   "book.eternal_starlight.freeze": "上古时期，它们曾是这个维度中冰冻魔力的化身。在古老的星光人修建那座机械巨兽之时，他们发现机器的放热过于剧烈却因技术问题无法解决，而冷冻人的发现为他们提供了一次重要机会。\n冷冻人经过了不断地改造，最终成功地被用于降温与防御外敌，曾经它们射出的冰元素球也被压缩封存在了试管之中。",
   "book.eternal_starlight.freeze.attack": "你可以使用防寒的盔甲来抵御它们密集的攻击。",
+  "book.eternal_starlight.energy_transmitter": "能量转输器是一种能够远程传递红石信号的红石元件。\n先与发出端交互，再与接收端交互，即可建立两者间的连接。建立连接后，能量转输器在工作时会发射一道光束，将发出端与接收端相连。\n发出端能够接收其附着方块上的红石信号并向外发送；接收端则会将接收到的信号传递给它所附着的方块。",
+  "book.eternal_starlight.accumulator": "蓄能箱是一种红石元件，可自单一方向接收红石信号，并向其余所有方向输出信号。\n其六个面中，带有红点的面为接收面，其余所有面均为输出面。随着输入信号增强，蓄能箱的颜色会逐渐由灰色变为蓝色。",
   "book.eternal_starlight.lunar_monstrosity": "被远古文明注入了月辉力量的植物，用于吞噬被关在迷宫中的囚犯的灵魂。",
   "book.eternal_starlight.lunar_monstrosity.defense": "通常情况下，它坚韧的表皮能大幅降低所受伤害。\n但当它被点燃或击晕后，这种伤害减免效果便会消失。",
   "book.eternal_starlight.lunar_monstrosity.speed": "作为植物，它多数时候无法移动，但偶尔会潜入地下追击猎物。",

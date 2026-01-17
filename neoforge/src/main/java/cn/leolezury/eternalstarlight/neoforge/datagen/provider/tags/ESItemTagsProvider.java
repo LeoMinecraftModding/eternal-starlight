@@ -724,7 +724,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.AFFECTS_PROGRESSION)
 			.add(
 				ESItems.PUNGENCY_FRUIT.get(),
-				ESItems.SILVER_PUNGENCY_FRUIT.get()
+				ESItems.SILVER_PUNGENCY_FRUIT.get(),
+				ESItems.GOLEM_STEEL_INGOT.get(),
+				ESItems.GOLEM_STEEL_NUGGET.get()
 			);
 		tag(ESTags.Items.GOLEM_FORGE_LOCATORS)
 			.add(

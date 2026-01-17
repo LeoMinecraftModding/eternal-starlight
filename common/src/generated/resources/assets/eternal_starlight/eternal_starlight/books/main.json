@@ -140,7 +140,11 @@
               "icon_frame_height": 24,
               "icon_frame_width": 24,
               "jump_to": "eternal_starlight:starlight_golem_display",
-              "listening": [],
+              "listening": [
+                "eternal_starlight:accumulator_display",
+                "eternal_starlight:freeze_display",
+                "eternal_starlight:energy_transmitter_display"
+              ],
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -155,34 +159,15 @@
             {
               "icon": {
                 "count": 1,
-                "id": "eternal_starlight:frozen_tube"
-              },
-              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
-              "icon_frame_height": 24,
-              "icon_frame_width": 24,
-              "jump_to": "eternal_starlight:freeze_display",
-              "listening": [],
-              "text": [
-                {
-                  "content": "${color: #acfffc}",
-                  "translation": false
-                },
-                {
-                  "content": "entity.eternal_starlight.freeze",
-                  "translation": true
-                }
-              ]
-            },
-            {
-              "icon": {
-                "count": 1,
                 "id": "eternal_starlight:parasol_grass"
               },
               "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
               "icon_frame_height": 24,
               "icon_frame_width": 24,
               "jump_to": "eternal_starlight:lunar_monstrosity_display",
-              "listening": [],
+              "listening": [
+                "eternal_starlight:tangled_display"
+              ],
               "text": [
                 {
                   "content": "${color: #acfffc}",
@@ -190,27 +175,6 @@
                 },
                 {
                   "content": "entity.eternal_starlight.lunar_monstrosity",
-                  "translation": true
-                }
-              ]
-            },
-            {
-              "icon": {
-                "count": 1,
-                "id": "eternal_starlight:tangled_skull"
-              },
-              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
-              "icon_frame_height": 24,
-              "icon_frame_width": 24,
-              "jump_to": "eternal_starlight:tangled_display",
-              "listening": [],
-              "text": [
-                {
-                  "content": "${color: #acfffc}",
-                  "translation": false
-                },
-                {
-                  "content": "entity.eternal_starlight.tangled",
                   "translation": true
                 }
               ]
@@ -973,7 +937,7 @@
       {
         "type": "eternal_starlight:text",
         "config": {
-          "extra_height": 20,
+          "extra_height": 5,
           "id": "eternal_starlight:starlight_golem",
           "line_height": 12,
           "offset": 10,
@@ -993,6 +957,82 @@
             ]
           ],
           "width": 130
+        }
+      },
+      {
+        "type": "eternal_starlight:index",
+        "config": {
+          "entries": [
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:frozen_tube"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:freeze_display",
+              "listening": [],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.freeze",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:energy_transmitter"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:energy_transmitter_display",
+              "listening": [],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "block.eternal_starlight.energy_transmitter",
+                  "translation": true
+                }
+              ]
+            },
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:accumulator"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:accumulator_display",
+              "listening": [],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "block.eternal_starlight.accumulator",
+                  "translation": true
+                }
+              ]
+            }
+          ],
+          "extra_height": 20,
+          "id": "eternal_starlight:starlight_golem_index",
+          "line_height": 12,
+          "offset": 0,
+          "unlock_conditions": [],
+          "width": 125
         }
       }
     ],
@@ -1183,6 +1223,282 @@
         "type": "eternal_starlight:display",
         "config": {
           "crafting_recipe_displays": [],
+          "entity_displays": [],
+          "id": "eternal_starlight:energy_transmitter_display",
+          "image_displays": [
+            {
+              "height": 20,
+              "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+              "width": 20,
+              "x": 55,
+              "y": 10
+            }
+          ],
+          "item_displays": [
+            {
+              "item": {
+                "count": 1,
+                "id": "eternal_starlight:energy_transmitter"
+              },
+              "x": 57,
+              "y": 12
+            }
+          ],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 3,
+              "scale": 1.5,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "block.eternal_starlight.energy_transmitter",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 45
+            }
+          ],
+          "total_height": 60,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_nugget"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_ingot"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "crafting_recipe_displays": [
+            {
+              "recipe": "eternal_starlight:energy_transmitter",
+              "slot_height": 20,
+              "slot_width": 20,
+              "x": 35,
+              "y": 10
+            }
+          ],
+          "entity_displays": [],
+          "id": "eternal_starlight:energy_transmitter_recipe",
+          "image_displays": [
+            {
+              "height": 60,
+              "location": "eternal_starlight:textures/gui/screen/book/crafting_3.png",
+              "width": 60,
+              "x": 35,
+              "y": 10
+            },
+            {
+              "height": 12,
+              "location": "eternal_starlight:textures/gui/screen/book/recipe_crafting.png",
+              "width": 12,
+              "x": 59,
+              "y": 75
+            }
+          ],
+          "item_displays": [],
+          "item_tag_displays": [],
+          "text_displays": [],
+          "total_height": 90,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_nugget"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_ingot"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 20,
+          "id": "eternal_starlight:energy_transmitter",
+          "line_height": 12,
+          "offset": 10,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.energy_transmitter",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_nugget"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_ingot"
+            ]
+          ],
+          "width": 130
+        }
+      }
+    ],
+    [
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "crafting_recipe_displays": [],
+          "entity_displays": [],
+          "id": "eternal_starlight:accumulator_display",
+          "image_displays": [
+            {
+              "height": 20,
+              "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+              "width": 20,
+              "x": 55,
+              "y": 10
+            }
+          ],
+          "item_displays": [
+            {
+              "item": {
+                "count": 1,
+                "id": "eternal_starlight:accumulator"
+              },
+              "x": 57,
+              "y": 12
+            }
+          ],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 3,
+              "scale": 1.5,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "block.eternal_starlight.accumulator",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 45
+            }
+          ],
+          "total_height": 60,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_nugget"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_ingot"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "crafting_recipe_displays": [
+            {
+              "recipe": "eternal_starlight:accumulator",
+              "slot_height": 20,
+              "slot_width": 20,
+              "x": 35,
+              "y": 10
+            }
+          ],
+          "entity_displays": [],
+          "id": "eternal_starlight:accumulator_recipe",
+          "image_displays": [
+            {
+              "height": 60,
+              "location": "eternal_starlight:textures/gui/screen/book/crafting_3.png",
+              "width": 60,
+              "x": 35,
+              "y": 10
+            },
+            {
+              "height": 12,
+              "location": "eternal_starlight:textures/gui/screen/book/recipe_crafting.png",
+              "width": 12,
+              "x": 59,
+              "y": 75
+            }
+          ],
+          "item_displays": [],
+          "item_tag_displays": [],
+          "text_displays": [],
+          "total_height": 90,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_nugget"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_ingot"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 20,
+          "id": "eternal_starlight:accumulator",
+          "line_height": 12,
+          "offset": 10,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.accumulator",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_nugget"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_golem_steel_ingot"
+            ]
+          ],
+          "width": 130
+        }
+      }
+    ],
+    [
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "crafting_recipe_displays": [],
           "entity_displays": [
             {
               "entity": {
@@ -1333,7 +1649,7 @@
       {
         "type": "eternal_starlight:text",
         "config": {
-          "extra_height": 20,
+          "extra_height": 5,
           "id": "eternal_starlight:lunar_monstrosity",
           "line_height": 12,
           "offset": 10,
@@ -1353,6 +1669,40 @@
             ]
           ],
           "width": 130
+        }
+      },
+      {
+        "type": "eternal_starlight:index",
+        "config": {
+          "entries": [
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:tangled_skull"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:tangled_display",
+              "listening": [],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "entity.eternal_starlight.tangled",
+                  "translation": true
+                }
+              ]
+            }
+          ],
+          "extra_height": 20,
+          "id": "eternal_starlight:lunar_monstrosity_index",
+          "line_height": 12,
+          "offset": 0,
+          "unlock_conditions": [],
+          "width": 125
         }
       }
     ],
