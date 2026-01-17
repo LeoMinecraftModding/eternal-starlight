@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientSetupHandler;
 import com.google.common.collect.ImmutableMap;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.fabricmc.api.EnvType;
@@ -21,6 +21,6 @@ import java.util.Map;
 public abstract class SkullBlockRendererMixin {
 	@Inject(method = "createSkullRenderers", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap$Builder;put(Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableMap$Builder;", remap = false, ordinal = 0))
 	private static void createSkullRenderers(EntityModelSet entityModelSet, CallbackInfoReturnable<Map<SkullBlock.Type, SkullModelBase>> cir, @Local ImmutableMap.Builder<SkullBlock.Type, SkullModelBase> localRef) {
-		ClientSetupHandlers.registerSkullModels(localRef::put, entityModelSet);
+		ESClientSetupHandler.registerSkullModels(localRef::put, entityModelSet);
 	}
 }

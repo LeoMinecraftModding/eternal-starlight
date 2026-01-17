@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
@@ -65,7 +65,7 @@ public class ElectricSparkParticle extends TextureSheetParticle {
 		PoseStack stack = new PoseStack();
 		stack.pushPose();
 		stack.translate(-camPos.x, -camPos.y, -camPos.z);
-		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE);
+		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE);
 		for (int i = 0; i < segments.size() - 1; i++) {
 			Vec3 start = segments.get(i);
 			Vec3 end = segments.get(i + 1);

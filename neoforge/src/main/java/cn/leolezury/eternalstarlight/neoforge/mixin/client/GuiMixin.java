@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.neoforge.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class GuiMixin {
 	@Inject(method = "renderAirLevel", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;enableBlend()V", remap = false))
 	public void beforeRenderAirLevel(GuiGraphics guiGraphics, CallbackInfo ci) {
-		ClientHandlers.setAirBubbleColor();
+		ESClientHandler.setAirBubbleColor();
 	}
 
 	@Inject(method = "renderAirLevel", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;disableBlend()V", remap = false))
@@ -26,6 +26,6 @@ public abstract class GuiMixin {
 
 	@WrapOperation(method = "renderAirLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V"))
 	public void offsetAirBubbles(GuiGraphics instance, ResourceLocation location, int x, int y, int width, int height, Operation<Void> original) {
-		original.call(instance, location, x, y + ClientHandlers.getAirBubbleYOffset(), width, height);
+		original.call(instance, location, x, y + ESClientHandler.getAirBubbleYOffset(), width, height);
 	}
 }

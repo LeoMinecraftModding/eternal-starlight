@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
+import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.server.level.ServerLevel;
@@ -18,7 +18,7 @@ public abstract class PlayerListMixin {
 	@Inject(method = "sendLevelInfo", at = @At(value = "RETURN"))
 	private void sendLevelInfo(ServerPlayer serverPlayer, ServerLevel serverLevel, CallbackInfo ci) {
 		if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY) {
-			CommonHandlers.getActiveWeather().ifPresentOrElse((weatherInstance -> ESPlatform.INSTANCE.sendToClient(serverPlayer, new UpdateWeatherPacket(weatherInstance.getWeather()))), () -> ESPlatform.INSTANCE.sendToClient(serverPlayer, new NoParametersPacket("cancel_weather")));
+			ESCommonHandler.getActiveWeather().ifPresentOrElse((weatherInstance -> ESPlatform.INSTANCE.sendToClient(serverPlayer, new UpdateWeatherPacket(weatherInstance.getWeather()))), () -> ESPlatform.INSTANCE.sendToClient(serverPlayer, new SimpleActionPacket("cancel_weather")));
 		}
 	}
 }

@@ -20,12 +20,14 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGo
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
-import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
+import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
+import cn.leolezury.eternalstarlight.common.network.UpdateBookProgressionPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
 import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -46,14 +48,13 @@ import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
-import net.minecraft.world.entity.HumanoidArm;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
@@ -63,9 +64,10 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Environment(EnvType.CLIENT)
-public class ClientHandlers {
+public class ESClientHandler {
 	public static BookLoader books;
 	public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());
 	public static final List<WorldVisualEffect> VISUAL_EFFECTS = new ArrayList<>();
@@ -88,6 +90,7 @@ public class ClientHandlers {
 	public static final ResourceLocation WIP_LOCATION = EternalStarlight.id("textures/gui/wip.png");
 	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
+	private static final Set<EntityType<?>> CROSSHAIR_PICKED_ENTITIES = new HashSet<>();
 	public static int clientTickCount = 0;
 	public static BossMusicSoundInstance bossMusicInstance = null;
 	private static float oldPortalTicks;
@@ -118,16 +121,21 @@ public class ClientHandlers {
 		if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
 			if (!Minecraft.getInstance().isPaused()) {
 				clientTickCount++;
+
+				// halloween
 				if (clientTickCount % 1000 == 5) {
 					Calendar calendar = Calendar.getInstance();
 					isHalloween = calendar.get(Calendar.MONTH) == Calendar.NOVEMBER && calendar.get(Calendar.DAY_OF_MONTH) == 1;
 				}
+
+				// seeds launcher
 				oldSeedsLauncherAnimTicks = seedsLauncherAnimTicks;
 				if (seedsLauncherAnimTicks > 0) {
 					seedsLauncherAnimTicks--;
 				}
 			}
 
+			// vfx
 			for (WorldVisualEffect effect : VISUAL_EFFECTS) {
 				if (effect.shouldRemove()) {
 					effectsToRemove.add(effect);
@@ -150,10 +158,12 @@ public class ClientHandlers {
 				SCREEN_SHAKES.remove(effect);
 			}
 
+			// weather
 			if (!Minecraft.getInstance().isPaused() && ClientWeatherState.weather != null && Minecraft.getInstance().level.dimension().location().equals(ESDimensions.STARLIGHT_KEY.location())) {
 				ClientWeatherState.weather.clientTick();
 			}
 
+			// boss music
 			if (player != null) {
 				if (player.tickCount % 20 == 0) {
 					if (bossMusicInstance == null) {
@@ -182,13 +192,15 @@ public class ClientHandlers {
 			}
 		}
 
+		// vfx
 		if (Minecraft.getInstance().level != null) {
-			for (ClientSetupHandlers.WorldVisualEffectSpawnFunction function : ClientSetupHandlers.VISUAL_EFFECT_SPAWN_FUNCTIONS) {
+			for (ESClientSetupHandler.WorldVisualEffectSpawnFunction function : ESClientSetupHandler.VISUAL_EFFECT_SPAWN_FUNCTIONS) {
 				function.clientTick(Minecraft.getInstance().level, VISUAL_EFFECTS);
 			}
 		}
 
 		if (player != null) {
+			// portal animation
 			oldPortalTicks = portalTicks;
 			if (player.portalProcess != null && player.portalProcess.isSamePortal(ESBlocks.STARLIGHT_PORTAL.get()) && player.portalProcess.isInsidePortalThisTick()) {
 				portalTicks++;
@@ -197,6 +209,18 @@ public class ClientHandlers {
 				portalTicks -= 2;
 			}
 			portalTicks = Mth.clamp(portalTicks, 0, 80);
+
+			// entity progression
+			Entity entity = Minecraft.getInstance().crosshairPickEntity;
+			if (entity != null && entity.getType().is(ESTags.EntityTypes.AFFECTS_PROGRESSION)) {
+				CROSSHAIR_PICKED_ENTITIES.add(entity.getType());
+			}
+			if (clientTickCount % 60 == 0) {
+				ESPlatform.INSTANCE.sendToServer(new UpdateBookProgressionPacket(CROSSHAIR_PICKED_ENTITIES.stream().map(type -> BuiltInRegistries.ENTITY_TYPE.getKey(type).withPrefix("entity_seen_")).collect(Collectors.toSet())));
+				CROSSHAIR_PICKED_ENTITIES.clear();
+			}
+
+			// aurora
 			oldAuroraIntensity = auroraIntensity;
 			if (player.level().dimension() == ESDimensions.STARLIGHT_KEY) {
 				if (ClientWeatherState.weather == ESWeathers.AURORA.get()) {
@@ -209,6 +233,8 @@ public class ClientHandlers {
 				auroraIntensity = 0;
 			}
 			auroraIntensity = Mth.clamp(auroraIntensity, 0, 1);
+
+			// crests
 			List<ResourceKey<Crest>> crestsToRemove = new ArrayList<>();
 			for (ResourceKey<Crest> key : GUI_CRESTS.keySet()) {
 				GuiCrest crest = GUI_CRESTS.get(key);
@@ -243,10 +269,11 @@ public class ClientHandlers {
 					GUI_CRESTS.get(key.get()).shouldShow = true;
 				}
 			}
-			if (ClientSetupHandlers.KEY_MAPPINGS.get(EternalStarlight.id("switch_crest")).consumeClick()) {
-				ESPlatform.INSTANCE.sendToServer(new NoParametersPacket("switch_crest"));
+			if (ESClientSetupHandler.KEY_MAPPINGS.get(EternalStarlight.id("switch_crest")).consumeClick()) {
+				ESPlatform.INSTANCE.sendToServer(new SimpleActionPacket("switch_crest"));
 			}
 
+			// soulit spectator
 			if (resetCameraIn > 0) {
 				resetCameraIn--;
 				Minecraft.getInstance().options.hideGui = true;
@@ -260,6 +287,7 @@ public class ClientHandlers {
 				Minecraft.getInstance().options.hideGui = false;
 			}
 
+			// fog
 			Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
 			fogStartDecrement -= 0.5f;
 			fogEndDecrement -= 0.5f;
@@ -281,9 +309,11 @@ public class ClientHandlers {
 			}
 			abyssalFogModifier = Mth.clamp(abyssalFogModifier, 0, 1);
 
+			// teary
 			oldTearyEffect = tearyEffect;
 			tearyEffect = player.hasEffect(ESMobEffects.TEARY.asHolder());
 
+			// dream catcher
 			if (player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
 				List<DreamCatcherText> textsToRemove = new ArrayList<>();
 				for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {

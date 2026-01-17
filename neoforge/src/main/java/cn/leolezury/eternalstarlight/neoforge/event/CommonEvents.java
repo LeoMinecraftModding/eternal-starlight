@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.neoforge.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
@@ -35,59 +35,59 @@ import java.util.Map;
 public class CommonEvents {
 	@SubscribeEvent
 	private static void onServerTick(ServerTickEvent.Post event) {
-		CommonHandlers.onServerTick(event.getServer());
+		ESCommonHandler.onServerTick(event.getServer());
 	}
 
 	@SubscribeEvent
 	private static void onLevelTick(LevelTickEvent.Post event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
-			CommonHandlers.onLevelTick(serverLevel);
+			ESCommonHandler.onLevelTick(serverLevel);
 		}
 	}
 
 	@SubscribeEvent
 	private static void onLevelLoad(LevelEvent.Load event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
-			CommonHandlers.onLevelLoad(serverLevel);
+			ESCommonHandler.onLevelLoad(serverLevel);
 		}
 	}
 
 	@SubscribeEvent
 	private static void onIncomingDamage(LivingIncomingDamageEvent event) {
-		event.setAmount(CommonHandlers.onModifyLivingHurtDamage(event.getEntity(), event.getSource(), event.getAmount()));
+		event.setAmount(ESCommonHandler.onModifyLivingHurtDamage(event.getEntity(), event.getSource(), event.getAmount()));
 	}
 
 	@SubscribeEvent
 	private static void onPreLivingHurt(LivingDamageEvent.Pre event) {
-		event.setNewDamage(CommonHandlers.onModifyLivingActualHurtDamage(event.getEntity(), event.getSource(), event.getNewDamage()));
+		event.setNewDamage(ESCommonHandler.onModifyLivingActualHurtDamage(event.getEntity(), event.getSource(), event.getNewDamage()));
 	}
 
 	@SubscribeEvent
 	private static void onPostLivingHurt(LivingDamageEvent.Post event) {
-		CommonHandlers.onPostLivingHurt(event.getEntity(), event.getSource(), event.getNewDamage());
+		ESCommonHandler.onPostLivingHurt(event.getEntity(), event.getSource(), event.getNewDamage());
 	}
 
 	@SubscribeEvent
 	private static void onLivingHeal(LivingHealEvent event) {
-		event.setAmount(CommonHandlers.onLivingHeal(event.getEntity(), event.getAmount()));
+		event.setAmount(ESCommonHandler.onLivingHeal(event.getEntity(), event.getAmount()));
 	}
 
 	@SubscribeEvent
 	private static void onLivingDeath(LivingDeathEvent event) {
 		if (!event.isCanceled()) {
-			boolean allow = CommonHandlers.onAllowLivingDeath(event.getEntity(), event.getSource());
+			boolean allow = ESCommonHandler.onAllowLivingDeath(event.getEntity(), event.getSource());
 			if (!allow) {
 				event.setCanceled(true);
 			}
 		}
 		if (!event.isCanceled()) {
-			CommonHandlers.onLivingDeath(event.getEntity(), event.getSource());
+			ESCommonHandler.onLivingDeath(event.getEntity(), event.getSource());
 		}
 	}
 
 	@SubscribeEvent
 	private static void onLivingChangeTarget(LivingChangeTargetEvent event) {
-		LivingEntity target = CommonHandlers.onLivingChangeTarget(event.getEntity(), event.getNewAboutToBeSetTarget());
+		LivingEntity target = ESCommonHandler.onLivingChangeTarget(event.getEntity(), event.getNewAboutToBeSetTarget());
 		if (target != event.getNewAboutToBeSetTarget()) {
 			event.setNewAboutToBeSetTarget(target);
 		}
@@ -96,7 +96,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	private static void onLivingBreathe(LivingBreatheEvent event) {
 		if (!event.canBreathe() && event.getConsumeAirAmount() > 0) {
-			int result = CommonHandlers.onLivingDecreaseAirSupply(event.getEntity());
+			int result = ESCommonHandler.onLivingDecreaseAirSupply(event.getEntity());
 			if (result > 0) {
 				event.setCanBreathe(true);
 				event.setRefillAirAmount(result);
@@ -109,51 +109,51 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	private static void onLivingTick(EntityTickEvent.Post event) {
-		CommonHandlers.onEntityTick(event.getEntity());
+		ESCommonHandler.onEntityTick(event.getEntity());
 	}
 
 	@SubscribeEvent
 	private static void onCriticalHit(CriticalHitEvent event) {
 		if (event.isCriticalHit()) {
-			CommonHandlers.onCriticalHit(event.getEntity(), event.getTarget(), event.getEntity().getAttackStrengthScale(0.5f));
+			ESCommonHandler.onCriticalHit(event.getEntity(), event.getTarget(), event.getEntity().getAttackStrengthScale(0.5f));
 		}
 	}
 
 	@SubscribeEvent
 	private static void onBlockBroken(BlockEvent.BreakEvent event) {
-		CommonHandlers.onBlockBroken(event.getPlayer(), event.getPos(), event.getState());
+		ESCommonHandler.onBlockBroken(event.getPlayer(), event.getPos(), event.getState());
 	}
 
 	@SubscribeEvent
 	private static void onBlockBroken(PlayerEvent.BreakSpeed event) {
-		event.setNewSpeed(CommonHandlers.onBlockBreakSpeed(event.getEntity(), event.getState(), event.getNewSpeed()));
+		event.setNewSpeed(ESCommonHandler.onBlockBreakSpeed(event.getEntity(), event.getState(), event.getNewSpeed()));
 	}
 
 	@SubscribeEvent
 	private static void onShieldBlock(LivingShieldBlockEvent event) {
 		if (event.getOriginalBlock()) {
-			CommonHandlers.onShieldBlock(event.getEntity(), event.getDamageSource());
+			ESCommonHandler.onShieldBlock(event.getEntity(), event.getDamageSource());
 		}
 	}
 
 	@SubscribeEvent
 	private static void onProjectileImpact(ProjectileImpactEvent event) {
-		CommonHandlers.onProjectileImpact(event.getProjectile(), event.getRayTraceResult());
+		ESCommonHandler.onProjectileImpact(event.getProjectile(), event.getRayTraceResult());
 	}
 
 	@SubscribeEvent
 	private static void onCompleteAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
-		CommonHandlers.onCompleteAdvancement(event.getEntity(), event.getAdvancement());
+		ESCommonHandler.onCompleteAdvancement(event.getEntity(), event.getAdvancement());
 	}
 
 	@SubscribeEvent
 	private static void onAddReloadListener(AddReloadListenerEvent event) {
-		CommonSetupHandlers.addReloadListeners(event::addListener);
+		ESCommonSetupHandler.addReloadListeners(event::addListener);
 	}
 
 	@SubscribeEvent
 	private static void onFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
-		CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
+		ESCommonSetupHandler.registerFuels(new ESCommonSetupHandler.FuelRegisterStrategy() {
 			@Override
 			public void register(ItemLike item, int time) {
 				if (event.getItemStack().is(item.asItem())) {
@@ -172,7 +172,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	private static void onRegisterBrewingRecipes(RegisterBrewingRecipesEvent event) {
-		CommonSetupHandlers.registerPotions(new CommonSetupHandlers.BrewingRegisterStrategy() {
+		ESCommonSetupHandler.registerPotions(new ESCommonSetupHandler.BrewingRegisterStrategy() {
 			@Override
 			public void registerConversion(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
 				event.getBuilder().addMix(input, ingredient, output);
@@ -187,25 +187,25 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	private static void onRegisterCommands(RegisterCommandsEvent event) {
-		CommonSetupHandlers.registerCommands(event.getDispatcher(), event.getBuildContext());
+		ESCommonSetupHandler.registerCommands(event.getDispatcher(), event.getBuildContext());
 	}
 
 	@SubscribeEvent
 	private static void onBlockToolModification(BlockEvent.BlockToolModificationEvent event) {
 		if (event.getItemAbility() == ItemAbilities.AXE_STRIP) {
-			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
+			for (Map.Entry<Block, Block> entry : ESCommonSetupHandler.STRIPPABLES.get().entrySet()) {
 				if (event.getState().is(entry.getKey())) {
 					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
 				}
 			}
 		} else if (event.getItemAbility() == ItemAbilities.HOE_TILL) {
-			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.TILLABLES.get().entrySet()) {
+			for (Map.Entry<Block, Block> entry : ESCommonSetupHandler.TILLABLES.get().entrySet()) {
 				if (event.getState().is(entry.getKey())) {
 					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
 				}
 			}
 		} else if (event.getItemAbility() == ItemAbilities.SHOVEL_FLATTEN) {
-			for (Map.Entry<Block, Block> entry : CommonSetupHandlers.FLATTENABLES.get().entrySet()) {
+			for (Map.Entry<Block, Block> entry : ESCommonSetupHandler.FLATTENABLES.get().entrySet()) {
 				if (event.getState().is(entry.getKey())) {
 					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
 				}

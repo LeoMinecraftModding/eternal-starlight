@@ -23,6 +23,7 @@
     "FishingHookMixin",
     "FrostedIceBlockMixin",
     "IceBlockMixin",
+    "InventoryChangeTriggerMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",

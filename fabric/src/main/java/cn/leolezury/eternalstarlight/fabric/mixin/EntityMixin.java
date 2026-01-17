@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
@@ -38,6 +38,6 @@ public abstract class EntityMixin {
 
 	@Inject(method = "tick", at = @At(value = "RETURN"))
 	private void tick(CallbackInfo ci) {
-		CommonHandlers.onEntityTick((Entity) (Object) this);
+		ESCommonHandler.onEntityTick((Entity) (Object) this);
 	}
 }

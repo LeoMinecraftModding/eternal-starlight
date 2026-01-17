@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -48,7 +48,7 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 	public void render(VertexConsumer vertexConsumer, Camera camera, float partialTicks) {
 		float progress = Math.min(age + partialTicks, lifetime) / lifetime;
 		this.alpha = Mth.lerp((float) Math.pow((Math.abs(progress - 0.5) * 2), 5), initialAlpha, 0);
-		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE), camera, partialTicks);
+		super.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE), camera, partialTicks);
 	}
 
 	@Override

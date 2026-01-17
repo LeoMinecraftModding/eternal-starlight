@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.fabric.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.gui.tooltip.ClientGalacticQuiverTooltip;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientSetupHandler;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESSkyRenderer;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.item.component.LargeItemStackList;
@@ -44,27 +44,27 @@ import java.util.function.Supplier;
 public class ESFabricClientEntrypoint implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		ClientSetupHandlers.clientSetup();
+		ESClientSetupHandler.clientSetup();
 		FabricNetworkHandler.registerClientPacketReceivers();
-		ClientSetupHandlers.registerBlockColors(ColorProviderRegistry.BLOCK::register);
-		ClientSetupHandlers.registerExtraBakedModels(ESModelLoadingPlugin.MODELS::add);
+		ESClientSetupHandler.registerBlockColors(ColorProviderRegistry.BLOCK::register);
+		ESClientSetupHandler.registerExtraBakedModels(ESModelLoadingPlugin.MODELS::add);
 		ModelLoadingPlugin.register(new ESModelLoadingPlugin());
-		ClientSetupHandlers.registerItemColors(ColorProviderRegistry.ITEM::register);
-		ClientSetupHandlers.registerShaders((location, format, loaded) -> CoreShaderRegistrationCallback.EVENT.register(context -> context.register(location, format, loaded)));
-		ClientSetupHandlers.ParticleProviderRegisterStrategy particleProviderRegisterStrategy = new ClientSetupHandlers.ParticleProviderRegisterStrategy() {
+		ESClientSetupHandler.registerItemColors(ColorProviderRegistry.ITEM::register);
+		ESClientSetupHandler.registerShaders((location, format, loaded) -> CoreShaderRegistrationCallback.EVENT.register(context -> context.register(location, format, loaded)));
+		ESClientSetupHandler.ParticleProviderRegisterStrategy particleProviderRegisterStrategy = new ESClientSetupHandler.ParticleProviderRegisterStrategy() {
 			@Override
 			public <T extends ParticleOptions> void register(ParticleType<T> particle, ParticleEngine.SpriteParticleRegistration<T> provider) {
 				ParticleFactoryRegistry.getInstance().register(particle, provider::create);
 			}
 		};
-		ClientSetupHandlers.registerParticleProviders(particleProviderRegisterStrategy);
+		ESClientSetupHandler.registerParticleProviders(particleProviderRegisterStrategy);
 
-		ClientSetupHandlers.registerEntityRenderers(EntityRendererRegistry::register);
-		ClientSetupHandlers.registerLayers((layerLocation, supplier) -> EntityModelLayerRegistry.registerModelLayer(layerLocation, supplier::get));
-		ClientSetupHandlers.registerMenuScreens(MenuScreens::register);
-		ClientSetupHandlers.addClientReloadListeners(listener -> ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener((IdentifiableResourceReloadListener) listener));
-		LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, livingEntityRenderer, registrationHelper, context) -> ClientSetupHandlers.onRenderLayerAttachment(entityType, livingEntityRenderer, context));
-		WorldRenderEvents.AFTER_ENTITIES.register(context -> ClientHandlers.onAfterRenderEntities(context.consumers(), context.matrixStack(), context.tickCounter().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())));
+		ESClientSetupHandler.registerEntityRenderers(EntityRendererRegistry::register);
+		ESClientSetupHandler.registerLayers((layerLocation, supplier) -> EntityModelLayerRegistry.registerModelLayer(layerLocation, supplier::get));
+		ESClientSetupHandler.registerMenuScreens(MenuScreens::register);
+		ESClientSetupHandler.addClientReloadListeners(listener -> ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener((IdentifiableResourceReloadListener) listener));
+		LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, livingEntityRenderer, registrationHelper, context) -> ESClientSetupHandler.onRenderLayerAttachment(entityType, livingEntityRenderer, context));
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> ESClientHandler.onAfterRenderEntities(context.consumers(), context.matrixStack(), context.tickCounter().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())));
 		TooltipComponentCallback.EVENT.register(tooltipComponent -> {
 			if (tooltipComponent instanceof GalacticQuiverTooltipComponent(LargeItemStackList contents)) {
 				return new ClientGalacticQuiverTooltip(contents);
@@ -72,17 +72,17 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 			return null;
 		});
 
-		for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT_MIPPED) {
+		for (Supplier<? extends Block> blockSupplier : ESClientSetupHandler.BLOCKS_CUTOUT_MIPPED) {
 			BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutoutMipped());
 		}
-		for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_CUTOUT) {
+		for (Supplier<? extends Block> blockSupplier : ESClientSetupHandler.BLOCKS_CUTOUT) {
 			BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.cutout());
 		}
-		for (Supplier<? extends Block> blockSupplier : ClientSetupHandlers.BLOCKS_TRANSLUCENT) {
+		for (Supplier<? extends Block> blockSupplier : ESClientSetupHandler.BLOCKS_TRANSLUCENT) {
 			BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.translucent());
 		}
 
-		for (Map.Entry<ResourceLocation, KeyMapping> mapping : ClientSetupHandlers.KEY_MAPPINGS.entrySet()) {
+		for (Map.Entry<ResourceLocation, KeyMapping> mapping : ESClientSetupHandler.KEY_MAPPINGS.entrySet()) {
 			KeyBindingHelper.registerKeyBinding(mapping.getValue());
 		}
 
@@ -101,6 +101,6 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), new FabricItemStackRenderer());
 		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.CRESCENT_SPEAR.get(), new FabricItemStackRenderer());
 
-		ClientTickEvents.END_CLIENT_TICK.register(client -> ClientHandlers.onClientTick());
+		ClientTickEvents.END_CLIENT_TICK.register(client -> ESClientHandler.onClientTick());
 	}
 }

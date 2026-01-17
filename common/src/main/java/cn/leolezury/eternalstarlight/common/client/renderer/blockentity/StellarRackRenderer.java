@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.blockentity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.entity.StellarRackBlockEntity;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -33,7 +33,7 @@ public class StellarRackRenderer<T extends StellarRackBlockEntity> implements Bl
 
 	@Override
 	public void render(T rack, float f, PoseStack stack, MultiBufferSource bufferSource, int light, int overlay) {
-		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(STAR);
+		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(STAR);
 		stack.pushPose();
 		stack.translate(0.5F, 0.9F, 0.5F);
 		stack.pushPose();

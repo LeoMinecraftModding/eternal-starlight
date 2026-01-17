@@ -99,7 +99,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
-public class ClientSetupHandlers {
+public class ESClientSetupHandler {
 	public interface BlockColorRegisterStrategy {
 		void register(BlockColor blockColor, Block... blocks);
 	}
@@ -658,7 +658,7 @@ public class ClientSetupHandlers {
 			return FastColor.ARGB32.lerp(progress, 0xffffffff, 0xff00dfff);
 		}, ESBlocks.ACCUMULATOR.get());
 		strategy.register((state, getter, pos, i) -> {
-			double progress = getter != null && pos != null ? (COLOR_NOISE.getValue(pos.getX() / 10.0, pos.getY() / 10.0, pos.getZ() / 10.0) + 1) / 2 : (Math.sin((ClientHandlers.clientTickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())) / 30.0) + 1) / 2;
+			double progress = getter != null && pos != null ? (COLOR_NOISE.getValue(pos.getX() / 10.0, pos.getY() / 10.0, pos.getZ() / 10.0) + 1) / 2 : (Math.sin((ESClientHandler.clientTickCount + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally())) / 30.0) + 1) / 2;
 			return FastColor.ARGB32.color((int) Mth.lerp(progress, 218, 255), (int) Mth.lerp(progress, 90, 255), (int) Mth.lerp(progress, 255, 116));
 		}, ESBlocks.DUSK_GLASS.get());
 	}
@@ -1015,8 +1015,8 @@ public class ClientSetupHandlers {
 	}
 
 	public static void addClientReloadListeners(Consumer<PreparableReloadListener> strategy) {
-		ClientHandlers.books = ESPlatform.INSTANCE.createBookLoader();
-		strategy.accept(ClientHandlers.books);
+		ESClientHandler.books = ESPlatform.INSTANCE.createBookLoader();
+		strategy.accept(ESClientHandler.books);
 	}
 
 	public static void onRenderLayerAttachment(EntityType<?> entityType, LivingEntityRenderer<?, ?> renderer, EntityRendererProvider.Context context) {

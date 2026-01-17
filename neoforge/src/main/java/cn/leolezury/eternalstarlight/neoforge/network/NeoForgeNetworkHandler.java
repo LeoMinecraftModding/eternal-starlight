@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.neoforge.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,7 +17,7 @@ public class NeoForgeNetworkHandler {
 	public static void onNetworkInit(RegisterPayloadHandlersEvent event) {
 		final PayloadRegistrar registrar = event.registrar(EternalStarlight.ID)
 			.optional();
-		CommonSetupHandlers.registerPackets(new CommonSetupHandlers.NetworkRegisterStrategy() {
+		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
 			@Override
 			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
 				registrar.playBidirectional(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> context.enqueueWork(() -> packetInfo.handler().handle(packet, context.player())));

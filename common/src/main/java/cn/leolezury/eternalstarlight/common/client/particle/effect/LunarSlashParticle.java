@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -55,7 +55,7 @@ public class LunarSlashParticle extends TextureSheetParticle {
 		stack.mulPose(new Quaternionf().rotationX(90 * Mth.DEG_TO_RAD));
 		stack.mulPose(new Quaternionf().rotationZ(yRot));
 		stack.mulPose(new Quaternionf().rotationX(zRot));
-		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE);
+		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE);
 		float lastYawOffset = 0;
 		Vec3 lastInnerPos = Vec3.ZERO;
 		Vec3 lastOuterPos = Vec3.ZERO;

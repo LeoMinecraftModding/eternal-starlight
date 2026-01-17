@@ -33,6 +33,15 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.BOAT.get(),
 				ESEntities.CHEST_BOAT.get()
 			);
+		tag(ESTags.EntityTypes.AFFECTS_PROGRESSION)
+			.add(
+				ESEntities.THIRST_WALKER.get(),
+				ESEntities.STRANGHOUL.get(),
+				ESEntities.SHIMMER_LACEWING.get(),
+				ESEntities.TWILIGHT_GAZE.get(),
+				ESEntities.FREEZE.get(),
+				ESEntities.TANGLED.get()
+			);
 		tag(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLYS)
 			.add(
 				ESEntities.FREEZE.get(),

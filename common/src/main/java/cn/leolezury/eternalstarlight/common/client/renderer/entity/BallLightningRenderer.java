@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.entity.BallLightningModel;
 import cn.leolezury.eternalstarlight.common.entity.projectile.BallLightning;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -50,7 +50,7 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 		this.model.prepareMobModel(entity, 0, 0, partialTicks);
 		this.model.setupAnim(entity, 0, 0, bob, yRot, xRot);
 		RenderType renderType = RenderType.eyes(getTextureLocation(entity));
-		VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(renderType);
+		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType);
 		this.model.inner.visible = true;
 		this.model.outer.visible = false;
 		this.model.renderToBuffer(poseStack, vertexConsumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
@@ -92,7 +92,7 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 			// add a full connection
 			segments.add(startPos);
 			Vec3 camPos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
-			vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE));
+			vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE));
 			for (int i = 0; i < segments.size() - 1; i++) {
 				Vec3 start = segments.get(i);
 				Vec3 end = segments.get(i + 1);

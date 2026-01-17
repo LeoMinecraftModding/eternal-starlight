@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -31,7 +31,7 @@ public abstract class GameRendererMixin {
 		if (postEffect == null) {
 			if (entity instanceof SoulitSpectator) {
 				loadEffect(EternalStarlight.id("shaders/post/soulit_spectator.json"));
-			} else if (ClientHandlers.tearyEffect) {
+			} else if (ESClientHandler.tearyEffect) {
 				loadEffect(ResourceLocation.withDefaultNamespace("shaders/post/blur.json"));
 			}
 		}

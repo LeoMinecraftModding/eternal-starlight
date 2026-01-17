@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.entity.attack.ray.RayAttack;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -86,7 +86,7 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 		Vec3 diff = ESMathUtil.rotationToPosition(laserBeam.getLength(), pitch, yaw);
 		Vec3 sideOffset = diff.cross(sight).normalize().scale((getBeamWidth() * 0.2 * Math.sin(laserBeam.tickCount + partialTicks) + getBeamWidth() * 0.8) / 2);
 		PoseStack.Pose pose = stack.last();
-		VertexConsumer consumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityGlow(getTextureLocation(laserBeam)));
+		VertexConsumer consumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityGlow(getTextureLocation(laserBeam)));
 
 		Vec3 bodyEndDiff = diff.normalize().scale(diff.length() - getEndLength());
 		consumer.addVertex(pose, sideOffset.toVector3f()).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);

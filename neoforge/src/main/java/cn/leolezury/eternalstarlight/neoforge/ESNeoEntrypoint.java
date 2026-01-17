@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.neoforge;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.neoforge.platform.NeoForgePlatform;
 import cn.leolezury.eternalstarlight.neoforge.registry.ESFluidTypes;
 import cn.leolezury.eternalstarlight.neoforge.registry.ESRegistryRemapper;
@@ -29,9 +29,9 @@ public class ESNeoEntrypoint {
 
 	private void onRegister(RegisterEvent event) {
 		if (event.getRegistryKey().equals(Registries.CHUNK_GENERATOR)) {
-			CommonSetupHandlers.registerChunkGenerator();
+			ESCommonSetupHandler.registerChunkGenerator();
 		} else if (event.getRegistryKey().equals(Registries.BIOME_SOURCE)) {
-			CommonSetupHandlers.registerBiomeSource();
+			ESCommonSetupHandler.registerBiomeSource();
 		}
 	}
 

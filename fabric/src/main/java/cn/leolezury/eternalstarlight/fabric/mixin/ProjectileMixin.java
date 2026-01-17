@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.HitResult;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ public abstract class ProjectileMixin {
 	@Inject(method = "onHit", at = @At(value = "HEAD"))
 	private void onHit(HitResult hitResult, CallbackInfo ci) {
 		if (hitResult.getType() != HitResult.Type.MISS) {
-			CommonHandlers.onProjectileImpact((Projectile) (Object) this, hitResult);
+			ESCommonHandler.onProjectileImpact((Projectile) (Object) this, hitResult);
 		}
 	}
 }

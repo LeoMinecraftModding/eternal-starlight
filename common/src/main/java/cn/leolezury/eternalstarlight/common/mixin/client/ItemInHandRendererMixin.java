@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
 import cn.leolezury.eternalstarlight.common.entity.attack.Whip;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
@@ -91,8 +91,8 @@ public abstract class ItemInHandRendererMixin {
 
 	@Inject(method = "applyItemArmTransform", at = @At(value = "RETURN"))
 	private void applyItemArmTransform(PoseStack stack, HumanoidArm arm, float equipProgress, CallbackInfo ci) {
-		if (ClientHandlers.oldSeedsLauncherAnimTicks != 0 || ClientHandlers.seedsLauncherAnimTicks != 0) {
-			float anim = Mth.lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), ClientHandlers.oldSeedsLauncherAnimTicks, ClientHandlers.seedsLauncherAnimTicks);
+		if (ESClientHandler.oldSeedsLauncherAnimTicks != 0 || ESClientHandler.seedsLauncherAnimTicks != 0) {
+			float anim = Mth.lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), ESClientHandler.oldSeedsLauncherAnimTicks, ESClientHandler.seedsLauncherAnimTicks);
 			stack.translate(0, 0, Mth.sin((anim / 5) * Mth.PI) * 0.05);
 		}
 	}

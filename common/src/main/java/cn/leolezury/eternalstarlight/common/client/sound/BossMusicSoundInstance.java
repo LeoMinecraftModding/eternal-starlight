@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.sound;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -48,6 +48,6 @@ public class BossMusicSoundInstance extends AbstractTickableSoundInstance {
 
 	@Override
 	public boolean canPlaySound() {
-		return ClientHandlers.bossMusicInstance == this;
+		return ESClientHandler.bossMusicInstance == this;
 	}
 }

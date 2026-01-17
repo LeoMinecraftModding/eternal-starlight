@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -35,7 +35,7 @@ public abstract class GuiGraphicsMixin {
 		if (itemStack.is(ESTags.Items.WIP)) {
 			this.pose.pushPose();
 			this.pose.translate(0.0F, 0.0F, 199.0F);
-			blit(ClientHandlers.WIP_LOCATION, x, y, 0.0F, 0.0F, 16, 16, 16, 16);
+			blit(ESClientHandler.WIP_LOCATION, x, y, 0.0F, 0.0F, 16, 16, 16, 16);
 			this.pose.popPose();
 		}
 		List<ItemStack> accessories = itemStack.get(ESDataComponents.ACCESSORIES.get());

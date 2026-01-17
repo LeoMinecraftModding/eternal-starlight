@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
@@ -18,7 +18,7 @@ public abstract class BossHealthOverlayMixin {
 	@Inject(method = "drawBar(Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/world/BossEvent;)V", at = @At(value = "RETURN"))
 	private void drawBar(GuiGraphics guiGraphics, int x, int y, BossEvent bossEvent, CallbackInfo ci) {
 		if (bossEvent instanceof LerpingBossEvent lerpingBossEvent) {
-			ClientHandlers.renderBossBar(guiGraphics, lerpingBossEvent, x, y);
+			ESClientHandler.renderBossBar(guiGraphics, lerpingBossEvent, x, y);
 		}
 	}
 }

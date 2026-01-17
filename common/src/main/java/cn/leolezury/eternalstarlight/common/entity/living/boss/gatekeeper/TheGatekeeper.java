@@ -9,7 +9,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
@@ -337,7 +337,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public void initializeBoss() {
 		super.initializeBoss();
 		setActivated(false);
-		gatekeeperName = CommonHandlers.getGatekeeperName();
+		gatekeeperName = ESCommonHandler.getGatekeeperName();
 	}
 
 	@Override

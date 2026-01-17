@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemModel;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -34,7 +34,7 @@ public class StarlightGolemGlowLayer<T extends StarlightGolem> extends RenderLay
 			getParentModel().copyPropertiesTo(this.model);
 			this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
 			this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-			VertexConsumer consumer = bufferSource.getBuffer(ClientHandlers.isHalloween ? GLOW_HALLOWEEN : GLOW);
+			VertexConsumer consumer = bufferSource.getBuffer(ESClientHandler.isHalloween ? GLOW_HALLOWEEN : GLOW);
 			int alpha = (int) (Math.max(0.0F, Mth.cos(ageInTicks * 0.1f + 3.1415927F)) * 255);
 			if (entity.deathAnimationTime > 0 || (entity.getPhase() == 1 && entity.tickCount % 20 <= entity.getRandom().nextInt(10))) {
 				alpha = 0;

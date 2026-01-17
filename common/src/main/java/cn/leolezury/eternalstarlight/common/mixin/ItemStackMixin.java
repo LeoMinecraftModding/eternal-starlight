@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -97,7 +97,7 @@ public abstract class ItemStackMixin {
 
 	@Inject(method = "getTooltipLines", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;appendHoverText(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V"))
 	private void getTooltipLines(Item.TooltipContext context, Player player, TooltipFlag flag, CallbackInfoReturnable<List<Component>> cir, @Local(ordinal = 0) List<Component> list) {
-		CommonHandlers.onItemTooltip(player, flag, (ItemStack) (Object) this, list, context);
+		ESCommonHandler.onItemTooltip(player, flag, (ItemStack) (Object) this, list, context);
 	}
 
 	@ModifyReturnValue(method = "overrideStackedOnOther", at = @At(value = "RETURN"))

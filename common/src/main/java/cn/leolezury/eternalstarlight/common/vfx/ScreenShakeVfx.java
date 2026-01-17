@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.vfx;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
 import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.nbt.CompoundTag;
@@ -23,7 +23,7 @@ public class ScreenShakeVfx implements SyncedVfxType {
 
 	@Override
 	public void spawnOnClient(CompoundTag tag) {
-		ESMiscUtil.runWhenOnClient(() -> () -> ClientHandlers.SCREEN_SHAKES.add(new ScreenShake(
+		ESMiscUtil.runWhenOnClient(() -> () -> ESClientHandler.SCREEN_SHAKES.add(new ScreenShake(
 			ResourceLocation.parse(tag.getString(TAG_DIMENSION)),
 			new Vec3(tag.getDouble(TAG_X), tag.getDouble(TAG_Y), tag.getDouble(TAG_Z)),
 			tag.getFloat(TAG_RADIUS),

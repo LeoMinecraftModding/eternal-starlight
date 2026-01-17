@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -50,8 +50,8 @@ public abstract class MinecraftMixin {
 		if (player == null || !(player.getItemInHand(hand).getItem() instanceof SeedsLauncherItem)) {
 			original.call(instance, hand);
 		} else {
-			ClientHandlers.oldSeedsLauncherAnimTicks = 5;
-			ClientHandlers.seedsLauncherAnimTicks = 5;
+			ESClientHandler.oldSeedsLauncherAnimTicks = 5;
+			ESClientHandler.seedsLauncherAnimTicks = 5;
 		}
 	}
 }

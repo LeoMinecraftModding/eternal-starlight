@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class FogRendererMixin {
 	@Inject(method = "setupFog", at = @At(value = "RETURN"))
 	private static void setupFog(Camera camera, FogRenderer.FogMode fogMode, float f, boolean bl, float g, CallbackInfo ci) {
-		ClientHandlers.onRenderFog(camera, fogMode);
+		ESClientHandler.onRenderFog(camera, fogMode);
 	}
 }
 

@@ -2,8 +2,8 @@ package cn.leolezury.eternalstarlight.neoforge.client.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.gui.tooltip.ClientGalacticQuiverTooltip;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientSetupHandler;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.StarlitDiamondArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
@@ -52,7 +52,7 @@ import java.util.Map;
 public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void clientSetup(FMLClientSetupEvent event) {
-		event.enqueueWork(ClientSetupHandlers::clientSetup);
+		event.enqueueWork(ESClientSetupHandler::clientSetup);
 	}
 
 	@SubscribeEvent
@@ -62,12 +62,12 @@ public class ClientSetupEvents {
 
 	@SubscribeEvent
 	private static void onRegisterBlockColor(RegisterColorHandlersEvent.Block event) {
-		ClientSetupHandlers.registerBlockColors(event::register);
+		ESClientSetupHandler.registerBlockColors(event::register);
 	}
 
 	@SubscribeEvent
 	private static void onRegisterItemColor(RegisterColorHandlersEvent.Item event) {
-		ClientSetupHandlers.registerItemColors(event::register);
+		ESClientSetupHandler.registerItemColors(event::register);
 	}
 
 	@SubscribeEvent
@@ -167,13 +167,13 @@ public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void onBakingCompleted(ModelEvent.ModifyBakingResult event) {
 		Map<ModelResourceLocation, BakedModel> models = event.getModels();
-		ClientSetupHandlers.modifiedBakedModels = false;
-		ClientSetupHandlers.modifyBakingResult(models);
+		ESClientSetupHandler.modifiedBakedModels = false;
+		ESClientSetupHandler.modifyBakingResult(models);
 	}
 
 	@SubscribeEvent
 	private static void onRegisterExtraModels(ModelEvent.RegisterAdditional event) {
-		ClientSetupHandlers.registerExtraBakedModels(l -> {
+		ESClientSetupHandler.registerExtraBakedModels(l -> {
 			ModelResourceLocation forged = ModelResourceLocation.standalone(l.id().withPrefix("item/"));
 			event.register(forged);
 		});
@@ -181,46 +181,46 @@ public class ClientSetupEvents {
 
 	@SubscribeEvent
 	private static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
-		ClientSetupHandlers.registerParticleProviders(event::registerSpriteSet);
+		ESClientSetupHandler.registerParticleProviders(event::registerSpriteSet);
 	}
 
 	@SubscribeEvent
 	private static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-		ClientSetupHandlers.registerEntityRenderers(event::registerEntityRenderer);
+		ESClientSetupHandler.registerEntityRenderers(event::registerEntityRenderer);
 	}
 
 	@SubscribeEvent
 	private static void onRegisterSkullModels(EntityRenderersEvent.CreateSkullModels event) {
-		ClientSetupHandlers.registerSkullModels(event::registerSkullModel, event.getEntityModelSet());
+		ESClientSetupHandler.registerSkullModels(event::registerSkullModel, event.getEntityModelSet());
 	}
 
 	@SubscribeEvent
 	private static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-		ClientSetupHandlers.registerLayers(event::registerLayerDefinition);
+		ESClientSetupHandler.registerLayers(event::registerLayerDefinition);
 	}
 
 	@SubscribeEvent
 	private static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
-		ClientSetupHandlers.registerMenuScreens(event::register);
+		ESClientSetupHandler.registerMenuScreens(event::register);
 	}
 
 	@SubscribeEvent
 	private static void onRegisterMenuScreens(EntityRenderersEvent.AddLayers event) {
 		for (EntityType<? extends Entity> entityType : event.getEntityTypes()) {
 			if (event.getRenderer(entityType) instanceof LivingEntityRenderer<?, ?> livingEntityRenderer) {
-				ClientSetupHandlers.onRenderLayerAttachment(entityType, livingEntityRenderer, event.getContext());
+				ESClientSetupHandler.onRenderLayerAttachment(entityType, livingEntityRenderer, event.getContext());
 			}
 		}
 		for (PlayerSkin.Model model : event.getSkins()) {
 			if (event.getSkin(model) instanceof LivingEntityRenderer<?, ?> livingEntityRenderer) {
-				ClientSetupHandlers.onRenderLayerAttachment(EntityType.PLAYER, livingEntityRenderer, event.getContext());
+				ESClientSetupHandler.onRenderLayerAttachment(EntityType.PLAYER, livingEntityRenderer, event.getContext());
 			}
 		}
 	}
 
 	@SubscribeEvent
 	private static void onRegisterShader(RegisterShadersEvent event) {
-		ClientSetupHandlers.registerShaders((location, format, loaded) -> {
+		ESClientSetupHandler.registerShaders((location, format, loaded) -> {
 			try {
 				event.registerShader(new ShaderInstance(event.getResourceProvider(), location, format), loaded);
 			} catch (IOException e) {
@@ -231,31 +231,31 @@ public class ClientSetupEvents {
 
 	@SubscribeEvent
 	private static void onRegisterGuiLayers(RegisterGuiLayersEvent event) {
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("offhand_attack_indicator"), (graphics, partialTicks) -> ClientHandlers.renderOffhandAttackIndicator(graphics));
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("spell_crosshair"), (graphics, partialTicks) -> ClientHandlers.renderSpellCrosshair(graphics, graphics.guiWidth(), graphics.guiHeight()));
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("ether_erosion"), (graphics, partialTicks) -> ClientHandlers.renderEtherErosion(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("offhand_attack_indicator"), (graphics, partialTicks) -> ESClientHandler.renderOffhandAttackIndicator(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("spell_crosshair"), (graphics, partialTicks) -> ESClientHandler.renderSpellCrosshair(graphics, graphics.guiWidth(), graphics.guiHeight()));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("ether_erosion"), (graphics, partialTicks) -> ESClientHandler.renderEtherErosion(graphics));
 		event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, EternalStarlight.id("ether_armor"), (graphics, partialTicks) -> {
 			if (Minecraft.getInstance().gameMode != null && Minecraft.getInstance().gameMode.canHurtPlayer()) {
-				ClientHandlers.renderEtherArmor(graphics, graphics.guiWidth(), graphics.guiHeight());
+				ESClientHandler.renderEtherArmor(graphics, graphics.guiWidth(), graphics.guiHeight());
 			}
 		});
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("orb_of_prophecy_use"), (graphics, partialTicks) -> ClientHandlers.renderOrbOfProphecyUse(graphics));
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("dream_catcher"), (graphics, partialTicks) -> ClientHandlers.renderDreamCatcher(graphics));
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("current_crest"), (graphics, partialTicks) -> ClientHandlers.renderCurrentCrest(graphics));
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("carved_lunaris_cactus_fruit_blur"), (graphics, partialTicks) -> ClientHandlers.renderCarvedLunarisCactusFruitBlur(graphics));
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("portal"), (graphics, partialTicks) -> ClientHandlers.renderPortalOverlay(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("orb_of_prophecy_use"), (graphics, partialTicks) -> ESClientHandler.renderOrbOfProphecyUse(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("dream_catcher"), (graphics, partialTicks) -> ESClientHandler.renderDreamCatcher(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("current_crest"), (graphics, partialTicks) -> ESClientHandler.renderCurrentCrest(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("carved_lunaris_cactus_fruit_blur"), (graphics, partialTicks) -> ESClientHandler.renderCarvedLunarisCactusFruitBlur(graphics));
+		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("portal"), (graphics, partialTicks) -> ESClientHandler.renderPortalOverlay(graphics));
 	}
 
 	@SubscribeEvent
 	private static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
-		for (Map.Entry<ResourceLocation, KeyMapping> mapping : ClientSetupHandlers.KEY_MAPPINGS.entrySet()) {
+		for (Map.Entry<ResourceLocation, KeyMapping> mapping : ESClientSetupHandler.KEY_MAPPINGS.entrySet()) {
 			event.register(mapping.getValue());
 		}
 	}
 
 	@SubscribeEvent
 	private static void onAddReloadListener(RegisterClientReloadListenersEvent event) {
-		ClientSetupHandlers.addClientReloadListeners(event::registerReloadListener);
+		ESClientSetupHandler.addClientReloadListeners(event::registerReloadListener);
 	}
 
 	@SubscribeEvent

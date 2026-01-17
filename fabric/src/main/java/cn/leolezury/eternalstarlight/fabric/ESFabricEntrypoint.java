@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.fabric;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -40,12 +40,12 @@ public class ESFabricEntrypoint implements ModInitializer {
 		});
 
 		// setup handlers
-		CommonSetupHandlers.commonSetup();
+		ESCommonSetupHandler.commonSetup();
 		FabricNetworkHandler.registerPackets();
 		FabricNetworkHandler.registerPacketReceivers();
-		CommonSetupHandlers.createAttributes(FabricDefaultAttributeRegistry::register);
-		CommonSetupHandlers.registerSpawnPlacements(SpawnPlacements::register);
-		CommonSetupHandlers.registerFuels(new CommonSetupHandlers.FuelRegisterStrategy() {
+		ESCommonSetupHandler.createAttributes(FabricDefaultAttributeRegistry::register);
+		ESCommonSetupHandler.registerSpawnPlacements(SpawnPlacements::register);
+		ESCommonSetupHandler.registerFuels(new ESCommonSetupHandler.FuelRegisterStrategy() {
 			@Override
 			public void register(ItemLike item, int time) {
 				FuelRegistry.INSTANCE.add(item, time);
@@ -56,7 +56,7 @@ public class ESFabricEntrypoint implements ModInitializer {
 				FuelRegistry.INSTANCE.add(itemTag, time);
 			}
 		});
-		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> CommonSetupHandlers.registerPotions(new CommonSetupHandlers.BrewingRegisterStrategy() {
+		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> ESCommonSetupHandler.registerPotions(new ESCommonSetupHandler.BrewingRegisterStrategy() {
 			@Override
 			public void registerConversion(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
 				builder.registerPotionRecipe(input, Ingredient.of(ingredient), output);
@@ -67,26 +67,26 @@ public class ESFabricEntrypoint implements ModInitializer {
 				builder.registerRecipes(Ingredient.of(ingredient), potion);
 			}
 		}));
-		CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> CommonSetupHandlers.registerCommands(dispatcher, context)));
-		CommonSetupHandlers.registerChunkGenerator();
-		CommonSetupHandlers.registerBiomeSource();
-		CommonSetupHandlers.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
+		CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> ESCommonSetupHandler.registerCommands(dispatcher, context)));
+		ESCommonSetupHandler.registerChunkGenerator();
+		ESCommonSetupHandler.registerBiomeSource();
+		ESCommonSetupHandler.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
 
 		// common handlers
-		ServerTickEvents.END_SERVER_TICK.register(CommonHandlers::onServerTick);
-		ServerTickEvents.START_WORLD_TICK.register(CommonHandlers::onLevelTick);
-		ServerWorldEvents.LOAD.register((server, world) -> CommonHandlers.onLevelLoad(world));
-		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> CommonHandlers.onBlockBroken(player, pos, state));
-		ServerLivingEntityEvents.ALLOW_DEATH.register((entity, source, amount) -> CommonHandlers.onAllowLivingDeath(entity, source));
-		ServerLivingEntityEvents.AFTER_DEATH.register(CommonHandlers::onLivingDeath);
+		ServerTickEvents.END_SERVER_TICK.register(ESCommonHandler::onServerTick);
+		ServerTickEvents.START_WORLD_TICK.register(ESCommonHandler::onLevelTick);
+		ServerWorldEvents.LOAD.register((server, world) -> ESCommonHandler.onLevelLoad(world));
+		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> ESCommonHandler.onBlockBroken(player, pos, state));
+		ServerLivingEntityEvents.ALLOW_DEATH.register((entity, source, amount) -> ESCommonHandler.onAllowLivingDeath(entity, source));
+		ServerLivingEntityEvents.AFTER_DEATH.register(ESCommonHandler::onLivingDeath);
 
-		for (Map.Entry<Block, Block> entry : CommonSetupHandlers.STRIPPABLES.get().entrySet()) {
+		for (Map.Entry<Block, Block> entry : ESCommonSetupHandler.STRIPPABLES.get().entrySet()) {
 			StrippableBlockRegistry.register(entry.getKey(), entry.getValue());
 		}
-		for (Map.Entry<Block, Block> entry : CommonSetupHandlers.TILLABLES.get().entrySet()) {
+		for (Map.Entry<Block, Block> entry : ESCommonSetupHandler.TILLABLES.get().entrySet()) {
 			TillableBlockRegistry.register(entry.getKey(), HoeItem::onlyIfAirAbove, entry.getValue().defaultBlockState());
 		}
-		for (Map.Entry<Block, Block> entry : CommonSetupHandlers.FLATTENABLES.get().entrySet()) {
+		for (Map.Entry<Block, Block> entry : ESCommonSetupHandler.FLATTENABLES.get().entrySet()) {
 			FlattenableBlockRegistry.register(entry.getKey(), entry.getValue().defaultBlockState());
 		}
 	}

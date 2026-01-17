@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.fabric.mixin;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
-import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -37,19 +37,19 @@ public abstract class PlayerMixin {
 	// copied from LivingEntityMixin
 	@ModifyVariable(method = "actuallyHurt", at = @At(value = "STORE", ordinal = 1), ordinal = 0, argsOnly = true)
 	private float modifyActualHurtDamage(float original, @Local(argsOnly = true) DamageSource source) {
-		return CommonHandlers.onModifyLivingActualHurtDamage((Player) (Object) this, source, original);
+		return ESCommonHandler.onModifyLivingActualHurtDamage((Player) (Object) this, source, original);
 	}
 
 	@Inject(method = "actuallyHurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;setHealth(F)V", shift = At.Shift.AFTER))
 	private void actuallyHurt(DamageSource source, float amount, CallbackInfo ci) {
-		CommonHandlers.onPostLivingHurt((Player) (Object) this, source, amount);
+		ESCommonHandler.onPostLivingHurt((Player) (Object) this, source, amount);
 	}
 
 	@Inject(method = "hurtCurrentlyUsedShield", at = @At(value = "HEAD"))
 	private void damageShield(float amount, CallbackInfo callBackInfo) {
 		Player player = (Player) (Object) this;
 		ItemStack useItem = player.getUseItem();
-		if (CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> useItem.is(itemSupplier.get()))) {
+		if (ESCommonSetupHandler.SHIELDS.stream().anyMatch(itemSupplier -> useItem.is(itemSupplier.get()))) {
 			useItem.hurtAndBreak(Math.max((int) (amount / 5f), 1), player, player.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
 		}
 	}
@@ -58,7 +58,7 @@ public abstract class PlayerMixin {
 	private void disableShield(CallbackInfo ci) {
 		Player player = (Player) (Object) this;
 		ItemStack useItem = player.getUseItem();
-		if (CommonSetupHandlers.SHIELDS.stream().anyMatch(itemSupplier -> useItem.is(itemSupplier.get()))) {
+		if (ESCommonSetupHandler.SHIELDS.stream().anyMatch(itemSupplier -> useItem.is(itemSupplier.get()))) {
 			player.getCooldowns().addCooldown(useItem.getItem(), 100);
 			player.stopUsingItem();
 			player.level().broadcastEntityEvent(player, (byte) 30);
@@ -74,12 +74,12 @@ public abstract class PlayerMixin {
 
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;crit(Lnet/minecraft/world/entity/Entity;)V", shift = At.Shift.AFTER))
 	private void attackCrit(Entity entity, CallbackInfo ci, @Local(ordinal = 2) float attackStrength) {
-		CommonHandlers.onCriticalHit((Player) (Object) this, entity, attackStrength);
+		ESCommonHandler.onCriticalHit((Player) (Object) this, entity, attackStrength);
 	}
 
 	@ModifyReturnValue(method = "getDestroySpeed", at = @At(value = "RETURN"))
 	private float getDestroySpeed(float original, @Local(ordinal = 0, argsOnly = true) BlockState state) {
-		return CommonHandlers.onBlockBreakSpeed((Player) (Object) this, state, original);
+		return ESCommonHandler.onBlockBreakSpeed((Player) (Object) this, state, original);
 	}
 
 	@WrapOperation(method = "getProjectile", at = @At(value = "NEW", target = "(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/item/ItemStack;"))

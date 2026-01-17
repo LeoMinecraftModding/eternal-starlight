@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.neoforge.client.event;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -15,29 +15,29 @@ import net.neoforged.neoforge.client.event.*;
 public class ClientEvents {
 	@SubscribeEvent
 	private static void onClientTick(ClientTickEvent.Post event) {
-		ClientHandlers.onClientTick();
+		ESClientHandler.onClientTick();
 	}
 
 	@SubscribeEvent
 	private static void onComputeCameraAngles(ViewportEvent.ComputeCameraAngles event) {
-		Vec3 angle = ClientHandlers.computeCameraAngles(new Vec3(event.getPitch(), event.getYaw(), event.getRoll()));
+		Vec3 angle = ESClientHandler.computeCameraAngles(new Vec3(event.getPitch(), event.getYaw(), event.getRoll()));
 		event.setPitch((float) angle.x);
 		event.setYaw((float) angle.y);
 	}
 
 	@SubscribeEvent
 	private static void onComputeFovModifier(ComputeFovModifierEvent event) {
-		ClientHandlers.modifyFov(event.getFovModifier()).ifPresent(d -> event.setNewFovModifier((float) d));
+		ESClientHandler.modifyFov(event.getFovModifier()).ifPresent(d -> event.setNewFovModifier((float) d));
 	}
 
 	@SubscribeEvent
 	private static void onRenderFog(ViewportEvent.RenderFog event) {
-		ClientHandlers.onRenderFog(event.getCamera(), event.getMode());
+		ESClientHandler.onRenderFog(event.getCamera(), event.getMode());
 	}
 
 	@SubscribeEvent
 	private static void onRenderBossBar(CustomizeGuiOverlayEvent.BossEventProgress event) {
-		if (ClientHandlers.renderBossBar(event.getGuiGraphics(), event.getBossEvent(), event.getX(), event.getY())) {
+		if (ESClientHandler.renderBossBar(event.getGuiGraphics(), event.getBossEvent(), event.getX(), event.getY())) {
 			event.setCanceled(true);
 		}
 	}
@@ -45,13 +45,13 @@ public class ClientEvents {
 	@SubscribeEvent
 	private static void onRenderLevelStage(RenderLevelStageEvent event) {
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
-			ClientHandlers.onAfterRenderEntities(event.getLevelRenderer().renderBuffers.bufferSource(), event.getPoseStack(), event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
+			ESClientHandler.onAfterRenderEntities(event.getLevelRenderer().renderBuffers.bufferSource(), event.getPoseStack(), event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
-			ClientHandlers.onAfterRenderParticles();
+			ESClientHandler.onAfterRenderParticles();
 		}
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_WEATHER) {
-			ClientHandlers.onAfterRenderWeather(event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
+			ESClientHandler.onAfterRenderWeather(event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
 	}
 }

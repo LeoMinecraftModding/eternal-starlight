@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.particle.advanced;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -42,7 +42,7 @@ public class AdvancedParticle extends TextureSheetParticle implements ParticleOp
 	@Override
 	public void render(VertexConsumer vertexConsumer, Camera camera, float f) {
 		this.options.operateRender(this);
-		super.render(ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(this.options.getRenderType()), camera, f);
+		super.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(this.options.getRenderType()), camera, f);
 	}
 
 	@Override

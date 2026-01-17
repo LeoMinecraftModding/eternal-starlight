@@ -64,7 +64,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class CommonSetupHandlers {
+public class ESCommonSetupHandler {
 	public static final Supplier<Map<Block, Block>> STRIPPABLES = Suppliers.memoize(() -> Map.ofEntries(
 		Map.entry(ESBlocks.LUNAR_LOG.get(), ESBlocks.STRIPPED_LUNAR_LOG.get()),
 		Map.entry(ESBlocks.LUNAR_WOOD.get(), ESBlocks.STRIPPED_LUNAR_WOOD.get()),
@@ -296,6 +296,7 @@ public class CommonSetupHandlers {
 		strategy.register(ESPackets.OPEN_GATEKEEPER_GUI);
 		strategy.register(ESPackets.CLOSE_GATEKEEPER_GUI);
 		strategy.register(ESPackets.UPDATE_BOOK);
+		strategy.register(ESPackets.UPDATE_BOOK_PROGRESSION);
 		strategy.register(ESPackets.OPEN_BOOK);
 	}
 
@@ -414,7 +415,7 @@ public class CommonSetupHandlers {
 	}
 
 	public static void addReloadListeners(Consumer<PreparableReloadListener> strategy) {
-		CommonHandlers.gatekeeperNames = ESPlatform.INSTANCE.createGatekeeperNameManager();
-		strategy.accept(CommonHandlers.gatekeeperNames);
+		ESCommonHandler.gatekeeperNames = ESPlatform.INSTANCE.createGatekeeperNameManager();
+		strategy.accept(ESCommonHandler.gatekeeperNames);
 	}
 }

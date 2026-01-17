@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.sounds.MusicManager;
@@ -18,7 +18,7 @@ public abstract class MusicManagerMixin {
 
 	@Inject(method = "tick", at = @At(value = "TAIL"))
 	private void tick(CallbackInfo ci) {
-		if (ClientHandlers.bossMusicInstance != null) {
+		if (ESClientHandler.bossMusicInstance != null) {
 			stopPlaying();
 		}
 	}

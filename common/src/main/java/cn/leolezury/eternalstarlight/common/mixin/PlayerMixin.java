@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -60,7 +60,7 @@ public abstract class PlayerMixin implements SpellCaster {
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;hurtEnemy(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/player/Player;)Z"))
 	private void attackHurtEnemy(Entity entity, CallbackInfo ci) {
 		if (entity instanceof LivingEntity living) {
-			CommonHandlers.handleFlowglazeWeaponAttack((Player) (Object) this, living);
+			ESCommonHandler.handleFlowglazeWeaponAttack((Player) (Object) this, living);
 		}
 	}
 

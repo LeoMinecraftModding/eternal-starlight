@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonSetupHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -25,7 +25,7 @@ public abstract class TagLoaderMixin {
 	@Inject(method = "build(Ljava/util/Map;)Ljava/util/Map;", at = @At(value = "RETURN"))
 	public <T> void build(Map<ResourceLocation, List<TagLoader.EntryWithSource>> map, CallbackInfoReturnable<Map<ResourceLocation, Collection<T>>> cir) {
 		if (Registries.tagsDirPath(Registries.ITEM).equals(directory)) {
-			for (Map.Entry<TagKey<Item>, List<TagKey<Item>>> entry : CommonSetupHandlers.ITEM_TAG_EXCLUSIONS.entrySet()) {
+			for (Map.Entry<TagKey<Item>, List<TagKey<Item>>> entry : ESCommonSetupHandler.ITEM_TAG_EXCLUSIONS.entrySet()) {
 				Map<ResourceLocation, Collection<T>> result = cir.getReturnValue();
 				List<T> excluded = new ArrayList<>();
 				for (TagKey<Item> tag : entry.getValue()) {

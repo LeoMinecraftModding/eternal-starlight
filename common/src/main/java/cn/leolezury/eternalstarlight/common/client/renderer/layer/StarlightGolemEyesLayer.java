@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemModel;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import net.fabricmc.api.EnvType;
@@ -21,6 +21,6 @@ public class StarlightGolemEyesLayer<T extends StarlightGolem, M extends Starlig
 
 	@Override
 	public RenderType renderType() {
-		return ClientHandlers.isHalloween ? EYES_HALLOWEEN : EYES;
+		return ESClientHandler.isHalloween ? EYES_HALLOWEEN : EYES;
 	}
 }

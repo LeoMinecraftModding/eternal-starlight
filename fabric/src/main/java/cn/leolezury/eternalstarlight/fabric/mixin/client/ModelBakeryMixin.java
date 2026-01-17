@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientSetupHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.resources.model.BakedModel;
@@ -19,6 +19,6 @@ public abstract class ModelBakeryMixin {
 	@Inject(method = "getBakedTopLevelModels", at = @At(value = "RETURN"))
 	private void getBakedTopLevelModels(CallbackInfoReturnable<Map<ModelResourceLocation, BakedModel>> cir) {
 		// idk if it works
-		ClientSetupHandlers.modifyBakingResult(cir.getReturnValue());
+		ESClientSetupHandler.modifyBakingResult(cir.getReturnValue());
 	}
 }

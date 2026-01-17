@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientSetupHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientSetupHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -21,8 +21,8 @@ public abstract class ItemRendererMixin {
 	@ModifyVariable(method = "render", at = @At(value = "LOAD", ordinal = 0), ordinal = 0, argsOnly = true)
 	public BakedModel render(BakedModel bakedModel, ItemStack stack, ItemDisplayContext itemDisplayContext) {
 		ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(stack.getItem());
-		if (ClientSetupHandlers.ITEMS_WITH_SPECIAL_MODEL.containsKey(new ModelResourceLocation(itemKey, "inventory")) && ClientSetupHandlers.ITEMS_WITH_SPECIAL_MODEL.get(new ModelResourceLocation(itemKey, "inventory")).containsKey(itemDisplayContext)) {
-			BakedModel replacedModel = Minecraft.getInstance().getModelManager().getModel(ClientSetupHandlers.getSpecialModel(new ModelResourceLocation(itemKey, "inventory"), itemDisplayContext));
+		if (ESClientSetupHandler.ITEMS_WITH_SPECIAL_MODEL.containsKey(new ModelResourceLocation(itemKey, "inventory")) && ESClientSetupHandler.ITEMS_WITH_SPECIAL_MODEL.get(new ModelResourceLocation(itemKey, "inventory")).containsKey(itemDisplayContext)) {
+			BakedModel replacedModel = Minecraft.getInstance().getModelManager().getModel(ESClientSetupHandler.getSpecialModel(new ModelResourceLocation(itemKey, "inventory"), itemDisplayContext));
 			if (replacedModel != Minecraft.getInstance().getModelManager().getMissingModel()) {
 				return replacedModel.getOverrides().resolve(replacedModel, stack, Minecraft.getInstance().level, null, 0);
 			}

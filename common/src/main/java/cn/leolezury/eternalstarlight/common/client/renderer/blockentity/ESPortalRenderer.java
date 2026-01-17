@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.blockentity;
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.ESPortalBlockEntity;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -26,7 +26,7 @@ public class ESPortalRenderer<T extends ESPortalBlockEntity> implements BlockEnt
 	@Override
 	public void render(T portal, float f, PoseStack stack, MultiBufferSource bufferSource, int light, int overlay) {
 		if (ESConfig.INSTANCE.enablePortalShader && portal.getBlockState().getValue(ESPortalBlock.CENTER)) {
-			VertexConsumer vertexConsumer = ClientHandlers.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PORTAL);
+			VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PORTAL);
 			PoseStack.Pose pose = stack.last();
 			float radius = 0.6f * portal.getBlockState().getValue(ESPortalBlock.SIZE) * (Math.min(portal.getClientSideTickCount() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 60f) / 60f);
 			if (portal.getBlockState().getValue(ESPortalBlock.AXIS) == Direction.Axis.X) {

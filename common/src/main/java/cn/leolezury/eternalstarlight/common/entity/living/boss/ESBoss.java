@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -54,7 +54,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	protected ESBoss(EntityType<? extends ESBoss> type, Level level) {
 		super(type, level);
 		if (level.isClientSide) {
-			ClientHandlers.BOSSES.add(this);
+			ESClientHandler.BOSSES.add(this);
 		}
 	}
 

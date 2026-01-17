@@ -72,6 +72,7 @@ public class ESTags {
 		public static final TagKey<Item> CHEST_ARMOR_ACCESSORY_APPLICABLE = create("accessory_applicable/chest_armor");
 		public static final TagKey<Item> AXE_ACCESSORY_APPLICABLE = create("accessory_applicable/axe");
 		public static final TagKey<Item> HAMMER_ACCESSORY_APPLICABLE = create("accessory_applicable/hammer");
+		public static final TagKey<Item> AFFECTS_PROGRESSION = create("affects_progression");
 		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
 		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
 		public static final TagKey<Item> ARROW_FEATHERS = create("arrow_feathers");
@@ -134,6 +135,7 @@ public class ESTags {
 	}
 
 	public static class EntityTypes {
+		public static final TagKey<EntityType<?>> AFFECTS_PROGRESSION = create("affects_progression");
 		public static final TagKey<EntityType<?>> STARLIGHT_GOLEM_ALLYS = create("starlight_golem_allys");
 		public static final TagKey<EntityType<?>> LUNAR_MONSTROSITY_ALLYS = create("lunar_monstrosity_allys");
 		public static final TagKey<EntityType<?>> ABYSSAL_FIRE_IMMUNE = create("abyssal_fire_immune");

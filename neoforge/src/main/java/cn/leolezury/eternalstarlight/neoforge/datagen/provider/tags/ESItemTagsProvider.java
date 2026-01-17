@@ -721,6 +721,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.addTag(ItemTags.AXES);
 		tag(ESTags.Items.HAMMER_ACCESSORY_APPLICABLE)
 			.addTag(ESTags.Items.HAMMERS);
+		tag(ESTags.Items.AFFECTS_PROGRESSION)
+			.add(
+				ESItems.PUNGENCY_FRUIT.get(),
+				ESItems.SILVER_PUNGENCY_FRUIT.get()
+			);
 		tag(ESTags.Items.GOLEM_FORGE_LOCATORS)
 			.add(
 				Items.REDSTONE,

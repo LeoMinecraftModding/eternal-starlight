@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.critereon;
 
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import cn.leolezury.eternalstarlight.common.weather.WeatherInstance;
@@ -32,7 +32,7 @@ public class WitnessWeatherTrigger extends SimpleCriterionTrigger<WitnessWeather
 		});
 
 		public boolean matches(ServerLevel serverLevel) {
-			Optional<WeatherInstance> active = CommonHandlers.getActiveWeather();
+			Optional<WeatherInstance> active = ESCommonHandler.getActiveWeather();
 			return serverLevel.dimension().location().equals(ESDimensions.STARLIGHT_KEY.location())
 				&& active.isPresent() && weather().isBound() && active.get().getWeather() == weather().value();
 		}

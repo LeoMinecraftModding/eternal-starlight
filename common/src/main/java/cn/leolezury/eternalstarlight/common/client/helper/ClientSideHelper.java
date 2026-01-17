@@ -10,7 +10,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogueScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.toast.SimpleTextToast;
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
 @Environment(EnvType.CLIENT)
 public class ClientSideHelper implements ClientHelper {
 	@Override
-	public void handleS2cNoParam(NoParametersPacket packet) {
+	public void handleServerToClientSimpleAction(SimpleActionPacket packet) {
 		switch (packet.id()) {
 			case "cancel_weather" -> ClientWeatherState.weather = null;
 		}
@@ -71,12 +71,12 @@ public class ClientSideHelper implements ClientHelper {
 	@Override
 	public void handleUpdateCamera(UpdateCameraPacket packet) {
 		if (packet.cameraId() == -1) {
-			ClientHandlers.resetCameraIn = 0;
+			ESClientHandler.resetCameraIn = 0;
 		} else {
 			if (Minecraft.getInstance().level != null && !(Minecraft.getInstance().getCameraEntity() instanceof SoulitSpectator)) {
 				Entity camera = Minecraft.getInstance().level.getEntity(packet.cameraId());
 				if (camera != null) {
-					ClientHandlers.resetCameraIn = 260;
+					ESClientHandler.resetCameraIn = 260;
 					Minecraft.getInstance().options.hideGui = true;
 					Minecraft.getInstance().setCameraEntity(camera);
 				}
@@ -127,7 +127,7 @@ public class ClientSideHelper implements ClientHelper {
 				}
 			}
 		}
-		Set<BookDefinition> definitions = bookIds.stream().map(ClientHandlers.books::getBook).collect(Collectors.toSet());
+		Set<BookDefinition> definitions = bookIds.stream().map(ESClientHandler.books::getBook).collect(Collectors.toSet());
 		List<IndexBookComponent.Entry> newEntries = new ArrayList<>();
 		List<IndexBookComponent.Entry> changedEntries = new ArrayList<>();
 		for (BookDefinition definition : definitions) {
@@ -192,7 +192,7 @@ public class ClientSideHelper implements ClientHelper {
 
 	@Override
 	public void handleOpenBook(OpenBookPacket packet) {
-		BookDefinition definition = ClientHandlers.books.getBook(packet.bookId());
+		BookDefinition definition = ESClientHandler.books.getBook(packet.bookId());
 		if (definition != null) {
 			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked()));
 		}

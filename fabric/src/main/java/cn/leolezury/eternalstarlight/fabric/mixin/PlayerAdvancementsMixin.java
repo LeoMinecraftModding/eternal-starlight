@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.server.PlayerAdvancements;
@@ -22,7 +22,7 @@ public abstract class PlayerAdvancementsMixin {
 	@Inject(method = "award", at = @At(value = "TAIL"))
 	private void award(AdvancementHolder advancementHolder, String string, CallbackInfoReturnable<Boolean> cir) {
 		if (getOrStartProgress(advancementHolder).isDone()) {
-			CommonHandlers.onCompleteAdvancement(player, advancementHolder);
+			ESCommonHandler.onCompleteAdvancement(player, advancementHolder);
 		}
 	}
 }

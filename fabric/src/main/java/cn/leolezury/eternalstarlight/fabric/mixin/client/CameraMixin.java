@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
@@ -27,7 +27,7 @@ public abstract class CameraMixin {
 
 	@Inject(method = "setup", at = @At(value = "RETURN"))
 	private void setup(BlockGetter blockGetter, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
-		Vec3 angles = ClientHandlers.computeCameraAngles(new Vec3(getXRot(), getYRot(), 0));
+		Vec3 angles = ESClientHandler.computeCameraAngles(new Vec3(getXRot(), getYRot(), 0));
 		setRotation((float) angles.y, (float) angles.x);
 	}
 }

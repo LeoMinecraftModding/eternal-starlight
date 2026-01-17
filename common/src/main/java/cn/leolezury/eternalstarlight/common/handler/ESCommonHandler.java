@@ -19,12 +19,10 @@ import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorIt
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
-import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
-import cn.leolezury.eternalstarlight.common.network.NoParametersPacket;
-import cn.leolezury.eternalstarlight.common.network.OpenBookPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
@@ -94,7 +92,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 
-public class CommonHandlers {
+public class ESCommonHandler {
 	public static final String STARFIRE_ARROW = EternalStarlight.ID + ":starfire";
 	public static final String FLOWGLAZE_ARROW = EternalStarlight.ID + ":flowglaze";
 	public static final String CRYSTAL_ARROW = EternalStarlight.ID + ":crystal";
@@ -156,7 +154,7 @@ public class CommonHandlers {
 				}
 			}), () -> {
 				if (lastWeather != null || gameTime % 200 == 0) {
-					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new NoParametersPacket("cancel_weather"));
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new SimpleActionPacket("cancel_weather"));
 					lastWeather = null;
 				}
 			});
@@ -476,7 +474,7 @@ public class CommonHandlers {
 				}
 			}
 		}
-		if (source.getEntity() instanceof ServerPlayer player) {
+		if (source.getEntity() instanceof ServerPlayer player && entity.getType().is(ESTags.EntityTypes.AFFECTS_PROGRESSION)) {
 			ESBookUtil.unlock(player, BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).withPrefix("entity_killed_"));
 		}
 	}
@@ -619,23 +617,6 @@ public class CommonHandlers {
 					}
 				}
 				if (player instanceof ServerPlayer serverPlayer) {
-					if (player.tickCount % 600 == 0) {
-						List<String> listeningNamespaces = new ArrayList<>();
-						for (int i = 0; i < inventory.getContainerSize(); ++i) {
-							ItemStack inventoryItem = inventory.getItem(i);
-							if (!inventoryItem.isEmpty()) {
-								ESBookUtil.unlock(serverPlayer, BuiltInRegistries.ITEM.getKey(inventoryItem.getItem()).withPrefix("item_"));
-							}
-							GuideBook guideBook = inventoryItem.get(ESDataComponents.BOOK.get());
-							if (guideBook != null) {
-								listeningNamespaces.addAll(guideBook.listeningNamespaces());
-							}
-						}
-						ESDataAttachments.GUIDEBOOK_LISTENING_NAMESPACES.setData(player, listeningNamespaces);
-						for (Entity e : level.getEntities(player, player.getBoundingBox().inflate(32))) {
-							ESBookUtil.unlock(serverPlayer, BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).withPrefix("entity_seen_"));
-						}
-					}
 					ServerPlayerGameMode gameMode = serverPlayer.gameMode;
 					ServerLevel serverLevel = serverPlayer.serverLevel();
 					if (gameMode.isDestroyingBlock && serverPlayer.getMainHandItem().is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
@@ -852,17 +833,13 @@ public class CommonHandlers {
 		}
 	}
 
-	public static void onPlayerNaturalWake(ServerPlayer serverPlayer, BlockPos pos) {
-		// todo: add some particles as the hint of the portal ruins structure location?
-	}
-
 	public static void onCompleteAdvancement(Player player, AdvancementHolder advancement) {
 		if (player instanceof ServerPlayer serverPlayer) {
 			ESBookUtil.unlock(serverPlayer, advancement.id().withPrefix("advancement_"));
 		}
 	}
 
-	public static void onC2sNoParamPacket(ServerPlayer player, String id) {
+	public static void onClientToServerSimpleAction(ServerPlayer player, String id) {
 		switch (id) {
 			case "switch_crest" -> {
 				List<Crest.Instance> crests = ESCrestUtil.getOwnedCrests(player);

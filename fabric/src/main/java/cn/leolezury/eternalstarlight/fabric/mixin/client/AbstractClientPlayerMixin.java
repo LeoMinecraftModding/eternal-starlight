@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.client.handler.ClientHandlers;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
 import net.fabricmc.api.EnvType;
@@ -18,7 +18,7 @@ import java.util.OptionalDouble;
 public abstract class AbstractClientPlayerMixin {
 	@Inject(method = "getFieldOfViewModifier", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/AbstractClientPlayer;getUseItem()Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER), cancellable = true)
 	private void getFieldOfViewModifier(CallbackInfoReturnable<Float> cir, @Local LocalFloatRef localRef) {
-		OptionalDouble fov = ClientHandlers.modifyFov(localRef.get());
+		OptionalDouble fov = ESClientHandler.modifyFov(localRef.get());
 		if (fov.isPresent()) {
 			localRef.set((float) fov.getAsDouble());
 		}

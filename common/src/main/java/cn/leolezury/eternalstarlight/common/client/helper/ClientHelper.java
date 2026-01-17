@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import net.minecraft.world.phys.Vec3;
 
 public interface ClientHelper {
-	void handleS2cNoParam(NoParametersPacket packet);
+	void handleServerToClientSimpleAction(SimpleActionPacket packet);
 
 	void handleParticlePacket(ParticlePacket packet);
 

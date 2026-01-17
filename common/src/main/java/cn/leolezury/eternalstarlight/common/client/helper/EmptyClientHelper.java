@@ -6,7 +6,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class EmptyClientHelper implements ClientHelper {
 	@Override
-	public void handleS2cNoParam(NoParametersPacket packet) {
+	public void handleServerToClientSimpleAction(SimpleActionPacket packet) {
 
 	}
 

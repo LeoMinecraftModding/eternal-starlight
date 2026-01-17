@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
-import cn.leolezury.eternalstarlight.common.handler.CommonHandlers;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,7 +18,7 @@ public class CrystalCrossbowItem extends CrossbowItem {
 	@Override
 	protected Projectile createProjectile(Level level, LivingEntity shooter, ItemStack weapon, ItemStack ammo, boolean isCrit) {
 		Projectile projectile = super.createProjectile(level, shooter, weapon, ammo, isCrit);
-		ESDataAttachments.ARROW_TYPE.setData(projectile, CommonHandlers.CRYSTAL_ARROW);
+		ESDataAttachments.ARROW_TYPE.setData(projectile, ESCommonHandler.CRYSTAL_ARROW);
 		if (projectile instanceof AbstractArrow arrow) {
 			arrow.setBaseDamage(arrow.getBaseDamage() + 0.25);
 		}
