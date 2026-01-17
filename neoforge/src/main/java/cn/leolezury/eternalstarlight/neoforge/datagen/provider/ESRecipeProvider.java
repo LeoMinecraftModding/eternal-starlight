@@ -620,8 +620,6 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput, EternalStarlight.id("gold_from_raw_materials"));
 
 		AlloyRecipeBuilder.alloy(Items.NETHERITE_INGOT.getDefaultInstance(), 1, 400)
-			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
-			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
 			.requires(Tags.Items.INGOTS_GOLD, 4)
 			.requires(Items.NETHERITE_SCRAP, 2)
 			.requires(ESItems.STARCORE.get(), 1)

@@ -19,11 +19,11 @@ public class AlloyFurnaceMenu extends AbstractContainerMenu {
 	public static final int FUEL_SLOT = 9;
 	public static final int COOLING_SLOT = 10;
 	public static final int RESULT_SLOT_START = 11;
-	private static final int RESULT_SLOT_END = 14; // excluded
-	private static final int INV_SLOT_START = 14;
-	private static final int INV_SLOT_END = 41; // excluded
-	private static final int USE_ROW_SLOT_START = 41;
-	private static final int USE_ROW_SLOT_END = 50; // excluded
+	public static final int RESULT_SLOT_END = 14; // excluded
+	public static final int INV_SLOT_START = 14;
+	public static final int INV_SLOT_END = 41; // excluded
+	public static final int USE_ROW_SLOT_START = 41;
+	public static final int USE_ROW_SLOT_END = 50; // excluded
 
 	private final Container container;
 	private final ContainerData data;

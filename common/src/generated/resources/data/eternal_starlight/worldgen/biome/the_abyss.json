@@ -74,7 +74,7 @@
     },
     "eternal_starlight:nightfall_spider": {
       "charge": 1.0,
-      "energy_budget": 0.75
+      "energy_budget": 0.5
     },
     "eternal_starlight:seeker": {
       "charge": 1.0,
@@ -98,7 +98,7 @@
         "type": "eternal_starlight:nightfall_spider",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 20
+        "weight": 15
       },
       {
         "type": "eternal_starlight:lonestar_skeleton",

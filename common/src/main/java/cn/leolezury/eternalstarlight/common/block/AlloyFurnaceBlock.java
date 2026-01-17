@@ -43,6 +43,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -150,6 +151,10 @@ public class AlloyFurnaceBlock extends BaseEntityBlock implements WorldlyContain
 	public static int getCoolEfficiency(Item item) {
 		AlloyFurnaceCoolingItem coolingItem = getCoolingItem(item);
 		return coolingItem == null ? 0 : coolingItem.efficiency();
+	}
+
+	public static Map<Item, AlloyFurnaceCoolingItem> getCoolingRegistry() {
+		return Collections.unmodifiableMap(COOLING_REGISTRY);
 	}
 
 	@Nullable

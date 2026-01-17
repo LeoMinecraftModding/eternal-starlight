@@ -96,11 +96,11 @@ public class ESBiomes {
 	private static MobSpawnSettings.Builder baseSpawnBuilder() {
 		return new MobSpawnSettings.Builder()
 			.creatureGenerationProbability(0.2f)
-			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTFALL_SPIDER.get(), 20, 1, 2))
+			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTFALL_SPIDER.get(), 15, 1, 2))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 20, 1, 2))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.SEEKER.get(), 15, 1, 2))
 			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 2, 1, 2))
-			.addMobCharge(ESEntities.NIGHTFALL_SPIDER.get(), 1, 0.75)
+			.addMobCharge(ESEntities.NIGHTFALL_SPIDER.get(), 1, 0.5)
 			.addMobCharge(ESEntities.LONESTAR_SKELETON.get(), 1, 0.75)
 			.addMobCharge(ESEntities.SEEKER.get(), 1, 0.5);
 	}

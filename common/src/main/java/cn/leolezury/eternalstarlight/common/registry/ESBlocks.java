@@ -779,8 +779,8 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WallBlock> THERMAL_SPRINGSTONE_BRICK_WALL = BLOCKS.register("thermal_springstone_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL).mapColor(MapColor.COLOR_BROWN).strength(3.0F, 3.0F)));
 
 	// glacite
-	public static final RegistryObject<Block, DropExperienceBlock> GLACITE = BLOCKS.register("glacite", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).mapColor(MapColor.SNOW)));
-	public static final RegistryObject<Block, Block> GLACITE_BLOCK = BLOCKS.register("glacite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.SNOW)));
+	public static final RegistryObject<Block, DropExperienceBlock> GLACITE = BLOCKS.register("glacite", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE).mapColor(MapColor.SNOW).sound(SoundType.GLASS)));
+	public static final RegistryObject<Block, Block> GLACITE_BLOCK = BLOCKS.register("glacite_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.SNOW).sound(SoundType.GLASS)));
 
 	// starlit diamond
 	public static final RegistryObject<Block, DropExperienceBlock> GRIMSTONE_STARLIT_DIAMOND_ORE = BLOCKS.register("grimstone_starlit_diamond_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)));

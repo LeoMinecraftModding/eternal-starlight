@@ -59,7 +59,7 @@ public class MeteorShowerWeather extends AbstractWeather {
 						.south(-10 + random.nextInt(21));
 					BlockState blockState = level.getBlockState(randomPos);
 					FluidState fluidState = level.getFluidState(randomPos);
-					if (NaturalSpawner.isValidEmptySpawnBlock(level, randomPos, blockState, fluidState, ESEntities.TINY_CRETEOR.get())) {
+					if (NaturalSpawner.isValidEmptySpawnBlock(level, randomPos, blockState, fluidState, ESEntities.TINY_CRETEOR.get()) && randomPos.getY() > level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, randomPos.getX(), randomPos.getZ())) {
 						SpawnGroupData groupData = null;
 						for (int i = 0; i < 2; i++) {
 							TinyCreteor tinyCreteor = ESEntities.TINY_CRETEOR.get().create(level);

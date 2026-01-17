@@ -23,6 +23,7 @@ subprojects {
         // The following line declares the yarn mappings you may select this one as well.
         // mappings "net.fabricmc:yarn:1.19.4+build.2:v2"
         // modCompileOnly "dev.emi:emi-xplat-intermediary:${emi_version}:api"
+        modCompileOnly "mezz.jei:jei-${rootProject.minecraft_version}-fabric:${rootProject.jei_version}"
     }
 }
 
@@ -39,6 +40,10 @@ allprojects {
         maven {
             name = "TerraformersMC"
             url = "https://maven.terraformersmc.com/"
+        }
+        maven {
+            name = "Jared's maven"
+            url = "https://maven.blamejared.com/"
         }
     }
 

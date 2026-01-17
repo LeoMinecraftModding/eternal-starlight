@@ -34,28 +34,6 @@
         "count": 1,
         "id": "minecraft:netherite_ingot"
       }
-    },
-    {
-      "amount": {
-        "type": "minecraft:uniform",
-        "max_inclusive": 3,
-        "min_inclusive": 0
-      },
-      "item": {
-        "count": 1,
-        "id": "eternal_starlight:dimslag"
-      }
-    },
-    {
-      "amount": {
-        "type": "minecraft:uniform",
-        "max_inclusive": 3,
-        "min_inclusive": 0
-      },
-      "item": {
-        "count": 1,
-        "id": "eternal_starlight:dimslag"
-      }
     }
   ]
 }

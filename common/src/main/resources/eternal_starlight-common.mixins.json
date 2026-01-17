@@ -45,6 +45,7 @@
     "WallHangingSignBlockMixin"
   ],
   "client": [
+    "ClientRecipeBookMixin",
     "client.CameraMixin",
     "client.ClientLevelMixin",
     "client.EntityRenderDispatcherMixin",

@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-07T23:10:54.69668	Loot Tables
+// 1.21.1	2026-01-17T22:26:39.6193371	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -230,7 +230,7 @@ cd2d7bf66307d42b3e23768cebdfb63833bf3c92 data/eternal_starlight/loot_table/block
 23bd694e4c3bad4e1757bd524b6de9a20309ed76 data/eternal_starlight/loot_table/blocks/flowglaze_brick_stairs.json
 d17575e5313fdeede88ad72c0e588fba301fcfaa data/eternal_starlight/loot_table/blocks/flowglaze_brick_wall.json
 2ab18e60f65fd2e801a4fec07e95cad2db649312 data/eternal_starlight/loot_table/blocks/flowglaze_pane.json
-943d426a9ab38a5035d7cd4f0e5bbd06670f4a96 data/eternal_starlight/loot_table/blocks/glacite.json
+233199956039fbf824998504e2baeefe0624adb4 data/eternal_starlight/loot_table/blocks/glacite.json
 7ec175b281de39d8397aff9324827611918c6725 data/eternal_starlight/loot_table/blocks/glacite_block.json
 42fd54b81f10536662513da0447a04d23f1a36aa data/eternal_starlight/loot_table/blocks/gladespike.json
 f41df2d413b009ec5dd6453f9e42f3e6319b9e76 data/eternal_starlight/loot_table/blocks/glimmerfly_bush.json

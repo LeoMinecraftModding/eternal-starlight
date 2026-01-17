@@ -20,6 +20,9 @@
     ],
     "client": [
       "cn.leolezury.eternalstarlight.fabric.client.ESFabricClientEntrypoint"
+    ],
+    "jei_mod_plugin": [
+      "cn.leolezury.eternalstarlight.common.compat.jei.ESJeiPlugin"
     ]
   },
   "mixins": [
