@@ -19,7 +19,7 @@ public record PushTowardsEntity(LevelBasedValue minSpeed, LevelBasedValue maxSpe
 			float speed = Math.max(0, Mth.randomBetween(entity.getRandom(), this.minSpeed.calculate(i), this.maxSpeed.calculate(i)));
 			Vec3 velocity = entity.position().subtract(enchantedItemInUse.owner().position()).normalize().scale(speed);
 			enchantedItemInUse.owner().hurtMarked = true;
-			enchantedItemInUse.owner().setDeltaMovement(enchantedItemInUse.owner().getDeltaMovement().add(velocity));
+			enchantedItemInUse.owner().addDeltaMovement(velocity);
 		}
 	}
 

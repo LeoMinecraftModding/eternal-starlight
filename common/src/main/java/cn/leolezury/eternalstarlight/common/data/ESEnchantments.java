@@ -53,7 +53,7 @@ public class ESEnchantments {
 			.build(POISONING.location()));
 		context.register(FEARLESS, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ItemTags.SHARP_WEAPON_ENCHANTABLE), items.getOrThrow(ItemTags.SWORD_ENCHANTABLE), 10, 2, Enchantment.dynamicCost(1, 11), Enchantment.dynamicCost(21, 11), 1, EquipmentSlotGroup.MAINHAND))
 			.withEffect(EnchantmentEffectComponents.KNOCKBACK, new AddValue(LevelBasedValue.perLevel(0.5F)))
-			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.VICTIM, new PushTowardsEntity(LevelBasedValue.constant(0.4F), LevelBasedValue.perLevel(0.4F, 0.3F)))
+			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.VICTIM, new PushTowardsEntity(LevelBasedValue.constant(0.1F), LevelBasedValue.perLevel(0.1F, 0.2F)))
 			.build(FEARLESS.location()));
 		context.register(SOUL_SNATCHER, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE), 10, 3, Enchantment.dynamicCost(25, 25), Enchantment.dynamicCost(75, 25), 1, EquipmentSlotGroup.MAINHAND))
 			.withEffect(EnchantmentEffectComponents.DAMAGE, new AddValue(LevelBasedValue.perLevel(0.5F)), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(ESEntities.CHAIN_OF_SOULS.get())))
