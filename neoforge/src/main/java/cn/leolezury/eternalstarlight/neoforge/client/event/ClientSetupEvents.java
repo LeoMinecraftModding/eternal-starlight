@@ -25,12 +25,15 @@ import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -149,6 +152,11 @@ public class ClientSetupEvents {
 			@Override
 			public ResourceLocation getFlowingTexture() {
 				return EternalStarlight.id("block/ether_flow");
+			}
+
+			@Override
+			public int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
+				return ESClientHandler.getEtherTint(getter, pos);
 			}
 
 			@Override

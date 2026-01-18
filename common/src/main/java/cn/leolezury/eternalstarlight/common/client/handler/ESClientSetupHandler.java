@@ -419,7 +419,7 @@ public class ESClientSetupHandler {
 		EternalStarlight.id("switch_crest"), new KeyMapping(Util.makeDescriptionId("key", EternalStarlight.id("switch_crest")), InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, KEY_CATEGORY_ETERNAL_STARLIGHT)
 	);
 
-	private static final SimplexNoise COLOR_NOISE = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(1225L)));
+	public static final SimplexNoise COLOR_NOISE = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(1225L)));
 
 	public static void clientSetup() {
 		registerSimpleSpecialModel("thermal_springstone_scythe");

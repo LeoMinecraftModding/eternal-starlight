@@ -31,11 +31,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
+import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.FluidState;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -93,7 +97,12 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 		FluidRenderHandlerRegistry.INSTANCE.register(ESFluids.ETHER_STILL.get(), ESFluids.ETHER_FLOWING.get(), new SimpleFluidRenderHandler(
 			EternalStarlight.id("block/ether"),
 			EternalStarlight.id("block/ether_flow")
-		));
+		) {
+			@Override
+			public int getFluidColor(@Nullable BlockAndTintGetter view, @Nullable BlockPos pos, FluidState state) {
+				return ESClientHandler.getEtherTint(view, pos);
+			}
+		});
 
 		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new FabricItemStackRenderer());
 		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.FLOWGLAZE_SHIELD.get(), new FabricItemStackRenderer());
