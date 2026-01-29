@@ -52,6 +52,15 @@
               },
               {
                 "data": {
+                  "Name": "eternal_starlight:pungency_fruit_vines",
+                  "Properties": {
+                    "age": "7"
+                  }
+                },
+                "weight": 3
+              },
+              {
+                "data": {
                   "Name": "eternal_starlight:swamp_rose"
                 },
                 "weight": 2
@@ -71,24 +80,6 @@
               {
                 "data": {
                   "Name": "eternal_starlight:starlight_flower"
-                },
-                "weight": 1
-              },
-              {
-                "data": {
-                  "Name": "eternal_starlight:pungency_fruit_vines",
-                  "Properties": {
-                    "age": "0"
-                  }
-                },
-                "weight": 1
-              },
-              {
-                "data": {
-                  "Name": "eternal_starlight:pungency_fruit_vines",
-                  "Properties": {
-                    "age": "2"
-                  }
                 },
                 "weight": 1
               }

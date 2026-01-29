@@ -49,7 +49,7 @@ public class ESConfig {
 		public final AttackingMobConfig luminofish = new AttackingMobConfig(3, 0, 3, 16, true);
 		public final AttackingMobConfig luminaris = new AttackingMobConfig(3, 0, 3, 64, true);
 		public final AttackingMobConfig twilightGaze = new AttackingMobConfig(10, 0, 3, 16, true);
-		public final AttackingMobConfig theGatekeeper = new AttackingMobConfig(175, 15, 5, 200, true);
+		public final GatekeeperConfig theGatekeeper = new GatekeeperConfig(175, 15, 5, 200, true, false);
 		public final BossConfig starlightGolem = new BossConfig(200, 10, 1, 200, true);
 		public final AttackingMobConfig freeze = new AttackingMobConfig(15, 0, 3, 32, true);
 		public final BossConfig permafrost = new BossConfig(120, 10, 1, 200, true);
@@ -61,6 +61,9 @@ public class ESConfig {
 		}
 
 		public record StranghoulConfig(double maxHealth, double armor, double attackDamage, double followRange, boolean canSpawn, int hiringCooldown) {
+		}
+
+		public record GatekeeperConfig(double maxHealth, double armor, double attackDamage, double followRange, boolean canSpawn, boolean canAlwaysHurtWhenFighting) {
 		}
 
 		public record BossConfig(double maxHealth, double armor, double attackDamageScale, double followRange, boolean canSpawn) {

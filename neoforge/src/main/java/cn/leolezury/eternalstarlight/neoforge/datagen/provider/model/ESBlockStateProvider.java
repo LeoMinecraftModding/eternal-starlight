@@ -355,9 +355,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.DEAD_CRYSTALLUM_CORAL_BLOCK.get());
 		simpleBlock(ESBlocks.CRYSTALLUM_CORAL_BLOCK.get());
 		mushroomLikeBlock(ESBlocks.VELVETUMOSS.get());
-		directionalCrossCropBud(ESBlocks.VELVETUMOSS_VILLI.get());
+		directionalDenseCrossBud(ESBlocks.VELVETUMOSS_VILLI.get());
 		simpleBlock(ESBlocks.RED_VELVETUMOSS.get());
-		directionalCrossCropBud(ESBlocks.RED_VELVETUMOSS_VILLI.get());
+		directionalDenseCrossBud(ESBlocks.RED_VELVETUMOSS_VILLI.get());
 		cross(ESBlocks.RED_VELVETUMOSS_FLOWER.get());
 		pottedPlant(ESBlocks.POTTED_RED_VELVETUMOSS_FLOWER.get(), blockTexture(ESBlocks.RED_VELVETUMOSS_FLOWER.get()));
 
@@ -703,10 +703,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void pungencyFruit(Block block) {
-		ModelFile stage0 = models().cross(name(block) + "_stage0", blockTexture(block).withSuffix("_stage0")).renderType(CUTOUT);
-		ModelFile stage1 = models().cross(name(block) + "_stage1", blockTexture(block).withSuffix("_stage1")).renderType(CUTOUT);
-		ModelFile stage2 = models().cross(name(block) + "_stage2", blockTexture(block).withSuffix("_stage2")).renderType(CUTOUT);
-		ModelFile stage3 = models().cross(name(block) + "_stage3", blockTexture(block).withSuffix("_stage3")).renderType(CUTOUT);
+		ModelFile stage0 = models().singleTexture(name(block) + "_stage0", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage0")).renderType(CUTOUT);
+		ModelFile stage1 = models().singleTexture(name(block) + "_stage1", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage1")).renderType(CUTOUT);
+		ModelFile stage2 = models().singleTexture(name(block) + "_stage2", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage2")).renderType(CUTOUT);
+		ModelFile stage3 = models().singleTexture(name(block) + "_stage3", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage3")).renderType(CUTOUT);
 		getVariantBuilder(block)
 			.partialState().with(BlockStateProperties.AGE_7, 0)
 			.modelForState().modelFile(stage0).addModel()
@@ -915,8 +915,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		});
 	}
 
-	private void directionalCrossCropBud(Block block) {
-		ModelFile modelFile = models().singleTexture(name(block), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/cross_crop"), "cross", blockTexture(block)).renderType(CUTOUT);
+	private void directionalDenseCrossBud(Block block) {
+		ModelFile modelFile = models().singleTexture(name(block), EternalStarlight.id(ModelProvider.BLOCK_FOLDER + "/dense_cross"), "cross", blockTexture(block)).renderType(CUTOUT);
 		getVariantBuilder(block).forAllStates((state) -> {
 			Direction direction = state.getValue(BlockStateProperties.FACING);
 			int rotX = direction == Direction.DOWN ? 180 : direction == Direction.UP ? 0 : 90;

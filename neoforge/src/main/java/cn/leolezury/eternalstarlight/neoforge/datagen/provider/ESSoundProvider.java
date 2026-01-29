@@ -62,6 +62,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.ARMOR_EQUIP_STARLIT_DIAMOND.get(), definition().with(sound(mcLoc("item/armor/equip_diamond1")), sound(mcLoc("item/armor/equip_diamond2")), sound(mcLoc("item/armor/equip_diamond3")), sound(mcLoc("item/armor/equip_diamond4")), sound(mcLoc("item/armor/equip_diamond5")), sound(mcLoc("item/armor/equip_diamond6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_starlit_diamond"));
 		add(ESSoundEvents.ARMOR_EQUIP_DEEPSILVER.get(), definition().with(sound(mcLoc("item/armor/equip_diamond1")), sound(mcLoc("item/armor/equip_diamond2")), sound(mcLoc("item/armor/equip_diamond3")), sound(mcLoc("item/armor/equip_diamond4")), sound(mcLoc("item/armor/equip_diamond5")), sound(mcLoc("item/armor/equip_diamond6"))).subtitle("subtitles.item.armor." + EternalStarlight.ID + ".equip_deepsilver"));
 
+		add(ESSoundEvents.WHIP_CRACK.get(), definition().with(sound(loc("item/whip/crack"))).subtitle("subtitles.item." + EternalStarlight.ID + ".whip.crack"));
+
 		add(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get(), definition().with(sound(loc("item/chain_of_souls/absorb"))).subtitle("subtitles.item." + EternalStarlight.ID + ".chain_of_souls.absorb"));
 
 		add(ESSoundEvents.CRESCENT_SPEAR_THROW.get(), definition().with(sound(loc("item/crescent_spear/throw"))).subtitle("subtitles.item." + EternalStarlight.ID + ".crescent_spear.throw"));

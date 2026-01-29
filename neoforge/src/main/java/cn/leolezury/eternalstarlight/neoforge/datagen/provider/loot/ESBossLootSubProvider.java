@@ -73,6 +73,8 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get())))
 				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.OXIDIZED_ALLOY_FURNACE.get())))
+				.withPool(LootPool.lootPool()
 					.when(LootItemRandomChanceCondition.randomChance(0.75f))
 					.add(LootItem.lootTableItem(ESItems.ENERGY_SWORD.get())))
 				.withPool(LootPool.lootPool()

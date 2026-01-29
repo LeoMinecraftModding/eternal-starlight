@@ -699,6 +699,12 @@
     ],
     "subtitle": "subtitles.item.eternal_starlight.seeds_launcher.shoot"
   },
+  "item.whip.crack": {
+    "sounds": [
+      "eternal_starlight:item/whip/crack"
+    ],
+    "subtitle": "subtitles.item.eternal_starlight.whip.crack"
+  },
   "music.biome.crystallized_desert": {
     "sounds": [
       {

@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -144,6 +146,7 @@ public abstract class Whip extends Entity {
 			if (player != null) {
 				setPos(player.getEyePosition());
 				if (getSpawnedTicks() == getLifespan() / 2) {
+					playSound(ESSoundEvents.WHIP_CRACK.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 					Vec3 endPos = ESMathUtil.rotationToPosition(player.getEyePosition(), (float) player.getAttributeValue(Attributes.ENTITY_INTERACTION_RANGE), -owner.getXRot(), owner.getYHeadRot() + 90);
 					BlockHitResult hitResult = level().clip(new ClipContext(player.getEyePosition(), endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.of(this)));
 					if (hitResult.getType() != HitResult.Type.MISS) {
@@ -152,7 +155,7 @@ public abstract class Whip extends Entity {
 					List<Entity> entities = level().getEntitiesOfClass(Entity.class, new AABB(player.getEyePosition(), endPos).inflate(1));
 					for (Entity entity : entities) {
 						AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + 1.5f);
-						if (entity != player && aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent()) {
+						if (ESEntityUtil.shouldHarm(player, entity) && aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent()) {
 							DamageSource damageSource = damageSources().playerAttack(player);
 							float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 							float knockback = player.getKnockback(entity, damageSource);

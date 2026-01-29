@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-17T22:26:39.6193371	Loot Tables
+// 1.21.1	2026-01-29T20:19:16.8471699	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -761,7 +761,7 @@ fb9cb6127147441247d93f0c6f7f21290b6c18bf data/eternal_starlight/loot_table/block
 019c8a21885af7e74b31f81187c1fef117ea2d61 data/eternal_starlight/loot_table/blocks/yellow_yeti_fur_carpet.json
 c2f9d2975c758e6f18efee62af3f19da0bd3353c data/eternal_starlight/loot_table/bosses/boss_common.json
 3b03f2cea5d594142d9970a79ea570d9f088f29e data/eternal_starlight/loot_table/bosses/lunar_monstrosity.json
-4d98015a2e867768002affc3fa470cafa25e877b data/eternal_starlight/loot_table/bosses/starlight_golem.json
+7ee6e19d8e02f166f75e58fe2c4f7914bababab2 data/eternal_starlight/loot_table/bosses/starlight_golem.json
 32ecaadca66ddc88abfa3372a4ba3d9c2ec433d9 data/eternal_starlight/loot_table/bosses/the_gatekeeper.json
 890afa5631ca14e49ce7f315fbbcfcf6aab0cf5b data/eternal_starlight/loot_table/chests/accessories.json
 a70268850fb31f840686efda04865677d23cf303 data/eternal_starlight/loot_table/chests/cursed_garden.json
@@ -804,5 +804,5 @@ ed91cb96fb35e52e950d7a03bb62f4f8db3070f1 data/eternal_starlight/loot_table/entit
 873b73b2a515f76ce9f9b8a310e54a79ba67f58d data/eternal_starlight/loot_table/gameplay/fishing/fish.json
 27030c6c8244904e555ee54803edf8afc9da27d5 data/eternal_starlight/loot_table/gameplay/fishing/junk.json
 2276f2735324eb263ef5fa2f1776b450c951db20 data/eternal_starlight/loot_table/gameplay/fishing/treasure.json
-e2dcd2c0c76dbbe3731551acc6e4feb8240db56b data/eternal_starlight/loot_table/gameplay/starfire_bird_gift.json
+41567ac9227e44632674c2a64fdc2b2fd93b5458 data/eternal_starlight/loot_table/gameplay/starfire_bird_gift.json
 ccc6c6cb6eb73083cde70516cf8c5942328e24b3 data/eternal_starlight/loot_table/gameplay/stranghoul_bartering.json

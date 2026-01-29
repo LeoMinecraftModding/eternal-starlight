@@ -7,145 +7,13 @@
   "elements": [
     {
       "from": [
-        4,
-        -1,
-        0
-      ],
-      "to": [
-        4,
-        15,
-        16
-      ],
-      "shade": false,
-      "faces": {
-        "west": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#cross"
-        },
-        "east": {
-          "uv": [
-            16,
-            0,
-            0,
-            16
-          ],
-          "texture": "#cross"
-        }
-      }
-    },
-    {
-      "from": [
-        12,
-        -1,
-        0
-      ],
-      "to": [
-        12,
-        15,
-        16
-      ],
-      "shade": false,
-      "faces": {
-        "west": {
-          "uv": [
-            16,
-            0,
-            0,
-            16
-          ],
-          "texture": "#cross"
-        },
-        "east": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#cross"
-        }
-      }
-    },
-    {
-      "from": [
-        0,
-        -1,
-        4
-      ],
-      "to": [
-        16,
-        15,
-        4
-      ],
-      "shade": false,
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#cross"
-        },
-        "south": {
-          "uv": [
-            16,
-            0,
-            0,
-            16
-          ],
-          "texture": "#cross"
-        }
-      }
-    },
-    {
-      "from": [
-        0,
-        -1,
-        12
-      ],
-      "to": [
-        16,
-        15,
-        12
-      ],
-      "shade": false,
-      "faces": {
-        "north": {
-          "uv": [
-            16,
-            0,
-            0,
-            16
-          ],
-          "texture": "#cross"
-        },
-        "south": {
-          "uv": [
-            0,
-            0,
-            16,
-            16
-          ],
-          "texture": "#cross"
-        }
-      }
-    },
-    {
-      "from": [
         0.8,
-        0,
+        -1,
         8
       ],
       "to": [
         15.2,
-        16,
+        15,
         8
       ],
       "rotation": {
@@ -183,12 +51,12 @@
     {
       "from": [
         8,
-        0,
+        -1,
         0.8
       ],
       "to": [
         8,
-        16,
+        15,
         15.2
       ],
       "rotation": {
