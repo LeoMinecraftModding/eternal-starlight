@@ -159,6 +159,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MUSIC_DISC_ATLANTIS.get(),
 				ESItems.MUSIC_DISC_SACRED_DESERT.get(),
 				ESItems.MUSIC_DISC_SPIRIT.get(),
+				ESItems.MUSIC_DISC_ETHER_RAIN.get(),
 				ESItems.MUSIC_DISC_BRISK.get(),
 				ESItems.MUSIC_DISC_MOONLIGHT.get()
 			);

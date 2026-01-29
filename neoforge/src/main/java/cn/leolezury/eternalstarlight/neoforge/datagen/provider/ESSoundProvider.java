@@ -51,6 +51,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_DISC_ATLANTIS.get(), definition().with(sound(loc("music/disc/atlantis")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SACRED_DESERT.get(), definition().with(sound(loc("music/disc/sacred_desert")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SPIRIT.get(), definition().with(sound(loc("music/disc/spirit")).stream()));
+		add(ESSoundEvents.MUSIC_DISC_ETHER_RAIN.get(), definition().with(sound(loc("music/disc/ether_rain")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_BRISK.get(), definition().with(sound(loc("music/disc/brisk")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_MOONLIGHT.get(), definition().with(sound(loc("music/disc/moonlight")).stream()));
 

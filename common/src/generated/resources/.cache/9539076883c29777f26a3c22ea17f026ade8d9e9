@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-07T23:10:54.716282	Item Models: eternal_starlight
+// 1.21.1	2026-01-29T22:23:47.9368505	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -638,6 +638,7 @@ d2f3f749605e572d344c8d02baf4da5c364d55d6 assets/eternal_starlight/models/item/mo
 509e68314fd59133766ed3627fae17ce9dec2cea assets/eternal_starlight/models/item/music_disc_atlantis.json
 55fa930a53ce3e0e8904fc32bfd739622187f13b assets/eternal_starlight/models/item/music_disc_brisk.json
 3b1ae61e5d5c1fa919756f6cfb87807ce09f550a assets/eternal_starlight/models/item/music_disc_dusk_o_ereyesterday.json
+f6bbaaa3259b016eca0e3950fb30719010b0c8c7 assets/eternal_starlight/models/item/music_disc_ether_rain.json
 a69d72cfc5b87a5da5de888236f3de23b23f1e47 assets/eternal_starlight/models/item/music_disc_fake_light.json
 090ca7a4a4b481631f4a9b796e64b8b8785dd08c assets/eternal_starlight/models/item/music_disc_mechanical_fossil.json
 798f7b5efb25979502c90ccf6eeada576084cf72 assets/eternal_starlight/models/item/music_disc_moonlight.json

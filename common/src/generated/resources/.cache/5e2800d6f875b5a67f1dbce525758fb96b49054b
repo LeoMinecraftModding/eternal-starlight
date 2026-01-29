@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-17T16:13:16.1791429	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2026-01-29T22:23:47.9653577	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -53,7 +53,7 @@ d88851581a47440b0529170c7d1a11014c76543f data/c/tags/item/ingots.json
 4a66752de496fc09ad870818723697db59c9eeb7 data/c/tags/item/ingots/oxidized_golem_steel.json
 f385c8660651bf8d8c80e7697a58141b6eeaebed data/c/tags/item/ingots/thermal_springstone.json
 3b914b21b54471b0517d4408a01d6993cdb226f9 data/c/tags/item/mushrooms.json
-98961fd2ec9451359a1b73ee0503aa0134a48565 data/c/tags/item/music_discs.json
+659b13b61806bd5e9df19ea2072fd0a4f8f834d8 data/c/tags/item/music_discs.json
 6e13aed256dc8b930af8f3511b43b259f0a54166 data/c/tags/item/nuggets.json
 e590937ef043d5bf6e6876f27d2dc83089b3c8ee data/c/tags/item/nuggets/aethersent.json
 f4dc3980b35bfbf6e5c114f953c888f305966075 data/c/tags/item/nuggets/amaramber.json

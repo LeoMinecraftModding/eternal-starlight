@@ -37,6 +37,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_ATLANTIS = register("music_disc.atlantis");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SACRED_DESERT = register("music_disc.sacred_desert");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SPIRIT = register("music_disc.spirit");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_ETHER_RAIN = register("music_disc.ether_rain");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_BRISK = register("music_disc.brisk");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_MOONLIGHT = register("music_disc.moonlight");
 

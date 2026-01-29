@@ -506,8 +506,8 @@ public class ESCommonHandler {
 			if (!level.isClientSide) {
 				if (item.tickCount % 100 == 0 && ESBlockUtil.isEntityInBlock(item, ESBlocks.ETHER.get())) {
 					ItemStack content = item.getItem();
-					if (content.is(ConventionalTags.Items.MUSIC_DISCS) && !content.is(ESItems.MUSIC_DISC_SPIRIT.get())) {
-						item.setItem(ESItems.MUSIC_DISC_SPIRIT.get().getDefaultInstance());
+					if (content.is(ConventionalTags.Items.MUSIC_DISCS) && !content.is(ESItems.MUSIC_DISC_SPIRIT.get()) && !content.is(ESItems.MUSIC_DISC_ETHER_RAIN.get())) {
+						item.setItem(level.getRandom().nextBoolean() ? ESItems.MUSIC_DISC_SPIRIT.get().getDefaultInstance() : ESItems.MUSIC_DISC_ETHER_RAIN.get().getDefaultInstance());
 						item.addDeltaMovement(new Vec3(0, 0.75, 0));
 						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
 					} else if (content.is(ESItems.STARLIT_PAINTING.get())) {

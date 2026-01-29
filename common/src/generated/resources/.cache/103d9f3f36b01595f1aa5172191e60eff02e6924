@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-29T20:40:27.2744821	Registries
+// 1.21.1	2026-01-29T22:23:47.956357	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -94,6 +94,7 @@ e47aa646caa6399d90ddcf6b03ba9e608fc6e015 data/eternal_starlight/eternal_starligh
 e15f0bd0e7e3b51382f047e8bcfdf903b1138c02 data/eternal_starlight/jukebox_song/atlantis.json
 ee7143229a7661232af18768b138bf9090847044 data/eternal_starlight/jukebox_song/brisk.json
 51cdfdfca5ecfb42a003ad991a99973bf868e144 data/eternal_starlight/jukebox_song/dusk_o_ereyesterday.json
+b62303d50d1c32a6acf99ede3589ae382f3a624e data/eternal_starlight/jukebox_song/ether_rain.json
 4156b3ac37b2edb6a583a5aad5136561f83e7839 data/eternal_starlight/jukebox_song/fake_light.json
 acb4e01b7f652aeee9becadf87512b6b4a8da68a data/eternal_starlight/jukebox_song/mechanical_fossil.json
 ad4031f39c0a90404ad04ca24afe64bd57642cd2 data/eternal_starlight/jukebox_song/moonlight.json

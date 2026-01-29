@@ -968,6 +968,14 @@
       }
     ]
   },
+  "music_disc.ether_rain": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/disc/ether_rain",
+        "stream": true
+      }
+    ]
+  },
   "music_disc.fake_light": {
     "sounds": [
       {

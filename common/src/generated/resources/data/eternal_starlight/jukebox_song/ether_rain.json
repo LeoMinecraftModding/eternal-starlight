@@ -1,0 +1,8 @@
+{
+  "comparator_output": 9,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.ether_rain"
+  },
+  "length_in_seconds": 125.0,
+  "sound_event": "eternal_starlight:music_disc.ether_rain"
+}
