@@ -45,7 +45,8 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.PUNGENCY_FRUIT_SMOKE.get(), mcLoc("generic"), 8, true);
 		spriteSet(ESParticles.STARFIRE_EXPLOSION.get(), loc("starfire_explosion"), 5, false);
 		spriteSet(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), loc("starfire_explosion_small"), 6, false);
-		spriteSet(ESParticles.BIG_EXPLOSION.get(), loc("explosion"), 16, false);
+		spriteSet(ESParticles.BLAST.get(), loc("blast"), 5, false);
+		spriteSet(ESParticles.SOUL_TRAIL.get(), loc("soul_trail"), 5, false);
 		sprite(ESParticles.STARFIRE.get(), loc("starfire"));
 		sprite(ESParticles.ADVANCED_GLOW.get(), loc("glow"));
 		sprite(ESParticles.SHINE.get(), loc("shine"));

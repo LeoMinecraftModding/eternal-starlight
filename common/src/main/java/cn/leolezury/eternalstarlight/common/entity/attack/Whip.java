@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
@@ -165,6 +166,7 @@ public abstract class Whip extends Entity {
 							}
 							if (entity.hurt(damageSource, damage)) {
 								if (level() instanceof ServerLevel serverLevel) {
+									serverLevel.sendParticles(ESExplosionParticleOptions.BLAST, entity.getX() + (getRandom().nextFloat() - 0.5) * entity.getBbWidth(), entity.getY() + getRandom().nextFloat() * entity.getBbHeight(), entity.getZ() + (getRandom().nextFloat() - 0.5) * entity.getBbWidth(), 1, 0.2, 0.2, 0.2, 0.0);
 									EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
 								}
 								if (entity instanceof LivingEntity livingEntity) {

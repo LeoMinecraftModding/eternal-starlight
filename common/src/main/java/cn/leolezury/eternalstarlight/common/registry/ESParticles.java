@@ -31,12 +31,23 @@ public class ESParticles {
 	public static final RegistryObject<ParticleType<?>, ParticleType<ESExplosionParticleOptions>> EXPLOSION = PARTICLE_TYPES.register("explosion", () -> new ParticleType<>(false) {
 		@Override
 		public MapCodec<ESExplosionParticleOptions> codec() {
-			return ESExplosionParticleOptions.CODEC;
+			return ESExplosionParticleOptions.codec(ESParticles.EXPLOSION.get());
 		}
 
 		@Override
 		public StreamCodec<? super RegistryFriendlyByteBuf, ESExplosionParticleOptions> streamCodec() {
-			return ESExplosionParticleOptions.STREAM_CODEC;
+			return ESExplosionParticleOptions.streamCodec(ESParticles.EXPLOSION.get());
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<ESExplosionParticleOptions>> BLAST = PARTICLE_TYPES.register("blast", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<ESExplosionParticleOptions> codec() {
+			return ESExplosionParticleOptions.codec(ESParticles.BLAST.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, ESExplosionParticleOptions> streamCodec() {
+			return ESExplosionParticleOptions.streamCodec(ESParticles.BLAST.get());
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, ParticleType<ESSmokeParticleOptions>> SMOKE = PARTICLE_TYPES.register("smoke", () -> new ParticleType<>(false) {
@@ -120,7 +131,7 @@ public class ESParticles {
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> STARFIRE = PARTICLE_TYPES.register("starfire", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> STARFIRE_EXPLOSION = PARTICLE_TYPES.register("starfire_explosion", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> STARFIRE_EXPLOSION_SMALL = PARTICLE_TYPES.register("starfire_explosion_small", () -> new SimpleParticleType(false));
-	public static final RegistryObject<ParticleType<?>, SimpleParticleType> BIG_EXPLOSION = PARTICLE_TYPES.register("big_explosion", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> SOUL_TRAIL = PARTICLE_TYPES.register("soul_trail", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ADVANCED_GLOW = PARTICLE_TYPES.register("advanced_glow", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> SHINE = PARTICLE_TYPES.register("shine", () -> new SimpleParticleType(false));
 

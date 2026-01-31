@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.GrimstoneGolemModel;
+import cn.leolezury.eternalstarlight.common.client.renderer.layer.GrimstoneGolemGlowLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -26,6 +27,7 @@ public class GrimstoneGolemRenderer<T extends GrimstoneGolem> extends MobRendere
 	public GrimstoneGolemRenderer(EntityRendererProvider.Context context) {
 		super(context, new GrimstoneGolemModel<>(context.bakeLayer(GrimstoneGolemModel.LAYER_LOCATION)), 0.3f);
 		this.itemRenderer = context.getItemRenderer();
+		this.addLayer(new GrimstoneGolemGlowLayer<>(this));
 	}
 
 	@Override

@@ -81,6 +81,18 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 		}
 	}
 
+	public boolean canReachTargetXZ(T entity, double range) {
+		if (entity instanceof Targeting targeting) {
+			LivingEntity target = targeting.getTarget();
+			if (target == null) {
+				return false;
+			}
+			return Mth.sqrt((float) ((entity.getX() - target.getX()) * (entity.getX() - target.getX()) + (entity.getZ() - target.getZ()) * (entity.getZ() - target.getZ()))) <= range + entity.getBbWidth() / 2f + target.getBbWidth() / 2f;
+		} else {
+			return false;
+		}
+	}
+
 	public boolean isFacingTarget(T entity, float maxDiff) {
 		return isFacingTarget(entity, maxDiff, entity.getYRot() + 90);
 	}

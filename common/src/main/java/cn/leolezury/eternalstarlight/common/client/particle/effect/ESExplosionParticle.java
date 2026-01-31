@@ -10,9 +10,9 @@ import net.minecraft.client.renderer.LightTexture;
 
 @Environment(EnvType.CLIENT)
 public class ESExplosionParticle extends SimpleAnimatedParticle {
-	protected ESExplosionParticle(ClientLevel level, double d, double e, double f, int fromColor, int toColor, SpriteSet spriteSet, float g) {
+	protected ESExplosionParticle(ClientLevel level, float lifeMultiplier, double d, double e, double f, int fromColor, int toColor, SpriteSet spriteSet, float g) {
 		super(level, d, e, f, spriteSet, g);
-		this.lifetime = 6 + this.random.nextInt(4);
+		this.lifetime = (int) ((6 + this.random.nextInt(4)) * lifeMultiplier);
 		this.quadSize = (float) ((8f + 2f * Math.random()) * quadSize);
 		this.setColor(fromColor);
 		this.setFadeColor(toColor);
@@ -38,7 +38,7 @@ public class ESExplosionParticle extends SimpleAnimatedParticle {
 
 		@Override
 		public Particle createParticle(ESExplosionParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new ESExplosionParticle(level, x, y, z, Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), this.sprites, 0);
+			return new ESExplosionParticle(level, options.lifeScale(), x, y, z, Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), this.sprites, 0);
 		}
 	}
 }

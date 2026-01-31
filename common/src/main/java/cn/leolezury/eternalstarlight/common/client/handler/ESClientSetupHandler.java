@@ -773,6 +773,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), SonarParticle.Provider::new);
 		strategy.register(ESParticles.AMARAMBER_FLAME.get(), FlameParticle.Provider::new);
 		strategy.register(ESParticles.EXPLOSION.get(), ESExplosionParticle.Provider::new);
+		strategy.register(ESParticles.BLAST.get(), ESExplosionParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE.get(), ESSmokeParticle.Provider::new);
 		strategy.register(ESParticles.RING_EXPLOSION.get(), RingExplosionParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_TRAIL.get(), OrbitalTrailParticle.Provider::new);
@@ -819,7 +820,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.STARFIRE.get(), StarfireParticle.Provider::new);
 		strategy.register(ESParticles.STARFIRE_EXPLOSION.get(), StarfireExplosionParticle.Provider::new);
 		strategy.register(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), StarfireExplosionParticle.SmallProvider::new);
-		strategy.register(ESParticles.BIG_EXPLOSION.get(), BigExplosionParticle.Provider::new);
+		strategy.register(ESParticles.SOUL_TRAIL.get(), FlameParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}

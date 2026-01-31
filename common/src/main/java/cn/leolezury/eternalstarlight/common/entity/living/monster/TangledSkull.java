@@ -5,11 +5,11 @@ import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -244,13 +244,13 @@ public class TangledSkull extends Monster {
 			if (isShot()) {
 				setDeltaMovement(getShotMovement());
 				HitResult result = ProjectileUtil.getHitResultOnMoveVector(this, entity -> true);
-				if (isShotFromMonstrosity() && result.getType() == HitResult.Type.ENTITY && ((EntityHitResult) result).getEntity() instanceof LivingEntity living && !living.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)) {
+				if (isShotFromMonstrosity() && result.getType() == HitResult.Type.ENTITY && ((EntityHitResult) result).getEntity() instanceof LivingEntity living && !isAlliedTo(living)) {
 					living.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 60));
 					living.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 60));
 					living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60));
 					living.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60));
 				}
-				boolean ally = isShotFromMonstrosity() && result.getType() == HitResult.Type.ENTITY && ((EntityHitResult) result).getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
+				boolean ally = isShotFromMonstrosity() && result.getType() == HitResult.Type.ENTITY && isAlliedTo(((EntityHitResult) result).getEntity());
 				if (result.getType() != HitResult.Type.MISS && !ally) {
 					this.level().explode(this, this.getX(), this.getY(), this.getZ(), 1, Level.ExplosionInteraction.NONE);
 					if (isShotFromMonstrosity() && level() instanceof ServerLevel serverLevel) {
@@ -260,7 +260,7 @@ public class TangledSkull extends Monster {
 				}
 			}
 		} else {
-			level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, xo, yo + getBbHeight() / 2, zo, 0, 0, 0);
+			level().addParticle(ESParticles.SOUL_TRAIL.get(), xo, yo + getBbHeight() / 2, zo, 0, 0, 0);
 		}
 	}
 
