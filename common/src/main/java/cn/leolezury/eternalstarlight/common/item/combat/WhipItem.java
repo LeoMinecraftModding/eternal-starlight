@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -41,7 +42,9 @@ public abstract class WhipItem extends TieredItem implements Swingable {
 		ItemStack stack = player.getItemInHand(hand);
 		if (hand == InteractionHand.MAIN_HAND && !level.isClientSide && !(level.getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip)) {
 			stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
-			level.addFreshEntity(createWhip(level, player, stack));
+			Whip whip = createWhip(level, player, stack);
+			level.addFreshEntity(whip);
+			whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
 			player.awardStat(Stats.ITEM_USED.get(this));
 		}
 		return hand == InteractionHand.MAIN_HAND ? InteractionResultHolder.sidedSuccess(stack, level.isClientSide) : InteractionResultHolder.pass(stack);
@@ -52,7 +55,9 @@ public abstract class WhipItem extends TieredItem implements Swingable {
 		Level level = entity.level();
 		if (hand == InteractionHand.MAIN_HAND && !level.isClientSide && entity instanceof Player player && !(level.getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip)) {
 			stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
-			level.addFreshEntity(createWhip(level, player, stack));
+			Whip whip = createWhip(level, player, stack);
+			level.addFreshEntity(whip);
+			whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
 		}
 	}
 

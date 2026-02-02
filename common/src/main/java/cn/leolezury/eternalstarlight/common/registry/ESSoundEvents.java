@@ -49,6 +49,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_STARLIT_DIAMOND = register("item.armor.equip_starlit_diamond");
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_DEEPSILVER = register("item.armor.equip_deepsilver");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> WHIP_SWISH = register("item.whip.swish");
 	public static final RegistryObject<SoundEvent, SoundEvent> WHIP_CRACK = register("item.whip.crack");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> CHAIN_OF_SOULS_ABSORB = register("item.chain_of_souls.absorb");

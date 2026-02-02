@@ -711,6 +711,12 @@
     ],
     "subtitle": "subtitles.item.eternal_starlight.whip.crack"
   },
+  "item.whip.swish": {
+    "sounds": [
+      "eternal_starlight:item/whip/swish"
+    ],
+    "subtitle": "subtitles.item.eternal_starlight.whip.swish"
+  },
   "music.biome.crystallized_desert": {
     "sounds": [
       {
