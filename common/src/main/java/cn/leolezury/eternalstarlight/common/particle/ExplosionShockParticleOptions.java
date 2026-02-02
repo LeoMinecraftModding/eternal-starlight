@@ -13,6 +13,7 @@ import net.minecraft.util.ExtraCodecs;
 import org.joml.Vector3f;
 
 public record ExplosionShockParticleOptions(Vector3f fromColor, Vector3f toColor, float lengthScale, float width, float lifeScale) implements ParticleOptions {
+	public static final ExplosionShockParticleOptions BLAST = new ExplosionShockParticleOptions(new Vector3f(255, 255, 255), new Vector3f(255, 255, 255), 0.3f, 0.06f, 0.5f);
 	public static final ExplosionShockParticleOptions AETHERSENT = new ExplosionShockParticleOptions(new Vector3f(255, 255, 255), new Vector3f(233, 173, 237), 1, 0.06f, 1);
 	public static final ExplosionShockParticleOptions CRESCENT_SPEAR = new ExplosionShockParticleOptions(new Vector3f(161, 223, 255), new Vector3f(124, 164, 213), 1, 0.06f, 1);
 	public static final ExplosionShockParticleOptions FROZEN = new ExplosionShockParticleOptions(new Vector3f(121, 178, 209), new Vector3f(192, 251, 255), 1, 0.06f, 1);

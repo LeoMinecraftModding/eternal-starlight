@@ -29,6 +29,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		sprite(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), loc("crystallized_moth_sonar"));
 		sprite(ESParticles.AMARAMBER_FLAME.get(), loc("amaramber_flame"));
 		spriteSet(ESParticles.EXPLOSION.get(), mcLoc("explosion"), 16, false);
+		spriteSet(ESParticles.BLAST.get(), loc("blast"), 4, false);
 		spriteSet(ESParticles.SMOKE.get(), loc("big_smoke"), 12, false);
 		sprite(ESParticles.RING_EXPLOSION.get(), loc("ring"));
 		sprite(ESParticles.GLOW.get(), loc("glow"));
@@ -45,7 +46,6 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.PUNGENCY_FRUIT_SMOKE.get(), mcLoc("generic"), 8, true);
 		spriteSet(ESParticles.STARFIRE_EXPLOSION.get(), loc("starfire_explosion"), 5, false);
 		spriteSet(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), loc("starfire_explosion_small"), 6, false);
-		spriteSet(ESParticles.BLAST.get(), loc("blast"), 5, false);
 		spriteSet(ESParticles.SOUL_TRAIL.get(), loc("soul_trail"), 5, false);
 		sprite(ESParticles.STARFIRE.get(), loc("starfire"));
 		sprite(ESParticles.ADVANCED_GLOW.get(), loc("glow"));

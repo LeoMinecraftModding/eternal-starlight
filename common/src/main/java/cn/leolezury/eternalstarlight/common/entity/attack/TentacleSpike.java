@@ -20,4 +20,9 @@ public class TentacleSpike extends Whip {
 	public int getLifespan() {
 		return 10;
 	}
+
+	@Override
+	public float getWhipRange(float interactionRange) {
+		return interactionRange + 7;
+	}
 }

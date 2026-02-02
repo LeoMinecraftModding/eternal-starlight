@@ -809,7 +809,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MALARITE_SICKLE = registerItem("malarite_sickle",
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.MALARITE, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.MALARITE, 1, -1.5F))));
 	public static final RegistryObject<Item, Item> MALARITE_SPEAR = registerItem("malarite_spear",
-		() -> new MalariteSpearItem(new Item.Properties().attributes(MalariteSpearItem.createAttributes())));
+		() -> new MalariteSpearItem(ESItemTiers.MALARITE, new Item.Properties().attributes(SpearItem.createAttributes(ESItemTiers.MALARITE, 3, -2.7F))));
 
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_SEEDS = registerItem("pungency_fruit_seeds", () -> new PungencyFruitSeedsItem(ESBlocks.PUNGENCY_FRUIT_VINES.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT = registerItem("pungency_fruit", () -> new Item(new Item.Properties().food(ESFoods.PUNGENCY_FRUIT.get())));
@@ -829,7 +829,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_AXE = registerItem("pungency_fruit_axe",
 		() -> new AxeItem(ESItemTiers.PUNGENCY_FRUIT, new Item.Properties().attributes(AxeItem.createAttributes(ESItemTiers.PUNGENCY_FRUIT, 6, -3))));
 	public static final RegistryObject<Item, Item> PUNGENCY_FRUIT_SPEAR = registerItem("pungency_fruit_spear",
-		() -> new PungencyFruitSpearItem(new Item.Properties().attributes(PungencyFruitSpearItem.createAttributes())));
+		() -> new PungencyFruitSpearItem(ESItemTiers.PUNGENCY_FRUIT, new Item.Properties().attributes(SpearItem.createAttributes(ESItemTiers.PUNGENCY_FRUIT, 3, -2.7F))));
 
 	public static final RegistryObject<Item, Item> SEEDS_LAUNCHER = registerItem("seeds_launcher", () -> new SeedsLauncherItem(new Item.Properties().durability(500)));
 
@@ -961,6 +961,7 @@ public class ESItems {
 		() -> new ShovelItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(ShovelItem.createAttributes(ESItemTiers.AMARAMBER, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_SICKLE = registerItem("amaramber_sickle",
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.AMARAMBER, true, new Item.Properties().attributes(DiggerItem.createAttributes(ESItemTiers.AMARAMBER, 1, -1.5F))));
+	public static final RegistryObject<Item, Item> CANDLASH = registerItem("candlash", () -> new CandlashItem(ESItemTiers.AMARAMBER, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.AMARAMBER, 1.5F))));
 	public static final RegistryObject<Item, Item> AMARAMBER_MASK = registerItem("amaramber_mask",
 		() -> new ArmorItem(ESArmorMaterials.AMARAMBER.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
 	public static final RegistryObject<Item, Item> AMARAMBER_CHESTPLATE = registerItem("amaramber_chestplate",
@@ -1072,7 +1073,7 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> NIGHTFALL_SPIDER_EYE = registerItem("nightfall_spider_eye", () -> new Item(new Item.Properties()));
 
-	public static final RegistryObject<Item, Item> TENTACLE_SPIKE = registerItem("tentacle_spike", () -> new TentacleSpikeItem(new Item.Properties().durability(480)));
+	public static final RegistryObject<Item, Item> TENTACLE_SPIKE = registerItem("tentacle_spike", () -> new TentacleSpikeItem(ESItemTiers.TENTACLE_SPIKE, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.TENTACLE_SPIKE, 1.5F))));
 
 	public static final RegistryObject<Item, Item> TANGLED_SKULL = registerItem("tangled_skull", () -> new TangledSkullItem(ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
 
@@ -1202,7 +1203,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_GREATSWORD = registerItem("golem_steel_greatsword", () -> new GolemSteelGreatswordItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.GOLEM_STEEL, 6, -2.8F, 0.5F))));
 	public static final RegistryObject<Item, Item> CRYSTAL_CROSSBOW = registerItem("crystal_crossbow", () -> new CrystalCrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new MechanicalCrossbowItem(new Item.Properties().durability(1600).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> ENERGY_BOOMERANG = registerItem("energy_boomerang", () -> new EnergyBoomerangItem(new Item.Properties().attributes(EnergyBoomerangItem.createAttributes())));
+	public static final RegistryObject<Item, Item> ENERGY_BOOMERANG = registerItem("energy_boomerang", () -> new EnergyBoomerangItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().attributes(BoomerangItem.createAttributes(ESItemTiers.GOLEM_STEEL, 4, -3.0F))));
 	public static final RegistryObject<Item, Item> UNDERMINER = registerItem("underminer", () -> new PickaxeItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().rarity(Rarity.RARE).attributes(PickaxeItem.createAttributes(ESItemTiers.GOLEM_STEEL, 1, -2.8F))));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_BLOCK = registerItem("golem_steel_block", () -> new BlockItem(ESBlocks.GOLEM_STEEL_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> WAXED_GOLEM_STEEL_BLOCK = registerItem("waxed_golem_steel_block", () -> new BlockItem(ESBlocks.WAXED_GOLEM_STEEL_BLOCK.get(), new Item.Properties()));

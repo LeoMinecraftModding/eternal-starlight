@@ -4,36 +4,18 @@ import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownMalariteSpea
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownSpear;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
 public class MalariteSpearItem extends SpearItem {
-	public MalariteSpearItem(Item.Properties properties) {
-		super(ESItemTiers.MALARITE, properties.component(DataComponents.TOOL, createToolProperties()));
-	}
-
-	public static ItemAttributeModifiers createAttributes() {
-		return ItemAttributeModifiers.builder()
-			.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 5, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-			.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.7F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-			.build();
-	}
-
-	public static Tool createToolProperties() {
-		return new Tool(List.of(), 1.0F, 2);
+	public MalariteSpearItem(Tier tier, Item.Properties properties) {
+		super(tier, properties);
 	}
 
 	@Override

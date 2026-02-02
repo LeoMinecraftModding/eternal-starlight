@@ -71,6 +71,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 
 		add(ESSoundEvents.SEEDS_LAUNCHER_SHOOT.get(), definition().with(sound(loc("item/seeds_launcher/shoot"))).subtitle("subtitles.item." + EternalStarlight.ID + ".seeds_launcher.shoot"));
 
+		add(ESSoundEvents.AETHERSENT_METEOR_WHOOSH.get(), definition().with(sound(loc("entity/aethersent_meteor/whoosh"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".aethersent_meteor.whoosh"));
+
 		add(ESSoundEvents.LASER_BEAM_HUM.get(), definition().with(sound(loc("entity/laser_beam/hum"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".laser_beam.hum"));
 
 		add(ESSoundEvents.FROZEN_TUBE_THROW.get(), definition().with(sound(loc("entity/frozen_tube/throw"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".frozen_tube.throw"));

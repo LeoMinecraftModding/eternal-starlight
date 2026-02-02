@@ -1965,6 +1965,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addHoe(recipeOutput, ESItems.AMARAMBER_HOE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addShovel(recipeOutput, ESItems.AMARAMBER_SHOVEL.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addSickle(recipeOutput, ESItems.AMARAMBER_SICKLE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
+		addWhip(recipeOutput, ESItems.CANDLASH.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addHelmet(recipeOutput, ESItems.AMARAMBER_MASK.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addChestplate(recipeOutput, ESItems.AMARAMBER_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 
@@ -2055,7 +2056,7 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	protected final void addScythe(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("###")
 			.pattern("  H")
 			.pattern("  H")
@@ -2154,11 +2155,23 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	protected final void addSpear(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, output)
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("  #")
 			.pattern(" H ")
 			.pattern("H  ")
 			.define('#', input)
+			.define('H', Tags.Items.RODS_WOODEN)
+			.unlockedBy("has_item", has(input))
+			.save(recipeOutput);
+	}
+
+	protected final void addWhip(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
+			.pattern("  #")
+			.pattern(" S#")
+			.pattern("H  ")
+			.define('#', input)
+			.define('S', Tags.Items.STRINGS)
 			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);

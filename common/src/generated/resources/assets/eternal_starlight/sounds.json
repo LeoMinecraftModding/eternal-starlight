@@ -46,6 +46,12 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.aethersent_golem.shoot"
   },
+  "entity.aethersent_meteor.whoosh": {
+    "sounds": [
+      "eternal_starlight:entity/aethersent_meteor/whoosh"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.aethersent_meteor.whoosh"
+  },
   "entity.astral_golem.attack": {
     "sounds": [
       "mob/irongolem/throw"

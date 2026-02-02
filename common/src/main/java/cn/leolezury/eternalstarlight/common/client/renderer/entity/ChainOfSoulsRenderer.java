@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
+import cn.leolezury.eternalstarlight.common.client.model.entity.ChainOfSoulsModel;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
@@ -16,7 +17,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -32,9 +32,12 @@ import java.util.Optional;
 @Environment(EnvType.CLIENT)
 public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/chain_of_souls.png");
+	private static final ResourceLocation TIP_TEXTURE = EternalStarlight.id("textures/entity/chain_of_souls_tip.png");
+	private final ChainOfSoulsModel<ChainOfSouls> model;
 
 	public ChainOfSoulsRenderer(EntityRendererProvider.Context context) {
 		super(context);
+		this.model = new ChainOfSoulsModel<>(context.bakeLayer(ChainOfSoulsModel.LAYER_LOCATION));
 	}
 
 	@Override
@@ -44,6 +47,7 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 			stack.pushPose();
 			float attackAnim = player.getAttackAnim(partialTicks);
 			Entity target = chain.getTarget();
+			boolean attachedToBlock = chain.reachedTarget();
 			Vec3 handPos = getPlayerHandPos(player, Mth.sin(Mth.sqrt(attackAnim) * Mth.PI), partialTicks);
 			Vec3 endPos = new Vec3(Mth.lerp(partialTicks, chain.xo, chain.getX()), Mth.lerp(partialTicks, chain.yo, chain.getY()), Mth.lerp(partialTicks, chain.zo, chain.getZ()));
 			if (chain.isValidTarget(target)) {
@@ -51,26 +55,44 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 				Vec3 diff = targetPos.subtract(endPos);
 				stack.translate(diff.x(), diff.y(), diff.z());
 				endPos = targetPos;
+				attachedToBlock = false;
 			}
 			Vec3 offset = handPos.subtract(endPos);
 			float length = (float) offset.length();
 			float yRot = ESMathUtil.positionToYaw(offset);
 			float xRot = ESMathUtil.positionToPitch(offset);
+
+			if (attachedToBlock) {
+				stack.pushPose();
+			}
+
 			stack.mulPose(new Quaternionf().rotationX(90 * Mth.DEG_TO_RAD));
 			stack.mulPose(new Quaternionf().rotationZ((yRot - 90) * Mth.DEG_TO_RAD));
 			stack.mulPose(new Quaternionf().rotationX(-xRot * Mth.DEG_TO_RAD));
 			VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(ENTITY_TEXTURE));
 			Matrix4f pose = stack.last().pose();
 
-			vertexConsumer.addVertex(pose, -0.2f, 0, 0).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0.2f, 0, 0).setColor(-1).setUv(0.5f, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0.2f, length, 0).setColor(-1).setUv(0.5f, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, -0.2f, length, 0).setColor(-1).setUv(0, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, -0.5f, 0, 0).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0.5f, 0, 0).setColor(-1).setUv(0.5f, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0.5f, length, 0).setColor(-1).setUv(0.5f, length / 2).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, -0.5f, length, 0).setColor(-1).setUv(0, length / 2).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
 
-			vertexConsumer.addVertex(pose, 0, 0, -0.2f).setColor(-1).setUv(0.5f, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0, 0, 0.2f).setColor(-1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0, length, 0.2f).setColor(-1).setUv(1, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
-			vertexConsumer.addVertex(pose, 0, length, -0.2f).setColor(-1).setUv(0.5f, length / 0.8f).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0, 0, -0.5f).setColor(-1).setUv(0.5f, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0, 0, 0.5f).setColor(-1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0, length, 0.5f).setColor(-1).setUv(1, length / 2).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+			vertexConsumer.addVertex(pose, 0, length, -0.5f).setColor(-1).setUv(0.5f, length / 2).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(0.0F, 1.0F, 0.0F);
+
+			if (attachedToBlock) {
+				stack.popPose();
+				stack.mulPose(chain.getTipDirection().getOpposite().getRotation());
+			}
+
+			stack.scale(-1.0F, 1.0F, 1.0F);
+			stack.translate(0.0F, -1.5F, 0.0F);
+
+			RenderType renderType = this.model.renderType(getTextureLocation(chain));
+			vertexConsumer = buffer.getBuffer(renderType);
+			this.model.renderToBuffer(stack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
 
 			stack.popPose();
 		}
@@ -105,6 +127,6 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 
 	@Override
 	public ResourceLocation getTextureLocation(ChainOfSouls chain) {
-		return TextureAtlas.LOCATION_BLOCKS;
+		return TIP_TEXTURE;
 	}
 }

@@ -7,7 +7,9 @@ import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -39,6 +41,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ChainOfSouls extends Projectile implements Grappling {
 	private static final String TAG_REACHED_TARGET = "reached_target";
 	private static final String TAG_LENGTH = "length";
+	private static final String TAG_TIP_DIRECTION = "tip_direction";
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_WEAPON = "weapon";
 
@@ -46,6 +49,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 
 	public static final EntityDataAccessor<Boolean> REACHED_TARGET = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Float> LENGTH = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.FLOAT);
+	public static final EntityDataAccessor<Direction> TIP_DIRECTION = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.DIRECTION);
 	public static final EntityDataAccessor<Integer> TARGET_ID = SynchedEntityData.defineId(ChainOfSouls.class, EntityDataSerializers.INT);
 
 	@Nullable
@@ -83,6 +87,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		builder.define(REACHED_TARGET, false)
 			.define(LENGTH, 0.0F)
+			.define(TIP_DIRECTION, Direction.DOWN)
 			.define(TARGET_ID, -1);
 	}
 
@@ -211,7 +216,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
 		super.onHitEntity(hitResult);
-		if (!level().isClientSide && target == null && isValidTarget(hitResult.getEntity())) {
+		if (!level().isClientSide && target == null && isValidTarget(hitResult.getEntity()) && ESEntityUtil.shouldHarm(getPlayerOwner(), hitResult.getEntity())) {
 			this.setTarget(hitResult.getEntity());
 			Player player = this.getPlayerOwner();
 			if (player != null && !reachedTarget()) {
@@ -232,6 +237,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 				double d = player.getEyePosition().subtract(hitResult.getLocation()).length();
 				this.setLength(Math.max((float) d * 0.5F - 3.0F, 1.5F));
 			}
+			this.setTipDirection(hitResult.getDirection().getOpposite());
 			this.setReachedTarget(true);
 		}
 	}
@@ -247,6 +253,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putBoolean(TAG_REACHED_TARGET, this.reachedTarget());
 		compoundTag.putFloat(TAG_LENGTH, this.length());
+		compoundTag.putInt(TAG_TIP_DIRECTION, getTipDirection().get3DDataValue());
 		if (target != null) {
 			compoundTag.putUUID(TAG_TARGET, target.getUUID());
 		}
@@ -260,6 +267,7 @@ public class ChainOfSouls extends Projectile implements Grappling {
 		super.readAdditionalSaveData(compoundTag);
 		this.setReachedTarget(compoundTag.getBoolean(TAG_REACHED_TARGET));
 		this.setLength(compoundTag.getFloat(TAG_LENGTH));
+		this.setTipDirection(Direction.from3DDataValue(compoundTag.getInt(TAG_TIP_DIRECTION)));
 		if (compoundTag.hasUUID(TAG_TARGET)) {
 			targetId = compoundTag.getUUID(TAG_TARGET);
 		}
@@ -276,6 +284,10 @@ public class ChainOfSouls extends Projectile implements Grappling {
 
 	private void setLength(float length) {
 		this.getEntityData().set(LENGTH, length);
+	}
+
+	private void setTipDirection(Direction direction) {
+		this.getEntityData().set(TIP_DIRECTION, direction);
 	}
 
 	private void setTargetId(int targetId) {
@@ -295,6 +307,10 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	@Override
 	public float length() {
 		return this.getEntityData().get(LENGTH);
+	}
+
+	public Direction getTipDirection() {
+		return this.getEntityData().get(TIP_DIRECTION);
 	}
 
 	public int getTargetId() {

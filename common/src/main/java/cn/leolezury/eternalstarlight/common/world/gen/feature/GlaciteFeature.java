@@ -5,9 +5,11 @@ import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.phys.BlockHitResult;
@@ -40,10 +42,11 @@ public class GlaciteFeature extends ESFeature<NoneFeatureConfiguration> {
 				for (int z = Math.min(pos.getZ(), toPos.getZ()); z <= Math.max(pos.getZ(), toPos.getZ()); z++) {
 					if (ESMathUtil.distSqrBetweenLineAndDot(pos.getX(), pos.getY(), pos.getZ(), toPos.getX(), toPos.getY(), toPos.getZ(), x, y, z) < 1.5) {
 						placePos.set(x, y, z);
-						setBlockIfEmpty(level, placePos, ESBlocks.GLACITE.get().defaultBlockState());
+						float iceChance = Mth.sqrt((float) placePos.distSqr(pos) / (float) pos.distSqr(toPos)) * 0.6f;
+						setBlockIfEmpty(level, placePos, random.nextFloat() < iceChance ? Blocks.PACKED_ICE.defaultBlockState() : ESBlocks.GLACITE.get().defaultBlockState());
 						for (Direction direction : Direction.values()) {
 							if (random.nextInt(5) == 0) {
-								setBlockIfEmpty(level, placePos.relative(direction), ESBlocks.GLACITE.get().defaultBlockState());
+								setBlockIfEmpty(level, placePos.relative(direction), random.nextFloat() < iceChance ? Blocks.PACKED_ICE.defaultBlockState() : ESBlocks.GLACITE.get().defaultBlockState());
 							}
 						}
 					}

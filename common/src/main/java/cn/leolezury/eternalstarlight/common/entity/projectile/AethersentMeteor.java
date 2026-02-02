@@ -113,6 +113,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 				return;
 			}
 			ESDataAttachments.METEOR_COOLDOWN.setData(entity, cooldown);
+			level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ESSoundEvents.AETHERSENT_METEOR_WHOOSH.get(), entity.getSoundSource(), 1, (entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.2F + 1.0F);
 			for (int x = -1; x <= 1; x++) {
 				for (int z = -1; z <= 1; z++) {
 					RandomSource random = entity.getRandom();
@@ -212,7 +213,9 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 				ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
 			}
 			if (natural || (getTarget() == null && targetPos == null) || (getTarget() != null && getY() <= (getTarget().getY() + getTarget().getBbHeight())) || (targetPos != null && getY() <= targetPos.y + 1)) {
-				playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
+				if (natural) {
+					playSound(SoundEvents.GENERIC_EXPLODE.value(), getSoundVolume(), getVoicePitch());
+				}
 				if (!level().isClientSide && level() instanceof ServerLevel serverLevel) {
 					for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(getSize(), 0, getSize()))) {
 						if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
-import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
+import cn.leolezury.eternalstarlight.common.item.combat.WhipItem;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
@@ -148,7 +148,7 @@ public abstract class Whip extends Entity {
 				setPos(player.getEyePosition());
 				if (getSpawnedTicks() == getLifespan() / 2) {
 					playSound(ESSoundEvents.WHIP_CRACK.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-					Vec3 endPos = ESMathUtil.rotationToPosition(player.getEyePosition(), (float) player.getAttributeValue(Attributes.ENTITY_INTERACTION_RANGE), -owner.getXRot(), owner.getYHeadRot() + 90);
+					Vec3 endPos = ESMathUtil.rotationToPosition(player.getEyePosition(), getWhipRange((float) player.getAttributeValue(Attributes.ENTITY_INTERACTION_RANGE)), -owner.getXRot(), owner.getYHeadRot() + 90);
 					BlockHitResult hitResult = level().clip(new ClipContext(player.getEyePosition(), endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.of(this)));
 					if (hitResult.getType() != HitResult.Type.MISS) {
 						endPos = hitResult.getLocation();
@@ -156,7 +156,7 @@ public abstract class Whip extends Entity {
 					List<Entity> entities = level().getEntitiesOfClass(Entity.class, new AABB(player.getEyePosition(), endPos).inflate(1));
 					for (Entity entity : entities) {
 						AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + 1.5f);
-						if (ESEntityUtil.shouldHarm(player, entity) && aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent()) {
+						if (ESEntityUtil.shouldHarm(player, entity) && entity.isPickable() && (aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent())) {
 							DamageSource damageSource = damageSources().playerAttack(player);
 							float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 							float knockback = player.getKnockback(entity, damageSource);
@@ -165,13 +165,14 @@ public abstract class Whip extends Entity {
 								knockback = EnchantmentHelper.modifyKnockback(serverLevel, this.getWeaponItem(), player, damageSource, knockback);
 							}
 							if (entity.hurt(damageSource, damage)) {
+								if (getWeaponItem() != null && getWeaponItem().getItem() instanceof WhipItem whipItem) {
+									whipItem.doPostHurtEffects(entity);
+								}
 								if (level() instanceof ServerLevel serverLevel) {
-									serverLevel.sendParticles(ESExplosionParticleOptions.BLAST, entity.getX() + (getRandom().nextFloat() - 0.5) * entity.getBbWidth(), entity.getY() + getRandom().nextFloat() * entity.getBbHeight(), entity.getZ() + (getRandom().nextFloat() - 0.5) * entity.getBbWidth(), 1, 0.2, 0.2, 0.2, 0.0);
 									EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
 								}
 								if (entity instanceof LivingEntity livingEntity) {
 									livingEntity.knockback(knockback * 0.5F, Mth.sin(player.getYRot() * Mth.DEG_TO_RAD), -Mth.cos(player.getYRot() * Mth.DEG_TO_RAD));
-									doPostHurtEffects(livingEntity);
 								}
 							}
 						}
@@ -192,10 +193,9 @@ public abstract class Whip extends Entity {
 		}
 	}
 
-	protected void doPostHurtEffects(LivingEntity living) {
-	}
-
 	public abstract int getLifespan();
+
+	public abstract float getWhipRange(float interactionRange);
 
 	@Nullable
 	@Override

@@ -24,6 +24,7 @@ public enum ESItemTiers implements Tier {
 	FLOWGLAZE(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1000, 8.5F, 2.5F, 15, () -> Ingredient.of(ESItems.FLOWGLAZE.get())),
 	AMARAMBER(BlockTags.INCORRECT_FOR_IRON_TOOL, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_AMARAMBER)),
 	AURORA_DEER_ANTLER(BlockTags.INCORRECT_FOR_IRON_TOOL, 400, 6.0F, 1.0F, 22, () -> Ingredient.EMPTY),
+	TENTACLE_SPIKE(BlockTags.INCORRECT_FOR_IRON_TOOL, 200, 6.0F, 1.5F, 14, () -> Ingredient.EMPTY),
 	TOOTH_OF_HUNGER(BlockTags.INCORRECT_FOR_IRON_TOOL, 250, 6.0F, 2.5F, 14, () -> Ingredient.of(ESItems.TOOTH_OF_HUNGER.get())),
 	GOLEM_STEEL(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1000, 7.5F, 3.0F, 22, () -> Ingredient.of(ESConventionalTags.Items.INGOTS_GOLEM_STEEL)),
 	PETAL(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1500, 7.5F, 3.5F, 22, () -> Ingredient.of(ESItems.TENACIOUS_PETAL.get(), ESItems.TENACIOUS_VINE.get())),

@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-29T22:23:47.9653577	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2026-02-02T11:22:33.0182218	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -195,7 +195,7 @@ ceadb994e361392801b235623d18fec0adc074a5 data/minecraft/tags/item/boats.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 818068621f1040a397b9fe04d70138e1a88314e2 data/minecraft/tags/item/enchantable/bow.json
 081c9746d4fd3f9a96e137a601a06dc9bbb89778 data/minecraft/tags/item/enchantable/crossbow.json
-d32a80ec3ee8d11112824cf28775dc2d8e6502c4 data/minecraft/tags/item/enchantable/durability.json
+fad1c58ce592d95dec489f04c80366ebaf1ddf41 data/minecraft/tags/item/enchantable/durability.json
 83c8479449f7e034e339dc5c1d55a0aede7a97a9 data/minecraft/tags/item/enchantable/fire_aspect.json
 5357a355d7471f020a2fe67ed3ef05a58bf5513e data/minecraft/tags/item/enchantable/sharp_weapon.json
 b3cddbfdf578fe8cacdc142e853b2c4445171ec3 data/minecraft/tags/item/enchantable/sword.json

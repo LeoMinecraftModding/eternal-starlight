@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/amaramber"
+    },
+    "H": {
+      "tag": "c:rods/wooden"
+    },
+    "S": {
+      "tag": "c:strings"
+    }
+  },
+  "pattern": [
+    "  #",
+    " S#",
+    "H  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:candlash"
+  }
+}

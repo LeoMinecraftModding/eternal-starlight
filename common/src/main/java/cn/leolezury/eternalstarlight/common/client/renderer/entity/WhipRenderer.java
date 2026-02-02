@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.entity.attack.Whip;
-import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -28,9 +27,16 @@ public abstract class WhipRenderer<T extends Whip> extends EntityRenderer<T> {
 
 	@Override
 	public void render(T entity, float yaw, float partialTicks, PoseStack stack, MultiBufferSource buffer, int light) {
+		stack.pushPose();
+		translateAndRotate(entity, partialTicks, stack, false);
+		renderWhip(entity, partialTicks, stack, buffer, light);
+		stack.popPose();
+		super.render(entity, yaw, partialTicks, stack, buffer, light);
+	}
+
+	public void translateAndRotate(T entity, float partialTicks, PoseStack stack, boolean inverted) {
 		Player player = entity.getPlayerOwner();
 		if (player != null) {
-			stack.pushPose();
 			Vec3 handPos = getPlayerHandPos(player, partialTicks);
 			Vec3 pos = new Vec3(
 				Mth.lerp(partialTicks, entity.xo, entity.getX()),
@@ -38,16 +44,15 @@ public abstract class WhipRenderer<T extends Whip> extends EntityRenderer<T> {
 				Mth.lerp(partialTicks, entity.zo, entity.getZ())
 			);
 			stack.translate(handPos.x - pos.x, handPos.y - pos.y, handPos.z - pos.z);
-			Vec3 endPos = ESMathUtil.rotationToPosition(player.getEyePosition(partialTicks), 10, -player.getViewXRot(partialTicks) + 15, Mth.lerp(partialTicks, player.yHeadRotO, player.yHeadRot) + 90);
-			float yRot = ESMathUtil.positionToYaw(handPos, endPos);
-			float xRot = ESMathUtil.positionToPitch(handPos, endPos);
 			stack.mulPose(new Quaternionf().rotationX(90 * Mth.DEG_TO_RAD));
-			stack.mulPose(new Quaternionf().rotationZ((yRot - 90) * Mth.DEG_TO_RAD));
-			stack.mulPose(new Quaternionf().rotationX((-xRot) * Mth.DEG_TO_RAD));
-			renderWhip(entity, partialTicks, stack, buffer, light);
-			stack.popPose();
+			if (inverted) {
+				stack.mulPose(new Quaternionf().rotationZ((Mth.lerp(partialTicks, player.yHeadRotO, player.yHeadRot) + 180) * Mth.DEG_TO_RAD));
+				stack.mulPose(new Quaternionf().rotationX(-player.getViewXRot(partialTicks) * Mth.DEG_TO_RAD));
+			} else {
+				stack.mulPose(new Quaternionf().rotationZ(Mth.lerp(partialTicks, player.yHeadRotO, player.yHeadRot) * Mth.DEG_TO_RAD));
+				stack.mulPose(new Quaternionf().rotationX(player.getViewXRot(partialTicks) * Mth.DEG_TO_RAD));
+			}
 		}
-		super.render(entity, yaw, partialTicks, stack, buffer, light);
 	}
 
 	public abstract void renderWhip(T entity, float partialTicks, PoseStack stack, MultiBufferSource buffer, int light);

@@ -53,7 +53,7 @@ public class ESEntityUtil {
 		if (attacker instanceof Player p1 && victim instanceof Player p2 && !p1.canHarmPlayer(p2)) {
 			return false;
 		}
-		return true;
+		return victim.isAttackable();
 	}
 
 	public static VillagerTrades.ItemListing simpleTrade(Item cost, int costCount, Item result, int resultCount, int maxUses) {

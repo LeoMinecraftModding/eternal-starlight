@@ -1012,6 +1012,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.FLOWGLAZE_BOW.get(),
 				ESItems.FLOWGLAZE_SHIELD.get(),
 				ESItems.SALTPETER_MATCHBOX.get(),
+				ESItems.CANDLASH.get(),
 				ESItems.TENTACLE_SPIKE.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),

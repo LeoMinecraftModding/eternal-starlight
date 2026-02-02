@@ -28,6 +28,7 @@ import cn.leolezury.eternalstarlight.common.client.renderer.layer.accessory.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
+import cn.leolezury.eternalstarlight.common.entity.attack.Candlash;
 import cn.leolezury.eternalstarlight.common.entity.attack.TentacleSpike;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
@@ -511,6 +512,14 @@ public class ESClientSetupHandler {
 
 		ItemProperties.register(ESItems.FLOWGLAZE_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F);
 
+		ItemProperties.register(ESItems.CANDLASH.get(), EternalStarlight.id("extended"), (stack, level, entity, i) -> {
+			if (entity == null || level == null) {
+				return 0.0F;
+			} else {
+				return entity.getMainHandItem() == stack && level.getEntity(ESDataAttachments.WHIP.getData(entity)) instanceof Candlash ? 1.0F : 0.0F;
+			}
+		});
+
 		ItemProperties.register(ESItems.TENTACLE_SPIKE.get(), EternalStarlight.id("extended"), (stack, level, entity, i) -> {
 			if (entity == null || level == null) {
 				return 0.0F;
@@ -897,6 +906,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.WILTED_PETAL.get(), WiltedPetalRenderer::new);
 		strategy.register(ESEntities.SHOT_SEEDS.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.STARFIRE.get(), ThrownItemRenderer::new);
+		strategy.register(ESEntities.CANDLASH.get(), CandlashRenderer::new);
 		strategy.register(ESEntities.TENTACLE_SPIKE.get(), TentacleSpikeRenderer::new);
 		strategy.register(ESEntities.ENERGY_SPARK.get(), EnergySparkRenderer::new);
 		strategy.register(ESEntities.BALL_LIGHTNING.get(), BallLightningRenderer::new);
@@ -971,6 +981,7 @@ public class ESClientSetupHandler {
 		strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
 		strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
 		strategy.register(TwilightGazeModel.LAYER_LOCATION, TwilightGazeModel::createBodyLayer);
+		strategy.register(CandlashModel.LAYER_LOCATION, CandlashModel::createBodyLayer);
 		strategy.register(TentacleSpikeModel.LAYER_LOCATION, TentacleSpikeModel::createBodyLayer);
 		strategy.register(TheGatekeeperModel.LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(false));
 		strategy.register(TheGatekeeperModel.SLIM_LAYER_LOCATION, () -> TheGatekeeperModel.createBodyLayer(true));
@@ -990,6 +1001,7 @@ public class ESClientSetupHandler {
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
 		strategy.register(BallLightningModel.LAYER_LOCATION, BallLightningModel::createBodyLayer);
+		strategy.register(ChainOfSoulsModel.LAYER_LOCATION, ChainOfSoulsModel::createBodyLayer);
 
 		// vanilla entities
 		strategy.register(ArmorLikeAccessoryLayer.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.0F)), 64, 32));
