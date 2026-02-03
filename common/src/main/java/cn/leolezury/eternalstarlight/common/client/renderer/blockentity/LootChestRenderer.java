@@ -3,8 +3,10 @@ package cn.leolezury.eternalstarlight.common.client.renderer.blockentity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.LootChestBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.LootChestAnimation;
+import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -20,6 +22,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
@@ -48,6 +51,37 @@ public class LootChestRenderer implements BlockEntityRenderer<LootChestBlockEnti
 		this.chestModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(CHEST_TEXTURE)), light, overlay);
 		this.chestModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(CHEST_OUTLINE_TEXTURE)), light, overlay);
 		stack.popPose();
+		float flashAnimation = Math.max((blockEntity.clientTickCount + partialTicks) - blockEntity.flashStartTickCount, 0);
+		VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.DRAGON_RAYS_QUADS);
+		PoseStack.Pose pose = stack.last();
+		if (flashAnimation < 10) {
+			float flashProgress = Easing.IN_OUT_SINE.calculate(1 - Math.abs(flashAnimation - 5) / 5);
+			float flashDistFromCenter = Mth.lerp(flashProgress, flashAnimation < 5 ? 0.18f : 0.25f, 0.15f);
+			float flashHeight = 0.6f * flashProgress;
+
+			int baseColor = FastColor.ARGB32.colorFromFloat(Mth.lerp(flashProgress, 0.5F, 1.0F), 1.0F, 1.0F, 1.0F);
+			int topColor = FastColor.ARGB32.colorFromFloat(0.0F, 1.0F, 1.0F, 1.0F);
+
+			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f, 0.5f - flashDistFromCenter).setColor(baseColor);
+			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f, 0.5f + flashDistFromCenter).setColor(baseColor);
+			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f + flashHeight, 0.5f + flashDistFromCenter).setColor(topColor);
+			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f + flashHeight, 0.5f - flashDistFromCenter).setColor(topColor);
+
+			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f, 0.5f - flashDistFromCenter).setColor(baseColor);
+			consumer.addVertex(pose, 0.5f + flashDistFromCenter, 0.5625f, 0.5f - flashDistFromCenter).setColor(baseColor);
+			consumer.addVertex(pose, 0.5f + flashDistFromCenter, 0.5625f + flashHeight, 0.5f - flashDistFromCenter).setColor(topColor);
+			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f + flashHeight, 0.5f - flashDistFromCenter).setColor(topColor);
+
+			consumer.addVertex(pose, 0.5f + flashDistFromCenter, 0.5625f, 0.5f - flashDistFromCenter).setColor(baseColor);
+			consumer.addVertex(pose, 0.5f + flashDistFromCenter, 0.5625f, 0.5f + flashDistFromCenter).setColor(baseColor);
+			consumer.addVertex(pose, 0.5f + flashDistFromCenter, 0.5625f + flashHeight, 0.5f + flashDistFromCenter).setColor(topColor);
+			consumer.addVertex(pose, 0.5f + flashDistFromCenter, 0.5625f + flashHeight, 0.5f - flashDistFromCenter).setColor(topColor);
+
+			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f, 0.5f + flashDistFromCenter).setColor(baseColor);
+			consumer.addVertex(pose, 0.5f + flashDistFromCenter, 0.5625f, 0.5f + flashDistFromCenter).setColor(baseColor);
+			consumer.addVertex(pose, 0.5f + flashDistFromCenter, 0.5625f + flashHeight, 0.5f + flashDistFromCenter).setColor(topColor);
+			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f + flashHeight, 0.5f + flashDistFromCenter).setColor(topColor);
+		}
 	}
 
 	public static final class LootChestModel extends Model implements AnimatedModel {

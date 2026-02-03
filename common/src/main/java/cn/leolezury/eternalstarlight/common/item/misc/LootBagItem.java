@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
@@ -32,8 +33,10 @@ public class LootBagItem extends Item {
 			LootParams params = paramBuilder.create(LootContextParamSets.EMPTY);
 			table.getRandomItems(params).forEach((loot) -> {
 				ItemEntity itemEntity = new ItemEntity(level, player.getX(), player.getY(), player.getZ(), loot);
+				ESDataAttachments.IMPORTANT_ITEM.setData(itemEntity, true);
 				itemEntity.setNoPickUpDelay();
 				itemEntity.setTarget(player.getUUID());
+				itemEntity.setExtendedLifetime();
 				level.addFreshEntity(itemEntity);
 			});
 			stack.consume(1, player);

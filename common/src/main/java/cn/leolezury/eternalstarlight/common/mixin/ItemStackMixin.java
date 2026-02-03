@@ -10,9 +10,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -55,13 +53,6 @@ public abstract class ItemStackMixin {
 	private void inventoryTick(Level level, Entity entity, int inventorySlot, boolean isCurrentItem, CallbackInfo ci) {
 		if (!level.isClientSide && entity.tickCount % 600 == 0 && isDamaged() && (is(ESTags.Items.MENDS_NATURALLY) || (is(ESTags.Items.REPAIRED_BY_CRESCENT_PENDANT) && entity instanceof LivingEntity living && ESAccessoryUtil.getActiveAccessoriesOnArmors(living).contains(ESItems.CRESCENT_PENDANT.get())))) {
 			setDamageValue(Math.max(getDamageValue() - 1, 0));
-		}
-	}
-
-	@Inject(method = "canBeHurtBy", at = @At(value = "RETURN"), cancellable = true)
-	private void canBeHurtBy(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-		if (is(ESItems.LOOT_BAG.get()) && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-			cir.setReturnValue(false);
 		}
 	}
 

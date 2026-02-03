@@ -55,6 +55,16 @@ public abstract class ESRenderType extends RenderType {
 		.setWriteMaskState(COLOR_WRITE)
 		.createCompositeState(true));
 
+	public static final RenderType DRAGON_RAYS_QUADS = create(EternalStarlight.ID + ":dragon_rays_quads", DefaultVertexFormat.POSITION_COLOR, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+		.setShaderState(RENDERTYPE_LIGHTNING_SHADER)
+		.setTextureState(NO_TEXTURE)
+		.setTransparencyState(LIGHTNING_TRANSPARENCY)
+		.setCullState(NO_CULL)
+		.setLightmapState(LIGHTMAP)
+		.setOverlayState(OVERLAY)
+		.setWriteMaskState(COLOR_WRITE)
+		.createCompositeState(true));
+
 	public static final Function<ResourceLocation, RenderType> TRANSLUCENT_GLOW = Util.memoize(location ->
 		create(EternalStarlight.ID + ":entity_translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 			.setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER)

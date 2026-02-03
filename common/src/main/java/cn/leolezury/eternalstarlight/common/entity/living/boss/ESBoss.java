@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
@@ -232,6 +233,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		if (fightParticipants.stream().noneMatch(uuid -> level().getPlayerByUUID(uuid) != null)) {
 			ItemEntity item = spawnAtLocation(lootBag.copy());
 			if (item != null) {
+				ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
 				item.setGlowingTag(true);
 				item.setExtendedLifetime();
 			}
@@ -241,6 +243,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 			if (player instanceof ServerPlayer serverPlayer && player.isAlive() && player.level().dimension() == level().dimension()) {
 				ItemEntity item = player.spawnAtLocation(lootBag.copy());
 				if (item != null) {
+					ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
 					item.setTarget(player.getUUID());
 					item.setGlowingTag(true);
 					item.setExtendedLifetime();

@@ -51,6 +51,7 @@ public class LootChestBlockEntity extends BlockEntity {
 	public AnimationState openAnimationState = new AnimationState();
 	public AnimationState closeAnimationState = new AnimationState();
 	public int clientTickCount = 0;
+	public int flashStartTickCount = Integer.MIN_VALUE;
 
 	public void setLootTable(ResourceKey<LootTable> lootTable) {
 		this.lootTable = lootTable;
@@ -104,6 +105,9 @@ public class LootChestBlockEntity extends BlockEntity {
 				if (blockEntity.ejectionTicks % 10 == 0) {
 					blockEntity.setChanged();
 				}
+				if ((level.getGameTime() + 5) % 10 == 0 && !blockEntity.itemsToEject.isEmpty()) {
+					level.blockEvent(pos, state.getBlock(), 1, 2);
+				}
 				if (level.getGameTime() % 10 == 0) {
 					if (blockEntity.itemsToEject.isEmpty()) {
 						if (blockEntity.ejectionTicks > 20) {
@@ -149,12 +153,16 @@ public class LootChestBlockEntity extends BlockEntity {
 	@Override
 	public boolean triggerEvent(int id, int type) {
 		if (id == 1) {
-			openAnimationState.stop();
-			closeAnimationState.stop();
 			if (type == 0) {
+				openAnimationState.stop();
+				closeAnimationState.stop();
 				openAnimationState.startIfStopped(clientTickCount);
 			} else if (type == 1) {
+				openAnimationState.stop();
+				closeAnimationState.stop();
 				closeAnimationState.startIfStopped(clientTickCount);
+			} else if (type == 2) {
+				flashStartTickCount = clientTickCount;
 			}
 			return true;
 		} else {
