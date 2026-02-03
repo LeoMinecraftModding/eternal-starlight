@@ -59,7 +59,7 @@ public class LootChestRenderer implements BlockEntityRenderer<LootChestBlockEnti
 			float flashDistFromCenter = Mth.lerp(flashProgress, flashAnimation < 5 ? 0.18f : 0.25f, 0.15f);
 			float flashHeight = 0.6f * flashProgress;
 
-			int baseColor = FastColor.ARGB32.colorFromFloat(Mth.lerp(flashProgress, 0.5F, 1.0F), 1.0F, 1.0F, 1.0F);
+			int baseColor = FastColor.ARGB32.colorFromFloat(Mth.lerp(flashProgress, 0.5F, 1.0F), 0.75F, 1.0F, 1.0F);
 			int topColor = FastColor.ARGB32.colorFromFloat(0.0F, 1.0F, 1.0F, 1.0F);
 
 			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f, 0.5f - flashDistFromCenter).setColor(baseColor);
