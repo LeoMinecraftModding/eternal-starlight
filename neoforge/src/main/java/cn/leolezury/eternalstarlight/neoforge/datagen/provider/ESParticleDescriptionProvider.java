@@ -44,10 +44,11 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		sprite(ESParticles.LANDING_MUD.get(), mcLoc("drip_land"));
 		sprite(ESParticles.ALLIED.get(), loc("allied"));
 		spriteSet(ESParticles.PUNGENCY_FRUIT_SMOKE.get(), mcLoc("generic"), 8, true);
+		sprite(ESParticles.STARFIRE.get(), loc("starfire"));
 		spriteSet(ESParticles.STARFIRE_EXPLOSION.get(), loc("starfire_explosion"), 5, false);
 		spriteSet(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), loc("starfire_explosion_small"), 6, false);
 		spriteSet(ESParticles.SOUL_TRAIL.get(), loc("soul_trail"), 5, false);
-		sprite(ESParticles.STARFIRE.get(), loc("starfire"));
+		sprite(ESParticles.CANDLASH_TRAIL.get(), loc("candlash_trail"));
 		sprite(ESParticles.ADVANCED_GLOW.get(), loc("glow"));
 		sprite(ESParticles.SHINE.get(), loc("shine"));
 	}

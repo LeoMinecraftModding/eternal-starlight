@@ -1,15 +1,17 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemEyesLayer;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemGlowLayer;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemHalloweenLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemChargePhase;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
+import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
@@ -19,7 +21,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -72,13 +73,12 @@ public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRendere
 				Mth.lerp(partialTicks, entity.zo, entity.getZ())
 			);
 			float currentTick = getBob(entity, partialTicks);
-			if (entity.shouldAddTrailSnapshot() && (entity.trailSnapshots.isEmpty() || getBob(entity, partialTicks) - entity.lastTrailTick > 4)) {
+			if (entity.shouldAddTrailSnapshot() && (entity.trailSnapshots.isEmpty() || currentTick - entity.lastTrailTick > 4)) {
 				Map<String, ModelPartPose> snapshot = ESModelUtil.saveModelSnapshot(getModel().allPartNames, getModel()::getAnyDescendantWithName);
-				snapshot.put("rotations", new ModelPartPose(0, 0, 0, 0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, 0, 0, 0, false));
-				entity.trailSnapshots.addFirst(Pair.of(currentPos, snapshot));
+				entity.trailSnapshots.addFirst(Pair.of(currentPos, new ModelSnapshot(0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, snapshot)));
 				entity.lastTrailTick = currentTick;
 			}
-			entity.trailSnapshots.removeIf(p -> p.getSecond().containsKey("rotations") && currentTick - p.getSecond().get("rotations").zRot() > SNAPSHOT_LIFESPAN);
+			entity.trailSnapshots.removeIf(p -> currentTick - p.getSecond().timestamp() > SNAPSHOT_LIFESPAN);
 			while (entity.trailSnapshots.size() > 32) {
 				entity.trailSnapshots.removeLast();
 			}
@@ -86,19 +86,16 @@ public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRendere
 			for (int i = 0; i < entity.trailSnapshots.size(); i++) {
 				poseStack.pushPose();
 				Vec3 trailPos = entity.trailSnapshots.get(i).getFirst();
-				Map<String, ModelPartPose> snapshot = entity.trailSnapshots.get(i).getSecond();
-				ESModelUtil.loadPoseFromSnapshot(snapshot, getModel()::getAnyDescendantWithName);
+				ModelSnapshot snapshot = entity.trailSnapshots.get(i).getSecond();
+				ESModelUtil.loadPoseFromSnapshot(snapshot.poses(), getModel()::getAnyDescendantWithName);
 				poseStack.translate(trailPos.x - currentPos.x, trailPos.y - currentPos.y, trailPos.z - currentPos.z);
-				if (snapshot.containsKey("rotations")) {
-					ModelPartPose pose = snapshot.get("rotations");
-					getModel().alphaFactor = (1 - Mth.clamp(currentTick - pose.zRot(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
-					poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - pose.yRot()));
-				}
+				getModel().alphaFactor = (1 - Mth.clamp(currentTick - snapshot.timestamp(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
+				poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - snapshot.yRot()));
 				poseStack.scale(-1.0F, -1.0F, 1.0F);
 				this.scale(entity, poseStack, partialTicks);
 				poseStack.translate(0.0F, -1.5F, 0.0F);
-				RenderType renderType = RenderType.entityTranslucent(getTextureLocation(entity));
-				VertexConsumer vertexConsumer = buffer.getBuffer(renderType);
+				RenderType renderType = ESRenderType.entityTranslucentNoDepth(getTextureLocation(entity));
+				VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType);
 				getModel().renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
 				poseStack.popPose();
 			}
@@ -121,16 +118,5 @@ public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRendere
 	@Override
 	public ResourceLocation getTextureLocation(T entity) {
 		return entity.getPhase() == 0 ? ENTITY_TEXTURE : CRACKED_TEXTURE;
-	}
-
-	@Override
-	public boolean shouldRender(T entity, Frustum frustum, double x, double y, double z) {
-		boolean oCull = entity.noCulling;
-		if (entity.getBehaviorState() == StarlightGolemChargePhase.ID) {
-			entity.noCulling = true;
-		}
-		boolean shouldRender = super.shouldRender(entity, frustum, x, y, z);
-		entity.noCulling = oCull;
-		return shouldRender;
 	}
 }

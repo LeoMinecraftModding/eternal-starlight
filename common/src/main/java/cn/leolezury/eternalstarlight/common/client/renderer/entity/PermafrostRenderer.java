@@ -1,10 +1,13 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.PermafrostModel;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
+import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
@@ -45,13 +48,12 @@ public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, Per
 				Mth.lerp(partialTicks, entity.zo, entity.getZ())
 			);
 			float currentTick = getBob(entity, partialTicks);
-			if (entity.shouldAddTrailSnapshot() && (entity.trailSnapshots.isEmpty() || getBob(entity, partialTicks) - entity.lastTrailTick > 1.5)) {
+			if (entity.shouldAddTrailSnapshot() && (entity.trailSnapshots.isEmpty() || currentTick - entity.lastTrailTick > 1.5)) {
 				Map<String, ModelPartPose> snapshot = ESModelUtil.saveModelSnapshot(getModel().allPartNames, getModel()::getAnyDescendantWithName);
-				snapshot.put("rotations", new ModelPartPose(0, 0, 0, 0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, 0, 0, 0, false));
-				entity.trailSnapshots.addFirst(Pair.of(currentPos, snapshot));
+				entity.trailSnapshots.addFirst(Pair.of(currentPos, new ModelSnapshot(0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, snapshot)));
 				entity.lastTrailTick = currentTick;
 			}
-			entity.trailSnapshots.removeIf(p -> p.getSecond().containsKey("rotations") && currentTick - p.getSecond().get("rotations").zRot() > SNAPSHOT_LIFESPAN);
+			entity.trailSnapshots.removeIf(p -> currentTick - p.getSecond().timestamp() > SNAPSHOT_LIFESPAN);
 			while (entity.trailSnapshots.size() > 32) {
 				entity.trailSnapshots.removeLast();
 			}
@@ -59,19 +61,16 @@ public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, Per
 			for (int i = 0; i < entity.trailSnapshots.size(); i++) {
 				poseStack.pushPose();
 				Vec3 trailPos = entity.trailSnapshots.get(i).getFirst();
-				Map<String, ModelPartPose> snapshot = entity.trailSnapshots.get(i).getSecond();
-				ESModelUtil.loadPoseFromSnapshot(snapshot, getModel()::getAnyDescendantWithName);
+				ModelSnapshot snapshot = entity.trailSnapshots.get(i).getSecond();
+				ESModelUtil.loadPoseFromSnapshot(snapshot.poses(), getModel()::getAnyDescendantWithName);
 				poseStack.translate(trailPos.x - currentPos.x, trailPos.y - currentPos.y, trailPos.z - currentPos.z);
-				if (snapshot.containsKey("rotations")) {
-					ModelPartPose pose = snapshot.get("rotations");
-					getModel().alphaFactor = (1 - Mth.clamp(currentTick - pose.zRot(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
-					poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - pose.yRot()));
-				}
+				getModel().alphaFactor = (1 - Mth.clamp(currentTick - snapshot.timestamp(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
+				poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - snapshot.yRot()));
 				poseStack.scale(-1.0F, -1.0F, 1.0F);
 				this.scale(entity, poseStack, partialTicks);
 				poseStack.translate(0.0F, -1.5F, 0.0F);
-				RenderType renderType = RenderType.entityTranslucent(getTextureLocation(entity));
-				VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
+				RenderType renderType = ESRenderType.entityTranslucentNoDepth(getTextureLocation(entity));
+				VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType);
 				getModel().renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
 				poseStack.popPose();
 			}

@@ -13,8 +13,10 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
+import com.mojang.datafixers.util.Pair;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
@@ -29,6 +31,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityDimensions;
@@ -44,6 +47,8 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class AethersentMeteor extends AbstractHurtingProjectile implements TrailOwner {
@@ -65,6 +70,10 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	public void setSize(int size) {
 		this.getEntityData().set(SIZE, size);
 	}
+
+	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>();
+	public float lastTrailTick = 0;
+	public float oXSpin, xSpin, oYSpin, ySpin;
 
 	@Nullable
 	private LivingEntity target;
@@ -96,6 +105,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 
 	public AethersentMeteor(EntityType<? extends AethersentMeteor> type, Level level) {
 		super(type, level);
+		this.noCulling = true;
 	}
 
 	public AethersentMeteor(Level level, LivingEntity entity, double x, double y, double z) {
@@ -190,8 +200,8 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 						creteor.setPersistenceRequired();
 						level().addFreshEntity(creteor);
 					}
-					for (int m = 0; m < ((ServerLevel) level()).players().size(); ++m) {
-						ServerPlayer serverPlayer = ((ServerLevel) level()).players().get(m);
+					for (int i = 0; i < ((ServerLevel) level()).players().size(); ++i) {
+						ServerPlayer serverPlayer = ((ServerLevel) level()).players().get(i);
 						((ServerLevel) level()).sendParticles(serverPlayer, ESParticles.AETHERSENT_EXPLOSION.get(), true, getX(), getY(), getZ(), 1, 0, 0, 0, 0);
 					}
 				} else if (level() instanceof ServerLevel serverLevel) {
@@ -223,7 +233,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 							livingEntity.hurt(ESDamageTypes.getEntityDamageSource(level(), ESDamageTypes.METEOR, getOwner()), getSize() * (float) 5 * (getOwner() instanceof LivingEntity ? 0.08f : 1f));
 						}
 					}
-					serverLevel.sendParticles(getSize() >= 8 ? ParticleTypes.EXPLOSION_EMITTER : ESExplosionParticleOptions.AETHERSENT, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
+					serverLevel.sendParticles(getSize() >= 10 ? ParticleTypes.EXPLOSION_EMITTER : ESExplosionParticleOptions.AETHERSENT, getX(), getY() + 0.05 * getSize(), getZ(), 1, 0, 0, 0, 0);
 					dropAndDiscard(false);
 				}
 			}
@@ -234,7 +244,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	public void tick() {
 		super.tick();
 		setDeltaMovement(0, natural ? -2 : -4, 0);
-		if (tickCount % 10 == 0) {
+		if (tickCount % 3 == 0) {
 			refreshDimensions();
 		}
 		if (!level().isClientSide) {
@@ -246,6 +256,11 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 					targetId = null;
 				}
 			}
+		} else {
+			oXSpin = xSpin;
+			xSpin += Mth.PI * (0.03f + getRandom().nextFloat() * 0.02f);
+			oYSpin = ySpin;
+			ySpin += Mth.PI * (0.03f + getRandom().nextFloat() * 0.02f);
 		}
 	}
 

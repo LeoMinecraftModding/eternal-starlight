@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
+import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -41,7 +41,6 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Map;
 
 public class Permafrost extends ESBoss {
 	public Permafrost(EntityType<? extends Permafrost> entityType, Level level) {
@@ -65,7 +64,7 @@ public class Permafrost extends ESBoss {
 	public AnimationState sneezeAnimationState = new AnimationState();
 	public Vec3 smokePos = Vec3.ZERO;
 
-	public final List<Pair<Vec3, Map<String, ModelPartPose>>> trailSnapshots = new ArrayList<>();
+	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>();
 	public float lastTrailTick = 0;
 
 	public boolean shouldAddTrailSnapshot() {

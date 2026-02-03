@@ -830,6 +830,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.STARFIRE_EXPLOSION.get(), StarfireExplosionParticle.Provider::new);
 		strategy.register(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), StarfireExplosionParticle.SmallProvider::new);
 		strategy.register(ESParticles.SOUL_TRAIL.get(), FlameParticle.Provider::new);
+		strategy.register(ESParticles.CANDLASH_TRAIL.get(), StarfireExplosionParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}
@@ -943,6 +944,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.JINGLESTEM), ChestRaftModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.CRADLEWOOD), BoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.CRADLEWOOD), ChestBoatModel::createBodyModel);
+		strategy.register(AethersentMeteorModel.LAYER_LOCATION, AethersentMeteorModel::createBodyLayer);
 		strategy.register(BoarwarfModel.LAYER_LOCATION, BoarwarfModel::createBodyLayer);
 		strategy.register(BoarwarfBlacksmithModel.LAYER_LOCATION, BoarwarfBlacksmithModel::createBodyLayer);
 		strategy.register(BoarwarfChefModel.LAYER_LOCATION, BoarwarfChefModel::createBodyLayer);

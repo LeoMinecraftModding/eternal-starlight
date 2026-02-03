@@ -125,7 +125,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public AnimationState comboAnimationState = new AnimationState();
 	public AnimationState teleportAnimationState = new AnimationState();
 
-	public final List<Pair<Vec3, Map<String, ModelPartPose>>> trailSnapshots = new ArrayList<>();
+	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>();
 	public float lastTrailTick = 0;
 
 	public boolean shouldAddTrailSnapshot() {

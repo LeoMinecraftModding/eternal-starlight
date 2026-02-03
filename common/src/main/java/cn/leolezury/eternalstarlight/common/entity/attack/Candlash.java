@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -13,6 +14,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Candlash extends Whip {
 	public final ConcurrentLinkedQueue<Vec3> tipPositions = new ConcurrentLinkedQueue<>();
+	private Vec3 lastParticlePos;
 	public float lastParticleTick = 0;
 
 	public Candlash(EntityType<? extends Candlash> entityType, Level level) {
@@ -30,7 +32,17 @@ public class Candlash extends Whip {
 			Vec3 pos;
 			while ((pos = tipPositions.poll()) != null) {
 				if (distanceToSqr(pos) < 20 * 20) {
-					level().addParticle(ESParticles.AMARAMBER_FLAME.get(), pos.x, pos.y, pos.z, 0.0, 0.0, 0.0);
+					level().addParticle(ESParticles.CANDLASH_TRAIL.get(), pos.x, pos.y, pos.z, (getRandom().nextDouble() - 0.5) * 0.2, 0.0, (getRandom().nextDouble() - 0.5) * 0.2);
+					if (lastParticlePos != null) {
+						int count = (int) (lastParticlePos.distanceTo(pos) / 0.4);
+						if (count > 0 && count < 20) {
+							for (int i = 0; i < count; i++) {
+								Vec3 extraPos = ESMathUtil.lerpVec((float) (i + 1) / (count + 1), lastParticlePos, pos);
+								level().addParticle(ESParticles.CANDLASH_TRAIL.get(), extraPos.x, extraPos.y, extraPos.z, (getRandom().nextDouble() - 0.5) * 0.2, 0.0, (getRandom().nextDouble() - 0.5) * 0.2);
+							}
+						}
+					}
+					lastParticlePos = pos;
 				}
 			}
 		}
