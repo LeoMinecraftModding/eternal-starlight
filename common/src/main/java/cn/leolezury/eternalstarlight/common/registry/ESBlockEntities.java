@@ -42,6 +42,7 @@ public class ESBlockEntities {
 		ESBlocks.JINGLESTEM_STARFIRE_BIRD_AVIARY.get(),
 		ESBlocks.CRADLEWOOD_STARFIRE_BIRD_AVIARY.get()
 	).build(null));
+	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<LootChestBlockEntity>> LOOT_CHEST = BLOCK_ENTITIES.register("loot_chest", () -> BlockEntityType.Builder.of(LootChestBlockEntity::new, ESBlocks.LOOT_CHEST.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TheGatekeeperSpawnerBlockEntity>> THE_GATEKEEPER_SPAWNER = BLOCK_ENTITIES.register("the_gatekeeper_spawner", () -> BlockEntityType.Builder.of(TheGatekeeperSpawnerBlockEntity::new, ESBlocks.THE_GATEKEEPER_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StarlightGolemSpawnerBlockEntity>> STARLIGHT_GOLEM_SPAWNER = BLOCK_ENTITIES.register("starlight_golem_spawner", () -> BlockEntityType.Builder.of(StarlightGolemSpawnerBlockEntity::new, ESBlocks.STARLIGHT_GOLEM_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<PermafrostSpawnerBlockEntity>> PERMAFROST_SPAWNER = BLOCK_ENTITIES.register("permafrost_spawner", () -> BlockEntityType.Builder.of(PermafrostSpawnerBlockEntity::new, ESBlocks.PERMAFROST_SPAWNER.get()).build(null));

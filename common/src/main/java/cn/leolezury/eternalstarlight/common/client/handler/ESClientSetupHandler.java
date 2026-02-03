@@ -454,6 +454,7 @@ public class ESClientSetupHandler {
 		BlockEntityRenderers.register(ESBlockEntities.STARFIRE_BIRD_NEST.get(), StarfireBirdNestRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.BRUSHABLE_BLOCK.get(), BrushableBlockRenderer::new);
+		BlockEntityRenderers.register(ESBlockEntities.LOOT_CHEST.get(), LootChestRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.ENERGY_TRANSMITTER.get(), EnergyTransmitterRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.MECHANICAL_SPAWNER.get(), MechanicalSpawnerRenderer::new);
 		BlockEntityRenderers.register(ESBlockEntities.ALLOY_FURNACE.get(), AlloyFurnaceRenderer::new);
@@ -1017,6 +1018,7 @@ public class ESClientSetupHandler {
 		strategy.register(CrescentSpearModel.LAYER_LOCATION, CrescentSpearModel::createBodyLayer);
 
 		// block entities
+		strategy.register(LootChestRenderer.LootChestModel.LAYER_LOCATION, LootChestRenderer.LootChestModel::createLayer);
 		strategy.register(AlloyFurnaceRenderer.AlloyFurnaceModel.LAYER_LOCATION, AlloyFurnaceRenderer.AlloyFurnaceModel::createLayer);
 		strategy.register(SolarEggRenderer.SolarEggModel.LAYER_LOCATION, SolarEggRenderer.SolarEggModel::createLayer);
 		strategy.register(LunarVineRenderer.VineModel.LAYER_LOCATION, LunarVineRenderer.VineModel::createLayer);

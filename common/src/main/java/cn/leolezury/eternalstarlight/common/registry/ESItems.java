@@ -1179,6 +1179,9 @@ public class ESItems {
 		))
 		.stacksTo(1)));
 
+	// loot chest
+	public static final RegistryObject<Item, Item> LOOT_CHEST = registerItem("loot_chest", () -> new BlockItem(ESBlocks.LOOT_CHEST.get(), new Item.Properties()));
+
 	// boss spawners
 	public static final RegistryObject<Item, Item> THE_GATEKEEPER_SPAWNER = registerItem("the_gatekeeper_spawner", () -> new BlockItem(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWNER = registerItem("starlight_golem_spawner", () -> new BlockItem(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), new Item.Properties()));
