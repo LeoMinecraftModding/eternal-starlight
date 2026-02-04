@@ -48,19 +48,19 @@ public class LootChestRenderer implements BlockEntityRenderer<LootChestBlockEnti
 		if (blockEntity.isEjecting() && !blockEntity.openAnimationState.isStarted() && !blockEntity.closeAnimationState.isStarted()) {
 			this.chestModel.lid.xRot = -Mth.HALF_PI;
 		}
-		this.chestModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(CHEST_TEXTURE)), light, overlay);
-		this.chestModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(CHEST_OUTLINE_TEXTURE)), light, overlay);
+		this.chestModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(CHEST_TEXTURE)), light, overlay, blockEntity.getColor());
+		this.chestModel.renderToBuffer(stack, bufferSource.getBuffer(RenderType.entityCutoutNoCull(CHEST_OUTLINE_TEXTURE)), light, overlay, blockEntity.getOutlineColor());
 		stack.popPose();
 		float flashAnimation = Math.max((blockEntity.clientTickCount + partialTicks) - blockEntity.flashStartTickCount, 0);
 		VertexConsumer consumer = bufferSource.getBuffer(ESRenderType.DRAGON_RAYS_QUADS);
 		PoseStack.Pose pose = stack.last();
 		if (flashAnimation < 10) {
 			float flashProgress = Easing.IN_OUT_SINE.calculate(1 - Math.abs(flashAnimation - 5) / 5);
-			float flashDistFromCenter = Mth.lerp(flashProgress, flashAnimation < 5 ? 0.18f : 0.25f, 0.15f);
+			float flashDistFromCenter = Mth.lerp(flashProgress, flashAnimation < 5 ? 0.2f : 0.25f, 0.15f);
 			float flashHeight = 0.6f * flashProgress;
 
-			int baseColor = FastColor.ARGB32.colorFromFloat(Mth.lerp(flashProgress, 0.5F, 1.0F), 0.75F, 1.0F, 1.0F);
-			int topColor = FastColor.ARGB32.colorFromFloat(0.0F, 1.0F, 1.0F, 1.0F);
+			int baseColor = FastColor.ARGB32.color(Math.round(Mth.lerp(flashProgress, 0.5F, 1.0F) * 255), blockEntity.rareFlash ? blockEntity.getRareFlashColor() : blockEntity.getFlashColor());
+			int topColor = FastColor.ARGB32.color(0, blockEntity.rareFlash ? blockEntity.getRareFlashColor() : blockEntity.getFlashColor());
 
 			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f, 0.5f - flashDistFromCenter).setColor(baseColor);
 			consumer.addVertex(pose, 0.5f - flashDistFromCenter, 0.5625f, 0.5f + flashDistFromCenter).setColor(baseColor);

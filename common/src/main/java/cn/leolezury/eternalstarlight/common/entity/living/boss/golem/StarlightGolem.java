@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.block.EnergyBlock;
+import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
@@ -15,10 +16,7 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
-import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
-import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
-import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
+import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
@@ -58,6 +56,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public StarlightGolem(EntityType<? extends StarlightGolem> entityType, Level level) {
@@ -86,6 +85,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	public int oldDeathAnimationTime;
 	public int deathAnimationTime;
+	private final Vec3[] deathParticlePos = new Vec3[4];
 
 	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>();
 	public float lastTrailTick = 0;
@@ -240,6 +240,23 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 			stopAllAnimStates();
 			deathAnimationState.start(tickCount);
 			setBehaviorState(0);
+			for (int i = 0; i < 4; i++) {
+				deathParticlePos[i] = position().add(0, getBbHeight() / 4, 0);
+			}
+		}
+		Optional<BlockPos> chestPos = getLootChestPos();
+		if (chestPos.isPresent()) {
+			for (int i = 0; i < 4; i++) {
+				if (deathAnimationTime < 90) {
+					deathParticlePos[i] = ESMathUtil.lerpVec(1 / (90f - deathAnimationTime), deathParticlePos[i], ESMathUtil.rotationToPosition(chestPos.get().getCenter(), 5, 0, 30 + i * 90));
+				} else {
+					float currentYaw = ESMathUtil.positionToYaw(chestPos.get().getCenter(), deathParticlePos[i]);
+					deathParticlePos[i] = ESMathUtil.rotationToPosition(chestPos.get().getCenter(), ((110 - deathAnimationTime) / 20f) * 5, 0, currentYaw + 2);
+				}
+				if (level() instanceof ServerLevel serverLevel) {
+					serverLevel.sendParticles(ESParticles.ENERGY.get(), deathParticlePos[i].x(), deathParticlePos[i].y(), deathParticlePos[i].z(), 3, 0.1, 0.1, 0.1, 0);
+				}
+			}
 		}
 		oldDeathAnimationTime = deathAnimationTime;
 		++deathAnimationTime;
@@ -441,8 +458,16 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	}
 
 	@Override
-	public void dropExtraLoot(ServerPlayer player) {
+	protected void grantSpecialLoot(ServerPlayer player) {
 		ESCrestUtil.upgradeCrest(player, ESCrests.BLAZING_BEAM);
+	}
+
+	@Override
+	protected void modifyBossLootChest(LootChestBlockEntity blockEntity) {
+		blockEntity.setColor(0x767573);
+		blockEntity.setOutlineColor(0x00fff4);
+		blockEntity.setFlashColor(0xc8fff4);
+		blockEntity.setRareFlashColor(0x00fff4);
 	}
 
 	@Override

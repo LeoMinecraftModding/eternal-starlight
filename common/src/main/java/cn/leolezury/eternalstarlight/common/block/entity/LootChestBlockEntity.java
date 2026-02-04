@@ -19,6 +19,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -41,17 +42,23 @@ public class LootChestBlockEntity extends BlockEntity {
 	private static final String TAG_CURRENT_REWARD_TARGET = "current_reward_target";
 	private static final String TAG_EJECTION_TICKS = "ejection_ticks";
 	private static final String TAG_COOLDOWN = "cooldown";
+	private static final String TAG_COLOR = "color";
+	private static final String TAG_OUTLINE_COLOR = "outline_color";
+	private static final String TAG_FLASH_COLOR = "flash_color";
+	private static final String TAG_RARE_FLASH_COLOR = "rare_flash_color";
 
 	private ResourceKey<LootTable> lootTable;
 	private final List<ItemStack> itemsToEject = new ArrayList<>();
 	private final List<UUID> rewardTargets = new ArrayList<>();
 	private UUID currentRewardTarget;
 	private int ejectionTicks, cooldown;
+	private int color = -1, outlineColor = -1, flashColor = -1, rareFlashColor = -1;
 
 	public AnimationState openAnimationState = new AnimationState();
 	public AnimationState closeAnimationState = new AnimationState();
 	public int clientTickCount = 0;
 	public int flashStartTickCount = Integer.MIN_VALUE;
+	public boolean rareFlash = false;
 
 	public void setLootTable(ResourceKey<LootTable> lootTable) {
 		this.lootTable = lootTable;
@@ -91,6 +98,54 @@ public class LootChestBlockEntity extends BlockEntity {
 		return ejectionTicks > 0;
 	}
 
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
+		setChanged();
+		if (getLevel() != null) {
+			getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+		}
+	}
+
+	public int getOutlineColor() {
+		return outlineColor;
+	}
+
+	public void setOutlineColor(int outlineColor) {
+		this.outlineColor = outlineColor;
+		setChanged();
+		if (getLevel() != null) {
+			getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+		}
+	}
+
+	public int getFlashColor() {
+		return flashColor;
+	}
+
+	public void setFlashColor(int flashColor) {
+		this.flashColor = flashColor;
+		setChanged();
+		if (getLevel() != null) {
+			getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+		}
+	}
+
+	public int getRareFlashColor() {
+		return rareFlashColor;
+	}
+
+	public void setRareFlashColor(int rareFlashColor) {
+		this.rareFlashColor = rareFlashColor;
+		setChanged();
+		if (getLevel() != null) {
+			getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+		}
+	}
+
 	public LootChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(ESBlockEntities.LOOT_CHEST.get(), blockPos, blockState);
 	}
@@ -106,7 +161,8 @@ public class LootChestBlockEntity extends BlockEntity {
 					blockEntity.setChanged();
 				}
 				if ((level.getGameTime() + 5) % 10 == 0 && !blockEntity.itemsToEject.isEmpty()) {
-					level.blockEvent(pos, state.getBlock(), 1, 2);
+					boolean rare = blockEntity.itemsToEject.getFirst().getRarity() != Rarity.COMMON;
+					level.blockEvent(pos, state.getBlock(), 2, rare ? 1 : 0);
 				}
 				if (level.getGameTime() % 10 == 0) {
 					if (blockEntity.itemsToEject.isEmpty()) {
@@ -153,16 +209,20 @@ public class LootChestBlockEntity extends BlockEntity {
 	@Override
 	public boolean triggerEvent(int id, int type) {
 		if (id == 1) {
+			openAnimationState.stop();
+			closeAnimationState.stop();
 			if (type == 0) {
-				openAnimationState.stop();
-				closeAnimationState.stop();
 				openAnimationState.startIfStopped(clientTickCount);
 			} else if (type == 1) {
-				openAnimationState.stop();
-				closeAnimationState.stop();
 				closeAnimationState.startIfStopped(clientTickCount);
-			} else if (type == 2) {
-				flashStartTickCount = clientTickCount;
+			}
+			return true;
+		} else if (id == 2) {
+			flashStartTickCount = clientTickCount;
+			if (type == 0) {
+				rareFlash = false;
+			} else if (type == 1) {
+				rareFlash = true;
 			}
 			return true;
 		} else {
@@ -203,6 +263,18 @@ public class LootChestBlockEntity extends BlockEntity {
 		}
 		cooldown = compoundTag.getInt(TAG_COOLDOWN);
 		ejectionTicks = compoundTag.getInt(TAG_EJECTION_TICKS);
+		if (compoundTag.contains(TAG_COLOR, CompoundTag.TAG_INT)) {
+			color = compoundTag.getInt(TAG_COLOR);
+		}
+		if (compoundTag.contains(TAG_OUTLINE_COLOR, CompoundTag.TAG_INT)) {
+			outlineColor = compoundTag.getInt(TAG_OUTLINE_COLOR);
+		}
+		if (compoundTag.contains(TAG_FLASH_COLOR, CompoundTag.TAG_INT)) {
+			flashColor = compoundTag.getInt(TAG_FLASH_COLOR);
+		}
+		if (compoundTag.contains(TAG_RARE_FLASH_COLOR, CompoundTag.TAG_INT)) {
+			rareFlashColor = compoundTag.getInt(TAG_RARE_FLASH_COLOR);
+		}
 	}
 
 	@Override
@@ -224,5 +296,9 @@ public class LootChestBlockEntity extends BlockEntity {
 		}
 		compoundTag.putInt(TAG_COOLDOWN, cooldown);
 		compoundTag.putInt(TAG_EJECTION_TICKS, ejectionTicks);
+		compoundTag.putInt(TAG_COLOR, color);
+		compoundTag.putInt(TAG_OUTLINE_COLOR, outlineColor);
+		compoundTag.putInt(TAG_FLASH_COLOR, flashColor);
+		compoundTag.putInt(TAG_RARE_FLASH_COLOR, rareFlashColor);
 	}
 }

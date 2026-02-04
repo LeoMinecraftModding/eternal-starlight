@@ -822,6 +822,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.CRYSTALBORN_CATALYST.get());
 		dropSelf(ESBlocks.CRYSTALLIZED_SAND.get());
 
+		add(ESBlocks.LOOT_CHEST.get(), noDrop());
+
 		add(ESBlocks.THE_GATEKEEPER_SPAWNER.get(), noDrop());
 		add(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get(), noDrop());
 		add(ESBlocks.PERMAFROST_SPAWNER.get(), noDrop());

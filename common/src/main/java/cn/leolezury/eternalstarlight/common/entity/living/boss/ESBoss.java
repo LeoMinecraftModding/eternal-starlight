@@ -1,14 +1,15 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.LootChestBlock;
+import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
-import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
-import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.GlobalVec3;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,7 +20,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -34,14 +34,17 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class ESBoss extends Monster implements MultiBehaviorUser {
@@ -210,12 +213,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	public ResourceKey<LootTable> getBossLootTable() {
-		ResourceLocation lootTable;
-		ResourceLocation resourcelocation = BuiltInRegistries.ENTITY_TYPE.getKey(getType());
-
-		lootTable = resourcelocation.withPrefix("bosses/");
-
-		return ResourceKey.create(Registries.LOOT_TABLE, lootTable);
+		return ResourceKey.create(Registries.LOOT_TABLE, BuiltInRegistries.ENTITY_TYPE.getKey(getType()).withPrefix("bosses/"));
 	}
 
 	public ItemStack getBossLootBag() {
@@ -227,34 +225,95 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	@Override
-	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
-		super.dropCustomDeathLoot(serverLevel, damageSource, bl);
-		ItemStack lootBag = getBossLootBag();
-		if (fightParticipants.stream().noneMatch(uuid -> level().getPlayerByUUID(uuid) != null)) {
-			ItemEntity item = spawnAtLocation(lootBag.copy());
-			if (item != null) {
-				ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
-				item.setGlowingTag(true);
-				item.setExtendedLifetime();
+	public void remove(RemovalReason reason) {
+		if (reason == RemovalReason.KILLED) {
+			trySpawnLoot();
+		}
+		super.remove(reason);
+	}
+
+	protected boolean shouldSpawnLoot() {
+		return level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT);
+	}
+
+	protected boolean shouldSpawnLootChest() {
+		return !fightParticipants.isEmpty();
+	}
+
+	protected void trySpawnLoot() {
+		if (level() instanceof ServerLevel serverLevel && shouldSpawnLoot()) {
+			if (!spawnBossLootChest(serverLevel)) {
+				ItemStack lootBag = getBossLootBag();
+				if (fightParticipants.stream().noneMatch(uuid -> level().getPlayerByUUID(uuid) != null)) {
+					ItemEntity item = spawnAtLocation(lootBag.copy());
+					if (item != null) {
+						ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
+						item.setGlowingTag(true);
+						item.setExtendedLifetime();
+					}
+				}
+				for (UUID uuid : fightParticipants) {
+					Player player = level().getPlayerByUUID(uuid);
+					if (player != null && player.isAlive() && player.level().dimension() == level().dimension()) {
+						ItemEntity item = player.spawnAtLocation(lootBag.copy());
+						if (item != null) {
+							ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
+							item.setTarget(player.getUUID());
+							item.setGlowingTag(true);
+							item.setExtendedLifetime();
+						}
+					}
+				}
 			}
 		}
 		for (UUID uuid : fightParticipants) {
 			Player player = level().getPlayerByUUID(uuid);
 			if (player instanceof ServerPlayer serverPlayer && player.isAlive() && player.level().dimension() == level().dimension()) {
-				ItemEntity item = player.spawnAtLocation(lootBag.copy());
-				if (item != null) {
-					ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
-					item.setTarget(player.getUUID());
-					item.setGlowingTag(true);
-					item.setExtendedLifetime();
-				}
-				dropExtraLoot(serverPlayer);
+				grantSpecialLoot(serverPlayer);
 			}
 		}
 	}
 
-	public void dropExtraLoot(ServerPlayer player) {
+	protected void grantSpecialLoot(ServerPlayer player) {
+	}
 
+	protected boolean canBossLootChestReplace(BlockState state) {
+		return state.isAir() || state.canBeReplaced();
+	}
+
+	protected Optional<BlockPos> getLootChestPos() {
+		BlockPos chestPos = blockPosition();
+		if (level().dimension() == initialPos.dimension()) {
+			chestPos = BlockPos.containing(initialPos.pos());
+		}
+		while (canBossLootChestReplace(level().getBlockState(chestPos)) && chestPos.getY() > level().getMinBuildHeight()) {
+			chestPos = chestPos.below();
+		}
+		chestPos = chestPos.above();
+		if (shouldSpawnLootChest() && canBossLootChestReplace(level().getBlockState(chestPos))) {
+			return Optional.of(chestPos);
+		}
+		return Optional.empty();
+	}
+
+	protected boolean spawnBossLootChest(ServerLevel serverLevel) {
+		Optional<BlockPos> possibleChestPos = getLootChestPos();
+		if (possibleChestPos.isPresent()) {
+			BlockPos chestPos = possibleChestPos.get();
+			serverLevel.setBlockAndUpdate(chestPos, ESBlocks.LOOT_CHEST.get().defaultBlockState().setValue(LootChestBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(serverLevel.getRandom())));
+			if (serverLevel.getBlockEntity(chestPos) instanceof LootChestBlockEntity blockEntity) {
+				blockEntity.setLootTable(getBossLootTable());
+				for (UUID uuid : fightParticipants) {
+					blockEntity.addRewardTarget(uuid);
+				}
+				modifyBossLootChest(blockEntity);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected void modifyBossLootChest(LootChestBlockEntity blockEntity) {
 	}
 
 	@Override

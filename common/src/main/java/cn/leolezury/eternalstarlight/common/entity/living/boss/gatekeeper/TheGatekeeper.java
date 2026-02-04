@@ -430,15 +430,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 					ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.setData(serverPlayer, ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.getData(serverPlayer) + 1);
 				}
 			});
-			if (level() instanceof ServerLevel serverLevel) {
-				dropCustomDeathLoot(serverLevel, source, true);
-				for (UUID uuid : fightParticipants) {
-					Player player = level().getPlayerByUUID(uuid);
-					if (player instanceof ServerPlayer serverPlayer && player.isAlive() && player.level().dimension() == level().dimension()) {
-						permitPlayer(serverPlayer);
-					}
-				}
-			}
+			trySpawnLoot();
 			abortFight();
 		}
 	}
@@ -451,6 +443,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		return super.hurt(source, amount);
 	}
 
+	// TODO: REWRITE TELEPORT BACK LOGIC
 	private void tryTeleportBack() {
 		if (getInitialPos().dimension() != level().dimension()) {
 			return;
@@ -463,7 +456,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				setPos(initialPos);
 				return;
 			}
-			for (int i = 0; i < 16; i++) {
+			for (int i = 0; i < 64; i++) {
 				if (teleportTowards(initialPos) && initialPos.distanceTo(position()) <= 15) {
 					break;
 				}
@@ -593,7 +586,13 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	@Override
-	public void dropExtraLoot(ServerPlayer player) {
+	protected boolean shouldSpawnLootChest() {
+		return false;
+	}
+
+	@Override
+	protected void grantSpecialLoot(ServerPlayer player) {
+		permitPlayer(player);
 		ESCrestUtil.upgradeCrest(player, ESCrests.GUIDANCE_OF_STARS);
 	}
 

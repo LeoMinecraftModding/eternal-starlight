@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 
+import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
@@ -312,6 +313,14 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	@Override
 	public boolean displayFireAnimation() {
 		return getBehaviorState() != LunarMonstrositySneakPhase.ID && super.displayFireAnimation();
+	}
+
+	@Override
+	protected void modifyBossLootChest(LootChestBlockEntity blockEntity) {
+		blockEntity.setColor(0x88668d);
+		blockEntity.setOutlineColor(0x5a4cac);
+		blockEntity.setFlashColor(0xc2e5fc);
+		blockEntity.setRareFlashColor(0x5a4cac);
 	}
 
 	@Override

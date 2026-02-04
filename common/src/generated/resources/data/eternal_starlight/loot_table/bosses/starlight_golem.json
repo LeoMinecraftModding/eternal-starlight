@@ -16,14 +16,21 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 10.0,
+                "min": 8.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
           "name": "eternal_starlight:oxidized_golem_steel_ingot"
         }
       ],
-      "rolls": {
-        "type": "minecraft:uniform",
-        "max": 10.0,
-        "min": 8.0
-      }
+      "rolls": 1.0
     },
     {
       "bonus_rolls": 0.0,

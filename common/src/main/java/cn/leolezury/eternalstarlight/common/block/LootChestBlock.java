@@ -30,14 +30,15 @@ public class LootChestBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	private static final VoxelShape SHAPE = Shapes.or(
-		Block.box(0.75, 1, 0.75, 15.25, 15.25, 15.25),
+		Block.box(1, 1, 1, 15, 9, 15),
+		Block.box(0.75, 7.75, 0.75, 15.25, 15.25, 15.25),
 		Block.box(13, 0, 0, 16, 10, 3),
 		Block.box(0, 0, 0, 3, 10, 3),
 		Block.box(0, 0, 13, 3, 10, 16),
 		Block.box(13, 0, 13, 16, 10, 16)
 	);
 	private static final VoxelShape EJECTING_SHAPE = Shapes.or(
-		Block.box(0.75, 1, 0.75, 15.25, 9, 15.25),
+		Block.box(1, 1, 1, 15, 9, 15),
 		Block.box(13, 0, 0, 16, 10, 3),
 		Block.box(0, 0, 0, 3, 10, 3),
 		Block.box(0, 0, 13, 3, 10, 16),
@@ -62,12 +63,6 @@ public class LootChestBlock extends BaseEntityBlock {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-		// DEBUG
-		if (level.getBlockEntity(pos) instanceof LootChestBlockEntity blockEntity
-			&& player instanceof ServerPlayer serverPlayer) {
-			blockEntity.addRewardTarget(serverPlayer.getUUID());
-		}
-		// DEBUG
 		if (level.getBlockEntity(pos) instanceof LootChestBlockEntity blockEntity
 			&& player instanceof ServerPlayer serverPlayer
 			&& blockEntity.getRewardTargets().contains(serverPlayer.getUUID())
