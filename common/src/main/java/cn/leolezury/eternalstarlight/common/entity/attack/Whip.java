@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -191,6 +192,15 @@ public abstract class Whip extends Entity {
 				animationTicks++;
 			}
 		}
+	}
+
+	@Override
+	public boolean hurt(DamageSource damageSource, float amount) {
+		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			discard();
+			return true;
+		}
+		return false;
 	}
 
 	public abstract int getLifespan();

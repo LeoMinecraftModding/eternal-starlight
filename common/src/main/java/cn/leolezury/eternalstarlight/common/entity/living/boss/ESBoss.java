@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.LootChestBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.GlobalVec3;
@@ -237,7 +238,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	protected boolean shouldSpawnLootChest() {
-		return !fightParticipants.isEmpty();
+		return ESConfig.INSTANCE.enableLootChest && !fightParticipants.isEmpty();
 	}
 
 	protected void trySpawnLoot() {

@@ -1134,11 +1134,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			);
 		tag(BlockTags.WITHER_IMMUNE)
 			.add(
+				ESBlocks.SOLAR_EGG.get(),
 				ESBlocks.ENERGY_BLOCK.get(),
 				ESBlocks.ECLIPSE_CORE.get()
 			);
 		tag(BlockTags.DRAGON_IMMUNE)
 			.add(
+				ESBlocks.SOLAR_EGG.get(),
 				ESBlocks.ENERGY_BLOCK.get(),
 				ESBlocks.ECLIPSE_CORE.get()
 			);
@@ -1660,7 +1662,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get(),
 				ESBlocks.SOLAR_EGG.get(),
 				ESBlocks.GOLEM_STEEL_CRATE.get(),
-				ESBlocks.ENERGY_BLOCK.get()
+				ESBlocks.ENERGY_BLOCK.get(),
+				ESBlocks.ECLIPSE_CORE.get()
 			);
 		tag(BlockTags.CROPS)
 			.add(

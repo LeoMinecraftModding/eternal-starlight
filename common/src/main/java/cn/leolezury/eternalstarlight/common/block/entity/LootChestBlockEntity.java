@@ -1,6 +1,9 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import net.minecraft.core.BlockPos;
@@ -16,6 +19,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -29,6 +35,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,6 +45,7 @@ import java.util.UUID;
 public class LootChestBlockEntity extends BlockEntity {
 	private static final String TAG_LOOT_TABLE = "loot_table";
 	private static final String TAG_ITEMS_TO_EJECT = "items_to_eject";
+	private static final String TAG_QUICK_EJECTION = "quick_ejection";
 	private static final String TAG_REWARD_TARGETS = "reward_targets";
 	private static final String TAG_CURRENT_REWARD_TARGET = "current_reward_target";
 	private static final String TAG_EJECTION_TICKS = "ejection_ticks";
@@ -49,6 +57,7 @@ public class LootChestBlockEntity extends BlockEntity {
 
 	private ResourceKey<LootTable> lootTable;
 	private final List<ItemStack> itemsToEject = new ArrayList<>();
+	private boolean quickEjection = false;
 	private final List<UUID> rewardTargets = new ArrayList<>();
 	private UUID currentRewardTarget;
 	private int ejectionTicks, cooldown;
@@ -74,8 +83,9 @@ public class LootChestBlockEntity extends BlockEntity {
 		setChanged();
 	}
 
-	public void rewardPlayer(ServerPlayer player, BlockPos pos, Block block) {
+	public void rewardPlayer(ServerPlayer player, BlockPos pos, Block block, boolean quickEjection) {
 		player.level().blockEvent(pos, block, 1, 0);
+		this.quickEjection = quickEjection;
 		this.currentRewardTarget = player.getUUID();
 		this.rewardTargets.remove(player.getUUID());
 		if (this.lootTable != null) {
@@ -160,11 +170,11 @@ public class LootChestBlockEntity extends BlockEntity {
 				if (blockEntity.ejectionTicks % 10 == 0) {
 					blockEntity.setChanged();
 				}
-				if ((level.getGameTime() + 5) % 10 == 0 && !blockEntity.itemsToEject.isEmpty()) {
-					boolean rare = blockEntity.itemsToEject.getFirst().getRarity() != Rarity.COMMON;
+				if ((blockEntity.ejectionTicks + 5) % 10 == 0 && !blockEntity.itemsToEject.isEmpty()) {
+					boolean rare = blockEntity.itemsToEject.getFirst().getRarity() != Rarity.COMMON && !blockEntity.quickEjection;
 					level.blockEvent(pos, state.getBlock(), 2, rare ? 1 : 0);
 				}
-				if (level.getGameTime() % 10 == 0) {
+				if (blockEntity.ejectionTicks % 10 == 0) {
 					if (blockEntity.itemsToEject.isEmpty()) {
 						if (blockEntity.ejectionTicks > 20) {
 							blockEntity.currentRewardTarget = null;
@@ -173,24 +183,18 @@ public class LootChestBlockEntity extends BlockEntity {
 							blockEntity.setChanged();
 							level.sendBlockUpdated(pos, state, state, 3);
 							level.blockEvent(pos, state.getBlock(), 1, 1);
+							level.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SoundEvents.CHEST_CLOSE, SoundSource.BLOCKS, 1.0F, 1.0F);
 						}
 					} else {
-						ItemStack stack = blockEntity.itemsToEject.removeFirst();
-						Vec3 position = Vec3.atBottomCenterOf(pos).relative(Direction.UP, 0.625);
-						double x = position.x();
-						double y = position.y();
-						double z = position.z();
-						ItemEntity itemEntity = new ItemEntity(level, x, y, z, stack);
-						itemEntity.setDeltaMovement(
-							level.random.triangle(0, 0.035),
-							level.random.triangle(0.2, 0.035),
-							level.random.triangle(0, 0.035)
-						);
-						level.addFreshEntity(itemEntity);
-						ESDataAttachments.IMPORTANT_ITEM.setData(itemEntity, true);
-						itemEntity.setTarget(blockEntity.currentRewardTarget);
-						itemEntity.setGlowingTag(true);
-						itemEntity.setExtendedLifetime();
+						if (blockEntity.quickEjection) {
+							for (ItemStack stack : blockEntity.itemsToEject) {
+								ejectItem(level, pos, blockEntity, stack);
+							}
+							blockEntity.itemsToEject.clear();
+						} else {
+							ItemStack stack = blockEntity.itemsToEject.removeFirst();
+							ejectItem(level, pos, blockEntity, stack);
+						}
 						blockEntity.setChanged();
 					}
 				}
@@ -201,9 +205,34 @@ public class LootChestBlockEntity extends BlockEntity {
 					blockEntity.setChanged();
 				}
 			}
+			if (blockEntity.isFree() && blockEntity.getRewardTargets().isEmpty() && level instanceof ServerLevel serverLevel) {
+				for (int i = 0; i < 15; i++) {
+					Vec3 speed = new Vec3((level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.1F, level.getRandom().nextFloat() * 0.05F, (level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.1F).normalize();
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(new ExplosionShockParticleOptions(new Vector3f(FastColor.ARGB32.red(blockEntity.getColor()), FastColor.ARGB32.green(blockEntity.getColor()), FastColor.ARGB32.blue(blockEntity.getColor())), new Vector3f(FastColor.ARGB32.red(blockEntity.getOutlineColor()), FastColor.ARGB32.green(blockEntity.getOutlineColor()), FastColor.ARGB32.blue(blockEntity.getOutlineColor())), 0.8f, 0.04f, 0.8f), pos.getX() + 0.5 + speed.x * 0.2, pos.getY() + 0.5 + speed.y * 0.2, pos.getZ() + 0.5 + speed.z * 0.2, speed.x, speed.y, speed.z));
+				}
+				level.destroyBlock(pos, false);
+			}
 		} else {
 			blockEntity.clientTickCount++;
 		}
+	}
+
+	public static void ejectItem(Level level, BlockPos pos, LootChestBlockEntity blockEntity, ItemStack stack) {
+		Vec3 position = Vec3.atBottomCenterOf(pos).relative(Direction.UP, 0.625);
+		double x = position.x();
+		double y = position.y();
+		double z = position.z();
+		ItemEntity itemEntity = new ItemEntity(level, x, y, z, stack);
+		itemEntity.setDeltaMovement(
+			level.random.triangle(0, 0.035),
+			level.random.triangle(0.2, 0.035),
+			level.random.triangle(0, 0.035)
+		);
+		level.addFreshEntity(itemEntity);
+		ESDataAttachments.IMPORTANT_ITEM.setData(itemEntity, true);
+		itemEntity.setTarget(blockEntity.currentRewardTarget);
+		itemEntity.setGlowingTag(true);
+		itemEntity.setExtendedLifetime();
 	}
 
 	@Override
@@ -250,6 +279,7 @@ public class LootChestBlockEntity extends BlockEntity {
 		if (compoundTag.contains(TAG_ITEMS_TO_EJECT)) {
 			ItemStack.OPTIONAL_CODEC.listOf().parse(provider.createSerializationContext(NbtOps.INSTANCE), compoundTag.get(TAG_ITEMS_TO_EJECT)).resultOrPartial((string) -> EternalStarlight.LOGGER.error("Failed to parse Loot Chest items: '{}'", string)).ifPresent(this.itemsToEject::addAll);
 		}
+		quickEjection = compoundTag.getBoolean(TAG_QUICK_EJECTION);
 		if (compoundTag.contains(TAG_REWARD_TARGETS, CompoundTag.TAG_LIST)) {
 			ListTag listTag = compoundTag.getList(TAG_REWARD_TARGETS, CompoundTag.TAG_INT_ARRAY);
 			for (Tag tag : listTag) {
@@ -284,6 +314,7 @@ public class LootChestBlockEntity extends BlockEntity {
 			compoundTag.putString(TAG_LOOT_TABLE, lootTable.location().toString());
 		}
 		compoundTag.put(TAG_ITEMS_TO_EJECT, ItemStack.OPTIONAL_CODEC.listOf().encodeStart(provider.createSerializationContext(NbtOps.INSTANCE), this.itemsToEject).getOrThrow());
+		compoundTag.putBoolean(TAG_QUICK_EJECTION, quickEjection);
 		ListTag listTag = new ListTag();
 		for (UUID uuid : this.rewardTargets) {
 			if (uuid != null) {

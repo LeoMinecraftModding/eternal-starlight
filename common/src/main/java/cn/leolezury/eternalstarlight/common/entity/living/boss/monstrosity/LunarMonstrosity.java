@@ -13,9 +13,12 @@ import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -55,6 +58,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	public LunarMonstrosity(EntityType<? extends LunarMonstrosity> entityType, Level level) {
@@ -85,6 +89,8 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	public AnimationState switchPhaseAnimationState = new AnimationState();
 	public AnimationState deathAnimationState = new AnimationState();
 	public Vec3 headPos = Vec3.ZERO;
+
+	private final Vec3[] deathParticlePos = new Vec3[5];
 
 	public int fleeFromLavaCooldown = 0;
 
@@ -188,6 +194,24 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 			stopAllAnimStates();
 			deathAnimationState.start(tickCount);
 			setBehaviorState(0);
+			for (int i = 0; i < 5; i++) {
+				deathParticlePos[i] = position().add(0, getBbHeight() / 2, 0);
+			}
+		}
+		Optional<BlockPos> chestPos = getLootChestPos();
+		if (chestPos.isPresent()) {
+			for (int i = 0; i < 5; i++) {
+				if (deathTime < 40) {
+					deathParticlePos[i] = ESMathUtil.lerpVec(1 / (40f - deathTime), deathParticlePos[i], ESMathUtil.rotationToPosition(chestPos.get().getCenter(), 5, 0, 30 + i * 72));
+				} else {
+					float currentYaw = ESMathUtil.positionToYaw(chestPos.get().getCenter(), deathParticlePos[i]);
+					deathParticlePos[i] = ESMathUtil.rotationToPosition(chestPos.get().getCenter(), ((75 - deathTime) / 35f) * 5, 0, currentYaw + 3);
+				}
+				if (level() instanceof ServerLevel serverLevel) {
+					serverLevel.sendParticles(ESParticles.SOUL_TRAIL.get(), deathParticlePos[i].x(), deathParticlePos[i].y(), deathParticlePos[i].z(), 3, 0.1, 0.1, 0.1, 0.01);
+					serverLevel.sendParticles(ESParticles.SHADEGRIEVE_LEAVES.get(), deathParticlePos[i].x(), deathParticlePos[i].y(), deathParticlePos[i].z(), 3, 0.1, 0.1, 0.1, 0.1);
+				}
+			}
 		}
 		++deathTime;
 		if (deathTime == 75 && !level().isClientSide()) {

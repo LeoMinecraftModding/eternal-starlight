@@ -522,6 +522,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		directionalBlock(ESBlocks.CRYSTALBORN_CATALYST.get(), models().cubeBottomTop(name(ESBlocks.CRYSTALBORN_CATALYST.get()), EternalStarlight.id("block/machine_side"), EternalStarlight.id("block/machine_side"), blockTexture(ESBlocks.CRYSTALBORN_CATALYST.get())));
 		simpleBlock(ESBlocks.CRYSTALLIZED_SAND.get());
 
+		particleOnly(ESBlocks.LOOT_CHEST.get(), blockTexture(ESBlocks.LUNAR_PLANKS.get()));
+
 		spawner(ESBlocks.THE_GATEKEEPER_SPAWNER.get());
 		spawner(ESBlocks.STARLIGHT_GOLEM_SPAWNER.get());
 		spawner(ESBlocks.PERMAFROST_SPAWNER.get());

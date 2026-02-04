@@ -89,6 +89,7 @@ public class EnergizedFlame extends Entity implements TraceableEntity {
 	public boolean hurt(DamageSource damageSource, float amount) {
 		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 			discard();
+			return true;
 		}
 		return false;
 	}

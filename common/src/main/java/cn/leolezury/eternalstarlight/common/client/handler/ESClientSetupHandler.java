@@ -830,7 +830,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.STARFIRE.get(), StarfireParticle.Provider::new);
 		strategy.register(ESParticles.STARFIRE_EXPLOSION.get(), StarfireExplosionParticle.Provider::new);
 		strategy.register(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), StarfireExplosionParticle.SmallProvider::new);
-		strategy.register(ESParticles.SOUL_TRAIL.get(), FlameParticle.Provider::new);
+		strategy.register(ESParticles.SOUL_TRAIL.get(), SoulTrailParticle.Provider::new);
 		strategy.register(ESParticles.CANDLASH_TRAIL.get(), StarfireExplosionParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);

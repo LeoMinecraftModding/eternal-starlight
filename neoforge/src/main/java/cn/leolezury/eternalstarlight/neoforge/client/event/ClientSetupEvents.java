@@ -142,6 +142,7 @@ public class ClientSetupEvents {
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.MALARITE_SPEAR.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.PUNGENCY_FRUIT_SPEAR.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.CRESCENT_SPEAR.get());
+		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.LOOT_CHEST.get());
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			@Override

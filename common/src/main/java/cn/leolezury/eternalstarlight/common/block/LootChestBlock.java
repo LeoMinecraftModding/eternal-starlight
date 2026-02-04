@@ -6,6 +6,8 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -67,7 +69,8 @@ public class LootChestBlock extends BaseEntityBlock {
 			&& player instanceof ServerPlayer serverPlayer
 			&& blockEntity.getRewardTargets().contains(serverPlayer.getUUID())
 			&& blockEntity.isFree()) {
-			blockEntity.rewardPlayer(serverPlayer, pos, this);
+			blockEntity.rewardPlayer(serverPlayer, pos, this, player.isCrouching());
+			level.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SoundEvents.CHEST_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 			return InteractionResult.CONSUME;
 		}
 		if (level.isClientSide) {

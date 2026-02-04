@@ -8,7 +8,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -118,6 +120,15 @@ public class RayAttack extends Entity implements TraceableEntity {
 			Vec3 endPos = ESMathUtil.rotationToPosition(position(), getLength(), getPitch(), getYaw());
 			addEndParticles(endPos);
 		}
+	}
+
+	@Override
+	public boolean hurt(DamageSource damageSource, float amount) {
+		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			discard();
+			return true;
+		}
+		return false;
 	}
 
 	public int getRadius() {

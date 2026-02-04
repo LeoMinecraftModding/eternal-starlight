@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
@@ -21,7 +22,6 @@ import com.mojang.serialization.DataResult;
 import net.minecraft.Util;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -62,16 +62,15 @@ import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public static int GUI_RESPONSE_EMPTY = 0;
@@ -443,7 +442,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		return super.hurt(source, amount);
 	}
 
-	// TODO: REWRITE TELEPORT BACK LOGIC
 	private void tryTeleportBack() {
 		if (getInitialPos().dimension() != level().dimension()) {
 			return;
@@ -451,77 +449,43 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		Vec3 initialPos = getInitialPos().pos();
 		BlockPos blockPos = BlockPos.containing(initialPos);
 		if (initialPos.distanceTo(position()) > 15) {
-			Stream<VoxelShape> shapes = StreamSupport.stream(level().getBlockCollisions(this, getBoundingBox().move(initialPos.subtract(position()))).spliterator(), false);
-			if (shapes.allMatch(VoxelShape::isEmpty) && level().getBlockState(blockPos.below()).isFaceSturdy(level(), blockPos.below(), Direction.UP)) {
-				setPos(initialPos);
+			if (level().noBlockCollision(this, getBoundingBox().move(blockPos.getBottomCenter().subtract(position())))) {
+				setPos(blockPos.getBottomCenter());
 				return;
 			}
 			for (int i = 0; i < 64; i++) {
-				if (teleportTowards(initialPos) && initialPos.distanceTo(position()) <= 15) {
-					break;
-				}
-			}
-		}
-	}
-
-	private boolean teleportTowards(Vec3 target) {
-		Vec3 vec3 = new Vec3(this.getX() - target.x(), this.getY(0.5) - target.y(), this.getZ() - target.z()).normalize();
-		double x = this.getX() + (this.random.nextDouble() - 0.5) * 8.0 - vec3.x * 16.0;
-		double y = this.getY() + (double) (this.random.nextInt(16) - 8) - vec3.y * 16.0;
-		double z = this.getZ() + (this.random.nextDouble() - 0.5) * 8.0 - vec3.z * 16.0;
-		return this.teleport(target, x, y, z);
-	}
-
-	private boolean teleport(Vec3 target, double x, double y, double z) {
-		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos(x, y, z);
-
-		while (mutableBlockPos.getY() > this.level().getMinBuildHeight() && !this.level().getBlockState(mutableBlockPos).blocksMotion()) {
-			mutableBlockPos.move(Direction.DOWN);
-		}
-
-		BlockState blockState = this.level().getBlockState(mutableBlockPos);
-		if (blockState.blocksMotion()) {
-			return randomTeleportGatekeeper(target, x, y, z);
-		}
-		return false;
-	}
-
-	private boolean randomTeleportGatekeeper(Vec3 target, double x, double y, double z) {
-		double oldX = this.getX();
-		double oldY = this.getY();
-		double oldZ = this.getZ();
-		double currentY = y;
-		boolean success = false;
-		BlockPos blockPos = BlockPos.containing(x, currentY, z);
-		Level level = this.level();
-
-		if (level.hasChunkAt(blockPos)) {
-			boolean blocksMotion = false;
-			while (!blocksMotion && blockPos.getY() > level.getMinBuildHeight()) {
-				BlockPos blockPos2 = blockPos.below();
-				BlockState blockState = level.getBlockState(blockPos2);
-				if (blockState.blocksMotion()) {
-					blocksMotion = true;
+				BlockPos startPos = blockPos.offset(getRandom().nextInt(31) - 15, getRandom().nextInt(31) - 15, getRandom().nextInt(31) - 15);
+				boolean successful = false;
+				double finalY = startPos.getY();
+				if (level().getBlockState(startPos).isAir()) {
+					BlockHitResult result = level().clip(new ClipContext(startPos.getCenter(), startPos.getCenter().add(0, -15, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+					if (result.getType() != HitResult.Type.MISS) {
+						finalY = result.getLocation().y;
+						successful = true;
+					}
 				} else {
-					--currentY;
-					blockPos = blockPos2;
+					int currentDiff = 0;
+					while (!(level().noBlockCollision(this, getBoundingBox().move(startPos.getBottomCenter().subtract(position())))) && currentDiff < 15) {
+						startPos = startPos.above();
+						currentDiff++;
+					}
+					if (level().noBlockCollision(this, getBoundingBox().move(startPos.getBottomCenter().subtract(position())))) {
+						BlockHitResult result = level().clip(new ClipContext(startPos.getCenter(), startPos.getCenter().add(0, -15, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+						if (result.getType() != HitResult.Type.MISS) {
+							finalY = result.getLocation().y;
+							successful = true;
+						}
+					}
+				}
+				Vec3 target = new Vec3(startPos.getX() + 0.5, finalY, startPos.getZ() + 0.5);
+				if (successful && initialPos.distanceTo(target) <= 15) {
+					if (ESPlatform.INSTANCE.postTeleportEvent(this, target)) {
+						setPos(target);
+						break;
+					}
 				}
 			}
-			if (blocksMotion && new Vec3(x, currentY, z).distanceTo(target) <= 15) {
-				if (ESPlatform.INSTANCE.postTeleportEvent(this, new Vec3(x, currentY, z))) {
-					this.teleportTo(x, currentY, z);
-				}
-				success = level.noCollision(this) && !level.containsAnyLiquid(this.getBoundingBox());
-			}
 		}
-
-		if (!success) {
-			if (ESPlatform.INSTANCE.postTeleportEvent(this, new Vec3(oldX, oldY, oldZ))) {
-				this.teleportTo(oldX, oldY, oldZ);
-			}
-		}
-
-		return success;
 	}
 
 	@Override
@@ -586,14 +550,15 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	@Override
-	protected boolean shouldSpawnLootChest() {
-		return false;
-	}
-
-	@Override
 	protected void grantSpecialLoot(ServerPlayer player) {
 		permitPlayer(player);
 		ESCrestUtil.upgradeCrest(player, ESCrests.GUIDANCE_OF_STARS);
+	}
+
+	@Override
+	protected void modifyBossLootChest(LootChestBlockEntity blockEntity) {
+		blockEntity.setColor(0x424c6e);
+		blockEntity.setRareFlashColor(0x657392);
 	}
 
 	@Override
