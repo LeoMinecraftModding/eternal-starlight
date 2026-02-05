@@ -21,13 +21,13 @@ logoFile = "icon.png"
 [[dependencies.eternal_starlight]]
 modId = "neoforge"
 type = "required"
-versionRange = "*"
+versionRange = "[21.1.181,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.eternal_starlight]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21,1.22)"
+versionRange = "[1.21.1,1.22)"
 ordering = "NONE"
 side = "BOTH"

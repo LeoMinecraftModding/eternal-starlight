@@ -16,6 +16,7 @@ public class ESConfig {
 	public static final Path CONFIG_PATH = ESPlatform.INSTANCE.getConfigDir().resolve(EternalStarlight.ID + ".json");
 	public static ESConfig INSTANCE = new ESConfig();
 
+	public boolean enableDataFixer = false;
 	public boolean enablePortalShader = true;
 	public boolean enableScreenShake = true;
 	public boolean enableLootChest = true;

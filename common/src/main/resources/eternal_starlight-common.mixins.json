@@ -10,7 +10,6 @@
     "BaseFireBlockMixin",
     "BubbleColumnBlockMixin",
     "CeilingHangingSignBlockMixin",
-    "ChunkSerializerMixin",
     "CoralBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
@@ -45,9 +44,9 @@
     "WallHangingSignBlockMixin"
   ],
   "client": [
-    "ClientRecipeBookMixin",
     "client.CameraMixin",
     "client.ClientLevelMixin",
+    "client.ClientRecipeBookMixin",
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",
