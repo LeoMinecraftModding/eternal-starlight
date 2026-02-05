@@ -79,6 +79,11 @@ public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, Per
 	}
 
 	@Override
+	protected float getFlipDegrees(T entity) {
+		return 0;
+	}
+
+	@Override
 	public ResourceLocation getTextureLocation(T entity) {
 		return ENTITY_TEXTURE;
 	}

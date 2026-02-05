@@ -59,6 +59,7 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Integer> WHIP = register(ESPlatform.INSTANCE.registerDataAttachment("whip", () -> -1, null, ByteBufCodecs.INT, false));
 	public static final EntityDataAttachment<List<String>> GUIDEBOOK_LISTENING_NAMESPACES = register(ESPlatform.INSTANCE.registerDataAttachment("guidebook_listening_namespaces", List::of, Codec.STRING.listOf(), null, true));
 	public static final EntityDataAttachment<Boolean> IMPORTANT_ITEM = register(ESPlatform.INSTANCE.registerDataAttachment("important_item", () -> false, Codec.BOOL, ByteBufCodecs.BOOL, false));
+	public static final EntityDataAttachment<Integer> CRYSTAL_GREATSWORD_MUSIC_INDEX = register(ESPlatform.INSTANCE.registerDataAttachment("crystal_greatsword_music_index", () -> 0, null, null, false));
 
 	private static <T> EntityDataAttachment<T> register(EntityDataAttachment<T> attachment) {
 		ATTACHMENTS.add(attachment);

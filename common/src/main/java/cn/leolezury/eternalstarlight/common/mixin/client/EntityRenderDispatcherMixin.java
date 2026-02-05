@@ -14,7 +14,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
@@ -23,6 +22,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
@@ -42,33 +42,21 @@ public abstract class EntityRenderDispatcherMixin {
 	private static final Material ABYSSAL_FIRE_1 = new Material(TextureAtlas.LOCATION_BLOCKS, EternalStarlight.id("block/abyssal_fire_1"));
 
 	@Shadow
-	public abstract <T extends Entity> EntityRenderer<? super T> getRenderer(T entity);
-
-	@Shadow
-	private static void fireVertex(PoseStack.Pose arg, VertexConsumer arg2, float f, float g, float h, float i, float j) {
+	private static void fireVertex(PoseStack.Pose pose, VertexConsumer consumer, float x, float y, float z, float texU, float texV) {
 	}
 
 	@Shadow
 	private Quaternionf cameraOrientation;
 
-	@Inject(method = "render", at = @At("RETURN"))
+	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/EntityRenderer;render(Lnet/minecraft/world/entity/Entity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"))
 	private <E extends Entity> void render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
 		if (entity instanceof LivingEntity living && !living.isDeadOrDying()) {
 			AttributeInstance instance = living.getAttribute(Attributes.ARMOR);
 			if (instance != null && instance.hasModifier(CrystalInfectionEffect.ARMOR_MODIFIER_ID)) {
-				EntityRenderer<? super E> entityRenderer = getRenderer(living);
-
-				Vec3 renderOffset = entityRenderer.getRenderOffset(entity, yRot);
-				double x = xOffset + renderOffset.x();
-				double y = yOffset + renderOffset.y();
-				double z = zOffset + renderOffset.z();
-				poseStack.pushPose();
-				poseStack.translate(x, y, z);
-
+				AttributeModifier modifier = instance.getModifier(CrystalInfectionEffect.ARMOR_MODIFIER_ID);
 				long seed = (long) (Math.pow(living.getId(), 3) * 54321L);
-				RandomSource random = RandomSource.create();
-				random.setSeed(seed);
-				int crystalCount = (int) (living.getBbHeight() / 0.4F) + 2;
+				RandomSource random = RandomSource.create(seed);
+				int crystalCount = (int) (living.getBbHeight() / 0.5F) + (modifier == null ? 0 : (int) Math.abs(modifier.amount() * 2.5));
 
 				for (int i = 0; i < crystalCount; i++) {
 					poseStack.pushPose();
@@ -91,7 +79,6 @@ public abstract class EntityRenderDispatcherMixin {
 					ESPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, multiBufferSource, living.level(), random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
 					poseStack.popPose();
 				}
-				poseStack.popPose();
 			}
 		}
 	}
@@ -104,43 +91,43 @@ public abstract class EntityRenderDispatcherMixin {
 	}
 
 	@Unique
-	private void renderAbyssalFlame(PoseStack poseStack, MultiBufferSource buffer, Entity entity, Quaternionf quaternion) {
-		TextureAtlasSprite textureatlassprite = ABYSSAL_FIRE_0.sprite();
-		TextureAtlasSprite textureatlassprite1 = ABYSSAL_FIRE_1.sprite();
-		poseStack.pushPose();
+	private void renderAbyssalFlame(PoseStack stack, MultiBufferSource buffer, Entity entity, Quaternionf quaternion) {
+		TextureAtlasSprite fireSprite0 = ABYSSAL_FIRE_0.sprite();
+		TextureAtlasSprite fireSprite1 = ABYSSAL_FIRE_1.sprite();
+		stack.pushPose();
 		float f = entity.getBbWidth() * 1.4F;
-		poseStack.scale(f, f, f);
+		stack.scale(f, f, f);
 		float f1 = 0.5F;
 		float f3 = entity.getBbHeight() / f;
 		float f4 = 0.0F;
-		poseStack.mulPose(quaternion);
-		poseStack.translate(0.0F, 0.0F, 0.3F - (float) ((int) f3) * 0.02F);
+		stack.mulPose(quaternion);
+		stack.translate(0.0F, 0.0F, 0.3F - (float) ((int) f3) * 0.02F);
 		float f5 = 0.0F;
 		int i = 0;
-		VertexConsumer vertexconsumer = buffer.getBuffer(Sheets.cutoutBlockSheet());
+		VertexConsumer consumer = buffer.getBuffer(Sheets.cutoutBlockSheet());
 
-		for (PoseStack.Pose posestack$pose = poseStack.last(); f3 > 0.0F; ++i) {
-			TextureAtlasSprite textureatlassprite2 = i % 2 == 0 ? textureatlassprite : textureatlassprite1;
-			float f6 = textureatlassprite2.getU0();
-			float f7 = textureatlassprite2.getV0();
-			float f8 = textureatlassprite2.getU1();
-			float f9 = textureatlassprite2.getV1();
+		for (PoseStack.Pose posestack$pose = stack.last(); f3 > 0.0F; i++) {
+			TextureAtlasSprite sprite = i % 2 == 0 ? fireSprite0 : fireSprite1;
+			float f6 = sprite.getU0();
+			float f7 = sprite.getV0();
+			float f8 = sprite.getU1();
+			float f9 = sprite.getV1();
 			if (i / 2 % 2 == 0) {
 				float f10 = f8;
 				f8 = f6;
 				f6 = f10;
 			}
 
-			fireVertex(posestack$pose, vertexconsumer, -f1 - 0.0F, 0.0F - f4, f5, f8, f9);
-			fireVertex(posestack$pose, vertexconsumer, f1 - 0.0F, 0.0F - f4, f5, f6, f9);
-			fireVertex(posestack$pose, vertexconsumer, f1 - 0.0F, 1.4F - f4, f5, f6, f7);
-			fireVertex(posestack$pose, vertexconsumer, -f1 - 0.0F, 1.4F - f4, f5, f8, f7);
+			fireVertex(posestack$pose, consumer, -f1 - 0.0F, 0.0F - f4, f5, f8, f9);
+			fireVertex(posestack$pose, consumer, f1 - 0.0F, 0.0F - f4, f5, f6, f9);
+			fireVertex(posestack$pose, consumer, f1 - 0.0F, 1.4F - f4, f5, f6, f7);
+			fireVertex(posestack$pose, consumer, -f1 - 0.0F, 1.4F - f4, f5, f8, f7);
 			f3 -= 0.45F;
 			f4 -= 0.45F;
 			f1 *= 0.9F;
 			f5 -= 0.03F;
 		}
 
-		poseStack.popPose();
+		stack.popPose();
 	}
 }

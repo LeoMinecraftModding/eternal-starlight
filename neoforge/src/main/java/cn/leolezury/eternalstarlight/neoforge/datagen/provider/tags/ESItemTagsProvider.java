@@ -220,8 +220,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.TOOLS_CROSSBOW)
 			.add(
 				ESItems.STARFIRE_CROSSBOW.get(),
-				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
+				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get()
 			);
 		tag(Tags.Items.TOOLS_SPEAR)
@@ -268,6 +268,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SHATTERED_SWORD.get(),
 				ESItems.ENERGY_SWORD.get(),
 				ESItems.GOLEM_STEEL_GREATSWORD.get(),
+				ESItems.CRYSTAL_GREATSWORD.get(),
 				ESItems.MOONRING_GREATSWORD.get(),
 				ESItems.PETAL_SCYTHE.get(),
 				ESItems.BONEMORE.get(),
@@ -281,8 +282,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SEEDS_LAUNCHER.get(),
 				ESItems.STARFIRE_CROSSBOW.get(),
 				ESItems.FLOWGLAZE_BOW.get(),
-				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
+				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.ENERGY_BOOMERANG.get(),
 				ESItems.WILTED_CROSSBOW.get(),
 				ESItems.MOONRING_BOW.get(),
@@ -454,6 +455,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.GREATSWORDS)
 			.add(
 				ESItems.GOLEM_STEEL_GREATSWORD.get(),
+				ESItems.CRYSTAL_GREATSWORD.get(),
 				ESItems.MOONRING_GREATSWORD.get(),
 				ESItems.BONEMORE.get()
 			);
@@ -1014,8 +1016,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SALTPETER_MATCHBOX.get(),
 				ESItems.CANDLASH.get(),
 				ESItems.TENTACLE_SPIKE.get(),
-				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
+				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get(),
 				ESItems.MOONRING_BOW.get(),
 				ESItems.WAND_OF_TELEPORTATION.get(),
@@ -1038,8 +1040,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.CROSSBOW_ENCHANTABLE)
 			.add(
 				ESItems.STARFIRE_CROSSBOW.get(),
-				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
+				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get()
 			);
 		tag(ItemTags.SWORD_ENCHANTABLE)

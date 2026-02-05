@@ -300,17 +300,6 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CRYSTAL_CROSSBOW.get())
-			.pattern("BGB")
-			.pattern("STS")
-			.pattern(" R ")
-			.define('S', Items.STRING)
-			.define('T', Items.TRIPWIRE_HOOK)
-			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
-			.define('B', ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
-			.define('R', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
-			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
-			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.MECHANICAL_CROSSBOW.get())
 			.pattern("#&#")
 			.pattern("~$~")
@@ -329,6 +318,27 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
 		addPickaxe(recipeOutput, ESItems.UNDERMINER.get(), ESConventionalTags.Items.INGOTS_GOLEM_STEEL);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CRYSTAL_GREATSWORD.get())
+			.pattern("  R")
+			.pattern(" GB")
+			.pattern("SG ")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
+			.define('R', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('B', ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CRYSTAL_CROSSBOW.get())
+			.pattern("BGB")
+			.pattern("STS")
+			.pattern(" R ")
+			.define('S', Items.STRING)
+			.define('T', Items.TRIPWIRE_HOOK)
+			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
+			.define('R', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('B', ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
+			.save(recipeOutput);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ESBlocks.ENERGY_TRANSMITTER.get())
 			.pattern(" N ")

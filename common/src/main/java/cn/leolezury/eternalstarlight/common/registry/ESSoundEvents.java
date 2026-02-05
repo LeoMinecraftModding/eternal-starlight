@@ -52,6 +52,8 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> WHIP_SWISH = register("item.whip.swish");
 	public static final RegistryObject<SoundEvent, SoundEvent> WHIP_CRACK = register("item.whip.crack");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> CRYSTAL_GREATSWORD_CHIME = register("item.crystal_greatsword.chime");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> CHAIN_OF_SOULS_ABSORB = register("item.chain_of_souls.absorb");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> CRESCENT_SPEAR_THROW = register("item.crescent_spear.throw");

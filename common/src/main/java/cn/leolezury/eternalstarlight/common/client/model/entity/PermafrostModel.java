@@ -17,8 +17,10 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
+import org.joml.Vector3f;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 @Environment(EnvType.CLIENT)
@@ -127,6 +129,10 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+		if (entity.isDeadOrDying()) {
+			AtomicInteger offsetCount = new AtomicInteger();
+			this.root().getAllParts().forEach(part -> part.offsetPos(new Vector3f((float) Math.cos(entity.tickCount * 3.25 + offsetCount.getAndIncrement() * 1.5), (float) Math.cos(entity.tickCount * 2.25 + offsetCount.getAndIncrement() * 1.5), (float) Math.cos(entity.tickCount * 3.25 + offsetCount.getAndIncrement() * 1.5)).normalize().mul(0.2f)));
+		}
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
 		animate(entity.idleAnimationState, PermafrostAnimation.IDLE, ageInTicks);

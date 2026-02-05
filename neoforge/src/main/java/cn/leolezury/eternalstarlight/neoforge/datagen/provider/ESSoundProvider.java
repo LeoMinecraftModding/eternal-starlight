@@ -66,6 +66,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.WHIP_SWISH.get(), definition().with(sound(loc("item/whip/swish"))).subtitle("subtitles.item." + EternalStarlight.ID + ".whip.swish"));
 		add(ESSoundEvents.WHIP_CRACK.get(), definition().with(sound(loc("item/whip/crack"))).subtitle("subtitles.item." + EternalStarlight.ID + ".whip.crack"));
 
+		add(ESSoundEvents.CRYSTAL_GREATSWORD_CHIME.get(), definition().with(sound(loc("item/crystal_greatsword/chime"))).subtitle("subtitles.item." + EternalStarlight.ID + ".crystal_greatsword.chime"));
+
 		add(ESSoundEvents.CHAIN_OF_SOULS_ABSORB.get(), definition().with(sound(loc("item/chain_of_souls/absorb"))).subtitle("subtitles.item." + EternalStarlight.ID + ".chain_of_souls.absorb"));
 
 		add(ESSoundEvents.CRESCENT_SPEAR_THROW.get(), definition().with(sound(loc("item/crescent_spear/throw"))).subtitle("subtitles.item." + EternalStarlight.ID + ".crescent_spear.throw"));

@@ -11,7 +11,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 
 public class CrystalInfectionEffect extends MobEffect {
 	public static final ResourceLocation ARMOR_MODIFIER_ID = EternalStarlight.id("armor.crystal_infection");
-	public static final double ARMOR_ADDITION = -2D;
+	public static final double ARMOR_ADDITION = -1.5;
 
 	public CrystalInfectionEffect(MobEffectCategory category, int color) {
 		super(category, color);

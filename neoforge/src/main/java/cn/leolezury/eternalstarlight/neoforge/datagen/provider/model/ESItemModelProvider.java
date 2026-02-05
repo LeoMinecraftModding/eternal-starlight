@@ -947,10 +947,12 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.ENERGY_SWORD.get());
 		greatsword(ESItems.GOLEM_STEEL_GREATSWORD.get());
 		greatswordInventory(ESItems.GOLEM_STEEL_GREATSWORD.get());
-		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
 		crossbow(ESItems.MECHANICAL_CROSSBOW.get());
 		handheld(ESItems.ENERGY_BOOMERANG.get());
 		handheld(ESItems.UNDERMINER.get());
+		greatsword(ESItems.CRYSTAL_GREATSWORD.get());
+		greatswordInventory(ESItems.CRYSTAL_GREATSWORD.get());
+		crossbow(ESItems.CRYSTAL_CROSSBOW.get());
 		block(ESItems.GOLEM_STEEL_BLOCK.get());
 		otherBlock(ESItems.WAXED_GOLEM_STEEL_BLOCK.get(), ESItems.GOLEM_STEEL_BLOCK.get());
 		block(ESItems.OXIDIZED_GOLEM_STEEL_BLOCK.get());

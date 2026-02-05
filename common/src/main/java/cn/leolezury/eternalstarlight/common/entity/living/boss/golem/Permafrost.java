@@ -1,17 +1,20 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
+import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -41,6 +44,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Optional;
 
 public class Permafrost extends ESBoss {
 	public Permafrost(EntityType<? extends Permafrost> entityType, Level level) {
@@ -63,6 +67,8 @@ public class Permafrost extends ESBoss {
 	public AnimationState rangedAnimationState = new AnimationState();
 	public AnimationState sneezeAnimationState = new AnimationState();
 	public Vec3 smokePos = Vec3.ZERO;
+
+	private final Vec3[] deathParticlePos = new Vec3[6];
 
 	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>();
 	public float lastTrailTick = 0;
@@ -158,6 +164,37 @@ public class Permafrost extends ESBoss {
 		}
 	}
 
+	@Override
+	protected void tickDeath() {
+		setDeltaMovement(Vec3.ZERO);
+		if (deathTime == 0) {
+			stopAllAnimStates();
+			setBehaviorState(0);
+			for (int i = 0; i < 6; i++) {
+				deathParticlePos[i] = position().add(0, getBbHeight() / 2, 0);
+			}
+		}
+		Optional<BlockPos> chestPos = getLootChestPos();
+		if (chestPos.isPresent()) {
+			for (int i = 0; i < 6; i++) {
+				if (deathTime < 40) {
+					deathParticlePos[i] = ESMathUtil.lerpVec(1 / (40f - deathTime), deathParticlePos[i], ESMathUtil.rotationToPosition(chestPos.get().getCenter(), 5, 0, i * 60));
+				} else {
+					float currentYaw = ESMathUtil.positionToYaw(chestPos.get().getCenter(), deathParticlePos[i]);
+					deathParticlePos[i] = ESMathUtil.rotationToPosition(chestPos.get().getCenter(), ((70 - deathTime) / 30f) * 5, 0, currentYaw + 3);
+				}
+				if (level() instanceof ServerLevel serverLevel) {
+					serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, deathParticlePos[i].x(), deathParticlePos[i].y(), deathParticlePos[i].z(), 5, 0.1, 0.1, 0.1, 0.05);
+				}
+			}
+		}
+		++deathTime;
+		if (deathTime == 70 && !level().isClientSide()) {
+			level().broadcastEntityEvent(this, (byte) 60);
+			remove(Entity.RemovalReason.KILLED);
+		}
+	}
+
 	public void stopAllAnimStates() {
 		meleeAnimationState.stop();
 		meleeTransitionAnimationState.stop();
@@ -241,6 +278,14 @@ public class Permafrost extends ESBoss {
 	@Override
 	protected SoundEvent getDeathSound() {
 		return ESSoundEvents.PERMAFROST_DEATH.get();
+	}
+
+	@Override
+	protected void modifyBossLootChest(LootChestBlockEntity blockEntity) {
+		blockEntity.setColor(0x888785);
+		blockEntity.setOutlineColor(0x9bf4f4);
+		blockEntity.setFlashColor(0x68ccff);
+		blockEntity.setRareFlashColor(0x9bf4f4);
 	}
 
 	@Override

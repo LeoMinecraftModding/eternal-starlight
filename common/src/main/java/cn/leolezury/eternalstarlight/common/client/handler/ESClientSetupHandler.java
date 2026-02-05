@@ -434,6 +434,8 @@ public class ESClientSetupHandler {
 		registerSimpleSpecialModel("flowglaze_scythe");
 		registerSimpleSpecialModel("golem_steel_greatsword");
 		registerSimpleSpecialModel("golem_steel_greatsword_blocking");
+		registerSimpleSpecialModel("crystal_greatsword");
+		registerSimpleSpecialModel("crystal_greatsword_blocking");
 		registerSimpleSpecialModel("moonring_greatsword");
 		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
@@ -535,20 +537,6 @@ public class ESClientSetupHandler {
 
 		ItemProperties.register(ESItems.GOLEM_STEEL_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
-		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
-			if (entity == null) {
-				return 0.0F;
-			} else {
-				return CrossbowItem.isCharged(stack) ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / (float) CrossbowItem.getChargeDuration(stack, entity);
-			}
-		});
-		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("charged"), (stack, level, entity, i) -> CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("firework"), (stack, level, entity, i) -> {
-			ChargedProjectiles chargedProjectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
-			return chargedProjectiles != null && chargedProjectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
-		});
-
 		ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
 			if (entity == null) {
 				return 0.0F;
@@ -559,6 +547,22 @@ public class ESClientSetupHandler {
 		ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
 		ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("charged"), (stack, level, entity, i) -> CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
 		ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("firework"), (stack, level, entity, i) -> {
+			ChargedProjectiles chargedProjectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
+			return chargedProjectiles != null && chargedProjectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
+		});
+
+		ItemProperties.register(ESItems.CRYSTAL_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
+			if (entity == null) {
+				return 0.0F;
+			} else {
+				return CrossbowItem.isCharged(stack) ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / (float) CrossbowItem.getChargeDuration(stack, entity);
+			}
+		});
+		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("charged"), (stack, level, entity, i) -> CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
+		ItemProperties.register(ESItems.CRYSTAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("firework"), (stack, level, entity, i) -> {
 			ChargedProjectiles chargedProjectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
 			return chargedProjectiles != null && chargedProjectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
 		});
@@ -759,6 +763,7 @@ public class ESClientSetupHandler {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_hammer_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("flowglaze_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("golem_steel_greatsword_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crystal_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("petal_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crescent_spear_inventory")));

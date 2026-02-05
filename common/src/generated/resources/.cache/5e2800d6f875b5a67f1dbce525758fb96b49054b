@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-02T11:22:33.0182218	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2026-02-05T16:09:22.3494485	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -103,11 +103,11 @@ a58395bf22281e72e2238e886f5d92ef0a345025 data/c/tags/item/storage_blocks/starcor
 9cf340b5c2bd1998152d5fb1999b74daf480ef69 data/c/tags/item/stripped_woods.json
 818068621f1040a397b9fe04d70138e1a88314e2 data/c/tags/item/tools/bow.json
 e639716645a92aa8951c8c1d435423715c09e213 data/c/tags/item/tools/brush.json
-081c9746d4fd3f9a96e137a601a06dc9bbb89778 data/c/tags/item/tools/crossbow.json
+decda552371424e006e774a2d6462fd54e09d1ee data/c/tags/item/tools/crossbow.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/c/tags/item/tools/igniter.json
-c9ed140fcbe559fd451502f6735527f54a4b5a9b data/c/tags/item/tools/melee_weapon.json
+5d73ff64f127c99946a1e60cb30f3202ed016cb2 data/c/tags/item/tools/melee_weapon.json
 e77e5787f08df66d88a4d54fee9137f891dc68d0 data/c/tags/item/tools/mining_tool.json
-28bf61934b30fbf476288f0996d73f2e774f9816 data/c/tags/item/tools/ranged_weapon.json
+3462f25b09a0c26927fbb4069be8384f2e3ba7cf data/c/tags/item/tools/ranged_weapon.json
 c4976770bc72233192eaafb7b91ab5b0ac597114 data/c/tags/item/tools/shield.json
 6fc589ecbbadd01ed89304c9205bc63375beff48 data/c/tags/item/tools/spear.json
 4d69eeaa14298a6219d29623c1c52c93996f0892 data/eternal_starlight/tags/item/accessories.json
@@ -140,7 +140,7 @@ d7c1782e5de8f70d6255d6f078aa74749d709569 data/eternal_starlight/tags/item/ent_fe
 306a101c92d99ae7220cccb0090d43ea44110cd2 data/eternal_starlight/tags/item/flowglaze_weapons.json
 739ccc89f0e417ff163e88c7200bba629efcb874 data/eternal_starlight/tags/item/glacite_weapons.json
 e0cd0402fcd0d7ce13ed1beae0d116cf592790d6 data/eternal_starlight/tags/item/golem_forge_locators.json
-5492793b2473c1161986ef7b2401133c75f65584 data/eternal_starlight/tags/item/greatswords.json
+22580fb83e9e7ade102ed9e1c1194126ce7fcce3 data/eternal_starlight/tags/item/greatswords.json
 017ae840bfe376ec2f875ed07cc7abf20d57956a data/eternal_starlight/tags/item/hammers.json
 3ff30abe47687453e9cd64c18975ec53b04a2660 data/eternal_starlight/tags/item/jinglestem_logs.json
 902d4ce26868719dccef223f5ba82a060eea5bad data/eternal_starlight/tags/item/light_crystals.json
@@ -194,8 +194,8 @@ ceadb994e361392801b235623d18fec0adc074a5 data/minecraft/tags/item/boats.json
 61fdfc708e91802eab3b9f81a9c8024b965aebf1 data/minecraft/tags/item/cluster_max_harvestables.json
 e776e170cd38897fbd678c9fd270eb0106110e3f data/minecraft/tags/item/creeper_igniters.json
 818068621f1040a397b9fe04d70138e1a88314e2 data/minecraft/tags/item/enchantable/bow.json
-081c9746d4fd3f9a96e137a601a06dc9bbb89778 data/minecraft/tags/item/enchantable/crossbow.json
-fad1c58ce592d95dec489f04c80366ebaf1ddf41 data/minecraft/tags/item/enchantable/durability.json
+decda552371424e006e774a2d6462fd54e09d1ee data/minecraft/tags/item/enchantable/crossbow.json
+eec530af32b256dafc043254914b3d74f4005207 data/minecraft/tags/item/enchantable/durability.json
 83c8479449f7e034e339dc5c1d55a0aede7a97a9 data/minecraft/tags/item/enchantable/fire_aspect.json
 5357a355d7471f020a2fe67ed3ef05a58bf5513e data/minecraft/tags/item/enchantable/sharp_weapon.json
 b3cddbfdf578fe8cacdc142e853b2c4445171ec3 data/minecraft/tags/item/enchantable/sword.json

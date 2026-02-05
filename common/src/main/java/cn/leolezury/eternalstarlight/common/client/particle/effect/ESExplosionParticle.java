@@ -13,7 +13,7 @@ public class ESExplosionParticle extends SimpleAnimatedParticle {
 	protected ESExplosionParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, int fromColor, int toColor, SpriteSet spriteSet) {
 		super(level, x, y, z, spriteSet, 0);
 		this.lifetime = (int) ((6 + this.random.nextInt(4)) * lifeMultiplier);
-		this.quadSize = 0.8F + this.random.nextFloat() * 0.6F;
+		this.quadSize = 0.6F + this.random.nextFloat() * 0.4F;
 		this.setColor(fromColor);
 		this.setFadeColor(toColor);
 		this.setSpriteFromAge(spriteSet);

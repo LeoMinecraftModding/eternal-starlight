@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "eternal_starlight:blue_starlight_crystal_shard"
+    },
+    "G": {
+      "tag": "c:ingots/golem_steel"
+    },
+    "R": {
+      "item": "eternal_starlight:red_starlight_crystal_shard"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "  R",
+    " GB",
+    "SG "
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:crystal_greatsword"
+  }
+}

@@ -699,6 +699,12 @@
     ],
     "subtitle": "subtitles.item.eternal_starlight.crescent_spear.throw"
   },
+  "item.crystal_greatsword.chime": {
+    "sounds": [
+      "eternal_starlight:item/crystal_greatsword/chime"
+    ],
+    "subtitle": "subtitles.item.eternal_starlight.crystal_greatsword.chime"
+  },
   "item.seeds_launcher.shoot": {
     "sounds": [
       "eternal_starlight:item/seeds_launcher/shoot"
