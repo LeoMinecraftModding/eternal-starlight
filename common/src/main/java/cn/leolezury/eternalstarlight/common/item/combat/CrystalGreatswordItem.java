@@ -37,19 +37,21 @@ public class CrystalGreatswordItem extends GreatswordItem {
 	);
 
 	private static final float[] NUMB = new float[]{
-		soundPitch(10), soundPitch(13), soundPitch(10),
-		soundPitch(15), soundPitch(18), soundPitch(17),
-		soundPitch(10), soundPitch(13), soundPitch(10),
-		soundPitch(18), soundPitch(17), soundPitch(13)
+		soundPitch(7), soundPitch(10), soundPitch(7),
+		soundPitch(12), soundPitch(15), soundPitch(14),
+		soundPitch(7), soundPitch(10), soundPitch(7),
+		soundPitch(15), soundPitch(14), soundPitch(10)
 	};
 
 	private static final float[] ALICE_MAESTRA = new float[]{
-		soundPitch(5), soundPitch(6), soundPitch(10),
-		soundPitch(15), soundPitch(17), soundPitch(18),
-		soundPitch(20),
-		soundPitch(5), soundPitch(6), soundPitch(10),
-		soundPitch(15), soundPitch(17), soundPitch(22),
-		soundPitch(15)
+		soundPitch(16), soundPitch(19), soundPitch(18),
+		soundPitch(19), soundPitch(18), soundPitch(16),
+		soundPitch(14), soundPitch(11), soundPitch(14),
+		soundPitch(9), soundPitch(11), soundPitch(4),
+		soundPitch(16), soundPitch(23), soundPitch(21),
+		soundPitch(19), soundPitch(18), soundPitch(14),
+		soundPitch(11), soundPitch(14), soundPitch(9),
+		soundPitch(11), soundPitch(4)
 	};
 
 	public CrystalGreatswordItem(Tier tier, Properties properties) {
