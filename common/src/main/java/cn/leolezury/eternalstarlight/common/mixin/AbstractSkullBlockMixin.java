@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractSkullBlock.class)
 public abstract class AbstractSkullBlockMixin {
-	@Inject(method = "newBlockEntity", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "newBlockEntity", at = @At("HEAD"), cancellable = true)
 	public void newBlockEntity(BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<BlockEntity> cir) {
 		if (BuiltInRegistries.BLOCK.getKey(blockState.getBlock()).getNamespace().equals(EternalStarlight.ID)) {
 			cir.setReturnValue(new ESSkullBlockEntity(blockPos, blockState));

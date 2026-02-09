@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
+import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -15,6 +16,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.item.ItemStack;
@@ -37,7 +39,13 @@ public abstract class PlayerMixin implements SpellCaster {
 	@Unique
 	private boolean originalEnoughAttackStrength;
 
-	@Inject(method = "hurtCurrentlyUsedShield", at = @At(value = "HEAD"))
+	@Inject(method = "createAttributes", at = @At("RETURN"))
+	private static void createAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
+		cir.getReturnValue()
+			.add(ESAttributes.FOG_VISION.asHolder());
+	}
+
+	@Inject(method = "hurtCurrentlyUsedShield", at = @At("HEAD"))
 	private void damageShield(float amount, CallbackInfo callBackInfo) {
 		Player player = (Player) (Object) this;
 		ItemStack useItem = player.getUseItem();
@@ -48,7 +56,7 @@ public abstract class PlayerMixin implements SpellCaster {
 		}
 	}
 
-	@Inject(method = "disableShield", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "disableShield", at = @At("HEAD"), cancellable = true)
 	private void disableShield(CallbackInfo ci) {
 		Player player = (Player) (Object) this;
 		ItemStack useItem = player.getUseItem();
@@ -107,7 +115,7 @@ public abstract class PlayerMixin implements SpellCaster {
 		}
 	}
 
-	@Inject(method = "getWeaponItem", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "getWeaponItem", at = @At("RETURN"), cancellable = true)
 	private void getWeaponItem(CallbackInfoReturnable<ItemStack> cir) {
 		Player player = (Player) (Object) this;
 		if (ESDataAttachments.OFFHAND_ATTACK.getData(player)) {
@@ -150,7 +158,7 @@ public abstract class PlayerMixin implements SpellCaster {
 		}
 	}
 
-	@Inject(method = "isModelPartShown", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "isModelPartShown", at = @At("RETURN"), cancellable = true)
 	private void isModelPartShown(PlayerModelPart part, CallbackInfoReturnable<Boolean> cir) {
 		Player player = (Player) (Object) this;
 		if (player.level().getEntity(ESDataAttachments.HUSK_OWNER_ID.getData(player)) instanceof Player huskOwner) {

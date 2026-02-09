@@ -687,6 +687,17 @@
     ],
     "subtitle": "subtitles.item.armor.eternal_starlight.equip_thermal_springstone"
   },
+  "item.armor.equip_unrealium": {
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.eternal_starlight.equip_unrealium"
+  },
   "item.chain_of_souls.absorb": {
     "sounds": [
       "eternal_starlight:item/chain_of_souls/absorb"

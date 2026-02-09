@@ -10,14 +10,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PistonStructureResolver.class)
 public abstract class PistonStructureResolverMixin {
-	@Inject(method = "isSticky", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "isSticky", at = @At("RETURN"), cancellable = true)
 	private static void isSticky(BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
 		if (blockState.getBlock() instanceof ExtendedBlock extendedBlock) {
 			cir.setReturnValue(extendedBlock.isSticky(blockState));
 		}
 	}
 
-	@Inject(method = "canStickToEachOther", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "canStickToEachOther", at = @At("RETURN"), cancellable = true)
 	private static void canStickToEachOther(BlockState blockState, BlockState blockState2, CallbackInfoReturnable<Boolean> cir) {
 		if (blockState.getBlock() instanceof ExtendedBlock extendedBlock) {
 			cir.setReturnValue(extendedBlock.canStickToEachOther(blockState, blockState2));

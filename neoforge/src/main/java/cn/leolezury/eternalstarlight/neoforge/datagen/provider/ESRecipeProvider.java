@@ -45,6 +45,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addGlaciteRecipes(recipeOutput);
 		addStarlitDiamondRecipes(recipeOutput);
 		addDeepsilverRecipes(recipeOutput);
+		addUnrealiumRecipes(recipeOutput);
 		addMalariteRecipes(recipeOutput);
 		addPungencyFruitRecipes(recipeOutput);
 		addStarfireRecipes(recipeOutput);
@@ -319,13 +320,14 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 		addPickaxe(recipeOutput, ESItems.UNDERMINER.get(), ESConventionalTags.Items.INGOTS_GOLEM_STEEL);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CRYSTAL_GREATSWORD.get())
-			.pattern("  R")
+			.pattern(" LR")
 			.pattern(" GB")
 			.pattern("SG ")
 			.define('S', Tags.Items.RODS_WOODEN)
 			.define('G', ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
 			.define('R', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
 			.define('B', ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
+			.define('L', ESItems.SHIVERING_GEL.get())
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_GOLEM_STEEL))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CRYSTAL_CROSSBOW.get())
@@ -632,25 +634,26 @@ public class ESRecipeProvider extends RecipeProvider {
 		AlloyRecipeBuilder.alloy(Items.NETHERITE_INGOT.getDefaultInstance(), 1, 400)
 			.requires(Tags.Items.INGOTS_GOLD, 4)
 			.requires(Items.NETHERITE_SCRAP, 2)
-			.requires(ESItems.STARCORE.get(), 1)
-			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(Items.GOLD_INGOT), Tags.Items.INGOTS_GOLD)
 			.unlockedBy(getHasName(Items.NETHERITE_SCRAP), Items.NETHERITE_SCRAP)
-			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
-			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
 			.save(recipeOutput, EternalStarlight.id("netherite"));
 
+		AlloyRecipeBuilder.alloy(ESItems.UNREALIUM_INGOT.get().getDefaultInstance(), 1, 400)
+			.requires(ESConventionalTags.Items.INGOTS_DEEPSILVER)
+			.requires(ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
+			.requires(ESConventionalTags.Items.GEMS_MALARITE)
+			.requires(ESItems.SOUL_DEW.get())
+			.unlockedBy(getHasName(ESItems.DEEPSILVER_INGOT.get()), ESConventionalTags.Items.INGOTS_DEEPSILVER)
+			.unlockedBy(getHasName(ESItems.GOLEM_STEEL_NUGGET.get()), ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
+			.unlockedBy(getHasName(ESItems.MALARITE.get()), ESConventionalTags.Items.GEMS_MALARITE)
+			.unlockedBy(getHasName(ESItems.SOUL_DEW.get()), ESItems.SOUL_DEW.get())
+			.save(recipeOutput, EternalStarlight.id("unrealium"));
+
 		AlloyRecipeBuilder.alloy(ESItems.GOLEM_STEEL_INGOT.get().getDefaultInstance(), 1, 400)
-			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
-			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
 			.requires(ESConventionalTags.Items.INGOTS_DEEPSILVER, 3)
 			.requires(ESConventionalTags.Items.NUGGETS_GOLEM_STEEL, 2)
-			.requires(ESItems.STARCORE.get(), 1)
-			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(ESItems.DEEPSILVER_INGOT.get()), ESConventionalTags.Items.INGOTS_DEEPSILVER)
 			.unlockedBy(getHasName(ESItems.GOLEM_STEEL_NUGGET.get()), ESConventionalTags.Items.NUGGETS_GOLEM_STEEL)
-			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
-			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
 			.save(recipeOutput, EternalStarlight.id("golem_steel"));
 	}
 
@@ -1280,6 +1283,13 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.DEEPSILVER_INGOT.get()))
 			.save(recipeOutput);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ESBlocks.UNREALIUM_BARS.get(), 16)
+			.pattern("###")
+			.pattern("###")
+			.define('#', ESItems.UNREALIUM_INGOT.get())
+			.unlockedBy("has_item", has(ESItems.UNREALIUM_INGOT.get()))
+			.save(recipeOutput);
+
 		addShapeless(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE.get(), ESBlocks.FLOWGLAZE_BRICKS.get(), 8, ESBlocks.FLOWGLAZE.get(), ESBlocks.FLOWGLAZE.get(), ESBlocks.GRIMSTONE_BRICKS.get(), ESBlocks.GRIMSTONE_BRICKS.get());
 		wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE_BRICK_WALL.get(), ESBlocks.FLOWGLAZE_BRICKS.get());
 		stonecutting(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ESBlocks.FLOWGLAZE_BRICK_WALL.get(), ESBlocks.FLOWGLAZE_BRICKS.get());
@@ -1609,6 +1619,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.CRETEOR_HIDE.get()))
 			.save(recipeOutput);
 		addShapeless(recipeOutput, RecipeCategory.MISC, ESItems.CRETEOR_HIDE.get(), ESItems.AETHERSTRIKE_ROCKET.get(), 1, ESItems.CRETEOR_HIDE.get(), ESItems.STARCORE.get(), Items.PAPER);
+		addSmelt(recipeOutput, 200, ESItems.AETHERSENT_INGOT.get(), ESItems.AETHERSENT_NUGGET.get(), ESItems.RAGE_OF_STARS.get(), ESItems.STARFALL_LONGBOW.get(), ESItems.AETHERSENT_HOOD.get(), ESItems.AETHERSENT_CAPE.get(), ESItems.AETHERSENT_BOTTOMS.get(), ESItems.AETHERSENT_BOOTS.get());
+		addBlast(recipeOutput, 100, ESItems.AETHERSENT_INGOT.get(), ESItems.AETHERSENT_NUGGET.get(), ESItems.RAGE_OF_STARS.get(), ESItems.STARFALL_LONGBOW.get(), ESItems.AETHERSENT_HOOD.get(), ESItems.AETHERSENT_CAPE.get(), ESItems.AETHERSENT_BOTTOMS.get(), ESItems.AETHERSENT_BOOTS.get());
 	}
 
 	private void addDeepsilverRecipes(RecipeOutput recipeOutput) {
@@ -1684,8 +1696,25 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('P', ItemTags.PLANKS)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_DEEPSILVER))
 			.save(recipeOutput, EternalStarlight.id("tripwire_hook_from_deepsilver_ingot"));
-		addSmelt(recipeOutput, 200, ESItems.DEEPSILVER_INGOT.get(), ESItems.DEEPSILVER_NUGGET.get(), ESItems.DEEPSILVER_PICKAXE.get(), ESItems.DEEPSILVER_AXE.get(), ESItems.DEEPSILVER_HOE.get(), ESItems.DEEPSILVER_SHOVEL.get(), ESItems.DEEPSILVER_SICKLE.get(), ESItems.DEEPSILVER_SWORD.get(), ESItems.DEEPSILVER_HELMET.get(), ESItems.DEEPSILVER_CHESTPLATE.get(), ESItems.DEEPSILVER_LEGGINGS.get(), ESItems.DEEPSILVER_BOOTS.get());
-		addBlast(recipeOutput, 100, ESItems.DEEPSILVER_INGOT.get(), ESItems.DEEPSILVER_NUGGET.get(), ESItems.DEEPSILVER_PICKAXE.get(), ESItems.DEEPSILVER_AXE.get(), ESItems.DEEPSILVER_HOE.get(), ESItems.DEEPSILVER_SHOVEL.get(), ESItems.DEEPSILVER_SICKLE.get(), ESItems.DEEPSILVER_SWORD.get(), ESItems.DEEPSILVER_HELMET.get(), ESItems.DEEPSILVER_CHESTPLATE.get(), ESItems.DEEPSILVER_LEGGINGS.get(), ESItems.DEEPSILVER_BOOTS.get());
+		addSmelt(recipeOutput, 200, ESItems.DEEPSILVER_INGOT.get(), ESItems.DEEPSILVER_NUGGET.get(), ESItems.DEEPSILVER_PICKAXE.get(), ESItems.DEEPSILVER_AXE.get(), ESItems.DEEPSILVER_HOE.get(), ESItems.DEEPSILVER_SHOVEL.get(), ESItems.DEEPSILVER_SICKLE.get(), ESItems.DEEPSILVER_SWORD.get(), ESItems.DEEPSILVER_HELMET.get(), ESItems.DEEPSILVER_CHESTPLATE.get(), ESItems.DEEPSILVER_LEGGINGS.get(), ESItems.DEEPSILVER_BOOTS.get(), ESItems.DEEPSILVER_BRUSH.get());
+		addBlast(recipeOutput, 100, ESItems.DEEPSILVER_INGOT.get(), ESItems.DEEPSILVER_NUGGET.get(), ESItems.DEEPSILVER_PICKAXE.get(), ESItems.DEEPSILVER_AXE.get(), ESItems.DEEPSILVER_HOE.get(), ESItems.DEEPSILVER_SHOVEL.get(), ESItems.DEEPSILVER_SICKLE.get(), ESItems.DEEPSILVER_SWORD.get(), ESItems.DEEPSILVER_HELMET.get(), ESItems.DEEPSILVER_CHESTPLATE.get(), ESItems.DEEPSILVER_LEGGINGS.get(), ESItems.DEEPSILVER_BOOTS.get(), ESItems.DEEPSILVER_BRUSH.get());
+	}
+
+	private void addUnrealiumRecipes(RecipeOutput recipeOutput) {
+		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.UNREALIUM_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.UNREALIUM_BLOCK.get(), "unrealium_ingot_from_unrealium_block", "unrealium_ingot");
+		nineBlockStorageCustomPacking(recipeOutput, RecipeCategory.MISC, ESItems.UNREALIUM_NUGGET.get(), RecipeCategory.MISC, ESItems.UNREALIUM_INGOT.get(), "unrealium_ingot_from_nuggets", "unrealium_ingot");
+		addAxe(recipeOutput, ESItems.UNREALIUM_AXE.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addHoe(recipeOutput, ESItems.UNREALIUM_HOE.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addShovel(recipeOutput, ESItems.UNREALIUM_SHOVEL.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addPickaxe(recipeOutput, ESItems.UNREALIUM_PICKAXE.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addSickle(recipeOutput, ESItems.UNREALIUM_SICKLE.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addSword(recipeOutput, ESItems.UNREALIUM_SWORD.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addHelmet(recipeOutput, ESItems.UNREALIUM_HELMET.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addChestplate(recipeOutput, ESItems.UNREALIUM_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addLeggings(recipeOutput, ESItems.UNREALIUM_LEGGINGS.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addBoots(recipeOutput, ESItems.UNREALIUM_BOOTS.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		addSmelt(recipeOutput, 200, ESItems.UNREALIUM_INGOT.get(), ESItems.UNREALIUM_NUGGET.get(), ESItems.UNREALIUM_PICKAXE.get(), ESItems.UNREALIUM_AXE.get(), ESItems.UNREALIUM_HOE.get(), ESItems.UNREALIUM_SHOVEL.get(), ESItems.UNREALIUM_SICKLE.get(), ESItems.UNREALIUM_SWORD.get(), ESItems.UNREALIUM_HELMET.get(), ESItems.UNREALIUM_CHESTPLATE.get(), ESItems.UNREALIUM_LEGGINGS.get(), ESItems.UNREALIUM_BOOTS.get());
+		addBlast(recipeOutput, 100, ESItems.UNREALIUM_INGOT.get(), ESItems.UNREALIUM_NUGGET.get(), ESItems.UNREALIUM_PICKAXE.get(), ESItems.UNREALIUM_AXE.get(), ESItems.UNREALIUM_HOE.get(), ESItems.UNREALIUM_SHOVEL.get(), ESItems.UNREALIUM_SICKLE.get(), ESItems.UNREALIUM_SWORD.get(), ESItems.UNREALIUM_HELMET.get(), ESItems.UNREALIUM_CHESTPLATE.get(), ESItems.UNREALIUM_LEGGINGS.get(), ESItems.UNREALIUM_BOOTS.get());
 	}
 
 	private void addMalariteRecipes(RecipeOutput recipeOutput) {
@@ -1979,8 +2008,8 @@ public class ESRecipeProvider extends RecipeProvider {
 		addHelmet(recipeOutput, ESItems.AMARAMBER_MASK.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 		addChestplate(recipeOutput, ESItems.AMARAMBER_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_AMARAMBER);
 
-		addSmelt(recipeOutput, 200, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.AMARAMBER_MASK.get(), ESItems.AMARAMBER_CHESTPLATE.get());
-		addBlast(recipeOutput, 100, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.AMARAMBER_MASK.get(), ESItems.AMARAMBER_CHESTPLATE.get());
+		addSmelt(recipeOutput, 200, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.CANDLASH.get(), ESItems.AMARAMBER_MASK.get(), ESItems.AMARAMBER_CHESTPLATE.get());
+		addBlast(recipeOutput, 100, ESItems.AMARAMBER_INGOT.get(), ESItems.AMARAMBER_NUGGET.get(), ESItems.AMARAMBER_SWORD.get(), ESItems.AMARAMBER_PICKAXE.get(), ESItems.AMARAMBER_AXE.get(), ESItems.AMARAMBER_HOE.get(), ESItems.AMARAMBER_SHOVEL.get(), ESItems.AMARAMBER_SICKLE.get(), ESItems.CANDLASH.get(), ESItems.AMARAMBER_MASK.get(), ESItems.AMARAMBER_CHESTPLATE.get());
 	}
 
 	// misc

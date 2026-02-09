@@ -43,6 +43,10 @@ public class ESConventionalTags {
 		public static final TagKey<Item> INGOTS_DEEPSILVER = ingot("deepsilver");
 		public static final TagKey<Item> NUGGETS_DEEPSILVER = nugget("deepsilver");
 
+		public static final TagKey<Item> STORAGE_BLOCKS_UNREALIUM = storageBlock("unrealium");
+		public static final TagKey<Item> INGOTS_UNREALIUM = ingot("unrealium");
+		public static final TagKey<Item> NUGGETS_UNREALIUM = nugget("unrealium");
+
 		public static final TagKey<Item> ORES_MALARITE = ore("malarite");
 		public static final TagKey<Item> STORAGE_BLOCKS_MALARITE = storageBlock("malarite");
 		public static final TagKey<Item> GEMS_MALARITE = gem("malarite");
@@ -132,6 +136,8 @@ public class ESConventionalTags {
 		public static final TagKey<Block> ORES_DEEPSILVER = ore("deepsilver");
 		public static final TagKey<Block> STORAGE_BLOCKS_RAW_DEEPSILVER = storageBlock("raw_deepsilver");
 		public static final TagKey<Block> STORAGE_BLOCKS_DEEPSILVER = storageBlock("deepsilver");
+
+		public static final TagKey<Block> STORAGE_BLOCKS_UNREALIUM = storageBlock("unrealium");
 
 		public static final TagKey<Block> ORES_MALARITE = ore("malarite");
 		public static final TagKey<Block> STORAGE_BLOCKS_MALARITE = storageBlock("malarite");

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "unrealium_ingot",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:unrealium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "eternal_starlight:unrealium_ingot"
+  }
+}

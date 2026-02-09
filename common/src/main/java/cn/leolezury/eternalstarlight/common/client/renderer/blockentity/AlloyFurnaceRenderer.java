@@ -91,7 +91,7 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 			PartDefinition partdefinition = meshdefinition.getRoot();
 
 			partdefinition.addOrReplaceChild("root", CubeListBuilder.create().texOffs(0, 0).addBox(-24.0F, -32.0F, -8.0F, 36.0F, 32.0F, 32.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 64).addBox(12.0F, -28.0F, 2.0F, 12.0F, 28.0F, 12.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 64).addBox(12.0F, -28.0F, 2.0F, 12.0F, 28.0F, 12.0F, new CubeDeformation(-0.01F))
 				.texOffs(48, 76).addBox(15.0F, -32.0F, 5.0F, 6.0F, 4.0F, 6.0F, new CubeDeformation(0.0F))
 				.texOffs(48, 64).addBox(-1.0F, -38.0F, 5.0F, 22.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
 				.texOffs(0, 156).addBox(-11.0F, -40.0F, 9.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))

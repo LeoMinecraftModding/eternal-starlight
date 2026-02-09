@@ -120,7 +120,8 @@ public abstract class LivingEntityMixin {
 			.add(ESAttributes.ETHER_RESISTANCE.asHolder())
 			.add(ESAttributes.FIRE_RESISTANCE.asHolder())
 			.add(ESAttributes.METEOR_COUNTERATTACK_CHANCE.asHolder())
-			.add(ESAttributes.HEAL_MULTIPLIER.asHolder());
+			.add(ESAttributes.HEAL_MULTIPLIER.asHolder())
+			.add(ESAttributes.ENEMY_FOLLOW_RANGE_MULTIPLIER.asHolder());
 	}
 
 	@Inject(method = "checkAutoSpinAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V", shift = At.Shift.AFTER))
@@ -196,7 +197,7 @@ public abstract class LivingEntityMixin {
 		return original.call(instance);
 	}
 
-	@Inject(method = "onClimbable", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "onClimbable", at = @At("RETURN"), cancellable = true)
 	private void onClimbable(CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity livingEntity = ((LivingEntity) (Object) this);
 		if (hasEffect(ESMobEffects.STICKY.asHolder())) {

@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
+import cn.leolezury.eternalstarlight.common.item.armor.UnrealiumArmorItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
@@ -17,6 +18,7 @@ import cn.leolezury.eternalstarlight.fabric.client.resource.FabricBookLoader;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricAlchemistArmorItem;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricStarlitDiamondArmorItem;
 import cn.leolezury.eternalstarlight.fabric.item.armor.FabricThermalSpringstoneArmorItem;
+import cn.leolezury.eternalstarlight.fabric.item.armor.FabricUnrealiumArmorItem;
 import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
 import cn.leolezury.eternalstarlight.fabric.resource.gatekeeper.FabricGatekeeperNameManager;
 import com.google.auto.service.AutoService;
@@ -148,6 +150,11 @@ public class FabricPlatform implements ESPlatform {
 	@Override
 	public ArmorItem createStarlitDiamondArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
 		return new FabricStarlitDiamondArmorItem(material, type, properties);
+	}
+
+	@Override
+	public UnrealiumArmorItem createUnrealiumArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+		return new FabricUnrealiumArmorItem(material, type, properties);
 	}
 
 	@Override

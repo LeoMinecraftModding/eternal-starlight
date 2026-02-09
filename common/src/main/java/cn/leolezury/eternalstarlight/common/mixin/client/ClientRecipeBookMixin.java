@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Environment(EnvType.CLIENT)
 @Mixin(ClientRecipeBook.class)
 public abstract class ClientRecipeBookMixin {
-	@Inject(method = "getCategory", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "getCategory", at = @At("HEAD"), cancellable = true)
 	private static void getCategory(RecipeHolder<?> recipeHolder, CallbackInfoReturnable<RecipeBookCategories> cir) {
 		// disable annoying unknown category warning
 		ResourceLocation key = BuiltInRegistries.RECIPE_TYPE.getKey(recipeHolder.value().getType());

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredient": [
+    {
+      "item": "eternal_starlight:rage_of_stars"
+    },
+    {
+      "item": "eternal_starlight:starfall_longbow"
+    },
+    {
+      "item": "eternal_starlight:aethersent_hood"
+    },
+    {
+      "item": "eternal_starlight:aethersent_cape"
+    },
+    {
+      "item": "eternal_starlight:aethersent_bottoms"
+    },
+    {
+      "item": "eternal_starlight:aethersent_boots"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:aethersent_nugget"
+  }
+}

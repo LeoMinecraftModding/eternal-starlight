@@ -8,6 +8,9 @@
     "G": {
       "tag": "c:ingots/golem_steel"
     },
+    "L": {
+      "item": "eternal_starlight:shivering_gel"
+    },
     "R": {
       "item": "eternal_starlight:red_starlight_crystal_shard"
     },
@@ -16,7 +19,7 @@
     }
   },
   "pattern": [
-    "  R",
+    " LR",
     " GB",
     "SG "
   ],

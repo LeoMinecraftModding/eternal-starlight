@@ -39,15 +39,12 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 	@Override
 	protected void gather(HolderLookup.Provider provider) {
 		BookDefinition main = new BookDefinition(List.of(
-			// cover
-			List.of(
-				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("cover"), new HashSet<>(), 150)
-					.textDisplay(new BookContent(List.of(new BookText(false, "${color: #acfffc}${link: " + EternalStarlight.ID + ":index}"), new BookText(true, ESItems.BOOK.get().getDescriptionId()))), true, 65, 100, 110, 12, 8, 1.5f)
-					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/icon.png"), 45, 30, 40, 40)
-					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 33, 75, 64, 16))
-			),
 			// index
 			List.of(
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("cover"), new HashSet<>(), 180)
+					.textDisplay(new BookContent(List.of(new BookText(false, "${color: #acfffc}${link: " + EternalStarlight.ID + ":index}"), new BookText(true, ESItems.BOOK.get().getDescriptionId()))), true, 65, 100, 110, 12, 8, 1.5f)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/icon.png"), 45, 30, 40, 40)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/separator.png"), 33, 75, 64, 16)),
 				new ConfiguredBookComponent<>(BookComponentRegistry.INDEX, new IndexBookComponent.Config(EternalStarlight.id("index"), new HashSet<>(), List.of(
 					new IndexBookComponent.Entry(simpleColoredTranslated(ESItems.SEEKING_EYE.get().getDescriptionId()), EternalStarlight.id("seeking_eye_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
 						ItemStack stack = ESItems.SEEKING_EYE.get().getDefaultInstance();

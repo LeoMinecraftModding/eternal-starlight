@@ -3,7 +3,7 @@
   "render_type": "minecraft:cutout",
   "textures": {
     "particle": "eternal_starlight:block/oxidized_golem_steel_bars",
-    "edge": "eternal_starlight:block/oxidized_golem_steel_bars"
+    "bars": "eternal_starlight:block/oxidized_golem_steel_bars"
   },
   "elements": [
     {
@@ -25,7 +25,7 @@
             9,
             9
           ],
-          "texture": "#edge"
+          "texture": "#bars"
         },
         "up": {
           "uv": [
@@ -34,7 +34,7 @@
             9,
             9
           ],
-          "texture": "#edge"
+          "texture": "#bars"
         }
       }
     },
@@ -57,7 +57,7 @@
             9,
             9
           ],
-          "texture": "#edge"
+          "texture": "#bars"
         },
         "up": {
           "uv": [
@@ -66,7 +66,7 @@
             9,
             9
           ],
-          "texture": "#edge"
+          "texture": "#bars"
         }
       }
     }

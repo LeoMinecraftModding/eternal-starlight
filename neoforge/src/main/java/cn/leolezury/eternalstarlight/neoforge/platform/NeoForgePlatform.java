@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.block.TearBombBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
+import cn.leolezury.eternalstarlight.common.item.armor.UnrealiumArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.ScytheItem;
@@ -21,6 +22,7 @@ import cn.leolezury.eternalstarlight.neoforge.client.ForgeDimensionSpecialEffect
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeAlchemistArmorItem;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeStarlitDiamondArmorItem;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeThermalSpringstoneArmorItem;
+import cn.leolezury.eternalstarlight.neoforge.item.armor.ForgeUnrealiumArmorItem;
 import cn.leolezury.eternalstarlight.neoforge.item.combat.ForgeCrescentSpearItem;
 import cn.leolezury.eternalstarlight.neoforge.item.combat.ForgeHammerItem;
 import cn.leolezury.eternalstarlight.neoforge.item.combat.ForgePetalScytheItem;
@@ -232,6 +234,11 @@ public class NeoForgePlatform implements ESPlatform {
 	@Override
 	public ArmorItem createStarlitDiamondArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
 		return new ForgeStarlitDiamondArmorItem(material, type, properties);
+	}
+
+	@Override
+	public UnrealiumArmorItem createUnrealiumArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+		return new ForgeUnrealiumArmorItem(material, type, properties);
 	}
 
 	@Override

@@ -16,12 +16,6 @@
     },
     {
       "tag": "c:nuggets/golem_steel"
-    },
-    {
-      "item": "eternal_starlight:starcore"
-    },
-    {
-      "item": "eternal_starlight:saltpeter_powder"
     }
   ],
   "results": [
@@ -30,28 +24,6 @@
       "item": {
         "count": 1,
         "id": "eternal_starlight:golem_steel_ingot"
-      }
-    },
-    {
-      "amount": {
-        "type": "minecraft:uniform",
-        "max_inclusive": 3,
-        "min_inclusive": 0
-      },
-      "item": {
-        "count": 1,
-        "id": "eternal_starlight:dimslag"
-      }
-    },
-    {
-      "amount": {
-        "type": "minecraft:uniform",
-        "max_inclusive": 3,
-        "min_inclusive": 0
-      },
-      "item": {
-        "count": 1,
-        "id": "eternal_starlight:dimslag"
       }
     }
   ]

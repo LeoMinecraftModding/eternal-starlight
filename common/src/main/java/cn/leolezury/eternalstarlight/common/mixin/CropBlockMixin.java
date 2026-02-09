@@ -13,14 +13,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CropBlock.class)
 public abstract class CropBlockMixin {
-	@Inject(method = "mayPlaceOn", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "mayPlaceOn", at = @At("HEAD"), cancellable = true)
 	private void mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
 		if (blockState.is(ESBlocks.NIGHTFALL_FARMLAND.get())) {
 			cir.setReturnValue(true);
 		}
 	}
 
-	@Inject(method = "hasSufficientLight", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "hasSufficientLight", at = @At("RETURN"), cancellable = true)
 	private static void hasSufficientLight(LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
 		if (level.getBlockState(pos).is(ESBlocks.PUNGENCY_FRUIT_VINES.get())) {
 			cir.setReturnValue(true);

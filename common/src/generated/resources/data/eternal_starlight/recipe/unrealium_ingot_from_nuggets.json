@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "unrealium_ingot",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:unrealium_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:unrealium_ingot"
+  }
+}

@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 @Mixin(ItemInHandLayer.class)
 public abstract class ItemInHandLayerMixin {
-	@Inject(method = "renderArmWithItem", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
 	public void renderArmWithItem(LivingEntity livingEntity, ItemStack itemStack, ItemDisplayContext itemDisplayContext, HumanoidArm humanoidArm, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
 		if (livingEntity instanceof LonestarSkeleton && humanoidArm == HumanoidArm.RIGHT) {
 			ci.cancel();

@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BaseFireBlock.class)
 public abstract class BaseFireBlockMixin {
-	@Inject(method = "getState", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "getState", at = @At("HEAD"), cancellable = true)
 	private static void getState(BlockGetter blockGetter, BlockPos blockPos, CallbackInfoReturnable<BlockState> cir) {
 		if (AbyssalFireBlock.canSurviveOnBlock(blockGetter.getBlockState(blockPos.below()))) {
 			cir.setReturnValue(ESBlocks.ABYSSAL_FIRE.get().defaultBlockState());
@@ -27,7 +27,7 @@ public abstract class BaseFireBlockMixin {
 		}
 	}
 
-	@Inject(method = "canBePlacedAt", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "canBePlacedAt", at = @At("HEAD"), cancellable = true)
 	private static void canBePlaceAt(Level level, BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
 		if (level.getBlockState(blockPos.below()).is(ESTags.Blocks.ABYSSAL_FIRE_SURVIVES_ON)) {
 			cir.setReturnValue(true);

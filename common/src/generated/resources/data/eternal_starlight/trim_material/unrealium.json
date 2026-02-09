@@ -1,0 +1,9 @@
+{
+  "asset_name": "unrealium",
+  "description": {
+    "color": "#813899",
+    "translate": "trim_material.eternal_starlight.unrealium"
+  },
+  "ingredient": "eternal_starlight:unrealium_ingot",
+  "item_model_index": 1.0
+}

@@ -70,7 +70,7 @@ public class DeepsilverArmorItem extends ArmorItem implements TickableArmor {
 	@Override
 	public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
 		list.add(CommonComponents.EMPTY);
-		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".full_set").withStyle(ChatFormatting.BLUE));
+		list.add(Component.translatable("tooltip." + EternalStarlight.ID + ".full_set").withStyle(ChatFormatting.GRAY));
 		list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".deepsilver_armor")).withStyle(ChatFormatting.YELLOW));
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}

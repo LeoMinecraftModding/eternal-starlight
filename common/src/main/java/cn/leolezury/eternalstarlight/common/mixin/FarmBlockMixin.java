@@ -17,14 +17,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FarmBlock.class)
 public abstract class FarmBlockMixin {
-	@Inject(method = "getStateForPlacement", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "getStateForPlacement", at = @At("RETURN"), cancellable = true)
 	private void getStateForPlacement(BlockPlaceContext blockPlaceContext, CallbackInfoReturnable<BlockState> cir) {
 		if (((FarmBlock) (Object) this).defaultBlockState().is(ESBlocks.NIGHTFALL_FARMLAND.get()) && !((FarmBlock) (Object) this).defaultBlockState().canSurvive(blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos())) {
 			cir.setReturnValue(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState());
 		}
 	}
 
-	@Inject(method = "turnToDirt", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "turnToDirt", at = @At("HEAD"), cancellable = true)
 	private static void turnToDirt(Entity entity, BlockState blockState, Level level, BlockPos blockPos, CallbackInfo ci) {
 		if (blockState.is(ESBlocks.NIGHTFALL_FARMLAND.get()) || blockState.is(ESBlocks.NIGHTFALL_DIRT_PATH.get())) {
 			ci.cancel();

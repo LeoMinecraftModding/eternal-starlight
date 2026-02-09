@@ -1,0 +1,74 @@
+{
+  "ambientocclusion": false,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "eternal_starlight:block/unrealium_bars",
+    "bars": "eternal_starlight:block/unrealium_bars"
+  },
+  "elements": [
+    {
+      "from": [
+        7,
+        0.001,
+        7
+      ],
+      "to": [
+        9,
+        0.001,
+        9
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            3,
+            14,
+            5,
+            16
+          ],
+          "texture": "#bars"
+        },
+        "down": {
+          "uv": [
+            3,
+            14,
+            5,
+            16
+          ],
+          "texture": "#bars"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        15.999,
+        7
+      ],
+      "to": [
+        9,
+        15.999,
+        9
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            3,
+            14,
+            5,
+            16
+          ],
+          "texture": "#bars"
+        },
+        "down": {
+          "uv": [
+            3,
+            14,
+            5,
+            16
+          ],
+          "texture": "#bars"
+        }
+      }
+    }
+  ]
+}

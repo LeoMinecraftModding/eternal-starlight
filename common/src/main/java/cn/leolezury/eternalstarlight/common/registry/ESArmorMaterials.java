@@ -51,6 +51,13 @@ public class ESArmorMaterials {
 		map.put(ArmorItem.Type.HELMET, 2);
 		map.put(ArmorItem.Type.BODY, 5);
 	}), 25, ESSoundEvents.ARMOR_EQUIP_DEEPSILVER.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.INGOTS_DEEPSILVER), List.of(new ArmorMaterial.Layer(EternalStarlight.id("deepsilver"))), 0.5F, 0.2F));
+	public static final RegistryObject<ArmorMaterial, ArmorMaterial> UNREALIUM = ARMOR_MATERIALS.register("unrealium", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+		map.put(ArmorItem.Type.BOOTS, 3);
+		map.put(ArmorItem.Type.LEGGINGS, 6);
+		map.put(ArmorItem.Type.CHESTPLATE, 8);
+		map.put(ArmorItem.Type.HELMET, 3);
+		map.put(ArmorItem.Type.BODY, 11);
+	}), 25, ESSoundEvents.ARMOR_EQUIP_UNREALIUM.asHolder(), () -> Ingredient.of(ESConventionalTags.Items.INGOTS_UNREALIUM), List.of(new ArmorMaterial.Layer(EternalStarlight.id("unrealium"))), 0.5F, 0F));
 	public static final RegistryObject<ArmorMaterial, ArmorMaterial> AMARAMBER = ARMOR_MATERIALS.register("amaramber", () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
 		map.put(ArmorItem.Type.BOOTS, 2);
 		map.put(ArmorItem.Type.LEGGINGS, 5);

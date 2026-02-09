@@ -63,6 +63,7 @@ import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -244,6 +245,16 @@ public class ESCommonHandler {
 			tooltip.add(CommonComponents.EMPTY);
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".underminer").withColor(0x47adc4));
 		}
+	}
+
+	public static boolean onAllowLivingHurt(LivingEntity entity, DamageSource source, float amount) {
+		if (entity.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.UNREALIUM_HELMET.get()) && source.is(DamageTypes.IN_WALL)) {
+			return false;
+		}
+		if (entity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.UNREALIUM_CHESTPLATE.get()) && source.is(DamageTypes.CRAMMING)) {
+			return false;
+		}
+		return true;
 	}
 
 	public static float onModifyLivingActualHurtDamage(LivingEntity entity, DamageSource source, float amount) {
@@ -477,6 +488,15 @@ public class ESCommonHandler {
 		if (source.getEntity() instanceof ServerPlayer player && entity.getType().is(ESTags.EntityTypes.AFFECTS_PROGRESSION)) {
 			ESBookUtil.unlock(player, BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).withPrefix("entity_killed_"));
 		}
+	}
+
+	// returns the MULTIPLIER of the visibility multiplier
+	public static double onLivingVisibility(LivingEntity entity, Entity lookingEntity, double modifier) {
+		AttributeInstance followRangeMultiplier = entity.getAttribute(ESAttributes.ENEMY_FOLLOW_RANGE_MULTIPLIER.asHolder());
+		if (followRangeMultiplier != null) {
+			return followRangeMultiplier.getValue();
+		}
+		return 1;
 	}
 
 	public static LivingEntity onLivingChangeTarget(LivingEntity entity, LivingEntity newTarget) {

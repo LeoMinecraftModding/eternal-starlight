@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DataFixers.class)
 public abstract class DataFixersMixin {
-	@Inject(method = "addFixers", at = @At(value = "RETURN"))
+	@Inject(method = "addFixers", at = @At("RETURN"))
 	private static void addFixers(DataFixerBuilder builder, CallbackInfo ci) {
 		ESDataFixers.addFixers(builder);
 	}

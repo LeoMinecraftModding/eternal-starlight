@@ -789,6 +789,32 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> DEEPSILVER_BOOTS = registerItem("deepsilver_boots",
 		() -> new DeepsilverArmorItem(ESArmorMaterials.DEEPSILVER.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(30))));
 
+	// unrealium
+	public static final RegistryObject<Item, Item> UNREALIUM_INGOT = registerItem("unrealium_ingot", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> UNREALIUM_NUGGET = registerItem("unrealium_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> UNREALIUM_BLOCK = registerItem("unrealium_block", () -> new BlockItem(ESBlocks.UNREALIUM_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> UNREALIUM_BARS = registerItem("unrealium_bars", () -> new BlockItem(ESBlocks.UNREALIUM_BARS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> UNREALIUM_SWORD = registerItem("unrealium_sword",
+		() -> new SwordItem(ESItemTiers.UNREALIUM, new Item.Properties().attributes(createUnrealiumAttributes(ESItemTiers.UNREALIUM, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> UNREALIUM_PICKAXE = registerItem("unrealium_pickaxe",
+		() -> new PickaxeItem(ESItemTiers.UNREALIUM, new Item.Properties().attributes(createUnrealiumAttributes(ESItemTiers.UNREALIUM, 1, -2.8F))));
+	public static final RegistryObject<Item, Item> UNREALIUM_AXE = registerItem("unrealium_axe",
+		() -> new AxeItem(ESItemTiers.UNREALIUM, new Item.Properties().attributes(createUnrealiumAttributes(ESItemTiers.UNREALIUM, 6, -3))));
+	public static final RegistryObject<Item, Item> UNREALIUM_HOE = registerItem("unrealium_hoe",
+		() -> new HoeItem(ESItemTiers.UNREALIUM, new Item.Properties().attributes(createUnrealiumAttributes(ESItemTiers.UNREALIUM, -3, -1.0F))));
+	public static final RegistryObject<Item, Item> UNREALIUM_SHOVEL = registerItem("unrealium_shovel",
+		() -> new ShovelItem(ESItemTiers.UNREALIUM, new Item.Properties().attributes(createUnrealiumAttributes(ESItemTiers.UNREALIUM, 1.5F, -3F))));
+	public static final RegistryObject<Item, Item> UNREALIUM_SICKLE = registerItem("unrealium_sickle",
+		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.UNREALIUM, true, new Item.Properties().attributes(createUnrealiumAttributes(ESItemTiers.UNREALIUM, 1, -1.5F))));
+	public static final RegistryObject<Item, Item> UNREALIUM_HELMET = registerItem("unrealium_helmet",
+		() -> ESPlatform.INSTANCE.createUnrealiumArmor(ESArmorMaterials.UNREALIUM.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(50))));
+	public static final RegistryObject<Item, Item> UNREALIUM_CHESTPLATE = registerItem("unrealium_chestplate",
+		() -> ESPlatform.INSTANCE.createUnrealiumArmor(ESArmorMaterials.UNREALIUM.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(50)).component(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 4)));
+	public static final RegistryObject<Item, Item> UNREALIUM_LEGGINGS = registerItem("unrealium_leggings",
+		() -> ESPlatform.INSTANCE.createUnrealiumArmor(ESArmorMaterials.UNREALIUM.asHolder(), ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(50))));
+	public static final RegistryObject<Item, Item> UNREALIUM_BOOTS = registerItem("unrealium_boots",
+		() -> ESPlatform.INSTANCE.createUnrealiumArmor(ESArmorMaterials.UNREALIUM.asHolder(), ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(50))));
+
 	public static final RegistryObject<Item, Item> GRIMSTONE_MALARITE_ORE = registerItem("grimstone_malarite_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_MALARITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_MALARITE_ORE = registerItem("voidstone_malarite_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_MALARITE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NIGHTFALL_MUD_MALARITE_ORE = registerItem("nightfall_mud_malarite_ore", () -> new BlockItem(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get(), new Item.Properties()));
@@ -1356,6 +1382,13 @@ public class ESItems {
 
 	// hide it from creative mode tab
 	public static final RegistryObject<Item, Item> BLOSSOM_OF_STARS = ITEMS.register("blossom_of_stars", () -> new BlossomOfStarsItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).effect(new MobEffectInstance(ESMobEffects.DREAM_CATCHER.asHolder(), 2400, 0), 1F).alwaysEdible().build()).rarity(Rarity.RARE)));
+
+	public static ItemAttributeModifiers createUnrealiumAttributes(Tier tier, float damage, float speed) {
+		return ItemAttributeModifiers.builder()
+			.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, damage + tier.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+			.add(Attributes.ATTACK_SPEED, new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+			.add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(EternalStarlight.id("weapon.attack_knockback"), -0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.MAINHAND).build();
+	}
 
 	public static void loadClass() {
 	}

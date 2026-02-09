@@ -20,7 +20,7 @@ import java.util.List;
 
 @Mixin(InventoryChangeTrigger.class)
 public abstract class InventoryChangeTriggerMixin {
-	@Inject(method = "trigger(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/item/ItemStack;)V", at = @At(value = "HEAD"))
+	@Inject(method = "trigger(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/item/ItemStack;)V", at = @At("HEAD"))
 	public void trigger(ServerPlayer player, Inventory inventory, ItemStack stack, CallbackInfo ci) {
 		List<String> listeningNamespaces = null;
 		for (int i = 0; i < inventory.getContainerSize(); i++) {

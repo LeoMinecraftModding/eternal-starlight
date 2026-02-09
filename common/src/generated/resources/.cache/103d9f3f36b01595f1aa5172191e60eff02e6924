@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-29T22:23:47.956357	Registries
+// 1.21.1	2026-02-09T13:28:44.6635841	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -150,6 +150,7 @@ cf2692e33b4162485e1cab244e2bc1e0eac0385f data/eternal_starlight/trim_material/st
 f46d195e5ba474f84766cb4c6c01f5c2e4108156 data/eternal_starlight/trim_material/starlit_diamond.json
 966d35ffa9233e3efa40e7c03ce8c2ff60d77c92 data/eternal_starlight/trim_material/thermal_springstone.json
 81f925e00a49be4e24f3de767ca6dfa9292bbdf8 data/eternal_starlight/trim_material/thioquartz.json
+e896ad5df54caf76f16d0fe154d9063978a85708 data/eternal_starlight/trim_material/unrealium.json
 4b3ef0a8097cec8b875d018c892c8f6fdcf5142a data/eternal_starlight/trim_pattern/blooming.json
 1d371cf686657e21d39443e45305ffdc5b284331 data/eternal_starlight/trim_pattern/forge.json
 0748e5e6fc26503c044ff622af49d067d689492d data/eternal_starlight/trim_pattern/keeper.json

@@ -57,6 +57,7 @@ import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -510,6 +511,12 @@ public class ESClientHandler {
 			if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
 				RenderSystem.setShaderFogShape(FogShape.SPHERE);
 			}
+		}
+
+		AttributeInstance fogVision = player.getAttribute(ESAttributes.FOG_VISION.asHolder());
+		if (fogVision != null && fogMode == FogRenderer.FogMode.FOG_TERRAIN) {
+			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() + (float) fogVision.getValue());
+			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() + (float) fogVision.getValue());
 		}
 	}
 

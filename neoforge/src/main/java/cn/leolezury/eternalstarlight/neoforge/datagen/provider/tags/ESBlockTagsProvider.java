@@ -262,6 +262,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_STARLIT_DIAMOND,
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_DEEPSILVER,
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_DEEPSILVER,
+				ESConventionalTags.Blocks.STORAGE_BLOCKS_UNREALIUM,
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_MALARITE,
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_SALTPETER,
 				ESConventionalTags.Blocks.STORAGE_BLOCKS_RAW_AMARAMBER,
@@ -343,6 +344,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_DEEPSILVER)
 			.add(
 				ESBlocks.DEEPSILVER_BLOCK.get()
+			);
+		tag(ESConventionalTags.Blocks.STORAGE_BLOCKS_UNREALIUM)
+			.add(
+				ESBlocks.UNREALIUM_BLOCK.get()
 			);
 		tag(ESConventionalTags.Blocks.ORES_MALARITE)
 			.add(
@@ -1091,6 +1096,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.GLACITE_BLOCK.get(),
 				ESBlocks.STARLIT_DIAMOND_BLOCK.get(),
 				ESBlocks.DEEPSILVER_BLOCK.get(),
+				ESBlocks.UNREALIUM_BLOCK.get(),
 				ESBlocks.MALARITE_BLOCK.get(),
 				ESBlocks.GOLEM_STEEL_BLOCK.get()
 			);
@@ -1388,6 +1394,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.DEEPSILVER_BLOCK.get(),
 				ESBlocks.DEEPSILVER_GRATE.get(),
 				ESBlocks.DEEPSILVER_BARS.get(),
+				ESBlocks.UNREALIUM_BLOCK.get(),
+				ESBlocks.UNREALIUM_BARS.get(),
 				ESBlocks.GRIMSTONE_MALARITE_ORE.get(),
 				ESBlocks.VOIDSTONE_MALARITE_ORE.get(),
 				ESBlocks.PACKED_NIGHTFALL_MUD_MALARITE_ORE.get(),
@@ -1601,6 +1609,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.DEEPSILVER_BLOCK.get(),
 				ESBlocks.DEEPSILVER_GRATE.get(),
 				ESBlocks.DEEPSILVER_BARS.get(),
+				ESBlocks.UNREALIUM_BLOCK.get(),
+				ESBlocks.UNREALIUM_BARS.get(),
 				ESBlocks.GRIMSTONE_MALARITE_ORE.get(),
 				ESBlocks.VOIDSTONE_MALARITE_ORE.get(),
 				ESBlocks.MALARITE_BLOCK.get(),

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CoralBlock.class)
 public abstract class CoralBlockMixin {
-	@Inject(method = "scanForWater", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "scanForWater", at = @At("HEAD"), cancellable = true)
 	private void scanForWater(BlockGetter blockGetter, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
 		for (Direction direction : Direction.values()) {
 			BlockState state = blockGetter.getBlockState(blockPos.relative(direction));

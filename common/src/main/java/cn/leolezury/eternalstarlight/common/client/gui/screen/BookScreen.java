@@ -187,6 +187,7 @@ public class BookScreen extends Screen {
 					int currentY = getContentY() - scrollProgress + startHeight;
 					if (y >= currentY && y <= currentY + component.getTotalHeight(context)) {
 						component.onClick(context, getContentX(), getContentY() - scrollProgress + startHeight);
+						break;
 					}
 					startHeight += component.getTotalHeight(context);
 				}

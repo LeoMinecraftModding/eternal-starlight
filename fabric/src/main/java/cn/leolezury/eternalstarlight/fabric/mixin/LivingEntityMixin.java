@@ -3,11 +3,13 @@ package cn.leolezury.eternalstarlight.fabric.mixin;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -56,7 +58,7 @@ public abstract class LivingEntityMixin {
 		return original.call(source, modified);
 	}
 
-	@Inject(method = "hurt", at = @At(value = "HEAD"))
+	@Inject(method = "hurt", at = @At("HEAD"))
 	private void hurt(DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (isUsingItem() && ESCommonSetupHandler.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
 			ESCommonHandler.onShieldBlock((LivingEntity) (Object) this, damageSource);
@@ -87,5 +89,11 @@ public abstract class LivingEntityMixin {
 		if (result < 0) {
 			cir.setReturnValue(i - Math.max(Math.max(i - cir.getReturnValue(), 0) + result, 0));
 		}
+	}
+
+	@ModifyReturnValue(method = "getVisibilityPercent", at = @At("RETURN"))
+	private double getVisibilityPercent(double original, @Local(argsOnly = true) Entity lookingEntity) {
+		LivingEntity entity = (LivingEntity) (Object) this;
+		return ESCommonHandler.onLivingVisibility(entity, lookingEntity, original) * original;
 	}
 }

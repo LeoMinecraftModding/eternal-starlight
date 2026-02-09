@@ -45,7 +45,7 @@ public abstract class PlayerMixin {
 		ESCommonHandler.onPostLivingHurt((Player) (Object) this, source, amount);
 	}
 
-	@Inject(method = "hurtCurrentlyUsedShield", at = @At(value = "HEAD"))
+	@Inject(method = "hurtCurrentlyUsedShield", at = @At("HEAD"))
 	private void damageShield(float amount, CallbackInfo callBackInfo) {
 		Player player = (Player) (Object) this;
 		ItemStack useItem = player.getUseItem();
@@ -54,7 +54,7 @@ public abstract class PlayerMixin {
 		}
 	}
 
-	@Inject(method = "disableShield", at = @At(value = "HEAD"))
+	@Inject(method = "disableShield", at = @At("HEAD"))
 	private void disableShield(CallbackInfo ci) {
 		Player player = (Player) (Object) this;
 		ItemStack useItem = player.getUseItem();
@@ -77,7 +77,7 @@ public abstract class PlayerMixin {
 		ESCommonHandler.onCriticalHit((Player) (Object) this, entity, attackStrength);
 	}
 
-	@ModifyReturnValue(method = "getDestroySpeed", at = @At(value = "RETURN"))
+	@ModifyReturnValue(method = "getDestroySpeed", at = @At("RETURN"))
 	private float getDestroySpeed(float original, @Local(ordinal = 0, argsOnly = true) BlockState state) {
 		return ESCommonHandler.onBlockBreakSpeed((Player) (Object) this, state, original);
 	}

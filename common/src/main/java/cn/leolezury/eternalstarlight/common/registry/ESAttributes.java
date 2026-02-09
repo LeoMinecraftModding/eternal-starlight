@@ -14,6 +14,8 @@ public class ESAttributes {
 	public static final RegistryObject<Attribute, RangedAttribute> FIRE_RESISTANCE = ATTRIBUTES.register("generic.fire_resistance", () -> new RangedAttribute("attribute.name." + EternalStarlight.ID + ".generic.fire_resistance", 0, 0, 1));
 	public static final RegistryObject<Attribute, RangedAttribute> METEOR_COUNTERATTACK_CHANCE = ATTRIBUTES.register("generic.meteor_counterattack_chance", () -> new RangedAttribute("attribute.name." + EternalStarlight.ID + ".generic.meteor_counterattack_chance", 0, 0, 1));
 	public static final RegistryObject<Attribute, RangedAttribute> HEAL_MULTIPLIER = ATTRIBUTES.register("generic.heal_multiplier", () -> new RangedAttribute("attribute.name." + EternalStarlight.ID + ".generic.heal_multiplier", 1, 0, 1024));
+	public static final RegistryObject<Attribute, Attribute> ENEMY_FOLLOW_RANGE_MULTIPLIER = ATTRIBUTES.register("generic.enemy_follow_range_multiplier", () -> new RangedAttribute("attribute.name." + EternalStarlight.ID + ".generic.enemy_follow_range_multiplier", 1, 0, 1024).setSentiment(Attribute.Sentiment.NEGATIVE));
+	public static final RegistryObject<Attribute, Attribute> FOG_VISION = ATTRIBUTES.register("player.fog_vision", () -> new RangedAttribute("attribute.name." + EternalStarlight.ID + ".player.fog_vision", 0, 0, 1024).setSyncable(true));
 
 	public static void loadClass() {
 	}

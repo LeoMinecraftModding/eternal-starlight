@@ -54,6 +54,12 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	private static void onIncomingDamage(LivingIncomingDamageEvent event) {
+		if (!event.isCanceled()) {
+			boolean allow = ESCommonHandler.onAllowLivingHurt(event.getEntity(), event.getSource(), event.getAmount());
+			if (!allow) {
+				event.setCanceled(true);
+			}
+		}
 		event.setAmount(ESCommonHandler.onModifyLivingHurtDamage(event.getEntity(), event.getSource(), event.getAmount()));
 	}
 
@@ -83,6 +89,11 @@ public class CommonEvents {
 		if (!event.isCanceled()) {
 			ESCommonHandler.onLivingDeath(event.getEntity(), event.getSource());
 		}
+	}
+
+	@SubscribeEvent
+	private static void onLivingVisibility(LivingEvent.LivingVisibilityEvent event) {
+		event.modifyVisibility(ESCommonHandler.onLivingVisibility(event.getEntity(), event.getLookingEntity(), event.getVisibilityModifier()));
 	}
 
 	@SubscribeEvent

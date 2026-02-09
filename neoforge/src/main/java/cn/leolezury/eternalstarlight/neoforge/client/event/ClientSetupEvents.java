@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.client.handler.ESClientSetupHandler;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.StarlitDiamondArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
+import cn.leolezury.eternalstarlight.common.client.model.armor.UnrealiumArmorModel;
 import cn.leolezury.eternalstarlight.common.item.tooltip.GalacticQuiverTooltipComponent;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -139,6 +140,30 @@ public class ClientSetupEvents {
 		event.registerItem(starlitDiamondArmor, ESItems.STARLIT_DIAMOND_CHESTPLATE.get());
 		event.registerItem(starlitDiamondArmor, ESItems.STARLIT_DIAMOND_LEGGINGS.get());
 		event.registerItem(starlitDiamondArmor, ESItems.STARLIT_DIAMOND_BOOTS.get());
+		IClientItemExtensions unrealiumArmor = new IClientItemExtensions() {
+			private UnrealiumArmorModel<LivingEntity> innerModel;
+			private UnrealiumArmorModel<LivingEntity> outerModel;
+
+			@Override
+			public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+				if (innerModel == null || outerModel == null) {
+					innerModel = new UnrealiumArmorModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(UnrealiumArmorModel.INNER_LOCATION));
+					outerModel = new UnrealiumArmorModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(UnrealiumArmorModel.OUTER_LOCATION));
+				}
+
+				if (itemStack.is(ESItems.UNREALIUM_HELMET.get()) || itemStack.is(ESItems.UNREALIUM_CHESTPLATE.get()) || itemStack.is(ESItems.UNREALIUM_BOOTS.get())) {
+					return outerModel;
+				} else if (itemStack.is(ESItems.UNREALIUM_LEGGINGS.get())) {
+					return innerModel;
+				}
+
+				return IClientItemExtensions.super.getHumanoidArmorModel(livingEntity, itemStack, equipmentSlot, original);
+			}
+		};
+		event.registerItem(unrealiumArmor, ESItems.UNREALIUM_HELMET.get());
+		event.registerItem(unrealiumArmor, ESItems.UNREALIUM_CHESTPLATE.get());
+		event.registerItem(unrealiumArmor, ESItems.UNREALIUM_LEGGINGS.get());
+		event.registerItem(unrealiumArmor, ESItems.UNREALIUM_BOOTS.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.MALARITE_SPEAR.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.PUNGENCY_FRUIT_SPEAR.get());
 		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.CRESCENT_SPEAR.get());

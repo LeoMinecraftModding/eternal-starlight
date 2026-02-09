@@ -414,6 +414,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.DEEPSILVER_BLOCK.get());
 		simpleBlock(ESBlocks.DEEPSILVER_GRATE.get(), models().cubeAll(name(ESBlocks.DEEPSILVER_GRATE.get()), blockTexture(ESBlocks.DEEPSILVER_GRATE.get())).renderType(CUTOUT));
 
+		simpleExisting(ESBlocks.UNREALIUM_BLOCK.get());
+
 		simpleBlock(ESBlocks.GRIMSTONE_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.VOIDSTONE_MALARITE_ORE.get());
 		simpleBlock(ESBlocks.NIGHTFALL_MUD_MALARITE_ORE.get());

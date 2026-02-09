@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerList.class)
 public abstract class PlayerListMixin {
-	@Inject(method = "sendLevelInfo", at = @At(value = "RETURN"))
+	@Inject(method = "sendLevelInfo", at = @At("RETURN"))
 	private void sendLevelInfo(ServerPlayer serverPlayer, ServerLevel serverLevel, CallbackInfo ci) {
 		if (serverLevel.dimension() == ESDimensions.STARLIGHT_KEY) {
 			ESCommonHandler.getActiveWeather().ifPresentOrElse((weatherInstance -> ESPlatform.INSTANCE.sendToClient(serverPlayer, new UpdateWeatherPacket(weatherInstance.getWeather()))), () -> ESPlatform.INSTANCE.sendToClient(serverPlayer, new SimpleActionPacket("cancel_weather")));

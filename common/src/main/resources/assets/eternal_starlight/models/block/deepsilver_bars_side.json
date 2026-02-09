@@ -3,8 +3,7 @@
   "render_type": "minecraft:cutout",
   "textures": {
     "particle": "eternal_starlight:block/deepsilver_bars",
-    "bars": "eternal_starlight:block/deepsilver_bars",
-    "edge": "eternal_starlight:block/deepsilver_bars"
+    "bars": "eternal_starlight:block/deepsilver_bars"
   },
   "elements": [
     {
@@ -58,7 +57,7 @@
             9,
             16
           ],
-          "texture": "#edge",
+          "texture": "#bars",
           "cullface": "north"
         }
       }
@@ -82,7 +81,7 @@
             7,
             7
           ],
-          "texture": "#edge"
+          "texture": "#bars"
         },
         "up": {
           "uv": [
@@ -91,7 +90,7 @@
             9,
             7
           ],
-          "texture": "#edge"
+          "texture": "#bars"
         }
       }
     },
@@ -114,7 +113,7 @@
             7,
             7
           ],
-          "texture": "#edge"
+          "texture": "#bars"
         },
         "up": {
           "uv": [
@@ -123,7 +122,7 @@
             9,
             7
           ],
-          "texture": "#edge"
+          "texture": "#bars"
         }
       }
     }

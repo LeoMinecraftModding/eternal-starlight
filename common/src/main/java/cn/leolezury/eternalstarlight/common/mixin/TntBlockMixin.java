@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TntBlock.class)
 public abstract class TntBlockMixin {
-	@Inject(method = "explode(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)V", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "explode(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)V", at = @At("HEAD"), cancellable = true)
 	private static void explode(Level level, BlockPos blockPos, LivingEntity livingEntity, CallbackInfo ci) {
 		if (level.getBlockState(blockPos).is(ESBlocks.TEAR_BOMB.get())) {
 			if (livingEntity instanceof ServerPlayer serverPlayer) {

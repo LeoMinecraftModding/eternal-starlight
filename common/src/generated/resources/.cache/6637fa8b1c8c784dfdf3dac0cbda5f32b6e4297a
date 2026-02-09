@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-04T22:58:01.7969858	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2026-02-06T23:09:13.8599244	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -43,7 +43,7 @@ ac6f5b8b3f0535432ae0258aa570dd16d11437ec data/c/tags/block/ores_in_ground/eterna
 5dda62b0aa1ce442cd4bd50db134061efaef2e4c data/c/tags/block/sandstone/stairs.json
 c8b398a826d48a0f9f9cdfcf25cdbf300dafdf52 data/c/tags/block/skulls.json
 689c437cd44d855d93ba19066b05f1bb81bddded data/c/tags/block/stones.json
-a2014bd22d4a94fb897195c740e998c92d4a9cd6 data/c/tags/block/storage_blocks.json
+57a69d47b12657aced57f5cd9c0519ebdb81b393 data/c/tags/block/storage_blocks.json
 c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/block/storage_blocks/aethersent.json
 88122e86774d86833b91d449ed8166b024381d2b data/c/tags/block/storage_blocks/crinoa.json
 06860a0926d3badd6737b819088cafa7caba26b3 data/c/tags/block/storage_blocks/deepsilver.json
@@ -57,6 +57,7 @@ cb7bd7016f01a02a9962561c7acd940d498f0d57 data/c/tags/block/storage_blocks/raw_de
 7b815acd1fcf2ab1e4c3ad11996b68324cf148a7 data/c/tags/block/storage_blocks/saltpeter.json
 a58395bf22281e72e2238e886f5d92ef0a345025 data/c/tags/block/storage_blocks/starcore.json
 008766211d0717f41a85575cf3f98f51042ece8c data/c/tags/block/storage_blocks/starlit_diamond.json
+02f69b29fe14e794f9001703f71ecc365c5fd9c2 data/c/tags/block/storage_blocks/unrealium.json
 991373db3a7d935f103d281a670cf29b450f2fad data/c/tags/block/stripped_logs.json
 9cf340b5c2bd1998152d5fb1999b74daf480ef69 data/c/tags/block/stripped_woods.json
 6c865a6e79a8490feea46998e5136548b234bb5b data/eternal_starlight/tags/block/abyssal_cave_replaceables.json
@@ -90,7 +91,7 @@ bd20a492db514b7a40f92bfd9d396f24e2b9139f data/eternal_starlight/tags/block/tooth
 308afa382bb980e635ba19b9e3738e2acb7c6d49 data/eternal_starlight/tags/block/yeti_fur.json
 077121c2c86eb935c8f02795d436e4512a8fc94f data/eternal_starlight/tags/block/yeti_fur_carpets.json
 dc72677b4e7e55371ebfe339231bac2e829e59ce data/minecraft/tags/block/animals_spawnable_on.json
-ceb8eb8b66e28fc35c87b4de79c8268386a72855 data/minecraft/tags/block/beacon_base_blocks.json
+f54fe57df0a3141a7f7bb9500451674330abbac8 data/minecraft/tags/block/beacon_base_blocks.json
 49d6be28d9b8da6ebe3d7246980fb4a6109f43df data/minecraft/tags/block/campfires.json
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/block/candles.json
 3276fe5fe9f5770459f5545469eef8fa3872e76d data/minecraft/tags/block/candle_cakes.json
@@ -116,11 +117,11 @@ b503cc4b594242e321f7797ca2925502c5f661bb data/minecraft/tags/block/logs_that_bur
 5ef3cb9fff3c655ae421959e13f0b8c3335c2a94 data/minecraft/tags/block/mangrove_roots_can_grow_through.json
 895b759561d79925305f06225f2b94c737eed23e data/minecraft/tags/block/mineable/axe.json
 6a900b68ce8ca8bc8fe8f8dcc2f4db267769b71d data/minecraft/tags/block/mineable/hoe.json
-05f003c820b121e855fe9184413d666fecb435ec data/minecraft/tags/block/mineable/pickaxe.json
+5e27b98919d97a751f7e2caf847ecf0e8ad59137 data/minecraft/tags/block/mineable/pickaxe.json
 3e6601628845a5a34c25897e818b128b3ce95175 data/minecraft/tags/block/mineable/shovel.json
 030f415a27ded3f7668f0452f8afe96782a421e4 data/minecraft/tags/block/moss_replaceable.json
 f1a357ab1926778d96e01ccd9e41a6a26437047d data/minecraft/tags/block/mushroom_grow_block.json
-dc6bd76115e4aaab2c70976e534c916364fa938f data/minecraft/tags/block/needs_iron_tool.json
+0a3fb1a612c076fb514c8d3758213844427ca390 data/minecraft/tags/block/needs_iron_tool.json
 5dc8a9d104ce361bc78b236eede58697b748f4d3 data/minecraft/tags/block/needs_stone_tool.json
 90de9afe0872027063bcb6f66d1fe2a0ff06b5e0 data/minecraft/tags/block/occludes_vibration_signals.json
 3f55dc7d70a4a89e7d51106b6d13e80f65fc957b data/minecraft/tags/block/planks.json

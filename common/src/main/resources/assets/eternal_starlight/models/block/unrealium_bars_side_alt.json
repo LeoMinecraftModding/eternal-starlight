@@ -1,0 +1,148 @@
+{
+  "ambientocclusion": false,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "eternal_starlight:block/unrealium_bars",
+    "bars": "eternal_starlight:block/unrealium_bars"
+  },
+  "elements": [
+    {
+      "from": [
+        8,
+        0,
+        8
+      ],
+      "to": [
+        8,
+        16,
+        16
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            0,
+            0,
+            8,
+            16
+          ],
+          "texture": "#bars"
+        },
+        "west": {
+          "uv": [
+            8,
+            0,
+            0,
+            16
+          ],
+          "texture": "#bars"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        0,
+        9
+      ],
+      "to": [
+        9,
+        16,
+        16
+      ],
+      "faces": {
+        "south": {
+          "uv": [
+            3,
+            0,
+            5,
+            16
+          ],
+          "texture": "#bars",
+          "cullface": "south"
+        },
+        "up": {
+          "uv": [
+            3,
+            9,
+            5,
+            16
+          ],
+          "texture": "#bars"
+        },
+        "down": {
+          "uv": [
+            5,
+            9,
+            3,
+            16
+          ],
+          "texture": "#bars"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        0.001,
+        9
+      ],
+      "to": [
+        9,
+        0.001,
+        16
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            3,
+            9,
+            5,
+            16
+          ],
+          "texture": "#bars"
+        },
+        "down": {
+          "uv": [
+            5,
+            9,
+            3,
+            16
+          ],
+          "texture": "#bars"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        15.999,
+        9
+      ],
+      "to": [
+        9,
+        15.999,
+        16
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            3,
+            9,
+            5,
+            16
+          ],
+          "texture": "#bars"
+        },
+        "down": {
+          "uv": [
+            5,
+            9,
+            3,
+            16
+          ],
+          "texture": "#bars"
+        }
+      }
+    }
+  ]
+}

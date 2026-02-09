@@ -36,7 +36,7 @@ public abstract class EntityMixin {
 		}
 	}
 
-	@Inject(method = "tick", at = @At(value = "RETURN"))
+	@Inject(method = "tick", at = @At("RETURN"))
 	private void tick(CallbackInfo ci) {
 		ESCommonHandler.onEntityTick((Entity) (Object) this);
 	}

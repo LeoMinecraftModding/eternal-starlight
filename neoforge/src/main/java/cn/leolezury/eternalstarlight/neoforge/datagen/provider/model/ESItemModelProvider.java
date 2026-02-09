@@ -691,6 +691,21 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.DEEPSILVER_LEGGINGS.get());
 		basicItem(ESItems.DEEPSILVER_BOOTS.get());
 
+		basicItem(ESItems.UNREALIUM_INGOT.get());
+		basicItem(ESItems.UNREALIUM_NUGGET.get());
+		block(ESItems.UNREALIUM_BLOCK.get());
+		flatBlockTexture(ESItems.UNREALIUM_BARS.get());
+		handheld(ESItems.UNREALIUM_SWORD.get());
+		handheld(ESItems.UNREALIUM_PICKAXE.get());
+		handheld(ESItems.UNREALIUM_AXE.get());
+		handheld(ESItems.UNREALIUM_HOE.get());
+		handheld(ESItems.UNREALIUM_SHOVEL.get());
+		handheld(ESItems.UNREALIUM_SICKLE.get());
+		basicItem(ESItems.UNREALIUM_HELMET.get());
+		basicItem(ESItems.UNREALIUM_CHESTPLATE.get());
+		basicItem(ESItems.UNREALIUM_LEGGINGS.get());
+		basicItem(ESItems.UNREALIUM_BOOTS.get());
+
 		block(ESItems.GRIMSTONE_MALARITE_ORE.get());
 		block(ESItems.VOIDSTONE_MALARITE_ORE.get());
 		block(ESItems.NIGHTFALL_MUD_MALARITE_ORE.get());

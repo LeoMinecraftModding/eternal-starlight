@@ -58,12 +58,10 @@
               "y": 100
             }
           ],
-          "total_height": 150,
+          "total_height": 180,
           "unlock_conditions": []
         }
-      }
-    ],
-    [
+      },
       {
         "type": "eternal_starlight:index",
         "config": {

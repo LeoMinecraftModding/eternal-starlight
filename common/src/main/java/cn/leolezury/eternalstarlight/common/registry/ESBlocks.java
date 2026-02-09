@@ -801,6 +801,9 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WaterloggedTransparentBlock> DEEPSILVER_GRATE = BLOCKS.register("deepsilver_grate", () -> new WaterloggedTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE).strength(5.0F, 3.5F).mapColor(MapColor.METAL)));
 	public static final RegistryObject<Block, IronBarsBlock> DEEPSILVER_BARS = BLOCKS.register("deepsilver_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).strength(5.0F, 3.5F)));
 
+	public static final RegistryObject<Block, Block> UNREALIUM_BLOCK = BLOCKS.register("unrealium_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).strength(5.0F, 3.5F)));
+	public static final RegistryObject<Block, IronBarsBlock> UNREALIUM_BARS = BLOCKS.register("unrealium_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).strength(5.0F, 3.5F)));
+
 	public static final RegistryObject<Block, DropExperienceBlock> GRIMSTONE_MALARITE_ORE = BLOCKS.register("grimstone_malarite_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE)));
 	public static final RegistryObject<Block, DropExperienceBlock> VOIDSTONE_MALARITE_ORE = BLOCKS.register("voidstone_malarite_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COAL_ORE)));
 	public static final RegistryObject<Block, DropExperienceBlock> NIGHTFALL_MUD_MALARITE_ORE = BLOCKS.register("nightfall_mud_malarite_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.MUD).strength(3.0F).requiresCorrectToolForDrops()));

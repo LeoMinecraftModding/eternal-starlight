@@ -3,8 +3,7 @@
   "render_type": "minecraft:cutout",
   "textures": {
     "particle": "eternal_starlight:block/deepsilver_bars",
-    "bars": "eternal_starlight:block/deepsilver_bars",
-    "edge": "eternal_starlight:block/deepsilver_bars"
+    "bars": "eternal_starlight:block/deepsilver_bars"
   },
   "elements": [
     {

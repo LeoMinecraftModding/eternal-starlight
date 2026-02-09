@@ -25,6 +25,7 @@ public class ESTrimMaterials {
 	public static final ResourceKey<TrimMaterial> GLACITE = create("glacite");
 	public static final ResourceKey<TrimMaterial> STARLIT_DIAMOND = create("starlit_diamond");
 	public static final ResourceKey<TrimMaterial> DEEPSILVER = create("deepsilver");
+	public static final ResourceKey<TrimMaterial> UNREALIUM = create("unrealium");
 	public static final ResourceKey<TrimMaterial> MALARITE = create("malarite");
 	public static final ResourceKey<TrimMaterial> STARFIRE = create("starfire");
 	public static final ResourceKey<TrimMaterial> FLOWGLAZE = create("flowglaze");
@@ -43,6 +44,7 @@ public class ESTrimMaterials {
 		GLACITE,
 		STARLIT_DIAMOND,
 		DEEPSILVER,
+		UNREALIUM,
 		MALARITE,
 		STARFIRE,
 		FLOWGLAZE,
@@ -62,6 +64,7 @@ public class ESTrimMaterials {
 		register(context, GLACITE, ESItems.GLACITE_SHARD.asHolder(), 0xcafeff, 0.8f);
 		register(context, STARLIT_DIAMOND, ESItems.STARLIT_DIAMOND.asHolder(), 0x9584e4, 0.8f);
 		register(context, DEEPSILVER, ESItems.DEEPSILVER_INGOT.asHolder(), 0x8797b8, 0.2f);
+		register(context, UNREALIUM, ESItems.UNREALIUM_INGOT.asHolder(), 0x813899, 1.0f);
 		register(context, MALARITE, ESItems.MALARITE.asHolder(), 0x7a518a, 1.0f);
 		register(context, STARFIRE, ESItems.STARFIRE.asHolder(), 0xff7d3d, 0.5f);
 		register(context, FLOWGLAZE, ESItems.FLOWGLAZE.asHolder(), 0x8ed6b0, 0.8f);

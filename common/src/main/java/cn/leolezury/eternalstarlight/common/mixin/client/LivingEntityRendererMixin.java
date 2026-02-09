@@ -52,7 +52,7 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 		}
 	}
 
-	@Inject(method = "getRenderType", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "getRenderType", at = @At("RETURN"), cancellable = true)
 	private void getRenderType(T livingEntity, boolean bodyVisible, boolean translucent, boolean glowing, CallbackInfoReturnable<RenderType> cir) {
 		if (livingEntity instanceof AbstractClientPlayer && livingEntity.level().getEntity(ESDataAttachments.HUSK_OWNER_ID.getData(livingEntity)) instanceof Player) {
 			if (!translucent && bodyVisible) {
@@ -61,7 +61,7 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 		}
 	}
 
-	@Inject(method = "shouldShowName(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "shouldShowName(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At("RETURN"), cancellable = true)
 	private void shouldShowName(T livingEntity, CallbackInfoReturnable<Boolean> cir) {
 		if (livingEntity.level().getEntity(ESDataAttachments.HUSK_OWNER_ID.getData(livingEntity)) instanceof Player) {
 			cir.setReturnValue(false);

@@ -24,7 +24,7 @@ public abstract class ClientLevelMixin {
 	@Final
 	private LevelRenderer levelRenderer;
 
-	@Inject(method = "destroyBlockProgress", at = @At(value = "RETURN"))
+	@Inject(method = "destroyBlockProgress", at = @At("RETURN"))
 	private void destroyBlockProgress(int breakerId, BlockPos pos, int progress, CallbackInfo ci) {
 		ClientLevel level = (ClientLevel) (Object) this;
 		BlockState state = level.getBlockState(pos);

@@ -67,7 +67,7 @@ public abstract class ItemInHandRendererMixin {
 	@Shadow
 	private ItemStack offHandItem;
 
-	@Inject(method = "evaluateWhichHandsToRender", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "evaluateWhichHandsToRender", at = @At("RETURN"), cancellable = true)
 	private static void evaluateWhichHandsToRender(LocalPlayer player, CallbackInfoReturnable<ItemInHandRenderer.HandRenderSelection> cir) {
 		ItemStack mainhand = player.getMainHandItem();
 		ItemStack offhand = player.getOffhandItem();
@@ -89,7 +89,7 @@ public abstract class ItemInHandRendererMixin {
 		}
 	}
 
-	@Inject(method = "applyItemArmTransform", at = @At(value = "RETURN"))
+	@Inject(method = "applyItemArmTransform", at = @At("RETURN"))
 	private void applyItemArmTransform(PoseStack stack, HumanoidArm arm, float equipProgress, CallbackInfo ci) {
 		if (ESClientHandler.oldSeedsLauncherAnimTicks != 0 || ESClientHandler.seedsLauncherAnimTicks != 0) {
 			float anim = Mth.lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), ESClientHandler.oldSeedsLauncherAnimTicks, ESClientHandler.seedsLauncherAnimTicks);

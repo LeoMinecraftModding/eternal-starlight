@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SignBlock.class)
 public abstract class SignBlockMixin {
-	@Inject(method = "newBlockEntity", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "newBlockEntity", at = @At("HEAD"), cancellable = true)
 	public void newBlockEntity(BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<BlockEntity> cir) {
 		if (BuiltInRegistries.BLOCK.getKey(blockState.getBlock()).getNamespace().equals(EternalStarlight.ID)) {
 			cir.setReturnValue(new ESSignBlockEntity(blockPos, blockState));

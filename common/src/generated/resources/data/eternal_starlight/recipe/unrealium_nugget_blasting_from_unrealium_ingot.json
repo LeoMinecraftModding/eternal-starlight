@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": [
+    {
+      "item": "eternal_starlight:unrealium_pickaxe"
+    },
+    {
+      "item": "eternal_starlight:unrealium_axe"
+    },
+    {
+      "item": "eternal_starlight:unrealium_hoe"
+    },
+    {
+      "item": "eternal_starlight:unrealium_shovel"
+    },
+    {
+      "item": "eternal_starlight:unrealium_sickle"
+    },
+    {
+      "item": "eternal_starlight:unrealium_sword"
+    },
+    {
+      "item": "eternal_starlight:unrealium_helmet"
+    },
+    {
+      "item": "eternal_starlight:unrealium_chestplate"
+    },
+    {
+      "item": "eternal_starlight:unrealium_leggings"
+    },
+    {
+      "item": "eternal_starlight:unrealium_boots"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:unrealium_nugget"
+  }
+}

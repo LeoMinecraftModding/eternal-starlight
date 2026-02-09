@@ -31,7 +31,7 @@ public abstract class LiquidBlockMixin {
 	@Shadow
 	protected abstract void fizz(LevelAccessor levelAccessor, BlockPos blockPos);
 
-	@Inject(method = "shouldSpreadLiquid", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "shouldSpreadLiquid", at = @At("HEAD"), cancellable = true)
 	public void shouldSpreadLiquid(Level level, BlockPos blockPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
 		if (!this.fluid.is(ESTags.Fluids.ETHER)) {
 			for (Direction direction : POSSIBLE_FLOW_DIRECTIONS) {

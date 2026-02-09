@@ -219,8 +219,8 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	protected void onHit(HitResult hitResult) {
 		super.onHit(hitResult);
 		if (hitResult.getType() != HitResult.Type.MISS) {
-			if (level() instanceof ServerLevel serverLevel) {
-				ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 40, 0.01f, 0.015f, 4.5f, 5).send(serverLevel);
+			if (natural && level() instanceof ServerLevel serverLevel) {
+				ScreenShakeVfx.createInstance(level().dimension(), position(), 45, 30, 0.15f, 0.24f, 4, 5).send(serverLevel);
 			}
 			if (natural || (getTarget() == null && targetPos == null) || (getTarget() != null && getY() <= (getTarget().getY() + getTarget().getBbHeight())) || (targetPos != null && getY() <= targetPos.y + 1)) {
 				if (natural) {

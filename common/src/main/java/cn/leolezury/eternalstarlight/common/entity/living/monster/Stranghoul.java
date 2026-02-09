@@ -992,44 +992,57 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 			return InteractionResult.sidedSuccess(level().isClientSide);
 		}
 		if (isHired() && player == getHirer()) {
+			boolean infiniteMaterials = player.hasInfiniteMaterials();
 			if (stack.is(ItemTags.HEAD_ARMOR)) {
 				if (!level().isClientSide) {
-					player.setItemInHand(hand, getItemBySlot(EquipmentSlot.HEAD).copy());
+					if (!infiniteMaterials || !getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+						player.setItemInHand(hand, getItemBySlot(EquipmentSlot.HEAD).copy());
+					}
 					setItemSlot(EquipmentSlot.HEAD, stack.copy());
 					setGuaranteedDrop(EquipmentSlot.HEAD);
 				}
 				return InteractionResult.sidedSuccess(level().isClientSide);
 			} else if (stack.is(ItemTags.CHEST_ARMOR)) {
 				if (!level().isClientSide) {
-					player.setItemInHand(hand, getItemBySlot(EquipmentSlot.CHEST).copy());
+					if (!infiniteMaterials || !getItemBySlot(EquipmentSlot.CHEST).isEmpty()) {
+						player.setItemInHand(hand, getItemBySlot(EquipmentSlot.CHEST).copy());
+					}
 					setItemSlot(EquipmentSlot.CHEST, stack.copy());
 					setGuaranteedDrop(EquipmentSlot.CHEST);
 				}
 				return InteractionResult.sidedSuccess(level().isClientSide);
 			} else if (stack.is(ItemTags.LEG_ARMOR)) {
 				if (!level().isClientSide) {
-					player.setItemInHand(hand, getItemBySlot(EquipmentSlot.LEGS).copy());
+					if (!infiniteMaterials || !getItemBySlot(EquipmentSlot.LEGS).isEmpty()) {
+						player.setItemInHand(hand, getItemBySlot(EquipmentSlot.LEGS).copy());
+					}
 					setItemSlot(EquipmentSlot.LEGS, stack.copy());
 					setGuaranteedDrop(EquipmentSlot.LEGS);
 				}
 				return InteractionResult.sidedSuccess(level().isClientSide);
 			} else if (stack.is(ItemTags.FOOT_ARMOR)) {
 				if (!level().isClientSide) {
-					player.setItemInHand(hand, getItemBySlot(EquipmentSlot.FEET).copy());
+					if (!infiniteMaterials || !getItemBySlot(EquipmentSlot.FEET).isEmpty()) {
+						player.setItemInHand(hand, getItemBySlot(EquipmentSlot.FEET).copy());
+					}
 					setItemSlot(EquipmentSlot.FEET, stack.copy());
 					setGuaranteedDrop(EquipmentSlot.FEET);
 				}
 				return InteractionResult.sidedSuccess(level().isClientSide);
 			} else if (stack.has(DataComponents.FOOD)) {
 				if (!level().isClientSide) {
-					player.setItemInHand(hand, getOffhandItem().copy());
+					if (!infiniteMaterials || !getOffhandItem().isEmpty()) {
+						player.setItemInHand(hand, getOffhandItem().copy());
+					}
 					setItemSlot(EquipmentSlot.OFFHAND, stack.copy());
 					setGuaranteedDrop(EquipmentSlot.OFFHAND);
 				}
 				return InteractionResult.sidedSuccess(level().isClientSide);
 			} else if (!stack.isEmpty()) {
 				if (!level().isClientSide) {
-					player.setItemInHand(hand, getMainHandItem().copy());
+					if (!infiniteMaterials || !getMainHandItem().isEmpty()) {
+						player.setItemInHand(hand, getMainHandItem().copy());
+					}
 					setItemSlot(EquipmentSlot.MAINHAND, stack.copy());
 					setGuaranteedDrop(EquipmentSlot.MAINHAND);
 				}

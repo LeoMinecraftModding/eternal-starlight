@@ -11,8 +11,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,7 +32,7 @@ public class FabricStarlitDiamondArmorItem extends ArmorItem {
 	@Environment(EnvType.CLIENT)
 	private static final class ArmorRender implements ArmorRenderer {
 		private static final ArmorRender INSTANCE = new ArmorRender();
-		private TextureAtlas armorTrimAtlas;
+		// private TextureAtlas armorTrimAtlas;
 
 		private StarlitDiamondArmorModel<LivingEntity> innerModel;
 		private StarlitDiamondArmorModel<LivingEntity> outerModel;
@@ -70,9 +68,9 @@ public class FabricStarlitDiamondArmorItem extends ArmorItem {
 				outerModel = new StarlitDiamondArmorModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(StarlitDiamondArmorModel.OUTER_LOCATION));
 			}
 
-			if (armorTrimAtlas == null) {
+			/*if (armorTrimAtlas == null) {
 				armorTrimAtlas = Minecraft.getInstance().getModelManager().getAtlas(Sheets.ARMOR_TRIMS_SHEET);
-			}
+			}*/
 
 			StarlitDiamondArmorModel<LivingEntity> armorModel;
 

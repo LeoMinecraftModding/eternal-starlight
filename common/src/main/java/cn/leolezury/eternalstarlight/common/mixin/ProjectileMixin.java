@@ -20,7 +20,7 @@ public abstract class ProjectileMixin {
 	@Nullable
 	public abstract Entity getOwner();
 
-	@Inject(method = "getMovementToShoot", at = @At(value = "RETURN"), cancellable = true)
+	@Inject(method = "getMovementToShoot", at = @At("RETURN"), cancellable = true)
 	private void getMovementToShoot(double d, double e, double f, float g, float h, CallbackInfoReturnable<Vec3> cir) {
 		if (getOwner() instanceof LivingEntity livingEntity && ((Projectile) (Object) this) instanceof ThrownPotion) {
 			double factor = 1;
