@@ -669,7 +669,7 @@ public class ESBlocks {
 	// water plant
 	public static final RegistryObject<Block, WaterlilyBlock> MOONLIGHT_LILY_PAD = BLOCKS.register("moonlight_lily_pad", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
 	public static final RegistryObject<Block, WaterlilyWithFlowerBlock> STARLIT_LILY_PAD = BLOCKS.register("starlit_lily_pad", () -> new WaterlilyWithFlowerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).lightLevel(state -> state.getValue(WaterlilyWithFlowerBlock.LIT) ? 15 : 0)));
-	public static final RegistryObject<Block, DuckweedBlock> MOONLIGHT_DUCKWEED = BLOCKS.register("moonlight_duckweed", () -> new DuckweedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
+	public static final RegistryObject<Block, WaterlilyBlock> MOONLIGHT_DUCKWEED = BLOCKS.register("moonlight_duckweed", () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).noCollission()));
 
 	// sea stuff
 	public static final RegistryObject<Block, AbyssalKelpBlock> ABYSSAL_KELP = BLOCKS.register("abyssal_kelp", () -> new AbyssalKelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP).lightLevel(CaveVines.emission(14))));
@@ -801,7 +801,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, WaterloggedTransparentBlock> DEEPSILVER_GRATE = BLOCKS.register("deepsilver_grate", () -> new WaterloggedTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE).strength(5.0F, 3.5F).mapColor(MapColor.METAL)));
 	public static final RegistryObject<Block, IronBarsBlock> DEEPSILVER_BARS = BLOCKS.register("deepsilver_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).strength(5.0F, 3.5F)));
 
-	public static final RegistryObject<Block, Block> UNREALIUM_BLOCK = BLOCKS.register("unrealium_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).strength(5.0F, 3.5F)));
+	public static final RegistryObject<Block, Block> UNREALIUM_BLOCK = BLOCKS.register("unrealium_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).strength(5.0F, 3.5F).noCollission()));
 	public static final RegistryObject<Block, IronBarsBlock> UNREALIUM_BARS = BLOCKS.register("unrealium_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS).strength(5.0F, 3.5F)));
 
 	public static final RegistryObject<Block, DropExperienceBlock> GRIMSTONE_MALARITE_ORE = BLOCKS.register("grimstone_malarite_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE)));
