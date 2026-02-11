@@ -15,8 +15,14 @@ import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.*;
-import cn.leolezury.eternalstarlight.common.util.*;
+import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
+import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
+import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DataResult;
 import net.minecraft.Util;
@@ -28,8 +34,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -45,7 +49,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -78,6 +81,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public static int GUI_RESPONSE_CHALLENGE = 1;
 	public static int GUI_RESPONSE_TRADE = 2;
 	public static int GUI_RESPONSE_LEAVE = 3;
+	private static final byte EVENT_BLOCK = 100;
 	private static final String TAG_OFFERS = "offers";
 	private static final String TAG_GATEKEEPER_NAME = "gatekeeper_name";
 	private static final String TAG_FIGHT_TARGET = "fight_target";
@@ -88,48 +92,47 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	public TheGatekeeper(EntityType<? extends TheGatekeeper> entityType, Level level) {
 		super(entityType, level);
+		this.noCulling = true;
 	}
 
 	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.WHITE, false);
 
-	protected static final EntityDataAccessor<Float> FIXED_Y_ROT = SynchedEntityData.defineId(TheGatekeeper.class, EntityDataSerializers.FLOAT);
-
-	public float getFixedYRot() {
-		return this.getEntityData().get(FIXED_Y_ROT);
-	}
-
-	public void setFixedYRot(float attackYRot) {
-		this.getEntityData().set(FIXED_Y_ROT, attackYRot);
-	}
-
 	private final BehaviorManager<TheGatekeeper> behaviorManager = new BehaviorManager<>(this, List.of(
-		new GatekeeperMeleePhase(),
-		new GatekeeperDodgePhase(),
+		new GatekeeperStepBackPhase(),
+		new GatekeeperJumpStartPhase(),
+		new GatekeeperJumpTransitionPhase(),
+		new GatekeeperJumpEndPhase(),
+		new GatekeeperGreatswordPhase(),
+		new GatekeeperHammerPhase(),
 		new GatekeeperDashPhase(),
+		new GatekeeperGreatswordComboPhase(),
+		new GatekeeperBowPhase(),
+		new GatekeeperBowComboPhase(),
 		new GatekeeperCastFireballPhase(),
-		new GatekeeperDanceFightPhase(),
-		new GatekeeperSwingSwordPhase(),
-		new GatekeeperComboPhase(),
 		new GatekeeperTeleportPhase()
 	));
 
-	public AnimationState idleAnimationState = new AnimationState();
-	public AnimationState meleeAnimationStateA = new AnimationState();
-	public AnimationState meleeAnimationStateB = new AnimationState();
-	public AnimationState meleeAnimationStateC = new AnimationState();
-	public AnimationState dodgeAnimationState = new AnimationState();
+	public AnimationState stepBackAnimationState = new AnimationState();
+	public AnimationState jumpStartAnimationState = new AnimationState();
+	public AnimationState jumpTransitionAnimationState = new AnimationState();
+	public AnimationState jumpEndAnimationState = new AnimationState();
+	public AnimationState greatswordAnimationState = new AnimationState();
+	public AnimationState hammerAnimationState = new AnimationState();
 	public AnimationState dashAnimationState = new AnimationState();
+	public AnimationState greatswordComboAnimationState = new AnimationState();
+	public AnimationState bowAnimationState = new AnimationState();
+	public AnimationState bowComboAnimationState = new AnimationState();
 	public AnimationState castFireballAnimationState = new AnimationState();
-	public AnimationState danceFightAnimationState = new AnimationState();
-	public AnimationState swingSwordAnimationState = new AnimationState();
-	public AnimationState comboAnimationState = new AnimationState();
 	public AnimationState teleportAnimationState = new AnimationState();
+	public AnimationState blockAnimationState = new AnimationState();
 
 	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>();
 	public float lastTrailTick = 0;
 
 	public boolean shouldAddTrailSnapshot() {
-		return getBehaviorState() == GatekeeperDodgePhase.ID || getBehaviorState() == GatekeeperDashPhase.ID;
+		return (getBehaviorState() == GatekeeperJumpStartPhase.ID && getBehaviorTicks() >= 15)
+			|| getBehaviorState() == GatekeeperJumpTransitionPhase.ID
+			|| (getBehaviorState() == GatekeeperDashPhase.ID && getBehaviorTicks() > 16 && getBehaviorTicks() < 33);
 	}
 
 	private String gatekeeperName = "TheGatekeeper";
@@ -154,12 +157,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	public Optional<? extends Player> getFightTarget() {
 		return level().players().stream().filter(p -> p.getName().getString().equals(fightTarget)).findFirst();
-	}
-
-	@Override
-	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		super.defineSynchedData(builder);
-		builder.define(FIXED_Y_ROT, 0f);
 	}
 
 	@Override
@@ -243,30 +240,15 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		});
 	}
 
-	@Override
-	protected BodyRotationControl createBodyControl() {
-		return new BodyRotationControl(this) {
-			@Override
-			public void clientTick() {
-				if (TheGatekeeper.this.getBehaviorState() == GatekeeperDashPhase.ID) {
-					TheGatekeeper.this.setYBodyRot(TheGatekeeper.this.getFixedYRot());
-					TheGatekeeper.this.setYHeadRot(TheGatekeeper.this.getFixedYRot());
-				} else {
-					super.clientTick();
-				}
-			}
-		};
-	}
-
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes()
 			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.theGatekeeper.maxHealth())
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.theGatekeeper.armor())
 			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.theGatekeeper.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.theGatekeeper.followRange())
-			.add(Attributes.MOVEMENT_SPEED, 0.5F)
-			.add(Attributes.ARMOR_TOUGHNESS, 5.0D)
-			.add(Attributes.KNOCKBACK_RESISTANCE, 0.8D);
+			.add(Attributes.MOVEMENT_SPEED, 0.6)
+			.add(Attributes.ARMOR_TOUGHNESS, 5.0)
+			.add(Attributes.KNOCKBACK_RESISTANCE, 0.8);
 	}
 
 	@Nullable
@@ -285,16 +267,82 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		this.setItemSlot(EquipmentSlot.MAINHAND, Items.DIAMOND_SWORD.getDefaultInstance());
 	}
 
+	@Override
+	public int getUseItemRemainingTicks() {
+		if (getBehaviorState() == GatekeeperBowPhase.ID
+			&& getBehaviorTicks() >= 6
+			&& getBehaviorTicks() <= 26) {
+			int useDuration = getMainHandItem().getUseDuration(this);
+			return useDuration - (getBehaviorTicks() - 6);
+		}
+		if (getBehaviorState() == GatekeeperBowComboPhase.ID) {
+			int useDuration = getMainHandItem().getUseDuration(this);
+			if (getBehaviorTicks() >= 5 && getBehaviorTicks() <= 20) {
+				return useDuration - Math.round((getBehaviorTicks() - 5) * 1.3f);
+			}
+			if (getBehaviorTicks() >= 30 && getBehaviorTicks() <= 38) {
+				return useDuration - Math.round((getBehaviorTicks() - 30) * 2.5f);
+			}
+			if (getBehaviorTicks() >= 47 && getBehaviorTicks() <= 55) {
+				return useDuration - Math.round((getBehaviorTicks() - 47) * 2.5f);
+			}
+		}
+		return super.getUseItemRemainingTicks();
+	}
+
+	@Override
+	public boolean isUsingItem() {
+		if (getBehaviorState() == GatekeeperBowPhase.ID
+			&& getBehaviorTicks() >= 6
+			&& getBehaviorTicks() <= 26) {
+			return true;
+		}
+		if (getBehaviorState() == GatekeeperBowComboPhase.ID
+			&& ((getBehaviorTicks() >= 5 && getBehaviorTicks() <= 20)
+			|| (getBehaviorTicks() >= 30 && getBehaviorTicks() <= 38)
+			|| (getBehaviorTicks() >= 47 && getBehaviorTicks() <= 55))) {
+			return true;
+		}
+		return super.isUsingItem();
+	}
+
+	@Override
+	public ItemStack getUseItem() {
+		if (getBehaviorState() == GatekeeperBowPhase.ID
+			&& getBehaviorTicks() >= 6
+			&& getBehaviorTicks() <= 26) {
+			return getMainHandItem();
+		}
+		if (getBehaviorState() == GatekeeperBowComboPhase.ID
+			&& ((getBehaviorTicks() >= 5 && getBehaviorTicks() <= 20)
+			|| (getBehaviorTicks() >= 30 && getBehaviorTicks() <= 38)
+			|| (getBehaviorTicks() >= 47 && getBehaviorTicks() <= 55))) {
+			return getMainHandItem();
+		}
+		return super.getUseItem();
+	}
+
+	@Override
+	public void handleEntityEvent(byte b) {
+		if (b == EVENT_BLOCK) {
+			blockAnimationState.start(tickCount);
+		} else {
+			super.handleEntityEvent(b);
+		}
+	}
+
 	public void stopAllAnimStates() {
-		meleeAnimationStateA.stop();
-		meleeAnimationStateB.stop();
-		meleeAnimationStateC.stop();
-		dodgeAnimationState.stop();
+		stepBackAnimationState.stop();
+		jumpStartAnimationState.stop();
+		jumpTransitionAnimationState.stop();
+		jumpEndAnimationState.stop();
+		greatswordAnimationState.stop();
+		hammerAnimationState.stop();
 		dashAnimationState.stop();
+		greatswordComboAnimationState.stop();
+		bowAnimationState.stop();
+		bowComboAnimationState.stop();
 		castFireballAnimationState.stop();
-		danceFightAnimationState.stop();
-		swingSwordAnimationState.stop();
-		comboAnimationState.stop();
 		teleportAnimationState.stop();
 	}
 
@@ -303,19 +351,17 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		if (accessor.equals(BEHAVIOR_STATE) && getBehaviorState() != 0) {
 			stopAllAnimStates();
 			switch (getBehaviorState()) {
-				case GatekeeperMeleePhase.ID -> {
-					switch (getRandom().nextInt(3)) {
-						case 0 -> meleeAnimationStateA.start(tickCount);
-						case 1 -> meleeAnimationStateB.start(tickCount);
-						case 2 -> meleeAnimationStateC.start(tickCount);
-					}
-				}
-				case GatekeeperDodgePhase.ID -> dodgeAnimationState.start(tickCount);
+				case GatekeeperStepBackPhase.ID -> stepBackAnimationState.start(tickCount);
+				case GatekeeperJumpStartPhase.ID -> jumpStartAnimationState.start(tickCount);
+				case GatekeeperJumpTransitionPhase.ID -> jumpTransitionAnimationState.start(tickCount);
+				case GatekeeperJumpEndPhase.ID -> jumpEndAnimationState.start(tickCount);
+				case GatekeeperGreatswordPhase.ID -> greatswordAnimationState.start(tickCount);
+				case GatekeeperHammerPhase.ID -> hammerAnimationState.start(tickCount);
 				case GatekeeperDashPhase.ID -> dashAnimationState.start(tickCount);
+				case GatekeeperGreatswordComboPhase.ID -> greatswordComboAnimationState.start(tickCount);
+				case GatekeeperBowPhase.ID -> bowAnimationState.start(tickCount);
+				case GatekeeperBowComboPhase.ID -> bowComboAnimationState.start(tickCount);
 				case GatekeeperCastFireballPhase.ID -> castFireballAnimationState.start(tickCount);
-				case GatekeeperDanceFightPhase.ID -> danceFightAnimationState.start(tickCount);
-				case GatekeeperSwingSwordPhase.ID -> swingSwordAnimationState.start(tickCount);
-				case GatekeeperComboPhase.ID -> comboAnimationState.start(tickCount);
 				case GatekeeperTeleportPhase.ID -> teleportAnimationState.start(tickCount);
 			}
 		}
@@ -325,12 +371,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	@Override
 	public boolean canAttack(LivingEntity livingEntity) {
 		return super.canAttack(livingEntity) && isActivated();
-	}
-
-	@Override
-	public void setDeltaMovement(Vec3 vec3) {
-		boolean cantMove = !isActivated() || getBehaviorState() == GatekeeperDanceFightPhase.ID || getBehaviorState() == GatekeeperSwingSwordPhase.ID || getBehaviorState() == GatekeeperTeleportPhase.ID;
-		super.setDeltaMovement(cantMove ? new Vec3(0, vec3.y, 0) : vec3);
 	}
 
 	@Override
@@ -407,18 +447,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		return ESBookUtil.getUnlockedParts(player).contains(EternalStarlight.id("permitted_by_gatekeeper"));
 	}
 
-	public void spawnMeleeAttackParticles() {
-		if (level() instanceof ServerLevel serverLevel) {
-			float lookYaw = getYHeadRot() + 90.0f;
-			float lookPitch = -getXRot();
-			Vec3 initialEndPos = ESMathUtil.rotationToPosition(getEyePosition(), 1f, lookPitch, lookYaw);
-			for (int i = 0; i < 3; i++) {
-				Vec3 endPos = initialEndPos.offsetRandom(getRandom(), 0.25f);
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ESParticles.LUNAR_SLASH.get(), getEyePosition().x, getEyePosition().y, getEyePosition().z, endPos.x - getEyePosition().x, endPos.y - getEyePosition().y, endPos.z - getEyePosition().z));
-			}
-		}
-	}
-
 	@Override
 	public void die(DamageSource source) {
 		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
@@ -436,8 +464,20 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	@Override
+	protected void tickDeath() {
+		super.tickDeath();
+		if (deathTime == 0) {
+			stopAllAnimStates();
+			setBehaviorState(0);
+		}
+	}
+
+	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !(ESConfig.INSTANCE.mobsConfig.theGatekeeper.canAlwaysHurtWhenFighting() && isActivated()) && (source.getEntity() == null || getTarget() == null || getBehaviorState() == GatekeeperTeleportPhase.ID)) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !(ESConfig.INSTANCE.mobsConfig.theGatekeeper.canAlwaysHurtWhenFighting() && isActivated()) && (source.getEntity() == null || getTarget() == null || getBehaviorState() == 0)) {
+			if (getBehaviorState() == 0 && source.getEntity() != null) {
+				level().broadcastEntityEvent(this, EVENT_BLOCK);
+			}
 			return false;
 		}
 		return super.hurt(source, amount);
@@ -530,8 +570,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				setBehaviorState(0);
 				setBehaviorTicks(0);
 			}
-		} else {
-			idleAnimationState.startIfStopped(tickCount);
+			if (!isActivated() || getBehaviorState() != 0) {
+				getNavigation().stop();
+				getMoveControl().setWantedPosition(getX(), getY(), getZ(), 0);
+			}
 		}
 	}
 

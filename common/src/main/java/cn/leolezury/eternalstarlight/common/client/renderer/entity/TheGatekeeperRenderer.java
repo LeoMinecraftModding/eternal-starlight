@@ -71,7 +71,7 @@ public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<
 		getGameProfile(entity).ifPresent(p -> model = skinManager.getInsecureSkin(p).model() == PlayerSkin.Model.SLIM ? slimModel : normalModel);
 		if (entity.getBehaviorState() == GatekeeperTeleportPhase.ID) {
 			entity.teleportAnimationState.updateTime(entity.tickCount + partialTicks, 1);
-			float progress = Math.min((1 - Math.abs(Mth.clamp((float) entity.teleportAnimationState.getAccumulatedTime() / 1000f * 20f, 0, 60) / 60 - 0.5f) * 2) * 1.5f, 1);
+			float progress = Math.min((1 - Math.abs(Mth.clamp((float) entity.teleportAnimationState.getAccumulatedTime() / 1000f * 20f, 0, 37) / 37 - 0.5f) * 2) * 1.5f, 1);
 			float radius = progress * 0.5f;
 			renderingPhantom = true;
 			getModel().alphaFactor = 1 - progress;

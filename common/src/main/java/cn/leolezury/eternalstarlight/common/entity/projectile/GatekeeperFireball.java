@@ -3,8 +3,8 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
+import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
@@ -23,7 +23,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Fireball;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -93,29 +92,16 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	}
 
 	@Override
-	public boolean hurt(DamageSource damageSource, float amount) {
-		return false;
-	}
-
-	@Override
 	protected boolean shouldBurn() {
 		return false;
-	}
-
-	private boolean canReachTarget(double range) {
-		LivingEntity target = getTarget();
-		if (target == null) {
-			return false;
-		}
-		return level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(range)).contains(target);
 	}
 
 	@Override
 	protected void onHit(HitResult hitResult) {
 		super.onHit(hitResult);
-		if (!this.level().isClientSide && (target == null || canReachTarget(5))) {
-			boolean bl = ESPlatform.INSTANCE.canEntityGrief(level(), getOwner());
-			this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, bl, Level.ExplosionInteraction.MOB);
+		if (level() instanceof ServerLevel serverLevel) {
+			this.level().explode(this, this.getX(), this.getY(), this.getZ(), 2, false, Level.ExplosionInteraction.NONE);
+			serverLevel.sendParticles(ESExplosionParticleOptions.LAVA, this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 10, 1.5, 1.5, 1.5, 0);
 			this.discard();
 		}
 	}
@@ -123,12 +109,11 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	@Override
 	protected void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		if (level() instanceof ServerLevel serverLevel && (target == null || canReachTarget(5))) {
-			Entity entity = entityHitResult.getEntity();
-			Entity entity2 = this.getOwner();
-			DamageSource damageSource = this.damageSources().fireball(this, entity2);
-			entity.hurt(damageSource, 8.0F);
-			EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
+		if (!level().isClientSide) {
+			Entity hitEntity = entityHitResult.getEntity();
+			Entity owner = this.getOwner();
+			DamageSource damageSource = this.damageSources().fireball(this, owner);
+			hitEntity.hurt(damageSource, 8.0F);
 		}
 	}
 

@@ -46,14 +46,14 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 
 	public TheGatekeeperModel(ModelPart root, boolean slim) {
 		this.root = root.getChild("root");
-		this.body = root.getChild("root").getChild("body");
-		this.head = body.getChild("head");
-		this.leftArm = body.getChild("left_arm");
-		this.rightArm = body.getChild("right_arm");
-		this.leftHand = leftArm.getChild("left_hand");
-		this.rightHand = rightArm.getChild("right_hand");
-		this.leftLeg = root.getChild("root").getChild("left_leg");
-		this.rightLeg = root.getChild("root").getChild("right_leg");
+		this.body = this.root.getChild("body");
+		this.head = this.body.getChild("head");
+		this.leftArm = this.body.getChild("left_arm");
+		this.rightArm = this.body.getChild("right_arm");
+		this.leftHand = this.leftArm.getChild("left_hand");
+		this.rightHand = this.rightArm.getChild("right_hand");
+		this.leftLeg = this.root.getChild("left_leg");
+		this.rightLeg = this.root.getChild("right_leg");
 		this.slim = slim;
 		this.allPartNames = Stream.concat(Stream.of("root"), ESModelUtil.getAllPartNames(this.root)).toList();
 	}
@@ -130,47 +130,34 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 			this.leftLeg.xRot = (float) (-Math.PI * 0.45);
 			this.leftLeg.yRot = (float) (-Math.PI / 10F);
 			this.leftLeg.zRot = (float) (-Math.PI * 0.025);
-		} else {
-			animateWalk(entity.getMainHandItem().isEmpty() ? TheGatekeeperAnimation.WALK_1 : TheGatekeeperAnimation.WALK_2, limbSwing, limbSwingAmount, 2.5f, 1.2f);
-			if (entity.getBehaviorTicks() >= 0 && entity.getBehaviorState() != 0 && entity.deathTime <= 0) {
+		} else if (entity.deathTime <= 0) {
+			if (entity.getBehaviorState() != GatekeeperStepBackPhase.ID
+				&& entity.getBehaviorState() != GatekeeperJumpEndPhase.ID
+				&& entity.getBehaviorState() != GatekeeperGreatswordPhase.ID
+				&& entity.getBehaviorState() != GatekeeperHammerPhase.ID
+				&& entity.getBehaviorState() != GatekeeperDashPhase.ID
+				&& entity.getBehaviorState() != GatekeeperGreatswordComboPhase.ID) {
+				animateWalk(TheGatekeeperAnimation.RUN, limbSwing, limbSwingAmount, 2f, 1f);
+			}
+			if (entity.getBehaviorTicks() >= 0 && entity.getBehaviorState() != 0) {
 				int state = entity.getBehaviorState();
 				switch (state) {
-					case GatekeeperMeleePhase.ID -> {
-						leftArm.resetPose();
-						rightArm.resetPose();
-						animate(entity.meleeAnimationStateA, TheGatekeeperAnimation.ATTACK_1, ageInTicks);
-						animate(entity.meleeAnimationStateB, TheGatekeeperAnimation.ATTACK_2, ageInTicks);
-						animate(entity.meleeAnimationStateC, TheGatekeeperAnimation.ATTACK_3, ageInTicks);
-					}
-					case GatekeeperDodgePhase.ID -> {
-						animate(entity.dodgeAnimationState, TheGatekeeperAnimation.DODGE, ageInTicks);
-					}
-					case GatekeeperDashPhase.ID -> {
-						leftArm.resetPose();
-						rightArm.resetPose();
-						animate(entity.dashAnimationState, TheGatekeeperAnimation.DASH, ageInTicks);
-					}
-					case GatekeeperCastFireballPhase.ID -> {
-						animate(entity.castFireballAnimationState, TheGatekeeperAnimation.CAST_FIREBALL, ageInTicks);
-					}
-					case GatekeeperDanceFightPhase.ID -> {
-						leftArm.resetPose();
-						rightArm.resetPose();
-						animate(entity.danceFightAnimationState, TheGatekeeperAnimation.DANCE_FIGHT, ageInTicks);
-					}
-					case GatekeeperSwingSwordPhase.ID -> {
-						leftArm.resetPose();
-						rightArm.resetPose();
-						animate(entity.swingSwordAnimationState, TheGatekeeperAnimation.SWING_SWORD, ageInTicks);
-					}
-					case GatekeeperComboPhase.ID -> {
-						leftArm.resetPose();
-						rightArm.resetPose();
-						animate(entity.comboAnimationState, TheGatekeeperAnimation.COMBO, ageInTicks);
-					}
+					case GatekeeperStepBackPhase.ID -> animate(entity.stepBackAnimationState, TheGatekeeperAnimation.STEP_BACK, ageInTicks);
+					case GatekeeperJumpStartPhase.ID -> animate(entity.jumpStartAnimationState, TheGatekeeperAnimation.JUMP_START, ageInTicks);
+					case GatekeeperJumpTransitionPhase.ID -> animate(entity.jumpTransitionAnimationState, TheGatekeeperAnimation.JUMP_TRANSITION, ageInTicks);
+					case GatekeeperJumpEndPhase.ID -> animate(entity.jumpEndAnimationState, TheGatekeeperAnimation.JUMP_END, ageInTicks);
+					case GatekeeperGreatswordPhase.ID -> animate(entity.greatswordAnimationState, TheGatekeeperAnimation.GREATSWORD, ageInTicks);
+					case GatekeeperHammerPhase.ID -> animate(entity.hammerAnimationState, TheGatekeeperAnimation.HAMMER, ageInTicks);
+					case GatekeeperDashPhase.ID -> animate(entity.dashAnimationState, TheGatekeeperAnimation.DASH, ageInTicks);
+					case GatekeeperGreatswordComboPhase.ID -> animate(entity.greatswordComboAnimationState, TheGatekeeperAnimation.GREATSWORD_COMBO, ageInTicks);
+					case GatekeeperBowPhase.ID -> animate(entity.bowAnimationState, TheGatekeeperAnimation.BOW, ageInTicks);
+					case GatekeeperBowComboPhase.ID -> animate(entity.bowComboAnimationState, TheGatekeeperAnimation.BOW_COMBO, ageInTicks);
+					case GatekeeperCastFireballPhase.ID -> animate(entity.castFireballAnimationState, TheGatekeeperAnimation.MAGIC, ageInTicks);
+					case GatekeeperTeleportPhase.ID -> animate(entity.teleportAnimationState, TheGatekeeperAnimation.MAGIC, ageInTicks);
 				}
+			} else {
+				animate(entity.blockAnimationState, TheGatekeeperAnimation.BLOCK, ageInTicks);
 			}
-			animate(entity.idleAnimationState, TheGatekeeperAnimation.IDLE, ageInTicks, 0.05f, 1f);
 		}
 	}
 
@@ -189,7 +176,7 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 		} else {
 			handPart.translateAndRotate(stack);
 		}
-		stack.translate(0, -0.625, 0);
+		stack.translate(0, -0.55, 0);
 	}
 
 	@Override

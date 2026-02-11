@@ -44,7 +44,7 @@ public class BehaviorManager<T extends LivingEntity & MultiBehaviorUser> {
 		} else {
 			getActivePhase().ifPresent(p -> {
 				if (!canContinue(p)) {
-					p.stop(entity, phaseList);
+					p.stop(entity, this);
 				} else {
 					p.tick(entity);
 					entity.setBehaviorTicks(entity.getBehaviorTicks() + 1);
@@ -54,6 +54,10 @@ public class BehaviorManager<T extends LivingEntity & MultiBehaviorUser> {
 		for (int id : cooldowns.keySet()) {
 			cooldowns.put(id, Math.max(0, cooldowns.get(id) - 1));
 		}
+	}
+
+	public List<BehaviorPhase<T>> getAllPhases() {
+		return phaseList;
 	}
 
 	private Optional<BehaviorPhase<T>> selectPhase() {

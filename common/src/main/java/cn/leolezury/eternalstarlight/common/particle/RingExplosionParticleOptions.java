@@ -13,6 +13,7 @@ import net.minecraft.util.ExtraCodecs;
 import org.joml.Vector3f;
 
 public record RingExplosionParticleOptions(Vector3f fromColor, Vector3f toColor, float scale) implements ParticleOptions {
+	public static final RingExplosionParticleOptions SHOCKWAVE = new RingExplosionParticleOptions(new Vector3f(255, 255, 255), new Vector3f(255, 255, 255), 4);
 	public static final RingExplosionParticleOptions ENERGY = new RingExplosionParticleOptions(new Vector3f(0, 234, 255), new Vector3f(255, 255, 255), 4);
 	public static final RingExplosionParticleOptions ENERGY_SMALL = new RingExplosionParticleOptions(new Vector3f(0, 234, 255), new Vector3f(255, 255, 255), 1.5f);
 	public static final RingExplosionParticleOptions LUNAR = new RingExplosionParticleOptions(new Vector3f(66, 66, 115), new Vector3f(32, 32, 64), 10);

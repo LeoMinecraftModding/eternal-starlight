@@ -21,7 +21,7 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 	public static final int ID = 3;
 
 	public PermafrostMeleeEndPhase() {
-		super(ID, 1, 35, 100);
+		super(ID, 1, 35, 0);
 	}
 
 	@Override

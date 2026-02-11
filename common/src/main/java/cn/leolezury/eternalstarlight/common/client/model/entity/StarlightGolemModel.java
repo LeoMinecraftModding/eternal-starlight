@@ -71,24 +71,12 @@ public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntit
 		if (entity.getBehaviorTicks() >= 0 && entity.getBehaviorState() != 0 && entity.deathAnimationTime <= 0) {
 			int state = entity.getBehaviorState();
 			switch (state) {
-				case StarlightGolemLaserBeamPhase.ID -> {
-					animate(entity.laserBeamAnimationState, StarlightGolemAnimation.LASER_BEAM, ageInTicks);
-				}
-				case StarlightGolemSummonFlamePhase.ID -> {
-					animate(entity.summonFlameAnimationState, StarlightGolemAnimation.ENERGIZED_FLAME, ageInTicks);
-				}
-				case StarlightGolemSmashPhase.ID -> {
-					animate(entity.smashAnimationState, entity.getPhase() == 1 ? StarlightGolemAnimation.SMASH_LEAP : StarlightGolemAnimation.SMASH, ageInTicks);
-				}
-				case StarlightGolemChargeStartPhase.ID -> {
-					animate(entity.chargeStartAnimationState, StarlightGolemAnimation.CHARGE_START, ageInTicks);
-				}
-				case StarlightGolemChargePhase.ID -> {
-					animate(entity.chargeAnimationState, StarlightGolemAnimation.CHARGE, ageInTicks);
-				}
-				case StarlightGolemChargeEndPhase.ID -> {
-					animate(entity.chargeEndAnimationState, StarlightGolemAnimation.CHARGE_END, ageInTicks);
-				}
+				case StarlightGolemLaserBeamPhase.ID -> animate(entity.laserBeamAnimationState, StarlightGolemAnimation.LASER_BEAM, ageInTicks);
+				case StarlightGolemSummonFlamePhase.ID -> animate(entity.summonFlameAnimationState, StarlightGolemAnimation.ENERGIZED_FLAME, ageInTicks);
+				case StarlightGolemSmashPhase.ID -> animate(entity.smashAnimationState, entity.getPhase() == 1 ? StarlightGolemAnimation.SMASH_LEAP : StarlightGolemAnimation.SMASH, ageInTicks);
+				case StarlightGolemChargeStartPhase.ID -> animate(entity.chargeStartAnimationState, StarlightGolemAnimation.CHARGE_START, ageInTicks);
+				case StarlightGolemChargePhase.ID -> animate(entity.chargeAnimationState, StarlightGolemAnimation.CHARGE, ageInTicks);
+				case StarlightGolemChargeEndPhase.ID -> animate(entity.chargeEndAnimationState, StarlightGolemAnimation.CHARGE_END, ageInTicks);
 			}
 		}
 		if (entity.deathAnimationTime > 0) {

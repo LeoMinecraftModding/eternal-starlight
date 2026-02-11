@@ -12,7 +12,7 @@ public class PermafrostMeleeTransitionPhase extends BehaviorPhase<Permafrost> {
 	public static final int ID = 2;
 
 	public PermafrostMeleeTransitionPhase() {
-		super(ID, 1, 200, 100, PermafrostMeleeEndPhase.ID);
+		super(ID, 1, 200, 0, PermafrostMeleeEndPhase.ID);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class PermafrostMeleeTransitionPhase extends BehaviorPhase<Permafrost> {
 
 	@Override
 	public boolean canContinue(Permafrost entity) {
-		BlockHitResult result = entity.level().clip(new ClipContext(entity.position().add(0, entity.getBbHeight(), 0), entity.position().subtract(0, 0.5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
+		BlockHitResult result = entity.level().clip(new ClipContext(entity.position().add(0, entity.getBbHeight(), 0), entity.position().subtract(0, 0.5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, entity));
 		return result.getType() == HitResult.Type.MISS;
 	}
 

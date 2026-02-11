@@ -2,46 +2,43 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Targeting;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.item.Items;
 
-public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 7;
+public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper> {
+	public static final int ID = 8;
 
-	public GatekeeperDashPhase() {
-		super(ID, 2, 40, 200);
+	public GatekeeperGreatswordComboPhase() {
+		super(ID, 1, 105, 200);
 	}
 
 	@Override
 	public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
-		return cooldownOver && canReachTargetXZ(entity, 9) && !canReachTargetXZ(entity, 5);
+		return cooldownOver && canReachTarget(entity, 3);
 	}
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, Items.DIAMOND_SWORD.getDefaultInstance());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GOLEM_STEEL_GREATSWORD.get().getDefaultInstance());
 	}
 
 	@Override
 	public void tick(TheGatekeeper entity) {
 		LivingEntity target = entity.getTarget();
+		int ticks = entity.getBehaviorTicks();
 		if (target != null) {
 			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
-			if (entity.getBehaviorTicks() == 16) {
+			if (ticks == 22 || ticks == 41 || ticks == 62 || ticks == 81) {
+				boolean success = performMeleeAttack(entity, 3);
+				entity.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 				entity.hurtMarked = true;
-				entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(3));
-			}
-			if (entity.getBehaviorTicks() >= 16 && entity.getBehaviorTicks() <= 35) {
-				for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(1.5))) {
-					if (livingEntity == target || (livingEntity instanceof Targeting targeting && targeting.getTarget() == entity)) {
-						entity.doHurtTarget(livingEntity);
-						livingEntity.hurtMarked = true;
-						livingEntity.addDeltaMovement(livingEntity.position().subtract(entity.position()).normalize().multiply(0.2, 0.1, 0.2));
-					}
+				entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(0.6));
+				if (success) {
+					target.hurtMarked = true;
+					target.addDeltaMovement(target.position().subtract(entity.position()).normalize().multiply(0.3, 0.2, 0.3));
 				}
 			}
 		}
