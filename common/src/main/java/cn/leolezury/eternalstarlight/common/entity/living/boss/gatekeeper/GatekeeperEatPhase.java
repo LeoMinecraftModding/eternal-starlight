@@ -6,30 +6,30 @@ import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.item.Items;
 
-public class GatekeeperStepBackPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 1;
+public class GatekeeperEatPhase extends BehaviorPhase<TheGatekeeper> {
+	public static final int ID = 13;
 
-	public GatekeeperStepBackPhase() {
-		super(ID, 1, 17, 250);
+	public GatekeeperEatPhase() {
+		super(ID, 1, 55, 400);
 	}
 
 	@Override
 	public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
-		return cooldownOver && canReachTarget(entity, 6);
+		return cooldownOver
+			&& !canReachTarget(entity, 10)
+			&& entity.getHealth() < entity.getMaxHealth() * 0.5f
+			&& entity.healCount < 16
+			&& entity.healInterruptedCount < 4;
 	}
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		LivingEntity target = entity.getTarget();
-		if (target != null) {
-			entity.hurtMarked = true;
-			Vec3 delta = entity.position().subtract(target.position());
-			entity.addDeltaMovement(new Vec3(delta.x, 0, delta.z).normalize()
-				.add(0, delta.normalize().y, 0).normalize().scale(1.8));
-		}
-		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
+		entity.setItemInHand(InteractionHand.OFF_HAND, Items.GOLDEN_CARROT.getDefaultInstance());
+		entity.healInterrupted = false;
+		entity.healInterruptedIndirect = false;
+		entity.healCount++;
 	}
 
 	@Override
@@ -37,12 +37,14 @@ public class GatekeeperStepBackPhase extends BehaviorPhase<TheGatekeeper> {
 		LivingEntity target = entity.getTarget();
 		if (target != null) {
 			ESEntityUtil.instantLook(entity, target.getEyePosition());
+			entity.hurtMarked = true;
+			entity.addDeltaMovement(entity.position().subtract(target.position()).normalize().scale(0.05));
 		}
 	}
 
 	@Override
 	public boolean canContinue(TheGatekeeper entity) {
-		return true;
+		return !entity.healInterrupted;
 	}
 
 	@Override
@@ -51,9 +53,21 @@ public class GatekeeperStepBackPhase extends BehaviorPhase<TheGatekeeper> {
 
 	@Override
 	public void stop(TheGatekeeper entity, BehaviorManager<TheGatekeeper> manager) {
+		if (!(entity.healInterrupted && entity.healInterruptedIndirect)) {
+			entity.heal(entity.getMaxHealth() / 5);
+		}
 		entity.setBehaviorState(0);
 		entity.setBehaviorTicks(0);
-		int newId = canReachTarget(entity, 8) ? GatekeeperJumpStartPhase.ID : (canReachTarget(entity, 18) ? GatekeeperBowPhase.ID : GatekeeperBowComboPhase.ID);
+		int newId = (entity.healInterrupted && entity.healInterruptedIndirect)
+			? GatekeeperEatFailPhase.ID
+			: (canReachTarget(entity, 3)
+			? GatekeeperGreatswordPhase.ID
+			: (canReachTarget(entity, 18)
+			? GatekeeperBowPhase.ID
+			: GatekeeperBowComboPhase.ID));
+		if (newId != GatekeeperEatFailPhase.ID) {
+			entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
+		}
 		if (manager.getCooldowns().getOrDefault(newId, 0) <= 0) {
 			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity));
 		}

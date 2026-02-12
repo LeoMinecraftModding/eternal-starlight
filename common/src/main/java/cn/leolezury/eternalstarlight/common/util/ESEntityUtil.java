@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -54,6 +56,14 @@ public class ESEntityUtil {
 			return false;
 		}
 		return victim.isAttackable();
+	}
+
+	public static void instantLook(LivingEntity entity, Vec3 pos) {
+		entity.lookAt(EntityAnchorArgument.Anchor.EYES, pos);
+		entity.yBodyRot = entity.getYRot();
+		entity.yBodyRotO = entity.getYRot();
+		entity.yHeadRot = entity.getYRot();
+		entity.yHeadRotO = entity.getYRot();
 	}
 
 	public static VillagerTrades.ItemListing simpleTrade(Item cost, int costCount, Item result, int resultCount, int maxUses) {

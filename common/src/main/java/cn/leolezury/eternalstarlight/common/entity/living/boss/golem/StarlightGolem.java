@@ -91,7 +91,12 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	public float lastTrailTick = 0;
 
 	public boolean shouldAddTrailSnapshot() {
-		return getPhase() == 1 && getBehaviorState() == StarlightGolemSmashPhase.ID && getBehaviorTicks() >= 37;
+		return Mth.degreesDifferenceAbs(getYRot(), yBodyRot) < 45
+			&& Mth.degreesDifferenceAbs(getYRot(), yBodyRotO) < 45
+			&& Mth.degreesDifferenceAbs(yBodyRot, yBodyRotO) < 45
+			&& getPhase() == 1
+			&& getBehaviorState() == StarlightGolemSmashPhase.ID
+			&& getBehaviorTicks() >= 37;
 	}
 
 	private int attackEnergy;

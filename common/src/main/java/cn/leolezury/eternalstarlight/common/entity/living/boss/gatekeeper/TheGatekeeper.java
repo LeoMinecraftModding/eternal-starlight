@@ -40,6 +40,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -89,6 +90,8 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
 	private int noTargetTime;
 	public int viewBlockedTime;
+	public boolean healInterrupted = false, healInterruptedIndirect = false;
+	public int healCount, healInterruptedCount;
 
 	public TheGatekeeper(EntityType<? extends TheGatekeeper> entityType, Level level) {
 		super(entityType, level);
@@ -109,7 +112,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		new GatekeeperBowPhase(),
 		new GatekeeperBowComboPhase(),
 		new GatekeeperCastFireballPhase(),
-		new GatekeeperTeleportPhase()
+		new GatekeeperTeleportPhase(),
+		new GatekeeperEatPhase(),
+		new GatekeeperEatFailPhase()
 	));
 
 	public AnimationState stepBackAnimationState = new AnimationState();
@@ -125,14 +130,19 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public AnimationState castFireballAnimationState = new AnimationState();
 	public AnimationState teleportAnimationState = new AnimationState();
 	public AnimationState blockAnimationState = new AnimationState();
+	public AnimationState eatAnimationState = new AnimationState();
+	public AnimationState eatFailAnimationState = new AnimationState();
 
 	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>();
 	public float lastTrailTick = 0;
 
 	public boolean shouldAddTrailSnapshot() {
-		return (getBehaviorState() == GatekeeperJumpStartPhase.ID && getBehaviorTicks() >= 15)
+		return Mth.degreesDifferenceAbs(getYRot(), yBodyRot) < 45
+			&& Mth.degreesDifferenceAbs(getYRot(), yBodyRotO) < 45
+			&& Mth.degreesDifferenceAbs(yBodyRot, yBodyRotO) < 45
+			&& ((getBehaviorState() == GatekeeperJumpStartPhase.ID && getBehaviorTicks() >= 15)
 			|| getBehaviorState() == GatekeeperJumpTransitionPhase.ID
-			|| (getBehaviorState() == GatekeeperDashPhase.ID && getBehaviorTicks() > 16 && getBehaviorTicks() < 33);
+			|| (getBehaviorState() == GatekeeperDashPhase.ID && getBehaviorTicks() > 16 && getBehaviorTicks() < 25));
 	}
 
 	private String gatekeeperName = "TheGatekeeper";
@@ -344,6 +354,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		bowComboAnimationState.stop();
 		castFireballAnimationState.stop();
 		teleportAnimationState.stop();
+		blockAnimationState.stop();
+		eatAnimationState.stop();
+		eatFailAnimationState.stop();
 	}
 
 	@Override
@@ -363,6 +376,8 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				case GatekeeperBowComboPhase.ID -> bowComboAnimationState.start(tickCount);
 				case GatekeeperCastFireballPhase.ID -> castFireballAnimationState.start(tickCount);
 				case GatekeeperTeleportPhase.ID -> teleportAnimationState.start(tickCount);
+				case GatekeeperEatPhase.ID -> eatAnimationState.start(tickCount);
+				case GatekeeperEatFailPhase.ID -> eatFailAnimationState.start(tickCount);
 			}
 		}
 		super.onSyncedDataUpdated(accessor);
@@ -480,6 +495,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			}
 			return false;
 		}
+		if (getBehaviorState() == GatekeeperEatPhase.ID && source.getEntity() != null) {
+			healInterrupted = true;
+			healInterruptedIndirect = !source.isDirect();
+		}
 		return super.hurt(source, amount);
 	}
 
@@ -584,6 +603,8 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		setActivated(false);
 		tryTeleportBack();
 		fightParticipants.clear();
+		healCount = 0;
+		healInterruptedCount = 0;
 	}
 
 	@Override

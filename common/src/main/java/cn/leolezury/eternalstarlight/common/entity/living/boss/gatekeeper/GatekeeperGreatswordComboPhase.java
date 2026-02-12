@@ -3,10 +3,11 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 
 public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 8;
@@ -23,6 +24,7 @@ public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper>
 	@Override
 	public void onStart(TheGatekeeper entity) {
 		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GOLEM_STEEL_GREATSWORD.get().getDefaultInstance());
+		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper>
 		LivingEntity target = entity.getTarget();
 		int ticks = entity.getBehaviorTicks();
 		if (target != null) {
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			if (ticks == 22 || ticks == 41 || ticks == 62 || ticks == 81) {
 				boolean success = performMeleeAttack(entity, 3);
 				entity.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);

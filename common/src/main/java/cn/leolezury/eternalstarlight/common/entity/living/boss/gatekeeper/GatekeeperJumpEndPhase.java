@@ -7,8 +7,8 @@ import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -43,7 +43,7 @@ public class GatekeeperJumpEndPhase extends BehaviorPhase<TheGatekeeper> {
 		Level level = entity.level();
 		LivingEntity target = entity.getTarget();
 		if (target != null) {
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+			ESEntityUtil.instantLook(entity, target.getEyePosition());
 		}
 		if (entity.getBehaviorTicks() == 2) {
 			boolean hammer = entity.getMainHandItem().getItem() instanceof HammerItem;

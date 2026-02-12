@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.projectile.PermafrostSpit;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -29,7 +29,7 @@ public class PermafrostSneezePhase extends BehaviorPhase<Permafrost> {
 		Level level = entity.level();
 		if (entity.getTarget() != null) {
 			LivingEntity target = entity.getTarget();
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			if (entity.getBehaviorTicks() == 75) {
 				entity.playSound(ESSoundEvents.PERMAFROST_SNEEZE.get());
 				Vec3 launchPos = entity.getEyePosition();

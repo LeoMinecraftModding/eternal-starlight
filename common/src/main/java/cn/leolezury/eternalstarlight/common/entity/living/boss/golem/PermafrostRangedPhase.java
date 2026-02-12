@@ -3,8 +3,8 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -32,7 +32,7 @@ public class PermafrostRangedPhase extends BehaviorPhase<Permafrost> {
 		Level level = entity.level();
 		if (entity.getTarget() != null) {
 			LivingEntity target = entity.getTarget();
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			Vec3 launchPos = entity.position().add(0, entity.getBbHeight() / 2f, 0);
 			if (entity.getBehaviorTicks() >= 21 && entity.getBehaviorTicks() <= 45) {
 				for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(1.5))) {

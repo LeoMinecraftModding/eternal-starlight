@@ -2,41 +2,32 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 
-public class GatekeeperStepBackPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 1;
+public class GatekeeperEatFailPhase extends BehaviorPhase<TheGatekeeper> {
+	public static final int ID = 14;
 
-	public GatekeeperStepBackPhase() {
-		super(ID, 1, 17, 250);
+	public GatekeeperEatFailPhase() {
+		super(ID, 1, 22, 0);
 	}
 
 	@Override
 	public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
-		return cooldownOver && canReachTarget(entity, 6);
+		return false;
 	}
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		LivingEntity target = entity.getTarget();
-		if (target != null) {
-			entity.hurtMarked = true;
-			Vec3 delta = entity.position().subtract(target.position());
-			entity.addDeltaMovement(new Vec3(delta.x, 0, delta.z).normalize()
-				.add(0, delta.normalize().y, 0).normalize().scale(1.8));
-		}
-		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
+		entity.healInterruptedCount++;
 	}
 
 	@Override
 	public void tick(TheGatekeeper entity) {
-		LivingEntity target = entity.getTarget();
-		if (target != null) {
-			ESEntityUtil.instantLook(entity, target.getEyePosition());
+		if (entity.getBehaviorTicks() == 2) {
+			BehaviorUtils.throwItem(entity, entity.getOffhandItem().copy(), entity.getEyePosition().add(entity.getRandom().nextDouble() - 0.5, entity.getRandom().nextDouble(), entity.getRandom().nextDouble() - 0.5));
+			entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 		}
 	}
 
@@ -53,7 +44,7 @@ public class GatekeeperStepBackPhase extends BehaviorPhase<TheGatekeeper> {
 	public void stop(TheGatekeeper entity, BehaviorManager<TheGatekeeper> manager) {
 		entity.setBehaviorState(0);
 		entity.setBehaviorTicks(0);
-		int newId = canReachTarget(entity, 8) ? GatekeeperJumpStartPhase.ID : (canReachTarget(entity, 18) ? GatekeeperBowPhase.ID : GatekeeperBowComboPhase.ID);
+		int newId = canReachTarget(entity, 3) ? GatekeeperGreatswordPhase.ID : (canReachTarget(entity, 18) ? GatekeeperBowPhase.ID : GatekeeperBowComboPhase.ID);
 		if (manager.getCooldowns().getOrDefault(newId, 0) <= 0) {
 			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity));
 		}

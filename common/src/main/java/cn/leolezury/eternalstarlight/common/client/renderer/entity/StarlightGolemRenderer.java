@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.StarlightGolemEyesLayer;
@@ -95,7 +94,7 @@ public class StarlightGolemRenderer<T extends StarlightGolem> extends MobRendere
 				this.scale(entity, poseStack, partialTicks);
 				poseStack.translate(0.0F, -1.5F, 0.0F);
 				RenderType renderType = ESRenderType.entityTranslucentNoDepth(getTextureLocation(entity));
-				VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType);
+				VertexConsumer vertexConsumer = buffer.getBuffer(renderType);
 				getModel().renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
 				poseStack.popPose();
 			}

@@ -4,8 +4,8 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -38,7 +38,7 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 		Level level = entity.level();
 		LivingEntity target = entity.getTarget();
 		if (target != null) {
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+			ESEntityUtil.instantLook(entity, target.getEyePosition());
 		}
 		BlockHitResult result = level.clip(new ClipContext(entity.position().add(0, entity.getBbHeight(), 0), entity.position().subtract(0, 5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
 		if (result.getType() != HitResult.Type.MISS) {

@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,6 +26,7 @@ public class GatekeeperBowPhase extends BehaviorPhase<TheGatekeeper> {
 	@Override
 	public void onStart(TheGatekeeper entity) {
 		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.MOONRING_BOW.get().getDefaultInstance());
+		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class GatekeeperBowPhase extends BehaviorPhase<TheGatekeeper> {
 		LivingEntity target = entity.getTarget();
 		int ticks = entity.getBehaviorTicks();
 		if (target != null) {
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			if (ticks == 26) {
 				ItemStack weapon = entity.getMainHandItem();
 				if (weapon.getItem() instanceof BowItem) {

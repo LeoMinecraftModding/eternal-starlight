@@ -2,11 +2,12 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
@@ -24,13 +25,14 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	@Override
 	public void onStart(TheGatekeeper entity) {
 		entity.setItemInHand(InteractionHand.MAIN_HAND, Items.DIAMOND_SWORD.getDefaultInstance());
+		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 
 	@Override
 	public void tick(TheGatekeeper entity) {
 		LivingEntity target = entity.getTarget();
 		if (target != null) {
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			if (entity.getBehaviorTicks() == 16) {
 				entity.hurtMarked = true;
 				entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(3));

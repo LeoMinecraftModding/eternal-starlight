@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.TheGatekeeperModel;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.TheGatekeeperClothingLayer;
@@ -120,7 +119,7 @@ public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<
 				this.scale(entity, stack, partialTicks);
 				stack.translate(0.0F, -1.5F, 0.0F);
 				RenderType renderType = ESRenderType.entityTranslucentNoDepth(getTextureLocation(entity));
-				VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType);
+				VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
 				getModel().renderToBuffer(stack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
 				stack.popPose();
 			}

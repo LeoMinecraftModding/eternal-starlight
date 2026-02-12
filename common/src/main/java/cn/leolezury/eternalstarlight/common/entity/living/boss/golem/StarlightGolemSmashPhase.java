@@ -6,12 +6,12 @@ import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
 import cn.leolezury.eternalstarlight.common.entity.projectile.EnergySpark;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.Util;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -83,7 +83,7 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 			ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 50, 0.24f, 0.5f, 3, 5.5f).send(serverLevel);
 		}
 		if (entity.getBehaviorTicks() >= 30) {
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, ESMathUtil.rotationToPosition(entity.position(), entity.getBbWidth() * 10, pitch, yaw));
+			ESEntityUtil.instantLook(entity, ESMathUtil.rotationToPosition(entity.position(), entity.getBbWidth() * 10, pitch, yaw));
 		}
 		if (entity.getBehaviorTicks() >= 40) {
 			int radius = (int) ((entity.getBehaviorTicks() - 30f) / 3f);

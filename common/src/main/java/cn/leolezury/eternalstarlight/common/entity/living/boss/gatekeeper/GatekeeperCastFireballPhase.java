@@ -3,7 +3,9 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.entity.projectile.GatekeeperFireball;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
 public class GatekeeperCastFireballPhase extends BehaviorPhase<TheGatekeeper> {
@@ -20,6 +22,7 @@ public class GatekeeperCastFireballPhase extends BehaviorPhase<TheGatekeeper> {
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
+		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
-import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.PermafrostModel;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
@@ -70,7 +69,7 @@ public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, Per
 				this.scale(entity, poseStack, partialTicks);
 				poseStack.translate(0.0F, -1.5F, 0.0F);
 				RenderType renderType = ESRenderType.entityTranslucentNoDepth(getTextureLocation(entity));
-				VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType);
+				VertexConsumer vertexConsumer = bufferSource.getBuffer(renderType);
 				getModel().renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
 				poseStack.popPose();
 			}

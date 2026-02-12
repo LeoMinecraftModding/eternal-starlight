@@ -16,6 +16,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -74,7 +75,12 @@ public class Permafrost extends ESBoss {
 	public float lastTrailTick = 0;
 
 	public boolean shouldAddTrailSnapshot() {
-		return getBehaviorState() == PermafrostMeleePhase.ID || getBehaviorState() == PermafrostMeleeTransitionPhase.ID || (getBehaviorState() == PermafrostMeleeEndPhase.ID && getBehaviorTicks() < 3);
+		return Mth.degreesDifferenceAbs(getYRot(), yBodyRot) < 45
+			&& Mth.degreesDifferenceAbs(getYRot(), yBodyRotO) < 45
+			&& Mth.degreesDifferenceAbs(yBodyRot, yBodyRotO) < 45
+			&& (getBehaviorState() == PermafrostMeleePhase.ID
+			|| getBehaviorState() == PermafrostMeleeTransitionPhase.ID
+			|| (getBehaviorState() == PermafrostMeleeEndPhase.ID && getBehaviorTicks() < 3));
 	}
 
 	@Override

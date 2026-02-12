@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.BlockHitResult;
@@ -33,7 +33,7 @@ public class GatekeeperJumpTransitionPhase extends BehaviorPhase<TheGatekeeper> 
 	public void tick(TheGatekeeper entity) {
 		LivingEntity target = entity.getTarget();
 		if (target != null) {
-			entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
+			ESEntityUtil.instantLook(entity, target.getEyePosition());
 		}
 		entity.hurtMarked = true;
 		entity.addDeltaMovement(new Vec3(0, -0.5, 0));

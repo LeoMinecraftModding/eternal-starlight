@@ -154,6 +154,8 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 					case GatekeeperBowComboPhase.ID -> animate(entity.bowComboAnimationState, TheGatekeeperAnimation.BOW_COMBO, ageInTicks);
 					case GatekeeperCastFireballPhase.ID -> animate(entity.castFireballAnimationState, TheGatekeeperAnimation.MAGIC, ageInTicks);
 					case GatekeeperTeleportPhase.ID -> animate(entity.teleportAnimationState, TheGatekeeperAnimation.MAGIC, ageInTicks);
+					case GatekeeperEatPhase.ID -> animate(entity.eatAnimationState, TheGatekeeperAnimation.EAT, ageInTicks);
+					case GatekeeperEatFailPhase.ID -> animate(entity.eatFailAnimationState, TheGatekeeperAnimation.EAT_FAIL, ageInTicks);
 				}
 			} else {
 				animate(entity.blockAnimationState, TheGatekeeperAnimation.BLOCK, ageInTicks);
