@@ -399,12 +399,13 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CHAIN_OF_SOULS.get())
-			.pattern("SP")
-			.pattern(" V")
-			.pattern(" V")
+			.pattern("P  ")
+			.pattern("SVV")
+			.pattern("P N")
 			.define('S', ESItems.SOUL_DEW.get())
 			.define('P', ESItems.TENACIOUS_PETAL.get())
 			.define('V', ESItems.TENACIOUS_VINE.get())
+			.define('N', Tags.Items.NUGGETS)
 			.unlockedBy("has_item", has(ESItems.TENACIOUS_PETAL.get()))
 			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.CRESCENT_SPEAR.get())
@@ -2206,11 +2207,9 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	protected final void addWhip(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
-			.pattern("  #")
-			.pattern(" S#")
-			.pattern("H  ")
+			.pattern("###")
+			.pattern("  H")
 			.define('#', input)
-			.define('S', Tags.Items.STRINGS)
 			.define('H', Tags.Items.RODS_WOODEN)
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);

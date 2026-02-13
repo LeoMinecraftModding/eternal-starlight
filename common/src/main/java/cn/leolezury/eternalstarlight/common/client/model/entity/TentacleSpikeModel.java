@@ -17,8 +17,7 @@ import net.minecraft.util.Mth;
 @Environment(EnvType.CLIENT)
 public class TentacleSpikeModel<T extends TentacleSpike> extends EntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("tentacle_spike"), "main");
-	private static final int NUM_SEGMENTS = 20;
-	private static final int NUM_SPIKED_SEGMENTS = 5;
+	private static final int NUM_SEGMENTS = 15;
 	private final ModelPart root;
 	private final ModelPart[] segments;
 
@@ -39,13 +38,21 @@ public class TentacleSpikeModel<T extends TentacleSpike> extends EntityModel<T> 
 
 		PartDefinition last = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		int spikeCount = 0;
 		for (int i = 0; i < NUM_SEGMENTS; i++) {
-			last = last.addOrReplaceChild("segment" + (i + 1), CubeListBuilder.create().texOffs(0, 12).addBox(-2.0F, -12.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, i == 0 ? 0.0F : -12.0F, 0.0F));
-			if (i >= NUM_SEGMENTS - NUM_SPIKED_SEGMENTS) {
-				last.addOrReplaceChild("spike" + (spikeCount + 1), CubeListBuilder.create().texOffs(0, -16).addBox(0.0F, -12.0F, -8.0F, 0.0F, 12.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
-				last.addOrReplaceChild("spike" + (spikeCount + 2), CubeListBuilder.create().texOffs(0, -16).addBox(0.0F, -12.0F, -8.0F, 0.0F, 12.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
-				spikeCount += 2;
+			if (i == 0) {
+				last = last.addOrReplaceChild("segment1", CubeListBuilder.create().texOffs(18, 15).addBox(-1.0F, -8.0F, -1.0F, 2.0F, 7.0F, 2.0F, new CubeDeformation(0.0F))
+					.texOffs(0, 21).addBox(-1.5F, -9.0F, -1.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F))
+					.texOffs(0, 21).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+				last.addOrReplaceChild("cross1", CubeListBuilder.create().texOffs(12, 21).addBox(0.0F, -1.5F, -1.5F, 0.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -10.5F, 0.0F, 0.0F, 0.7854F, 0.0F));
+				last.addOrReplaceChild("cross2", CubeListBuilder.create().texOffs(12, 21).addBox(0.0F, -1.5F, -1.5F, 0.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -10.5F, 0.0F, 0.0F, -0.7854F, 0.0F));
+			} else if (i == NUM_SEGMENTS - 1) {
+				last = last.addOrReplaceChild("segment" + (i + 1), CubeListBuilder.create(), PartPose.offset(0.0F, -12.0F, 0.0F));
+				last.addOrReplaceChild("cross" + (i * 2 + 1), CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -6.0F, -4.5F, 0.0F, 12.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -6.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
+				last.addOrReplaceChild("cross" + (i * 2 + 1), CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -6.0F, -4.5F, 0.0F, 12.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -6.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
+			} else {
+				last = last.addOrReplaceChild("segment" + (i + 1), CubeListBuilder.create(), PartPose.offset(0.0F, -12.0F, 0.0F));
+				last.addOrReplaceChild("cross" + (i * 2 + 1), CubeListBuilder.create().texOffs(18, 0).addBox(0.0F, -6.0F, -1.5F, 0.0F, 12.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -6.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
+				last.addOrReplaceChild("cross" + (i * 2 + 2), CubeListBuilder.create().texOffs(18, 0).addBox(0.0F, -6.0F, -1.5F, 0.0F, 12.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -6.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
 			}
 		}
 
@@ -61,7 +68,7 @@ public class TentacleSpikeModel<T extends TentacleSpike> extends EntityModel<T> 
 			segment.xRot = Mth.lerp(progress, 120f / (i + 1), -120f / (i + 1)) * Mth.DEG_TO_RAD;
 			if (i == 0) {
 				float scale = Easing.IN_OUT_SINE.calculate(1 - Math.abs(progress - 0.5f) * 2);
-				segment.xScale = segment.yScale = segment.zScale = scale * 0.75f;
+				segment.xScale = segment.yScale = segment.zScale = scale;
 			}
 		}
 	}

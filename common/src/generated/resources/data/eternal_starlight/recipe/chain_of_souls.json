@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
+    "N": {
+      "tag": "c:nuggets"
+    },
     "P": {
       "item": "eternal_starlight:tenacious_petal"
     },
@@ -13,9 +16,9 @@
     }
   },
   "pattern": [
-    "SP",
-    " V",
-    " V"
+    "P  ",
+    "SVV",
+    "P N"
   ],
   "result": {
     "count": 1,

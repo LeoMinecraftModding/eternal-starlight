@@ -94,15 +94,13 @@ public class YetiModel<T extends Yeti> extends AnimatedEntityModel<T> {
 			Vec3 targetEyePos = camera.getEyePosition(0.0F);
 			Vec3 yetiEyePos = entity.getEyePosition(0.0F);
 			if (targetEyePos.y > yetiEyePos.y) {
-				this.eye.y += -1.0F;
-			} else {
-				this.eye.y += 0.0F;
+				this.eye.y -= 1.0F;
 			}
 
-			Vec3 vec33 = entity.getViewVector(0.0F);
-			vec33 = new Vec3(vec33.x, 0.0, vec33.z);
-			Vec3 vec34 = (new Vec3(yetiEyePos.x - targetEyePos.x, 0.0, yetiEyePos.z - targetEyePos.z)).normalize().yRot(1.5707964F);
-			double e = vec33.dot(vec34);
+			Vec3 yetiView = entity.getViewVector(0.0F);
+			yetiView = new Vec3(yetiView.x, 0.0, yetiView.z);
+			Vec3 eyeDiff = (new Vec3(yetiEyePos.x - targetEyePos.x, 0.0, yetiEyePos.z - targetEyePos.z)).normalize().yRot(1.5707964F);
+			double e = yetiView.dot(eyeDiff);
 			this.eye.x += Mth.sqrt((float) Math.abs(e)) * 2.0F * (float) Math.signum(e);
 		}
 	}

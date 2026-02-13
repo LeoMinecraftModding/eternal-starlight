@@ -814,7 +814,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.AMARAMBER_HOE.get());
 		handheld(ESItems.AMARAMBER_SHOVEL.get());
 		handheld(ESItems.AMARAMBER_SICKLE.get());
-		extendable(ESItems.CANDLASH.get());
+		whip(ESItems.CANDLASH.get());
 		basicItem(ESItems.AMARAMBER_MASK.get());
 		basicItem(ESItems.AMARAMBER_CHESTPLATE.get());
 
@@ -918,7 +918,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.NIGHTFALL_SPIDER_EYE.get());
 
-		extendable(ESItems.TENTACLE_SPIKE.get());
+		whip(ESItems.TENTACLE_SPIKE.get());
 
 		templateSkull(ESItems.TANGLED_SKULL.get());
 
@@ -1146,6 +1146,14 @@ public class ESItemModelProvider extends ItemModelProvider {
 			.texture("layer0", itemTexture(item).withSuffix("_inventory"));
 		withExistingParent(name(item) + "_inventory", ResourceLocation.withDefaultNamespace("item/handheld"))
 			.texture("layer0", itemTexture(item).withSuffix("_inventory"));
+	}
+
+	private void whip(Item item) {
+		ModelFile extendedModel = getBuilder(name(item) + "_extended")
+			.texture("particle", itemTexture(item));
+		withExistingParent(name(item), "item/handheld")
+			.texture("layer0", itemTexture(item))
+			.override().predicate(EternalStarlight.id("extended"), 1).model(extendedModel).end();
 	}
 
 	private void extendable(Item item) {

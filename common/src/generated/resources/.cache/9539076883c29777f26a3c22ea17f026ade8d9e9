@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-13T16:37:36.7932457	Item Models: eternal_starlight
+// 1.21.1	2026-02-14T00:01:52.1166874	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -133,7 +133,7 @@ eeb338cf5acefe3f9b255b7a676d21c3aed8fa82 assets/eternal_starlight/models/item/br
 0cfe0363e4876ab11258ff8dc7b12d150b6475e4 assets/eternal_starlight/models/item/budding_thioquartz.json
 3897c63f709b7ac83ecdcd1e714927b31706c2b4 assets/eternal_starlight/models/item/butterfly_wings_amulet.json
 9d3d1ea69a98f9a60782a5985a32034016c71fda assets/eternal_starlight/models/item/candlash.json
-849470090382dd3dfe0f60fa0e0b589e3c3ac4cd assets/eternal_starlight/models/item/candlash_extended.json
+7f4b3f2d27facc021f1e21469b89bcb50413b109 assets/eternal_starlight/models/item/candlash_extended.json
 8575fee30a34674d0fb6cace7ded0fdc37de5f25 assets/eternal_starlight/models/item/carved_lunaris_cactus_fruit.json
 70c04adea827512e258f5af8d41726010b2db688 assets/eternal_starlight/models/item/cave_moss.json
 c67ceadd30045b82802091fe5ad0515a84330935 assets/eternal_starlight/models/item/cave_moss_block.json
@@ -997,7 +997,7 @@ f8193be01977984cf8e5f49f21a527a9ea720e78 assets/eternal_starlight/models/item/te
 cf60889e6922146c44b7f86af2190087d5ca1657 assets/eternal_starlight/models/item/tentacles_coral_block.json
 77a2053608506d4bf75e117145fc6b90ea198436 assets/eternal_starlight/models/item/tentacles_coral_fan.json
 f65b1abc9597c5956b3ba505fb6fb59d823bc96e assets/eternal_starlight/models/item/tentacle_spike.json
-65eac0aaec0c1a0935eb9184a6b979093e832580 assets/eternal_starlight/models/item/tentacle_spike_extended.json
+571fd536abff06792f6ef91aebd018be84d79d9f assets/eternal_starlight/models/item/tentacle_spike_extended.json
 2658f386582d0718304ed2a8e47734d434375e90 assets/eternal_starlight/models/item/terra_crystal.json
 457ed3d123a50d4c6fb1adf55f54df13571f1510 assets/eternal_starlight/models/item/thermabyssal_geyser.json
 81e70f9ed3cc1635e355348cc10df895cf0af2c4 assets/eternal_starlight/models/item/thermabyssal_magma_block.json

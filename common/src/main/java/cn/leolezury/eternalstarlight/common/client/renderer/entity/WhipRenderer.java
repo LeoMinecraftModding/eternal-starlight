@@ -64,7 +64,7 @@ public abstract class WhipRenderer<T extends Whip> extends EntityRenderer<T> {
 			Vec3 vec3 = this.entityRenderDispatcher.camera.getNearPlane().getPointOnPlane((float) arm * 1.25f, -1.25f).scale(fovFactor);
 			return player.getEyePosition(partialTicks).add(vec3);
 		} else {
-			Optional<Vec3> handPos = ESModelUtil.getThirdPersonPlayerHandPosition(player, entityRenderDispatcher, Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot), partialTicks, player.getMainArm(), new Vec3(0, 0.6, -0.15));
+			Optional<Vec3> handPos = ESModelUtil.getThirdPersonPlayerHandPosition(player, entityRenderDispatcher, Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot), partialTicks, player.getMainArm(), new Vec3(0, 0.6, 0));
 			if (handPos.isPresent()) {
 				return handPos.get();
 			}

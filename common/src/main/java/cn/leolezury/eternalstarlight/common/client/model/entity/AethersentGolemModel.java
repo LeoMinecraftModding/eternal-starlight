@@ -97,15 +97,13 @@ public class AethersentGolemModel<T extends AethersentGolem> extends AnimatedEnt
 				Vec3 targetEyePos = camera.getEyePosition(0.0F);
 				Vec3 golemEyePos = entity.getEyePosition(0.0F);
 				if (targetEyePos.y > golemEyePos.y) {
-					this.eye.y += -0.6F;
-				} else {
-					this.eye.y += 0.0F;
+					this.eye.y -= 0.6F;
 				}
 
-				Vec3 vec33 = entity.getViewVector(0.0F);
-				vec33 = new Vec3(vec33.x, 0.0, vec33.z);
-				Vec3 vec34 = (new Vec3(golemEyePos.x - targetEyePos.x, 0.0, golemEyePos.z - targetEyePos.z)).normalize().yRot(1.5707964F);
-				double e = vec33.dot(vec34);
+				Vec3 golemView = entity.getViewVector(0.0F);
+				golemView = new Vec3(golemView.x, 0.0, golemView.z);
+				Vec3 eyeDiff = new Vec3(golemEyePos.x - targetEyePos.x, 0.0, golemEyePos.z - targetEyePos.z).normalize().yRot(Mth.PI / 2);
+				double e = golemView.dot(eyeDiff);
 				this.eye.x += Mth.sqrt((float) Math.abs(e)) * 2.0F * (float) Math.signum(e);
 			}
 		}

@@ -7,15 +7,11 @@
     },
     "H": {
       "tag": "c:rods/wooden"
-    },
-    "S": {
-      "tag": "c:strings"
     }
   },
   "pattern": [
-    "  #",
-    " S#",
-    "H  "
+    "###",
+    "  H"
   ],
   "result": {
     "count": 1,

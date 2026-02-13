@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "eternal_starlight:item/tentacle_spike_extended"
+    "particle": "eternal_starlight:item/tentacle_spike"
   }
 }

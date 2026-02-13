@@ -3,9 +3,7 @@ package cn.leolezury.eternalstarlight.common.mixin.client;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
-import cn.leolezury.eternalstarlight.common.entity.attack.Whip;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
-import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESAccessoryUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -82,9 +80,6 @@ public abstract class ItemInHandRendererMixin {
 			} else {
 				cir.setReturnValue((BuiltInRegistries.ITEM.getKey(mainhand.getItem()).getNamespace().equals(EternalStarlight.ID) && mainhand.getItem() instanceof CrossbowItem && CrossbowItem.isCharged(mainhand)) ? ItemInHandRenderer.HandRenderSelection.RENDER_MAIN_HAND_ONLY : ItemInHandRenderer.HandRenderSelection.RENDER_BOTH_HANDS);
 			}
-		}
-		if (player.level().getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip) {
-			cir.setReturnValue(ItemInHandRenderer.HandRenderSelection.onlyForHand(InteractionHand.OFF_HAND));
 		}
 	}
 
