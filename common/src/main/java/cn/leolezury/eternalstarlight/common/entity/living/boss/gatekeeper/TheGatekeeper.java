@@ -28,12 +28,15 @@ import com.mojang.serialization.DataResult;
 import net.minecraft.Util;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -50,6 +53,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -78,20 +82,31 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class TheGatekeeper extends ESBoss implements Npc, Merchant {
-	public static int GUI_RESPONSE_EMPTY = 0;
-	public static int GUI_RESPONSE_CHALLENGE = 1;
-	public static int GUI_RESPONSE_TRADE = 2;
-	public static int GUI_RESPONSE_LEAVE = 3;
-	private static final byte EVENT_BLOCK = 100;
+	public static final int GUI_RESPONSE_EMPTY = 0;
+	public static final int GUI_RESPONSE_CHALLENGE = 1;
+	public static final int GUI_RESPONSE_TRADE = 2;
+	public static final int GUI_RESPONSE_LEAVE = 3;
+	public static final byte EVENT_TALK = 100;
+	private static final byte EVENT_BLOCK = 101;
 	private static final String TAG_OFFERS = "offers";
 	private static final String TAG_GATEKEEPER_NAME = "gatekeeper_name";
 	private static final String TAG_FIGHT_TARGET = "fight_target";
 	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
 	private int noTargetTime;
-	public int viewBlockedTime;
+	private final List<BlockPos> recentPositions = new ArrayList<>();
 	public boolean healInterrupted = false, healInterruptedIndirect = false;
 	public int healCount, healInterruptedCount;
+
+	protected static final EntityDataAccessor<Direction> STAND_DIRECTION = SynchedEntityData.defineId(TheGatekeeper.class, EntityDataSerializers.DIRECTION);
+
+	public Direction getStandDirection() {
+		return this.getEntityData().get(STAND_DIRECTION);
+	}
+
+	public void setStandDirection(Direction standDirection) {
+		this.getEntityData().set(STAND_DIRECTION, standDirection);
+	}
 
 	public TheGatekeeper(EntityType<? extends TheGatekeeper> entityType, Level level) {
 		super(entityType, level);
@@ -117,6 +132,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		new GatekeeperEatFailPhase()
 	));
 
+	public AnimationState sitAnimationState = new AnimationState();
+	public AnimationState standAnimationState = new AnimationState();
+	public AnimationState talkAnimationState = new AnimationState();
 	public AnimationState stepBackAnimationState = new AnimationState();
 	public AnimationState jumpStartAnimationState = new AnimationState();
 	public AnimationState jumpTransitionAnimationState = new AnimationState();
@@ -167,6 +185,12 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	public Optional<? extends Player> getFightTarget() {
 		return level().players().stream().filter(p -> p.getName().getString().equals(fightTarget)).findFirst();
+	}
+
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(STAND_DIRECTION, Direction.UP);
 	}
 
 	@Override
@@ -278,6 +302,22 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	@Override
+	protected BodyRotationControl createBodyControl() {
+		return new BodyRotationControl(this) {
+			@Override
+			public void clientTick() {
+				if (standAnimationState.isStarted()) {
+					TheGatekeeper.this.yBodyRot = Mth.wrapDegrees(TheGatekeeper.this.getStandDirection().toYRot());
+					TheGatekeeper.this.setYRot(Mth.wrapDegrees(TheGatekeeper.this.getStandDirection().toYRot()));
+					TheGatekeeper.this.yHeadRot = Mth.rotateIfNecessary(TheGatekeeper.this.yHeadRot, TheGatekeeper.this.yBodyRot, TheGatekeeper.this.getMaxHeadYRot());
+				} else {
+					super.clientTick();
+				}
+			}
+		};
+	}
+
+	@Override
 	public int getUseItemRemainingTicks() {
 		if (getBehaviorState() == GatekeeperBowPhase.ID
 			&& getBehaviorTicks() >= 6
@@ -334,7 +374,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public void handleEntityEvent(byte b) {
-		if (b == EVENT_BLOCK) {
+		if (b == EVENT_TALK) {
+			talkAnimationState.start(tickCount);
+		} else if (b == EVENT_BLOCK) {
 			blockAnimationState.start(tickCount);
 		} else {
 			super.handleEntityEvent(b);
@@ -342,6 +384,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	}
 
 	public void stopAllAnimStates() {
+		talkAnimationState.stop();
 		stepBackAnimationState.stop();
 		jumpStartAnimationState.stop();
 		jumpTransitionAnimationState.stop();
@@ -489,6 +532,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && source.getEntity() == this) {
+			return false;
+		}
 		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !(ESConfig.INSTANCE.mobsConfig.theGatekeeper.canAlwaysHurtWhenFighting() && isActivated()) && (source.getEntity() == null || getTarget() == null || getBehaviorState() == 0)) {
 			if (getBehaviorState() == 0 && source.getEntity() != null) {
 				level().broadcastEntityEvent(this, EVENT_BLOCK);
@@ -548,6 +594,26 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 	}
 
+	public boolean isGatekeeperStuck() {
+		if (recentPositions.size() >= 32) {
+			float averageX = 0;
+			float averageY = 0;
+			float averageZ = 0;
+			for (BlockPos pos : recentPositions) {
+				averageX += pos.getX();
+				averageY += pos.getY();
+				averageZ += pos.getZ();
+			}
+			averageX = averageX / recentPositions.size();
+			averageY = averageY / recentPositions.size();
+			averageZ = averageZ / recentPositions.size();
+			Vec3 averagePos = new Vec3(averageX, averageY, averageZ);
+			return recentPositions.stream().allMatch(pos ->
+				pos.getBottomCenter().distanceTo(averagePos) < 5);
+		}
+		return false;
+	}
+
 	@Override
 	public void aiStep() {
 		super.aiStep();
@@ -563,11 +629,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 					abortFight();
 					noTargetTime = 0;
 				}
-			}
-			if (getTarget() != null && !hasLineOfSight(getTarget())) {
-				viewBlockedTime++;
-			} else {
-				viewBlockedTime = 0;
 			}
 			if (restockCooldown > 0) {
 				restockCooldown--;
@@ -585,13 +646,50 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			}
 			if (isActivated() && !isNoAi() && isAlive()) {
 				behaviorManager.tick();
+				if (tickCount % 10 == 0) {
+					recentPositions.add(blockPosition());
+				}
+				while (recentPositions.size() > 32) {
+					recentPositions.removeFirst();
+				}
 			} else {
 				setBehaviorState(0);
 				setBehaviorTicks(0);
+				recentPositions.clear();
 			}
 			if (!isActivated() || getBehaviorState() != 0) {
 				getNavigation().stop();
 				getMoveControl().setWantedPosition(getX(), getY(), getZ(), 0);
+			}
+			if (!isActivated()) {
+				boolean blockSupport = false;
+				for (Direction direction : Direction.values()) {
+					if (direction.getAxis() != Direction.Axis.Y) {
+						BlockHitResult toSide = level().clip(new ClipContext(position().add(0, getBbHeight(), 0), position().add(0, getBbHeight(), 0).add(new Vec3(direction.step()).scale(0.75)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+						if (toSide.getType() != HitResult.Type.MISS) {
+							setStandDirection(direction.getOpposite());
+							blockSupport = true;
+						}
+					}
+				}
+				if (!blockSupport) {
+					setStandDirection(Direction.UP);
+				}
+			} else {
+				setStandDirection(Direction.UP);
+			}
+		} else {
+			if (isActivated()) {
+				sitAnimationState.stop();
+				standAnimationState.stop();
+			} else {
+				if (getStandDirection().getAxis() != Direction.Axis.Y) {
+					sitAnimationState.stop();
+					standAnimationState.startIfStopped(tickCount);
+				} else {
+					sitAnimationState.startIfStopped(tickCount);
+					standAnimationState.stop();
+				}
 			}
 		}
 	}
@@ -610,7 +708,10 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	@Override
 	protected EntityDimensions getDefaultDimensions(Pose pose) {
 		EntityDimensions dimensions = super.getDefaultDimensions(pose);
-		return isActivated() ? dimensions : dimensions.scale(1, 0.7f);
+		if (!isActivated() && getStandDirection().getAxis() == Direction.Axis.Y) {
+			return dimensions.scale(1, 0.7f);
+		}
+		return dimensions;
 	}
 
 	@Override

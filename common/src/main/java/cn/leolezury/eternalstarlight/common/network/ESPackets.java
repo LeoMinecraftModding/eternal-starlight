@@ -21,6 +21,7 @@ public class ESPackets {
 	public static final PacketInfo<UpdateBookPacket> UPDATE_BOOK = new PacketInfo<>(UpdateBookPacket.TYPE, UpdateBookPacket.STREAM_CODEC, UpdateBookPacket::handle);
 	public static final PacketInfo<UpdateBookProgressionPacket> UPDATE_BOOK_PROGRESSION = new PacketInfo<>(UpdateBookProgressionPacket.TYPE, UpdateBookProgressionPacket.STREAM_CODEC, UpdateBookProgressionPacket::handle);
 	public static final PacketInfo<OpenBookPacket> OPEN_BOOK = new PacketInfo<>(OpenBookPacket.TYPE, OpenBookPacket.STREAM_CODEC, OpenBookPacket::handle);
+	public static final PacketInfo<TriggerEntityEventPacket> TRIGGER_ENTITY_EVENT = new PacketInfo<>(TriggerEntityEventPacket.TYPE, TriggerEntityEventPacket.STREAM_CODEC, TriggerEntityEventPacket::handle);
 
 	public record PacketInfo<T extends CustomPacketPayload>(CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> streamCodec, Handler<T> handler) {
 

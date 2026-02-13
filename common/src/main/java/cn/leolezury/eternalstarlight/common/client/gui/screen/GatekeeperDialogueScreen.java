@@ -5,13 +5,13 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.NpcDialogue
 import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.NpcDialogueTextWidget;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.network.CloseGatekeeperGuiPacket;
+import cn.leolezury.eternalstarlight.common.network.TriggerEntityEventPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
@@ -98,11 +98,11 @@ public class GatekeeperDialogueScreen extends Screen {
 			this.text = this.addRenderableWidget(new NpcDialogueTextWidget(currentText));
 			for (NpcDialogueChoiceButton button : choiceButtons) {
 				this.addRenderableWidget(button);
-				y -= button.getIncrement(width / 4 * 3);
-				button.reposition(width / 4, y, width / 4 * 3);
+				y -= button.getIncrement(width);
+				button.reposition(0, y, width);
 			}
-			y -= this.text.getIncrement(width / 4 * 3);
-			this.text.reposition(width / 4, y, width / 4 * 3);
+			y -= this.text.getIncrement(width);
+			this.text.reposition(0, y, width);
 		}
 	}
 
@@ -113,11 +113,12 @@ public class GatekeeperDialogueScreen extends Screen {
 		this.text = this.addRenderableWidget(new NpcDialogueTextWidget(currentText));
 		for (int i = buttons.length - 1; i >= 0; i--) {
 			choiceButtons.add(addRenderableWidget(buttons[i]));
-			y -= buttons[i].getIncrement(width / 4 * 3);
-			buttons[i].reposition(width / 4, y, width / 4 * 3);
+			y -= buttons[i].getIncrement(width);
+			buttons[i].reposition(0, y, width);
 		}
-		y -= this.text.getIncrement(width / 4 * 3);
-		this.text.reposition(width / 4, y, width / 4 * 3);
+		y -= this.text.getIncrement(width);
+		this.text.reposition(0, y, width);
+		ESPlatform.INSTANCE.sendToServer(new TriggerEntityEventPacket(gatekeeper.getId(), TheGatekeeper.EVENT_TALK));
 	}
 
 	@Override
@@ -128,13 +129,7 @@ public class GatekeeperDialogueScreen extends Screen {
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-		super.render(guiGraphics, i, j, f);
-		InventoryScreen.renderEntityInInventoryFollowsMouse(guiGraphics, 0, height / 2, width / 4, height, 60, 0.0625F, i, j, gatekeeper);
-	}
-
-	@Override
-	public void renderBackground(GuiGraphics guiGraphics, int i, int j, float f) {
+	public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 
 	}
 

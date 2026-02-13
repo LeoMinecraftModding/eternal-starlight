@@ -73,29 +73,29 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 		body.addOrReplaceChild("jacket", CubeListBuilder.create().texOffs(16, 32).addBox(-4.0F, -24.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F)), PartPose.offset(0.0F, 12.0F, 0.0F));
 
 		if (slim) {
-			PartDefinition leftArm = body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F, new CubeDeformation(deformation)), PartPose.offset(5.0F, -10.0F, 0.0F));
+			PartDefinition leftArm = body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.01F)), PartPose.offset(5.0F, -10.0F, 0.0F));
 
 			leftArm.addOrReplaceChild("left_hand", CubeListBuilder.create(), PartPose.offset(0.5F, 8.0F, 0.0F));
 
-			leftArm.addOrReplaceChild("left_sleeve", CubeListBuilder.create().texOffs(48, 48).addBox(-1.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+			leftArm.addOrReplaceChild("left_sleeve", CubeListBuilder.create().texOffs(48, 48).addBox(-1.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F + 0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-			PartDefinition rightArm = body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-2.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F, new CubeDeformation(deformation)), PartPose.offset(-5.0F, -10.0F, 0.0F));
+			PartDefinition rightArm = body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-2.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.01F)), PartPose.offset(-5.0F, -10.0F, 0.0F));
 
 			rightArm.addOrReplaceChild("right_hand", CubeListBuilder.create(), PartPose.offset(-0.5F, 8.0F, 0.0F));
 
-			rightArm.addOrReplaceChild("right_sleeve", CubeListBuilder.create().texOffs(40, 32).addBox(-2.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+			rightArm.addOrReplaceChild("right_sleeve", CubeListBuilder.create().texOffs(40, 32).addBox(-2.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F + 0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 		} else {
-			PartDefinition leftArm = body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(deformation)), PartPose.offset(5.0F, -10.0F, 0.0F));
+			PartDefinition leftArm = body.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.01F)), PartPose.offset(5.0F, -10.0F, 0.0F));
 
 			leftArm.addOrReplaceChild("left_hand", CubeListBuilder.create(), PartPose.offset(1.0F, 8.0F, 0.0F));
 
-			leftArm.addOrReplaceChild("left_sleeve", CubeListBuilder.create().texOffs(48, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+			leftArm.addOrReplaceChild("left_sleeve", CubeListBuilder.create().texOffs(48, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F + 0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-			PartDefinition rightArm = body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(deformation)), PartPose.offset(-5.0F, -10.0F, 0.0F));
+			PartDefinition rightArm = body.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.01F)), PartPose.offset(-5.0F, -10.0F, 0.0F));
 
 			rightArm.addOrReplaceChild("right_hand", CubeListBuilder.create(), PartPose.offset(-1.0F, 8.0F, 0.0F));
 
-			rightArm.addOrReplaceChild("right_sleeve", CubeListBuilder.create().texOffs(40, 32).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+			rightArm.addOrReplaceChild("right_sleeve", CubeListBuilder.create().texOffs(40, 32).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(deformation + 0.25F + 0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 		}
 
 		PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(deformation)), PartPose.offset(0.0F, -12.0F, 0.0F));
@@ -119,17 +119,9 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 		head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
 		head.xRot = headPitch * Mth.DEG_TO_RAD;
 		if (!entity.isActivated()) {
-			root.y += 10;
-			ModelPart arm = this.rightArm;
-			arm.xRot += (float) (-Math.PI / 5);
-			arm = this.leftArm;
-			arm.xRot += (float) (-Math.PI / 5);
-			this.rightLeg.xRot = (float) (-Math.PI * 0.45);
-			this.rightLeg.yRot = (float) (Math.PI / 10F);
-			this.rightLeg.zRot = (float) (Math.PI * 0.025);
-			this.leftLeg.xRot = (float) (-Math.PI * 0.45);
-			this.leftLeg.yRot = (float) (-Math.PI / 10F);
-			this.leftLeg.zRot = (float) (-Math.PI * 0.025);
+			animate(entity.sitAnimationState, TheGatekeeperAnimation.SIT, ageInTicks);
+			animate(entity.standAnimationState, TheGatekeeperAnimation.STAND, ageInTicks);
+			animate(entity.talkAnimationState, TheGatekeeperAnimation.TALK, ageInTicks);
 		} else if (entity.deathTime <= 0) {
 			if (entity.getBehaviorState() != GatekeeperStepBackPhase.ID
 				&& entity.getBehaviorState() != GatekeeperJumpEndPhase.ID

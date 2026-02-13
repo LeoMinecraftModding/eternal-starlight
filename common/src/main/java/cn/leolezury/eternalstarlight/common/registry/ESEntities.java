@@ -290,7 +290,7 @@ public class ESEntities {
 	public static final RegistryObject<EntityType<?>, EntityType<TheGatekeeper>> THE_GATEKEEPER = ENTITIES.register(
 		"the_gatekeeper",
 		() -> EntityType.Builder.of(TheGatekeeper::new, MobCategory.MONSTER)
-			.sized(0.6f, 1.99f)
+			.sized(0.75f, 1.99f)
 			.clientTrackingRange(32)
 			.eyeHeight(1.74F)
 			.fireImmune()
