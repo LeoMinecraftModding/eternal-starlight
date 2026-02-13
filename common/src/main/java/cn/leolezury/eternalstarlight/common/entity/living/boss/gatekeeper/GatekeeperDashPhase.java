@@ -2,19 +2,19 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 7;
 
 	public GatekeeperDashPhase() {
-		super(ID, 2, 40, 200);
+		super(ID, 2, 40, 150);
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, Items.DIAMOND_SWORD.getDefaultInstance());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_SWORD.get().getDefaultInstance());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 
@@ -64,7 +64,7 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 		entity.setBehaviorTicks(0);
 		int newId = canReachTarget(entity, 5) ? GatekeeperStepBackPhase.ID : 0;
 		if (manager.getCooldowns().getOrDefault(newId, 0) <= 0) {
-			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity));
+			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity, manager));
 		}
 		onStop(entity);
 	}

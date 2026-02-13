@@ -13,7 +13,7 @@ public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper>
 	public static final int ID = 8;
 
 	public GatekeeperGreatswordComboPhase() {
-		super(ID, 1, 105, 200);
+		super(ID, 1, 105, 150);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper>
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GOLEM_STEEL_GREATSWORD.get().getDefaultInstance());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_GREATSWORD.get().getDefaultInstance());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 
@@ -61,7 +61,7 @@ public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper>
 		entity.setBehaviorTicks(0);
 		int newId = canReachTarget(entity, 5) ? GatekeeperStepBackPhase.ID : 0;
 		if (manager.getCooldowns().getOrDefault(newId, 0) <= 0) {
-			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity));
+			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity, manager));
 		}
 		onStop(entity);
 	}

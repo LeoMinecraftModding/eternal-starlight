@@ -22,7 +22,7 @@ public class GatekeeperJumpStartPhase extends BehaviorPhase<TheGatekeeper> {
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, entity.getRandom().nextBoolean() ? ESItems.GOLEM_STEEL_GREATSWORD.get().getDefaultInstance() : ESItems.STARFIRE_HAMMER.get().getDefaultInstance());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, entity.getRandom().nextBoolean() ? ESItems.GLISTERING_GREATSWORD.get().getDefaultInstance() : ESItems.GLISTERING_MORNING_STAR.get().getDefaultInstance());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 

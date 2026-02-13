@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 
@@ -29,7 +28,6 @@ public class GatekeeperTeleportPhase extends BehaviorPhase<TheGatekeeper> {
 			entity.randomTeleport(target.getX(), target.getY(), target.getZ(), false);
 			BlockPos newPos = entity.blockPosition();
 			if (oldPos.equals(newPos)) {
-				LogUtils.getLogger().warn("TP Failed!");
 				entity.setPos(target.position());
 			}
 		}

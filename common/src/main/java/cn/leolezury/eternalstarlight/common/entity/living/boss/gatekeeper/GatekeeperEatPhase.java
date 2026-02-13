@@ -69,7 +69,7 @@ public class GatekeeperEatPhase extends BehaviorPhase<TheGatekeeper> {
 			entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 		}
 		if (manager.getCooldowns().getOrDefault(newId, 0) <= 0) {
-			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity));
+			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity, manager));
 		}
 		onStop(entity);
 	}

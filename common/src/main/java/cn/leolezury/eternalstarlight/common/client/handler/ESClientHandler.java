@@ -59,6 +59,7 @@ import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.biome.Biome;
@@ -471,7 +472,7 @@ public class ESClientHandler {
 		LocalPlayer player = Minecraft.getInstance().player;
 		if (player != null && player.isUsingItem()) {
 			ItemStack itemStack = player.getUseItem();
-			if (itemStack.is(ESItems.STARFALL_LONGBOW.get()) || itemStack.is(ESItems.FLOWGLAZE_BOW.get()) || itemStack.is(ESItems.MOONRING_BOW.get()) || itemStack.is(ESItems.BOW_OF_BLOOD.get())) {
+			if (BuiltInRegistries.ITEM.getKey(itemStack.getItem()).getNamespace().equals(EternalStarlight.ID) && itemStack.getItem() instanceof BowItem) {
 				float f = player.getTicksUsingItem() / 20.0F;
 				f = f > 1.0F ? 1.0F : f * f;
 				modified = (float) Mth.lerp(Minecraft.getInstance().options.fovEffectScale().get(), 1.0F, (modified * (1.0F - f * 0.15F)));

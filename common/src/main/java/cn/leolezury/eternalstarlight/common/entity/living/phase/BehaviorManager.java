@@ -38,8 +38,7 @@ public class BehaviorManager<T extends LivingEntity & MultiBehaviorUser> {
 	public void tick() {
 		if (entity.getBehaviorState() == 0) {
 			selectPhase().ifPresent(p -> {
-				p.start(entity);
-				cooldowns.put(p.getId(), p.getCooldown());
+				p.start(entity, this);
 			});
 		} else {
 			getActivePhase().ifPresent(p -> {

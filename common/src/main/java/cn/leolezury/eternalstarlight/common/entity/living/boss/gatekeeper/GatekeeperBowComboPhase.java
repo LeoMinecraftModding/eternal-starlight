@@ -15,7 +15,7 @@ public class GatekeeperBowComboPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 10;
 
 	public GatekeeperBowComboPhase() {
-		super(ID, 1, 76, 200);
+		super(ID, 1, 76, 150);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class GatekeeperBowComboPhase extends BehaviorPhase<TheGatekeeper> {
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.MOONRING_BOW.get().getDefaultInstance());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_BOW.get().getDefaultInstance());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 

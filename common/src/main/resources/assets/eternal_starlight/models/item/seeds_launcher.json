@@ -2,7 +2,7 @@
   "gui_light": "front",
   "textures": {
     "layer0": "eternal_starlight:item/seeds_launcher",
-    "particle": "eternal_starlight:item/seeds_launcher"
+    "particle": "eternal_starlight:item/pungency_fruit"
   },
   "elements": [
     {

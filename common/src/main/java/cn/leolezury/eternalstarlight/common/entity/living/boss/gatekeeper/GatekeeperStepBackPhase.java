@@ -12,12 +12,12 @@ public class GatekeeperStepBackPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 1;
 
 	public GatekeeperStepBackPhase() {
-		super(ID, 1, 17, 250);
+		super(ID, 1, 17, 200);
 	}
 
 	@Override
 	public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
-		return cooldownOver && canReachTarget(entity, 6);
+		return cooldownOver && canReachTarget(entity, 5);
 	}
 
 	@Override
@@ -54,9 +54,8 @@ public class GatekeeperStepBackPhase extends BehaviorPhase<TheGatekeeper> {
 		entity.setBehaviorState(0);
 		entity.setBehaviorTicks(0);
 		int newId = canReachTarget(entity, 8) ? GatekeeperJumpStartPhase.ID : (canReachTarget(entity, 18) ? GatekeeperBowPhase.ID : GatekeeperBowComboPhase.ID);
-		if (manager.getCooldowns().getOrDefault(newId, 0) <= 0) {
-			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity));
-		}
+		// ignore cooldown
+		manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity, manager));
 		onStop(entity);
 	}
 }

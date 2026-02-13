@@ -434,6 +434,9 @@ public class ESClientSetupHandler {
 		registerSimpleSpecialModel("starfire_scythe");
 		registerSimpleSpecialModel("starfire_hammer");
 		registerSimpleSpecialModel("flowglaze_scythe");
+		registerSimpleSpecialModel("glistering_greatsword");
+		registerSimpleSpecialModel("glistering_greatsword_blocking");
+		registerSimpleSpecialModel("glistering_morning_star");
 		registerSimpleSpecialModel("golem_steel_greatsword");
 		registerSimpleSpecialModel("golem_steel_greatsword_blocking");
 		registerSimpleSpecialModel("crystal_greatsword");
@@ -533,9 +536,20 @@ public class ESClientSetupHandler {
 			}
 		});
 
+		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), EternalStarlight.id("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
+
 		ItemProperties.register(ESItems.DAGGER_OF_HUNGER.get(), EternalStarlight.id("hunger_state"), (stack, level, entity, i) -> Math.min(2f, (stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f) + 1f) * 1.5f) / 2f);
 
-		ItemProperties.register(ESItems.SHATTERED_SWORD.get(), EternalStarlight.id("no_blade"), (stack, level, entity, i) -> ShatteredSwordItem.hasBlade(stack) ? 0.0F : 1.0F);
+		ItemProperties.register(ESItems.GLISTERING_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+
+		ItemProperties.register(ESItems.GLISTERING_BOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
+			if (entity == null) {
+				return 0.0F;
+			} else {
+				return entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F;
+			}
+		});
+		ItemProperties.register(ESItems.GLISTERING_BOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.GOLEM_STEEL_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
@@ -764,6 +778,8 @@ public class ESClientSetupHandler {
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_scythe_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("starfire_hammer_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("flowglaze_scythe_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("glistering_greatsword_inventory")));
+		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("glistering_morning_star_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("golem_steel_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("crystal_greatsword_inventory")));
 		registration.accept(ModelResourceLocation.inventory(EternalStarlight.id("moonring_greatsword_inventory")));

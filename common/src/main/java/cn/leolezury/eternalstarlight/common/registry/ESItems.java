@@ -21,6 +21,7 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -1105,6 +1106,9 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> GLEECH_EGG = registerItem("gleech_egg", () -> new GleechEggItem(new Item.Properties().stacksTo(16)));
 
+	public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(ESItemTiers.DEEPSILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.DEEPSILVER, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+
 	public static final RegistryObject<Item, Item> TOOTH_OF_HUNGER = registerItem("tooth_of_hunger", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> DAGGER_OF_HUNGER = registerItem("dagger_of_hunger", () -> new DaggerOfHungerItem(ESItemTiers.TOOTH_OF_HUNGER, new Item.Properties().rarity(Rarity.RARE).attributes(DaggerOfHungerItem.DEFAULT_ATTRIBUTE)));
 	public static final RegistryObject<Item, Item> VORACIOUS_ARROW = registerItem("voracious_arrow", () -> new VoraciousArrowItem(new Item.Properties()));
@@ -1221,8 +1225,13 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = registerItem("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> BOOK = registerItem("book", () -> new ESBookItem(new Item.Properties().component(ESDataComponents.BOOK.get(), new GuideBook(EternalStarlight.id("main"), new HashSet<>(Set.of(EternalStarlight.ID)))).rarity(Rarity.RARE).stacksTo(1)));
 	public static final RegistryObject<Item, Item> SEEKING_EYE = registerItem("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
-	public static final RegistryObject<Item, Item> SHATTERED_SWORD = registerItem("shattered_sword", () -> new ShatteredSwordItem(ESItemTiers.DEEPSILVER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.DEEPSILVER, 3, -2.4F))));
-	public static final RegistryObject<Item, Item> SHATTERED_SWORD_BLADE = registerItem("shattered_sword_blade", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item, Item> GLISTERING_SWORD = registerItem("glistering_sword",
+		() -> new SwordItem(ESItemTiers.GLISTERING, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.GLISTERING, 3, -2.4F))));
+	public static final RegistryObject<Item, Item> GLISTERING_GREATSWORD = registerItem("glistering_greatsword",
+		() -> new GreatswordItem(ESItemTiers.GLISTERING, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.GLISTERING, 6, -2.8F, 0.5F))));
+	public static final RegistryObject<Item, Item> GLISTERING_MORNING_STAR = registerItem("glistering_morning_star",
+		() -> ESPlatform.INSTANCE.createHammer(ESItemTiers.GLISTERING, () -> null, Holder.direct(SoundEvents.MACE_SMASH_GROUND_HEAVY), new Item.Properties().rarity(Rarity.RARE).attributes(DiggerItem.createAttributes(ESItemTiers.GLISTERING, 7, -3F))));
+	public static final RegistryObject<Item, Item> GLISTERING_BOW = registerItem("glistering_bow", () -> new GlisteringBowItem(new Item.Properties().rarity(Rarity.RARE).durability(8000)));
 
 	// starlight golem
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_INGOT = registerItem("golem_steel_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));

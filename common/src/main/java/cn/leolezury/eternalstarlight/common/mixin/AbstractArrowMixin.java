@@ -1,12 +1,15 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.item.misc.GalacticQuiverItem;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +26,7 @@ public abstract class AbstractArrowMixin {
 
 	@Inject(method = "shotFromCrossbow", at = @At("RETURN"), cancellable = true)
 	public void shotFromCrossbow(CallbackInfoReturnable<Boolean> cir) {
-		if (this.firedFromWeapon != null && (this.firedFromWeapon.is(ESItems.STARFIRE_CROSSBOW.get()) || this.firedFromWeapon.is(ESItems.MECHANICAL_CROSSBOW.get()) || this.firedFromWeapon.is(ESItems.CRYSTAL_CROSSBOW.get()) || this.firedFromWeapon.is(ESItems.WILTED_CROSSBOW.get()))) {
+		if (this.firedFromWeapon != null && (BuiltInRegistries.ITEM.getKey(firedFromWeapon.getItem()).getNamespace().equals(EternalStarlight.ID) && firedFromWeapon.getItem() instanceof CrossbowItem)) {
 			cir.setReturnValue(true);
 		}
 	}

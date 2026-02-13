@@ -46,7 +46,7 @@ public class GatekeeperEatFailPhase extends BehaviorPhase<TheGatekeeper> {
 		entity.setBehaviorTicks(0);
 		int newId = canReachTarget(entity, 3) ? GatekeeperGreatswordPhase.ID : (canReachTarget(entity, 18) ? GatekeeperBowPhase.ID : GatekeeperBowComboPhase.ID);
 		if (manager.getCooldowns().getOrDefault(newId, 0) <= 0) {
-			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity));
+			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity, manager));
 		}
 		onStop(entity);
 	}

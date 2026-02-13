@@ -11,7 +11,7 @@ public class GatekeeperHammerPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 6;
 
 	public GatekeeperHammerPhase() {
-		super(ID, 1, 32, 50);
+		super(ID, 1, 32, 100);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class GatekeeperHammerPhase extends BehaviorPhase<TheGatekeeper> {
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.STARFIRE_HAMMER.get().getDefaultInstance());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_MORNING_STAR.get().getDefaultInstance());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 

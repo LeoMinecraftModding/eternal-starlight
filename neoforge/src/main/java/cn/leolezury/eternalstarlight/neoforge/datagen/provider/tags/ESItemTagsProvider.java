@@ -216,6 +216,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.STARFALL_LONGBOW.get(),
 				ESItems.FLOWGLAZE_BOW.get(),
+				ESItems.GLISTERING_BOW.get(),
 				ESItems.MOONRING_BOW.get(),
 				ESItems.BOW_OF_BLOOD.get()
 			);
@@ -268,8 +269,11 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.FLOWGLAZE_SCYTHE.get(),
 				ESItems.AMARAMBER_SWORD.get(),
 				ESItems.AMARAMBER_AXE.get(),
-				ESItems.DAGGER_OF_HUNGER.get(),
 				ESItems.SHATTERED_SWORD.get(),
+				ESItems.DAGGER_OF_HUNGER.get(),
+				ESItems.GLISTERING_SWORD.get(),
+				ESItems.GLISTERING_GREATSWORD.get(),
+				ESItems.GLISTERING_MORNING_STAR.get(),
 				ESItems.ENERGY_SWORD.get(),
 				ESItems.GOLEM_STEEL_GREATSWORD.get(),
 				ESItems.CRYSTAL_GREATSWORD.get(),
@@ -286,6 +290,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SEEDS_LAUNCHER.get(),
 				ESItems.STARFIRE_CROSSBOW.get(),
 				ESItems.FLOWGLAZE_BOW.get(),
+				ESItems.GLISTERING_BOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.ENERGY_BOOMERANG.get(),
@@ -305,6 +310,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MALARITE_PICKAXE.get(),
 				ESItems.STARFIRE_HAMMER.get(),
 				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.GLISTERING_MORNING_STAR.get(),
 				ESItems.UNDERMINER.get(),
 				ESItems.GRAVITY_PICKAXE.get()
 			);
@@ -469,6 +475,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ESTags.Items.GREATSWORDS)
 			.add(
+				ESItems.GLISTERING_GREATSWORD.get(),
 				ESItems.GOLEM_STEEL_GREATSWORD.get(),
 				ESItems.CRYSTAL_GREATSWORD.get(),
 				ESItems.MOONRING_GREATSWORD.get(),
@@ -477,7 +484,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.HAMMERS)
 			.add(
 				ESItems.THERMAL_SPRINGSTONE_HAMMER.get(),
-				ESItems.STARFIRE_HAMMER.get()
+				ESItems.STARFIRE_HAMMER.get(),
+				ESItems.GLISTERING_MORNING_STAR.get()
 			);
 		tag(ESTags.Items.BOOMERANGS)
 			.add(
@@ -1035,6 +1043,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SALTPETER_MATCHBOX.get(),
 				ESItems.CANDLASH.get(),
 				ESItems.TENTACLE_SPIKE.get(),
+				ESItems.GLISTERING_BOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
 				ESItems.WILTED_CROSSBOW.get(),
@@ -1053,6 +1062,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.STARFALL_LONGBOW.get(),
 				ESItems.FLOWGLAZE_BOW.get(),
+				ESItems.GLISTERING_BOW.get(),
 				ESItems.MOONRING_BOW.get(),
 				ESItems.BOW_OF_BLOOD.get()
 			);
@@ -1192,8 +1202,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.FLOWGLAZE_SWORD.get(),
 				ESItems.AMARAMBER_SWORD.get(),
 				ESItems.SHATTERED_SWORD.get(),
-				ESItems.ENERGY_SWORD.get(),
 				ESItems.DAGGER_OF_HUNGER.get(),
+				ESItems.GLISTERING_SWORD.get(),
+				ESItems.ENERGY_SWORD.get(),
 				ESItems.DOOMEDEN_RAPIER.get()
 			)
 			.addTag(ESTags.Items.GREATSWORDS);
@@ -1210,6 +1221,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFIRE_HAMMER.get(),
 				ESItems.FLOWGLAZE_PICKAXE.get(),
 				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.GLISTERING_MORNING_STAR.get(),
 				ESItems.UNDERMINER.get(),
 				ESItems.GRAVITY_PICKAXE.get()
 			);
@@ -1226,6 +1238,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFIRE_HAMMER.get(),
 				ESItems.FLOWGLAZE_PICKAXE.get(),
 				ESItems.AMARAMBER_PICKAXE.get(),
+				ESItems.GLISTERING_MORNING_STAR.get(),
 				ESItems.UNDERMINER.get(),
 				ESItems.GRAVITY_PICKAXE.get()
 			);

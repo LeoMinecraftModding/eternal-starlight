@@ -1,6 +1,7 @@
 {
   "textures": {
-    "layer0": "eternal_starlight:item/doomeden_rapier"
+    "layer0": "eternal_starlight:item/doomeden_rapier",
+    "particle": "eternal_starlight:item/doomeden_rapier_inventory"
   },
   "gui_light": "front",
   "elements": [

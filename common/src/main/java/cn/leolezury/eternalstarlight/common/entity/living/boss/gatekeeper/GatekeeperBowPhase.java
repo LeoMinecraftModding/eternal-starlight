@@ -15,17 +15,17 @@ public class GatekeeperBowPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 9;
 
 	public GatekeeperBowPhase() {
-		super(ID, 1, 47, 200);
+		super(ID, 1, 47, 150);
 	}
 
 	@Override
 	public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
-		return cooldownOver && !canReachTarget(entity, 8) && canReachTarget(entity, 25);
+		return cooldownOver && !canReachTarget(entity, 6) && canReachTarget(entity, 25);
 	}
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.MOONRING_BOW.get().getDefaultInstance());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_BOW.get().getDefaultInstance());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 

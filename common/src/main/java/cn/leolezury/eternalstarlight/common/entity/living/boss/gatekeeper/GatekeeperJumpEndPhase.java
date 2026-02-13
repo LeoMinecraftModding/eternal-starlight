@@ -93,7 +93,7 @@ public class GatekeeperJumpEndPhase extends BehaviorPhase<TheGatekeeper> {
 		entity.setBehaviorTicks(0);
 		int newId = canReachTarget(entity, 5) ? GatekeeperStepBackPhase.ID : 0;
 		if (manager.getCooldowns().getOrDefault(newId, 0) <= 0) {
-			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity));
+			manager.getAllPhases().stream().filter(p -> newId == p.getId()).findFirst().ifPresent(p -> p.start(entity, manager));
 		}
 		onStop(entity);
 	}

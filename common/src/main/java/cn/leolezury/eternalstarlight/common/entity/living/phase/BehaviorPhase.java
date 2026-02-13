@@ -51,10 +51,11 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 
 	public abstract void onStop(T entity);
 
-	public void start(T entity) {
+	public void start(T entity, BehaviorManager<T> manager) {
 		entity.setBehaviorState(getId());
 		entity.setBehaviorTicks(0);
 		onStart(entity);
+		manager.getCooldowns().put(getId(), getCooldown());
 	}
 
 	public void stop(T entity, BehaviorManager<T> manager) {
@@ -62,7 +63,7 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 			entity.setBehaviorState(turnsInto);
 			entity.setBehaviorTicks(0);
 		} else {
-			manager.getAllPhases().stream().filter(p -> turnsInto == p.getId()).findFirst().ifPresent(p -> p.start(entity));
+			manager.getAllPhases().stream().filter(p -> turnsInto == p.getId()).findFirst().ifPresent(p -> p.start(entity, manager));
 		}
 		onStop(entity);
 	}

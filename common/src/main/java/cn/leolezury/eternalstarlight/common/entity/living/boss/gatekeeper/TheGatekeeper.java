@@ -66,7 +66,6 @@ import net.minecraft.world.entity.npc.Npc;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -298,7 +297,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficultyInstance) {
 		super.populateDefaultEquipmentSlots(randomSource, difficultyInstance);
 		Arrays.fill(this.handDropChances, 0);
-		this.setItemSlot(EquipmentSlot.MAINHAND, Items.DIAMOND_SWORD.getDefaultInstance());
+		this.setItemSlot(EquipmentSlot.MAINHAND, ESItems.GLISTERING_SWORD.get().getDefaultInstance());
 	}
 
 	@Override
@@ -703,6 +702,8 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		fightParticipants.clear();
 		healCount = 0;
 		healInterruptedCount = 0;
+		setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_SWORD.get().getDefaultInstance());
+		setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 
 	@Override

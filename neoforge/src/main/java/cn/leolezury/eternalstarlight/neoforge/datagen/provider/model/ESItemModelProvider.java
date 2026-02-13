@@ -924,6 +924,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.GLEECH_EGG.get());
 
+		shatteredSword(ESItems.SHATTERED_SWORD.get());
+		basicItem(ESItems.SHATTERED_SWORD_BLADE.get());
+
 		basicItem(ESItems.TOOTH_OF_HUNGER.get());
 		daggerOfHunger(ESItems.DAGGER_OF_HUNGER.get());
 		basicItem(ESItems.VORACIOUS_ARROW.get());
@@ -952,8 +955,11 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.STARLIGHT_SILVER_COIN.get());
 		basicItem(ESItems.BOOK.get());
 		basicItem(ESItems.SEEKING_EYE.get());
-		shatteredSword(ESItems.SHATTERED_SWORD.get());
-		basicItem(ESItems.SHATTERED_SWORD_BLADE.get());
+		handheld(ESItems.GLISTERING_SWORD.get());
+		greatsword(ESItems.GLISTERING_GREATSWORD.get());
+		greatswordInventory(ESItems.GLISTERING_GREATSWORD.get());
+		inventoryHandheld(ESItems.GLISTERING_MORNING_STAR.get());
+		bow(ESItems.GLISTERING_BOW.get());
 
 		basicItem(ESItems.GOLEM_STEEL_INGOT.get());
 		basicItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
