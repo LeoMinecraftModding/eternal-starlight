@@ -88,6 +88,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			.addTag(EntityTypeTags.ARTHROPOD);
 		tag(ESTags.EntityTypes.AETHERSENT_GOLEM_TARGETS)
 			.add(
+				ESEntities.SEEKER.get(),
 				ESEntities.TINY_CRETEOR.get(),
 				EntityType.PHANTOM
 			);

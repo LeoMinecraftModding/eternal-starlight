@@ -66,7 +66,9 @@ import net.minecraft.world.entity.npc.Npc;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
@@ -488,12 +490,12 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 	}
 
-	private void permitPlayer(ServerPlayer player) {
+	private static void permitPlayer(ServerPlayer player) {
 		ESCriteriaTriggers.CHALLENGED_GATEKEEPER.get().trigger(player);
 		ESBookUtil.unlock(player, EternalStarlight.id("permitted_by_gatekeeper"));
 	}
 
-	private boolean isPlayerPermitted(ServerPlayer player) {
+	public static boolean isPlayerPermitted(ServerPlayer player) {
 		if (player.getServer() != null) {
 			AdvancementHolder challenge = player.getServer().getAdvancements().get(EternalStarlight.id("challenge_gatekeeper"));
 			boolean challenged = challenge != null && player.getAdvancements().getOrStartProgress(challenge).isDone();
@@ -691,6 +693,17 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				}
 			}
 		}
+	}
+
+	public ItemStack getGatekeeperHammer() {
+		LivingEntity target = getTarget();
+		if (target instanceof ServerPlayer serverPlayer && isPlayerPermitted(serverPlayer) && ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.getData(target) > 0) {
+			ItemStack mace = Items.MACE.getDefaultInstance();
+			ItemAttributeModifiers morningStarAttributes = ESItems.GLISTERING_MORNING_STAR.get().getDefaultInstance().get(DataComponents.ATTRIBUTE_MODIFIERS);
+			mace.set(DataComponents.ATTRIBUTE_MODIFIERS, morningStarAttributes);
+			return mace;
+		}
+		return ESItems.GLISTERING_MORNING_STAR.get().getDefaultInstance();
 	}
 
 	public void abortFight() {

@@ -278,7 +278,7 @@ public class ESCommonHandler {
 		float modified = amount;
 		Entity sourceEntity = source.getEntity();
 		if (sourceEntity != null) {
-			if (sourceEntity.getType() == ESEntities.THE_GATEKEEPER.get()) {
+			if (sourceEntity.getType() == ESEntities.THE_GATEKEEPER.get() && entity instanceof ServerPlayer serverPlayer && TheGatekeeper.isPlayerPermitted(serverPlayer)) {
 				modified *= (1 + Mth.clamp(ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.getData(entity), 0, 40) * 0.05f);
 			}
 			if (sourceEntity.getType() == ESEntities.STARLIGHT_GOLEM.get()) {

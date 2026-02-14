@@ -500,49 +500,5 @@
         0.5
       ]
     }
-  },
-  "groups": [
-    {
-      "name": "upper_petals",
-      "origin": [
-        8,
-        8,
-        8
-      ],
-      "color": 0,
-      "children": [
-        0,
-        1,
-        2,
-        3
-      ]
-    },
-    {
-      "name": "lower_petals",
-      "origin": [
-        8,
-        8,
-        8
-      ],
-      "color": 0,
-      "children": [
-        4,
-        5,
-        6,
-        7
-      ]
-    },
-    {
-      "name": "light",
-      "origin": [
-        8,
-        8,
-        8
-      ],
-      "color": 0,
-      "children": [
-        8
-      ]
-    }
-  ]
+  }
 }

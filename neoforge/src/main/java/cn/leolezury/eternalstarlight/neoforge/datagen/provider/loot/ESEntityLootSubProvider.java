@@ -57,8 +57,7 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
 
 		add(ESEntities.SEEKER.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-				.when(LootItemRandomChanceCondition.randomChance(0.2f))
-				.add(LootItem.lootTableItem(ESItems.TENTACLE_SPIKE.get())))
+				.add(LootItem.lootTableItem(ESItems.SEEKER_TENTACLE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))))
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 				.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F))))));
 

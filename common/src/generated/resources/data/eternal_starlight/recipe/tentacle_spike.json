@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "eternal_starlight:seeker_tentacle"
+    },
+    "H": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "###",
+    "  H"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:tentacle_spike"
+  }
+}

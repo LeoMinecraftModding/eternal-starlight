@@ -918,6 +918,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.NIGHTFALL_SPIDER_EYE.get());
 
+		basicItem(ESItems.SEEKER_TENTACLE.get());
 		whip(ESItems.TENTACLE_SPIKE.get());
 
 		templateSkull(ESItems.TANGLED_SKULL.get());
@@ -1027,7 +1028,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		largeHandheld(ESItems.PETAL_SCYTHE.get());
 		inventoryHandheld(ESItems.PETAL_SCYTHE.get());
 		handheld(ESItems.WAND_OF_TELEPORTATION.get());
-		extendable(ESItems.CHAIN_OF_SOULS.get());
+		whip(ESItems.CHAIN_OF_SOULS.get());
 		inventoryHandheld(ESItems.CRESCENT_SPEAR.get());
 		block(ESItems.SHADEGRIEVE.get());
 		block(ESItems.BLOOMING_SHADEGRIEVE.get());
@@ -1149,16 +1150,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 	}
 
 	private void whip(Item item) {
-		ModelFile extendedModel = getBuilder(name(item) + "_extended")
-			.texture("particle", itemTexture(item));
-		withExistingParent(name(item), "item/handheld")
-			.texture("layer0", itemTexture(item))
-			.override().predicate(EternalStarlight.id("extended"), 1).model(extendedModel).end();
-	}
-
-	private void extendable(Item item) {
-		ModelFile extendedModel = withExistingParent(name(item) + "_extended", "item/handheld")
-			.texture("layer0", itemTexture(item).withSuffix("_extended"));
+		ModelFile extendedModel = withExistingParent(name(item) + "_extended", EternalStarlight.id("item/gui_only"))
+			.texture("layer0", itemTexture(item));
 		withExistingParent(name(item), "item/handheld")
 			.texture("layer0", itemTexture(item))
 			.override().predicate(EternalStarlight.id("extended"), 1).model(extendedModel).end();

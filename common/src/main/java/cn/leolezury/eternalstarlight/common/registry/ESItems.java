@@ -1100,6 +1100,7 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> NIGHTFALL_SPIDER_EYE = registerItem("nightfall_spider_eye", () -> new Item(new Item.Properties()));
 
+	public static final RegistryObject<Item, Item> SEEKER_TENTACLE = registerItem("seeker_tentacle", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> TENTACLE_SPIKE = registerItem("tentacle_spike", () -> new TentacleSpikeItem(ESItemTiers.TENTACLE_SPIKE, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.TENTACLE_SPIKE, 1.5F))));
 
 	public static final RegistryObject<Item, Item> TANGLED_SKULL = registerItem("tangled_skull", () -> new TangledSkullItem(ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));

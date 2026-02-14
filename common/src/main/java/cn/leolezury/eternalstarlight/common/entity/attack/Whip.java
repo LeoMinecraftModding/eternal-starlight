@@ -154,8 +154,8 @@ public abstract class Whip extends Entity {
 					if (hitResult.getType() != HitResult.Type.MISS) {
 						endPos = hitResult.getLocation();
 					}
-					List<Entity> entities = level().getEntitiesOfClass(Entity.class, new AABB(player.getEyePosition(), endPos).inflate(1));
-					for (Entity entity : entities) {
+					List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, new AABB(player.getEyePosition(), endPos).inflate(1));
+					for (LivingEntity entity : entities) {
 						AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + 1.5f);
 						if (ESEntityUtil.shouldHarm(player, entity) && entity.isPickable() && (aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent())) {
 							DamageSource damageSource = damageSources().playerAttack(player);
@@ -172,9 +172,7 @@ public abstract class Whip extends Entity {
 								if (level() instanceof ServerLevel serverLevel) {
 									EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
 								}
-								if (entity instanceof LivingEntity livingEntity) {
-									livingEntity.knockback(knockback * 0.5F, Mth.sin(player.getYRot() * Mth.DEG_TO_RAD), -Mth.cos(player.getYRot() * Mth.DEG_TO_RAD));
-								}
+								entity.knockback(knockback * 0.5F, Mth.sin(player.getYRot() * Mth.DEG_TO_RAD), -Mth.cos(player.getYRot() * Mth.DEG_TO_RAD));
 							}
 						}
 					}

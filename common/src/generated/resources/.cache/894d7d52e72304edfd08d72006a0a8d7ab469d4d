@@ -1,8 +1,8 @@
-// 1.21.1	2026-01-17T15:28:33.0710328	Tags for minecraft:entity_type mod id eternal_starlight
+// 1.21.1	2026-02-14T20:30:51.0307642	Tags for minecraft:entity_type mod id eternal_starlight
 5466319e12aea1f42139ac09c8ffdd0620c716d0 data/c/tags/entity_type/boats.json
 6d73775d42eba64dc081f2687f91ed4ecb83e79f data/c/tags/entity_type/bosses.json
 7c4a83216410b5cc42cab8c49f3ef1afb4bb9ebc data/eternal_starlight/tags/entity_type/abyssal_fire_immune.json
-e75492d50b8095bae48d9182eec0ee0328d4353f data/eternal_starlight/tags/entity_type/aethersent_golem_targets.json
+8743c915a1d96aaeb66cac454e3d6e442b05f134 data/eternal_starlight/tags/entity_type/aethersent_golem_targets.json
 62926a3fb9688d0b0aec70436789309729b9b31a data/eternal_starlight/tags/entity_type/affects_progression.json
 86a469d8e9ee317a1ca5b93bfed0be34ff5b0d89 data/eternal_starlight/tags/entity_type/chan_of_souls_cannot_pull.json
 0c2f80824fcdaa8414ab4e318eaddffd67b2b3a2 data/eternal_starlight/tags/entity_type/gleech_immune.json

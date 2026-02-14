@@ -45,10 +45,9 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 		Player player = chain.getPlayerOwner();
 		if (player != null) {
 			stack.pushPose();
-			float attackAnim = player.getAttackAnim(partialTicks);
 			Entity target = chain.getTarget();
 			boolean attachedToBlock = chain.reachedTarget();
-			Vec3 handPos = getPlayerHandPos(player, Mth.sin(Mth.sqrt(attackAnim) * Mth.PI), partialTicks);
+			Vec3 handPos = getPlayerHandPos(player, partialTicks);
 			Vec3 endPos = new Vec3(Mth.lerp(partialTicks, chain.xo, chain.getX()), Mth.lerp(partialTicks, chain.yo, chain.getY()), Mth.lerp(partialTicks, chain.zo, chain.getZ()));
 			if (chain.isValidTarget(target)) {
 				Vec3 targetPos = new Vec3(Mth.lerp(partialTicks, target.xo, target.getX()), Mth.lerp(partialTicks, target.yo, target.getY()) + target.getBbHeight() / 2, Mth.lerp(partialTicks, target.zo, target.getZ()));
@@ -99,7 +98,7 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 		super.render(chain, yaw, partialTicks, stack, buffer, light);
 	}
 
-	private Vec3 getPlayerHandPos(Player player, float attackAnim, float partialTicks) {
+	private Vec3 getPlayerHandPos(Player player, float partialTicks) {
 		int arm = player.getMainArm() == HumanoidArm.RIGHT ? 1 : -1;
 		ItemStack mainHandItem = player.getMainHandItem();
 		if (!mainHandItem.is(ESItems.CHAIN_OF_SOULS.get())) {
@@ -107,7 +106,7 @@ public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 		}
 		if (this.entityRenderDispatcher.options.getCameraType().isFirstPerson() && player == Minecraft.getInstance().player) {
 			double fovFactor = 960.0 / (double) this.entityRenderDispatcher.options.fov().get();
-			Vec3 vec3 = this.entityRenderDispatcher.camera.getNearPlane().getPointOnPlane((float) arm * 0.85f, -0.95f).scale(fovFactor).yRot(attackAnim * 0.5f).xRot(-attackAnim * 0.7f);
+			Vec3 vec3 = this.entityRenderDispatcher.camera.getNearPlane().getPointOnPlane((float) arm * 1.25f, -1.25f).scale(fovFactor);
 			return player.getEyePosition(partialTicks).add(vec3);
 		} else {
 			Optional<Vec3> handPos = ESModelUtil.getThirdPersonPlayerHandPosition(player, entityRenderDispatcher, Mth.lerp(partialTicks, player.yBodyRotO, player.yBodyRot), partialTicks, mainHandItem.is(ESItems.CHAIN_OF_SOULS.get()) ? player.getMainArm() : player.getMainArm().getOpposite(), new Vec3(0, 0.6, -0.15));

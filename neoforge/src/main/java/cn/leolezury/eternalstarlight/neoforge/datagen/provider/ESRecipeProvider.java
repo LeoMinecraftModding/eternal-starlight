@@ -273,6 +273,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('E', ESItems.NIGHTFALL_SPIDER_EYE.get())
 			.unlockedBy("has_item", has(ESItems.NIGHTFALL_SPIDER_EYE.get()))
 			.save(recipeOutput, EternalStarlight.id("tinted_glass_from_nightfall_spider_eye"));
+		addWhip(recipeOutput, ESItems.TENTACLE_SPIKE.get(), ESItems.SEEKER_TENTACLE.get());
 		addSword(recipeOutput, ESItems.DAGGER_OF_HUNGER.get(), ESItems.TOOTH_OF_HUNGER.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.VORACIOUS_ARROW.get(), 4)
 			.pattern("T")
@@ -2205,6 +2206,15 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 	}
 
+	protected final void addWhip(RecipeOutput recipeOutput, ItemLike output, ItemLike input) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
+			.pattern("###")
+			.pattern("  H")
+			.define('#', input)
+			.define('H', Tags.Items.RODS_WOODEN)
+			.unlockedBy("has_item", has(input))
+			.save(recipeOutput);
+	}
 	protected final void addWhip(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("###")

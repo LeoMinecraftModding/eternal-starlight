@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,7 +20,7 @@ public class GatekeeperHammerPhase extends BehaviorPhase<TheGatekeeper> {
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_MORNING_STAR.get().getDefaultInstance());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, entity.getGatekeeperHammer());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 

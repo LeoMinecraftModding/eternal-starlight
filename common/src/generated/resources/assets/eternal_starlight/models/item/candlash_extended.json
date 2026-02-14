@@ -1,5 +1,6 @@
 {
+  "parent": "eternal_starlight:item/gui_only",
   "textures": {
-    "particle": "eternal_starlight:item/candlash"
+    "layer0": "eternal_starlight:item/candlash"
   }
 }
