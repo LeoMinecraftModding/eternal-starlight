@@ -12,7 +12,6 @@
     "CeilingHangingSignBlockMixin",
     "CoralBlockMixin",
     "CropBlockMixin",
-    "CrossbowItemMixin",
     "DataFixersMixin",
     "DiggerItemMixin",
     "DirtPathBlockMixin",

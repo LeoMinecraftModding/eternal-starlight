@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-14T22:33:33.2666544	Item Models: eternal_starlight
+// 1.21.1	2026-02-15T20:09:34.7962065	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -1083,6 +1083,12 @@ b9605f550a539d5ba9cd0ae8c615c9feef0dfbc6 assets/eternal_starlight/models/item/un
 b9779338c3a7445540e8e16f41895e42150ae7b5 assets/eternal_starlight/models/item/unrealium_block.json
 6d1aaec1d76b7bfc5f74d844826a3c86e49b2bd5 assets/eternal_starlight/models/item/unrealium_boots.json
 5b2d2de25f8a2b1dcfd6b74b2acdb1d7a356cb7d assets/eternal_starlight/models/item/unrealium_chestplate.json
+812420b92b4d72bab0c43627423919871997f357 assets/eternal_starlight/models/item/unrealium_crossbow.json
+afc296b5f12e1bfb9cd0b5a9837f92dd3a4f1a26 assets/eternal_starlight/models/item/unrealium_crossbow_arrow.json
+45e87029136a693cfad6fb8d437b94dbd7a1e182 assets/eternal_starlight/models/item/unrealium_crossbow_firework.json
+efbc2badcf0e89379f0f2eb5287140723c6b2ddb assets/eternal_starlight/models/item/unrealium_crossbow_pulling_0.json
+2e592cbf1cac718f6bab803f03c010e7058b64b6 assets/eternal_starlight/models/item/unrealium_crossbow_pulling_1.json
+9cd3b19c466478cd83f81838bd1cec49503cdb4a assets/eternal_starlight/models/item/unrealium_crossbow_pulling_2.json
 203f07c595ce993aa062bee17adb990a55a2b108 assets/eternal_starlight/models/item/unrealium_helmet.json
 e4e8f18b2c01060eea35f29dd0a303f2a9c998d6 assets/eternal_starlight/models/item/unrealium_hoe.json
 28ae2e85211418d4eacf931f7c6020ec502ccca0 assets/eternal_starlight/models/item/unrealium_ingot.json

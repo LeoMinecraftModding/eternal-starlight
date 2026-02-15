@@ -1,11 +1,12 @@
 package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
@@ -20,8 +21,7 @@ public abstract class PlayerRendererMixin {
 	@Inject(method = "getArmPose", at = @At("RETURN"), cancellable = true)
 	private static void getArmPose(AbstractClientPlayer player, InteractionHand hand, CallbackInfoReturnable<HumanoidModel.ArmPose> cir) {
 		ItemStack itemInHand = player.getItemInHand(hand);
-		if (!player.swinging && (itemInHand.is(ESItems.STARFIRE_CROSSBOW.get()) || itemInHand.is(ESItems.MECHANICAL_CROSSBOW.get()) || itemInHand.is(ESItems.CRYSTAL_CROSSBOW.get()) || itemInHand.is(ESItems.WILTED_CROSSBOW.get()))
-			&& CrossbowItem.isCharged(itemInHand)) {
+		if (!player.swinging && BuiltInRegistries.ITEM.getKey(itemInHand.getItem()).getNamespace().equals(EternalStarlight.ID) && itemInHand.getItem() instanceof CrossbowItem && CrossbowItem.isCharged(itemInHand)) {
 			cir.setReturnValue(HumanoidModel.ArmPose.CROSSBOW_HOLD);
 		}
 	}

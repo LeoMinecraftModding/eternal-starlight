@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -45,5 +46,13 @@ public abstract class AbstractArrowMixin {
 			return arrowSuccess || original.call(instance, itemStack);
 		}
 		return original.call(instance, itemStack);
+	}
+
+	@WrapOperation(method = "doKnockback", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/Vec3;scale(D)Lnet/minecraft/world/phys/Vec3;"))
+	public Vec3 scaleKnockback(Vec3 instance, double scale, Operation<Vec3> original) {
+		if (this.firedFromWeapon != null && this.firedFromWeapon.is(ESItems.UNREALIUM_CROSSBOW.get())) {
+			return original.call(instance, scale * 0.5);
+		}
+		return original.call(instance, scale);
 	}
 }

@@ -222,6 +222,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.TOOLS_CROSSBOW)
 			.add(
+				ESItems.UNREALIUM_CROSSBOW.get(),
 				ESItems.STARFIRE_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
@@ -285,6 +286,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.RANGED_WEAPON_TOOLS)
 			.add(
 				ESItems.STARFALL_LONGBOW.get(),
+				ESItems.UNREALIUM_CROSSBOW.get(),
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 				ESItems.SEEDS_LAUNCHER.get(),
@@ -629,6 +631,24 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AMARAMBER_SICKLE.get(),
 				ESItems.AMARAMBER_MASK.get(),
 				ESItems.AMARAMBER_CHESTPLATE.get()
+			);
+		tag(ESTags.Items.HIDES_WITH_OWNER)
+			.add(
+				ESItems.UNREALIUM_INGOT.get(),
+				ESItems.UNREALIUM_NUGGET.get(),
+				ESItems.UNREALIUM_BLOCK.get(),
+				ESItems.UNREALIUM_BARS.get(),
+				ESItems.UNREALIUM_SWORD.get(),
+				ESItems.UNREALIUM_PICKAXE.get(),
+				ESItems.UNREALIUM_AXE.get(),
+				ESItems.UNREALIUM_HOE.get(),
+				ESItems.UNREALIUM_SHOVEL.get(),
+				ESItems.UNREALIUM_SICKLE.get(),
+				ESItems.UNREALIUM_CROSSBOW.get(),
+				ESItems.UNREALIUM_HELMET.get(),
+				ESItems.UNREALIUM_CHESTPLATE.get(),
+				ESItems.UNREALIUM_LEGGINGS.get(),
+				ESItems.UNREALIUM_BOOTS.get()
 			);
 		tag(ESTags.Items.CRYSTALBORN_CATALYST_FUELS)
 			.add(
@@ -1034,6 +1054,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFALL_LONGBOW.get(),
 				ESItems.GLACITE_SHIELD.get(),
 				ESItems.DEEPSILVER_BRUSH.get(),
+				ESItems.UNREALIUM_CROSSBOW.get(),
 				ESItems.MALARITE_SPEAR.get(),
 				ESItems.PUNGENCY_FRUIT_SPEAR.get(),
 				ESItems.SEEDS_LAUNCHER.get(),
@@ -1068,6 +1089,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(ItemTags.CROSSBOW_ENCHANTABLE)
 			.add(
+				ESItems.UNREALIUM_CROSSBOW.get(),
 				ESItems.STARFIRE_CROSSBOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),

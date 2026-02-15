@@ -570,6 +570,10 @@ public class ESCommonHandler {
 			if (arrow.getPickupItemStackOrigin().has(ESDataComponents.QUIVER_ARROW.get())) {
 				arrow.getPickupItemStackOrigin().remove(ESDataComponents.QUIVER_ARROW.get());
 			}
+			ItemStack weaponItem = arrow.getWeaponItem();
+			if (weaponItem != null && weaponItem.is(ESItems.UNREALIUM_CROSSBOW.get())) {
+				arrow.setPierceLevel(Byte.MAX_VALUE);
+			}
 			if (!arrow.inGround) {
 				if (ESDataAttachments.ARROW_TYPE.getData(arrow).equals(FLOWGLAZE_ARROW)) {
 					float previousExtra = ESDataAttachments.FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE.getData(arrow);

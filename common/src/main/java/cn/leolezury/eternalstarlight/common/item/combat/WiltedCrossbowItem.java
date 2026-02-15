@@ -9,6 +9,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 public class WiltedCrossbowItem extends CrossbowItem {
 	public WiltedCrossbowItem(Properties properties) {
@@ -23,6 +24,12 @@ public class WiltedCrossbowItem extends CrossbowItem {
 			arrow.setBaseDamage(arrow.getBaseDamage() + 1.5);
 		}
 		return projectile;
+	}
+
+	@Override
+	protected void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float velocity, float inaccuracy, float angle, @Nullable LivingEntity target) {
+		super.shootProjectile(shooter, projectile, index, velocity, inaccuracy, angle, target);
+		projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.5));
 	}
 
 	@Override

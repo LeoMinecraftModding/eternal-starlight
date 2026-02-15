@@ -807,6 +807,7 @@ public class ESItems {
 		() -> new ShovelItem(ESItemTiers.UNREALIUM, new Item.Properties().attributes(createUnrealiumAttributes(ESItemTiers.UNREALIUM, 1.5F, -3F))));
 	public static final RegistryObject<Item, Item> UNREALIUM_SICKLE = registerItem("unrealium_sickle",
 		() -> ESPlatform.INSTANCE.createScythe(ESItemTiers.UNREALIUM, true, new Item.Properties().attributes(createUnrealiumAttributes(ESItemTiers.UNREALIUM, 1, -1.5F))));
+	public static final RegistryObject<Item, Item> UNREALIUM_CROSSBOW = registerItem("unrealium_crossbow", () -> new UnrealiumCrossbowItem(new Item.Properties().durability(1200)));
 	public static final RegistryObject<Item, Item> UNREALIUM_HELMET = registerItem("unrealium_helmet",
 		() -> ESPlatform.INSTANCE.createUnrealiumArmor(ESArmorMaterials.UNREALIUM.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(50))));
 	public static final RegistryObject<Item, Item> UNREALIUM_CHESTPLATE = registerItem("unrealium_chestplate",

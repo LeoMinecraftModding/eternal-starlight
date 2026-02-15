@@ -21,7 +21,7 @@ public abstract class ProjectileMixin {
 	public abstract Entity getOwner();
 
 	@Inject(method = "getMovementToShoot", at = @At("RETURN"), cancellable = true)
-	private void getMovementToShoot(double d, double e, double f, float g, float h, CallbackInfoReturnable<Vec3> cir) {
+	private void getMovementToShoot(double x, double y, double z, float velocity, float inaccuracy, CallbackInfoReturnable<Vec3> cir) {
 		if (getOwner() instanceof LivingEntity livingEntity && ((Projectile) (Object) this) instanceof ThrownPotion) {
 			double factor = 1;
 			if (livingEntity.getAttributes().hasAttribute(ESAttributes.THROWN_POTION_DISTANCE.asHolder())) {

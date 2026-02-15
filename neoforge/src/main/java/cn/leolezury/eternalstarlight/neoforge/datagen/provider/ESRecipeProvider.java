@@ -1715,6 +1715,16 @@ public class ESRecipeProvider extends RecipeProvider {
 		addChestplate(recipeOutput, ESItems.UNREALIUM_CHESTPLATE.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
 		addLeggings(recipeOutput, ESItems.UNREALIUM_LEGGINGS.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
 		addBoots(recipeOutput, ESItems.UNREALIUM_BOOTS.get(), ESConventionalTags.Items.INGOTS_UNREALIUM);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.UNREALIUM_CROSSBOW.get())
+			.pattern("#&#")
+			.pattern("~$~")
+			.pattern(" # ")
+			.define('~', Items.STRING)
+			.define('#', Tags.Items.RODS_WOODEN)
+			.define('&', ESConventionalTags.Items.INGOTS_UNREALIUM)
+			.define('$', Items.TRIPWIRE_HOOK)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_UNREALIUM))
+			.save(recipeOutput);
 		addSmelt(recipeOutput, 200, ESItems.UNREALIUM_INGOT.get(), ESItems.UNREALIUM_NUGGET.get(), ESItems.UNREALIUM_PICKAXE.get(), ESItems.UNREALIUM_AXE.get(), ESItems.UNREALIUM_HOE.get(), ESItems.UNREALIUM_SHOVEL.get(), ESItems.UNREALIUM_SICKLE.get(), ESItems.UNREALIUM_SWORD.get(), ESItems.UNREALIUM_HELMET.get(), ESItems.UNREALIUM_CHESTPLATE.get(), ESItems.UNREALIUM_LEGGINGS.get(), ESItems.UNREALIUM_BOOTS.get());
 		addBlast(recipeOutput, 100, ESItems.UNREALIUM_INGOT.get(), ESItems.UNREALIUM_NUGGET.get(), ESItems.UNREALIUM_PICKAXE.get(), ESItems.UNREALIUM_AXE.get(), ESItems.UNREALIUM_HOE.get(), ESItems.UNREALIUM_SHOVEL.get(), ESItems.UNREALIUM_SICKLE.get(), ESItems.UNREALIUM_SWORD.get(), ESItems.UNREALIUM_HELMET.get(), ESItems.UNREALIUM_CHESTPLATE.get(), ESItems.UNREALIUM_LEGGINGS.get(), ESItems.UNREALIUM_BOOTS.get());
 	}

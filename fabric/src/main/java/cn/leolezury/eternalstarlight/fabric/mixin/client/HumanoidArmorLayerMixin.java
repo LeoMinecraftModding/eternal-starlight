@@ -8,6 +8,7 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.core.Holder;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorMaterial;
@@ -25,9 +26,12 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 	@Unique
 	private ItemStack armorStack = ItemStack.EMPTY;
 
-	@Inject(method = "renderArmorPiece", at = @At("HEAD"))
-	private void renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int i, A humanoidModel, CallbackInfo ci) {
-		armorStack = livingEntity.getItemBySlot(equipmentSlot);
+	@Inject(method = "renderArmorPiece", at = @At("HEAD"), cancellable = true)
+	private void renderArmorPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T living, EquipmentSlot slot, int i, A humanoidModel, CallbackInfo ci) {
+		if (living.hasEffect(MobEffects.INVISIBILITY) && living.getItemBySlot(slot).is(ESTags.Items.HIDES_WITH_OWNER)) {
+			ci.cancel();
+		}
+		armorStack = living.getItemBySlot(slot);
 	}
 
 	@Inject(method = "renderTrim", at = @At("HEAD"), cancellable = true)

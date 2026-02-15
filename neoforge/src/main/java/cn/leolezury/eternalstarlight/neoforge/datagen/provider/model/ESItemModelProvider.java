@@ -701,6 +701,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		handheld(ESItems.UNREALIUM_HOE.get());
 		handheld(ESItems.UNREALIUM_SHOVEL.get());
 		handheld(ESItems.UNREALIUM_SICKLE.get());
+		crossbow(ESItems.UNREALIUM_CROSSBOW.get());
 		basicItem(ESItems.UNREALIUM_HELMET.get());
 		basicItem(ESItems.UNREALIUM_CHESTPLATE.get());
 		basicItem(ESItems.UNREALIUM_LEGGINGS.get());

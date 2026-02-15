@@ -7,6 +7,7 @@ import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.core.Holder;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorMaterial;
@@ -27,8 +28,11 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 	private ItemStack armorStack = ItemStack.EMPTY;
 
 	// no remap for forge method
-	@Inject(method = "renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;FFFFFF)V", at = @At("HEAD"), remap = false)
+	@Inject(method = "renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;FFFFFF)V", at = @At("HEAD"), remap = false, cancellable = true)
 	private void renderArmorPiece(PoseStack stack, MultiBufferSource buffer, LivingEntity living, EquipmentSlot slot, int i, HumanoidModel arg5, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+		if (living.hasEffect(MobEffects.INVISIBILITY) && living.getItemBySlot(slot).is(ESTags.Items.HIDES_WITH_OWNER)) {
+			ci.cancel();
+		}
 		armorStack = living.getItemBySlot(slot);
 	}
 
