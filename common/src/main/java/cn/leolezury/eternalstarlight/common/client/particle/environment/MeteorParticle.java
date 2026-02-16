@@ -59,7 +59,7 @@ public class MeteorParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
-		this.effect.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, 144 / 255f, 94 / 255f, 168 / 255f, 2f, LightTexture.FULL_BRIGHT);
+		this.effect.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, 144 / 255f, 94 / 255f, 168 / 255f, 2f, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

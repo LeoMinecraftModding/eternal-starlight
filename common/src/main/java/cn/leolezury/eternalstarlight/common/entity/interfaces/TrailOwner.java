@@ -17,6 +17,10 @@ public interface TrailOwner {
 		return false;
 	}
 
+	default TrailEffect.TrailOffsetFunction getTrailOffsetFunction() {
+		return TrailEffect.TrailOffsetFunction.FACE_CAMERA;
+	}
+
 	@Environment(EnvType.CLIENT)
 	RenderType getTrailRenderType();
 }
