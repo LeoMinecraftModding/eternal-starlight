@@ -13,6 +13,7 @@ import net.minecraft.nbt.ByteTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.VineBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
@@ -43,12 +45,12 @@ public class CursedGardenMazePiece extends StructurePiece {
 	private static final int LUNAR_VINE_SIZE = 21;
 	private static final Set<Direction> HORIZONTAL_DIRECTIONS = Set.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
 
-	private final StructureTemplate noConnection;
-	private final StructureTemplate singleConnection;
-	private final StructureTemplate doubleConnectionStraight;
-	private final StructureTemplate doubleConnectionCorner;
-	private final StructureTemplate tripleConnection;
-	private final StructureTemplate allConnection;
+	private StructureTemplate noConnection;
+	private StructureTemplate singleConnection;
+	private StructureTemplate doubleConnectionStraight;
+	private StructureTemplate doubleConnectionCorner;
+	private StructureTemplate tripleConnection;
+	private StructureTemplate allConnection;
 
 	private boolean[][] maze = new boolean[MAZE_SIZE][MAZE_SIZE];
 
@@ -62,12 +64,7 @@ public class CursedGardenMazePiece extends StructurePiece {
 			z + STRUCTURE_SIZE / 2
 		));
 		setOrientation(Direction.SOUTH);
-		this.noConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_no_connection"));
-		this.singleConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_single_connection"));
-		this.doubleConnectionStraight = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_double_connection_straight"));
-		this.doubleConnectionCorner = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_double_connection_corner"));
-		this.tripleConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_triple_connection"));
-		this.allConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_all_connection"));
+		loadTemplates(templateManager);
 		MazeGenerator mazeGenerator = new MazeGenerator(MAZE_SIZE, RandomSource.create(seed + new BlockPos(x, y, z).asLong()));
 		maze = mazeGenerator.generateMaze(1, 1);
 		maze[0][(MAZE_SIZE - 1) / 2] = false;
@@ -90,13 +87,7 @@ public class CursedGardenMazePiece extends StructurePiece {
 	public CursedGardenMazePiece(StructurePieceSerializationContext context, CompoundTag tag) {
 		super(ESStructurePieceTypes.CURSED_GARDEN_MAZE.get(), tag);
 		setOrientation(Direction.SOUTH);
-		StructureTemplateManager templateManager = context.structureTemplateManager();
-		this.noConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_no_connection"));
-		this.singleConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_single_connection"));
-		this.doubleConnectionStraight = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_double_connection_straight"));
-		this.doubleConnectionCorner = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_double_connection_corner"));
-		this.tripleConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_triple_connection"));
-		this.allConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_all_connection"));
+		loadTemplates(context.structureTemplateManager());
 		ListTag xTag = tag.getList("maze", CompoundTag.TAG_LIST);
 		for (int x = 0; x < MAZE_SIZE; x++) {
 			if (x < xTag.size()) {
@@ -112,6 +103,15 @@ public class CursedGardenMazePiece extends StructurePiece {
 				}
 			}
 		}
+	}
+
+	private void loadTemplates(StructureTemplateManager templateManager) {
+		this.noConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_no_connection"));
+		this.singleConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_single_connection"));
+		this.doubleConnectionStraight = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_double_connection_straight"));
+		this.doubleConnectionCorner = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_double_connection_corner"));
+		this.tripleConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_triple_connection"));
+		this.allConnection = templateManager.getOrCreate(EternalStarlight.id("cursed_garden/maze_all_connection"));
 	}
 
 	@Override
@@ -185,7 +185,10 @@ public class CursedGardenMazePiece extends StructurePiece {
 							}
 						} else {
 							for (int y = 0; y < STRUCTURE_HEIGHT; y++) {
-								placeBlock(level, Blocks.AIR.defaultBlockState(), blockX, y + 1, blockZ, box);
+								BlockState state = getBlock(level, blockX, y + 1, blockZ, box);
+								if (!state.is(BlockTags.LOGS) && !state.is(BlockTags.LEAVES) && !state.isAir()) {
+									placeBlock(level, Blocks.AIR.defaultBlockState(), blockX, y + 1, blockZ, box);
+								}
 							}
 						}
 					}
