@@ -129,6 +129,6 @@ public class FrozenTube extends ThrowableProjectile implements TrailOwner {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public RenderType getTrailRenderType() {
-		return ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE);
+		return ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE);
 	}
 }

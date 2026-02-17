@@ -80,7 +80,7 @@ public class AethersentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
 				model.alphaFactor = (1 - Mth.clamp(currentTick - snapshot.timestamp(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
 				stack.scale(-1.0F, -1.0F, 1.0F);
 				stack.translate(0.0F, -1.5F, 0.0F);
-				renderType = ESRenderType.entityTranslucentNoDepth(getTextureLocation(entity));
+				renderType = ESRenderType.entityTranslucentGlow(getTextureLocation(entity));
 				vertexConsumer = bufferSource.getBuffer(renderType);
 				model.renderToBuffer(stack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
 				stack.popPose();

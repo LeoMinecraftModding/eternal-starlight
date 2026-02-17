@@ -92,7 +92,7 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 			// add a full connection
 			segments.add(startPos);
 			Vec3 camPos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
-			vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE));
+			vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE));
 			for (int i = 0; i < segments.size() - 1; i++) {
 				Vec3 start = segments.get(i);
 				Vec3 end = segments.get(i + 1);

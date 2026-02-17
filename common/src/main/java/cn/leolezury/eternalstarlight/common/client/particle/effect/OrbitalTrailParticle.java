@@ -87,7 +87,7 @@ public class OrbitalTrailParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
-		this.effect.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.Z_ROT, color.rf(), color.gf(), color.bf(), a * 5, LightTexture.FULL_BRIGHT);
+		this.effect.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentAdditiveGlow(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.Z_ROT, color.rf(), color.gf(), color.bf(), a * 5, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

@@ -25,7 +25,7 @@ import org.joml.Quaternionf;
 
 @Environment(EnvType.CLIENT)
 public class StellarRackRenderer<T extends StellarRackBlockEntity> implements BlockEntityRenderer<T> {
-	private static final RenderType STAR = ESRenderType.entityTranslucentGlow(EternalStarlight.id("textures/entity/stellar_rack_shine.png"));
+	private static final RenderType STAR = ESRenderType.entityTranslucentAdditiveGlow(EternalStarlight.id("textures/entity/stellar_rack_shine.png"));
 
 	public StellarRackRenderer(BlockEntityRendererProvider.Context context) {
 
