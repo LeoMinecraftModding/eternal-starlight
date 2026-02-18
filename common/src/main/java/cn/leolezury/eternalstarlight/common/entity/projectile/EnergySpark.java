@@ -134,6 +134,11 @@ public class EnergySpark extends ThrowableProjectile implements TrailOwner {
 	}
 
 	@Override
+	public boolean isOnFire() {
+		return false;
+	}
+
+	@Override
 	protected void onHitBlock(BlockHitResult hitResult) {
 		super.onHitBlock(hitResult);
 		switch (hitResult.getDirection().getAxis()) {

@@ -66,6 +66,11 @@ public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
 	}
 
 	@Override
+	public boolean isOnFire() {
+		return false;
+	}
+
+	@Override
 	protected void onHit(HitResult hitResult) {
 		super.onHit(hitResult);
 		if (hitResult.getType() != HitResult.Type.MISS) {

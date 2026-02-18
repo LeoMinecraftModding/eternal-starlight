@@ -102,6 +102,11 @@ public class ChainOfSouls extends Projectile implements Grappling {
 	}
 
 	@Override
+	public boolean isOnFire() {
+		return false;
+	}
+
+	@Override
 	public void tick() {
 		super.tick();
 		Player player = this.getPlayerOwner();

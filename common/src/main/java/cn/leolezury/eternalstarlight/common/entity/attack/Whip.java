@@ -239,6 +239,11 @@ public abstract class Whip extends Entity {
 	}
 
 	@Override
+	public boolean isOnFire() {
+		return false;
+	}
+
+	@Override
 	protected MovementEmission getMovementEmission() {
 		return MovementEmission.NONE;
 	}

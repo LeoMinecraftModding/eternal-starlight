@@ -17,7 +17,6 @@ import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -91,28 +90,27 @@ public class TheGatekeeperRenderer<T extends TheGatekeeper> extends MobRenderer<
 			super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLight);
 		}
 		if (entity.isAlive()) {
-			Vec3 currentPos = new Vec3(
-				Mth.lerp(partialTicks, entity.xo, entity.getX()),
-				Mth.lerp(partialTicks, entity.yo, entity.getY()),
-				Mth.lerp(partialTicks, entity.zo, entity.getZ())
-			);
+			double currentX = Mth.lerp(partialTicks, entity.xo, entity.getX());
+			double currentY = Mth.lerp(partialTicks, entity.yo, entity.getY());
+			double currentZ = Mth.lerp(partialTicks, entity.zo, entity.getZ());
 			float currentTick = getBob(entity, partialTicks);
-			if (entity.shouldAddTrailSnapshot() && (entity.trailSnapshots.isEmpty() || currentTick - entity.lastTrailTick > 3)) {
-				Map<String, ModelPartPose> snapshot = ESModelUtil.saveModelSnapshot(getModel().allPartNames, getModel()::getAnyDescendantWithName);
-				entity.trailSnapshots.addFirst(Pair.of(currentPos, new ModelSnapshot(0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, snapshot)));
-				entity.lastTrailTick = currentTick;
+			if (entity.trailSnapshots.isEmpty() || currentTick - entity.lastTrailTick > 3) {
+				if (entity.shouldAddTrailSnapshot()) {
+					Map<String, ModelPartPose> snapshot = ESModelUtil.saveModelSnapshot(getModel().allPartNames, getModel()::getAnyDescendantWithName);
+					entity.trailSnapshots.addFirst(Pair.of(new Vec3(currentX, currentY, currentZ), new ModelSnapshot(0, Mth.rotLerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), currentTick, snapshot)));
+					entity.lastTrailTick = currentTick;
+				}
+				entity.trailSnapshots.removeIf(p -> currentTick - p.getSecond().timestamp() > SNAPSHOT_LIFESPAN);
+				while (entity.trailSnapshots.size() > 32) {
+					entity.trailSnapshots.removeLast();
+				}
 			}
-			entity.trailSnapshots.removeIf(p -> currentTick - p.getSecond().timestamp() > SNAPSHOT_LIFESPAN);
-			while (entity.trailSnapshots.size() > 32) {
-				entity.trailSnapshots.removeLast();
-			}
-			getModel().root().getAllParts().forEach(ModelPart::resetPose);
 			for (int i = 0; i < entity.trailSnapshots.size(); i++) {
 				stack.pushPose();
 				Vec3 trailPos = entity.trailSnapshots.get(i).getFirst();
 				ModelSnapshot snapshot = entity.trailSnapshots.get(i).getSecond();
 				ESModelUtil.loadPoseFromSnapshot(snapshot.poses(), getModel()::getAnyDescendantWithName);
-				stack.translate(trailPos.x - currentPos.x, trailPos.y - currentPos.y, trailPos.z - currentPos.z);
+				stack.translate(trailPos.x - currentX, trailPos.y - currentY, trailPos.z - currentZ);
 				getModel().alphaFactor = (1 - Mth.clamp(currentTick - snapshot.timestamp(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
 				stack.mulPose(Axis.YP.rotationDegrees(180.0F - snapshot.yRot()));
 				stack.scale(-1.0F, -1.0F, 1.0F);

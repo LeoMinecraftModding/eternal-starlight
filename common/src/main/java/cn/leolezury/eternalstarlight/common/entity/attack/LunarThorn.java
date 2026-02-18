@@ -75,6 +75,11 @@ public class LunarThorn extends Entity implements TraceableEntity {
 	}
 
 	@Override
+	public boolean isOnFire() {
+		return false;
+	}
+
+	@Override
 	public void tick() {
 		super.tick();
 		if (!level().isClientSide) {

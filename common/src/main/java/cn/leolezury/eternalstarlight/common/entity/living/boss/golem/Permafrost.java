@@ -71,7 +71,7 @@ public class Permafrost extends ESBoss {
 
 	private final Vec3[] deathParticlePos = new Vec3[6];
 
-	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>();
+	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>(50);
 	public float lastTrailTick = 0;
 
 	public boolean shouldAddTrailSnapshot() {
