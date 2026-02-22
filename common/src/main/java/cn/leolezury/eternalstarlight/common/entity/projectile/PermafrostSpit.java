@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.attack.PermafrostCloud;
@@ -11,15 +9,11 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -34,8 +28,6 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector4f;
 
 public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
-
 	private static final String TAG_SMALL = "small";
 
 	protected static final EntityDataAccessor<Boolean> SMALL = SynchedEntityData.defineId(PermafrostSpit.class, EntityDataSerializers.BOOLEAN);
@@ -151,11 +143,5 @@ public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
 	@Override
 	public Vector4f getTrailColor() {
 		return new Vector4f(104 / 255f, 204 / 255f, 255 / 255f, 1f);
-	}
-
-	@Environment(EnvType.CLIENT)
-	@Override
-	public RenderType getTrailRenderType() {
-		return ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE);
 	}
 }

@@ -2,15 +2,12 @@ package cn.leolezury.eternalstarlight.common.client.book.component;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.serialization.Codec;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Environment(EnvType.CLIENT)
 public class BookComponentRegistry {
 	private static final Map<ResourceLocation, BookComponent<?>> COMPONENTS = new HashMap<>();
 	public static final Codec<BookComponent<?>> BY_NAME_CODEC = ResourceLocation.CODEC.xmap(id -> get(id).orElseThrow(), BookComponentRegistry::getKey);

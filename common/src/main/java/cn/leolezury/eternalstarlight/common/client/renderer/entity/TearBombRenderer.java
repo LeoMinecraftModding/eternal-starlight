@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.entity.misc.TearBomb;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -15,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 // copied from TntRenderer
-@Environment(EnvType.CLIENT)
+
 public class TearBombRenderer extends EntityRenderer<TearBomb> {
 	private final BlockRenderDispatcher blockRenderer;
 

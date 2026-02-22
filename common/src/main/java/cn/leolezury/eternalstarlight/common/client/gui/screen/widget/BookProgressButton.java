@@ -2,13 +2,10 @@ package cn.leolezury.eternalstarlight.common.client.gui.screen.widget;
 
 import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.CommonComponents;
 
-@Environment(EnvType.CLIENT)
 public class BookProgressButton extends Button {
 	private final BookDefinition book;
 	private final boolean isDown;

@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.entity.attack.Whip;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -19,7 +17,6 @@ import org.joml.Quaternionf;
 
 import java.util.Optional;
 
-@Environment(EnvType.CLIENT)
 public abstract class WhipRenderer<T extends Whip> extends EntityRenderer<T> {
 	public WhipRenderer(EntityRendererProvider.Context context) {
 		super(context);

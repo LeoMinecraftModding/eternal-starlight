@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.mixin.client;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.world.effect.MobEffects;
@@ -17,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Environment(EnvType.CLIENT)
 @Mixin(ItemInHandLayer.class)
 public abstract class ItemInHandLayerMixin {
 	@Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)

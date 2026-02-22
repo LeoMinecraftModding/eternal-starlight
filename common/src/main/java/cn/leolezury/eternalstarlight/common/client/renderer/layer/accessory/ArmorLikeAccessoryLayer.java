@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer.accessory;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -18,7 +16,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
-@Environment(EnvType.CLIENT)
 public abstract class ArmorLikeAccessoryLayer<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> extends RenderLayer<T, M> {
 	public static final ModelLayerLocation INNER_LOCATION = new ModelLayerLocation(EternalStarlight.id("accessory"), "inner_armor");
 	public static final ModelLayerLocation OUTER_LOCATION = new ModelLayerLocation(EternalStarlight.id("accessory"), "outer_armor");

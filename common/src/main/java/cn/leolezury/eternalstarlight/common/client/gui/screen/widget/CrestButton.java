@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -28,7 +26,6 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.function.Consumer;
 
-@Environment(EnvType.CLIENT)
 public class CrestButton extends Button {
 	private static final int CREST_WIDTH = 72;
 	private static final int CREST_HEIGHT = 72;

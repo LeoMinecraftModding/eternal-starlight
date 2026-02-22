@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -18,7 +16,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import org.joml.Quaternionf;
 
-@Environment(EnvType.CLIENT)
 public class TangledHuskRenderer extends EntityRenderer<TangledHusk> {
 	private final EntityRenderDispatcher entityRenderer;
 

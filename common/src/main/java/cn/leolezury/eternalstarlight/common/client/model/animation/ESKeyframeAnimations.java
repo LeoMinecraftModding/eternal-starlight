@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.model.animation;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
@@ -13,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Environment(EnvType.CLIENT)
 public class ESKeyframeAnimations {
 	public static void animate(AnimatedModel model, AnimationDefinition animationDefinition, long accumulatedTime, float scale, Vector3f animationVecCache) {
 		float elapsedSeconds = getElapsedSeconds(animationDefinition, accumulatedTime);

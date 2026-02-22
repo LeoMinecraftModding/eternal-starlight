@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.neoforge;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
-import cn.leolezury.eternalstarlight.neoforge.platform.NeoForgePlatform;
+import cn.leolezury.eternalstarlight.neoforge.platform.ESNeoPlatform;
 import cn.leolezury.eternalstarlight.neoforge.registry.ESFluidTypes;
 import cn.leolezury.eternalstarlight.neoforge.registry.ESRegistryRemapper;
 import net.minecraft.core.Registry;
@@ -20,10 +20,10 @@ public class ESNeoEntrypoint {
 		EternalStarlight.init();
 		modBus.addListener(this::onRegister);
 		modBus.addListener(this::onNewRegistry);
-		for (DeferredRegister<?> register : NeoForgePlatform.REGISTERS) {
+		for (DeferredRegister<?> register : ESNeoPlatform.REGISTERS) {
 			register.register(modBus);
 		}
-		NeoForgePlatform.ATTACHMENT_TYPE_REGISTER.register(modBus);
+		ESNeoPlatform.ATTACHMENT_TYPE_REGISTER.register(modBus);
 		ESRegistryRemapper.addAliases();
 	}
 
@@ -36,7 +36,7 @@ public class ESNeoEntrypoint {
 	}
 
 	private void onNewRegistry(NewRegistryEvent event) {
-		for (Registry<?> registry : NeoForgePlatform.NEW_REGISTRIES) {
+		for (Registry<?> registry : ESNeoPlatform.NEW_REGISTRIES) {
 			event.register(registry);
 		}
 	}

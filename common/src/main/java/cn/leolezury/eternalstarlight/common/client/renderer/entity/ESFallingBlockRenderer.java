@@ -1,10 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.entity.misc.ESFallingBlock;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -16,7 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 
-@Environment(EnvType.CLIENT)
 public class ESFallingBlockRenderer extends EntityRenderer<ESFallingBlock> {
 	private final BlockRenderDispatcher dispatcher;
 
@@ -35,7 +32,7 @@ public class ESFallingBlockRenderer extends EntityRenderer<ESFallingBlock> {
 				stack.pushPose();
 				BlockPos pos = BlockPos.containing(block.getX(), block.getBoundingBox().maxY, block.getZ());
 				stack.translate(-0.5, 0.0, -0.5);
-				ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, state, pos, state.getSeed(block.getStartPos()));
+				ESClientPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, state, pos, state.getSeed(block.getStartPos()));
 				stack.popPose();
 				super.render(block, yaw, delta, stack, bufferSource, packedLight);
 			}

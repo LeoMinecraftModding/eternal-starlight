@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -13,7 +11,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import org.joml.Quaternionf;
 
-@Environment(EnvType.CLIENT)
 public class SonarParticle extends SimpleAnimatedParticle {
 	private final float rot;
 	private final float pitch;

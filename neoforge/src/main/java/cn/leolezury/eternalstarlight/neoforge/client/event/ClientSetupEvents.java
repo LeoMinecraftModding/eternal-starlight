@@ -9,9 +9,9 @@ import cn.leolezury.eternalstarlight.common.client.model.armor.StarlitDiamondArm
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.UnrealiumArmorModel;
 import cn.leolezury.eternalstarlight.common.item.tooltip.GalacticQuiverTooltipComponent;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.neoforge.client.renderer.ForgeItemStackRenderer;
+import cn.leolezury.eternalstarlight.neoforge.client.renderer.ESNeoItemStackRenderer;
 import cn.leolezury.eternalstarlight.neoforge.registry.ESFluidTypes;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -61,7 +61,7 @@ public class ClientSetupEvents {
 
 	@SubscribeEvent
 	private static void onRegisterDimEffects(RegisterDimensionSpecialEffectsEvent event) {
-		event.register(EternalStarlight.id("special_effect"), ESPlatform.INSTANCE.getDimEffect());
+		event.register(EternalStarlight.id("special_effect"), ESClientPlatform.INSTANCE.getDimEffect());
 	}
 
 	@SubscribeEvent
@@ -76,8 +76,8 @@ public class ClientSetupEvents {
 
 	@SubscribeEvent
 	private static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
-		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.GLACITE_SHIELD.get());
-		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.FLOWGLAZE_SHIELD.get());
+		event.registerItem(ESNeoItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.GLACITE_SHIELD.get());
+		event.registerItem(ESNeoItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.FLOWGLAZE_SHIELD.get());
 		IClientItemExtensions alchemistArmor = new IClientItemExtensions() {
 			private AlchemistArmorModel<LivingEntity> model;
 
@@ -164,10 +164,10 @@ public class ClientSetupEvents {
 		event.registerItem(unrealiumArmor, ESItems.UNREALIUM_CHESTPLATE.get());
 		event.registerItem(unrealiumArmor, ESItems.UNREALIUM_LEGGINGS.get());
 		event.registerItem(unrealiumArmor, ESItems.UNREALIUM_BOOTS.get());
-		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.MALARITE_SPEAR.get());
-		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.PUNGENCY_FRUIT_SPEAR.get());
-		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.CRESCENT_SPEAR.get());
-		event.registerItem(ForgeItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.LOOT_CHEST.get());
+		event.registerItem(ESNeoItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.MALARITE_SPEAR.get());
+		event.registerItem(ESNeoItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.PUNGENCY_FRUIT_SPEAR.get());
+		event.registerItem(ESNeoItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.CRESCENT_SPEAR.get());
+		event.registerItem(ESNeoItemStackRenderer.CLIENT_ITEM_EXTENSION, ESItems.LOOT_CHEST.get());
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			@Override
@@ -221,6 +221,7 @@ public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		ESClientSetupHandler.registerEntityRenderers(event::registerEntityRenderer);
+		ESClientSetupHandler.registerBlockEntityRenderers(event::registerBlockEntityRenderer);
 	}
 
 	@SubscribeEvent

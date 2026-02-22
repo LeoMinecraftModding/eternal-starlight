@@ -2,14 +2,11 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.joml.Matrix4f;
 
-@Environment(EnvType.CLIENT)
 public class ESGuiUtil {
 	// from GuiGraphics, changed int -> float
 	public static void blitFloat(GuiGraphics graphics, ResourceLocation resourceLocation, float x, float y, float width, float height, float texWidth, float texHeight) {

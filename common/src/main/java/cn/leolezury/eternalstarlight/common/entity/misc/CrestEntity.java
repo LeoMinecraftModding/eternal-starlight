@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.misc;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
@@ -10,9 +8,6 @@ import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import cn.leolezury.eternalstarlight.common.vfx.ManaCrystalParticleVfx;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -32,8 +27,6 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector4f;
 
 public class CrestEntity extends Entity implements TrailOwner {
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
-
 	private static final String TAG_AGE = "age";
 	private static final String TAG_HEALTH = "health";
 	private static final String TAG_CREST = "crest";
@@ -206,11 +199,5 @@ public class CrestEntity extends Entity implements TrailOwner {
 	@Override
 	public boolean isTrailFullBright() {
 		return true;
-	}
-
-	@Environment(EnvType.CLIENT)
-	@Override
-	public RenderType getTrailRenderType() {
-		return ESRenderType.entityTranslucentAdditiveGlow(TRAIL_TEXTURE);
 	}
 }

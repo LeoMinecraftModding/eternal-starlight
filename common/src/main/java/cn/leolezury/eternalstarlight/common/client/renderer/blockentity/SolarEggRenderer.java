@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.block.SolarEggBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.SolarEggBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -19,7 +17,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 
-@Environment(EnvType.CLIENT)
 public class SolarEggRenderer implements BlockEntityRenderer<SolarEggBlockEntity> {
 	private final SolarEggModel eggModel;
 

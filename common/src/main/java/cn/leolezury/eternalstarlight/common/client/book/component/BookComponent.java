@@ -3,11 +3,8 @@ package cn.leolezury.eternalstarlight.common.client.book.component;
 import cn.leolezury.eternalstarlight.common.client.book.BookContext;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 
-@Environment(EnvType.CLIENT)
 public abstract class BookComponent<C extends BookComponentConfig> {
 	private final MapCodec<ConfiguredBookComponent<C, BookComponent<C>>> configuredCodec;
 

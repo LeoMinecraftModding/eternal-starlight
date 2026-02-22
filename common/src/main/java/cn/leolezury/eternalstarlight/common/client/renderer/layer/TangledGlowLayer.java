@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.TangledModel;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Tangled;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -13,7 +11,6 @@ import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 
-@Environment(EnvType.CLIENT)
 public class TangledGlowLayer<T extends Tangled> extends RenderLayer<T, TangledModel<T>> {
 	private static final RenderType GLOW = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/tangled_glow.png"));
 	private final TangledModel<T> model;

@@ -6,13 +6,10 @@ import cn.leolezury.eternalstarlight.common.client.renderer.layer.LuminoFishGlow
 import cn.leolezury.eternalstarlight.common.entity.living.animal.Luminofish;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
 public class LuminoFishRenderer<T extends Luminofish> extends MobRenderer<T, LuminoFishModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/luminofish.png");
 

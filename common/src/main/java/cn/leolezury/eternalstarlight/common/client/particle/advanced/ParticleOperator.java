@@ -1,11 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.particle.advanced;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector4f;
 
-@Environment(EnvType.CLIENT)
 public interface ParticleOperator {
 	Vec3 getOldPos();
 

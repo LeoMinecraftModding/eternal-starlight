@@ -921,14 +921,6 @@
       }
     ]
   },
-  "music.boss.common": {
-    "sounds": [
-      {
-        "name": "eternal_starlight:music/boss/common",
-        "stream": true
-      }
-    ]
-  },
   "music.boss.gatekeeper": {
     "sounds": [
       {

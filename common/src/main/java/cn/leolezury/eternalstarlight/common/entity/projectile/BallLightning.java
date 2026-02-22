@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
@@ -11,14 +9,10 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
@@ -35,8 +29,6 @@ import org.joml.Vector4f;
 import java.util.UUID;
 
 public class BallLightning extends ThrowableProjectile implements TrailOwner {
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
-
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
 
@@ -216,11 +208,5 @@ public class BallLightning extends ThrowableProjectile implements TrailOwner {
 	@Override
 	public Vector4f getTrailColor() {
 		return new Vector4f(128 / 255f, 255 / 255f, 255 / 255f, 2f);
-	}
-
-	@Environment(EnvType.CLIENT)
-	@Override
-	public RenderType getTrailRenderType() {
-		return ESRenderType.entityTranslucentAdditiveGlow(TRAIL_TEXTURE);
 	}
 }

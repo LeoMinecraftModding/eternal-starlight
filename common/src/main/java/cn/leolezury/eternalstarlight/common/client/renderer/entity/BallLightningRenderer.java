@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.BallLightningMod
 import cn.leolezury.eternalstarlight.common.entity.projectile.BallLightning;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -25,7 +23,6 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/ball_lightning.png");
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");

@@ -1,13 +1,13 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.sound.BossMusicSoundInstance;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
+import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
@@ -32,8 +32,6 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.AttackIndicatorStatus;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -71,7 +69,6 @@ import org.joml.Matrix4f;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Environment(EnvType.CLIENT)
 public class ESClientHandler {
 	public static BookLoader books;
 	public static final Set<Mob> BOSSES = Collections.newSetFromMap(new WeakHashMap<>());

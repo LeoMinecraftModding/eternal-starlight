@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.AethersentGolemAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -15,7 +13,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class AethersentGolemModel<T extends AethersentGolem> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("aethersent_golem"), "main");
 	private final ModelPart root;

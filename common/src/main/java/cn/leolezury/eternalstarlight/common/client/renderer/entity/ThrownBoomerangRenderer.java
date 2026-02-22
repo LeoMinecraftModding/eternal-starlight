@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownBoomerang;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,7 +15,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
-@Environment(EnvType.CLIENT)
 public class ThrownBoomerangRenderer<T extends ThrownBoomerang> extends EntityRenderer<T> {
 	private final ItemRenderer itemRenderer;
 

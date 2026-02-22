@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.sound;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
@@ -11,7 +9,6 @@ import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 
-@Environment(EnvType.CLIENT)
 public class BossMusicSoundInstance extends AbstractTickableSoundInstance {
 	protected final ESBoss boss;
 

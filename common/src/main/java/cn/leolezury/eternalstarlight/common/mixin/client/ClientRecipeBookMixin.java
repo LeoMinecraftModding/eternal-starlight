@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.ClientRecipeBook;
 import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -13,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Environment(EnvType.CLIENT)
 @Mixin(ClientRecipeBook.class)
 public abstract class ClientRecipeBookMixin {
 	@Inject(method = "getCategory", at = @At("HEAD"), cancellable = true)

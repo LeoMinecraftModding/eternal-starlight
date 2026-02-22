@@ -7,8 +7,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -40,7 +38,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-@Environment(EnvType.CLIENT)
 public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Config> {
 	public DisplayBookComponent() {
 		super(Config.CODEC);

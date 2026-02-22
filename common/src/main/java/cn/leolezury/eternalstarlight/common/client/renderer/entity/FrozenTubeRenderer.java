@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.FrozenTubeModel;
 import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -15,7 +13,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class FrozenTubeRenderer extends EntityRenderer<FrozenTube> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/freeze.png");
 	private final FrozenTubeModel<FrozenTube> model;

@@ -8,8 +8,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
@@ -24,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.function.Supplier;
 
-@Environment(EnvType.CLIENT)
 public class ESItemStackRenderer {
 	private static final Supplier<LootChestBlockEntity> LOOT_CHEST = Suppliers.memoize(() -> new LootChestBlockEntity(BlockPos.ZERO, ESBlocks.LOOT_CHEST.get().defaultBlockState()));
 

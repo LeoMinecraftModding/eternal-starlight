@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.renderer.blockentity;
 import cn.leolezury.eternalstarlight.common.block.entity.MechanicalSpawner;
 import cn.leolezury.eternalstarlight.common.block.entity.MechanicalSpawnerBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -13,7 +11,6 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 
-@Environment(EnvType.CLIENT)
 public class MechanicalSpawnerRenderer implements BlockEntityRenderer<MechanicalSpawnerBlockEntity> {
 	private final EntityRenderDispatcher entityRenderer;
 

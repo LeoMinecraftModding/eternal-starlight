@@ -4,15 +4,12 @@ import cn.leolezury.eternalstarlight.common.block.DryingRackBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.DryingRackBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
 
-@Environment(EnvType.CLIENT)
 public class DryingRackRenderer implements BlockEntityRenderer<DryingRackBlockEntity> {
 	private final ItemRenderer itemRenderer;
 

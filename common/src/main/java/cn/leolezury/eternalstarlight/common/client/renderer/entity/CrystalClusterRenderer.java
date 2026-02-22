@@ -1,11 +1,9 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.CrystalCluster;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -19,7 +17,6 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import org.joml.Quaternionf;
 
-@Environment(EnvType.CLIENT)
 public class CrystalClusterRenderer extends EntityRenderer<CrystalCluster> {
 	private final BlockRenderDispatcher dispatcher;
 
@@ -41,7 +38,7 @@ public class CrystalClusterRenderer extends EntityRenderer<CrystalCluster> {
 				stack.mulPose(new Quaternionf().rotateY(-yaw * Mth.DEG_TO_RAD));
 				stack.translate(-0.5 * scale, 0.0, -0.5 * scale);
 				stack.scale(scale, scale, scale);
-				ESPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, state, pos, state.getSeed(cluster.blockPosition()));
+				ESClientPlatform.INSTANCE.renderBlock(dispatcher, stack, bufferSource, level, state, pos, state.getSeed(cluster.blockPosition()));
 				stack.popPose();
 				super.render(cluster, yaw, delta, stack, bufferSource, packedLight);
 			}

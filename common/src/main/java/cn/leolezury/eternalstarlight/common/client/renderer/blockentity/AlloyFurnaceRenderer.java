@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.block.entity.AlloyFurnaceBlockEntity
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -26,7 +24,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlockEntity> {
 	private final AlloyFurnaceModel furnaceModel;
 

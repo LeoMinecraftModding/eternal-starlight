@@ -11,8 +11,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -25,7 +23,6 @@ import net.minecraft.world.phys.Vec3;
 import java.util.List;
 import java.util.Map;
 
-@Environment(EnvType.CLIENT)
 public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, PermafrostModel<T>> {
 	private static final int SNAPSHOT_LIFESPAN = 8;
 

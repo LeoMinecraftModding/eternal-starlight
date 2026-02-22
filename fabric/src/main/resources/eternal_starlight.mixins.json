@@ -13,7 +13,8 @@
     "PistonStructureResolverMixin",
     "PlayerAdvancementsMixin",
     "PlayerMixin",
-    "ProjectileMixin"
+    "ProjectileMixin",
+    "UtilMixin"
   ],
   "client": [
     "client.AbstractClientPlayerMixin",

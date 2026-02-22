@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
+import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import net.minecraft.network.FriendlyByteBuf;

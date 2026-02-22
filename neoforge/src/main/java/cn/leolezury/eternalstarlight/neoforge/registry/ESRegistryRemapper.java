@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.neoforge.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.neoforge.platform.NeoForgePlatform;
+import cn.leolezury.eternalstarlight.neoforge.platform.ESNeoPlatform;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -10,8 +10,8 @@ import java.util.Optional;
 
 public class ESRegistryRemapper {
 	public static void addAliases() {
-		Optional<DeferredRegister<?>> itemsRegister = NeoForgePlatform.REGISTERS.stream().filter(register -> register.getRegistryName().equals(Registries.ITEM.location())).findFirst();
-		Optional<DeferredRegister<?>> blocksRegister = NeoForgePlatform.REGISTERS.stream().filter(register -> register.getRegistryName().equals(Registries.BLOCK.location())).findFirst();
+		Optional<DeferredRegister<?>> itemsRegister = ESNeoPlatform.REGISTERS.stream().filter(register -> register.getRegistryName().equals(Registries.ITEM.location())).findFirst();
+		Optional<DeferredRegister<?>> blocksRegister = ESNeoPlatform.REGISTERS.stream().filter(register -> register.getRegistryName().equals(Registries.BLOCK.location())).findFirst();
 		if (itemsRegister.isPresent() && blocksRegister.isPresent()) {
 			// banyin
 			addAlias("starlight_mangrove_sapling", "banyin_sapling", itemsRegister.get(), blocksRegister.get());

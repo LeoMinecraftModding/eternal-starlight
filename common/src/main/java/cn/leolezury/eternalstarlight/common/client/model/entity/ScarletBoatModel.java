@@ -1,13 +1,10 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-@Environment(EnvType.CLIENT)
 public class ScarletBoatModel extends BoatModel {
 	public ScarletBoatModel(ModelPart root) {
 		super(root);

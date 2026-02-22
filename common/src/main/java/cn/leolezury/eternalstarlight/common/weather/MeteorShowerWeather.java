@@ -1,18 +1,12 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.TinyCreteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
@@ -101,23 +95,13 @@ public class MeteorShowerWeather extends AbstractWeather {
 
 	}
 
-	@Environment(EnvType.CLIENT)
 	@Override
 	public void clientTick() {
-		ClientLevel level = Minecraft.getInstance().level;
-		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-		if (level != null && level.getGameTime() % 20 == 0) {
-			Vec3 randomPos = camera.getPosition().offsetRandom(level.getRandom(), 75f);
-			int height = level.getHeight(Heightmap.Types.MOTION_BLOCKING, (int) randomPos.x, (int) randomPos.z);
-			level.addParticle(ESParticles.METEOR.get(), true, randomPos.x, Math.max(height + 75, camera.getPosition().y + 75), randomPos.z, 0, 0, 0);
-		}
+		EternalStarlight.getClientHelper().handleMeteorShowerClientTick();
 	}
 
-	@Environment(EnvType.CLIENT)
 	@Override
 	public float modifyRainLevel(float original) {
-		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
-		ClientWeatherState.levelTarget = 1;
-		return ClientWeatherState.getRainLevel(partialTick);
+		return EternalStarlight.getClientHelper().handleMeteorShowerRainLevel();
 	}
 }

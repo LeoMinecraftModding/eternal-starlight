@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.definition.Th
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.*;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -23,7 +21,6 @@ import net.minecraft.world.entity.HumanoidArm;
 import java.util.List;
 import java.util.stream.Stream;
 
-@Environment(EnvType.CLIENT)
 public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityModel<T> implements ArmedModel {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("the_gatekeeper"), "main");
 	public static final ModelLayerLocation SLIM_LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("the_gatekeeper_slim"), "main");

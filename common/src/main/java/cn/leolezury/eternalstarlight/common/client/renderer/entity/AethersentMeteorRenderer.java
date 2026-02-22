@@ -10,8 +10,6 @@ import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -24,7 +22,6 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Map;
 
-@Environment(EnvType.CLIENT)
 public class AethersentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/aethersent_meteor.png");
 	private static final int SNAPSHOT_LIFESPAN = 5;

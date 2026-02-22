@@ -4,14 +4,11 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.LunarMonstrosityAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-@Environment(EnvType.CLIENT)
 public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("lunar_monstrosity"), "main");
 	private final ModelPart root;

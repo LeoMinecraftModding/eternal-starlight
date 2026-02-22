@@ -8,8 +8,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -29,7 +27,6 @@ import org.joml.Quaternionf;
 
 import java.util.Optional;
 
-@Environment(EnvType.CLIENT)
 public class ChainOfSoulsRenderer extends EntityRenderer<ChainOfSouls> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/chain_of_souls.png");
 	private static final ResourceLocation TIP_TEXTURE = EternalStarlight.id("textures/entity/chain_of_souls_tip.png");

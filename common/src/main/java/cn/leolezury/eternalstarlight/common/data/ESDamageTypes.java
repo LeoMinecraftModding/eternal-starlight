@@ -36,7 +36,6 @@ public class ESDamageTypes {
 	public static final ResourceKey<DamageType> POISON = create("poison");
 	public static final ResourceKey<DamageType> BITE = create("bite");
 
-
 	public static ResourceKey<DamageType> create(String name) {
 		return ResourceKey.create(Registries.DAMAGE_TYPE, EternalStarlight.id(name));
 	}

@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
@@ -10,7 +8,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class FireflyParticle extends TextureSheetParticle {
 	private final SpriteSet spriteSet;
 	private int ticksSinceMotionChange;

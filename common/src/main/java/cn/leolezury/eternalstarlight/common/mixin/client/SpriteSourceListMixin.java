@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.data.ESTrimMaterials;
 import cn.leolezury.eternalstarlight.common.data.ESTrimPatterns;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteSourceList;
 import net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations;
@@ -22,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Environment(EnvType.CLIENT)
 @Mixin(SpriteSourceList.class)
 public abstract class SpriteSourceListMixin {
 	@Inject(method = "<init>", at = @At("RETURN"))

@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.fabric.mixin.client;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.CrossbowItem;
@@ -15,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Environment(EnvType.CLIENT)
 @Mixin(ItemInHandRenderer.class)
 public abstract class ItemInHandRendererMixin {
 	@WrapOperation(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 1))

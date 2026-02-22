@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.NoRenderParticle;
 import net.minecraft.client.particle.Particle;
@@ -10,7 +8,6 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 
-@Environment(EnvType.CLIENT)
 public class SmokeTrailParticle extends NoRenderParticle {
 	protected SmokeTrailParticle(ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
 		super(clientLevel, d, e, f, g, h, i);

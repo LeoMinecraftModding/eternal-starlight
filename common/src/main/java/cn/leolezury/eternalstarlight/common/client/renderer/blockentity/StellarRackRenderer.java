@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -23,7 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 
-@Environment(EnvType.CLIENT)
 public class StellarRackRenderer<T extends StellarRackBlockEntity> implements BlockEntityRenderer<T> {
 	private static final RenderType STAR = ESRenderType.entityTranslucentAdditiveGlow(EternalStarlight.id("textures/entity/stellar_rack_shine.png"));
 

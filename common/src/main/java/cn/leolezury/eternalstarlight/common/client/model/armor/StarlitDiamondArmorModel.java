@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.model.armor;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -10,7 +8,6 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.LivingEntity;
 
-@Environment(EnvType.CLIENT)
 public class StarlitDiamondArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
 	public static final ModelLayerLocation INNER_LOCATION = new ModelLayerLocation(EternalStarlight.id("starlit_diamond_armor"), "inner");
 	public static final ModelLayerLocation OUTER_LOCATION = new ModelLayerLocation(EternalStarlight.id("starlit_diamond_armor"), "outer");

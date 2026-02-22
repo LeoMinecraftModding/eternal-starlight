@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
 import cn.leolezury.eternalstarlight.common.registry.ESWeathers;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -32,10 +30,8 @@ public abstract class AbstractWeather {
 
 	public abstract void onStop(ServerLevel level, int ticks);
 
-	@Environment(EnvType.CLIENT)
 	public abstract void clientTick();
 
-	@Environment(EnvType.CLIENT)
 	public abstract float modifyRainLevel(float original);
 
 	public String getDescriptionId() {

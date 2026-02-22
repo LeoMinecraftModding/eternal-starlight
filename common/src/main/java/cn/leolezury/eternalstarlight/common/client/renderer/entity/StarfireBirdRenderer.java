@@ -4,14 +4,11 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.StarfireBirdModel;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.StarfireBird;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
 public class StarfireBirdRenderer<T extends StarfireBird> extends MobRenderer<T, StarfireBirdModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/starfire_bird.png");
 	private static final ResourceLocation SPECIAL_TEXTURE = EternalStarlight.id("textures/entity/starfire_bird_special.png");

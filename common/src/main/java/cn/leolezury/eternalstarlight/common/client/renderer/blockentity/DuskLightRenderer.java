@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.block.entity.AbstractDuskLightBlockE
 import cn.leolezury.eternalstarlight.common.block.entity.DuskLightBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
@@ -20,7 +18,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class DuskLightRenderer<T extends AbstractDuskLightBlockEntity> implements BlockEntityRenderer<T> {
 	public static final ResourceLocation DUSK_BEAM_TEXTURE = EternalStarlight.id("textures/entity/dusk_beam.png");
 

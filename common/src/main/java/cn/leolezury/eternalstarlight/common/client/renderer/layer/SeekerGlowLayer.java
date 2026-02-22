@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.SeekerModel;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Seeker;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -13,7 +11,6 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
-@Environment(EnvType.CLIENT)
 public class SeekerGlowLayer<T extends Seeker, M extends SeekerModel<T>> extends RenderLayer<T, M> {
 	public SeekerGlowLayer(RenderLayerParent<T, M> parent) {
 		super(parent);

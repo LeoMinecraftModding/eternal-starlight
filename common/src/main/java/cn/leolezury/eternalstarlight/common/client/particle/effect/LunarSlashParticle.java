@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
@@ -16,7 +14,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 
-@Environment(EnvType.CLIENT)
 public class LunarSlashParticle extends TextureSheetParticle {
 	private static final int DIVISION = 72;
 	private static final float CELL = (float) 180 / DIVISION;

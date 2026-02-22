@@ -2,13 +2,10 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
 
-@Environment(EnvType.CLIENT)
 public class ESExplosionParticle extends SimpleAnimatedParticle {
 	protected ESExplosionParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, int fromColor, int toColor, SpriteSet spriteSet) {
 		super(level, x, y, z, spriteSet, 0);

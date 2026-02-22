@@ -1,34 +1,49 @@
 package cn.leolezury.eternalstarlight.common.client.visual;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Environment(EnvType.CLIENT)
 public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVisualEffect {
+	public static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
+
+	public static final Map<ResourceLocation, RenderType> RENDER_TYPES = new HashMap<>();
+
 	private final T entity;
 	private final TrailEffect effect;
+	private final RenderType renderType;
 	private boolean shouldRemove;
 
 	public TrailVisualEffect(Entity entity) {
 		if (entity instanceof TrailOwner) {
 			this.entity = (T) entity;
 			this.effect = ((T) entity).newTrail();
+			this.renderType = RENDER_TYPES.getOrDefault(BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()), ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE));
 		} else {
 			throw new UnsupportedOperationException("Entity using TrailVisualEffect must implement TrailOwner");
 		}
+	}
+
+	public static void registerTrailRenderType(EntityType<?> type, RenderType renderType) {
+		RENDER_TYPES.put(BuiltInRegistries.ENTITY_TYPE.getKey(type), renderType);
 	}
 
 	public T getEntity() {
@@ -73,7 +88,7 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 		float y = (float) (entityRemoved ? entity.getY() : Mth.lerp(partialTicks, entity.yOld, entity.getY()));
 		float z = (float) (entityRemoved ? entity.getZ() : Mth.lerp(partialTicks, entity.zOld, entity.getZ()));
 		this.effect.prepareRender(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), partialTicks);
-		this.effect.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(entity.getTrailRenderType()), stack, entity.getTrailOffsetFunction(), entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
+		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType), stack, entity.getTrailOffsetFunction(), entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
 	}
 
 	@Override

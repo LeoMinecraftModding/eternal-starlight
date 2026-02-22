@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.gui.screen;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.item.menu.AlloyFurnaceMenu;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
@@ -12,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 
-@Environment(EnvType.CLIENT)
 public class AlloyFurnaceScreen extends AbstractContainerScreen<AlloyFurnaceMenu> implements MenuAccess<AlloyFurnaceMenu> {
 	private static final ResourceLocation CONTAINER_BACKGROUND = EternalStarlight.id("textures/gui/screen/alloy_furnace/background.png");
 	private static final ResourceLocation LIT_PROGRESS = EternalStarlight.id("screen/alloy_furnace/lit_progress");

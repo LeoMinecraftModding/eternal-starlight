@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.model.armor;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,7 +11,6 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.world.entity.LivingEntity;
 
-@Environment(EnvType.CLIENT)
 public class ThermalSpringStoneArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
 	public static final ModelLayerLocation INNER_LOCATION = new ModelLayerLocation(EternalStarlight.id("thermal_springstone_armor"), "inner");
 	public static final ModelLayerLocation OUTER_LOCATION = new ModelLayerLocation(EternalStarlight.id("thermal_springstone_armor"), "outer");

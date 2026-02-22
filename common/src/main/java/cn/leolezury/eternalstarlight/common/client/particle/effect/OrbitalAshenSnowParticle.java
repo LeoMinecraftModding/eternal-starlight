@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.BaseAshSmokeParticle;
@@ -14,7 +12,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class OrbitalAshenSnowParticle extends BaseAshSmokeParticle {
 	private final double cx, cz;
 	private final float maxRadius, rotSpeed;

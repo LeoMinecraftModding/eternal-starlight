@@ -10,8 +10,6 @@ import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -22,7 +20,6 @@ import org.joml.Matrix4f;
 import java.util.ArrayList;
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class CrestSelectionScreen extends Screen {
 	private final List<CrestButton> crestButtons = new ArrayList<>();
 	private final List<Crest.Instance> ownedCrests;

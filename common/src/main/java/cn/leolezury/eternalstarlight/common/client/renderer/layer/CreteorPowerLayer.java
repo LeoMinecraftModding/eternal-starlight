@@ -2,15 +2,12 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.client.model.entity.CreteorModel;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Creteor;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EnergySwirlLayer;
 import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
 public class CreteorPowerLayer<T extends Creteor> extends EnergySwirlLayer<T, CreteorModel<T>> {
 	private static final ResourceLocation POWER_LOCATION = ResourceLocation.withDefaultNamespace("textures/entity/creeper/creeper_armor.png");
 	private final CreteorModel<T> model;

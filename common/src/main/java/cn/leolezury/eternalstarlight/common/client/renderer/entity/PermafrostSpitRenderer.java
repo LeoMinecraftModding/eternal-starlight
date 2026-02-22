@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.PermafrostSpitMo
 import cn.leolezury.eternalstarlight.common.entity.projectile.PermafrostSpit;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -15,7 +13,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class PermafrostSpitRenderer extends EntityRenderer<PermafrostSpit> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/permafrost_spit.png");
 	private static final ResourceLocation SMALL_TEXTURE = EternalStarlight.id("textures/entity/permafrost_spit_small.png");

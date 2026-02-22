@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.shader;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.ShaderInstance;
 
-@Environment(EnvType.CLIENT)
 public class ESShaders {
 	private static ShaderInstance crestSelectionGui;
 	private static ShaderInstance renderTypeStarlightPortal;

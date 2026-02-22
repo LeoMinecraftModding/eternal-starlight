@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.model.item;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,7 +11,6 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
 public class MalariteSpearModel extends Model {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("malarite_spear"), "main");
 	public static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/malarite_spear.png");

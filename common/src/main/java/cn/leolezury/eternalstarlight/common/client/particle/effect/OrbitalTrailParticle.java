@@ -3,14 +3,13 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
+import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -23,7 +22,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class OrbitalTrailParticle extends Particle {
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 
@@ -87,7 +85,7 @@ public class OrbitalTrailParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
-		this.effect.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentAdditiveGlow(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.Z_ROT, color.rf(), color.gf(), color.bf(), a * 5, LightTexture.FULL_BRIGHT);
+		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, color.rf(), color.gf(), color.bf(), a * 5, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 
@@ -95,7 +93,6 @@ public class OrbitalTrailParticle extends Particle {
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.CUSTOM;
 	}
-
 
 	public static class Provider implements ParticleProvider<OrbitalTrailParticleOptions> {
 		public Provider(SpriteSet spriteSet) {

@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.model.animation;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.PlayerModel;
@@ -19,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-@Environment(EnvType.CLIENT)
 public class PlayerAnimator {
 	public static final HashMap<AnimationTrigger, AnimationStateFunction> ANIMATIONS = new HashMap<>();
 

@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -11,7 +9,6 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
 
-@Environment(EnvType.CLIENT)
 public class StarfireExplosionParticle extends SimpleAnimatedParticle {
 	protected StarfireExplosionParticle(ClientLevel level, double x, double y, double z, double dx, double dy, double dz, float scale, SpriteSet spriteSet) {
 		super(level, x, y, z, spriteSet, 0.25f);

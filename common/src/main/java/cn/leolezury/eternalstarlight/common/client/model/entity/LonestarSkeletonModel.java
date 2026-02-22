@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.entity.living.monster.LonestarSkeleton;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.SkeletonModel;
@@ -10,7 +8,6 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-@Environment(EnvType.CLIENT)
 public class LonestarSkeletonModel<T extends LonestarSkeleton> extends SkeletonModel<T> {
 	private final ModelPart innerHead;
 

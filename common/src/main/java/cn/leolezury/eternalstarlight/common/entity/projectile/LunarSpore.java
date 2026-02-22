@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
@@ -10,11 +9,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -30,8 +25,6 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector4f;
 
 public class LunarSpore extends ThrowableProjectile implements TrailOwner {
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
-
 	public LunarSpore(EntityType<? extends LunarSpore> type, Level level) {
 		super(type, level);
 	}
@@ -122,11 +115,5 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 	@Override
 	public Vector4f getTrailColor() {
 		return new Vector4f(32 / 255f, 32 / 255f, 64 / 255f, 2f);
-	}
-
-	@Environment(EnvType.CLIENT)
-	@Override
-	public RenderType getTrailRenderType() {
-		return RenderType.entityTranslucent(TRAIL_TEXTURE);
 	}
 }

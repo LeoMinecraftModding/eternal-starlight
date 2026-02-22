@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AccumulatorBlock;
 import cn.leolezury.eternalstarlight.common.block.ESSkullType;
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.AlloyFurnaceScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrateScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrystalbornCatalystScreen;
@@ -35,13 +36,12 @@ import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
 import cn.leolezury.eternalstarlight.common.item.combat.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.item.misc.GalacticQuiverItem;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.Util;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -86,6 +86,8 @@ import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SkullBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
@@ -100,7 +102,6 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-@Environment(EnvType.CLIENT)
 public class ESClientSetupHandler {
 	public interface BlockColorRegisterStrategy {
 		void register(BlockColor blockColor, Block... blocks);
@@ -116,6 +117,10 @@ public class ESClientSetupHandler {
 
 	public interface EntityRendererRegisterStrategy {
 		<T extends Entity> void register(EntityType<? extends T> entityType, EntityRendererProvider<T> entityRendererProvider);
+	}
+
+	public interface BlockEntityRendererRegisterStrategy {
+		<T extends BlockEntity> void register(BlockEntityType<? extends T> entityType, BlockEntityRendererProvider<T> entityRendererProvider);
 	}
 
 	public interface SkullRendererRegisterStrategy {
@@ -454,25 +459,11 @@ public class ESClientSetupHandler {
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.LASER_BEAM), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.CastSpellHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 
-		BlockEntityRenderers.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.TORREYA_CAMPFIRE.get(), CampfireRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.DRYING_RACK.get(), DryingRackRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.STARFIRE_BIRD_NEST.get(), StarfireBirdNestRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.BRUSHABLE_BLOCK.get(), BrushableBlockRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.LOOT_CHEST.get(), LootChestRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.ENERGY_TRANSMITTER.get(), EnergyTransmitterRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.MECHANICAL_SPAWNER.get(), MechanicalSpawnerRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.ALLOY_FURNACE.get(), AlloyFurnaceRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.SOLAR_EGG.get(), SolarEggRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.DUSK_EMITTER.get(), DuskLightRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.FLARE_SPAWNER.get(), FlareSpawnerRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.ECLIPSE_CORE.get(), EclipseCoreRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
-		BlockEntityRenderers.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
+		TrailVisualEffect.registerTrailRenderType(ESEntities.AETHERSENT_METEOR.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.CREST.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.GATEKEEPER_FIREBALL.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.ENERGY_SPARK.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.BALL_LIGHTNING.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
@@ -775,7 +766,7 @@ public class ESClientSetupHandler {
 			for (ModelResourceLocation id : models.keySet()) {
 				String path = id.id().getPath();
 				if (id.id().getNamespace().equals(EternalStarlight.ID) && (path.startsWith("thermal_springstone_") || (path.startsWith("starfire_") && !path.startsWith("starfire_bird") && !path.startsWith("starfire_upgrade")))) {
-					models.put(id, ESPlatform.INSTANCE.getGlowingBakedModel(models.get(id)));
+					models.put(id, ESClientPlatform.INSTANCE.getGlowingBakedModel(models.get(id)));
 				}
 			}
 			modifiedBakedModels = true;
@@ -955,6 +946,28 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
 	}
 
+	public static void registerBlockEntityRenderers(BlockEntityRendererRegisterStrategy strategy) {
+		strategy.register(ESBlockEntities.SIGN.get(), SignRenderer::new);
+		strategy.register(ESBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
+		strategy.register(ESBlockEntities.TORREYA_CAMPFIRE.get(), CampfireRenderer::new);
+		strategy.register(ESBlockEntities.DRYING_RACK.get(), DryingRackRenderer::new);
+		strategy.register(ESBlockEntities.STARFIRE_BIRD_NEST.get(), StarfireBirdNestRenderer::new);
+		strategy.register(ESBlockEntities.SKULL.get(), SkullBlockRenderer::new);
+		strategy.register(ESBlockEntities.BRUSHABLE_BLOCK.get(), BrushableBlockRenderer::new);
+		strategy.register(ESBlockEntities.LOOT_CHEST.get(), LootChestRenderer::new);
+		strategy.register(ESBlockEntities.ENERGY_TRANSMITTER.get(), EnergyTransmitterRenderer::new);
+		strategy.register(ESBlockEntities.MECHANICAL_SPAWNER.get(), MechanicalSpawnerRenderer::new);
+		strategy.register(ESBlockEntities.ALLOY_FURNACE.get(), AlloyFurnaceRenderer::new);
+		strategy.register(ESBlockEntities.SOLAR_EGG.get(), SolarEggRenderer::new);
+		strategy.register(ESBlockEntities.LUNAR_VINE.get(), LunarVineRenderer::new);
+		strategy.register(ESBlockEntities.DUSK_LIGHT.get(), DuskLightRenderer::new);
+		strategy.register(ESBlockEntities.DUSK_EMITTER.get(), DuskLightRenderer::new);
+		strategy.register(ESBlockEntities.FLARE_SPAWNER.get(), FlareSpawnerRenderer::new);
+		strategy.register(ESBlockEntities.ECLIPSE_CORE.get(), EclipseCoreRenderer::new);
+		strategy.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
+		strategy.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
+	}
+
 	public static void registerSkullModels(SkullRendererRegisterStrategy strategy, EntityModelSet modelSet) {
 		strategy.register(ESSkullType.TANGLED, new TangledHeadModel(modelSet.bakeLayer(TangledHeadModel.LAYER_LOCATION)));
 	}
@@ -1071,7 +1084,7 @@ public class ESClientSetupHandler {
 	}
 
 	public static void addClientReloadListeners(Consumer<PreparableReloadListener> strategy) {
-		ESClientHandler.books = ESPlatform.INSTANCE.createBookLoader();
+		ESClientHandler.books = ESClientPlatform.INSTANCE.createBookLoader();
 		strategy.accept(ESClientHandler.books);
 	}
 

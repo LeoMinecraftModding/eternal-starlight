@@ -1,12 +1,9 @@
 package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 
-@Environment(EnvType.CLIENT)
 public class FallingLeavesParticle extends TextureSheetParticle {
 	private float rotSpeed;
 	private final float particleRandom;

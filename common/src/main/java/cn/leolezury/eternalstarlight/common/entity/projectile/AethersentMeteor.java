@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
@@ -17,9 +15,6 @@ import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.mojang.datafixers.util.Pair;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,7 +22,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -52,8 +46,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class AethersentMeteor extends AbstractHurtingProjectile implements TrailOwner {
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
-
 	private static final String TAG_SIZE = "size";
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_TARGET_X = "target_x";
@@ -325,11 +317,5 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Override
 	public boolean isTrailFullBright() {
 		return true;
-	}
-
-	@Environment(EnvType.CLIENT)
-	@Override
-	public RenderType getTrailRenderType() {
-		return ESRenderType.entityTranslucentAdditiveGlow(TRAIL_TEXTURE);
 	}
 }

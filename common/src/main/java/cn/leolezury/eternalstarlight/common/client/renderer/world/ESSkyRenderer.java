@@ -1,12 +1,10 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.world;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
+import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -23,7 +21,6 @@ import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-@Environment(EnvType.CLIENT)
 public class ESSkyRenderer {
 	private static final ResourceLocation DEAD_STAR_LOCATION = EternalStarlight.id("textures/environment/dead_star.png");
 	private static final float TIME = 12500f;

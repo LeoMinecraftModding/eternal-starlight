@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.gui.tooltip;
 
 import cn.leolezury.eternalstarlight.common.item.component.LargeItemStackList;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
@@ -10,7 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class ClientGalacticQuiverTooltip implements ClientTooltipComponent {
 	private static final ResourceLocation SLOT = ResourceLocation.withDefaultNamespace("container/slot");
 	private final List<LargeItemStackList.LargeItemStack> contents;

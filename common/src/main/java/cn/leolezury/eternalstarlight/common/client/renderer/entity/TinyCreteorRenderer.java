@@ -5,14 +5,11 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.TinyCreteorModel
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.TinyCreteorPowerLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.TinyCreteor;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class TinyCreteorRenderer<T extends TinyCreteor> extends MobRenderer<T, TinyCreteorModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/tiny_creteor.png");
 

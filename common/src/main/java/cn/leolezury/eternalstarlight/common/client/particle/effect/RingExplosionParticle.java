@@ -6,15 +6,12 @@ import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOption
 import cn.leolezury.eternalstarlight.common.util.Color;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.util.Mth;
 import org.joml.Quaternionf;
 
-@Environment(EnvType.CLIENT)
 public class RingExplosionParticle extends SimpleAnimatedParticle {
 	private final float scale;
 

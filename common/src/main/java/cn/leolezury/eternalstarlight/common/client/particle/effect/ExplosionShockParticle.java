@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
@@ -14,7 +12,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
-@Environment(EnvType.CLIENT)
 public class ExplosionShockParticle extends TextureSheetParticle {
 	private final Vec3 direction;
 	private final float length, width;

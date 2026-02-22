@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ThioquartzShard;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -15,7 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.joml.Quaternionf;
 
-@Environment(EnvType.CLIENT)
 public class ThioquartzShardRenderer extends EntityRenderer<ThioquartzShard> {
 	private static final ResourceLocation TEXTURE_LOCATION = EternalStarlight.id("textures/entity/thioquartz_shard.png");
 	private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE_LOCATION);

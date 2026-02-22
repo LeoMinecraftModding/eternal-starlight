@@ -2,9 +2,6 @@ package cn.leolezury.eternalstarlight.common.platform;
 
 import cn.leolezury.eternalstarlight.common.block.TearBombBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
-import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
-import cn.leolezury.eternalstarlight.common.client.model.item.GlowingBakedModel;
-import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
 import cn.leolezury.eternalstarlight.common.item.armor.AlchemistArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.UnrealiumArmorItem;
@@ -14,18 +11,9 @@ import cn.leolezury.eternalstarlight.common.item.combat.PetalScytheItem;
 import cn.leolezury.eternalstarlight.common.item.combat.ScytheItem;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.Util;
-import net.minecraft.client.renderer.DimensionSpecialEffects;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -40,7 +28,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -54,7 +41,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 
@@ -124,13 +110,21 @@ public interface ESPlatform {
 		return new CrescentSpearItem(properties);
 	}
 
-	ThermalSpringstoneArmorItem createThermalSpringstoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+	default ThermalSpringstoneArmorItem createThermalSpringstoneArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+		return new ThermalSpringstoneArmorItem(material, type, properties);
+	}
 
-	AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+	default AlchemistArmorItem createAlchemistArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+		return new AlchemistArmorItem(material, type, properties);
+	}
 
-	ArmorItem createStarlitDiamondArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+	default ArmorItem createStarlitDiamondArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+		return new ArmorItem(material, type, properties);
+	}
 
-	UnrealiumArmorItem createUnrealiumArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties);
+	default UnrealiumArmorItem createUnrealiumArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
+		return new UnrealiumArmorItem(material, type, properties);
+	}
 
 	CreativeModeTab getESTab();
 
@@ -159,11 +153,6 @@ public interface ESPlatform {
 	<T> EntityDataAttachment<T> registerDataAttachment(String id, Supplier<T> defaultValue, Codec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec, BiPredicate<T, T> shouldSync, boolean copyOnDeath);
 
 	// reload listeners
-	@Environment(EnvType.CLIENT)
-	default BookLoader createBookLoader() {
-		return new BookLoader();
-	}
-
 	default TheGatekeeperNameManager createGatekeeperNameManager() {
 		return new TheGatekeeperNameManager();
 	}
@@ -183,7 +172,6 @@ public interface ESPlatform {
 	default boolean postTravelToDimensionEvent(Entity entity, ResourceKey<Level> dimension) {
 		return true;
 	}
-
 
 	default boolean postTeleportEvent(Entity entity, Vec3 destPos) {
 		return true;
@@ -215,22 +203,6 @@ public interface ESPlatform {
 	// dispenser
 	default boolean canBoatInFluid(Boat boat, FluidState state) {
 		return state.is(FluidTags.WATER);
-	}
-
-	// client-side
-	@Environment(EnvType.CLIENT)
-	default DimensionSpecialEffects getDimEffect() {
-		return new ESDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
-	}
-
-	@Environment(EnvType.CLIENT)
-	default BakedModel getGlowingBakedModel(BakedModel origin) {
-		return new GlowingBakedModel(origin);
-	}
-
-	@Environment(EnvType.CLIENT)
-	default void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
-		dispatcher.getModelRenderer().tesselateBlock(level, dispatcher.getBlockModel(state), state, pos, stack, multiBufferSource.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(state)), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY);
 	}
 
 	// networking

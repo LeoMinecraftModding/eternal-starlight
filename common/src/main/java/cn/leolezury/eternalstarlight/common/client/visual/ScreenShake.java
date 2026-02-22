@@ -1,15 +1,12 @@
 package cn.leolezury.eternalstarlight.common.client.visual;
 
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class ScreenShake {
 	private final ResourceLocation dimension;
 	private final Vec3 pos;

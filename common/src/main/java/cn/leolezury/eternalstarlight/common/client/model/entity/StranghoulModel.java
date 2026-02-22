@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SpearItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -20,7 +18,6 @@ import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-@Environment(EnvType.CLIENT)
 public class StranghoulModel<T extends Stranghoul> extends HumanoidModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("stranghoul"), "main");
 	public static final ModelLayerLocation INNER_ARMOR_LOCATION = new ModelLayerLocation(EternalStarlight.id("stranghoul"), "inner_armor");

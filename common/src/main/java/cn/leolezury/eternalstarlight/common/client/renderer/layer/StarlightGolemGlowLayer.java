@@ -6,8 +6,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.StarlightGolemMo
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -17,7 +15,6 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class StarlightGolemGlowLayer<T extends StarlightGolem> extends RenderLayer<T, StarlightGolemModel<T>> {
 	private static final RenderType GLOW = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/starlight_golem/starlight_golem_glow.png"));
 	private static final RenderType GLOW_HALLOWEEN = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/starlight_golem/starlight_golem_glow_halloween.png"));

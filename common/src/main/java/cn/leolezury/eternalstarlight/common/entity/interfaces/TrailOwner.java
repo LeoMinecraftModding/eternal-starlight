@@ -1,9 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.interfaces;
 
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
 import org.joml.Vector4f;
 
 public interface TrailOwner {
@@ -20,7 +17,4 @@ public interface TrailOwner {
 	default TrailEffect.TrailOffsetFunction getTrailOffsetFunction() {
 		return TrailEffect.TrailOffsetFunction.FACE_CAMERA;
 	}
-
-	@Environment(EnvType.CLIENT)
-	RenderType getTrailRenderType();
 }

@@ -64,4 +64,14 @@ public class EmptyClientHelper implements ClientHelper {
 	public void spawnManaCrystalItemParticles(ManaType type, Vec3 center) {
 
 	}
+
+	@Override
+	public void handleMeteorShowerClientTick() {
+
+	}
+
+	@Override
+	public float handleMeteorShowerRainLevel() {
+		return 0;
+	}
 }

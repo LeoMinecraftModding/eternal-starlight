@@ -1,14 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client.book.text;
 
 import com.mojang.serialization.Codec;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class BookContent {
 	public static final Codec<BookContent> CODEC = BookText.LIST_CODEC.xmap(BookContent::new, content -> content.texts);
 

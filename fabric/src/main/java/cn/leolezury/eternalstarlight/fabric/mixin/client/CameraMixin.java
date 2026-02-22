@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
@@ -13,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Environment(EnvType.CLIENT)
 @Mixin(Camera.class)
 public abstract class CameraMixin {
 	@Shadow

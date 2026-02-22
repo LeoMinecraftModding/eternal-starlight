@@ -2,15 +2,12 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
 
-@Environment(EnvType.CLIENT)
 public class StarfireParticle extends TextureSheetParticle {
 	private final SpriteSet sprites;
 

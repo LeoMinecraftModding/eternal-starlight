@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.ShimmerLacewingM
 import cn.leolezury.eternalstarlight.common.entity.living.animal.ShimmerLacewing;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,7 +13,6 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class ShimmerLacewingGlowLayer<T extends ShimmerLacewing> extends RenderLayer<T, ShimmerLacewingModel<T>> {
 	private final ShimmerLacewingModel<T> model;
 

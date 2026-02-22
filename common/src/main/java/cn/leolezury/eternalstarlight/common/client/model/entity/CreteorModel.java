@@ -4,15 +4,12 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.CreteorAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Creteor;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class CreteorModel<T extends Creteor> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("creteor"), "main");
 	public static final ModelLayerLocation ARMOR_LOCATION = new ModelLayerLocation(EternalStarlight.id("creteor"), "armor");

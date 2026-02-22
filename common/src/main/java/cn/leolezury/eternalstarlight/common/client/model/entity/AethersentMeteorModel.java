@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -19,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-@Environment(EnvType.CLIENT)
 public class AethersentMeteorModel<T extends AethersentMeteor> extends EntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("aethersent_meteor"), "main");
 	public final ModelPart root;

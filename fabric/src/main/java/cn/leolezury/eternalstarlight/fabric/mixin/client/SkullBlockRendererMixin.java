@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.fabric.mixin.client;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientSetupHandler;
 import com.google.common.collect.ImmutableMap;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
@@ -16,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
 
-@Environment(EnvType.CLIENT)
 @Mixin(SkullBlockRenderer.class)
 public abstract class SkullBlockRendererMixin {
 	@Inject(method = "createSkullRenderers", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap$Builder;put(Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableMap$Builder;", remap = false, ordinal = 0))

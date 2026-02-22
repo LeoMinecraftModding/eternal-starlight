@@ -6,8 +6,6 @@ import cn.leolezury.eternalstarlight.common.entity.attack.LunarThorn;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -17,7 +15,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class LunarThornRenderer extends EntityRenderer<LunarThorn> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/lunar_thorn.png");
 	private static final ResourceLocation GLOW_TEXTURE = EternalStarlight.id("textures/entity/lunar_thorn_glow.png");

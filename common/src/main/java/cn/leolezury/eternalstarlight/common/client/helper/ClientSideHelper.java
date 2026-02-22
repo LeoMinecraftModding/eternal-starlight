@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
 import cn.leolezury.eternalstarlight.common.client.book.component.BookComponentRegistry;
 import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBookComponent;
@@ -12,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogue
 import cn.leolezury.eternalstarlight.common.client.gui.toast.SimpleTextToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
+import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
@@ -23,8 +23,7 @@ import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
@@ -35,12 +34,12 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Environment(EnvType.CLIENT)
 public class ClientSideHelper implements ClientHelper {
 	@Override
 	public void handleServerToClientSimpleAction(SimpleActionPacket packet) {
@@ -289,5 +288,23 @@ public class ClientSideHelper implements ClientHelper {
 				.defaultOperators()
 				.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.ADVANCED_GLOW.get()), (float) pos.x, (float) pos.y, (float) pos.z);
 		}
+	}
+
+	@Override
+	public void handleMeteorShowerClientTick() {
+		ClientLevel level = Minecraft.getInstance().level;
+		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
+		if (level != null && level.getGameTime() % 20 == 0) {
+			Vec3 randomPos = camera.getPosition().offsetRandom(level.getRandom(), 75f);
+			int height = level.getHeight(Heightmap.Types.MOTION_BLOCKING, (int) randomPos.x, (int) randomPos.z);
+			level.addParticle(ESParticles.METEOR.get(), true, randomPos.x, Math.max(height + 75, camera.getPosition().y + 75), randomPos.z, 0, 0, 0);
+		}
+	}
+
+	@Override
+	public float handleMeteorShowerRainLevel() {
+		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
+		ClientWeatherState.levelTarget = 1;
+		return ClientWeatherState.getRainLevel(partialTick);
 	}
 }

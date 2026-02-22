@@ -596,7 +596,6 @@ public class Stranghoul extends Monster implements NeutralMob, OwnableEntity, Ra
 			}
 		}
 
-
 		@Override
 		public boolean requiresUpdateEveryTick() {
 			return true;

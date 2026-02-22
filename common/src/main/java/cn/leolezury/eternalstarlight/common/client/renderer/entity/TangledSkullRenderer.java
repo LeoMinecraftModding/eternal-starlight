@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.TangledSkullMode
 import cn.leolezury.eternalstarlight.common.entity.living.monster.TangledSkull;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -14,7 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class TangledSkullRenderer<T extends TangledSkull> extends MobRenderer<T, TangledSkullModel<T>> {
 	public static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/tangled_skull.png");
 

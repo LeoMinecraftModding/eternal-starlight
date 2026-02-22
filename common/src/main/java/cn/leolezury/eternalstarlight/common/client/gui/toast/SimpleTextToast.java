@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.gui.toast;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.toasts.Toast;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
@@ -13,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class SimpleTextToast implements Toast {
 	private static final ResourceLocation BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("toast/advancement");
 	public static final int DISPLAY_TIME = 5000;

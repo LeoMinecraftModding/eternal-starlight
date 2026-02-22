@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.BaseAshSmokeParticle;
 import net.minecraft.client.particle.Particle;
@@ -10,7 +8,6 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class AshenSnowParticle extends BaseAshSmokeParticle {
 	protected AshenSnowParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites) {
 		super(level, x, y, z, 1f, 1f, 1f, xSpeed, ySpeed, zSpeed, 1.25f, sprites, 1, 20, 0.0125f, true);

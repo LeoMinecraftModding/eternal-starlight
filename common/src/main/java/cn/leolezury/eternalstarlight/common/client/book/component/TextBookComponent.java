@@ -6,8 +6,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Style;
@@ -19,7 +17,6 @@ import net.minecraft.util.Mth;
 import java.util.HashSet;
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class TextBookComponent extends BookComponent<TextBookComponent.Config> {
 	public TextBookComponent() {
 		super(Config.CODEC);

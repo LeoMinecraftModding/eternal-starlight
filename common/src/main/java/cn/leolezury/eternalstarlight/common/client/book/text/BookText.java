@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.book.text;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.ClickEvent;
@@ -13,7 +11,6 @@ import net.minecraft.network.chat.MutableComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public record BookText(boolean translation, String content) {
 	public static final Codec<BookText> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 		Codec.BOOL.fieldOf("translation").forGetter(BookText::translation),

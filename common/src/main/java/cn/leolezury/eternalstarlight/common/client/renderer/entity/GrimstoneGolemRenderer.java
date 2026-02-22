@@ -6,8 +6,6 @@ import cn.leolezury.eternalstarlight.common.client.renderer.layer.GrimstoneGolem
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -19,7 +17,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
-@Environment(EnvType.CLIENT)
 public class GrimstoneGolemRenderer<T extends GrimstoneGolem> extends MobRenderer<T, GrimstoneGolemModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/grimstone_golem.png");
 	private final ItemRenderer itemRenderer;

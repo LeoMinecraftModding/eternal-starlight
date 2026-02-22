@@ -1,13 +1,10 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
 
-@Environment(EnvType.CLIENT)
 public class EnergyParticle extends RisingParticle {
 	protected EnergyParticle(ClientLevel clientLevel, double x, double y, double z, double dx, double dy, double dz) {
 		super(clientLevel, x, y, z, dx, dy, dz);

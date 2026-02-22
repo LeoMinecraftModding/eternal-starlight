@@ -5,14 +5,11 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.AstralGolemModel
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.AstralGolemArmorLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolemMaterial;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
 public class AstralGolemRenderer<T extends AstralGolem> extends HumanoidMobRenderer<T, AstralGolemModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/boarwarf/golem/astral_golem_iron.png");
 

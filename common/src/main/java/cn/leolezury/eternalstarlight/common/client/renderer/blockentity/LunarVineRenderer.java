@@ -6,8 +6,6 @@ import cn.leolezury.eternalstarlight.common.block.entity.LunarVineBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -21,7 +19,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class LunarVineRenderer implements BlockEntityRenderer<LunarVineBlockEntity> {
 	private final VineModel vineModel;
 	private final FlowerModel flowerModel;

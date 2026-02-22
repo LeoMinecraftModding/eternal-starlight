@@ -210,7 +210,7 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	public SoundEvent getBossMusic() {
-		return ESSoundEvents.MUSIC_BOSS.get();
+		return ESSoundEvents.MUSIC_BOSS_GATEKEEPER.get();
 	}
 
 	public ResourceKey<LootTable> getBossLootTable() {

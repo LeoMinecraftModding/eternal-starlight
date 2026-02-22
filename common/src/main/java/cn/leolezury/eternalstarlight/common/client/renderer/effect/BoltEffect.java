@@ -1,15 +1,13 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.effect;
 
 import cn.leolezury.eternalstarlight.common.util.Color;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 
 // Copyright 2017-2023 Aidan C. Brady
-@Environment(EnvType.CLIENT)
+
 public class BoltEffect {
 
 	private final Random random = new Random();

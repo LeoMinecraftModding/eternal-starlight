@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.particle.advanced;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.ParticleStatus;
@@ -20,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-@Environment(EnvType.CLIENT)
 public class AdvancedParticleOptions {
 	public static final RandomSource RANDOM = RandomSource.create();
 	private RenderType renderType = ESRenderType.GLOW_PARTICLE;

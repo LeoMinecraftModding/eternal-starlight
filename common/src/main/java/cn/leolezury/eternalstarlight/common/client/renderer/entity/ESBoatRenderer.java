@@ -7,8 +7,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -24,7 +22,6 @@ import org.joml.Quaternionf;
 import java.util.Map;
 import java.util.stream.Stream;
 
-@Environment(EnvType.CLIENT)
 public class ESBoatRenderer extends EntityRenderer<ESBoat> {
 	private final Map<ESBoat.Type, Pair<ResourceLocation, ListModel<Boat>>> boatResources;
 

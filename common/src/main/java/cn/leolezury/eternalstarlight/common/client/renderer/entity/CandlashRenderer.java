@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.CandlashModel;
 import cn.leolezury.eternalstarlight.common.entity.attack.Candlash;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -16,7 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector4f;
 
-@Environment(EnvType.CLIENT)
 public class CandlashRenderer extends WhipRenderer<Candlash> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/candlash.png");
 	private final CandlashModel<Candlash> model;

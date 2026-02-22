@@ -10,8 +10,6 @@ import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -25,7 +23,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class LootChestRenderer implements BlockEntityRenderer<LootChestBlockEntity> {
 	private final LootChestModel chestModel;
 

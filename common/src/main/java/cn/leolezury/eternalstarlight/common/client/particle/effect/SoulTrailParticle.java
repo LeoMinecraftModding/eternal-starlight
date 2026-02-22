@@ -1,8 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -12,7 +10,6 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class SoulTrailParticle extends SimpleAnimatedParticle {
 	protected SoulTrailParticle(ClientLevel level, double x, double y, double z, double dx, double dy, double dz, SpriteSet spriteSet) {
 		super(level, x, y, z, spriteSet, 0.01f);

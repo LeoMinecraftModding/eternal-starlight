@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.client.model.animation.definition.St
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.*;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -21,7 +19,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-@Environment(EnvType.CLIENT)
 public class StarlightGolemModel<T extends StarlightGolem> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("starlight_golem"), "main");
 	private final ModelPart root;

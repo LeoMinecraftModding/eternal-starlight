@@ -3,19 +3,22 @@ package cn.leolezury.eternalstarlight.fabric;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
-import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
+import cn.leolezury.eternalstarlight.common.network.ESPackets;
+import cn.leolezury.eternalstarlight.fabric.network.ESFabricNetworkHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.*;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -41,8 +44,13 @@ public class ESFabricEntrypoint implements ModInitializer {
 
 		// setup handlers
 		ESCommonSetupHandler.commonSetup();
-		FabricNetworkHandler.registerPackets();
-		FabricNetworkHandler.registerPacketReceivers();
+		ESFabricNetworkHandler.registerPackets();
+		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
+			@Override
+			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
+				ServerPlayNetworking.registerGlobalReceiver(packetInfo.type(), (payload, context) -> packetInfo.handler().handle(payload, context.player()));
+			}
+		});
 		ESCommonSetupHandler.createAttributes(FabricDefaultAttributeRegistry::register);
 		ESCommonSetupHandler.registerSpawnPlacements(SpawnPlacements::register);
 		ESCommonSetupHandler.registerFuels(new ESCommonSetupHandler.FuelRegisterStrategy() {

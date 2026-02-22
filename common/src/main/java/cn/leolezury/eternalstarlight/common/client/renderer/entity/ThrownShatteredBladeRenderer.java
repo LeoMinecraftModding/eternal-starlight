@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownShatteredBla
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -18,7 +16,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
-@Environment(EnvType.CLIENT)
 public class ThrownShatteredBladeRenderer extends EntityRenderer<ThrownShatteredBlade> {
 	private final ItemRenderer itemRenderer;
 

@@ -6,20 +6,24 @@ import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientSetupHandler;
 import cn.leolezury.eternalstarlight.common.client.renderer.world.ESSkyRenderer;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.common.item.component.LargeItemStackList;
 import cn.leolezury.eternalstarlight.common.item.tooltip.GalacticQuiverTooltipComponent;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.network.ESPackets;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.fabric.client.renderer.FabricItemStackRenderer;
-import cn.leolezury.eternalstarlight.fabric.network.FabricNetworkHandler;
+import cn.leolezury.eternalstarlight.fabric.client.renderer.ESFabricItemStackRenderer;
+import cn.leolezury.eternalstarlight.fabric.client.renderer.armor.AlchemistArmorRenderer;
+import cn.leolezury.eternalstarlight.fabric.client.renderer.armor.StarlitDiamondArmorRenderer;
+import cn.leolezury.eternalstarlight.fabric.client.renderer.armor.ThermalSpringstoneArmorRenderer;
+import cn.leolezury.eternalstarlight.fabric.client.renderer.armor.UnrealiumArmorRenderer;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
@@ -31,9 +35,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -44,12 +50,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@Environment(EnvType.CLIENT)
 public class ESFabricClientEntrypoint implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ESClientSetupHandler.clientSetup();
-		FabricNetworkHandler.registerClientPacketReceivers();
+		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
+			@Override
+			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
+				ClientPlayNetworking.registerGlobalReceiver(packetInfo.type(), (payload, context) -> packetInfo.handler().handle(payload, context.player()));
+			}
+		});
 		ESClientSetupHandler.registerBlockColors(ColorProviderRegistry.BLOCK::register);
 		ESClientSetupHandler.registerExtraBakedModels(ESModelLoadingPlugin.MODELS::add);
 		ModelLoadingPlugin.register(new ESModelLoadingPlugin());
@@ -64,6 +74,7 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 		ESClientSetupHandler.registerParticleProviders(particleProviderRegisterStrategy);
 
 		ESClientSetupHandler.registerEntityRenderers(EntityRendererRegistry::register);
+		ESClientSetupHandler.registerBlockEntityRenderers(BlockEntityRenderers::register);
 		ESClientSetupHandler.registerLayers((layerLocation, supplier) -> EntityModelLayerRegistry.registerModelLayer(layerLocation, supplier::get));
 		ESClientSetupHandler.registerMenuScreens(MenuScreens::register);
 		ESClientSetupHandler.addClientReloadListeners(listener -> ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener((IdentifiableResourceReloadListener) listener));
@@ -90,7 +101,7 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 			KeyBindingHelper.registerKeyBinding(mapping.getValue());
 		}
 
-		DimensionRenderingRegistry.registerDimensionEffects(EternalStarlight.id("special_effect"), ESPlatform.INSTANCE.getDimEffect());
+		DimensionRenderingRegistry.registerDimensionEffects(EternalStarlight.id("special_effect"), ESClientPlatform.INSTANCE.getDimEffect());
 		DimensionRenderingRegistry.registerSkyRenderer(ESDimensions.STARLIGHT_KEY, context -> ESSkyRenderer.renderSky(context.world(), context.positionMatrix(), context.projectionMatrix(), context.tickCounter().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), context.camera(), () -> {
 		}));
 
@@ -104,12 +115,27 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 			}
 		});
 
-		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new FabricItemStackRenderer());
-		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.FLOWGLAZE_SHIELD.get(), new FabricItemStackRenderer());
-		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.MALARITE_SPEAR.get(), new FabricItemStackRenderer());
-		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), new FabricItemStackRenderer());
-		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.CRESCENT_SPEAR.get(), new FabricItemStackRenderer());
-		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.LOOT_CHEST.get(), new FabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.GLACITE_SHIELD.get(), new ESFabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.FLOWGLAZE_SHIELD.get(), new ESFabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.MALARITE_SPEAR.get(), new ESFabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.PUNGENCY_FRUIT_SPEAR.get(), new ESFabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.CRESCENT_SPEAR.get(), new ESFabricItemStackRenderer());
+		BuiltinItemRendererRegistry.INSTANCE.register(ESItems.LOOT_CHEST.get(), new ESFabricItemStackRenderer());
+
+		ArmorRenderer.register(ThermalSpringstoneArmorRenderer.INSTANCE, ESItems.THERMAL_SPRINGSTONE_HELMET.get());
+		ArmorRenderer.register(ThermalSpringstoneArmorRenderer.INSTANCE, ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get());
+		ArmorRenderer.register(ThermalSpringstoneArmorRenderer.INSTANCE, ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get());
+		ArmorRenderer.register(ThermalSpringstoneArmorRenderer.INSTANCE, ESItems.THERMAL_SPRINGSTONE_BOOTS.get());
+		ArmorRenderer.register(AlchemistArmorRenderer.INSTANCE, ESItems.ALCHEMIST_MASK.get());
+		ArmorRenderer.register(AlchemistArmorRenderer.INSTANCE, ESItems.ALCHEMIST_ROBE.get());
+		ArmorRenderer.register(StarlitDiamondArmorRenderer.INSTANCE, ESItems.STARLIT_DIAMOND_HELMET.get());
+		ArmorRenderer.register(StarlitDiamondArmorRenderer.INSTANCE, ESItems.STARLIT_DIAMOND_CHESTPLATE.get());
+		ArmorRenderer.register(StarlitDiamondArmorRenderer.INSTANCE, ESItems.STARLIT_DIAMOND_LEGGINGS.get());
+		ArmorRenderer.register(StarlitDiamondArmorRenderer.INSTANCE, ESItems.STARLIT_DIAMOND_BOOTS.get());
+		ArmorRenderer.register(UnrealiumArmorRenderer.INSTANCE, ESItems.UNREALIUM_HELMET.get());
+		ArmorRenderer.register(UnrealiumArmorRenderer.INSTANCE, ESItems.UNREALIUM_CHESTPLATE.get());
+		ArmorRenderer.register(UnrealiumArmorRenderer.INSTANCE, ESItems.UNREALIUM_LEGGINGS.get());
+		ArmorRenderer.register(UnrealiumArmorRenderer.INSTANCE, ESItems.UNREALIUM_BOOTS.get());
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> ESClientHandler.onClientTick());
 	}

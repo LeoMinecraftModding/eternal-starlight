@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.CrystallizedMothModel;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.CrystallizedMoth;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,7 +13,6 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class CrystallizedMothGlowLayer<T extends CrystallizedMoth> extends RenderLayer<T, CrystallizedMothModel<T>> {
 	private static final RenderType GLOW = RenderType.entityTranslucentEmissive(EternalStarlight.id("textures/entity/crystallized_moth_glow.png"));
 	private final CrystallizedMothModel<T> model;

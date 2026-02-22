@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.TentacleSpikeMod
 import cn.leolezury.eternalstarlight.common.entity.attack.TentacleSpike;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,7 +13,6 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
 public class TentacleSpikeRenderer extends WhipRenderer<TentacleSpike> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/tentacle_spike.png");
 	private static final ResourceLocation GLOW_TEXTURE = EternalStarlight.id("textures/entity/tentacle_spike_glow.png");

@@ -3,8 +3,6 @@ package cn.leolezury.eternalstarlight.common.client.model;
 import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -29,7 +27,6 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-@Environment(EnvType.CLIENT)
 public class ESModelUtil {
 	private static final MultiBufferSource DUMMY_BUFFER = new MultiBufferSource() {
 		@Override

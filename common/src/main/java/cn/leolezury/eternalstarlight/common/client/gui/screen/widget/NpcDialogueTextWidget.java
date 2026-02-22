@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.gui.screen.widget;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -12,7 +10,6 @@ import net.minecraft.util.FormattedCharSequence;
 
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class NpcDialogueTextWidget extends AbstractWidget {
 	private int tickCount;
 

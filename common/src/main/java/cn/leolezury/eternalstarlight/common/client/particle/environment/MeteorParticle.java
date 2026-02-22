@@ -3,12 +3,11 @@ package cn.leolezury.eternalstarlight.common.client.particle.environment;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
+import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -21,7 +20,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class MeteorParticle extends Particle {
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 	private final TrailEffect effect = new TrailEffect(0.8f, 15);
@@ -59,7 +57,7 @@ public class MeteorParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
-		this.effect.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentAdditiveGlow(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, 144 / 255f, 94 / 255f, 168 / 255f, 2f, LightTexture.FULL_BRIGHT);
+		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentAdditiveGlow(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, 144 / 255f, 94 / 255f, 168 / 255f, 2f, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 
@@ -67,7 +65,6 @@ public class MeteorParticle extends Particle {
 	public ParticleRenderType getRenderType() {
 		return ParticleRenderType.CUSTOM;
 	}
-
 
 	public static class Provider implements ParticleProvider<SimpleParticleType> {
 		public Provider(SpriteSet spriteSet) {

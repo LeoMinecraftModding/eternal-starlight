@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.registry.ESBoarwarfProfessions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -17,7 +15,6 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
 public class BoarwarfDyerLayer<T extends Boarwarf> extends RenderLayer<T, BoarwarfModel<T>> {
 	private static final ResourceLocation TEXTURE = EternalStarlight.id("textures/entity/boarwarf/profession/dyer.png");
 	private final BoarwarfDyerModel<T> professionModel;

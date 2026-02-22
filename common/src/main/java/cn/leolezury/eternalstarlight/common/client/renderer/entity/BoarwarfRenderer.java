@@ -5,13 +5,10 @@ import cn.leolezury.eternalstarlight.common.client.model.entity.boarwarf.Boarwar
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.boarwarf.BoarwarfBiomeLayer;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.boarwarf.profession.*;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
 public class BoarwarfRenderer<T extends Boarwarf> extends MobRenderer<T, BoarwarfModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/boarwarf/boarwarf.png");
 

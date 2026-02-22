@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.network.CloseGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.TriggerEntityEventPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -17,7 +15,6 @@ import net.minecraft.network.chat.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class GatekeeperDialogueScreen extends Screen {
 	private Component currentText;
 	private NpcDialogueTextWidget text;

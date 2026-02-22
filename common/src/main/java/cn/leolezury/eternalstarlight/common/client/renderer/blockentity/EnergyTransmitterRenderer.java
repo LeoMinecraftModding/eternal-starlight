@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.block.EnergyTransmitterBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.EnergyTransmitterBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
@@ -21,7 +19,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public class EnergyTransmitterRenderer<T extends EnergyTransmitterBlockEntity> implements BlockEntityRenderer<T> {
 	public static final ResourceLocation ENERGY_TRANSMITTER_TEXTURE = EternalStarlight.id("textures/entity/energy_transmitter.png");
 

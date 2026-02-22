@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -22,7 +20,6 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Optional;
 
-@Environment(EnvType.CLIENT)
 public class TheGatekeeperClothingLayer<T extends TheGatekeeper> extends RenderLayer<T, TheGatekeeperModel<T>> {
 	private static final ResourceLocation OVERLAY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_overlay.png");
 	private static final ResourceLocation SLIM_OVERLAY_TEXTURE = EternalStarlight.id("textures/entity/the_gatekeeper_overlay_slim.png");

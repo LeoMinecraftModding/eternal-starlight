@@ -28,4 +28,8 @@ public interface ClientHelper {
 	void spawnStellarRackItemParticles(Vec3 center);
 
 	void spawnManaCrystalItemParticles(ManaType type, Vec3 center);
+
+	void handleMeteorShowerClientTick();
+
+	float handleMeteorShowerRainLevel();
 }

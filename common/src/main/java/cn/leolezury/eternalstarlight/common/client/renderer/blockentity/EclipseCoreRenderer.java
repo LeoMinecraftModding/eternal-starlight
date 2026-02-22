@@ -5,14 +5,11 @@ import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 
-@Environment(EnvType.CLIENT)
 public class EclipseCoreRenderer extends DuskLightRenderer<EclipseCoreBlockEntity> {
 	public EclipseCoreRenderer(BlockEntityRendererProvider.Context context) {
 		super(context);

@@ -5,8 +5,6 @@ import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
@@ -20,7 +18,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
-@Environment(EnvType.CLIENT)
 public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRenderer<T> {
 	public LaserBeamRenderer(EntityRendererProvider.Context context) {
 		super(context);

@@ -1,14 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.util.Color;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class AethersentSmokeParticle extends TextureSheetParticle {
 	private final Color fromColor = Color.rgbi(163, 76, 186).blend(Color.WHITE, 0.4);
 	private final Color fadeColor = Color.rgbi(69, 18, 82);

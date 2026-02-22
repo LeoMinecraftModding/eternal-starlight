@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.particle.advanced;
 
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -13,7 +11,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector4f;
 
-@Environment(EnvType.CLIENT)
 public class AdvancedParticle extends TextureSheetParticle implements ParticleOperator {
 	protected SpriteSet sprites;
 	private final AdvancedParticleOptions options;

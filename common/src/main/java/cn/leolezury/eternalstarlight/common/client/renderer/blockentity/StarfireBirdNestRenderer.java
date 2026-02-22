@@ -4,8 +4,6 @@ import cn.leolezury.eternalstarlight.common.block.StarfireBirdNestBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.StarfireBirdNestBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -17,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public class StarfireBirdNestRenderer implements BlockEntityRenderer<StarfireBirdNestBlockEntity> {
 	private final EntityRenderDispatcher entityRenderer;
 	private final ItemRenderer itemRenderer;

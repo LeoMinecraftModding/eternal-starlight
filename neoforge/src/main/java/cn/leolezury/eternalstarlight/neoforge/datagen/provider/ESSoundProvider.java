@@ -31,7 +31,6 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_BIOME_CRYSTALLIZED_DESERT.get(), definition().with(sound(loc("music/biome/posterity")).weight(5).stream(), sound(loc("music/dimension/tranquility")).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream(), sound(loc("music/dimension/nest")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_STARLIT_SEA.get(), definition().with(sound(loc("music/biome/stars_shining_upon_the_sea")).weight(5).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream(), sound(loc("music/dimension/nest")).stream()));
 		add(ESSoundEvents.MUSIC_BIOME_THE_ABYSS.get(), definition().with(sound(loc("music/biome/profundity")).weight(5).stream(), sound(loc("music/dimension/whisper_of_the_stars")).stream(), sound(loc("music/dimension/dusk_o_ereyesterday")).stream(), sound(loc("music/dimension/nest")).stream()));
-		add(ESSoundEvents.MUSIC_BOSS.get(), definition().with(sound(loc("music/boss/common")).stream()));
 		add(ESSoundEvents.MUSIC_BOSS_GATEKEEPER.get(), definition().with(sound(loc("music/boss/gatekeeper")).stream()));
 		add(ESSoundEvents.MUSIC_BOSS_STARLIGHT_GOLEM.get(), definition().with(sound(loc("music/boss/starlight_golem")).stream()));
 		add(ESSoundEvents.MUSIC_BOSS_LUNAR_MONSTROSITY.get(), definition().with(sound(loc("music/boss/lunar_monstrosity")).stream()));

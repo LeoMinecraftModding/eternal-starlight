@@ -9,8 +9,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.Holder;
@@ -31,7 +29,6 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
 public class MobInfoBookComponent extends BookComponent<MobInfoBookComponent.Config> {
 	private static final Object2IntMap<ResourceLocation> SELECTED_INDEX = new Object2IntArrayMap<>();
 	private static final Map<EntityType<?>, Entity> CACHED_ENTITY_SAMPLES = new HashMap<>();

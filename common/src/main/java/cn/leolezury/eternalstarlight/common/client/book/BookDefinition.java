@@ -3,14 +3,11 @@ package cn.leolezury.eternalstarlight.common.client.book;
 import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBookComponent;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 import java.util.Optional;
 
-@Environment(EnvType.CLIENT)
 public record BookDefinition(List<List<ConfiguredBookComponent<?, ?>>> components,
 							 int width, int height, int frameWidth,
 							 Buttons buttons,

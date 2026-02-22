@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.BookHistory
 import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.BookProgressButton;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -21,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Environment(EnvType.CLIENT)
 public class BookScreen extends Screen {
 	public static final int OVERLAY_Z_OFFSET = 770;
 	public static final int BUTTON_Z_OFFSET = 780;

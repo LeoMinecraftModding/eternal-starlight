@@ -1,13 +1,10 @@
 package cn.leolezury.eternalstarlight.common.client.model.animation.definition;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 
-@Environment(EnvType.CLIENT)
 public class ShimmerLacewingAnimation {
 	public static final AnimationDefinition IDLE = AnimationDefinition.Builder.withLength(0.4167F).looping()
 		.addAnimation("wing3", new AnimationChannel(AnimationChannel.Targets.ROTATION,
