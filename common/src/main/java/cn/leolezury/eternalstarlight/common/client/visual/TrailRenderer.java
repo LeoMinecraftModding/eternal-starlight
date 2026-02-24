@@ -10,7 +10,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 public class TrailRenderer {
-	public static void render(TrailEffect effect, VertexConsumer consumer, PoseStack stack, TrailEffect.TrailOffsetFunction function, float r, float g, float b, float a, int light) {
+	public static void render(TrailEffect effect, VertexConsumer consumer, PoseStack stack, TrailEffect.TrailOffsetFunction function, boolean solid, float r, float g, float b, float a, int light) {
 		int size = effect.renderPoints.size();
 		if (size < 2) return;
 
@@ -61,17 +61,17 @@ public class TrailRenderer {
 			Vec3 toLower = to.pos().add(lowerOffsets[i + 1]);
 			Vec3 fromLower = from.pos().add(lowerOffsets[i]);
 
-			float fromAlpha = Mth.clamp(a * from.alphaFactor(), 0, 1);
-			float toAlpha = Mth.clamp(a * to.alphaFactor(), 0, 1);
+			float fromAlpha = solid ? 1 : Mth.clamp(a * from.progressFactor(), 0, 1);
+			float toAlpha = solid ? 1 : Mth.clamp(a * to.progressFactor(), 0, 1);
 
 			consumer.addVertex(pose, (float) fromUpper.x(), (float) fromUpper.y(), (float) fromUpper.z())
-				.setColor(r, g, b, fromAlpha).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				.setColor(r, g, b, fromAlpha).setUv(from.progressFactor(), 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 			consumer.addVertex(pose, (float) toUpper.x(), (float) toUpper.y(), (float) toUpper.z())
-				.setColor(r, g, b, toAlpha).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				.setColor(r, g, b, toAlpha).setUv(to.progressFactor(), 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 			consumer.addVertex(pose, (float) toLower.x(), (float) toLower.y(), (float) toLower.z())
-				.setColor(r, g, b, toAlpha).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				.setColor(r, g, b, toAlpha).setUv(to.progressFactor(), 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 			consumer.addVertex(pose, (float) fromLower.x(), (float) fromLower.y(), (float) fromLower.z())
-				.setColor(r, g, b, fromAlpha).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				.setColor(r, g, b, fromAlpha).setUv(from.progressFactor(), 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 		}
 	}
 }

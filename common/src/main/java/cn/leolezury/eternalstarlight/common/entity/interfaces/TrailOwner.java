@@ -14,6 +14,10 @@ public interface TrailOwner {
 		return false;
 	}
 
+	default boolean isTrailSolid() {
+		return false;
+	}
+
 	default TrailEffect.TrailOffsetFunction getTrailOffsetFunction() {
 		return TrailEffect.TrailOffsetFunction.FACE_CAMERA;
 	}

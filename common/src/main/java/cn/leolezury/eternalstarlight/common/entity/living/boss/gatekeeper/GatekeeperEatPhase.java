@@ -54,7 +54,7 @@ public class GatekeeperEatPhase extends BehaviorPhase<TheGatekeeper> {
 	@Override
 	public void stop(TheGatekeeper entity, BehaviorManager<TheGatekeeper> manager) {
 		if (!(entity.healInterrupted && entity.healInterruptedIndirect)) {
-			entity.heal(entity.getMaxHealth() / 5);
+			entity.heal(entity.healInterrupted ? entity.getMaxHealth() / 20 : entity.getMaxHealth() / 10);
 		}
 		entity.setBehaviorState(0);
 		entity.setBehaviorTicks(0);

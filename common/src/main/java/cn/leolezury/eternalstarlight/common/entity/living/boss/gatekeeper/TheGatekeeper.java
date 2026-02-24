@@ -15,10 +15,7 @@ import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
-import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
 import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
@@ -539,6 +536,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !(ESConfig.INSTANCE.mobsConfig.theGatekeeper.canAlwaysHurtWhenFighting() && isActivated()) && (source.getEntity() == null || getTarget() == null || getBehaviorState() == 0)) {
 			if (getBehaviorState() == 0 && source.getEntity() != null) {
 				level().broadcastEntityEvent(this, EVENT_BLOCK);
+			}
+			if (level() instanceof ServerLevel serverLevel && amount >= 7) {
+				serverLevel.sendParticles(ESParticles.PARRY.get(), getX(), getY() + getBbHeight() / 2, getZ(), 8, 0, 0, 0, 0.2 + getRandom().nextFloat() * 0.2);
 			}
 			return false;
 		}

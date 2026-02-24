@@ -67,7 +67,9 @@ public class OrbitalTrailParticle extends Particle {
 		this.x = pos.x();
 		this.y = pos.y();
 		this.z = pos.z();
-		this.effect.update(new Vec3(xo, yo, zo));
+		if (this.age > 0) {
+			this.effect.update(new Vec3(xo, yo, zo));
+		}
 		if (this.age++ >= this.lifetime) {
 			this.remove();
 		}
@@ -85,7 +87,7 @@ public class OrbitalTrailParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
-		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, color.rf(), color.gf(), color.bf(), a * 5, LightTexture.FULL_BRIGHT);
+		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, false, color.rf(), color.gf(), color.bf(), a * 5, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

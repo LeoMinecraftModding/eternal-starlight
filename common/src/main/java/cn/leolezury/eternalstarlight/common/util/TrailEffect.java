@@ -26,7 +26,7 @@ public class TrailEffect {
 		this.length = length;
 	}
 
-	public TrailEffect(float width, int length) {
+	public TrailEffect(float width, float length) {
 		this.width = width;
 		this.length = length;
 	}
@@ -77,11 +77,11 @@ public class TrailEffect {
 			TrailPoint from = renderPoints.get(i);
 			TrailPoint to = renderPoints.get(i + 1);
 			float distance = (float) from.pos().distanceTo(to.pos());
-			renderPoints.set(i, renderPoints.get(i).withAlphaFactor((totalLength - currentLength) / renderLength));
+			renderPoints.set(i, renderPoints.get(i).withProgressFactor((totalLength - currentLength) / renderLength));
 			currentLength += distance;
 		}
 		if (renderPoints.size() > 1) {
-			renderPoints.set(renderPoints.size() - 1, renderPoints.getLast().withAlphaFactor(0.01f));
+			renderPoints.set(renderPoints.size() - 1, renderPoints.getLast().withProgressFactor(0));
 		}
 	}
 
@@ -97,13 +97,13 @@ public class TrailEffect {
 		Vec3 calculateTrailOffset(Vec3 look, float camXRot, float camYRot, Vec3 tangent);
 	}
 
-	public record TrailPoint(Vec3 pos, float alphaFactor) {
+	public record TrailPoint(Vec3 pos, float progressFactor) {
 		public TrailPoint(Vec3 pos) {
 			this(pos, 1);
 		}
 
-		public TrailPoint withAlphaFactor(float alpha) {
-			return new TrailPoint(pos(), alpha);
+		public TrailPoint withProgressFactor(float progress) {
+			return new TrailPoint(pos(), progress);
 		}
 	}
 }

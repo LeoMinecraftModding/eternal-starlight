@@ -88,7 +88,7 @@ public class TrailVisualEffect<T extends Entity & TrailOwner> implements WorldVi
 		float y = (float) (entityRemoved ? entity.getY() : Mth.lerp(partialTicks, entity.yOld, entity.getY()));
 		float z = (float) (entityRemoved ? entity.getZ() : Mth.lerp(partialTicks, entity.zOld, entity.getZ()));
 		this.effect.prepareRender(new Vec3(x, y, z).add(0, entity.getBbHeight() / 2, 0), partialTicks);
-		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType), stack, entity.getTrailOffsetFunction(), entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
+		TrailRenderer.render(this.effect, (entity.isTrailSolid() ? source : ESClientHandler.DELAYED_BUFFER_SOURCE).getBuffer(renderType), stack, entity.getTrailOffsetFunction(), entity.isTrailSolid(), entity.getTrailColor().x, entity.getTrailColor().y, entity.getTrailColor().z, entity.getTrailColor().w, entity.isTrailFullBright() ? LightTexture.FULL_BRIGHT : Minecraft.getInstance().getEntityRenderDispatcher().getPackedLightCoords(entity, partialTicks));
 	}
 
 	@Override

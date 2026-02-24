@@ -84,6 +84,7 @@ public class ESParticles {
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> METEOR = PARTICLE_TYPES.register("meteor", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> PARRY = PARTICLE_TYPES.register("parry", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, ParticleType<ESGlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
 		@Override
 		public MapCodec<ESGlowParticleOptions> codec() {
