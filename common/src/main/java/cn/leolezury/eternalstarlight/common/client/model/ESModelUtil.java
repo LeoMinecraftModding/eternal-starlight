@@ -2,14 +2,11 @@ package cn.leolezury.eternalstarlight.common.client.model;
 
 import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -28,43 +25,6 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class ESModelUtil {
-	private static final MultiBufferSource DUMMY_BUFFER = new MultiBufferSource() {
-		@Override
-		public VertexConsumer getBuffer(RenderType renderType) {
-			return new VertexConsumer() {
-				@Override
-				public VertexConsumer addVertex(float x, float y, float z) {
-					return this;
-				}
-
-				@Override
-				public VertexConsumer setColor(int red, int green, int blue, int alpha) {
-					return this;
-				}
-
-				@Override
-				public VertexConsumer setUv(float u, float v) {
-					return this;
-				}
-
-				@Override
-				public VertexConsumer setUv1(int u, int v) {
-					return this;
-				}
-
-				@Override
-				public VertexConsumer setUv2(int u, int v) {
-					return this;
-				}
-
-				@Override
-				public VertexConsumer setNormal(float normalX, float normalY, float normalZ) {
-					return this;
-				}
-			};
-		}
-	};
-
 	public static Vec3 getModelPartWorldPosition(Entity entity, float yaw, List<ModelPart> parts) {
 		PoseStack stack = new PoseStack();
 		stack.translate(entity.getX(), entity.getY(), entity.getZ());
@@ -85,8 +45,51 @@ public class ESModelUtil {
 	public static Optional<Vec3> getThirdPersonPlayerHandPosition(Player player, EntityRenderDispatcher renderDispatcher, float yaw, float partialTick, HumanoidArm arm, Vec3 offset) {
 		if (player instanceof AbstractClientPlayer clientPlayer && renderDispatcher.getRenderer(clientPlayer) instanceof PlayerRenderer renderer) {
 			PoseStack stack = new PoseStack();
-			renderer.render(clientPlayer, yaw, partialTick, stack, DUMMY_BUFFER, LightTexture.FULL_BRIGHT);
+			renderer.setModelProperties(clientPlayer);
 			PlayerModel<AbstractClientPlayer> model = renderer.getModel();
+
+			// animated the player model
+			// copied from LivingEntityRenderer
+			model.attackTime = clientPlayer.getAttackAnim(partialTick);
+			boolean shouldSit = clientPlayer.isPassenger() && clientPlayer.getVehicle() != null;
+			model.riding = shouldSit;
+			float yBodyRot = Mth.rotLerp(partialTick, clientPlayer.yBodyRotO, clientPlayer.yBodyRot);
+			float yHeadRot = Mth.rotLerp(partialTick, clientPlayer.yHeadRotO, clientPlayer.yHeadRot);
+			float rotDiff = yHeadRot - yBodyRot;
+			if (shouldSit && clientPlayer.getVehicle() instanceof LivingEntity livingentity) {
+				yBodyRot = Mth.rotLerp(partialTick, livingentity.yBodyRotO, livingentity.yBodyRot);
+				rotDiff = yHeadRot - yBodyRot;
+				float diff = Mth.wrapDegrees(rotDiff);
+				if (diff < -85.0F) {
+					diff = -85.0F;
+				}
+				if (diff >= 85.0F) {
+					diff = 85.0F;
+				}
+				yBodyRot = yHeadRot - diff;
+				if (diff * diff > 2500.0F) {
+					yBodyRot += diff * 0.2F;
+				}
+				rotDiff = yHeadRot - yBodyRot;
+			}
+			float xRot = Mth.lerp(partialTick, clientPlayer.xRotO, clientPlayer.getXRot());
+			if (LivingEntityRenderer.isEntityUpsideDown(clientPlayer)) {
+				xRot *= -1.0F;
+				rotDiff *= -1.0F;
+			}
+			rotDiff = Mth.wrapDegrees(rotDiff);
+			float age = clientPlayer.tickCount + partialTick;
+			float walkSpeed = 0.0F;
+			float walkPos = 0.0F;
+			if (!shouldSit && clientPlayer.isAlive()) {
+				walkSpeed = clientPlayer.walkAnimation.speed(partialTick);
+				walkPos = clientPlayer.walkAnimation.position(partialTick);
+				if (walkSpeed > 1.0F) {
+					walkSpeed = 1.0F;
+				}
+			}
+			model.prepareMobModel(clientPlayer, walkPos, walkSpeed, partialTick);
+			model.setupAnim(clientPlayer, walkPos, walkSpeed, age, rotDiff, xRot);
 
 			stack.translate(
 				Mth.lerp(partialTick, player.xo, player.getX()),

@@ -26,7 +26,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			.add(
 				ESEntities.THE_GATEKEEPER.get(),
 				ESEntities.STARLIGHT_GOLEM.get(),
-				ESEntities.LUNAR_MONSTROSITY.get()
+				ESEntities.LUNAR_MONSTROSITY.get(),
+				ESEntities.SOLAR_CREEPER.get()
 			);
 		tag(Tags.EntityTypes.BOATS)
 			.add(
@@ -42,13 +43,13 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.FREEZE.get(),
 				ESEntities.TANGLED.get()
 			);
-		tag(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLYS)
+		tag(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLIES)
 			.add(
 				ESEntities.FREEZE.get(),
 				ESEntities.PERMAFROST.get(),
 				ESEntities.STARLIGHT_GOLEM.get()
 			);
-		tag(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)
+		tag(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLIES)
 			.add(
 				ESEntities.TANGLED.get(),
 				ESEntities.TANGLED_SKULL.get(),
@@ -177,7 +178,9 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.STARLIGHT_GOLEM.get(),
 				ESEntities.FREEZE.get(),
 				ESEntities.PERMAFROST.get(),
-				ESEntities.LUNAR_MONSTROSITY.get()
+				ESEntities.LUNAR_MONSTROSITY.get(),
+				ESEntities.TANGLED_SKULL.get(),
+				ESEntities.SOLAR_CREEPER.get()
 			);
 	}
 }

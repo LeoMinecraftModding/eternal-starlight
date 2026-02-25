@@ -93,14 +93,13 @@ public abstract class ESRenderType extends RenderType {
 			.setOverlayState(OVERLAY)
 			.createCompositeState(true)));
 
-	public static final Function<ResourceLocation, RenderType> ENTITY_GLOW = Util.memoize(location ->
-		create(EternalStarlight.ID + ":entity_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
+	public static final Function<ResourceLocation, RenderType> CUTOUT_GLOW = Util.memoize(location ->
+		create(EternalStarlight.ID + ":entity_cutout_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
 			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
 			.setShaderState(RENDERTYPE_BEACON_BEAM_SHADER)
-			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-			.setCullState(NO_CULL)
+			.setTransparencyState(NO_TRANSPARENCY)
+			.setLightmapState(LIGHTMAP)
 			.setOverlayState(OVERLAY)
-			.setWriteMaskState(COLOR_WRITE)
 			.createCompositeState(false)));
 
 	public ESRenderType(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
@@ -119,7 +118,7 @@ public abstract class ESRenderType extends RenderType {
 		return TRANSLUCENT_NO_DEPTH.apply(location);
 	}
 
-	public static RenderType entityGlow(ResourceLocation location) {
-		return ENTITY_GLOW.apply(location);
+	public static RenderType entityCutoutGlow(ResourceLocation location) {
+		return CUTOUT_GLOW.apply(location);
 	}
 }

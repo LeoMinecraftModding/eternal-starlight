@@ -15,11 +15,6 @@ public class LunarMonstrosityStunPhase extends BehaviorPhase<LunarMonstrosity> {
 	}
 
 	@Override
-	public void onStart(LunarMonstrosity entity) {
-
-	}
-
-	@Override
 	public void tick(LunarMonstrosity entity) {
 
 	}

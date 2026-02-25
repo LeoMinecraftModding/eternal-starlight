@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+@FunctionalInterface
 public interface Easing {
 	float calculate(float f);
 

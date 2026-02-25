@@ -22,7 +22,7 @@ import net.minecraft.world.phys.Vec3;
 public class ParryParticle extends Particle {
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/parry_trail.png");
 
-	private final TrailEffect effect = new TrailEffect(0.05f, 0.6f);
+	private final TrailEffect effect = new TrailEffect(0.05f, 0.8f);
 
 	protected ParryParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 		super(level, x, y, z);

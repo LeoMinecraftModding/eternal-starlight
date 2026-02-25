@@ -35,10 +35,6 @@ public class GatekeeperJumpEndPhase extends BehaviorPhase<TheGatekeeper> {
 	}
 
 	@Override
-	public void onStart(TheGatekeeper entity) {
-	}
-
-	@Override
 	public void tick(TheGatekeeper entity) {
 		Level level = entity.level();
 		LivingEntity target = entity.getTarget();
@@ -81,10 +77,6 @@ public class GatekeeperJumpEndPhase extends BehaviorPhase<TheGatekeeper> {
 	@Override
 	public boolean canContinue(TheGatekeeper entity) {
 		return true;
-	}
-
-	@Override
-	public void onStop(TheGatekeeper entity) {
 	}
 
 	@Override

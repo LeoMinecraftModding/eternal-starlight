@@ -268,7 +268,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (getBehaviorState() == LunarMonstrositySneakPhase.ID || (source.getEntity() != null && source.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)))) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (getBehaviorState() == LunarMonstrositySneakPhase.ID || (source.getEntity() != null && source.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLIES)))) {
 			return false;
 		}
 		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {
@@ -302,7 +302,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	@Override
 	public boolean isAlliedTo(Entity entity) {
-		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
+		return super.isAlliedTo(entity) || entity.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLIES);
 	}
 
 	@Override
@@ -377,7 +377,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	public void knockbackNearbyEntities(float radius, float strength, boolean damage) {
 		for (LivingEntity living : level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, this, getBoundingBox().inflate(radius, 0, radius))) {
-			if (!living.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS)) {
+			if (!living.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLIES)) {
 				Vec3 motion = living.position().subtract(position()).normalize().scale(strength);
 				living.hurtMarked = true;
 				living.setDeltaMovement(living.getDeltaMovement().add(motion));
@@ -394,7 +394,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	@Override
 	public boolean ignoreExplosion(Explosion explosion) {
 		LivingEntity cause = explosion.getIndirectSourceEntity();
-		return cause != null && cause.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLYS);
+		return cause != null && cause.getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLIES);
 	}
 
 	@Override

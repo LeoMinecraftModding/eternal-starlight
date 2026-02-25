@@ -24,10 +24,6 @@ public class PermafrostRangedPhase extends BehaviorPhase<Permafrost> {
 	}
 
 	@Override
-	public void onStart(Permafrost entity) {
-	}
-
-	@Override
 	public void tick(Permafrost entity) {
 		Level level = entity.level();
 		if (entity.getTarget() != null) {
@@ -60,9 +56,5 @@ public class PermafrostRangedPhase extends BehaviorPhase<Permafrost> {
 	@Override
 	public boolean canContinue(Permafrost entity) {
 		return true;
-	}
-
-	@Override
-	public void onStop(Permafrost entity) {
 	}
 }

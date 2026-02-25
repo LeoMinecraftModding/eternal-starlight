@@ -15,11 +15,6 @@ public class LunarMonstrosityEmergePhase extends BehaviorPhase<LunarMonstrosity>
 	}
 
 	@Override
-	public void onStart(LunarMonstrosity entity) {
-
-	}
-
-	@Override
 	public void tick(LunarMonstrosity entity) {
 
 	}
@@ -27,10 +22,5 @@ public class LunarMonstrosityEmergePhase extends BehaviorPhase<LunarMonstrosity>
 	@Override
 	public boolean canContinue(LunarMonstrosity entity) {
 		return true;
-	}
-
-	@Override
-	public void onStop(LunarMonstrosity entity) {
-
 	}
 }

@@ -30,9 +30,4 @@ public class StarlightGolemSummonFlamePhase extends BehaviorPhase<StarlightGolem
 	public boolean canContinue(StarlightGolem entity) {
 		return true;
 	}
-
-	@Override
-	public void onStop(StarlightGolem entity) {
-
-	}
 }

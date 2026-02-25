@@ -137,8 +137,8 @@ public class ESTags {
 
 	public static class EntityTypes {
 		public static final TagKey<EntityType<?>> AFFECTS_PROGRESSION = create("affects_progression");
-		public static final TagKey<EntityType<?>> STARLIGHT_GOLEM_ALLYS = create("starlight_golem_allys");
-		public static final TagKey<EntityType<?>> LUNAR_MONSTROSITY_ALLYS = create("lunar_monstrosity_allys");
+		public static final TagKey<EntityType<?>> STARLIGHT_GOLEM_ALLIES = create("starlight_golem_allies");
+		public static final TagKey<EntityType<?>> LUNAR_MONSTROSITY_ALLIES = create("lunar_monstrosity_allies");
 		public static final TagKey<EntityType<?>> ABYSSAL_FIRE_IMMUNE = create("abyssal_fire_immune");
 		public static final TagKey<EntityType<?>> VULNERABLE_TO_SONAR_BOMB = create("vulnerable_to_sonar_bomb");
 		public static final TagKey<EntityType<?>> GLEECH_IMMUNE = create("gleech_immune");

@@ -814,6 +814,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.BLAST.get(), ESExplosionParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE.get(), ESSmokeParticle.Provider::new);
 		strategy.register(ESParticles.RING_EXPLOSION.get(), RingExplosionParticle.Provider::new);
+		strategy.register(ESParticles.RING.get(), RingParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_TRAIL.get(), OrbitalTrailParticle.Provider::new);
 		strategy.register(ESParticles.METEOR.get(), MeteorParticle.Provider::new);
 		strategy.register(ESParticles.PARRY.get(), ParryParticle.Provider::new);
@@ -917,6 +918,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.POISONOUS_CLOUD.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.TANGLED.get(), TangledRenderer::new);
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkullRenderer::new);
+		strategy.register(ESEntities.SOLAR_CREEPER.get(), SolarCreeperRenderer::new);
 		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHuskRenderer::new);
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
 		strategy.register(ESEntities.MALARITE_SPEAR.get(), ThrownMalariteSpearRenderer::new);
@@ -1055,6 +1057,8 @@ public class ESClientSetupHandler {
 		strategy.register(TangledModel.LAYER_LOCATION, TangledModel::createBodyLayer);
 		strategy.register(TangledSkullModel.LAYER_LOCATION, TangledSkullModel::createBodyLayer);
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
+		strategy.register(SolarCreeperModel.LAYER_LOCATION, SolarCreeperModel::createBodyLayer);
+		strategy.register(SunModel.LAYER_LOCATION, SunModel::createBodyLayer);
 		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
 		strategy.register(BallLightningModel.LAYER_LOCATION, BallLightningModel::createBodyLayer);
 		strategy.register(ChainOfSoulsModel.LAYER_LOCATION, ChainOfSoulsModel::createBodyLayer);

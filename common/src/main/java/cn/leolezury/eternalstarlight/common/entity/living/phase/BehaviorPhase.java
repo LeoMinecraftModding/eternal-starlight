@@ -43,13 +43,17 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 
 	public abstract boolean canStart(T entity, boolean cooldownOver);
 
-	public abstract void onStart(T entity);
+	public void onStart(T entity) {
+
+	}
 
 	public abstract void tick(T entity);
 
 	public abstract boolean canContinue(T entity);
 
-	public abstract void onStop(T entity);
+	public void onStop(T entity) {
+
+	}
 
 	public void start(T entity, BehaviorManager<T> manager) {
 		entity.setBehaviorState(getId());

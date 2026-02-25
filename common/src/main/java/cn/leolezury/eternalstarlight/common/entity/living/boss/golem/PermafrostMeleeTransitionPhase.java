@@ -21,10 +21,6 @@ public class PermafrostMeleeTransitionPhase extends BehaviorPhase<Permafrost> {
 	}
 
 	@Override
-	public void onStart(Permafrost entity) {
-	}
-
-	@Override
 	public void tick(Permafrost entity) {
 		if (entity.getTarget() != null) {
 			LivingEntity target = entity.getTarget();
@@ -38,9 +34,5 @@ public class PermafrostMeleeTransitionPhase extends BehaviorPhase<Permafrost> {
 	public boolean canContinue(Permafrost entity) {
 		BlockHitResult result = entity.level().clip(new ClipContext(entity.position().add(0, entity.getBbHeight(), 0), entity.position().subtract(0, 0.5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, entity));
 		return result.getType() == HitResult.Type.MISS;
-	}
-
-	@Override
-	public void onStop(Permafrost entity) {
 	}
 }

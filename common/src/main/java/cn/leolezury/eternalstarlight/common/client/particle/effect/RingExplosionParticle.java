@@ -41,7 +41,7 @@ public class RingExplosionParticle extends SimpleAnimatedParticle {
 		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE);
 		this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
 		quaternionf = new Quaternionf();
-		quaternionf.rotateY(-3.1415927F).rotateX(-Mth.PI / 2);
+		quaternionf.rotateY(-Mth.PI).rotateX(-Mth.PI / 2);
 		this.renderRotatedQuad(vertexConsumer, camera, quaternionf, partialTicks);
 	}
 

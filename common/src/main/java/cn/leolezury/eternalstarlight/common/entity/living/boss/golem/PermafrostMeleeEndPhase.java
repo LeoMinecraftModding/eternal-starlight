@@ -30,10 +30,6 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 	}
 
 	@Override
-	public void onStart(Permafrost entity) {
-	}
-
-	@Override
 	public void tick(Permafrost entity) {
 		Level level = entity.level();
 		LivingEntity target = entity.getTarget();
@@ -68,7 +64,4 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 		return true;
 	}
 
-	@Override
-	public void onStop(Permafrost entity) {
-	}
 }

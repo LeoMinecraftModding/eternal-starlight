@@ -44,8 +44,4 @@ public class GatekeeperJumpTransitionPhase extends BehaviorPhase<TheGatekeeper> 
 		BlockHitResult result = entity.level().clip(new ClipContext(entity.position().add(0, entity.getBbHeight(), 0), entity.position().subtract(0, 0.5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, entity));
 		return result.getType() == HitResult.Type.MISS;
 	}
-
-	@Override
-	public void onStop(TheGatekeeper entity) {
-	}
 }

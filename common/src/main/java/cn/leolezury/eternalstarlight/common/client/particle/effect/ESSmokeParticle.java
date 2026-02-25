@@ -16,14 +16,14 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 
 	protected ESSmokeParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, boolean rise, double movementMultiplier, int fromColor, int toColor, float alpha, SpriteSet spriteSet, float gravity) {
 		super(level, x, y, z, spriteSet, gravity);
-		this.xd = dx + (Math.random() * 2.0 - 1.0) * 0.4000000059604645;
-		this.yd = dy + (Math.random() * 2.0 - 1.0) * 0.4000000059604645;
-		this.zd = dz + (Math.random() * 2.0 - 1.0) * 0.4000000059604645;
-		double j = (Math.random() + Math.random() + 1.0) * 0.15000000596046448 * movementMultiplier;
+		this.xd = dx + (Math.random() * 2.0 - 1.0) * 0.4;
+		this.yd = dy + (Math.random() * 2.0 - 1.0) * 0.4;
+		this.zd = dz + (Math.random() * 2.0 - 1.0) * 0.4;
+		double j = (Math.random() + Math.random() + 1.0) * 0.15 * movementMultiplier;
 		double k = Math.sqrt(this.xd * this.xd + this.yd * this.yd + this.zd * this.zd);
-		this.xd = this.xd / k * j * 0.4000000059604645;
-		this.yd = this.yd / k * j * 0.4000000059604645 + (rise ? 0.10000000149011612 : 0);
-		this.zd = this.zd / k * j * 0.4000000059604645;
+		this.xd = this.xd / k * j * 0.4;
+		this.yd = this.yd / k * j * 0.4 + (rise ? 0.1 : 0);
+		this.zd = this.zd / k * j * 0.4;
 		this.rotSpeed = (float) (Math.random() * 0.05f + 0.075f);
 		this.lifetime = (int) (((int) (Math.random() * 20.0D) + 40) * lifeMultiplier);
 		this.quadSize *= 5;

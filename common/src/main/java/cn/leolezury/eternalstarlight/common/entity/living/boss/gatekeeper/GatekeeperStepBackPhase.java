@@ -46,10 +46,6 @@ public class GatekeeperStepBackPhase extends BehaviorPhase<TheGatekeeper> {
 	}
 
 	@Override
-	public void onStop(TheGatekeeper entity) {
-	}
-
-	@Override
 	public void stop(TheGatekeeper entity, BehaviorManager<TheGatekeeper> manager) {
 		entity.setBehaviorState(0);
 		entity.setBehaviorTicks(0);

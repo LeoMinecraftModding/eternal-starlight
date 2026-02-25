@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
 import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.creeper.SolarCreeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
@@ -338,6 +339,7 @@ public class ESCommonSetupHandler {
 		strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosity.createAttributes().build());
 		strategy.register(ESEntities.TANGLED.get(), Tangled.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkull.createAttributes().build());
+		strategy.register(ESEntities.SOLAR_CREEPER.get(), SolarCreeper.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHusk.createAttributes().build());
 	}
 
@@ -371,7 +373,6 @@ public class ESCommonSetupHandler {
 		strategy.register(ESEntities.LUMINARIS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminaris::checkLuminarisSpawnRules);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TwilightGaze::checkTwilightGazeSpawnRules);
 		strategy.register(ESEntities.FREEZE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Freeze::checkFreezeSpawnRules);
-		strategy.register(ESEntities.PERMAFROST.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Permafrost::checkPermafrostSpawnRules);
 		strategy.register(ESEntities.TANGLED.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Tangled::checkTangledSpawnRules);
 	}
 

@@ -16,11 +16,6 @@ public class LunarMonstrosityBitePhase extends BehaviorPhase<LunarMonstrosity> {
 	}
 
 	@Override
-	public void onStart(LunarMonstrosity entity) {
-
-	}
-
-	@Override
 	public void tick(LunarMonstrosity entity) {
 		if (entity.getBehaviorTicks() == 0) {
 			entity.playSound(ESSoundEvents.LUNAR_MONSTROSITY_BITE.get());
@@ -33,10 +28,5 @@ public class LunarMonstrosityBitePhase extends BehaviorPhase<LunarMonstrosity> {
 	@Override
 	public boolean canContinue(LunarMonstrosity entity) {
 		return true;
-	}
-
-	@Override
-	public void onStop(LunarMonstrosity entity) {
-
 	}
 }

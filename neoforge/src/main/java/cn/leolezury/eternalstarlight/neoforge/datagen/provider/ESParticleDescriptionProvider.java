@@ -32,6 +32,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.BLAST.get(), loc("blast"), 4, false);
 		spriteSet(ESParticles.SMOKE.get(), loc("big_smoke"), 12, false);
 		sprite(ESParticles.RING_EXPLOSION.get(), loc("ring"));
+		sprite(ESParticles.RING.get(), loc("ring"));
 		sprite(ESParticles.GLOW.get(), loc("glow"));
 		sprite(ESParticles.AETHERSENT_SMOKE.get(), loc("big_smoke_3"));
 		spriteSet(ESParticles.ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);

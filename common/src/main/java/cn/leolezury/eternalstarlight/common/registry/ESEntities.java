@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.entity.attack.ray.LunarMonstrosityBr
 import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.GrimstoneGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.*;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.creeper.SolarCreeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
@@ -413,6 +414,14 @@ public class ESEntities {
 			.sized(0.5F, 0.5F)
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("tangled_skull").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<SolarCreeper>> SOLAR_CREEPER = ENTITIES.register(
+		"solar_creeper",
+		() -> EntityType.Builder.of(SolarCreeper::new, MobCategory.MONSTER)
+			.sized(1.5f, 2.75f)
+			.clientTrackingRange(32)
+			.fireImmune()
+			.build(EternalStarlight.id("solar_creeper").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<TangledHusk>> TANGLED_HUSK = ENTITIES.register(
 		"tangled_husk",

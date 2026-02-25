@@ -201,8 +201,6 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
 				.add(LootItem.lootTableItem(ESItems.TANGLED_SKULL.get()))));
 
 		// no loot
-
-		// how dare you hurt the cute npc
 		add(ESEntities.BOARWARF.get(), LootTable.lootTable());
 		add(ESEntities.ASTRAL_GOLEM.get(), LootTable.lootTable());
 
@@ -211,6 +209,7 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
 		add(ESEntities.STARLIGHT_GOLEM.get(), LootTable.lootTable());
 		add(ESEntities.PERMAFROST.get(), LootTable.lootTable());
 		add(ESEntities.LUNAR_MONSTROSITY.get(), LootTable.lootTable());
+		add(ESEntities.SOLAR_CREEPER.get(), LootTable.lootTable());
 	}
 
 	@Override

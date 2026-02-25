@@ -58,6 +58,7 @@ public class ESConfig {
 		public final BossConfig lunarMonstrosity = new BossConfig(200, 12, 1, 200, true);
 		public final AttackingMobConfig tangled = new AttackingMobConfig(20, 0, 5, 64, true);
 		public final AttackingMobConfig tangledSkull = new AttackingMobConfig(1, 0, 3, 64, true);
+		public final BossConfig solarCreeper = new BossConfig(250, 10, 1, 200, true);
 
 		public record CreteorConfig(double maxHealth, double armor, double attackDamage, double followRange, boolean canSpawn, double spawnChance) {
 		}

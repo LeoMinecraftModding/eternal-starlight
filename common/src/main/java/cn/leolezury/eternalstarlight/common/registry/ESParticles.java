@@ -72,6 +72,17 @@ public class ESParticles {
 			return RingExplosionParticleOptions.STREAM_CODEC;
 		}
 	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<RingParticleOptions>> RING = PARTICLE_TYPES.register("ring", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<RingParticleOptions> codec() {
+			return RingParticleOptions.CODEC;
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, RingParticleOptions> streamCodec() {
+			return RingParticleOptions.STREAM_CODEC;
+		}
+	});
 	public static final RegistryObject<ParticleType<?>, ParticleType<OrbitalTrailParticleOptions>> ORBITAL_TRAIL = PARTICLE_TYPES.register("orbital_trail", () -> new ParticleType<>(false) {
 		@Override
 		public MapCodec<OrbitalTrailParticleOptions> codec() {

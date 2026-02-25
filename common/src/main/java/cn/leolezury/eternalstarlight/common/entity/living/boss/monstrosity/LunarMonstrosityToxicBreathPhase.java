@@ -19,11 +19,6 @@ public class LunarMonstrosityToxicBreathPhase extends BehaviorPhase<LunarMonstro
 	}
 
 	@Override
-	public void onStart(LunarMonstrosity entity) {
-
-	}
-
-	@Override
 	public void tick(LunarMonstrosity entity) {
 		if (entity.getBehaviorTicks() == 20) {
 			LunarMonstrosityBreath breath = new LunarMonstrosityBreath(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), entity.level(), entity, entity.getX(), entity.getY() + entity.getBbHeight() / 2.5f, entity.getZ(), entity.yHeadRot + 90, -entity.getXRot());
@@ -37,10 +32,5 @@ public class LunarMonstrosityToxicBreathPhase extends BehaviorPhase<LunarMonstro
 	@Override
 	public boolean canContinue(LunarMonstrosity entity) {
 		return true;
-	}
-
-	@Override
-	public void onStop(LunarMonstrosity entity) {
-
 	}
 }

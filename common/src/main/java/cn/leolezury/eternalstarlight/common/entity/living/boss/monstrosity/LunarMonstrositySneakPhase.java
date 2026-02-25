@@ -19,11 +19,6 @@ public class LunarMonstrositySneakPhase extends BehaviorPhase<LunarMonstrosity> 
 	}
 
 	@Override
-	public void onStart(LunarMonstrosity entity) {
-
-	}
-
-	@Override
 	public void tick(LunarMonstrosity entity) {
 		entity.clearFire();
 		if ((entity.isInLava() || ESBlockUtil.getBlocksInBoundingBox(entity.getNormalStateBoundingBox().inflate(1)).stream().anyMatch(pos -> entity.level().getFluidState(pos).is(FluidTags.LAVA))) && entity.tickCount % 20 == 0) {
@@ -37,10 +32,5 @@ public class LunarMonstrositySneakPhase extends BehaviorPhase<LunarMonstrosity> 
 	@Override
 	public boolean canContinue(LunarMonstrosity entity) {
 		return true;
-	}
-
-	@Override
-	public void onStop(LunarMonstrosity entity) {
-
 	}
 }

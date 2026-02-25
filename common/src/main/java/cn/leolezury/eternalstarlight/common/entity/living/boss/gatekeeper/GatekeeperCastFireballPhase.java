@@ -43,8 +43,4 @@ public class GatekeeperCastFireballPhase extends BehaviorPhase<TheGatekeeper> {
 	public boolean canContinue(TheGatekeeper entity) {
 		return true;
 	}
-
-	@Override
-	public void onStop(TheGatekeeper entity) {
-	}
 }
