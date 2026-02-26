@@ -80,7 +80,7 @@
   "spawn_costs": {
     "eternal_starlight:lonestar_skeleton": {
       "charge": 1.0,
-      "energy_budget": 0.75
+      "energy_budget": 0.5
     },
     "eternal_starlight:nightfall_spider": {
       "charge": 1.0,
@@ -133,7 +133,7 @@
         "type": "eternal_starlight:lonestar_skeleton",
         "maxCount": 2,
         "minCount": 1,
-        "weight": 20
+        "weight": 10
       },
       {
         "type": "eternal_starlight:seeker",

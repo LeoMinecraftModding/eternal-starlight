@@ -143,6 +143,8 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.TWILIGHT_GAZE_HURT.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminaris.hurt"));
 		add(ESSoundEvents.TWILIGHT_GAZE_DEATH.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminaris.death"));
 
+		add(ESSoundEvents.THE_GATEKEEPER_PARRY.get(), definition().with(sound(loc("mob/the_gatekeeper/parry"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".the_gatekeeper.parry"));
+
 		add(ESSoundEvents.STARLIGHT_GOLEM_HURT.get(), definition().with(sound(loc("mob/starlight_golem/hurt"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starlight_golem.hurt"));
 		add(ESSoundEvents.STARLIGHT_GOLEM_DEATH.get(), definition().with(sound(mcLoc("mob/irongolem/death"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starlight_golem.death"));
 		add(ESSoundEvents.STARLIGHT_GOLEM_BLOCK.get(), definition().with(sound(loc("mob/starlight_golem/block"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".starlight_golem.block"));

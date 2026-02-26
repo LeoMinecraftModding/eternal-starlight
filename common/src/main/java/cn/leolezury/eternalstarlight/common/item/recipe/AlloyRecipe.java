@@ -21,9 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public record AlloyRecipe(NonNullList<Result> results, NonNullList<Ingredient> ingredients, int burnTime) implements Recipe<CraftingInput> {
 	@Override
 	public RecipeSerializer<?> getSerializer() {
@@ -96,14 +93,6 @@ public record AlloyRecipe(NonNullList<Result> results, NonNullList<Ingredient> i
 
 		public ItemStack getMaxResultItem() {
 			return item().copyWithCount(amount().getMaxValue());
-		}
-
-		public List<ItemStack> getAllPossibleResultItems() {
-			List<ItemStack> results = new ArrayList<>();
-			for (int i = amount().getMinValue(); i <= amount().getMaxValue(); i++) {
-				results.add(item().copyWithCount(i));
-			}
-			return results;
 		}
 	}
 

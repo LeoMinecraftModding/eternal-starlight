@@ -11,6 +11,10 @@ import net.minecraft.world.phys.Vec3;
 
 public class TrailRenderer {
 	public static void render(TrailEffect effect, VertexConsumer consumer, PoseStack stack, TrailEffect.TrailOffsetFunction function, boolean solid, float r, float g, float b, float a, int light) {
+		render(effect, consumer, stack, function, solid, false, r, g, b, a, 0, 1, 0, 1, light);
+	}
+
+	public static void render(TrailEffect effect, VertexConsumer consumer, PoseStack stack, TrailEffect.TrailOffsetFunction function, boolean solid, boolean particleFormat, float r, float g, float b, float a, float u0, float u1, float v0, float v1, int light) {
 		int size = effect.renderPoints.size();
 		if (size < 2) return;
 
@@ -64,14 +68,25 @@ public class TrailRenderer {
 			float fromAlpha = solid ? 1 : Mth.clamp(a * from.progressFactor(), 0, 1);
 			float toAlpha = solid ? 1 : Mth.clamp(a * to.progressFactor(), 0, 1);
 
-			consumer.addVertex(pose, (float) fromUpper.x(), (float) fromUpper.y(), (float) fromUpper.z())
-				.setColor(r, g, b, fromAlpha).setUv(from.progressFactor(), 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
-			consumer.addVertex(pose, (float) toUpper.x(), (float) toUpper.y(), (float) toUpper.z())
-				.setColor(r, g, b, toAlpha).setUv(to.progressFactor(), 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
-			consumer.addVertex(pose, (float) toLower.x(), (float) toLower.y(), (float) toLower.z())
-				.setColor(r, g, b, toAlpha).setUv(to.progressFactor(), 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
-			consumer.addVertex(pose, (float) fromLower.x(), (float) fromLower.y(), (float) fromLower.z())
-				.setColor(r, g, b, fromAlpha).setUv(from.progressFactor(), 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+			if (particleFormat) {
+				consumer.addVertex(pose, (float) fromUpper.x(), (float) fromUpper.y(), (float) fromUpper.z())
+					.setUv(Mth.lerp(from.progressFactor(), u0, u1), v0).setColor(r, g, b, fromAlpha).setLight(light);
+				consumer.addVertex(pose, (float) toUpper.x(), (float) toUpper.y(), (float) toUpper.z())
+					.setUv(Mth.lerp(to.progressFactor(), u0, u1), v0).setColor(r, g, b, toAlpha).setLight(light);
+				consumer.addVertex(pose, (float) toLower.x(), (float) toLower.y(), (float) toLower.z())
+					.setUv(Mth.lerp(to.progressFactor(), u0, u1), v1).setColor(r, g, b, toAlpha).setLight(light);
+				consumer.addVertex(pose, (float) fromLower.x(), (float) fromLower.y(), (float) fromLower.z())
+					.setUv(Mth.lerp(from.progressFactor(), u0, u1), v1).setColor(r, g, b, fromAlpha).setLight(light);
+			} else {
+				consumer.addVertex(pose, (float) fromUpper.x(), (float) fromUpper.y(), (float) fromUpper.z())
+					.setColor(r, g, b, fromAlpha).setUv(Mth.lerp(from.progressFactor(), u0, u1), v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				consumer.addVertex(pose, (float) toUpper.x(), (float) toUpper.y(), (float) toUpper.z())
+					.setColor(r, g, b, toAlpha).setUv(Mth.lerp(to.progressFactor(), u0, u1), v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				consumer.addVertex(pose, (float) toLower.x(), (float) toLower.y(), (float) toLower.z())
+					.setColor(r, g, b, toAlpha).setUv(Mth.lerp(to.progressFactor(), u0, u1), v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+				consumer.addVertex(pose, (float) fromLower.x(), (float) fromLower.y(), (float) fromLower.z())
+					.setColor(r, g, b, fromAlpha).setUv(Mth.lerp(from.progressFactor(), u0, u1), v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+			}
 		}
 	}
 }

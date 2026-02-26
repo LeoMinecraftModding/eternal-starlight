@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -50,4 +51,6 @@ public interface ESClientPlatform {
 	default void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
 		dispatcher.getModelRenderer().tesselateBlock(level, dispatcher.getBlockModel(state), state, pos, stack, multiBufferSource.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(state)), false, RandomSource.create(), seed, OverlayTexture.NO_OVERLAY);
 	}
+
+	void sendToServer(CustomPacketPayload packet);
 }

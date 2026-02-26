@@ -817,7 +817,10 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.RING.get(), RingParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_TRAIL.get(), OrbitalTrailParticle.Provider::new);
 		strategy.register(ESParticles.METEOR.get(), MeteorParticle.Provider::new);
-		strategy.register(ESParticles.PARRY.get(), ParryParticle.Provider::new);
+		strategy.register(ESParticles.PARRY.get(), TrailParticle.Provider::new);
+		strategy.register(ESParticles.GATHERING_ENERGY.get(), GatheringTrailParticle.Provider::new);
+		strategy.register(ESParticles.GATHERING_SOUL.get(), GatheringTrailParticle.Provider::new);
+		strategy.register(ESParticles.GATHERING_FLARE.get(), GatheringTrailParticle.Provider::new);
 		strategy.register(ESParticles.GLOW.get(), ESGlowParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_SMOKE.get(), AethersentSmokeParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);

@@ -62,7 +62,7 @@ public class ElectricSparkParticle extends TextureSheetParticle {
 		PoseStack stack = new PoseStack();
 		stack.pushPose();
 		stack.translate(-camPos.x, -camPos.y, -camPos.z);
-		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE);
+		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW);
 		for (int i = 0; i < segments.size() - 1; i++) {
 			Vec3 start = segments.get(i);
 			Vec3 end = segments.get(i + 1);

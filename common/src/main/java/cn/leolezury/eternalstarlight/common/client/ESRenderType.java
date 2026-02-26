@@ -32,7 +32,7 @@ public abstract class ESRenderType extends RenderType {
 		.setOverlayState(OVERLAY)
 		.createCompositeState(true));
 
-	public static final RenderType PARTICLE = create(EternalStarlight.ID + ":particle", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+	public static final RenderType PARTICLE_NO_DEPTH = create(EternalStarlight.ID + ":particle_no_depth", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 		.setShaderState(new ShaderStateShard(GameRenderer::getParticleShader))
 		.setTextureState(new TextureStateShard(TextureAtlas.LOCATION_PARTICLES, false, false))
 		.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
@@ -42,7 +42,7 @@ public abstract class ESRenderType extends RenderType {
 		.setWriteMaskState(COLOR_WRITE)
 		.createCompositeState(true));
 
-	public static final RenderType GLOW_PARTICLE = create(EternalStarlight.ID + ":glow_particle", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
+	public static final RenderType PARTICLE_ADDITIVE_GLOW = create(EternalStarlight.ID + ":particle_additive_glow", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 		.setShaderState(new ShaderStateShard(GameRenderer::getParticleShader))
 		.setTextureState(new TextureStateShard(TextureAtlas.LOCATION_PARTICLES, false, false))
 		.setTransparencyState(LIGHTNING_TRANSPARENCY)

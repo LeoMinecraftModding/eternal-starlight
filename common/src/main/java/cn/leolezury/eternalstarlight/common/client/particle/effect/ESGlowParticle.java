@@ -68,7 +68,7 @@ public class ESGlowParticle extends TextureSheetParticle {
 		float a = alpha;
 		float progress = Math.min(age + f, lifetime) / lifetime;
 		this.alpha = Mth.lerp((float) Math.pow((Math.abs(progress - 0.5) * 2), 5), alpha, 0);
-		super.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE), camera, f);
+		super.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW), camera, f);
 		this.alpha = a;
 	}
 

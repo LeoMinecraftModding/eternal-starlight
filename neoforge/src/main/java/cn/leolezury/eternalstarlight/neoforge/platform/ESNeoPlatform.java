@@ -395,9 +395,4 @@ public class ESNeoPlatform implements ESPlatform {
 	public void sendToClient(ServerPlayer player, CustomPacketPayload packet) {
 		ESNeoNetworkHandler.sendToClient(player, packet);
 	}
-
-	@Override
-	public void sendToServer(CustomPacketPayload packet) {
-		ESNeoNetworkHandler.sendToServer(packet);
-	}
 }

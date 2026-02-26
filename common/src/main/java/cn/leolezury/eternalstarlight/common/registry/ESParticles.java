@@ -96,6 +96,39 @@ public class ESParticles {
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> METEOR = PARTICLE_TYPES.register("meteor", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> PARRY = PARTICLE_TYPES.register("parry", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, ParticleType<GatheringTrailParticleOptions>> GATHERING_ENERGY = PARTICLE_TYPES.register("gathering_energy", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<GatheringTrailParticleOptions> codec() {
+			return GatheringTrailParticleOptions.codec(ESParticles.GATHERING_ENERGY.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, GatheringTrailParticleOptions> streamCodec() {
+			return GatheringTrailParticleOptions.streamCodec(ESParticles.GATHERING_ENERGY.get());
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<GatheringTrailParticleOptions>> GATHERING_SOUL = PARTICLE_TYPES.register("gathering_soul", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<GatheringTrailParticleOptions> codec() {
+			return GatheringTrailParticleOptions.codec(ESParticles.GATHERING_SOUL.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, GatheringTrailParticleOptions> streamCodec() {
+			return GatheringTrailParticleOptions.streamCodec(ESParticles.GATHERING_SOUL.get());
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<GatheringTrailParticleOptions>> GATHERING_FLARE = PARTICLE_TYPES.register("gathering_flare", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<GatheringTrailParticleOptions> codec() {
+			return GatheringTrailParticleOptions.codec(ESParticles.GATHERING_FLARE.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, GatheringTrailParticleOptions> streamCodec() {
+			return GatheringTrailParticleOptions.streamCodec(ESParticles.GATHERING_FLARE.get());
+		}
+	});
 	public static final RegistryObject<ParticleType<?>, ParticleType<ESGlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
 		@Override
 		public MapCodec<ESGlowParticleOptions> codec() {

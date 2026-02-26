@@ -19,7 +19,7 @@ public record OrbitalTrailParticleOptions(Vector3f fromColor, Vector3f toColor, 
 		ExtraCodecs.VECTOR3F.fieldOf("from_color").forGetter(OrbitalTrailParticleOptions::fromColor),
 		ExtraCodecs.VECTOR3F.fieldOf("to_color").forGetter(OrbitalTrailParticleOptions::toColor),
 		Codec.FLOAT.fieldOf("radius").forGetter(OrbitalTrailParticleOptions::radius),
-		Codec.FLOAT.fieldOf("rotSpeed").forGetter(OrbitalTrailParticleOptions::rotSpeed),
+		Codec.FLOAT.fieldOf("rot_speed").forGetter(OrbitalTrailParticleOptions::rotSpeed),
 		Codec.FLOAT.fieldOf("alpha").forGetter(OrbitalTrailParticleOptions::alpha),
 		Codec.INT.fieldOf("lifetime").forGetter(OrbitalTrailParticleOptions::lifetime),
 		Codec.INT.fieldOf("owner").forGetter(OrbitalTrailParticleOptions::owner)

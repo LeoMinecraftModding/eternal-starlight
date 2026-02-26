@@ -539,6 +539,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			}
 			if (level() instanceof ServerLevel serverLevel && amount >= 7) {
 				serverLevel.sendParticles(ESParticles.PARRY.get(), getX(), getY() + getBbHeight() / 2, getZ(), 8, 0, 0, 0, 0.2 + getRandom().nextFloat() * 0.2);
+				playSound(ESSoundEvents.THE_GATEKEEPER_PARRY.get(), getSoundVolume(), getVoicePitch());
 			}
 			return false;
 		}

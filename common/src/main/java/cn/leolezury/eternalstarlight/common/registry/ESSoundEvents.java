@@ -130,6 +130,8 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_GAZE_HURT = register("entity.twilight_gaze.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_GAZE_DEATH = register("entity.twilight_gaze.death");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> THE_GATEKEEPER_PARRY = register("entity.the_gatekeeper.parry");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_HURT = register("entity.starlight_golem.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_DEATH = register("entity.starlight_golem.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> STARLIGHT_GOLEM_BLOCK = register("entity.starlight_golem.block");

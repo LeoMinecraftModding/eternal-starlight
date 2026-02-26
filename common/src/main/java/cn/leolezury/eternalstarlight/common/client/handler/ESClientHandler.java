@@ -22,6 +22,7 @@ import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateBookProgressionPacket;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
@@ -218,7 +219,7 @@ public class ESClientHandler {
 				CROSSHAIR_PICKED_ENTITIES.add(entity.getType());
 			}
 			if (clientTickCount % 60 == 0) {
-				ESPlatform.INSTANCE.sendToServer(new UpdateBookProgressionPacket(CROSSHAIR_PICKED_ENTITIES.stream().map(type -> BuiltInRegistries.ENTITY_TYPE.getKey(type).withPrefix("entity_seen_")).collect(Collectors.toSet())));
+				ESClientPlatform.INSTANCE.sendToServer(new UpdateBookProgressionPacket(CROSSHAIR_PICKED_ENTITIES.stream().map(type -> BuiltInRegistries.ENTITY_TYPE.getKey(type).withPrefix("entity_seen_")).collect(Collectors.toSet())));
 				CROSSHAIR_PICKED_ENTITIES.clear();
 			}
 
@@ -272,7 +273,7 @@ public class ESClientHandler {
 				}
 			}
 			if (ESClientSetupHandler.KEY_MAPPINGS.get(EternalStarlight.id("switch_crest")).consumeClick()) {
-				ESPlatform.INSTANCE.sendToServer(new SimpleActionPacket("switch_crest"));
+				ESClientPlatform.INSTANCE.sendToServer(new SimpleActionPacket("switch_crest"));
 			}
 
 			// soulit spectator

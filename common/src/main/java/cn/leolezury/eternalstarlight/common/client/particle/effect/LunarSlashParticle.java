@@ -52,7 +52,7 @@ public class LunarSlashParticle extends TextureSheetParticle {
 		stack.mulPose(new Quaternionf().rotationX(90 * Mth.DEG_TO_RAD));
 		stack.mulPose(new Quaternionf().rotationZ(yRot));
 		stack.mulPose(new Quaternionf().rotationX(zRot));
-		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.GLOW_PARTICLE);
+		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW);
 		float lastYawOffset = 0;
 		Vec3 lastInnerPos = Vec3.ZERO;
 		Vec3 lastOuterPos = Vec3.ZERO;

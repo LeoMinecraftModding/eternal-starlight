@@ -9,7 +9,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESCreativeModeTabs;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import cn.leolezury.eternalstarlight.fabric.network.ESFabricNetworkHandler;
 import cn.leolezury.eternalstarlight.fabric.resource.gatekeeper.FabricGatekeeperNameManager;
 import com.google.auto.service.AutoService;
 import com.mojang.datafixers.util.Pair;
@@ -22,6 +21,7 @@ import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.fabric.impl.attachment.AttachmentRegistryImpl;
 import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
@@ -226,11 +226,6 @@ public class ESFabricPlatform implements ESPlatform {
 
 	@Override
 	public void sendToClient(ServerPlayer player, CustomPacketPayload packet) {
-		ESFabricNetworkHandler.sendToClient(player, packet);
-	}
-
-	@Override
-	public void sendToServer(CustomPacketPayload packet) {
-		ESFabricNetworkHandler.sendToServer(packet);
+		ServerPlayNetworking.send(player, packet);
 	}
 }

@@ -571,6 +571,12 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.tangled_skull.roar"
   },
+  "entity.the_gatekeeper.parry": {
+    "sounds": [
+      "eternal_starlight:mob/the_gatekeeper/parry"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.the_gatekeeper.parry"
+  },
   "entity.thirst_walker.ambient": {
     "sounds": [
       "eternal_starlight:mob/thirst_walker/idle1",

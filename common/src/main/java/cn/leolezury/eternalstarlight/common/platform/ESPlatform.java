@@ -220,6 +220,4 @@ public interface ESPlatform {
 			sendToClient(player, packet);
 		}
 	}
-
-	void sendToServer(CustomPacketPayload packet);
 }

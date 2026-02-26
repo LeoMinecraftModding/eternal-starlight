@@ -1,11 +1,15 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.creeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingParticleOptions;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 
 public class SolarCreeperIntroPhase extends BehaviorPhase<SolarCreeper> {
 	public static final int ID = 1;
@@ -39,12 +43,19 @@ public class SolarCreeperIntroPhase extends BehaviorPhase<SolarCreeper> {
 
 	@Override
 	public void tick(SolarCreeper entity) {
+		RandomSource random = entity.getRandom();
 		int ticks = entity.getBehaviorTicks();
 		if (entity.level() instanceof ServerLevel serverLevel) {
 			if (ticks <= 0.7 * DURATION) {
 				int interval = Mth.lerpInt(ticks / (0.7f * DURATION), 10, 3);
 				if (ticks % interval == 0) {
 					serverLevel.sendParticles(RingParticleOptions.getFlare(interval / 20f), entity.getX(), entity.getY() + entity.getBbHeight() / 2, entity.getZ(), 1, 0, 0, 0, 0);
+					for (int i = 0; i < 3; i++) {
+						double dx = (random.nextDouble() * 3 + 2) * (random.nextBoolean() ? 1 : -1);
+						double dy = (random.nextDouble() * 3 + 2) * (random.nextBoolean() ? 1 : -1);
+						double dz = (random.nextDouble() * 3 + 2) * (random.nextBoolean() ? 1 : -1);
+						ESClientPlatform.INSTANCE.sendToServer(new ParticlePacket(GatheringTrailParticleOptions.FLARE, entity.getX() - dx, entity.getY() + entity.getBbHeight() / 2 - dy, entity.getZ() - dz, dx, dy, dz));
+					}
 				}
 			}
 		}

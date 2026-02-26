@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.CrestPageBu
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.network.UpdateCrestsPacket;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -173,6 +173,6 @@ public class CrestSelectionScreen extends Screen {
 				newCrests.add(button.getCrest());
 			}
 		}
-		ESPlatform.INSTANCE.sendToServer(new UpdateCrestsPacket(newCrests));
+		ESClientPlatform.INSTANCE.sendToServer(new UpdateCrestsPacket(newCrests));
 	}
 }

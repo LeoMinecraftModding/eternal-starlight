@@ -13,6 +13,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -401,35 +402,16 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 			if (!isNoAi() && isAlive()) {
 				behaviorManager.tick();
 			}
-			List<BlockPos> list = getNearbyEnergyBlocks(true);
-			if (level() instanceof ServerLevel serverLevel && getBehaviorState() == StarlightGolemChargePhase.ID && !list.isEmpty()) {
-				for (BlockPos pos : list) {
-					Vec3 angle = position().add(-pos.getX() - 0.5, -pos.getY() - 1.0, -pos.getZ() - 0.5);
-					double px = pos.getX() + 0.5;
-					double py = pos.getY() + 1.0;
-					double pz = pos.getZ() + 0.5;
-
-					for (int i = 0; i < 10; i++) {
-						double dx = angle.x();
-						double dy = angle.y();
-						double dz = angle.z();
-
-						double spread = 5.0D + getRandom().nextFloat() * 2.5D;
-						double velocity = (3.0D + getRandom().nextFloat() * 0.15D) / 45.0D;
-
-						dx += getRandom().nextGaussian() * 0.0075D * spread;
-						dy += getRandom().nextGaussian() * 0.0075D * spread;
-						dz += getRandom().nextGaussian() * 0.0075D * spread;
-						dx *= velocity;
-						dy *= velocity;
-						dz *= velocity;
-
-						ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, this, new ParticlePacket(ESParticles.ENERGY.get(), px, py, pz, dx, dy, dz));
-					}
+			List<BlockPos> nearbyEnergyBlocks = getNearbyEnergyBlocks(true);
+			if (level() instanceof ServerLevel serverLevel && tickCount % 10 == 0 && getBehaviorState() == StarlightGolemChargePhase.ID && !nearbyEnergyBlocks.isEmpty()) {
+				for (BlockPos pos : nearbyEnergyBlocks) {
+					Vec3 energySource = pos.getCenter();
+					Vec3 energyMotion = position().add(0, getBbHeight() / 4, 0).subtract(energySource);
+					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, this, new ParticlePacket(GatheringTrailParticleOptions.ENERGY, energySource.x, energySource.y, energySource.z, energyMotion.x, energyMotion.y, energyMotion.z));
 				}
 			}
 			if (getBehaviorState() == StarlightGolemChargePhase.ID) {
-				hasProtection = !getNearbyEnergyBlocks(true).isEmpty();
+				hasProtection = !nearbyEnergyBlocks.isEmpty();
 			} else {
 				hasProtection = true;
 			}
@@ -437,6 +419,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 				hasProtection = false;
 				if (tickCount % 60 == 0) {
 					hurt(damageSources().generic(), 0);
+					this.invulnerableTime = 0;
 				}
 				for (BlockPos pos : ESBlockUtil.getBlocksInBoundingBox(getBoundingBox().inflate(3))) {
 					if (pos.distToCenterSqr(position()) < (getBbWidth() * getBbWidth()) * 2 && level().getBlockState(pos).is(Blocks.LAVA) && ESPlatform.INSTANCE.postEntityDestroyBlockEvent(level(), pos, this)) {

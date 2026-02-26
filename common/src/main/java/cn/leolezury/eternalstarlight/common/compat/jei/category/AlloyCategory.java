@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
+import mezz.jei.api.gui.ingredient.IRecipeSlotDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.gui.placement.HorizontalAlignment;
 import mezz.jei.api.gui.placement.VerticalAlignment;
@@ -20,6 +21,7 @@ import mezz.jei.common.gui.elements.DrawableAnimated;
 import mezz.jei.library.gui.elements.DrawableBuilder;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
@@ -27,6 +29,7 @@ import java.util.List;
 
 public class AlloyCategory extends AbstractRecipeCategory<RecipeHolder<AlloyRecipe>> {
 	public static final RecipeType<RecipeHolder<AlloyRecipe>> ALLOY = RecipeType.createFromVanilla(ESRecipes.ALLOY.get());
+	private static final RandomSource RANDOM = RandomSource.create();
 
 	private final IDrawableStatic background;
 
@@ -59,7 +62,7 @@ public class AlloyCategory extends AbstractRecipeCategory<RecipeHolder<AlloyReci
 				int index = y * 3 + x;
 				if (ingredients.size() > index) {
 					builder.addInputSlot(20 + x * 18 + 1, 4 + y * 18 + 1)
-						.addIngredients(ingredients.get(y * 3 + x));
+						.addIngredients(ingredients.get(index));
 				}
 			}
 		}
@@ -68,14 +71,23 @@ public class AlloyCategory extends AbstractRecipeCategory<RecipeHolder<AlloyReci
 		builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 77, 41);
 
 		builder.addOutputSlot(115, 6)
-			.addItemStacks(recipe.results().getFirst().getAllPossibleResultItems());
+			.addItemStack(recipe.results().getFirst().getMaxResultItem());
 		if (results.size() > 1) {
 			builder.addOutputSlot(106, 41)
-				.addItemStacks(recipe.results().get(1).getAllPossibleResultItems());
+				.addItemStack(recipe.results().get(1).getMaxResultItem());
 		}
 		if (results.size() > 2) {
 			builder.addOutputSlot(124, 41)
-				.addItemStacks(recipe.results().get(2).getAllPossibleResultItems());
+				.addItemStack(recipe.results().get(2).getMaxResultItem());
+		}
+	}
+
+	@Override
+	public void onDisplayedIngredientsUpdate(RecipeHolder<AlloyRecipe> recipe, List<IRecipeSlotDrawable> recipeSlots, IFocusGroup focuses) {
+		for (int i = 0; i < 3; i++) {
+			if (recipe.value().results().size() > i) {
+				recipeSlots.get(i + recipe.value().getIngredients().size() + 2).createDisplayOverrides().addItemStack(recipe.value().results().get(i).getResultItem(RANDOM));
+			}
 		}
 	}
 

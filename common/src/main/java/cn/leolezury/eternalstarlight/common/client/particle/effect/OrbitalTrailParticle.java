@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
@@ -12,19 +11,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
-import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
-public class OrbitalTrailParticle extends Particle {
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
-
+public class OrbitalTrailParticle extends TextureSheetParticle {
 	private final TrailEffect effect = new TrailEffect(0.125f, 4);
 	private final int fromColor, toColor;
 	private final float radius, rotSpeed;
@@ -32,7 +25,7 @@ public class OrbitalTrailParticle extends Particle {
 	private double cx, cy, cz;
 	private float yaw;
 
-	protected OrbitalTrailParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, int lifetime, int owner, int fromColor, int toColor, float radius, float rotSpeed, float alpha) {
+	protected OrbitalTrailParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, int lifetime, int owner, int fromColor, int toColor, float radius, float rotSpeed, float alpha, SpriteSet spriteSet) {
 		super(level, x, y, z);
 		this.lifetime = lifetime;
 		this.xd = xSpeed;
@@ -47,6 +40,7 @@ public class OrbitalTrailParticle extends Particle {
 		this.cy = y;
 		this.cz = z;
 		this.owner = level.getEntity(owner);
+		this.pickSprite(spriteSet);
 	}
 
 	@Override
@@ -87,22 +81,25 @@ public class OrbitalTrailParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
-		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentNoDepth(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, false, color.rf(), color.gf(), color.bf(), a * 5, LightTexture.FULL_BRIGHT);
+		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, false, true, color.rf(), color.gf(), color.bf(), a * 5, getU0(), getU1(), getV0(), getV1(), LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 
 	@Override
 	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.CUSTOM;
+		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
 	public static class Provider implements ParticleProvider<OrbitalTrailParticleOptions> {
+		private final SpriteSet sprites;
+
 		public Provider(SpriteSet spriteSet) {
+			this.sprites = spriteSet;
 		}
 
 		@Override
 		public Particle createParticle(OrbitalTrailParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new OrbitalTrailParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.lifetime(), options.owner(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.radius(), options.rotSpeed(), options.alpha());
+			return new OrbitalTrailParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.lifetime(), options.owner(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.radius(), options.rotSpeed(), options.alpha(), sprites);
 		}
 	}
 }

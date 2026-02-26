@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 
 public class AdvancedParticleOptions {
 	public static final RandomSource RANDOM = RandomSource.create();
-	private RenderType renderType = ESRenderType.GLOW_PARTICLE;
+	private RenderType renderType = ESRenderType.PARTICLE_ADDITIVE_GLOW;
 	private SmoothSegmentedValue xSpeed = SmoothSegmentedValue.constant(0);
 	private SmoothSegmentedValue ySpeed = SmoothSegmentedValue.constant(0);
 	private SmoothSegmentedValue zSpeed = SmoothSegmentedValue.constant(0);

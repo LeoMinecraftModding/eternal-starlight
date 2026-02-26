@@ -42,7 +42,7 @@ public class RingParticle extends SimpleAnimatedParticle {
 			alpha = Easing.OUT_CUBIC.interpolate(Math.min((age + partialTicks) / lifetime, 1), 1, 0);
 		}
 		Quaternionf rotation = new Quaternionf(camera.rotation());
-		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE);
+		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_NO_DEPTH);
 		this.renderRotatedQuad(vertexConsumer, camera, rotation, partialTicks);
 	}
 

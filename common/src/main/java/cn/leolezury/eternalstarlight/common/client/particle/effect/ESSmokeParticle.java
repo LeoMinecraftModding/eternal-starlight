@@ -14,8 +14,8 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 	private final float rotSpeed;
 	private final float initialAlpha;
 
-	protected ESSmokeParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, boolean rise, double movementMultiplier, int fromColor, int toColor, float alpha, SpriteSet spriteSet, float gravity) {
-		super(level, x, y, z, spriteSet, gravity);
+	protected ESSmokeParticle(ClientLevel level, float lifeMultiplier, double x, double y, double z, double dx, double dy, double dz, boolean rise, double movementMultiplier, int fromColor, int toColor, float alpha, SpriteSet spriteSet) {
+		super(level, x, y, z, spriteSet, 0);
 		this.xd = dx + (Math.random() * 2.0 - 1.0) * 0.4;
 		this.yd = dy + (Math.random() * 2.0 - 1.0) * 0.4;
 		this.zd = dz + (Math.random() * 2.0 - 1.0) * 0.4;
@@ -45,7 +45,7 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 	public void render(VertexConsumer vertexConsumer, Camera camera, float partialTicks) {
 		float progress = Math.min(age + partialTicks, lifetime) / lifetime;
 		this.alpha = Mth.lerp((float) Math.pow((Math.abs(progress - 0.5) * 2), 5), initialAlpha, 0);
-		super.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE), camera, partialTicks);
+		super.render(ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_NO_DEPTH), camera, partialTicks);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class ESSmokeParticle extends SimpleAnimatedParticle {
 
 		@Override
 		public Particle createParticle(ESSmokeParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new ESSmokeParticle(level, options.lifeScale(), x, y, z, xSpeed, ySpeed, zSpeed, options.rise(), options.motionScale(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.alpha(), this.sprites, 0);
+			return new ESSmokeParticle(level, options.lifeScale(), x, y, z, xSpeed, ySpeed, zSpeed, options.rise(), options.motionScale(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.alpha(), this.sprites);
 		}
 	}
 }

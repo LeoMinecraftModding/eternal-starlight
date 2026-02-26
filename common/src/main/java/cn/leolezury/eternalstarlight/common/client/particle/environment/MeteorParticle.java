@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
@@ -10,26 +9,22 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
-import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
-public class MeteorParticle extends Particle {
-	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
+public class MeteorParticle extends TextureSheetParticle {
 	private final TrailEffect effect = new TrailEffect(0.8f, 15);
 
-	protected MeteorParticle(ClientLevel level, double x, double y, double z) {
+	protected MeteorParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet) {
 		super(level, x, y, z);
 		this.xd = 0;
 		this.yd = -2;
 		this.zd = 0;
 		this.lifetime = 400;
+		this.pickSprite(spriteSet);
 	}
 
 	@Override
@@ -57,7 +52,7 @@ public class MeteorParticle extends Particle {
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
 		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
-		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentAdditiveGlow(TRAIL_TEXTURE)), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, false, 144 / 255f, 94 / 255f, 168 / 255f, 2f, LightTexture.FULL_BRIGHT);
+		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, false, true, 144 / 255f, 94 / 255f, 168 / 255f, 2f, getU0(), getU1(), getV0(), getV1(), LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 
@@ -67,12 +62,15 @@ public class MeteorParticle extends Particle {
 	}
 
 	public static class Provider implements ParticleProvider<SimpleParticleType> {
+		private final SpriteSet sprites;
+
 		public Provider(SpriteSet spriteSet) {
+			this.sprites = spriteSet;
 		}
 
 		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new MeteorParticle(level, x, y, z);
+			return new MeteorParticle(level, x, y, z, sprites);
 		}
 	}
 }

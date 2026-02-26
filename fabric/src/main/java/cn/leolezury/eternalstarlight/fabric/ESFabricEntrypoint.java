@@ -4,13 +4,13 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
-import cn.leolezury.eternalstarlight.fabric.network.ESFabricNetworkHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.*;
@@ -44,7 +44,13 @@ public class ESFabricEntrypoint implements ModInitializer {
 
 		// setup handlers
 		ESCommonSetupHandler.commonSetup();
-		ESFabricNetworkHandler.registerPackets();
+		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
+			@Override
+			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
+				PayloadTypeRegistry.playC2S().register(packetInfo.type(), packetInfo.streamCodec());
+				PayloadTypeRegistry.playS2C().register(packetInfo.type(), packetInfo.streamCodec());
+			}
+		});
 		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
 			@Override
 			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {

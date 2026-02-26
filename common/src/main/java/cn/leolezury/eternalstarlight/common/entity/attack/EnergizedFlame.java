@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
-import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -22,6 +22,7 @@ import java.util.UUID;
 
 public class EnergizedFlame extends Entity implements TraceableEntity {
 	private static final String TAG_OWNER = "owner";
+	private static final double HEIGHT = 6;
 
 	@Nullable
 	private LivingEntity owner;
@@ -71,7 +72,8 @@ public class EnergizedFlame extends Entity implements TraceableEntity {
 				playSound(SoundEvents.FIRECHARGE_USE, 1, (getRandom().nextFloat() - getRandom().nextFloat()) * 0.2F + 1.0F);
 			}
 			if (tickCount > 20 && getOwner() != null) {
-				AABB box = getBoundingBox().inflate(0.5, 1, 0.5);
+				AABB box = getBoundingBox().inflate(0.5, 0, 0.5);
+				box = box.setMaxY(box.minY + HEIGHT);
 				for (LivingEntity living : level().getEntitiesOfClass(LivingEntity.class, box)) {
 					if (ESEntityUtil.shouldHarm(getOwner(), living)) {
 						living.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.ENERGIZED_FLAME, this, getOwner()), 2);
@@ -83,7 +85,7 @@ public class EnergizedFlame extends Entity implements TraceableEntity {
 			double dx = random.nextDouble() - 0.5;
 			double dy = random.nextDouble() - 0.5;
 			double dz = random.nextDouble() - 0.5;
-			level().addParticle(ESParticles.ENERGY.get(), getX() - dx, getY() - dy, getZ() - dz, dz * 0.25, 0.25, dx * 0.25);
+			level().addParticle(GatheringTrailParticleOptions.ENERGY, getX() - dx, getY() - dy, getZ() - dz, dz * 0.25, HEIGHT, dx * 0.25);
 			if (tickCount % 20 == 0 && tickCount >= 20) {
 				level().addParticle(RingExplosionParticleOptions.ENERGY_SMALL, getX(), getY() + 0.12, getZ(), 0, 0, 0);
 			}
