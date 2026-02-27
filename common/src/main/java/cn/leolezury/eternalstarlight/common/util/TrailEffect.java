@@ -6,7 +6,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 
 public class TrailEffect {
-	private static final int MAX_CAPACITY = 65536;
+	private static final int MAX_CAPACITY = 64;
 
 	private final ArrayList<TrailPoint> points = new ArrayList<>();
 	public final ArrayList<TrailPoint> renderPoints = new ArrayList<>();
