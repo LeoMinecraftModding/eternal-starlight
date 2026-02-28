@@ -89,7 +89,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private static final String TAG_OFFERS = "offers";
 	private static final String TAG_GATEKEEPER_NAME = "gatekeeper_name";
 	private static final String TAG_FIGHT_TARGET = "fight_target";
-	private static final String TAG_FIGHT_PLAYER_ONLY = "fight_player_only";
+	private static final String TAG_STANDARD_FIGHT = "standard_fight";
 	private static final String TAG_RESTOCK_COOLDOWN = "restock_cooldown";
 	private int noTargetTime;
 	private final List<BlockPos> recentPositions = new ArrayList<>();
@@ -171,10 +171,14 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	private ServerPlayer conversationTarget;
 	@Nullable
 	private String fightTarget;
-	private boolean fightPlayerOnly = true;
+	private boolean standardFight = true;
 
-	public void setFightPlayerOnly(boolean fightPlayerOnly) {
-		this.fightPlayerOnly = fightPlayerOnly;
+	public void setStandardFight(boolean standardFight) {
+		this.standardFight = standardFight;
+	}
+
+	public boolean isStandardFight() {
+		return standardFight;
 	}
 
 	public void setFightTargetName(String fightTarget) {
@@ -200,7 +204,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 		gatekeeperName = compoundTag.getString(TAG_GATEKEEPER_NAME);
 		fightTarget = compoundTag.getString(TAG_FIGHT_TARGET);
-		fightPlayerOnly = compoundTag.getBoolean(TAG_FIGHT_PLAYER_ONLY);
+		if (compoundTag.contains(TAG_STANDARD_FIGHT)) {
+			standardFight = compoundTag.getBoolean(TAG_STANDARD_FIGHT);
+		}
 		restockCooldown = compoundTag.getInt(TAG_RESTOCK_COOLDOWN);
 		bossEvent.setId(getUUID());
 		if (this.offers == null) {
@@ -222,7 +228,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		if (fightTarget != null) {
 			compoundTag.putString(TAG_FIGHT_TARGET, fightTarget);
 		}
-		compoundTag.putBoolean(TAG_FIGHT_PLAYER_ONLY, fightPlayerOnly);
+		compoundTag.putBoolean(TAG_STANDARD_FIGHT, standardFight);
 		compoundTag.putInt(TAG_RESTOCK_COOLDOWN, restockCooldown);
 	}
 
@@ -255,19 +261,19 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		targetSelector.addGoal(0, new GatekeeperTargetGoal(this) {
 			@Override
 			public boolean canUse() {
-				return super.canUse() && fightPlayerOnly && isActivated();
+				return super.canUse() && standardFight && isActivated();
 			}
 		});
 		targetSelector.addGoal(1, new HurtByTargetGoal(this, TheGatekeeper.class) {
 			@Override
 			public boolean canUse() {
-				return super.canUse() && !fightPlayerOnly && isActivated();
+				return super.canUse() && !standardFight && isActivated();
 			}
 		}.setAlertOthers());
 		targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true) {
 			@Override
 			public boolean canUse() {
-				return super.canUse() && !fightPlayerOnly && isActivated();
+				return super.canUse() && !standardFight && isActivated();
 			}
 		});
 	}
@@ -465,7 +471,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public synchronized void handleDialogueClose(int operation) {
 		if (conversationTarget != null) {
 			if (operation == GUI_RESPONSE_CHALLENGE) {
-				fightPlayerOnly = true;
+				standardFight = true;
 				setFightTargetName(conversationTarget.getName().getString());
 				setTarget(conversationTarget);
 				setActivated(true);
@@ -505,7 +511,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public void die(DamageSource source) {
-		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+		if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) || !standardFight) {
 			super.die(source);
 		} else if (!level().isClientSide) {
 			getFightTarget().ifPresent(p -> {
@@ -548,6 +554,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			healInterruptedIndirect = !source.isDirect();
 		}
 		return super.hurt(source, amount);
+	}
+
+	@Override
+	public boolean canBeSeenAsEnemy() {
+		return isActivated() && super.canBeSeenAsEnemy();
 	}
 
 	private void tryTeleportBack() {
@@ -625,11 +636,17 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		}
 		refreshDimensions();
 		if (!level().isClientSide) {
-			if (tickCount > 5 && isAlive() && isActivated() && (getTarget() == null || !getTarget().isAlive())) {
-				noTargetTime++;
-				if (getFightTarget().isEmpty() || noTargetTime > 200) {
-					abortFight();
-					noTargetTime = 0;
+			if (standardFight) {
+				if (tickCount > 5 && isAlive() && isActivated() && (getTarget() == null || !getTarget().isAlive())) {
+					noTargetTime++;
+					if (getFightTarget().isEmpty() || noTargetTime > 200) {
+						abortFight();
+						noTargetTime = 0;
+					}
+				}
+			} else {
+				if (!isActivated()) {
+					setActivated(true);
 				}
 			}
 			if (restockCooldown > 0) {

@@ -6,8 +6,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Targeting;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -31,13 +29,10 @@ public class PermafrostRangedPhase extends BehaviorPhase<Permafrost> {
 			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			Vec3 launchPos = entity.position().add(0, entity.getBbHeight() / 2f, 0);
 			if (entity.getBehaviorTicks() >= 21 && entity.getBehaviorTicks() <= 45) {
-				for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(1.5))) {
-					if (livingEntity == target || (livingEntity instanceof Targeting targeting && targeting.getTarget() == entity)) {
-						entity.doHurtTarget(livingEntity);
-						livingEntity.hurtMarked = true;
-						livingEntity.addDeltaMovement(livingEntity.position().subtract(entity.position()).normalize().scale(2));
-					}
-				}
+				performMeleeAttack(entity, 1.5, true, 360, e -> {
+					e.hurtMarked = true;
+					e.addDeltaMovement(e.position().subtract(entity.position()).normalize().scale(2));
+				});
 				if (entity.getBehaviorTicks() % 3 == 0) {
 					for (int i = 0; i <= 5; i++) {
 						Vec3 targetPos = i == 0 ? target.position().add(0, target.getBbHeight() / 2f, 0) : ESMathUtil.rotationToPosition(launchPos, 1, 15, 360f * i / 5f + entity.getRandom().nextInt(72));

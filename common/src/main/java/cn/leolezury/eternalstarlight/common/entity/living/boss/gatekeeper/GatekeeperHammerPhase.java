@@ -29,14 +29,13 @@ public class GatekeeperHammerPhase extends BehaviorPhase<TheGatekeeper> {
 		LivingEntity target = entity.getTarget();
 		int ticks = entity.getBehaviorTicks();
 		if (ticks == 18 && target != null) {
-			boolean success = performMeleeAttack(entity, 2);
+			performMeleeAttack(entity, 2, true, 90, e -> {
+				e.hurtMarked = true;
+				e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(0.6, 0.5, 0.6));
+			});
 			entity.playSound(SoundEvents.MACE_SMASH_GROUND_HEAVY);
 			entity.hurtMarked = true;
 			entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(0.7));
-			if (success) {
-				target.hurtMarked = true;
-				target.addDeltaMovement(target.position().subtract(entity.position()).normalize().multiply(0.6, 0.5, 0.6));
-			}
 		}
 	}
 

@@ -10,8 +10,6 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Targeting;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
@@ -49,13 +47,10 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 20, 0.2f, 0.3f, 3, 5.5f).send(serverLevel);
 				}
 			}
-			for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(entity.getBehaviorTicks() == 3 ? 4.5 : 1.5))) {
-				if (livingEntity == target || (livingEntity instanceof Targeting targeting && targeting.getTarget() == entity)) {
-					entity.doHurtTarget(livingEntity);
-					livingEntity.hurtMarked = true;
-					livingEntity.addDeltaMovement(livingEntity.position().subtract(entity.position()).normalize().multiply(1.25, 0.5, 1.25));
-				}
-			}
+			performMeleeAttack(entity, entity.getBehaviorTicks() == 3 ? 4.5 : 1.5, true, 360, e -> {
+				e.hurtMarked = true;
+				e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(1.25, 0.5, 1.25));
+			});
 		}
 	}
 

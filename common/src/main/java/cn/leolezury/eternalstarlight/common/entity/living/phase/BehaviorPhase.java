@@ -6,6 +6,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 
+import java.util.function.Consumer;
+
 public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> {
 	private final int id;
 	private final int priority;
@@ -96,35 +98,32 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 		}
 	}
 
-	public boolean isFacingTarget(T entity, float maxDiff) {
-		return isFacingTarget(entity, maxDiff, entity.getYRot() + 90);
-	}
-
-	public boolean isFacingTarget(T entity, float maxDiff, float yAngle) {
-		if (entity instanceof Targeting targeting) {
-			LivingEntity target = targeting.getTarget();
-			if (target == null) {
-				return false;
-			}
-			float angle = ESMathUtil.positionToYaw(entity.position(), target.position());
-			return Mth.degreesDifferenceAbs(angle, yAngle) <= maxDiff;
-		} else {
+	public boolean isFacingEntity(T entity, LivingEntity target, float maxDiff, float yAngle) {
+		if (target == null) {
 			return false;
 		}
+		float angle = ESMathUtil.positionToYaw(entity.position(), target.position());
+		return Mth.degreesDifferenceAbs(angle, yAngle + 90) <= maxDiff;
 	}
 
-	public boolean performMeleeAttack(T entity, double range) {
+	public void performMeleeAttack(T entity, double range) {
+		performMeleeAttack(entity, range, false, 0, e -> {
+		});
+	}
+
+	public void performMeleeAttack(T entity, double range, boolean attackOtherEnemies, float maxAngleForOtherEnemies, Consumer<LivingEntity> onSuccess) {
 		if (entity instanceof Targeting targeting) {
 			LivingEntity target = targeting.getTarget();
-			if (target == null) {
-				return false;
-			}
 			for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(range))) {
-				if (livingEntity == target && canReachTarget(entity, range)) {
-					return entity.doHurtTarget(livingEntity);
+				if (livingEntity == target || (attackOtherEnemies && livingEntity instanceof Targeting t && t.getTarget() == entity
+					&& (isFacingEntity(entity, livingEntity, maxAngleForOtherEnemies, entity.getYRot())
+					|| isFacingEntity(entity, livingEntity, maxAngleForOtherEnemies, entity.yBodyRot)
+					|| isFacingEntity(entity, livingEntity, maxAngleForOtherEnemies, entity.yHeadRot)))) {
+					if (entity.doHurtTarget(livingEntity)) {
+						onSuccess.accept(livingEntity);
+					}
 				}
 			}
 		}
-		return false;
 	}
 }

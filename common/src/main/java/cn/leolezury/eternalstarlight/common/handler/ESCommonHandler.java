@@ -459,7 +459,7 @@ public class ESCommonHandler {
 	}
 
 	public static boolean onAllowLivingDeath(LivingEntity entity, DamageSource source) {
-		if (entity instanceof Player player && source.getEntity() instanceof TheGatekeeper gatekeeper) {
+		if (entity instanceof Player player && source.getEntity() instanceof TheGatekeeper gatekeeper && gatekeeper.isStandardFight()) {
 			gatekeeper.abortFight();
 			player.setHealth(Math.max(player.getHealth(), player.getMaxHealth() * 0.1f));
 			player.invulnerableTime = 200;
