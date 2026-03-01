@@ -19,8 +19,8 @@ public class GatekeeperEatPhase extends BehaviorPhase<TheGatekeeper> {
 	public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
 		return cooldownOver
 			&& !canReachTarget(entity, 10)
-			&& entity.getHealth() < entity.getMaxHealth() * 0.5f
-			&& entity.healCount < 16
+			&& entity.getHealth() < entity.getMaxHealth() * 0.4f
+			&& entity.healCount < 8
 			&& entity.healInterruptedCount < 4;
 	}
 

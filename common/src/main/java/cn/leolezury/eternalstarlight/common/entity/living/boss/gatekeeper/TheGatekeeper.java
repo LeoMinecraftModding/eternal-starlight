@@ -153,9 +153,9 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public float lastTrailTick = 0;
 
 	public boolean shouldAddTrailSnapshot() {
-		return Mth.degreesDifferenceAbs(getYRot(), yBodyRot) < 45
-			&& Mth.degreesDifferenceAbs(getYRot(), yBodyRotO) < 45
-			&& Mth.degreesDifferenceAbs(yBodyRot, yBodyRotO) < 45
+		return Mth.degreesDifferenceAbs(getYRot(), yBodyRot) < 30
+			&& Mth.degreesDifferenceAbs(getYRot(), yBodyRotO) < 30
+			&& Mth.degreesDifferenceAbs(yBodyRot, yBodyRotO) < 30
 			&& ((getBehaviorState() == GatekeeperJumpStartPhase.ID && getBehaviorTicks() >= 15)
 			|| getBehaviorState() == GatekeeperJumpTransitionPhase.ID
 			|| (getBehaviorState() == GatekeeperDashPhase.ID && getBehaviorTicks() > 16 && getBehaviorTicks() < 25));
