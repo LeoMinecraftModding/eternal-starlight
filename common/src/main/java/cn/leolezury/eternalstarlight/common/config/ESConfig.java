@@ -27,38 +27,38 @@ public class ESConfig {
 	public ItemsConfig itemsConfig = new ItemsConfig();
 
 	public static class MobsConfig {
-		public final MobConfig boarwarf = new MobConfig(30, 10, true);
-		public final AttackingMobConfig astralGolem = new AttackingMobConfig(100, 10, 10, 100, true);
-		public final AttackingMobConfig gleech = new AttackingMobConfig(8, 0, 1, 16, true);
-		public final AttackingMobConfig lonestarSkeleton = new AttackingMobConfig(20, 0, 3.2, 16, true);
-		public final AttackingMobConfig nightfallSpider = new AttackingMobConfig(10, 0, 2, 16, true);
-		public final AttackingMobConfig seeker = new AttackingMobConfig(15, 0, 3, 16, true);
-		public final AttackingMobConfig thirstWalker = new AttackingMobConfig(40, 0, 4.5, 32, true);
-		public final CreteorConfig creteor = new CreteorConfig(15, 0, 5, 48, true, 0.7);
-		public final AttackingMobConfig tinyCreteor = new AttackingMobConfig(5, 0, 2, 48, true);
-		public final StranghoulConfig stranghoul = new StranghoulConfig(30, 2, 2, 32, true, 8000);
-		public final MobConfig ent = new MobConfig(10, 0, true);
-		public final MobConfig ratlin = new MobConfig(15, 0, true);
-		public final AttackingMobConfig zombifiedRatlin = new AttackingMobConfig(20, 2, 3, 35, true);
-		public final MobConfig shadowSnail = new MobConfig(8, 6, true);
-		public final MobConfig yeti = new MobConfig(20, 0, true);
-		public final AttackingMobConfig auroraDeer = new AttackingMobConfig(20, 0, 3, 16, true);
-		public final AttackingMobConfig crystallizedMoth = new AttackingMobConfig(20, 0, 1.5, 64, true);
-		public final MobConfig shimmerLacewing = new MobConfig(5, 0, true);
-		public final MobConfig starfireBird = new MobConfig(15, 0, true);
-		public final MobConfig grimstoneGolem = new MobConfig(20, 0, true);
-		public final MobConfig aethersentGolem = new MobConfig(40, 10, true);
-		public final AttackingMobConfig luminofish = new AttackingMobConfig(3, 0, 3, 16, true);
-		public final AttackingMobConfig luminaris = new AttackingMobConfig(3, 0, 3, 64, true);
-		public final AttackingMobConfig twilightGaze = new AttackingMobConfig(10, 0, 3, 16, true);
-		public final GatekeeperConfig theGatekeeper = new GatekeeperConfig(175, 15, 5, 200, true, false);
-		public final BossConfig starlightGolem = new BossConfig(200, 10, 1, 200, true);
-		public final AttackingMobConfig freeze = new AttackingMobConfig(15, 0, 3, 32, true);
-		public final BossConfig permafrost = new BossConfig(120, 10, 1, 200, true);
-		public final BossConfig lunarMonstrosity = new BossConfig(200, 12, 1, 200, true);
-		public final AttackingMobConfig tangled = new AttackingMobConfig(20, 0, 5, 64, true);
-		public final AttackingMobConfig tangledSkull = new AttackingMobConfig(1, 0, 3, 64, true);
-		public final BossConfig solarCreeper = new BossConfig(250, 10, 1, 200, true);
+		public MobConfig boarwarf = new MobConfig(30, 10, true);
+		public AttackingMobConfig astralGolem = new AttackingMobConfig(100, 10, 10, 100, true);
+		public AttackingMobConfig gleech = new AttackingMobConfig(8, 0, 1, 16, true);
+		public AttackingMobConfig lonestarSkeleton = new AttackingMobConfig(20, 0, 3.2, 16, true);
+		public AttackingMobConfig nightfallSpider = new AttackingMobConfig(10, 0, 2, 16, true);
+		public AttackingMobConfig seeker = new AttackingMobConfig(15, 0, 3, 16, true);
+		public AttackingMobConfig thirstWalker = new AttackingMobConfig(40, 0, 4.5, 32, true);
+		public CreteorConfig creteor = new CreteorConfig(15, 0, 5, 48, true, 0.7);
+		public AttackingMobConfig tinyCreteor = new AttackingMobConfig(5, 0, 2, 48, true);
+		public StranghoulConfig stranghoul = new StranghoulConfig(30, 2, 2, 32, true, 8000);
+		public MobConfig ent = new MobConfig(10, 0, true);
+		public MobConfig ratlin = new MobConfig(15, 0, true);
+		public AttackingMobConfig zombifiedRatlin = new AttackingMobConfig(20, 2, 3, 35, true);
+		public MobConfig shadowSnail = new MobConfig(8, 6, true);
+		public MobConfig yeti = new MobConfig(20, 0, true);
+		public AttackingMobConfig auroraDeer = new AttackingMobConfig(20, 0, 3, 16, true);
+		public AttackingMobConfig crystallizedMoth = new AttackingMobConfig(20, 0, 1.5, 64, true);
+		public MobConfig shimmerLacewing = new MobConfig(5, 0, true);
+		public MobConfig starfireBird = new MobConfig(15, 0, true);
+		public MobConfig grimstoneGolem = new MobConfig(20, 0, true);
+		public MobConfig aethersentGolem = new MobConfig(40, 10, true);
+		public AttackingMobConfig luminofish = new AttackingMobConfig(3, 0, 3, 16, true);
+		public AttackingMobConfig luminaris = new AttackingMobConfig(3, 0, 3, 64, true);
+		public AttackingMobConfig twilightGaze = new AttackingMobConfig(10, 0, 3, 16, true);
+		public GatekeeperConfig theGatekeeper = new GatekeeperConfig(175, 15, 5, 200, true, false);
+		public BossConfig starlightGolem = new BossConfig(200, 10, 1, 200, true);
+		public AttackingMobConfig freeze = new AttackingMobConfig(15, 0, 3, 32, true);
+		public BossConfig permafrost = new BossConfig(120, 10, 1, 200, true);
+		public BossConfig lunarMonstrosity = new BossConfig(200, 12, 1, 200, true);
+		public AttackingMobConfig tangled = new AttackingMobConfig(20, 0, 5, 64, true);
+		public AttackingMobConfig tangledSkull = new AttackingMobConfig(1, 0, 3, 64, true);
+		public BossConfig solarCreeper = new BossConfig(250, 10, 1, 200, true);
 
 		public record CreteorConfig(double maxHealth, double armor, double attackDamage, double followRange, boolean canSpawn, double spawnChance) {
 		}
@@ -80,9 +80,10 @@ public class ESConfig {
 	}
 
 	public static class ItemsConfig {
-		public final ChainOfSoulsConfig chainOfSouls = new ChainOfSoulsConfig(64, 2, 0.5);
-		public final CrystalbornCatalystConfig crystalbornCatalyst = new CrystalbornCatalystConfig(128, 50);
-		public final AlloyFurnaceConfig alloyFurnace = new AlloyFurnaceConfig(12000, 3);
+		public double playerAethersentMeteorDamageScale = 1;
+		public ChainOfSoulsConfig chainOfSouls = new ChainOfSoulsConfig(64, 2, 0.5);
+		public CrystalbornCatalystConfig crystalbornCatalyst = new CrystalbornCatalystConfig(128, 50);
+		public AlloyFurnaceConfig alloyFurnace = new AlloyFurnaceConfig(12000, 3);
 
 		public record ChainOfSoulsConfig(double maxRange, double soulAbsorbDamage, double healPercentage) {
 		}

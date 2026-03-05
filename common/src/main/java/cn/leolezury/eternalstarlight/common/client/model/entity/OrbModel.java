@@ -14,11 +14,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-public class SunModel<T extends Entity> extends EntityModel<T> {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("sun"), "main");
+public class OrbModel<T extends Entity> extends EntityModel<T> {
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("orb"), "main");
 	private final ModelPart root;
 
-	public SunModel(ModelPart root) {
+	public OrbModel(ModelPart root) {
 		this.root = root.getChild("root");
 	}
 

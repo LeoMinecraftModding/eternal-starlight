@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.item.magic;
 
 import cn.leolezury.eternalstarlight.common.block.ESPortalBlock;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
-import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.network.OpenCrestGuiPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -81,11 +80,9 @@ public class OrbOfProphecyItem extends Item {
 		Player player = useOnContext.getPlayer();
 		BlockPos pos = useOnContext.getClickedPos();
 		if (level.getBlockState(pos).is(ESTags.Blocks.PORTAL_FRAME_BLOCKS)) {
-			if (level.dimension() == ESDimensions.STARLIGHT_KEY || level.dimension() == Level.OVERWORLD) {
-				if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
-					level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
-					return InteractionResult.sidedSuccess(level.isClientSide);
-				}
+			if (ESPortalBlock.validateAndPlacePortal(level, pos)) {
+				level.playSound(player, pos, SoundEvents.PORTAL_TRIGGER, SoundSource.BLOCKS, 1.0F, 1.0F);
+				return InteractionResult.sidedSuccess(level.isClientSide);
 			}
 		}
 		return InteractionResult.PASS;

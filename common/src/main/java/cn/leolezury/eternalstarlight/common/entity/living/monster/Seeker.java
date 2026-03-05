@@ -175,7 +175,7 @@ public class Seeker extends Monster implements VariantHolder<Holder<SeekerVarian
 					boolean tooHigh = heightResult.getType() == HitResult.Type.MISS;
 					for (int i = 0; i < 32; i++) {
 						if (target != null && i == 0) {
-							Vec3 targetPos = target.position().add(0, target.getBbHeight() / 2f, 0);
+							Vec3 targetPos = target.position().add(0, target.getBbHeight() + 1, 0);
 							Vec3 selfPos = position().add(0, getBbHeight() / 2f, 0);
 							Vec3 wanted = ESMathUtil.rotationToPosition(targetPos, TENTACLE_LENGTH * 0.6f, (getRandom().nextFloat() - 0.5F) * 30, ESMathUtil.positionToYaw(targetPos, selfPos) + 15);
 							nextMovement = wanted.subtract(position()).normalize();

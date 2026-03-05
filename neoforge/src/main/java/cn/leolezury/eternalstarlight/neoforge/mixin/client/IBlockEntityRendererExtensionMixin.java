@@ -10,9 +10,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(IBlockEntityRendererExtension.class)
-public interface IBlockEntityRendererExtensionMixin<T extends BlockEntity> {
-	@ModifyReturnValue(method = "getRenderBoundingBox", at = @At(value = "RETURN", remap = false))
-	default AABB beforeRenderAirLevel(AABB original, @Local(argsOnly = true) BlockEntity blockEntity) {
+public interface IBlockEntityRendererExtensionMixin {
+	@ModifyReturnValue(method = "getRenderBoundingBox", at = @At("RETURN"), remap = false)
+	default AABB getRenderBoundingBox(AABB original, @Local(argsOnly = true) BlockEntity blockEntity) {
 		if (blockEntity instanceof AlloyFurnaceBlockEntity || blockEntity instanceof SolarEggBlockEntity) {
 			return original.inflate(3);
 		}

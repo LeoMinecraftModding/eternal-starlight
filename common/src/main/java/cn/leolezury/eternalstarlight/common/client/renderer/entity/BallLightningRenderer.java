@@ -3,19 +3,17 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
-import cn.leolezury.eternalstarlight.common.client.model.entity.BallLightningModel;
+import cn.leolezury.eternalstarlight.common.client.model.entity.OrbModel;
 import cn.leolezury.eternalstarlight.common.entity.projectile.BallLightning;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
@@ -27,11 +25,11 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/ball_lightning.png");
 	private static final ResourceLocation TRAIL_TEXTURE = EternalStarlight.id("textures/entity/trail.png");
 
-	private final BallLightningModel<BallLightning> model;
+	private final OrbModel<BallLightning> model;
 
 	public BallLightningRenderer(EntityRendererProvider.Context context) {
 		super(context);
-		model = new BallLightningModel<>(context.bakeLayer(BallLightningModel.LAYER_LOCATION));
+		model = new OrbModel<>(context.bakeLayer(OrbModel.LAYER_LOCATION));
 	}
 
 	@Override
@@ -41,20 +39,13 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 		float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) - 90f;
 		float bob = entity.tickCount + partialTicks;
 
+		poseStack.translate(0.0F, entity.getBbHeight() / 2, 0.0F);
 		poseStack.scale(-1.0F, -1.0F, 1.0F);
 		poseStack.translate(0.0F, -1.5F, 0.0F);
 
 		this.model.prepareMobModel(entity, 0, 0, partialTicks);
 		this.model.setupAnim(entity, 0, 0, bob, yRot, xRot);
-		RenderType renderType = RenderType.eyes(getTextureLocation(entity));
-		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(renderType);
-		this.model.inner.visible = true;
-		this.model.outer.visible = false;
-		this.model.renderToBuffer(poseStack, vertexConsumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
-		this.model.inner.visible = false;
-		this.model.outer.visible = true;
-		this.model.renderToBuffer(poseStack, vertexConsumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, FastColor.ARGB32.color(127, 30, 50, 50));
-
+		this.model.renderToBuffer(poseStack, bufferSource.getBuffer(model.renderType(getTextureLocation(entity))), LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 		poseStack.popPose();
 
 		Entity target = entity.level().getEntity(entity.getTargetId());
@@ -89,7 +80,7 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 			// add a full connection
 			segments.add(startPos);
 			Vec3 camPos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
-			vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE));
+			VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE));
 			for (int i = 0; i < segments.size() - 1; i++) {
 				Vec3 start = segments.get(i);
 				Vec3 end = segments.get(i + 1);

@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.entity.OrbModel;
 import cn.leolezury.eternalstarlight.common.client.model.entity.SolarCreeperModel;
-import cn.leolezury.eternalstarlight.common.client.model.entity.SunModel;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.creeper.SolarCreeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.creeper.SolarCreeperIntroPhase;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -23,11 +23,11 @@ public class SolarCreeperRenderer<T extends SolarCreeper> extends MobRenderer<T,
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/solar_creeper/solar_creeper.png");
 	private static final ResourceLocation SUN_TEXTURE = EternalStarlight.id("textures/entity/solar_creeper/sun.png");
 
-	private final SunModel<Entity> sunModel;
+	private final OrbModel<Entity> sunModel;
 
 	public SolarCreeperRenderer(EntityRendererProvider.Context context) {
 		super(context, new SolarCreeperModel<>(context.bakeLayer(SolarCreeperModel.LAYER_LOCATION)), 0.5f);
-		this.sunModel = new SunModel<>(context.bakeLayer(SunModel.LAYER_LOCATION));
+		this.sunModel = new OrbModel<>(context.bakeLayer(OrbModel.LAYER_LOCATION));
 	}
 
 	@Override

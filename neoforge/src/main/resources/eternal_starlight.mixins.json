@@ -11,7 +11,8 @@
   ],
   "client": [
     "client.GuiMixin",
-    "client.HumanoidArmorLayerMixin"
+    "client.HumanoidArmorLayerMixin",
+    "client.ParticleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

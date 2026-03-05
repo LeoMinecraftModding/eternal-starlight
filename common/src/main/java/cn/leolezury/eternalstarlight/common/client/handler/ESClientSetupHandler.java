@@ -1061,9 +1061,8 @@ public class ESClientSetupHandler {
 		strategy.register(TangledSkullModel.LAYER_LOCATION, TangledSkullModel::createBodyLayer);
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(SolarCreeperModel.LAYER_LOCATION, SolarCreeperModel::createBodyLayer);
-		strategy.register(SunModel.LAYER_LOCATION, SunModel::createBodyLayer);
+		strategy.register(OrbModel.LAYER_LOCATION, OrbModel::createBodyLayer);
 		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
-		strategy.register(BallLightningModel.LAYER_LOCATION, BallLightningModel::createBodyLayer);
 		strategy.register(ChainOfSoulsModel.LAYER_LOCATION, ChainOfSoulsModel::createBodyLayer);
 
 		// vanilla entities

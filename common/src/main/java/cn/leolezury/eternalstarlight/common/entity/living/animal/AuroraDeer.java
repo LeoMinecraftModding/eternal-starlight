@@ -75,6 +75,7 @@ public class AuroraDeer extends Animal implements Charger {
 	public AnimationState idleAnimationState = new AnimationState();
 	private boolean charging = false;
 	private int notChargingTicks = 200;
+	private int antlerBreakCooldown = 0;
 	private int snowProgress = 2000;
 
 	@Override
@@ -94,43 +95,9 @@ public class AuroraDeer extends Animal implements Charger {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new ChargeAttackGoal(this, false, 2f, 80, 80, 0.6f) {
-			private boolean antlerBroken = false;
-
 			@Override
 			public boolean canUse() {
 				return super.canUse() && AuroraDeer.this.getHealth() / AuroraDeer.this.getMaxHealth() >= 0.5f && (hasLeftAntler() || hasRightAntler());
-			}
-
-			@Override
-			public void start() {
-				super.start();
-				antlerBroken = false;
-			}
-
-			@Override
-			public void tick() {
-				super.tick();
-				if (AuroraDeer.this.charging && !antlerBroken) {
-					Vec3 vec3 = AuroraDeer.this.getDeltaMovement().multiply(1.0, 0.0, 1.0).normalize();
-					AABB box = AuroraDeer.this.getBoundingBox().move(vec3);
-					BlockPos fromPos = BlockPos.containing(box.minX + 1.0E-7, box.minY + 1.0E-7, box.minZ + 1.0E-7);
-					BlockPos toPos = BlockPos.containing(box.maxX - 1.0E-7, box.maxY - 1.0E-7, box.maxZ - 1.0E-7);
-					BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
-					for (int i = fromPos.getX(); i <= toPos.getX(); ++i) {
-						for (int j = fromPos.getY(); j <= toPos.getY(); ++j) {
-							for (int k = fromPos.getZ(); k <= toPos.getZ(); ++k) {
-								mutableBlockPos.set(i, j, k);
-								BlockState blockState = AuroraDeer.this.level().getBlockState(mutableBlockPos);
-								if (blockState.is(BlockTags.LOGS) || blockState.is(BlockTags.SNAPS_GOAT_HORN) || blockState.is(ESTags.Blocks.BASE_STONE_STARLIGHT)) {
-									AuroraDeer.this.randomlyBreakAntler();
-									antlerBroken = true;
-									stop();
-									return;
-								}
-							}
-						}
-					}
-				}
 			}
 		});
 		this.goalSelector.addGoal(2, new PanicGoal(this, 1.25D) {
@@ -145,7 +112,7 @@ public class AuroraDeer extends Animal implements Charger {
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D) {
 			@Override
 			public boolean canUse() {
-				return super.canUse() && AuroraDeer.this.notChargingTicks >= 200;
+				return super.canUse() && AuroraDeer.this.notChargingTicks >= 100;
 			}
 		});
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -170,12 +137,33 @@ public class AuroraDeer extends Animal implements Charger {
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (charging) {
-			notChargingTicks = 0;
-		} else {
-			notChargingTicks++;
-		}
 		if (!level().isClientSide) {
+			if (charging) {
+				notChargingTicks = 0;
+				if (hasLeftAntler() || hasRightAntler()) {
+					Vec3 movement = getDeltaMovement().multiply(1.0, 0.0, 1.0).normalize().scale(1.25);
+					AABB box = getBoundingBox().expandTowards(movement).inflate(0.75);
+					BlockPos fromPos = BlockPos.containing(box.minX + 1.0E-7, box.minY + 1.0E-7, box.minZ + 1.0E-7);
+					BlockPos toPos = BlockPos.containing(box.maxX - 1.0E-7, box.maxY - 1.0E-7, box.maxZ - 1.0E-7);
+					BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+					for (int x = fromPos.getX(); x <= toPos.getX(); ++x) {
+						for (int y = fromPos.getY(); y <= toPos.getY(); ++y) {
+							for (int z = fromPos.getZ(); z <= toPos.getZ(); ++z) {
+								pos.set(x, y, z);
+								BlockState state = level().getBlockState(pos);
+								if (state.is(BlockTags.LOGS) || state.is(BlockTags.SNAPS_GOAT_HORN) || state.is(ESTags.Blocks.BASE_STONE_STARLIGHT)) {
+									randomlyBreakAntler();
+								}
+							}
+						}
+					}
+				}
+			} else {
+				notChargingTicks++;
+			}
+			if (antlerBreakCooldown > 0) {
+				antlerBreakCooldown--;
+			}
 			boolean snow = hasSnow();
 			if (level().getBiome(blockPosition()).value().getBaseTemperature() < 0.15) {
 				snowProgress = Math.min(snowProgress + 1, 2000);
@@ -213,7 +201,7 @@ public class AuroraDeer extends Animal implements Charger {
 	}
 
 	public void randomlyBreakAntler() {
-		if (getRandom().nextInt(8) == 0) {
+		if (getRandom().nextInt(8) == 0 && antlerBreakCooldown <= 0) {
 			EntityDataAccessor<Boolean> accessor = getRandom().nextBoolean() ? LEFT_ANTLER : RIGHT_ANTLER;
 			if (!hasLeftAntler()) {
 				accessor = RIGHT_ANTLER;
@@ -225,6 +213,7 @@ public class AuroraDeer extends Animal implements Charger {
 				return;
 			}
 			this.getEntityData().set(accessor, false);
+			antlerBreakCooldown = 200;
 			if (level() instanceof ServerLevel serverLevel) {
 				serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY() + getBbHeight() / 2f, this.getZ(), 2, 0.2, 0.2, 0.2, 0.0);
 			}

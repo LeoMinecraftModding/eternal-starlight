@@ -285,6 +285,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder killLunarMonstrosity = addEntityKill(consumer, igniteLunarMonstrosity, "kill_lunar_monstrosity", ESEntities.LUNAR_MONSTROSITY.get(), ESItems.PARASOL_GRASS.get());
 
+		AdvancementHolder crescentSpear = addItemObtain(consumer, killLunarMonstrosity, "obtain_crescent_spear", ESItems.CRESCENT_SPEAR.get());
+
 		AdvancementHolder chainTangledSkullExplosion = Advancement.Builder.advancement().parent(killLunarMonstrosity).display(
 				ESItems.TANGLED_SKULL.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".chain_tangled_skull_explosion.title"),

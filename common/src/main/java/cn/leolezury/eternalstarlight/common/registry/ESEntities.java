@@ -203,7 +203,7 @@ public class ESEntities {
 	public static final RegistryObject<EntityType<?>, EntityType<AuroraDeer>> AURORA_DEER = ENTITIES.register(
 		"aurora_deer",
 		() -> EntityType.Builder.of(AuroraDeer::new, MobCategory.CREATURE)
-			.sized(0.9F, 1.125F)
+			.sized(0.9F, 1.75F)
 			.passengerAttachments(1F)
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("aurora_deer").toString())
