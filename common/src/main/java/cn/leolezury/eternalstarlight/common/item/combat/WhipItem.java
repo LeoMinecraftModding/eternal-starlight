@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.attack.Whip;
-import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
+import cn.leolezury.eternalstarlight.common.item.interfaces.SwingAttackWeapon;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
@@ -13,6 +13,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -26,7 +27,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class WhipItem extends TieredItem implements Swingable {
+public abstract class WhipItem extends TieredItem implements SwingAttackWeapon {
 	public WhipItem(Tier tier, Properties properties) {
 		super(tier, properties);
 	}
@@ -51,14 +52,12 @@ public abstract class WhipItem extends TieredItem implements Swingable {
 	}
 
 	@Override
-	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
-		Level level = entity.level();
-		if (hand == InteractionHand.MAIN_HAND && !level.isClientSide && entity instanceof Player player && !(level.getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip)) {
-			stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
-			Whip whip = createWhip(level, player, stack);
-			level.addFreshEntity(whip);
-			whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
-		}
+	public void performSwingAttack(ItemStack stack, Player player) {
+		Level level = player.level();
+		stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+		Whip whip = createWhip(level, player, stack);
+		level.addFreshEntity(whip);
+		whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
 	}
 
 	@Override

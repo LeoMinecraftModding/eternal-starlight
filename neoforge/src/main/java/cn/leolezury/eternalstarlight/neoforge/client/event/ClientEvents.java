@@ -20,14 +20,14 @@ public class ClientEvents {
 
 	@SubscribeEvent
 	private static void onComputeCameraAngles(ViewportEvent.ComputeCameraAngles event) {
-		Vec3 angle = ESClientHandler.computeCameraAngles(new Vec3(event.getPitch(), event.getYaw(), event.getRoll()));
+		Vec3 angle = ESClientHandler.onComputeCameraAngles(new Vec3(event.getPitch(), event.getYaw(), event.getRoll()));
 		event.setPitch((float) angle.x);
 		event.setYaw((float) angle.y);
 	}
 
 	@SubscribeEvent
 	private static void onComputeFovModifier(ComputeFovModifierEvent event) {
-		ESClientHandler.modifyFov(event.getFovModifier()).ifPresent(d -> event.setNewFovModifier((float) d));
+		ESClientHandler.onComputeFovModifier(event.getFovModifier()).ifPresent(d -> event.setNewFovModifier((float) d));
 	}
 
 	@SubscribeEvent

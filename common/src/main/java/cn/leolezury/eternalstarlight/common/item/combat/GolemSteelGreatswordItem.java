@@ -1,16 +1,16 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.BallLightning;
-import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
+import cn.leolezury.eternalstarlight.common.item.interfaces.SwingAttackWeapon;
 import cn.leolezury.eternalstarlight.common.util.SpecialItemCooldown;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-public class GolemSteelGreatswordItem extends GreatswordItem implements Swingable {
+public class GolemSteelGreatswordItem extends GreatswordItem implements SwingAttackWeapon {
 	public GolemSteelGreatswordItem(Tier tier, Properties properties) {
 		super(tier, properties);
 	}
@@ -41,7 +41,7 @@ public class GolemSteelGreatswordItem extends GreatswordItem implements Swingabl
 	}
 
 	@Override
-	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
-		performSpecialAttack(entity);
+	public void performSwingAttack(ItemStack stack, Player player) {
+		performSpecialAttack(player);
 	}
 }

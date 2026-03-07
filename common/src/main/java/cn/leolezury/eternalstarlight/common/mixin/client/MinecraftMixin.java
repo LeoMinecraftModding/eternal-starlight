@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.mixin.client;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
+import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
+import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.Minecraft;
@@ -49,6 +51,13 @@ public abstract class MinecraftMixin {
 		} else {
 			ESClientHandler.oldSeedsLauncherAnimTicks = 5;
 			ESClientHandler.seedsLauncherAnimTicks = 5;
+		}
+	}
+
+	@Inject(method = "startAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/HitResult;getType()Lnet/minecraft/world/phys/HitResult$Type;", shift = At.Shift.AFTER))
+	private void startAttack(CallbackInfoReturnable<Music> cir) {
+		if (player != null) {
+			ESClientPlatform.INSTANCE.sendToServer(new SimpleActionPacket(SimpleActionPacket.C2S_SWING_ATTACK));
 		}
 	}
 }

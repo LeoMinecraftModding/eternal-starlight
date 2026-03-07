@@ -1,10 +1,10 @@
 package cn.leolezury.eternalstarlight.common.item.combat;
 
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
-import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
+import cn.leolezury.eternalstarlight.common.item.interfaces.SwingAttackWeapon;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -13,7 +13,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class RageOfStarsItem extends SwordItem implements Swingable {
+public class RageOfStarsItem extends SwordItem implements SwingAttackWeapon {
 	public RageOfStarsItem(Tier tier, Properties properties) {
 		super(tier, properties);
 	}
@@ -43,7 +43,7 @@ public class RageOfStarsItem extends SwordItem implements Swingable {
 	}
 
 	@Override
-	public void swing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
-		performSpecialAttack(entity);
+	public void performSwingAttack(ItemStack stack, Player player) {
+		performSpecialAttack(player);
 	}
 }

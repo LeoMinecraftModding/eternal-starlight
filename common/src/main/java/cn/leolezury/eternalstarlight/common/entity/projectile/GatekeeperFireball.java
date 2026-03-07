@@ -155,7 +155,7 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	}
 
 	@Override
-	public TrailEffect newTrail() {
+	public TrailEffect createNewTrail() {
 		return new TrailEffect(0.5f, 18);
 	}
 

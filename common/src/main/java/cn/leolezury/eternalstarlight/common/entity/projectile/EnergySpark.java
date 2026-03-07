@@ -173,7 +173,7 @@ public class EnergySpark extends ThrowableProjectile implements TrailOwner {
 	}
 
 	@Override
-	public TrailEffect newTrail() {
+	public TrailEffect createNewTrail() {
 		return new TrailEffect(0.125f, 3);
 	}
 

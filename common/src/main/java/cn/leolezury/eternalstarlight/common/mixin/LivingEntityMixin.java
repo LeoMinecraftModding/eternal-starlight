@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
-import cn.leolezury.eternalstarlight.common.item.interfaces.Swingable;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -93,13 +92,6 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	@Nullable
 	public abstract LivingEntity getKillCredit();
-
-	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"))
-	private void swing(InteractionHand interactionHand, boolean bl, CallbackInfo ci) {
-		if (this.getItemInHand(interactionHand).getItem() instanceof Swingable swingable) {
-			swingable.swing(this.getItemInHand(interactionHand), (LivingEntity) ((Object) this), interactionHand);
-		}
-	}
 
 	@Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
 	private void isBlocking(CallbackInfoReturnable<Boolean> cir) {

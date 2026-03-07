@@ -297,7 +297,7 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	}
 
 	@Override
-	public TrailEffect newTrail() {
+	public TrailEffect createNewTrail() {
 		return new TrailEffect(Math.max(getSize() / 10f, 0.4f), 15);
 	}
 

@@ -178,7 +178,7 @@ public class CrestEntity extends Entity implements TrailOwner {
 	}
 
 	@Override
-	public TrailEffect newTrail() {
+	public TrailEffect createNewTrail() {
 		return new TrailEffect(0.5f, 15);
 	}
 

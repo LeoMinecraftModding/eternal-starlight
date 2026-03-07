@@ -96,7 +96,7 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 	}
 
 	@Override
-	public TrailEffect newTrail() {
+	public TrailEffect createNewTrail() {
 		return new TrailEffect(0.4f, switch (getOwner()) {
 			case LunarMonstrosity ignored -> 15;
 			case null, default -> 12;

@@ -15,7 +15,7 @@ import java.util.OptionalDouble;
 public abstract class AbstractClientPlayerMixin {
 	@Inject(method = "getFieldOfViewModifier", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/AbstractClientPlayer;getUseItem()Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER), cancellable = true)
 	private void getFieldOfViewModifier(CallbackInfoReturnable<Float> cir, @Local LocalFloatRef localRef) {
-		OptionalDouble fov = ESClientHandler.modifyFov(localRef.get());
+		OptionalDouble fov = ESClientHandler.onComputeFovModifier(localRef.get());
 		if (fov.isPresent()) {
 			localRef.set((float) fov.getAsDouble());
 		}

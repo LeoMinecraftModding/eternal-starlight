@@ -24,7 +24,7 @@ public abstract class CameraMixin {
 
 	@Inject(method = "setup", at = @At("RETURN"))
 	private void setup(BlockGetter blockGetter, Entity entity, boolean bl, boolean bl2, float f, CallbackInfo ci) {
-		Vec3 angles = ESClientHandler.computeCameraAngles(new Vec3(getXRot(), getYRot(), 0));
+		Vec3 angles = ESClientHandler.onComputeCameraAngles(new Vec3(getXRot(), getYRot(), 0));
 		setRotation((float) angles.y, (float) angles.x);
 	}
 }

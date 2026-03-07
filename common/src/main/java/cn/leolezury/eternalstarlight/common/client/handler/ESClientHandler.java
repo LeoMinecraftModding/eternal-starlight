@@ -119,8 +119,6 @@ public class ESClientHandler {
 		}
 		LocalPlayer player = Minecraft.getInstance().player;
 		ClientWeatherState.tickRainLevel();
-		List<WorldVisualEffect> effectsToRemove = new ArrayList<>();
-		List<ScreenShake> screenShakesToRemove = new ArrayList<>();
 		if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()) {
 			if (!Minecraft.getInstance().isPaused()) {
 				clientTickCount++;
@@ -140,26 +138,18 @@ public class ESClientHandler {
 
 			// vfx
 			for (WorldVisualEffect effect : VISUAL_EFFECTS) {
-				if (effect.shouldRemove()) {
-					effectsToRemove.add(effect);
-				} else if (!Minecraft.getInstance().isPaused()) {
+				if (!effect.shouldRemove() && !Minecraft.getInstance().isPaused()) {
 					effect.worldTick();
 				}
 			}
-			for (WorldVisualEffect effect : effectsToRemove) {
-				VISUAL_EFFECTS.remove(effect);
-			}
+			VISUAL_EFFECTS.removeIf(WorldVisualEffect::shouldRemove);
 
 			for (ScreenShake effect : SCREEN_SHAKES) {
-				if (effect.shouldRemove()) {
-					screenShakesToRemove.add(effect);
-				} else if (!Minecraft.getInstance().isPaused()) {
+				if (!effect.shouldRemove() && !Minecraft.getInstance().isPaused()) {
 					effect.tick();
 				}
 			}
-			for (ScreenShake effect : screenShakesToRemove) {
-				SCREEN_SHAKES.remove(effect);
-			}
+			SCREEN_SHAKES.removeIf(ScreenShake::shouldRemove);
 
 			// weather
 			if (!Minecraft.getInstance().isPaused() && ClientWeatherState.weather != null && Minecraft.getInstance().level.dimension().location().equals(ESDimensions.STARLIGHT_KEY.location())) {
@@ -273,7 +263,7 @@ public class ESClientHandler {
 				}
 			}
 			if (ESClientSetupHandler.KEY_MAPPINGS.get(EternalStarlight.id("switch_crest")).consumeClick()) {
-				ESClientPlatform.INSTANCE.sendToServer(new SimpleActionPacket("switch_crest"));
+				ESClientPlatform.INSTANCE.sendToServer(new SimpleActionPacket(SimpleActionPacket.C2S_SWITCH_CREST));
 			}
 
 			// soulit spectator
@@ -318,18 +308,10 @@ public class ESClientHandler {
 
 			// dream catcher
 			if (player.hasEffect(ESMobEffects.DREAM_CATCHER.asHolder())) {
-				List<DreamCatcherText> textsToRemove = new ArrayList<>();
 				for (DreamCatcherText text : DREAM_CATCHER_TEXTS) {
 					text.updatePosition();
-					int width = Minecraft.getInstance().font.width(text.getText());
-					int height = Minecraft.getInstance().font.lineHeight;
-					if (text.getX() - width / 2 > Minecraft.getInstance().getWindow().getGuiScaledWidth() || text.getY() - height / 2 > Minecraft.getInstance().getWindow().getGuiScaledHeight()) {
-						textsToRemove.add(text);
-					}
 				}
-				for (DreamCatcherText text : textsToRemove) {
-					DREAM_CATCHER_TEXTS.remove(text);
-				}
+				DREAM_CATCHER_TEXTS.removeIf(text -> text.getX() - Minecraft.getInstance().font.width(text.getText()) / 2 > Minecraft.getInstance().getWindow().getGuiScaledWidth() || text.getY() - Minecraft.getInstance().font.lineHeight / 2 > Minecraft.getInstance().getWindow().getGuiScaledHeight());
 				if (player.getRandom().nextInt(40) == 0 && DREAM_CATCHER_TEXTS.size() < 20) {
 					Component dreamCatcherText = Component.translatable("message." + EternalStarlight.ID + ".dream_catcher_" + player.getRandom().nextInt(7));
 					DREAM_CATCHER_TEXTS.add(new DreamCatcherText(dreamCatcherText, (int) (player.getRandom().nextFloat() * 5 + 1), -Minecraft.getInstance().font.width(dreamCatcherText) / 2, player.getRandom().nextInt(Minecraft.getInstance().getWindow().getGuiScaledHeight())));
@@ -461,11 +443,11 @@ public class ESClientHandler {
 		RenderSystem.disableBlend();
 	}
 
-	public static Vec3 computeCameraAngles(Vec3 angles) {
+	public static Vec3 onComputeCameraAngles(Vec3 angles) {
 		return angles.add(Mth.clamp(getScreenShakePitchOffset(), -0.5, 0.5), Mth.clamp(getScreenShakeYawOffset(), -0.5, 0.5), 0);
 	}
 
-	public static OptionalDouble modifyFov(float original) {
+	public static OptionalDouble onComputeFovModifier(float original) {
 		float modified = original;
 		LocalPlayer player = Minecraft.getInstance().player;
 		if (player != null && player.isUsingItem()) {
@@ -532,8 +514,8 @@ public class ESClientHandler {
 			}
 		}
 		switch (boss) {
-			case TheGatekeeper theGatekeeper -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/the_gatekeeper.png");
-			case StarlightGolem starlightGolem -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/starlight_golem.png");
+			case TheGatekeeper ignored -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/the_gatekeeper.png");
+			case StarlightGolem ignored -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/starlight_golem.png");
 			case LunarMonstrosity lunarMonstrosity -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/lunar_monstrosity" + (lunarMonstrosity.getPhase() > 0 ? "_soul.png" : ".png"));
 			case null, default -> {
 				return false;

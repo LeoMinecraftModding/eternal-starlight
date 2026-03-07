@@ -44,7 +44,7 @@ public class ClientSideHelper implements ClientHelper {
 	@Override
 	public void handleServerToClientSimpleAction(SimpleActionPacket packet) {
 		switch (packet.id()) {
-			case "cancel_weather" -> ClientWeatherState.weather = null;
+			case SimpleActionPacket.S2C_CLEAR_WEATHER -> ClientWeatherState.weather = null;
 		}
 	}
 

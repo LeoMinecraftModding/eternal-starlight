@@ -127,7 +127,7 @@ public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
 	}
 
 	@Override
-	public TrailEffect newTrail() {
+	public TrailEffect createNewTrail() {
 		return new TrailEffect(0.3f, 8);
 	}
 

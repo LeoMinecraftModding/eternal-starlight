@@ -19,7 +19,6 @@ public class TrailRenderer {
 		if (size < 2) return;
 
 		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-		Vec3 look = new Vec3(camera.getLookVector()).normalize();
 		float halfWidth = effect.getWidth() / 2;
 
 		Vec3[] tangents = new Vec3[size];
@@ -43,7 +42,7 @@ public class TrailRenderer {
 			if (tangent.lengthSqr() < 0.5) {
 				tangent = new Vec3(0, 1, 0);
 			}
-			Vec3 offsetDir = function.calculateTrailOffset(look, camera.getXRot(), camera.getYRot(), tangent).normalize();
+			Vec3 offsetDir = function.calculateTrailOffset(effect.renderPoints.get(i).pos().subtract(camera.getPosition()), camera.getXRot(), camera.getYRot(), tangent).normalize();
 			if (offsetDir.lengthSqr() < 0.5) {
 				offsetDir = new Vec3(0, 1, 0);
 			}

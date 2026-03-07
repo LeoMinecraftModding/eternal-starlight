@@ -19,6 +19,7 @@ import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorIt
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
+import cn.leolezury.eternalstarlight.common.item.interfaces.SwingAttackWeapon;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
@@ -62,6 +63,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -155,7 +157,7 @@ public class ESCommonHandler {
 				}
 			}), () -> {
 				if (lastWeather != null || gameTime % 200 == 0) {
-					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new SimpleActionPacket("cancel_weather"));
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new SimpleActionPacket(SimpleActionPacket.S2C_CLEAR_WEATHER));
 					lastWeather = null;
 				}
 			});
@@ -865,7 +867,13 @@ public class ESCommonHandler {
 
 	public static void onClientToServerSimpleAction(ServerPlayer player, String id) {
 		switch (id) {
-			case "switch_crest" -> {
+			case SimpleActionPacket.C2S_SWING_ATTACK -> {
+				ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
+				if (stack.getItem() instanceof SwingAttackWeapon weapon) {
+					weapon.performSwingAttack(stack, player);
+				}
+			}
+			case SimpleActionPacket.C2S_SWITCH_CREST -> {
 				List<Crest.Instance> crests = ESCrestUtil.getOwnedCrests(player);
 				ItemStack mainHand = player.getMainHandItem();
 				ItemStack offHand = player.getOffhandItem();
