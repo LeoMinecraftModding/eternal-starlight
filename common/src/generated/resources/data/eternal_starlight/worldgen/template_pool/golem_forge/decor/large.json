@@ -3,55 +3,57 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/road_double",
+        "location": "eternal_starlight:golem_forge/decor/large_1",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "eternal_starlight:golem_forge/decor/large_2",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "eternal_starlight:golem_forge/decor/large_3",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 5
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "eternal_starlight:golem_forge/decor/large_4",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 3
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "eternal_starlight:golem_forge/decor/large_5",
         "processors": {
           "processors": []
         },
         "projection": "rigid"
       },
       "weight": 4
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/chimney_room",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 2
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/lava_storage",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 2
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/material_storage",
-        "processors": "eternal_starlight:golem_forge/oxidization",
-        "projection": "rigid"
-      },
-      "weight": 1
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/battle_room",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 2
     }
   ],
   "fallback": "minecraft:empty"

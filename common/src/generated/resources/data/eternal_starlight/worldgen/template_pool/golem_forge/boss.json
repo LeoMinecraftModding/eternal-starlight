@@ -3,8 +3,10 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/boss",
-        "processors": "eternal_starlight:golem_forge/oxidization",
+        "location": "eternal_starlight:golem_forge/room/boss",
+        "processors": {
+          "processors": []
+        },
         "projection": "rigid"
       },
       "weight": 1

@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.pool.ESSinglePoolElement;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
@@ -12,7 +11,6 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.*;
@@ -26,17 +24,14 @@ public class ESTemplatePools {
 	public static final ResourceKey<StructureTemplatePool> PORTAL_RUINS_JUNGLE = create("portal_ruins_jungle");
 	public static final ResourceKey<StructureTemplatePool> PORTAL_RUINS_COLD = create("portal_ruins_cold");
 	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_BOSS = create("golem_forge/boss");
-	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_ROAD = create("golem_forge/road");
-	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_ROAD_OR_ROOM = create("golem_forge/road_or_room");
-	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_ROAD_OR_ROOM_DOUBLE = create("golem_forge/road_or_room_double");
-	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_CHIMNEY = create("golem_forge/chimney");
+	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_ROOM = create("golem_forge/room");
+	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_DECOR_SMALL = create("golem_forge/decor/small");
+	public static final ResourceKey<StructureTemplatePool> GOLEM_FORGE_DECOR_LARGE = create("golem_forge/decor/large");
 
 	public static final ResourceKey<StructureProcessorList> PORTAL_RUINS_VINES = createProcessor("portal_ruins_vines");
-	public static final ResourceKey<StructureProcessorList> GOLEM_FORGE_OXIDIZATION = createProcessor("golem_forge/oxidization");
 
 	public static void bootstrap(BootstrapContext<StructureTemplatePool> context) {
 		Holder<StructureTemplatePool> emptyPool = context.lookup(Registries.TEMPLATE_POOL).getOrThrow(Pools.EMPTY);
-		HolderGetter<PlacedFeature> features = context.lookup(Registries.PLACED_FEATURE);
 		HolderGetter<StructureProcessorList> processors = context.lookup(Registries.PROCESSOR_LIST);
 
 		context.register(PORTAL_RUINS_COMMON, new StructureTemplatePool(emptyPool, ImmutableList.of(
@@ -55,29 +50,25 @@ public class ESTemplatePools {
 			Pair.of(ESSinglePoolElement.make(EternalStarlight.id("portal_ruins/cold").toString(), Holder.direct(new StructureProcessorList(List.of())), 0), 1)
 		), StructureTemplatePool.Projection.RIGID));
 		context.register(GOLEM_FORGE_BOSS, new StructureTemplatePool(emptyPool, ImmutableList.of(
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/boss").toString(), processors.getOrThrow(GOLEM_FORGE_OXIDIZATION)), 1)
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/room/boss").toString()), 1)
 		), StructureTemplatePool.Projection.RIGID));
-		context.register(GOLEM_FORGE_ROAD, new StructureTemplatePool(emptyPool, ImmutableList.of(
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/road_double").toString()), 1),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/road_single").toString()), 2)
+		context.register(GOLEM_FORGE_ROOM, new StructureTemplatePool(emptyPool, ImmutableList.of(
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/room/common").toString()), 5),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/room/alloy").toString()), 2),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/room/storage").toString()), 3),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/room/frozen").toString()), 3),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/room/permafrost").toString()), 1)
 		), StructureTemplatePool.Projection.RIGID));
-		context.register(GOLEM_FORGE_ROAD_OR_ROOM, new StructureTemplatePool(emptyPool, ImmutableList.of(
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/road_double").toString()), 4),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/road_single").toString()), 5),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/chimney_room").toString()), 2),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/lava_storage").toString()), 2),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/material_storage").toString(), processors.getOrThrow(GOLEM_FORGE_OXIDIZATION)), 1),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/battle_room").toString()), 2)
+		context.register(GOLEM_FORGE_DECOR_SMALL, new StructureTemplatePool(emptyPool, ImmutableList.of(
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/decor/small_1").toString()), 4),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/decor/small_2").toString()), 3)
 		), StructureTemplatePool.Projection.RIGID));
-		context.register(GOLEM_FORGE_ROAD_OR_ROOM_DOUBLE, new StructureTemplatePool(emptyPool, ImmutableList.of(
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/road_double").toString()), 4),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/chimney_room").toString()), 2),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/lava_storage").toString()), 2),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/material_storage").toString(), processors.getOrThrow(GOLEM_FORGE_OXIDIZATION)), 1),
-			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/battle_room").toString()), 2)
-		), StructureTemplatePool.Projection.RIGID));
-		context.register(GOLEM_FORGE_CHIMNEY, new StructureTemplatePool(emptyPool, ImmutableList.of(
-			Pair.of(StructurePoolElement.feature(features.getOrThrow(ESPlacedFeatures.GOLEM_FORGE_CHIMNEY)), 1)
+		context.register(GOLEM_FORGE_DECOR_LARGE, new StructureTemplatePool(emptyPool, ImmutableList.of(
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/decor/large_1").toString()), 2),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/decor/large_2").toString()), 2),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/decor/large_3").toString()), 5),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/decor/large_4").toString()), 3),
+			Pair.of(StructurePoolElement.single(EternalStarlight.id("golem_forge/decor/large_5").toString()), 4)
 		), StructureTemplatePool.Projection.RIGID));
 	}
 
@@ -88,15 +79,6 @@ public class ESTemplatePools {
 					new RandomBlockMatchTest(Blocks.VINE, 0.6F),
 					AlwaysTrueTest.INSTANCE,
 					Blocks.AIR.defaultBlockState()
-				)
-			))
-		)));
-		context.register(GOLEM_FORGE_OXIDIZATION, new StructureProcessorList(List.of(
-			new RuleProcessor(List.of(
-				new ProcessorRule(
-					new RandomBlockMatchTest(ESBlocks.GOLEM_STEEL_TILES.get(), 0.8F),
-					AlwaysTrueTest.INSTANCE,
-					ESBlocks.OXIDIZED_GOLEM_STEEL_TILES.get().defaultBlockState()
 				)
 			))
 		)));

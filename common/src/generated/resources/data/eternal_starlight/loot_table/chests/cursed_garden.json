@@ -6,56 +6,8 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "minecraft:moss_block",
-          "weight": 25
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 6.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "minecraft:vine",
-          "weight": 25
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 20.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "minecraft:stick",
-          "weight": 25
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:milk_bucket",
-          "weight": 20
+          "weight": 10
         },
         {
           "type": "minecraft:item",
@@ -86,40 +38,8 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "eternal_starlight:lunar_grass",
-          "weight": 75
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
           "name": "eternal_starlight:glowing_lunar_grass",
           "weight": 25
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "eternal_starlight:parasol_grass",
-          "weight": 75
         },
         {
           "type": "minecraft:item",
@@ -150,34 +70,8 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "eternal_starlight:crescent_grass",
-          "weight": 75
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
           "name": "eternal_starlight:glowing_crescent_grass",
           "weight": 25
-        },
-        {
-          "type": "minecraft:item",
-          "name": "eternal_starlight:blaze_crystal",
-          "weight": 20
-        },
-        {
-          "type": "minecraft:item",
-          "name": "eternal_starlight:lunar_crystal",
-          "weight": 20
         }
       ],
       "rolls": 4.0
@@ -219,8 +113,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 10.0,
-                "min": 3.0
+                "max": 15.0,
+                "min": 5.0
               },
               "function": "minecraft:set_count"
             }
@@ -235,8 +129,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 10.0,
-                "min": 3.0
+                "max": 15.0,
+                "min": 5.0
               },
               "function": "minecraft:set_count"
             }
@@ -251,8 +145,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 5.0,
-                "min": 1.0
+                "max": 15.0,
+                "min": 5.0
               },
               "function": "minecraft:set_count"
             }
@@ -278,8 +172,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
+                "max": 7.0,
+                "min": 3.0
               },
               "function": "minecraft:set_count"
             }
@@ -326,8 +220,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 9.0,
-                "min": 1.0
+                "max": 20.0,
+                "min": 5.0
               },
               "function": "minecraft:set_count"
             }
@@ -342,8 +236,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 2.0,
-                "min": 1.0
+                "max": 5.0,
+                "min": 3.0
               },
               "function": "minecraft:set_count"
             }

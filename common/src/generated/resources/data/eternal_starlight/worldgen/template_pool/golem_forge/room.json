@@ -3,18 +3,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/road_double",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 4
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/road_single",
+        "location": "eternal_starlight:golem_forge/room/common",
         "processors": {
           "processors": []
         },
@@ -25,7 +14,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/chimney_room",
+        "location": "eternal_starlight:golem_forge/room/alloy",
         "processors": {
           "processors": []
         },
@@ -36,33 +25,35 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/lava_storage",
+        "location": "eternal_starlight:golem_forge/room/storage",
         "processors": {
           "processors": []
         },
         "projection": "rigid"
       },
-      "weight": 2
+      "weight": 3
     },
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/material_storage",
-        "processors": "eternal_starlight:golem_forge/oxidization",
+        "location": "eternal_starlight:golem_forge/room/frozen",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 3
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "eternal_starlight:golem_forge/room/permafrost",
+        "processors": {
+          "processors": []
+        },
         "projection": "rigid"
       },
       "weight": 1
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/battle_room",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 2
     }
   ],
   "fallback": "minecraft:empty"

@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.golem;
 
 import cn.leolezury.eternalstarlight.common.block.EnergyBlock;
+import cn.leolezury.eternalstarlight.common.block.WeatheringGolemSteel;
 import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESCrests;
@@ -236,6 +237,11 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		boolean success = super.hurt(source, amount);
 		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.2) {
 			setPhase(1);
+			ESBlockUtil.getBlocksInBoundingBox(getBoundingBox().inflate(2, 0, 2)).forEach(pos -> {
+				if (level().getBlockState(pos).getBlock() instanceof WeatheringGolemSteel && ESPlatform.INSTANCE.postEntityDestroyBlockEvent(level(), pos, this)) {
+					level().destroyBlock(pos, true);
+				}
+			});
 		}
 		return success;
 	}

@@ -48,7 +48,7 @@ public class ESModelUtil {
 			renderer.setModelProperties(clientPlayer);
 			PlayerModel<AbstractClientPlayer> model = renderer.getModel();
 
-			// animated the player model
+			// animate the player model
 			// copied from LivingEntityRenderer
 			model.attackTime = clientPlayer.getAttackAnim(partialTick);
 			boolean shouldSit = clientPlayer.isPassenger() && clientPlayer.getVehicle() != null;

@@ -3,24 +3,24 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/road_double",
+        "location": "eternal_starlight:golem_forge/decor/small_1",
         "processors": {
           "processors": []
         },
         "projection": "rigid"
       },
-      "weight": 1
+      "weight": 4
     },
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "eternal_starlight:golem_forge/road_single",
+        "location": "eternal_starlight:golem_forge/decor/small_2",
         "processors": {
           "processors": []
         },
         "projection": "rigid"
       },
-      "weight": 2
+      "weight": 3
     }
   ],
   "fallback": "minecraft:empty"
