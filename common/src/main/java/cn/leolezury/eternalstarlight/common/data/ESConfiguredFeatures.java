@@ -149,9 +149,6 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_WATER = create("swamp_water");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HOT_SPRING = create("hot_spring");
 
-	// structure features
-	public static final ResourceKey<ConfiguredFeature<?, ?>> GOLEM_FORGE_CHIMNEY = create("golem_forge_chimney");
-
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 		HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -261,9 +258,6 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, BLUE_CRYSTAL_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH, new VegetationPatchConfiguration(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.simple(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(BLUE_CRYSTAL_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F));
 		FeatureUtils.register(context, SWAMP_WATER, ESFeatures.SWAMP_WATER.get());
 		FeatureUtils.register(context, HOT_SPRING, ESFeatures.LAKE.get(), new ESLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.SPRINGSTONE.get().defaultBlockState(), 10).add(ESBlocks.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build())));
-
-		// structure features
-		FeatureUtils.register(context, GOLEM_FORGE_CHIMNEY, ESFeatures.GOLEM_FORGE_CHIMNEY.get());
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> create(String name) {

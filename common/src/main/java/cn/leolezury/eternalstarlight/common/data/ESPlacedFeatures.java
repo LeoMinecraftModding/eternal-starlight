@@ -118,9 +118,6 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> SWAMP_WATER = create("swamp_water");
 	public static final ResourceKey<PlacedFeature> HOT_SPRING = create("hot_spring");
 
-	// structure features
-	public static final ResourceKey<PlacedFeature> GOLEM_FORGE_CHIMNEY = create("golem_forge_chimney");
-
 	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 		BlockPredicate snowPredicate = BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.SNOW_BLOCK, Blocks.POWDER_SNOW);
@@ -227,9 +224,6 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, BLUE_CRYSTAL_MOSS_PATCH_CEILING, configuredFeatures.getOrThrow(ESConfiguredFeatures.BLUE_CRYSTAL_MOSS_PATCH), CountPlacement.of(10), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, HOT_SPRING, configuredFeatures.getOrThrow(ESConfiguredFeatures.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-
-		// structure features
-		PlacementUtils.register(context, GOLEM_FORGE_CHIMNEY, configuredFeatures.getOrThrow(ESConfiguredFeatures.GOLEM_FORGE_CHIMNEY));
 	}
 
 	private static ResourceKey<PlacedFeature> create(String name) {

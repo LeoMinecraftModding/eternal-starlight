@@ -7,7 +7,6 @@ import cn.leolezury.eternalstarlight.common.world.gen.feature.*;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralClawFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralMushroomFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.coral.ESCoralTreeFeature;
-import cn.leolezury.eternalstarlight.common.world.gen.feature.structure.GolemForgeChimneyFeature;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -44,7 +43,6 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ABYSSAL_CAVE = FEATURES.register("abyssal_cave", () -> new AbyssalCaveFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<VelvetumossFeature.Configuration>> VELVETUMOSS = FEATURES.register("velvetumoss", () -> new VelvetumossFeature(VelvetumossFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<BlockPatchFeature.Configuration>> BLOCK_PATCH = FEATURES.register("block_patch", () -> new BlockPatchFeature(BlockPatchFeature.Configuration.CODEC));
-	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> GOLEM_FORGE_CHIMNEY = FEATURES.register("golem_forge_chimney", () -> new GolemForgeChimneyFeature(NoneFeatureConfiguration.CODEC));
 
 	public static void loadClass() {
 	}
