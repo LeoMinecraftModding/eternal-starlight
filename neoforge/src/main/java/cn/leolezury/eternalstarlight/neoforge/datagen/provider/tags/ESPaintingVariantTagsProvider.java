@@ -39,7 +39,11 @@ public class ESPaintingVariantTagsProvider extends PaintingVariantTagsProvider {
 				ESPaintingVariants.SWORD_OF_THE_LAKE,
 				ESPaintingVariants.SKELETON_LONESTAR,
 				ESPaintingVariants.HYMN_OF_THE_RATS,
-				ESPaintingVariants.COOLER
+				ESPaintingVariants.COOLER,
+				ESPaintingVariants.RIVEN_WELKIN,
+				ESPaintingVariants.UMBROUS_ALCHEMIST,
+				ESPaintingVariants.EXTINGUISHED_SUN,
+				ESPaintingVariants.NOVUS_SOL
 			);
 	}
 }

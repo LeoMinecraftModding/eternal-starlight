@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:enter_crystallized_desert",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:crinoa_seeds"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_crinoa_seeds.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:crinoa_seeds"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_crinoa_seeds.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

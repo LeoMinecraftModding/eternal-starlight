@@ -32,6 +32,10 @@ public class ESPaintingVariants {
 	public static final ResourceKey<PaintingVariant> SKELETON_LONESTAR = create("skeleton_lonestar");
 	public static final ResourceKey<PaintingVariant> HYMN_OF_THE_RATS = create("hymn_of_the_rats");
 	public static final ResourceKey<PaintingVariant> COOLER = create("cooler");
+	public static final ResourceKey<PaintingVariant> RIVEN_WELKIN = create("riven_welkin");
+	public static final ResourceKey<PaintingVariant> UMBROUS_ALCHEMIST = create("umbrous_alchemist");
+	public static final ResourceKey<PaintingVariant> EXTINGUISHED_SUN = create("extinguished_sun");
+	public static final ResourceKey<PaintingVariant> NOVUS_SOL = create("novus_sol");
 
 	public static void bootstrap(BootstrapContext<PaintingVariant> context) {
 		register(context, GUARDIAN, 2, 2);
@@ -59,6 +63,10 @@ public class ESPaintingVariants {
 		register(context, SKELETON_LONESTAR, 1, 1);
 		register(context, HYMN_OF_THE_RATS, 2, 3);
 		register(context, COOLER, 1, 2);
+		register(context, RIVEN_WELKIN, 3, 3);
+		register(context, UMBROUS_ALCHEMIST, 2, 2);
+		register(context, EXTINGUISHED_SUN, 2, 1);
+		register(context, NOVUS_SOL, 2, 1);
 	}
 
 	private static void register(BootstrapContext<PaintingVariant> context, ResourceKey<PaintingVariant> key, int xSize, int ySize) {
