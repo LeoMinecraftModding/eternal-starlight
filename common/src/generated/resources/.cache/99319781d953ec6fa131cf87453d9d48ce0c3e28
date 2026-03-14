@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-06T23:09:13.8744662	Block States: eternal_starlight
+// 1.21.1	2026-03-13T23:15:48.9766385	Block States: eternal_starlight
 0fa0d5e3aac576a13b6468badbef299870f730a6 assets/eternal_starlight/blockstates/abyssal_geyser.json
 dd0f2627e74ab03459ebae3d5a1df9def4a89042 assets/eternal_starlight/blockstates/abyssal_kelp.json
 f02d5b82ec269c56ac32c6a38b0dc0cdbbf3d008 assets/eternal_starlight/blockstates/abyssal_kelp_plant.json
@@ -1458,8 +1458,8 @@ a4586d1ede242da426bf1306ee3a758b20a6b313 assets/eternal_starlight/models/block/m
 3fbfe66668a054e3ea394852da82bfc0dc99ebf6 assets/eternal_starlight/models/block/marimold_stem.json
 bbb4a5e52beca5bd87075afb6d0aa86308bd785b assets/eternal_starlight/models/block/marimold_stem_inside.json
 70ca21cf30e28f4de7ed9626ed903bb5fc014946 assets/eternal_starlight/models/block/mauve_fern.json
-9d88452c867f1db10525eb6ec61285028bbd9681 assets/eternal_starlight/models/block/mechanical_spawner_lower.json
-46d1eb5d7725e710f192cbf53c627afb7e08f0d5 assets/eternal_starlight/models/block/mechanical_spawner_upper.json
+47d4fbeb69f183d39e90bdcead1e35ad54846c46 assets/eternal_starlight/models/block/mechanical_spawner_lower.json
+7675501d095ea62f647d3c4fd4edeba4d8cc5c52 assets/eternal_starlight/models/block/mechanical_spawner_upper.json
 ffe8c06dc5cabe7f870359146df6b745cb7c8b0b assets/eternal_starlight/models/block/molten_stellagmite.json
 74058388358ce2e6ad851c40e149dee736ac097b assets/eternal_starlight/models/block/molten_stellagmite_slab.json
 3ae862a2749d33438ef47ce1bd3c02a79c04748a assets/eternal_starlight/models/block/molten_stellagmite_slab_top.json

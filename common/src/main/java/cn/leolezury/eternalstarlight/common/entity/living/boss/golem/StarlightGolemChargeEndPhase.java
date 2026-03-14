@@ -28,6 +28,6 @@ public class StarlightGolemChargeEndPhase extends BehaviorPhase<StarlightGolem> 
 
 	@Override
 	public void onStop(StarlightGolem entity) {
-
+		entity.getBehaviorManager().getCooldowns().put(StarlightGolemChargeStartPhase.ID, 800);
 	}
 }

@@ -161,7 +161,7 @@ public class ESClientHandler {
 				if (player.tickCount % 20 == 0) {
 					if (bossMusicInstance == null) {
 						List<ESBoss> bosses = Minecraft.getInstance().level.getEntitiesOfClass(ESBoss.class, player.getBoundingBox().inflate(50));
-						bosses.sort(Comparator.comparingDouble(b -> b.distanceTo(player)));
+						bosses.sort(Comparator.comparingDouble(b -> b.distanceToSqr(player)));
 						bosses = bosses.stream().filter(ESBoss::shouldPlayBossMusic).filter(b -> b.tickCount > 20 && player.hasLineOfSight(b)).toList();
 						if (!bosses.isEmpty()) {
 							ESBoss boss = bosses.getFirst();

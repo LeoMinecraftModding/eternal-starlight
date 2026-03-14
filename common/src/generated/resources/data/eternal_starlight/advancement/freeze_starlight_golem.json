@@ -1,0 +1,26 @@
+{
+  "parent": "eternal_starlight:enter_golem_forge",
+  "criteria": {
+    "freeze": {
+      "trigger": "eternal_starlight:freeze_starlight_golem"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.freeze_starlight_golem.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:frozen_tube"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.freeze_starlight_golem.title"
+    }
+  },
+  "requirements": [
+    [
+      "freeze"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

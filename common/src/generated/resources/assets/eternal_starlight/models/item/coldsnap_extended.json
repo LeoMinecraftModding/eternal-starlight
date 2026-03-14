@@ -1,0 +1,6 @@
+{
+  "parent": "eternal_starlight:item/gui_only",
+  "textures": {
+    "layer0": "eternal_starlight:item/coldsnap"
+  }
+}

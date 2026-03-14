@@ -1,0 +1,37 @@
+{
+  "parent": "eternal_starlight:enter_golem_forge",
+  "criteria": {
+    "kill": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "eternal_starlight:permafrost"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.kill_permafrost.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:coldsnap"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.kill_permafrost.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

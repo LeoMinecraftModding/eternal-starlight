@@ -1,7 +1,6 @@
 {
   "values": [
     "eternal_starlight:starfall_longbow",
-    "eternal_starlight:glacite_shield",
     "eternal_starlight:deepsilver_brush",
     "eternal_starlight:unrealium_crossbow",
     "eternal_starlight:malarite_spear",
@@ -9,10 +8,7 @@
     "eternal_starlight:seeds_launcher",
     "eternal_starlight:starfire_crossbow",
     "eternal_starlight:flowglaze_bow",
-    "eternal_starlight:flowglaze_shield",
     "eternal_starlight:saltpeter_matchbox",
-    "eternal_starlight:candlash",
-    "eternal_starlight:tentacle_spike",
     "eternal_starlight:glistering_bow",
     "eternal_starlight:mechanical_crossbow",
     "eternal_starlight:crystal_crossbow",
@@ -24,6 +20,8 @@
     "#eternal_starlight:scythes",
     "#eternal_starlight:sickles",
     "#eternal_starlight:hammers",
-    "#eternal_starlight:boomerangs"
+    "#eternal_starlight:boomerangs",
+    "#eternal_starlight:whips",
+    "#eternal_starlight:small_shields"
   ]
 }

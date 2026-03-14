@@ -68,6 +68,17 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 					.add(LootItem.lootTableItem(Items.IRON_INGOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(50))
 					.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(5, 10))).setWeight(75))));
 
+		consumer.accept(ESLootTables.BOSS_PERMAFROST,
+			LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+					.add(NestedLootTable.lootTableReference(ESLootTables.BOSS_COMMON)))
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.COLDSNAP.get())))
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(5, 12)))))
+				.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(ESItems.FROZEN_TUBE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(12, 18))))));
+
 		consumer.accept(ESLootTables.BOSS_STARLIGHT_GOLEM,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()

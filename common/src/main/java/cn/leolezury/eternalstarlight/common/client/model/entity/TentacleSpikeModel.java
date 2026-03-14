@@ -45,7 +45,7 @@ public class TentacleSpikeModel<T extends TentacleSpike> extends EntityModel<T> 
 			} else if (i == NUM_SEGMENTS - 1) {
 				last = last.addOrReplaceChild("segment" + (i + 1), CubeListBuilder.create(), PartPose.offset(0.0F, -12.0F, 0.0F));
 				last.addOrReplaceChild("cross" + (i * 2 + 1), CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -6.0F, -4.5F, 0.0F, 12.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -6.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
-				last.addOrReplaceChild("cross" + (i * 2 + 1), CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -6.0F, -4.5F, 0.0F, 12.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -6.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
+				last.addOrReplaceChild("cross" + (i * 2 + 2), CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -6.0F, -4.5F, 0.0F, 12.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -6.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
 			} else {
 				last = last.addOrReplaceChild("segment" + (i + 1), CubeListBuilder.create(), PartPose.offset(0.0F, -12.0F, 0.0F));
 				last.addOrReplaceChild("cross" + (i * 2 + 1), CubeListBuilder.create().texOffs(18, 0).addBox(0.0F, -6.0F, -1.5F, 0.0F, 12.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -6.0F, 0.0F, 0.0F, 0.7854F, 0.0F));

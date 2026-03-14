@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.model;
 
 import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -28,7 +29,7 @@ public class ESModelUtil {
 	public static Vec3 getModelPartWorldPosition(Entity entity, float yaw, List<ModelPart> parts) {
 		PoseStack stack = new PoseStack();
 		stack.translate(entity.getX(), entity.getY(), entity.getZ());
-		stack.mulPose(new Quaternionf().rotationY((-yaw + 180.0F) * Mth.DEG_TO_RAD));
+		stack.mulPose(Axis.YP.rotationDegrees(180.0F - yaw));
 		stack.scale(-1, -1, 1);
 		stack.translate(0, -1.5f, 0);
 

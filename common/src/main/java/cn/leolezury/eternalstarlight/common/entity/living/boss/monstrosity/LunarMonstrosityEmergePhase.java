@@ -6,7 +6,7 @@ public class LunarMonstrosityEmergePhase extends BehaviorPhase<LunarMonstrosity>
 	public static final int ID = 7;
 
 	public LunarMonstrosityEmergePhase() {
-		super(ID, 1, 30, 0);
+		super(ID, 1, 45, 0);
 	}
 
 	@Override

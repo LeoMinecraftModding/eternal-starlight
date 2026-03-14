@@ -27,12 +27,23 @@ import java.util.Optional;
 public class RayAttack extends Entity implements TraceableEntity {
 	protected static final EntityDataAccessor<Integer> CASTER = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.INT);
 
+	public int getCasterId() {
+		return this.getEntityData().get(CASTER);
+	}
+
 	public Optional<Entity> getCaster() {
-		return Optional.ofNullable(level().getEntity(this.getEntityData().get(CASTER)));
+		if (level().isClientSide) {
+			int casterId = this.getCasterId();
+			if (caster == null || casterId != caster.getId()) {
+				caster = level().getEntity(casterId);
+			}
+		}
+		return Optional.ofNullable(caster);
 	}
 
 	public void setCaster(Entity caster) {
-		this.getEntityData().set(CASTER, caster.getId());
+		this.getEntityData().set(CASTER, caster != null ? caster.getId() : -1);
+		this.caster = caster;
 	}
 
 	protected static final EntityDataAccessor<Float> PITCH = SynchedEntityData.defineId(RayAttack.class, EntityDataSerializers.FLOAT);
@@ -66,6 +77,7 @@ public class RayAttack extends Entity implements TraceableEntity {
 	}
 
 	public float renderPitch, renderYaw, prevPitch, prevYaw;
+	private Entity caster;
 
 	public RayAttack(EntityType<? extends RayAttack> type, Level world) {
 		super(type, world);
@@ -109,6 +121,9 @@ public class RayAttack extends Entity implements TraceableEntity {
 			setLength((float) endPos.distanceTo(position()));
 			result = ESEntityUtil.raytrace(level(), CollisionContext.of(this), position(), endPos);
 			onHit(result);
+			if ((caster != null && caster.getId() != getCasterId()) || tickCount % 20 == 0) {
+				setCaster(caster);
+			}
 		} else {
 			prevYaw = renderYaw;
 			prevPitch = renderPitch;
@@ -146,17 +161,6 @@ public class RayAttack extends Entity implements TraceableEntity {
 				doHurtTarget(living);
 			}
 		}
-		/*BlockPos origin = BlockPos.containing(ESMathUtil.rotationToPosition(position(), getLength(), getPitch(), getYaw()));
-		for (int x = -1; x <= 1; x++) {
-			for (int y = -1; y <= 1; y++) {
-				for (int z = -1; z <= 1; z++) {
-					BlockPos firePos = origin.offset(x, y, z);
-					if (random.nextBoolean() && level().isEmptyBlock(firePos) && level().getBlockState(firePos.below()).isFaceSturdy(level(), firePos.below(), Direction.UP)) {
-						level().setBlockAndUpdate(firePos, Blocks.FIRE.defaultBlockState());
-					}
-				}
-			}
-		}*/
 	}
 
 	public void doHurtTarget(LivingEntity target) {

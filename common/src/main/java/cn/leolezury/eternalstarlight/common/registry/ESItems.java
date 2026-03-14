@@ -1101,7 +1101,7 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> NIGHTFALL_SPIDER_EYE = registerItem("nightfall_spider_eye", () -> new Item(new Item.Properties()));
 
-	public static final RegistryObject<Item, Item> SEEKER_TENTACLE = registerItem("seeker_tentacle", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> SEEKER_TENTACLE = registerItem("seeker_tentacle", () -> new Item(new Item.Properties().food(ESFoods.SEEKER_TENTACLE.get())));
 	public static final RegistryObject<Item, Item> TENTACLE_SPIKE = registerItem("tentacle_spike", () -> new TentacleSpikeItem(ESItemTiers.TENTACLE_SPIKE, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.TENTACLE_SPIKE, 1.5F))));
 
 	public static final RegistryObject<Item, Item> TANGLED_SKULL = registerItem("tangled_skull", () -> new TangledSkullItem(ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
@@ -1240,6 +1240,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_NUGGET = registerItem("golem_steel_nugget", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_NUGGET = registerItem("oxidized_golem_steel_nugget", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> COLDSNAP = registerItem("coldsnap", () -> new ColdsnapItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.GOLEM_STEEL, 1.5F))));
 	public static final RegistryObject<Item, Item> ENERGY_SWORD = registerItem("energy_sword", () -> new EnergySwordItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.GOLEM_STEEL, 3, -2.4F))));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_GREATSWORD = registerItem("golem_steel_greatsword", () -> new GolemSteelGreatswordItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.GOLEM_STEEL, 6, -2.8F, 0.5F))));
 	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new MechanicalCrossbowItem(new Item.Properties().rarity(Rarity.RARE).durability(1600)));
@@ -1384,6 +1385,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MUSIC_DISC_OPTIMIZED_OPTION = registerItem("music_disc_optimized_option", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.OPTIMIZED_OPTION)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_MECHANICAL_FOSSIL = registerItem("music_disc_mechanical_fossil", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.MECHANICAL_FOSSIL)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_FAKE_LIGHT = registerItem("music_disc_fake_light", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.FAKE_LIGHT)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_TRANQUILITY_II = registerItem("music_disc_tranquility_ii", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.TRANQUILITY_II)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_ATLANTIS = registerItem("music_disc_atlantis", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.ATLANTIS)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_SACRED_DESERT = registerItem("music_disc_sacred_desert", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.SACRED_DESERT)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_SPIRIT = registerItem("music_disc_spirit", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.SPIRIT)));

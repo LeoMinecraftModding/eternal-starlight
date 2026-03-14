@@ -302,6 +302,14 @@ public class ESCommonHandler {
 				modified *= (1 - (float) resistance.getValue());
 			}
 		}
+		if (source.is(DamageTypeTags.IS_FREEZING)) {
+			if (entity.hasEffect(ESMobEffects.BRITTLE.asHolder())) {
+				MobEffectInstance instance = entity.getEffect(ESMobEffects.BRITTLE.asHolder());
+				if (instance != null) {
+					modified *= instance.getAmplifier() + 2;
+				}
+			}
+		}
 		if (source.getDirectEntity() instanceof LivingEntity attacker
 			&& attacker.getWeaponItem().is(ESTags.Items.FLOWGLAZE_WEAPONS)
 			&& entity == ESDataAttachments.CONCENTRATED_TARGET.getData(attacker)

@@ -29,7 +29,10 @@ public class PermafrostCloud extends Entity implements TraceableEntity {
 
 	public void setSmall(boolean small) {
 		this.getEntityData().set(SMALL, small);
+		this.refreshDimensions();
 	}
+
+	private int attackCooldown;
 
 	@Nullable
 	private LivingEntity owner;
@@ -78,14 +81,23 @@ public class PermafrostCloud extends Entity implements TraceableEntity {
 					ownerId = null;
 				}
 			}
-			if (getOwner() != null) {
+			if (attackCooldown > 0) {
+				attackCooldown--;
+			}
+			if (getOwner() != null && attackCooldown <= 0) {
+				boolean success = false;
 				for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox())) {
 					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
-						livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, getOwner()), 4);
+						livingEntity.invulnerableTime = 0;
+						success = success || livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, getOwner()), 4);
+						livingEntity.invulnerableTime = 0;
 						if (livingEntity.canFreeze()) {
 							livingEntity.setTicksFrozen(Math.min(livingEntity.getTicksFrozen() + 8, 300));
 						}
 					}
+				}
+				if (success) {
+					attackCooldown = 10;
 				}
 			}
 		} else {

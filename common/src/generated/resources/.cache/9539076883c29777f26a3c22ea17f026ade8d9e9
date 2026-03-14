@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-15T20:09:34.7962065	Item Models: eternal_starlight
+// 1.21.1	2026-03-14T14:17:39.8970626	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -170,6 +170,8 @@ d82b49d4124cab4ef69aea442a0eaf7e6268ec61 assets/eternal_starlight/models/item/co
 e02a90e767581c9cd7212b3ac51f03e8d9bdc6ef assets/eternal_starlight/models/item/cobbled_voidstone_slab.json
 aadb695a1da8c261af41d2158ae7196d617bfbbc assets/eternal_starlight/models/item/cobbled_voidstone_stairs.json
 b464d6a2fd9e4ed2831d1e261e5f84be8577a3bb assets/eternal_starlight/models/item/cobbled_voidstone_wall.json
+b89e1b376ee5d26d8c7c66bc18efb136078e6c3d assets/eternal_starlight/models/item/coldsnap.json
+5ebbdbcbc51d7f409c9a844d0cf3b672fa82ad62 assets/eternal_starlight/models/item/coldsnap_extended.json
 e5922d9cdec25ffd0c4b642850df91ce37b44c55 assets/eternal_starlight/models/item/conebloom.json
 d2aa32a295b619c1175ab7584d4d1a2cecad816d assets/eternal_starlight/models/item/cooked_aurora_deer_steak.json
 dbc44a3bef447cc58a07df460d2d772bec150c0c assets/eternal_starlight/models/item/cooked_luminaris.json
@@ -667,6 +669,7 @@ adace4b98bdeed8141994777cd2e1caa4578fa6c assets/eternal_starlight/models/item/mu
 af5005a5f8160618bc17fddf0a23938fb5a64725 assets/eternal_starlight/models/item/music_disc_stars_shining_upon_the_sea.json
 e15c661e3ac24b629172cfdc00bb8422e34dc080 assets/eternal_starlight/models/item/music_disc_the_thorny_reign.json
 2f78d18358f583460b780313bfeb26011d65d733 assets/eternal_starlight/models/item/music_disc_tranquility.json
+8f7ca17cd7ab420b88582572fb64d88e2b69e61f assets/eternal_starlight/models/item/music_disc_tranquility_ii.json
 019e7c7008f80ee4dd6f2dad28b64536613c9dbc assets/eternal_starlight/models/item/music_disc_wailing_well.json
 0a643b4b595cccef8b22cabe04205076f45c08f5 assets/eternal_starlight/models/item/music_disc_whisper_of_the_stars.json
 8b2fbd217c3cf82b650643d8df5cdd814ee61bcc assets/eternal_starlight/models/item/nebulaite.json

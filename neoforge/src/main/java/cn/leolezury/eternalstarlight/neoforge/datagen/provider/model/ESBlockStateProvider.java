@@ -1471,7 +1471,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 					blockTexture(block).withSuffix("_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName() + "_front"),
 					blockTexture(block).withSuffix("_bottom"),
 					blockTexture(block).withSuffix("_top")
-				))
+				).renderType(CUTOUT))
 				.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
 				.build(), MechanicalSpawnerBlock.POWER);
 	}

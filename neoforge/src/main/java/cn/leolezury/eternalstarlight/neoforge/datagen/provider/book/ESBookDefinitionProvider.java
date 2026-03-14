@@ -58,7 +58,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 						ItemStack stack = ESItems.CRESCENT_PENDANT.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
 					})),
-					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), EternalStarlight.id("starlight_golem_display"), Sets.newHashSet(EternalStarlight.id("freeze_display"), EternalStarlight.id("energy_transmitter_display"), EternalStarlight.id("accumulator_display")), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()), EternalStarlight.id("starlight_golem_display"), Sets.newHashSet(EternalStarlight.id("freeze_display"), EternalStarlight.id("permafrost_display"), EternalStarlight.id("energy_transmitter_display"), EternalStarlight.id("accumulator_display")), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
 						ItemStack stack = ESItems.CHISELED_GOLEM_STEEL_BLOCK.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
 					})),
@@ -191,6 +191,10 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 						ItemStack stack = ESItems.FROZEN_TUBE.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
 					})),
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.PERMAFROST.get().getDescriptionId()), EternalStarlight.id("permafrost_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+						ItemStack stack = ESItems.COLDSNAP.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
+					})),
 					new IndexBookComponent.Entry(simpleColoredTranslated(ESItems.ENERGY_TRANSMITTER.get().getDescriptionId()), EternalStarlight.id("energy_transmitter_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
 						ItemStack stack = ESItems.ENERGY_TRANSMITTER.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
@@ -225,6 +229,31 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("freeze"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("entity_seen_freeze"))
 				)), simpleColoredTranslatedBookContent("freeze"), 10, 20, 130, 12))
+			),
+			// permafrost
+			List.of(
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("permafrost_display"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("entity_seen_permafrost"))
+				)), 125)
+					.textDisplay(simpleColoredTranslated(ESEntities.PERMAFROST.get().getDescriptionId()), true, 65, 110, 110, 12, 3, 1.5f)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/frame_72.png"), 29, 20, 72, 72)
+					.entityDisplay(Util.make(() -> {
+						CompoundTag tag = new CompoundTag();
+						tag.putString(Entity.ID_TAG, ESEntities.PERMAFROST.getId().toString());
+						return tag;
+					}), 65, 80, -25, 210, 22, new Quaternionf().rotationXYZ(0.43633232F, 0.0F, 3.1415927F))),
+				new ConfiguredBookComponent<>(BookComponentRegistry.MOB_INFO, new MobInfoBookComponent.Config(EternalStarlight.id("permafrost_info"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("entity_seen_permafrost"))
+				)), ESEntities.PERMAFROST.getId(), List.of(
+					new MobInfoBookComponent.Entry(simpleColoredTranslated(Util.makeDescriptionId("structure", ESStructures.GOLEM_FORGE.location())), Optional.empty(), Optional.of(Style.EMPTY.withColor(0xacfffc)), 12, 12, EternalStarlight.id("textures/gui/screen/book/location_structure.png")),
+					new MobInfoBookComponent.Entry(new BookContent(List.of()), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.MAX_HEALTH.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 12, 12, EternalStarlight.id("textures/gui/screen/book/attribute_max_health.png")),
+					new MobInfoBookComponent.Entry(new BookContent(List.of()), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.ARMOR.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 12, 12, EternalStarlight.id("textures/gui/screen/book/attribute_armor.png")),
+					new MobInfoBookComponent.Entry(simpleColoredTranslatedBookContent("freeze.attack"), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.ATTACK_DAMAGE.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 12, 12, EternalStarlight.id("textures/gui/screen/book/attribute_attack_damage.png")),
+					new MobInfoBookComponent.Entry(new BookContent(List.of()), Optional.ofNullable(BuiltInRegistries.ATTRIBUTE.getKeyOrNull(Attributes.FLYING_SPEED.value())), Optional.of(Style.EMPTY.withColor(0xacfffc)), 12, 12, EternalStarlight.id("textures/gui/screen/book/attribute_movement_speed.png"))
+				), 150, 65, 24, 12, 6, 10, EternalStarlight.id("textures/gui/screen/book/left.png"), EternalStarlight.id("textures/gui/screen/book/right.png"))),
+				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("permafrost"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("entity_seen_permafrost"))
+				)), simpleColoredTranslatedBookContent("permafrost"), 10, 20, 130, 12))
 			),
 			// energy transmitter
 			List.of(

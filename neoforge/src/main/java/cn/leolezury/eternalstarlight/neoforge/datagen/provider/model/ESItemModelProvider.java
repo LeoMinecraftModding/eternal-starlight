@@ -967,6 +967,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get());
 		basicItem(ESItems.GOLEM_STEEL_NUGGET.get());
 		basicItem(ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get());
+		whip(ESItems.COLDSNAP.get());
 		handheld(ESItems.ENERGY_SWORD.get());
 		greatsword(ESItems.GOLEM_STEEL_GREATSWORD.get());
 		greatswordInventory(ESItems.GOLEM_STEEL_GREATSWORD.get());
@@ -1110,6 +1111,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_OPTIMIZED_OPTION.get());
 		basicItem(ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get());
 		basicItem(ESItems.MUSIC_DISC_FAKE_LIGHT.get());
+		basicItem(ESItems.MUSIC_DISC_TRANQUILITY_II.get());
 		basicItem(ESItems.MUSIC_DISC_ATLANTIS.get());
 		basicItem(ESItems.MUSIC_DISC_SACRED_DESERT.get());
 		basicItem(ESItems.MUSIC_DISC_SPIRIT.get());

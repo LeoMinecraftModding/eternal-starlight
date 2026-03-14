@@ -116,12 +116,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 						int blockZInCell = worldZ & 15;
 
 						int surfaceHeight = getSurfaceHeight(cachedBiomeSource, worldX, worldZ);
-						BlockState blockState = getStateAt(worldY, surfaceHeight, getBiomeDataAt(cachedBiomeSource, worldX, worldZ));
-
-						double noiseVal = noise.getValue(worldX / 50d, worldY / 30d, worldZ / 50d);
-						if (worldY < surfaceHeight - 15 && worldY > minY + 2 && (worldY > minY + 4 || (int) (noiseVal * 200) % 5 == 0) && noiseVal < -0.3) {
-							blockState = worldY > minY + 8 ? AIR : LAVA;
-						}
+						BlockState blockState = getStateAt(worldX, worldY, worldZ, surfaceHeight, minY, getBiomeDataAt(cachedBiomeSource, worldX, worldZ));
 
 						double beard = beardifier.compute(new DensityFunction.SinglePointContext(worldX, worldY, worldZ));
 						if (beard > 0.1) {
@@ -180,27 +175,31 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 		return new NoiseColumn(levelHeightAccessor.getMinBuildHeight(), states);
 	}
 
-	private int iterateTerrainColumn(int x, int z, BlockState[] states, @Nullable Predicate<BlockState> statePredicate, LevelHeightAccessor level) {
+	private void iterateTerrainColumn(int x, int z, BlockState[] states, @Nullable Predicate<BlockState> statePredicate, LevelHeightAccessor level) {
 		int surfaceHeight = getSurfaceHeight(x, z);
 		int maxHeight = level.getMaxBuildHeight();
+		int minY = getMinY();
 		int height = level.getMinBuildHeight();
 		BiomeData data = getBiomeDataAt(x, z);
 		int index = 0;
 		while (height < maxHeight) {
-			BlockState state = getStateAt(height, surfaceHeight, data);
+			BlockState state = getStateAt(x, height, z, surfaceHeight, minY, data);
 			if (statePredicate == null || statePredicate.test(state)) {
 				states[index] = state;
 				index++;
 				height++;
 			}
 		}
-		return states.length;
 	}
 
-	private BlockState getStateAt(int y, int surfaceHeight, BiomeData data) {
+	private BlockState getStateAt(int x, int y, int z, int surfaceHeight, int minY, BiomeData data) {
 		BlockState state;
 		if (y <= surfaceHeight) {
 			state = defaultBlock;
+			double noiseVal = noise.getValue(x / 50d, y / 30d, z / 50d);
+			if (y < surfaceHeight - 15 && y > minY + 2 && (y > minY + 4 || (int) (noiseVal * 200) % 5 == 0) && noiseVal < -0.3) {
+				state = y > minY + 8 ? AIR : LAVA;
+			}
 		} else if (y <= seaLevel) {
 			state = data.fluidBlock().value().defaultBlockState();
 		} else {

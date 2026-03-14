@@ -1,5 +1,5 @@
 {
-  "parent": "eternal_starlight:obtain_seeking_eye",
+  "parent": "eternal_starlight:freeze_starlight_golem",
   "criteria": {
     "deactivate": {
       "trigger": "eternal_starlight:deactivate_energy_block"

@@ -23,8 +23,8 @@ public class LunarVineRenderer implements BlockEntityRenderer<LunarVineBlockEnti
 	private final VineModel vineModel;
 	private final FlowerModel flowerModel;
 
-	private static final ResourceLocation VINE_TEXTURE = EternalStarlight.id("textures/entity/block_lunar_vine.png");
-	private static final ResourceLocation FLOWER_TEXTURE = EternalStarlight.id("textures/entity/block_lunar_vine_flower.png");
+	private static final ResourceLocation VINE_TEXTURE = EternalStarlight.id("textures/entity/lunar_vine.png");
+	private static final ResourceLocation FLOWER_TEXTURE = EternalStarlight.id("textures/entity/lunar_vine_flower.png");
 
 	public LunarVineRenderer(BlockEntityRendererProvider.Context context) {
 		this.vineModel = new VineModel(context.bakeLayer(VineModel.LAYER_LOCATION));

@@ -156,6 +156,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MUSIC_DISC_OPTIMIZED_OPTION.get(),
 				ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get(),
 				ESItems.MUSIC_DISC_FAKE_LIGHT.get(),
+				ESItems.MUSIC_DISC_TRANQUILITY_II.get(),
 				ESItems.MUSIC_DISC_ATLANTIS.get(),
 				ESItems.MUSIC_DISC_SACRED_DESERT.get(),
 				ESItems.MUSIC_DISC_SPIRIT.get(),
@@ -492,6 +493,12 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESTags.Items.BOOMERANGS)
 			.add(
 				ESItems.ENERGY_BOOMERANG.get()
+			);
+		tag(ESTags.Items.WHIPS)
+			.add(
+				ESItems.CANDLASH.get(),
+				ESItems.TENTACLE_SPIKE.get(),
+				ESItems.COLDSNAP.get()
 			);
 		tag(ESTags.Items.SMALL_SHIELDS)
 			.add(
@@ -1052,7 +1059,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.DURABILITY_ENCHANTABLE)
 			.add(
 				ESItems.STARFALL_LONGBOW.get(),
-				ESItems.GLACITE_SHIELD.get(),
 				ESItems.DEEPSILVER_BRUSH.get(),
 				ESItems.UNREALIUM_CROSSBOW.get(),
 				ESItems.MALARITE_SPEAR.get(),
@@ -1060,10 +1066,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.SEEDS_LAUNCHER.get(),
 				ESItems.STARFIRE_CROSSBOW.get(),
 				ESItems.FLOWGLAZE_BOW.get(),
-				ESItems.FLOWGLAZE_SHIELD.get(),
 				ESItems.SALTPETER_MATCHBOX.get(),
-				ESItems.CANDLASH.get(),
-				ESItems.TENTACLE_SPIKE.get(),
 				ESItems.GLISTERING_BOW.get(),
 				ESItems.MECHANICAL_CROSSBOW.get(),
 				ESItems.CRYSTAL_CROSSBOW.get(),
@@ -1077,7 +1080,9 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESTags.Items.SCYTHES,
 				ESTags.Items.SICKLES,
 				ESTags.Items.HAMMERS,
-				ESTags.Items.BOOMERANGS
+				ESTags.Items.BOOMERANGS,
+				ESTags.Items.WHIPS,
+				ESTags.Items.SMALL_SHIELDS
 			);
 		tag(ItemTags.BOW_ENCHANTABLE)
 			.add(

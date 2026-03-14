@@ -41,6 +41,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.SHIMMER_LACEWING.get(),
 				ESEntities.TWILIGHT_GAZE.get(),
 				ESEntities.FREEZE.get(),
+				ESEntities.PERMAFROST.get(),
 				ESEntities.TANGLED.get()
 			);
 		tag(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLIES)

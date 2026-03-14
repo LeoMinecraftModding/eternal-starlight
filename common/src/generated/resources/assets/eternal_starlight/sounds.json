@@ -1099,6 +1099,14 @@
       }
     ]
   },
+  "music_disc.tranquility_ii": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/disc/tranquility_ii",
+        "stream": true
+      }
+    ]
+  },
   "music_disc.wailing_well": {
     "sounds": [
       {

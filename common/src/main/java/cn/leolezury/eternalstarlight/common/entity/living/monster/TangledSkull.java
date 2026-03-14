@@ -260,7 +260,9 @@ public class TangledSkull extends Monster {
 				}
 			}
 		} else {
-			level().addParticle(ESParticles.SOUL_TRAIL.get(), xo, yo + getBbHeight() / 2, zo, 0, 0, 0);
+			if (!isShotFromMonstrosity()) {
+				level().addParticle(ESParticles.SOUL_TRAIL.get(), xo, yo + getBbHeight() / 2, zo, 0, 0, 0);
+			}
 		}
 	}
 

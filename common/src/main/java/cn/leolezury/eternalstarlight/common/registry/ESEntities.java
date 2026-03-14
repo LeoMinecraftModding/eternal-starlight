@@ -364,6 +364,14 @@ public class ESEntities {
 			.clientTrackingRange(10)
 			.build(EternalStarlight.id("permafrost_cloud").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<Coldsnap>> COLDSNAP = ENTITIES.register(
+		"coldsnap",
+		() -> EntityType.Builder.<Coldsnap>of(Coldsnap::new, MobCategory.MISC)
+			.sized(0.0f, 0.0f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("coldsnap").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<LunarMonstrosity>> LUNAR_MONSTROSITY = ENTITIES.register(
 		"lunar_monstrosity",
 		() -> EntityType.Builder.of(LunarMonstrosity::new, MobCategory.MONSTER)

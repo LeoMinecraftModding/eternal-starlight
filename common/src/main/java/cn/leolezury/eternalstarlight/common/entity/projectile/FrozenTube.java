@@ -6,17 +6,21 @@ import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemChargeStartPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Freeze;
+import cn.leolezury.eternalstarlight.common.registry.ESCriteriaTriggers;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -61,8 +65,11 @@ public class FrozenTube extends ThrowableProjectile implements TrailOwner {
 					if (entity.canFreeze()) {
 						entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 100, 300));
 					}
-					if (getOwner() instanceof Player && entity instanceof StarlightGolem golem) {
-						golem.setAttackEnergy(Math.max(golem.getAttackEnergy() - 3, 0));
+					if (getOwner() instanceof ServerPlayer serverPlayer && entity instanceof StarlightGolem golem && golem.getAttackEnergy() > 0) {
+						golem.setAttackEnergy(Math.max(golem.getAttackEnergy() - 5, 0));
+						Int2IntArrayMap cooldowns = golem.getBehaviorManager().getCooldowns();
+						cooldowns.put(StarlightGolemChargeStartPhase.ID, Math.max(cooldowns.getOrDefault(StarlightGolemChargeStartPhase.ID, 0) - 60, 0));
+						ESCriteriaTriggers.FREEZE_STARLIGHT_GOLEM.get().trigger(serverPlayer);
 					}
 				}
 			}

@@ -29,6 +29,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -155,6 +156,7 @@ public abstract class Whip extends Entity {
 						endPos = hitResult.getLocation();
 					}
 					List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, new AABB(player.getEyePosition(), endPos).inflate(1));
+					entities.sort(Comparator.comparingDouble(e -> e.distanceToSqr(this)));
 					for (LivingEntity entity : entities) {
 						AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + 1.5f);
 						if (ESEntityUtil.shouldHarm(player, entity) && entity.isPickable() && (aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent())) {
@@ -167,7 +169,7 @@ public abstract class Whip extends Entity {
 							}
 							if (entity.hurt(damageSource, damage)) {
 								if (getWeaponItem() != null && getWeaponItem().getItem() instanceof WhipItem whipItem) {
-									whipItem.doPostHurtEffects(entity);
+									whipItem.doPostHurtEffects(this, entity);
 								}
 								if (level() instanceof ServerLevel serverLevel) {
 									EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());

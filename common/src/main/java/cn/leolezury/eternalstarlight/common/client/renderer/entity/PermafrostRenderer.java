@@ -35,7 +35,7 @@ public class PermafrostRenderer<T extends Permafrost> extends MobRenderer<T, Per
 	@Override
 	public void render(T entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
-		entity.smokePos = ESModelUtil.getModelPartWorldPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().lower, getModel().armature));
+		entity.smokePos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), List.of(getModel().root(), getModel().lower, getModel().armature));
 		if (entity.isAlive()) {
 			double currentX = Mth.lerp(partialTicks, entity.xo, entity.getX());
 			double currentY = Mth.lerp(partialTicks, entity.yo, entity.getY());

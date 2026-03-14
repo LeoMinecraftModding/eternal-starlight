@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-13T20:35:58.8299532	Registries
+// 1.21.1	2026-03-14T14:17:39.9231166	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -107,6 +107,7 @@ ee805fe9f5c2908e7ee0fa58e82b18361653fe49 data/eternal_starlight/jukebox_song/sac
 b836516a7589afffe8c84254f6512314f5ca35be data/eternal_starlight/jukebox_song/stars_shining_upon_the_sea.json
 41c953343195e691bdef96743b0150ed6fc814c3 data/eternal_starlight/jukebox_song/the_thorny_reign.json
 7d4c49147fcd9464219af55eb10d392e0dc2d5f9 data/eternal_starlight/jukebox_song/tranquility.json
+5dc9b8a2fa4903ba4e5baa236fd2040152d456a6 data/eternal_starlight/jukebox_song/tranquility_ii.json
 7747ade817b2cfc1ca52033c8db9749a6c2d7c6a data/eternal_starlight/jukebox_song/wailing_well.json
 316091ecd6ce3bf68f04c6d290183460c9814a6d data/eternal_starlight/jukebox_song/whisper_of_the_stars.json
 bcde44abe78eae61278b05ee2902cee21b8a3271 data/eternal_starlight/painting_variant/carved_slate.json

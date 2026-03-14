@@ -24,6 +24,7 @@ public class ESJukeboxSongs {
 	public static final ResourceKey<JukeboxSong> OPTIMIZED_OPTION = create("optimized_option");
 	public static final ResourceKey<JukeboxSong> MECHANICAL_FOSSIL = create("mechanical_fossil");
 	public static final ResourceKey<JukeboxSong> FAKE_LIGHT = create("fake_light");
+	public static final ResourceKey<JukeboxSong> TRANQUILITY_II = create("tranquility_ii");
 	public static final ResourceKey<JukeboxSong> ATLANTIS = create("atlantis");
 	public static final ResourceKey<JukeboxSong> SACRED_DESERT = create("sacred_desert");
 	public static final ResourceKey<JukeboxSong> SPIRIT = create("spirit");
@@ -44,6 +45,7 @@ public class ESJukeboxSongs {
 		register(context, OPTIMIZED_OPTION, ESSoundEvents.MUSIC_DISC_OPTIMIZED_OPTION.asHolder(), 188, 1);
 		register(context, MECHANICAL_FOSSIL, ESSoundEvents.MUSIC_DISC_MECHANICAL_FOSSIL.asHolder(), 222, 2);
 		register(context, FAKE_LIGHT, ESSoundEvents.MUSIC_DISC_FAKE_LIGHT.asHolder(), 170, 3);
+		register(context, TRANQUILITY_II, ESSoundEvents.MUSIC_DISC_TRANQUILITY_II.asHolder(), 195, 12);
 		register(context, ATLANTIS, ESSoundEvents.MUSIC_DISC_ATLANTIS.asHolder(), 94, 5);
 		register(context, SACRED_DESERT, ESSoundEvents.MUSIC_DISC_SACRED_DESERT.asHolder(), 105, 6);
 		register(context, SPIRIT, ESSoundEvents.MUSIC_DISC_SPIRIT.asHolder(), 98, 9);

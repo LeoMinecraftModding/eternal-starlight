@@ -7,7 +7,7 @@ public class LunarMonstrosityBitePhase extends BehaviorPhase<LunarMonstrosity> {
 	public static final int ID = 4;
 
 	public LunarMonstrosityBitePhase() {
-		super(ID, 1, 20, 100);
+		super(ID, 1, 35, 100);
 	}
 
 	@Override
@@ -17,10 +17,10 @@ public class LunarMonstrosityBitePhase extends BehaviorPhase<LunarMonstrosity> {
 
 	@Override
 	public void tick(LunarMonstrosity entity) {
-		if (entity.getBehaviorTicks() == 0) {
+		if (entity.getBehaviorTicks() == 3) {
 			entity.playSound(ESSoundEvents.LUNAR_MONSTROSITY_BITE.get());
 		}
-		if (entity.getBehaviorTicks() == 13) {
+		if (entity.getBehaviorTicks() == 17) {
 			entity.doBiteDamage(20);
 		}
 	}

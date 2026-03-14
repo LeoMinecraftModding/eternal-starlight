@@ -21,7 +21,6 @@ import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -181,7 +180,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	@Override
 	public void updateRayEnd(Vec3 endPos) {
-		lookAt(EntityAnchorArgument.Anchor.EYES, endPos);
+		ESEntityUtil.instantLook(this, endPos);
 	}
 
 	private class GolemLookAtTargetGoal extends LookAtTargetGoal {

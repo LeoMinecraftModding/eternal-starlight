@@ -15,9 +15,9 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -175,7 +175,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	@Override
 	public void updateRayEnd(Vec3 endPos) {
-		lookAt(EntityAnchorArgument.Anchor.EYES, endPos);
+		ESEntityUtil.instantLook(this, endPos);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -268,7 +268,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (getBehaviorState() == LunarMonstrositySneakPhase.ID || (source.getEntity() != null && source.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLIES)))) {
+		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && (getBehaviorState() == LunarMonstrositySneakPhase.ID || getBehaviorState() == LunarMonstrositySoulPhase.ID || (source.getEntity() != null && source.getEntity().getType().is(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLIES)))) {
 			return false;
 		}
 		if (getPhase() == 0 && getHealth() / getMaxHealth() < 0.5) {

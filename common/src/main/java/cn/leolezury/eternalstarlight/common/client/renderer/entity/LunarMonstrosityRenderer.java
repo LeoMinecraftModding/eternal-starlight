@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class LunarMonstrosityRenderer<T extends LunarMonstrosity> extends MobRen
 	@Override
 	public void render(T entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		super.render(entity, yaw, partialTicks, poseStack, bufferSource, light);
-		entity.headPos = ESModelUtil.getModelPartWorldPosition(entity, entity.yBodyRot, List.of(getModel().root(), getModel().stemAll, getModel().stemMiddle, getModel().stemTop, getModel().head));
+		entity.headPos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(partialTicks, entity.yBodyRotO, entity.yBodyRot), List.of(getModel().root(), getModel().stemAll, getModel().stemMiddle, getModel().stemTop, getModel().head));
 	}
 
 	@Override

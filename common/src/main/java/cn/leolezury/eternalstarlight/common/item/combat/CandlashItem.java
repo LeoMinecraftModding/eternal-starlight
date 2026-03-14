@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class CandlashItem extends WhipItem {
 	}
 
 	@Override
-	public void doPostHurtEffects(Entity entity) {
+	public void doPostHurtEffects(@Nullable Whip whip, Entity entity) {
 		if (entity.level() instanceof ServerLevel serverLevel) {
 			double x = entity.getX() + (entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth();
 			double y = entity.getY() + entity.getRandom().nextFloat() * entity.getBbHeight();

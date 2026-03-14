@@ -26,6 +26,7 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class WhipItem extends TieredItem implements SwingAttackWeapon {
 	public WhipItem(Tier tier, Properties properties) {
@@ -54,10 +55,12 @@ public abstract class WhipItem extends TieredItem implements SwingAttackWeapon {
 	@Override
 	public void performSwingAttack(ItemStack stack, Player player) {
 		Level level = player.level();
-		stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
-		Whip whip = createWhip(level, player, stack);
-		level.addFreshEntity(whip);
-		whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
+		if (!level.isClientSide && !(level.getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip)) {
+			stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+			Whip whip = createWhip(level, player, stack);
+			level.addFreshEntity(whip);
+			whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
+		}
 	}
 
 	@Override
@@ -67,10 +70,10 @@ public abstract class WhipItem extends TieredItem implements SwingAttackWeapon {
 
 	@Override
 	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		doPostHurtEffects(target);
+		doPostHurtEffects(null, target);
 	}
 
-	public void doPostHurtEffects(Entity entity) {
+	public void doPostHurtEffects(@Nullable Whip whip, Entity entity) {
 		if (entity.level() instanceof ServerLevel serverLevel) {
 			double x = entity.getX() + (entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth();
 			double y = entity.getY() + entity.getRandom().nextFloat() * entity.getBbHeight();

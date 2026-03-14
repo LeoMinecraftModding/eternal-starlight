@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.critereon.WitnessWeatherTrigger;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.data.ESStructures;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.advancements.*;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -31,6 +33,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 	@Override
 	public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> consumer, ExistingFileHelper helper) {
 		HolderLookup.RegistryLookup<Biome> biomes = registries.lookupOrThrow(Registries.BIOME);
+		HolderLookup.RegistryLookup<Structure> structures = registries.lookupOrThrow(Registries.STRUCTURE);
 		HolderLookup.RegistryLookup<Fluid> fluids = registries.lookupOrThrow(Registries.FLUID);
 
 		AdvancementHolder root = Advancement.Builder.advancement().display(
@@ -261,7 +264,21 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 		}
 		AdvancementHolder allStarlightBiomes = allStarlightBiomesBuilder.save(consumer, EternalStarlight.ID + ":all_starlight_biomes");
 
-		AdvancementHolder deactivateEnergyBlock = Advancement.Builder.advancement().parent(seekingEye).display(
+		AdvancementHolder enterGolemForge = addInStructure(consumer, seekingEye, "enter_golem_forge", ESItems.GOLEM_STEEL_PILLAR.get(), structures.getOrThrow(ESStructures.GOLEM_FORGE));
+
+		AdvancementHolder killPermafrost = addEntityKill(consumer, enterGolemForge, "kill_permafrost", ESEntities.PERMAFROST.get(), ESItems.COLDSNAP.get());
+
+		AdvancementHolder freezeStarlightGolem = Advancement.Builder.advancement().parent(enterGolemForge).display(
+				ESItems.FROZEN_TUBE.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".freeze_starlight_golem.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".freeze_starlight_golem.description"),
+				null,
+				AdvancementType.TASK,
+				true, true, false)
+			.addCriterion("freeze", ESCriteriaTriggers.FREEZE_STARLIGHT_GOLEM.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
+			.save(consumer, EternalStarlight.ID + ":freeze_starlight_golem");
+
+		AdvancementHolder deactivateEnergyBlock = Advancement.Builder.advancement().parent(freezeStarlightGolem).display(
 				ESItems.ENERGY_BLOCK.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".deactivate_energy_block.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".deactivate_energy_block.description"),
@@ -367,6 +384,16 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
 				null, AdvancementType.TASK, true, true, false)
 			.addCriterion("in_biome", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biome)))
+			.save(consumer, EternalStarlight.ID + ":" + id);
+	}
+
+	private static AdvancementHolder addInStructure(Consumer<AdvancementHolder> consumer, AdvancementHolder parent, String id, Item display, Holder<Structure> structure) {
+		return Advancement.Builder.advancement().parent(parent).display(
+				display,
+				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".title"),
+				Component.translatable("advancements." + EternalStarlight.ID + "." + id + ".description"),
+				null, AdvancementType.TASK, true, true, false)
+			.addCriterion("in_structure", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inStructure(structure)))
 			.save(consumer, EternalStarlight.ID + ":" + id);
 	}
 

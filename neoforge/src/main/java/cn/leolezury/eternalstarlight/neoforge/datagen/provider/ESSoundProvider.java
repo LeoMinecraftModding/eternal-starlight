@@ -47,6 +47,7 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.MUSIC_DISC_OPTIMIZED_OPTION.get(), definition().with(sound(loc("music/boss/gatekeeper")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_MECHANICAL_FOSSIL.get(), definition().with(sound(loc("music/boss/starlight_golem")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_FAKE_LIGHT.get(), definition().with(sound(loc("music/boss/lunar_monstrosity")).stream()));
+		add(ESSoundEvents.MUSIC_DISC_TRANQUILITY_II.get(), definition().with(sound(loc("music/disc/tranquility_ii")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_ATLANTIS.get(), definition().with(sound(loc("music/disc/atlantis")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SACRED_DESERT.get(), definition().with(sound(loc("music/disc/sacred_desert")).stream()));
 		add(ESSoundEvents.MUSIC_DISC_SPIRIT.get(), definition().with(sound(loc("music/disc/spirit")).stream()));

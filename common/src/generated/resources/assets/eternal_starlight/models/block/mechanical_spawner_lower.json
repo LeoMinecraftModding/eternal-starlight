@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/orientable_with_bottom",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "eternal_starlight:block/mechanical_spawner_bottom",
     "front": "eternal_starlight:block/mechanical_spawner_lower_front",

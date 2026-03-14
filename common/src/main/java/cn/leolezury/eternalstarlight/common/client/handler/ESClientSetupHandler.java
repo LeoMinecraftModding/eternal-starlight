@@ -31,6 +31,7 @@ import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.entity.attack.Candlash;
+import cn.leolezury.eternalstarlight.common.entity.attack.Coldsnap;
 import cn.leolezury.eternalstarlight.common.entity.attack.TentacleSpike;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
@@ -556,6 +557,14 @@ public class ESClientSetupHandler {
 		});
 		ItemProperties.register(ESItems.GLISTERING_BOW.get(), ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
+		ItemProperties.register(ESItems.COLDSNAP.get(), EternalStarlight.id("extended"), (stack, level, entity, i) -> {
+			if (entity == null || level == null) {
+				return 0.0F;
+			} else {
+				return entity.getMainHandItem() == stack && level.getEntity(ESDataAttachments.WHIP.getData(entity)) instanceof Coldsnap ? 1.0F : 0.0F;
+			}
+		});
+
 		ItemProperties.register(ESItems.GOLEM_STEEL_GREATSWORD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
 
 		ItemProperties.register(ESItems.MECHANICAL_CROSSBOW.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> {
@@ -914,6 +923,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.PERMAFROST.get(), PermafrostRenderer::new);
 		strategy.register(ESEntities.PERMAFROST_SPIT.get(), PermafrostSpitRenderer::new);
 		strategy.register(ESEntities.PERMAFROST_CLOUD.get(), EmptyRenderer::new);
+		strategy.register(ESEntities.COLDSNAP.get(), ColdsnapRenderer::new);
 		strategy.register(ESEntities.LUNAR_MONSTROSITY.get(), LunarMonstrosityRenderer::new);
 		strategy.register(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.LUNAR_SPORE.get(), LunarSporeRenderer::new);
@@ -1054,6 +1064,7 @@ public class ESClientSetupHandler {
 		strategy.register(PermafrostSpitModel.LAYER_LOCATION, PermafrostSpitModel::createBodyLayer);
 		strategy.register(PermafrostSpitModel.SMALL_LAYER_LOCATION, PermafrostSpitModel::createSmallLayer);
 		strategy.register(FrozenTubeModel.LAYER_LOCATION, FrozenTubeModel::createBodyLayer);
+		strategy.register(ColdsnapModel.LAYER_LOCATION, ColdsnapModel::createBodyLayer);
 		strategy.register(LunarMonstrosityModel.LAYER_LOCATION, LunarMonstrosityModel::createBodyLayer);
 		strategy.register(LunarSporeModel.LAYER_LOCATION, LunarSporeModel::createBodyLayer);
 		strategy.register(LunarThornModel.LAYER_LOCATION, LunarThornModel::createBodyLayer);

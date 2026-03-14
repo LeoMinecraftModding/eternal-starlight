@@ -10,7 +10,7 @@ public class LunarMonstrosityToxicBreathPhase extends BehaviorPhase<LunarMonstro
 	public static final int ID = 1;
 
 	public LunarMonstrosityToxicBreathPhase() {
-		super(ID, 1, 100, 200);
+		super(ID, 1, 110, 200);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class LunarMonstrosityToxicBreathPhase extends BehaviorPhase<LunarMonstro
 	@Override
 	public void tick(LunarMonstrosity entity) {
 		if (entity.getBehaviorTicks() == 20) {
-			LunarMonstrosityBreath breath = new LunarMonstrosityBreath(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), entity.level(), entity, entity.getX(), entity.getY() + entity.getBbHeight() / 2.5f, entity.getZ(), entity.yHeadRot + 90, -entity.getXRot());
+			LunarMonstrosityBreath breath = new LunarMonstrosityBreath(ESEntities.LUNAR_MONSTROSITY_BREATH.get(), entity.level(), entity, entity.getX(), entity.getY() + entity.getBbHeight(), entity.getZ(), entity.yHeadRot + 90, -entity.getXRot());
 			entity.level().addFreshEntity(breath);
 		}
 		if (entity.getBehaviorTicks() >= 20 && entity.getBehaviorTicks() % 20 == 0 && entity.level() instanceof ServerLevel serverLevel) {
