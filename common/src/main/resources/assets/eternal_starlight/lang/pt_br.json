@@ -1191,6 +1191,8 @@
   "enchantment.eternal_starlight.homing.desc": "Permite que bumerangues arremessados rastreie inimigos próximos",
   "enchantment.eternal_starlight.gathering": "Coleta",
   "enchantment.eternal_starlight.gathering.desc": "Permite que os bumerangues lançados coletem itens em seu caminho",
+  "enchantment.eternal_starlight.abyssal_touch": "Abyssal Touch",
+  "enchantment.eternal_starlight.abyssal_touch.desc": "Sets targets ablaze with abyssal fire on hit",
   "tooltip.eternal_starlight.accessory_combined": "Quando combinado com o equipamento:",
   "tooltip.eternal_starlight.accessory_combination_target": "Aplica-se a:",
   "tooltip.eternal_starlight.accessory_combination_target.chestplate": "Peitorais",
