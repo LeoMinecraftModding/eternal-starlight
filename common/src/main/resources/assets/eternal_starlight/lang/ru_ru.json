@@ -1191,6 +1191,8 @@
   "enchantment.eternal_starlight.homing.desc": "Позволяет брошенным бумерангам нацеливаться на ближайших врагов.",
   "enchantment.eternal_starlight.gathering": "Собирательство",
   "enchantment.eternal_starlight.gathering.desc": "Позволяет брошенным бумерангам собирать предметы на своём пути.",
+  "enchantment.eternal_starlight.abyssal_touch": "Abyssal Touch",
+  "enchantment.eternal_starlight.abyssal_touch.desc": "Sets targets ablaze with abyssal fire on hit",
   "tooltip.eternal_starlight.accessory_combined": "В сочетании со снаряжением:",
   "tooltip.eternal_starlight.accessory_combination_target": "Применимо к:",
   "tooltip.eternal_starlight.accessory_combination_target.chestplate": "Нагрудникам",
