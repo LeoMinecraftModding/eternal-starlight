@@ -1191,6 +1191,8 @@
   "enchantment.eternal_starlight.homing.desc": "投げたブーメランが近くの敵にホーミングします。",
   "enchantment.eternal_starlight.gathering": "採集",
   "enchantment.eternal_starlight.gathering.desc": "投げたブーメランの軌道上にあるアイテムを回収します。",
+  "enchantment.eternal_starlight.abyssal_touch": "Abyssal Touch",
+  "enchantment.eternal_starlight.abyssal_touch.desc": "Sets targets ablaze with abyssal fire on hit",
   "tooltip.eternal_starlight.accessory_combined": "装備品に装着したとき：",
   "tooltip.eternal_starlight.accessory_combination_target": "適用先：",
   "tooltip.eternal_starlight.accessory_combination_target.chestplate": "チェストプレート",
