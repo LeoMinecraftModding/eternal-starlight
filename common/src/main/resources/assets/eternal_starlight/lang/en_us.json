@@ -1191,6 +1191,8 @@
   "enchantment.eternal_starlight.homing.desc": "Allows thrown boomerangs to track nearby enemies",
   "enchantment.eternal_starlight.gathering": "Gathering",
   "enchantment.eternal_starlight.gathering.desc": "Allows thrown boomerangs to collect items on their path",
+  "enchantment.eternal_starlight.abyssal_touch": "Abyssal Touch",
+  "enchantment.eternal_starlight.abyssal_touch.desc": "Sets targets ablaze with abyssal fire on hit",
   "tooltip.eternal_starlight.accessory_combined": "When combined with equipment:",
   "tooltip.eternal_starlight.accessory_combination_target": "Applies to:",
   "tooltip.eternal_starlight.accessory_combination_target.chestplate": "Chestplates",

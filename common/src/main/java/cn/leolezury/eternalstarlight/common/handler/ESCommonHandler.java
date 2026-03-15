@@ -571,9 +571,15 @@ public class ESCommonHandler {
 			}
 		}
 		if (!level.isClientSide) {
-			int inAbyssalFireTicks = ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.getData(entity);
-			if (inAbyssalFireTicks > 0) {
-				ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.setData(entity, inAbyssalFireTicks - 1);
+			int abyssalFireTicks = ESDataAttachments.ABYSSAL_FIRE_TICKS.getData(entity);
+			if (abyssalFireTicks > 0) {
+				ESDataAttachments.ABYSSAL_FIRE_TICKS.setData(entity, abyssalFireTicks - 1);
+				if (!entity.getType().is(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE) && entity.tickCount % 30 == 0) {
+					int oldInvulnerableTime = entity.invulnerableTime;
+					entity.invulnerableTime = 0;
+					entity.hurt(level.damageSources().onFire(), 3.0F);
+					entity.invulnerableTime = oldInvulnerableTime;
+				}
 			}
 		}
 		if (!level.isClientSide && entity instanceof AbstractArrow arrow) {

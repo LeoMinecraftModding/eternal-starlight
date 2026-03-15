@@ -82,7 +82,7 @@ public abstract class EntityRenderDispatcherMixin {
 
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;displayFireAnimation()Z", shift = At.Shift.AFTER))
 	private <E extends Entity> void renderFlame(E entity, double d, double e, double f, float g, float h, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
-		if (ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.getData(entity) > 0) {
+		if (ESDataAttachments.ABYSSAL_FIRE_TICKS.getData(entity) > 0) {
 			renderAbyssalFlame(poseStack, multiBufferSource, entity, Mth.rotationAroundAxis(Mth.Y_AXIS, cameraOrientation, new Quaternionf()));
 		}
 	}

@@ -1191,6 +1191,8 @@
   "enchantment.eternal_starlight.homing.desc": "使扔出的回旋镖可以追踪附近的敌人",
   "enchantment.eternal_starlight.gathering": "收集",
   "enchantment.eternal_starlight.gathering.desc": "使扔出的回旋镖可以收集其路径上的物品",
+  "enchantment.eternal_starlight.abyssal_touch": "深渊之触",
+  "enchantment.eternal_starlight.abyssal_touch.desc": "攻击时使目标燃起渊焰",
   "tooltip.eternal_starlight.accessory_combined": "与装备合成后：",
   "tooltip.eternal_starlight.accessory_combination_target": "可应用于：",
   "tooltip.eternal_starlight.accessory_combination_target.chestplate": "胸甲",

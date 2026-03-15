@@ -72,7 +72,8 @@ public class AbyssalFireBlock extends BaseFireBlock implements SimpleWaterlogged
 			entity.hurt(level.damageSources().inFire(), 3.0F);
 		}
 		if (!level.isClientSide) {
-			ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.setData(entity, 5);
+			int abyssalFireTicks = ESDataAttachments.ABYSSAL_FIRE_TICKS.getData(entity);
+			ESDataAttachments.ABYSSAL_FIRE_TICKS.setData(entity, Math.max(abyssalFireTicks, 5));
 		}
 	}
 }

@@ -76,9 +76,10 @@ public class PoisonousCloud extends Entity implements TraceableEntity {
 				boolean success = false;
 				for (LivingEntity livingEntity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox())) {
 					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
+						int oldInvulnerableTime = livingEntity.invulnerableTime;
 						livingEntity.invulnerableTime = 0;
 						success = success || livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.POISON, this, getOwner()), 5);
-						livingEntity.invulnerableTime = 0;
+						livingEntity.invulnerableTime = oldInvulnerableTime;
 						livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 80, 1));
 					}
 				}

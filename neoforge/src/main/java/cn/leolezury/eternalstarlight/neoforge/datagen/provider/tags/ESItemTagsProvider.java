@@ -760,6 +760,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.addTag(ESTags.Items.HAMMERS);
 		tag(ESTags.Items.BOOMERANG_ENCHANTABLE)
 			.addTag(ESTags.Items.BOOMERANGS);
+		tag(ESTags.Items.WHIP_ENCHANTABLE)
+			.addTag(ESTags.Items.WHIPS);
 		tag(ESTags.Items.CHAIN_OF_SOULS_ENCHANTABLE)
 			.add(
 				ESItems.CHAIN_OF_SOULS.get()
@@ -1115,7 +1117,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ItemTags.WEAPON_ENCHANTABLE)
 			.addTags(
 				ESTags.Items.HAMMER_ENCHANTABLE,
-				ESTags.Items.BOOMERANG_ENCHANTABLE
+				ESTags.Items.BOOMERANG_ENCHANTABLE,
+				ESTags.Items.WHIP_ENCHANTABLE
 			);
 		tag(ItemTags.FIRE_ASPECT_ENCHANTABLE)
 			.add(

@@ -27,7 +27,7 @@ public abstract class ScreenEffectRendererMixin {
 	@Inject(method = "renderScreenEffect", at = @At(value = "TAIL"))
 	private static void renderScreenEffect(Minecraft minecraft, PoseStack poseStack, CallbackInfo ci) {
 		if (minecraft.player != null && !minecraft.player.isSpectator()) {
-			if (ESDataAttachments.IN_ABYSSAL_FIRE_TICKS.getData(minecraft.player) > 0) {
+			if (ESDataAttachments.ABYSSAL_FIRE_TICKS.getData(minecraft.player) > 0) {
 				renderAbyssalFlame(poseStack);
 			}
 		}

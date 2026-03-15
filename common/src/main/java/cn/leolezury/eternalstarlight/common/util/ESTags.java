@@ -68,6 +68,7 @@ public class ESTags {
 		public static final TagKey<Item> GREATSWORD_ENCHANTABLE = create("enchantable/greatsword");
 		public static final TagKey<Item> HAMMER_ENCHANTABLE = create("enchantable/hammer");
 		public static final TagKey<Item> BOOMERANG_ENCHANTABLE = create("enchantable/boomerang");
+		public static final TagKey<Item> WHIP_ENCHANTABLE = create("enchantable/whip");
 		public static final TagKey<Item> CHAIN_OF_SOULS_ENCHANTABLE = create("enchantable/chain_of_souls");
 		public static final TagKey<Item> PUNGENCY_FRUIT_SPEAR_ENCHANTABLE = create("enchantable/pungency_fruit_spear");
 		public static final TagKey<Item> SEEDS_LAUNCHER_ENCHANTABLE = create("enchantable/seeds_launcher");

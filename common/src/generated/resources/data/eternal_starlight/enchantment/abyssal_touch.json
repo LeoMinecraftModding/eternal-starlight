@@ -1,0 +1,37 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.eternal_starlight.abyssal_touch"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "eternal_starlight:ignite_abyssal_fire",
+          "duration": {
+            "type": "minecraft:linear",
+            "base": 5.0,
+            "per_level_above_first": 5.0
+          }
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 21,
+    "per_level_above_first": 11
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 11
+  },
+  "primary_items": "#eternal_starlight:enchantable/whip",
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#eternal_starlight:enchantable/whip",
+  "weight": 10
+}
