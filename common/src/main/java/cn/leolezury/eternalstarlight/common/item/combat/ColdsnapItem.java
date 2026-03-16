@@ -71,7 +71,7 @@ public class ColdsnapItem extends WhipItem {
 	}
 
 	@Override
-	public Whip createWhip(Level level, Player owner, ItemStack weapon) {
-		return new Coldsnap(level, owner, weapon);
+	public Whip createWhip(Level level, Player owner, ItemStack weapon, float damageScale) {
+		return new Coldsnap(level, owner, weapon, damageScale);
 	}
 }

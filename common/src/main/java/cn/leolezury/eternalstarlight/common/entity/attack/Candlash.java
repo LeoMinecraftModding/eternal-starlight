@@ -21,8 +21,8 @@ public class Candlash extends Whip {
 		super(entityType, level);
 	}
 
-	public Candlash(Level level, Player player, @Nullable ItemStack weapon) {
-		super(ESEntities.CANDLASH.get(), level, player, weapon);
+	public Candlash(Level level, Player player, @Nullable ItemStack weapon, float damageScale) {
+		super(ESEntities.CANDLASH.get(), level, player, weapon, damageScale);
 	}
 
 	@Override

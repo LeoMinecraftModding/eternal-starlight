@@ -19,6 +19,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
@@ -33,23 +34,30 @@ public abstract class WhipItem extends TieredItem implements SwingAttackWeapon {
 		super(tier, properties);
 	}
 
-	public static ItemAttributeModifiers createAttributes(Tier tier, float damage) {
+	public static ItemAttributeModifiers createAttributes(Tier tier, float damage, float speed) {
 		return ItemAttributeModifiers.builder()
 			.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage + tier.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+			.add(Attributes.ATTACK_SPEED, new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 			.build();
 	}
 
 	@NotNull
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
-		if (hand == InteractionHand.MAIN_HAND && !level.isClientSide && !(level.getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip)) {
-			stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
-			Whip whip = createWhip(level, player, stack);
-			level.addFreshEntity(whip);
-			whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
-			player.awardStat(Stats.ITEM_USED.get(this));
+		if (hand == InteractionHand.MAIN_HAND && !(level.getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip)) {
+			if (!level.isClientSide) {
+				stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+				float strength = player.getAttackStrengthScale(0.5F);
+				float damageScale = 0.2F + strength * strength * 0.8F;
+				Whip whip = createWhip(level, player, stack, damageScale);
+				level.addFreshEntity(whip);
+				whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
+				player.awardStat(Stats.ITEM_USED.get(this));
+			}
+			player.resetAttackStrengthTicker();
+			return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
 		}
-		return hand == InteractionHand.MAIN_HAND ? InteractionResultHolder.sidedSuccess(stack, level.isClientSide) : InteractionResultHolder.pass(stack);
+		return InteractionResultHolder.pass(stack);
 	}
 
 	@Override
@@ -57,9 +65,12 @@ public abstract class WhipItem extends TieredItem implements SwingAttackWeapon {
 		Level level = player.level();
 		if (!level.isClientSide && !(level.getEntity(ESDataAttachments.WHIP.getData(player)) instanceof Whip)) {
 			stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
-			Whip whip = createWhip(level, player, stack);
+			float strength = player.getAttackStrengthScale(0.5F);
+			float damageScale = 0.2F + strength * strength * 0.8F;
+			Whip whip = createWhip(level, player, stack, damageScale);
 			level.addFreshEntity(whip);
 			whip.playSound(ESSoundEvents.WHIP_SWISH.get(), 1.0F, 1.0F / (player.getRandom().nextFloat() * 0.4F + 0.8F));
+			player.resetAttackStrengthTicker();
 		}
 	}
 
@@ -86,5 +97,5 @@ public abstract class WhipItem extends TieredItem implements SwingAttackWeapon {
 		}
 	}
 
-	public abstract Whip createWhip(Level level, Player owner, ItemStack weapon);
+	public abstract Whip createWhip(Level level, Player owner, ItemStack weapon, float damageScale);
 }

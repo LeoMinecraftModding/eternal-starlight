@@ -13,7 +13,7 @@ public class TentacleSpikeItem extends WhipItem {
 	}
 
 	@Override
-	public Whip createWhip(Level level, Player owner, ItemStack weapon) {
-		return new TentacleSpike(level, owner, weapon);
+	public Whip createWhip(Level level, Player owner, ItemStack weapon, float damageScale) {
+		return new TentacleSpike(level, owner, weapon, damageScale);
 	}
 }

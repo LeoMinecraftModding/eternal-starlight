@@ -1,8 +1,8 @@
-// 1.21.1	2025-09-20T17:29:19.9738788	Tags for minecraft:enchantment mod id eternal_starlight
+// 1.21.1	2026-03-17T00:16:03.5341906	Tags for minecraft:enchantment mod id eternal_starlight
 1aa9da0faea446e0d06bb1231d55573f4bec8964 data/eternal_starlight/tags/enchantment/cursed_garden_loot.json
 b1f4091878bedffa655e75c3fbc60561be253b7d data/eternal_starlight/tags/enchantment/exclusive_set/seeds_launcher.json
 6f1a7adb3c41202209839a9f43902f54a2f2bc02 data/eternal_starlight/tags/enchantment/golem_forge_loot.json
 ba4d030f4fdd436e18d3e4c3bda99cca73a3d4cf data/eternal_starlight/tags/enchantment/prevents_starfire_bird_spawns_when_mining.json
-bd22da21d9388857b3f05e3002e9ce798684891f data/minecraft/tags/enchantment/non_treasure.json
-1505dcb905a6a45437c20f18cdb77da975bad2f4 data/minecraft/tags/enchantment/tooltip_order.json
+0b8bfd55558e1f0107208909af0b42f78a033ee2 data/minecraft/tags/enchantment/non_treasure.json
+d0761613652d41fe48c44bee48fc4704437c09e0 data/minecraft/tags/enchantment/tooltip_order.json
 2e6f845310d1a3f3485d17ea8a70b18420703ac8 data/minecraft/tags/enchantment/treasure.json

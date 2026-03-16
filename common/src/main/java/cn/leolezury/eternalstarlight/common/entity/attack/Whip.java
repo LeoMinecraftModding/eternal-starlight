@@ -37,6 +37,7 @@ public abstract class Whip extends Entity {
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
 	private static final String TAG_OWNER = "owner";
 	private static final String TAG_WEAPON = "weapon";
+	private static final String TAG_DAMAGE_SCALE = "damage_scale";
 
 	protected static final EntityDataAccessor<Integer> SPAWNED_TICKS = SynchedEntityData.defineId(Whip.class, EntityDataSerializers.INT);
 
@@ -59,6 +60,8 @@ public abstract class Whip extends Entity {
 	}
 
 	private static final EntityDataAccessor<Boolean> FOIL = SynchedEntityData.defineId(Whip.class, EntityDataSerializers.BOOLEAN);
+
+	private float damageScale = 1;
 
 	@Nullable
 	private ItemStack firedFromWeapon;
@@ -93,7 +96,7 @@ public abstract class Whip extends Entity {
 		this.noCulling = true;
 	}
 
-	public Whip(EntityType<? extends Whip> entityType, Level level, Player player, @Nullable ItemStack weapon) {
+	public Whip(EntityType<? extends Whip> entityType, Level level, Player player, @Nullable ItemStack weapon, float damageScale) {
 		this(entityType, level);
 		this.setOwner(player);
 		this.setPos(player.getEyePosition());
@@ -101,6 +104,7 @@ public abstract class Whip extends Entity {
 		if (firedFromWeapon != null) {
 			this.entityData.set(FOIL, firedFromWeapon.hasFoil());
 		}
+		this.damageScale = damageScale;
 	}
 
 	@Override
@@ -161,7 +165,7 @@ public abstract class Whip extends Entity {
 						AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + 1.5f);
 						if (ESEntityUtil.shouldHarm(player, entity) && entity.isPickable() && (aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent())) {
 							DamageSource damageSource = damageSources().playerAttack(player);
-							float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+							float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE) * damageScale;
 							float knockback = player.getKnockback(entity, damageSource);
 							if (level() instanceof ServerLevel serverLevel && this.getWeaponItem() != null) {
 								damage = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), entity, damageSource, damage);
@@ -217,11 +221,12 @@ public abstract class Whip extends Entity {
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		compoundTag.putInt(TAG_SPAWNED_TICKS, getSpawnedTicks());
 		if (ownerId != null) {
-			compoundTag.putUUID(TAG_OWNER, owner.getUUID());
+			compoundTag.putUUID(TAG_OWNER, ownerId);
 		}
 		if (this.firedFromWeapon != null && !this.firedFromWeapon.isEmpty()) {
 			compoundTag.put(TAG_WEAPON, firedFromWeapon.save(registryAccess(), new CompoundTag()));
 		}
+		compoundTag.putFloat(TAG_DAMAGE_SCALE, damageScale);
 	}
 
 	@Override
@@ -237,6 +242,9 @@ public abstract class Whip extends Entity {
 			}
 		} else {
 			firedFromWeapon = null;
+		}
+		if (compoundTag.contains(TAG_DAMAGE_SCALE, CompoundTag.TAG_FLOAT)) {
+			damageScale = compoundTag.getFloat(TAG_DAMAGE_SCALE);
 		}
 	}
 

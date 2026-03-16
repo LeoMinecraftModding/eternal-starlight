@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherItem;
 import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.Minecraft;
@@ -17,6 +18,7 @@ import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -54,10 +56,14 @@ public abstract class MinecraftMixin {
 		}
 	}
 
-	@Inject(method = "startAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/HitResult;getType()Lnet/minecraft/world/phys/HitResult$Type;", shift = At.Shift.AFTER))
-	private void startAttack(CallbackInfoReturnable<Music> cir) {
+	@WrapOperation(method = "startAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/HitResult;getType()Lnet/minecraft/world/phys/HitResult$Type;"))
+	private HitResult.Type getHitResultType(HitResult instance, Operation<HitResult.Type> original) {
 		if (player != null) {
 			ESClientPlatform.INSTANCE.sendToServer(new SimpleActionPacket(SimpleActionPacket.C2S_SWING_ATTACK));
+			if (player.getMainHandItem().is(ESTags.Items.WHIPS)) {
+				return HitResult.Type.MISS;
+			}
 		}
+		return original.call(instance);
 	}
 }

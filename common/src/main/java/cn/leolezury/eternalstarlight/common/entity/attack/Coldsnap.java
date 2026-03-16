@@ -23,8 +23,8 @@ public class Coldsnap extends Whip {
 		super(entityType, level);
 	}
 
-	public Coldsnap(Level level, Player player, @Nullable ItemStack weapon) {
-		super(ESEntities.COLDSNAP.get(), level, player, weapon);
+	public Coldsnap(Level level, Player player, @Nullable ItemStack weapon, float damageScale) {
+		super(ESEntities.COLDSNAP.get(), level, player, weapon, damageScale);
 	}
 
 	public boolean isCloudSpawned() {

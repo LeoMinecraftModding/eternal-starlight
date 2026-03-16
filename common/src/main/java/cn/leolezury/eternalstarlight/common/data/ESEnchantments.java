@@ -22,13 +22,12 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.*;
-import net.minecraft.world.item.enchantment.effects.AddValue;
-import net.minecraft.world.item.enchantment.effects.ApplyMobEffect;
-import net.minecraft.world.item.enchantment.effects.Ignite;
-import net.minecraft.world.item.enchantment.effects.SpawnParticlesEffect;
+import net.minecraft.world.item.enchantment.effects.*;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import org.apache.commons.lang3.mutable.MutableFloat;
@@ -45,6 +44,7 @@ public class ESEnchantments {
 	public static final ResourceKey<Enchantment> PRECISION = create("precision");
 	public static final ResourceKey<Enchantment> HOMING = create("homing");
 	public static final ResourceKey<Enchantment> GATHERING = create("gathering");
+	public static final ResourceKey<Enchantment> SWIFT_LASH = create("swift_lash");
 	public static final ResourceKey<Enchantment> ABYSSAL_TOUCH = create("abyssal_touch");
 
 	public static void bootstrap(BootstrapContext<Enchantment> context) {
@@ -87,7 +87,10 @@ public class ESEnchantments {
 		context.register(GATHERING, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.BOOMERANG_ENCHANTABLE), items.getOrThrow(ESTags.Items.BOOMERANG_ENCHANTABLE), 3, 2, Enchantment.dynamicCost(20, 11), Enchantment.dynamicCost(30, 11), 4, EquipmentSlotGroup.MAINHAND))
 			.withEffect(ESEnchantmentEffectComponents.BOOMERANG_PICKUP_RADIUS.get(), new AddValue(LevelBasedValue.perLevel(1.0F, 0.75F)))
 			.build(GATHERING.location()));
-		context.register(ABYSSAL_TOUCH, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.WHIP_ENCHANTABLE), items.getOrThrow(ESTags.Items.WHIP_ENCHANTABLE), 10, 2, Enchantment.dynamicCost(1, 11), Enchantment.dynamicCost(21, 11), 1, EquipmentSlotGroup.MAINHAND))
+		context.register(SWIFT_LASH, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.WHIP_ENCHANTABLE), items.getOrThrow(ESTags.Items.WHIP_ENCHANTABLE), 10, 5, Enchantment.dynamicCost(1, 11), Enchantment.dynamicCost(21, 11), 1, EquipmentSlotGroup.MAINHAND))
+			.withEffect(EnchantmentEffectComponents.ATTRIBUTES, new EnchantmentAttributeEffect(EternalStarlight.id("enchantment.swift_lash"), Attributes.ATTACK_SPEED, LevelBasedValue.perLevel(0.2F), AttributeModifier.Operation.ADD_VALUE))
+			.build(SWIFT_LASH.location()));
+		context.register(ABYSSAL_TOUCH, Enchantment.enchantment(Enchantment.definition(items.getOrThrow(ESTags.Items.WHIP_ENCHANTABLE), items.getOrThrow(ESTags.Items.WHIP_ENCHANTABLE), 6, 2, Enchantment.dynamicCost(1, 11), Enchantment.dynamicCost(21, 11), 1, EquipmentSlotGroup.MAINHAND))
 			.withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER, EnchantmentTarget.VICTIM, new IgniteAbyssalFire(LevelBasedValue.perLevel(5.0F)))
 			.build(ABYSSAL_TOUCH.location()));
 	}

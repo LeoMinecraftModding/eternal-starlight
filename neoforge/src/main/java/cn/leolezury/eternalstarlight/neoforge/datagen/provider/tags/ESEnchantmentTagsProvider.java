@@ -55,7 +55,9 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 				ESEnchantments.FERTILE,
 				ESEnchantments.PRECISION,
 				ESEnchantments.HOMING,
-				ESEnchantments.GATHERING
+				ESEnchantments.GATHERING,
+				ESEnchantments.SWIFT_LASH,
+				ESEnchantments.ABYSSAL_TOUCH
 			);
 		tag(EnchantmentTags.TREASURE)
 			.add(
@@ -72,7 +74,9 @@ public class ESEnchantmentTagsProvider extends EnchantmentTagsProvider {
 				ESEnchantments.FERTILE,
 				ESEnchantments.PRECISION,
 				ESEnchantments.HOMING,
-				ESEnchantments.GATHERING
+				ESEnchantments.GATHERING,
+				ESEnchantments.SWIFT_LASH,
+				ESEnchantments.ABYSSAL_TOUCH
 			);
 	}
 }

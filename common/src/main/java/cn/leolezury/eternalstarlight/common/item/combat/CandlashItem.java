@@ -57,7 +57,7 @@ public class CandlashItem extends WhipItem {
 	}
 
 	@Override
-	public Whip createWhip(Level level, Player owner, ItemStack weapon) {
-		return new Candlash(level, owner, weapon);
+	public Whip createWhip(Level level, Player owner, ItemStack weapon, float damageScale) {
+		return new Candlash(level, owner, weapon, damageScale);
 	}
 }

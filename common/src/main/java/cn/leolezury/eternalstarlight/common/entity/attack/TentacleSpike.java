@@ -12,8 +12,8 @@ public class TentacleSpike extends Whip {
 		super(entityType, level);
 	}
 
-	public TentacleSpike(Level level, Player player, @Nullable ItemStack weapon) {
-		super(ESEntities.TENTACLE_SPIKE.get(), level, player, weapon);
+	public TentacleSpike(Level level, Player player, @Nullable ItemStack weapon, float damageScale) {
+		super(ESEntities.TENTACLE_SPIKE.get(), level, player, weapon, damageScale);
 	}
 
 	@Override
