@@ -6,13 +6,18 @@ import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,6 +25,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -163,6 +170,27 @@ public abstract class PlayerMixin implements SpellCaster {
 		Player player = (Player) (Object) this;
 		if (player.level().getEntity(ESDataAttachments.HUSK_OWNER_ID.getData(player)) instanceof Player huskOwner) {
 			cir.setReturnValue(huskOwner.isModelPartShown(part));
+		}
+	}
+
+	@WrapOperation(method = "eat", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"))
+	private void playEatSound(Level instance, Player player, double x, double y, double z, SoundEvent soundEvent, SoundSource soundSource, float volume, float pitch, Operation<Void> original) {
+		if (!((Player) (Object) this).getItemBySlot(EquipmentSlot.HEAD).is(ESItems.UNREALIUM_HELMET.get())) {
+			original.call(instance, player, x, y, z, soundEvent, soundSource, volume, pitch);
+		}
+	}
+
+	@Inject(method = "getHurtSound", at = @At("RETURN"), cancellable = true)
+	private void getHurtSound(DamageSource damageSource, CallbackInfoReturnable<SoundEvent> cir) {
+		if (((Player) (Object) this).getItemBySlot(EquipmentSlot.CHEST).is(ESItems.UNREALIUM_CHESTPLATE.get())) {
+			cir.setReturnValue(null);
+		}
+	}
+
+	@Inject(method = "playStepSound", at = @At("HEAD"), cancellable = true)
+	private void playStepSound(BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
+		if (((Player) (Object) this).getItemBySlot(EquipmentSlot.FEET).is(ESItems.UNREALIUM_BOOTS.get())) {
+			ci.cancel();
 		}
 	}
 }

@@ -3,6 +3,9 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
+import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
@@ -147,8 +150,10 @@ public class ChainOfSouls extends Projectile implements Grappling {
 								for (int i = 0; i < 7; i++) {
 									serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, target.getRandomX(1), target.getRandomY(), target.getRandomZ(1), 5, 0, 0, 0, 0);
 								}
-								for (int i = 0; i < 7; i++) {
-									serverLevel.sendParticles(ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS, playerOwner.getRandomX(1), playerOwner.getRandomY(), playerOwner.getRandomZ(1), 5, 0, 0, 0, 0);
+								for (int i = 0; i < 2; i++) {
+									Vec3 randomPlayerPos = new Vec3(playerOwner.getRandomX(1), playerOwner.getRandomY(), playerOwner.getRandomZ(1));
+									Vec3 randomTargetPos = new Vec3(target.getRandomX(1), target.getRandomY(), target.getRandomZ(1));
+									ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, this, new ParticlePacket(GatheringTrailParticleOptions.SOUL_THIN, randomTargetPos.x, randomTargetPos.y, randomTargetPos.z, randomPlayerPos.x - randomTargetPos.x, randomPlayerPos.y - randomTargetPos.y, randomPlayerPos.z - randomTargetPos.z));
 								}
 							}
 

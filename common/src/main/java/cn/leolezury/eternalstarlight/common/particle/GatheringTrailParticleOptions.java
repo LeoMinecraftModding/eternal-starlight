@@ -13,6 +13,7 @@ import net.minecraft.network.codec.StreamCodec;
 public record GatheringTrailParticleOptions(ParticleType<GatheringTrailParticleOptions> type, float trailWidth, float trailLength, float speedScale, float rotSpeedScale) implements ParticleOptions {
 	public static final GatheringTrailParticleOptions ENERGY = new GatheringTrailParticleOptions(ESParticles.GATHERING_ENERGY.get(), 0.125f, 5, 1.25f, 0.25f);
 	public static final GatheringTrailParticleOptions SOUL = new GatheringTrailParticleOptions(ESParticles.GATHERING_SOUL.get(), 0.125f, 3, 1.25f, 1.25f);
+	public static final GatheringTrailParticleOptions SOUL_THIN = new GatheringTrailParticleOptions(ESParticles.GATHERING_SOUL.get(), 0.06f, 2, 1.5f, 0.35f);
 	public static final GatheringTrailParticleOptions FLARE = new GatheringTrailParticleOptions(ESParticles.GATHERING_FLARE.get(), 0.125f, 2, 1, 1);
 
 	public static MapCodec<GatheringTrailParticleOptions> codec(ParticleType<GatheringTrailParticleOptions> type) {

@@ -317,6 +317,18 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.addCriterion("explode", ESCriteriaTriggers.CHAIN_TANGLED_SKULL_EXPLOSION.get().createCriterion(new PlayerTrigger.TriggerInstance(Optional.empty())))
 			.save(consumer, EternalStarlight.ID + ":chain_tangled_skull_explosion");
 
+		Advancement.Builder.advancement().parent(killLunarMonstrosity).display(
+				ESItems.UNREALIUM_HELMET.get(),
+				Component.translatable("advancements." + EternalStarlight.ID + ".full_unrealium_armor.title"),
+				Component.translatable("advancements." + EternalStarlight.ID + ".full_unrealium_armor.description"),
+				null, AdvancementType.CHALLENGE, true, true, false)
+			.rewards(AdvancementRewards.Builder.experience(100))
+			.addCriterion("has_helmet", InventoryChangeTrigger.TriggerInstance.hasItems(ESItems.UNREALIUM_HELMET.get()))
+			.addCriterion("has_chestplate", InventoryChangeTrigger.TriggerInstance.hasItems(ESItems.UNREALIUM_CHESTPLATE.get()))
+			.addCriterion("has_leggings", InventoryChangeTrigger.TriggerInstance.hasItems(ESItems.UNREALIUM_LEGGINGS.get()))
+			.addCriterion("has_boots", InventoryChangeTrigger.TriggerInstance.hasItems(ESItems.UNREALIUM_BOOTS.get()))
+			.save(consumer, EternalStarlight.ID + ":full_unrealium_armor");
+
 		AdvancementHolder useBlossomOfStars = Advancement.Builder.advancement().parent(enterDim).display(
 				ESItems.BLOSSOM_OF_STARS.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".use_blossom_of_stars.title"),

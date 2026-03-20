@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
-import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.server.level.ServerLevel;
@@ -23,13 +23,13 @@ public class LunarMonstrositySoulPhase extends BehaviorPhase<LunarMonstrosity> {
 
 	@Override
 	public void tick(LunarMonstrosity entity) {
-		if (entity.getBehaviorTicks() < 70) {
+		if (entity.level() instanceof ServerLevel serverLevel && entity.getBehaviorTicks() < 70) {
 			for (int i = 0; i < 2; i++) {
 				RandomSource random = entity.getRandom();
 				double dx = (random.nextDouble() * 4 + 2) * (random.nextBoolean() ? 1 : -1);
 				double dy = (random.nextDouble() * 4 + 2) * (random.nextBoolean() ? 1 : -1);
 				double dz = (random.nextDouble() * 4 + 2) * (random.nextBoolean() ? 1 : -1);
-				ESClientPlatform.INSTANCE.sendToServer(new ParticlePacket(GatheringTrailParticleOptions.SOUL, entity.getX() - dx, entity.getY() + entity.getBbHeight() / 2 - dy, entity.getZ() - dz, dx, dy, dz));
+				ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(GatheringTrailParticleOptions.SOUL, entity.getX() - dx, entity.getY() + entity.getBbHeight() / 2 - dy, entity.getZ() - dz, dx, dy, dz));
 			}
 		}
 		if (entity.getBehaviorTicks() == 70) {

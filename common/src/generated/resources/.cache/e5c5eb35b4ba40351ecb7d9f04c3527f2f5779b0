@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-14T18:45:47.8608933	Advancements
+// 1.21.1	2026-03-20T22:41:30.4740262	Advancements
 bc79d3aedb5c3d78bbdf8ea64070159bb3371cb4 data/eternal_starlight/advancement/all_starlight_biomes.json
 f669cf32323b8189231a1ea04f94718c156a21b5 data/eternal_starlight/advancement/chain_tangled_skull_explosion.json
 bbc7597d700cf173452d0d1ae7c5a94322ce9ddc data/eternal_starlight/advancement/challenge_gatekeeper.json
@@ -8,6 +8,7 @@ ba5a6ff795cde0898491a2950e45ac218bebf86c data/eternal_starlight/advancement/ente
 ee9c92350920865648af81e0600898cd7f3317ba data/eternal_starlight/advancement/enter_golem_forge.json
 261aa40f9c141a28602fa04b22b33a6dbb126e36 data/eternal_starlight/advancement/enter_starlight.json
 aff34f637331ad8f00641ef739dc6aa440e2be91 data/eternal_starlight/advancement/freeze_starlight_golem.json
+9a1e3ddf58c71d4b7eb4e1ed5de50473a2b594ef data/eternal_starlight/advancement/full_unrealium_armor.json
 164c6c34d989187c575eba9f32f22946fe851a1c data/eternal_starlight/advancement/hammer_critical_hit.json
 30d6bb66aa1828a1b6f4b5f21ccfcf4782fb833c data/eternal_starlight/advancement/hire_stranghoul.json
 ad04cd68cebfe11aca6239547ef36cbce4391d8e data/eternal_starlight/advancement/ignite_lunar_monstrosity.json

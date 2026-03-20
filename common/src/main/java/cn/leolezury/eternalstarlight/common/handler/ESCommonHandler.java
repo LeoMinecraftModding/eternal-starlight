@@ -88,6 +88,7 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -877,6 +878,18 @@ public class ESCommonHandler {
 		if (player instanceof ServerPlayer serverPlayer) {
 			ESBookUtil.unlock(serverPlayer, advancement.id().withPrefix("advancement_"));
 		}
+	}
+
+	public static boolean onVanillaGameEvent(Level level, Holder<GameEvent> vanillaEvent, Vec3 position, GameEvent.Context context) {
+		if (context.sourceEntity() instanceof LivingEntity living) {
+			if ((living.getItemBySlot(EquipmentSlot.HEAD).is(ESItems.UNREALIUM_HELMET.get()) && (vanillaEvent.is(GameEvent.EAT) || vanillaEvent.is(GameEvent.ITEM_INTERACT_START) || vanillaEvent.is(GameEvent.ITEM_INTERACT_FINISH)))
+				|| (living.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.UNREALIUM_CHESTPLATE.get()) && vanillaEvent.is(GameEvent.ENTITY_DAMAGE))
+				|| (living.getItemBySlot(EquipmentSlot.LEGS).is(ESItems.UNREALIUM_LEGGINGS.get()) && (vanillaEvent.is(GameEvent.HIT_GROUND) || vanillaEvent.is(GameEvent.SPLASH)))
+				|| (living.getItemBySlot(EquipmentSlot.FEET).is(ESItems.UNREALIUM_BOOTS.get()) && (vanillaEvent.is(GameEvent.STEP) || vanillaEvent.is(GameEvent.HIT_GROUND)))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public static void onClientToServerSimpleAction(ServerPlayer player, String id) {

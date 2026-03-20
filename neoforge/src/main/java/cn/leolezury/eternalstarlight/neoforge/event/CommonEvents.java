@@ -16,6 +16,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.VanillaGameEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
@@ -155,6 +156,16 @@ public class CommonEvents {
 	@SubscribeEvent
 	private static void onCompleteAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
 		ESCommonHandler.onCompleteAdvancement(event.getEntity(), event.getAdvancement());
+	}
+
+	@SubscribeEvent
+	private static void onVanillaGameEvent(VanillaGameEvent event) {
+		if (!event.isCanceled()) {
+			boolean allow = ESCommonHandler.onVanillaGameEvent(event.getLevel(), event.getVanillaEvent(), event.getEventPosition(), event.getContext());
+			if (!allow) {
+				event.setCanceled(true);
+			}
+		}
 	}
 
 	@SubscribeEvent

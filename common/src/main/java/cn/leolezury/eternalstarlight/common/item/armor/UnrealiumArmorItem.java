@@ -69,10 +69,20 @@ public class UnrealiumArmorItem extends ArmorItem {
 			list.add(CommonComponents.EMPTY);
 			list.add(Component.translatable("item.modifiers.armor").withStyle(ChatFormatting.GRAY));
 			list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".unrealium_helmet")).withStyle(ChatFormatting.DARK_PURPLE));
+			list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".unrealium_helmet.mute")).withStyle(ChatFormatting.DARK_PURPLE));
 		} else if (getType() == Type.CHESTPLATE) {
 			list.add(CommonComponents.EMPTY);
 			list.add(Component.translatable("item.modifiers.armor").withStyle(ChatFormatting.GRAY));
 			list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".unrealium_chestplate")).withStyle(ChatFormatting.DARK_PURPLE));
+			list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".unrealium_chestplate.mute")).withStyle(ChatFormatting.DARK_PURPLE));
+		} else if (getType() == Type.LEGGINGS) {
+			list.add(CommonComponents.EMPTY);
+			list.add(Component.translatable("item.modifiers.armor").withStyle(ChatFormatting.GRAY));
+			list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".unrealium_leggings.mute")).withStyle(ChatFormatting.DARK_PURPLE));
+		} else if (getType() == Type.BOOTS) {
+			list.add(CommonComponents.EMPTY);
+			list.add(Component.translatable("item.modifiers.armor").withStyle(ChatFormatting.GRAY));
+			list.add(Component.literal(" ").append(Component.translatable("tooltip." + EternalStarlight.ID + ".unrealium_boots.mute")).withStyle(ChatFormatting.DARK_PURPLE));
 		}
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 	}

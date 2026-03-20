@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingParticleOptions;
-import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
 import net.minecraft.server.level.ServerLevel;
@@ -54,7 +54,7 @@ public class SolarCreeperIntroPhase extends BehaviorPhase<SolarCreeper> {
 						double dx = (random.nextDouble() * 3 + 2) * (random.nextBoolean() ? 1 : -1);
 						double dy = (random.nextDouble() * 3 + 2) * (random.nextBoolean() ? 1 : -1);
 						double dz = (random.nextDouble() * 3 + 2) * (random.nextBoolean() ? 1 : -1);
-						ESClientPlatform.INSTANCE.sendToServer(new ParticlePacket(GatheringTrailParticleOptions.FLARE, entity.getX() - dx, entity.getY() + entity.getBbHeight() / 2 - dy, entity.getZ() - dz, dx, dy, dz));
+						ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(GatheringTrailParticleOptions.FLARE, entity.getX() - dx, entity.getY() + entity.getBbHeight() / 2 - dy, entity.getZ() - dz, dx, dy, dz));
 					}
 				}
 			}

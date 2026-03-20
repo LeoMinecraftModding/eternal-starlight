@@ -5,9 +5,12 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.Entity;
@@ -101,6 +104,20 @@ public abstract class EntityMixin {
 			ESDataAttachments.LAST_MOVEMENT_UPDATE.setData(entity, tickCount);
 		} else {
 			ESDataAttachments.MOVEMENT.setData(entity, ESDataAttachments.MOVEMENT.getData(entity).add(movement));
+		}
+	}
+
+	@WrapOperation(method = "doWaterSplashEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 0))
+	private void playSplashSound(Entity instance, SoundEvent soundEvent, float volume, float pitch, Operation<Void> original) {
+		if (!((Entity) (Object) this instanceof LivingEntity living && living.getItemBySlot(EquipmentSlot.LEGS).is(ESItems.UNREALIUM_LEGGINGS.get()))) {
+			original.call(instance, soundEvent, volume, pitch);
+		}
+	}
+
+	@WrapOperation(method = "doWaterSplashEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 1))
+	private void playHighSpeedSplashSound(Entity instance, SoundEvent soundEvent, float volume, float pitch, Operation<Void> original) {
+		if (!((Entity) (Object) this instanceof LivingEntity living && living.getItemBySlot(EquipmentSlot.LEGS).is(ESItems.UNREALIUM_LEGGINGS.get()))) {
+			original.call(instance, soundEvent, volume, pitch);
 		}
 	}
 }

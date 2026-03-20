@@ -17,6 +17,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -189,6 +191,41 @@ public abstract class LivingEntityMixin {
 			return UseAnim.EAT;
 		}
 		return original.call(instance);
+	}
+
+	@WrapOperation(method = "triggerItemUseEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 0))
+	private void playDrinkingSound(LivingEntity instance, SoundEvent soundEvent, float volume, float pitch, Operation<Void> original) {
+		if (!((LivingEntity) (Object) this).getItemBySlot(EquipmentSlot.HEAD).is(ESItems.UNREALIUM_HELMET.get())) {
+			original.call(instance, soundEvent, volume, pitch);
+		}
+	}
+
+	@WrapOperation(method = "triggerItemUseEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 1))
+	private void playEatingSound(LivingEntity instance, SoundEvent soundEvent, float volume, float pitch, Operation<Void> original) {
+		if (!((LivingEntity) (Object) this).getItemBySlot(EquipmentSlot.HEAD).is(ESItems.UNREALIUM_HELMET.get())) {
+			original.call(instance, soundEvent, volume, pitch);
+		}
+	}
+
+	@WrapOperation(method = "eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"))
+	private void playEatSound(Level instance, Player player, double x, double y, double z, SoundEvent soundEvent, SoundSource soundSource, float volume, float pitch, Operation<Void> original) {
+		if (!((Player) (Object) this).getItemBySlot(EquipmentSlot.HEAD).is(ESItems.UNREALIUM_HELMET.get())) {
+			original.call(instance, player, x, y, z, soundEvent, soundSource, volume, pitch);
+		}
+	}
+
+	@WrapOperation(method = "causeFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V"))
+	private void playFallSound(LivingEntity instance, SoundEvent soundEvent, float volume, float pitch, Operation<Void> original) {
+		if (!((LivingEntity) (Object) this).getItemBySlot(EquipmentSlot.LEGS).is(ESItems.UNREALIUM_LEGGINGS.get())) {
+			original.call(instance, soundEvent, volume, pitch);
+		}
+	}
+
+	@Inject(method = "playBlockFallSound", at = @At("HEAD"), cancellable = true)
+	private void playBlockFallSound(CallbackInfo ci) {
+		if (((LivingEntity) (Object) this).getItemBySlot(EquipmentSlot.LEGS).is(ESItems.UNREALIUM_LEGGINGS.get())) {
+			ci.cancel();
+		}
 	}
 
 	@Inject(method = "onClimbable", at = @At("RETURN"), cancellable = true)
