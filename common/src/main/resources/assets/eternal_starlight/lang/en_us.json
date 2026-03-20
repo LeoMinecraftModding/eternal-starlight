@@ -1224,7 +1224,7 @@
   "tooltip.eternal_starlight.unrealium_chestplate": "Grants immunity to entity cramming damage",
   "tooltip.eternal_starlight.unrealium_helmet.mute": "Mutes eating sounds",
   "tooltip.eternal_starlight.unrealium_chestplate.mute": "Mutes damage sounds",
-  "tooltip.eternal_starlight.unrealium_leggings.mute": "Mutes fall and water entry sounds",
+  "tooltip.eternal_starlight.unrealium_leggings.mute": "Mutes fall and water splash sounds",
   "tooltip.eternal_starlight.unrealium_boots.mute": "Mutes footstep sounds",
   "tooltip.eternal_starlight.seeds_launcher.ammo": "As Seeds Launcher ammo: ",
   "tooltip.eternal_starlight.seeds_launcher.damage_multiplier": "%1$s Damage",
