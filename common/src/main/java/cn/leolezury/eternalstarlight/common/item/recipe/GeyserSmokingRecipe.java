@@ -37,7 +37,7 @@ public record GeyserSmokingRecipe(Item input, int inputCount, ItemStack output) 
 
 	@Override
 	public ItemStack getResultItem(HolderLookup.Provider provider) {
-		return output().copy();
+		return output();
 	}
 
 	@Override
