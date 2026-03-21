@@ -25,8 +25,8 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("permafrost"), "main");
 	private final ModelPart root;
 	private final ModelPart head;
-	public final ModelPart lower;
-	public final ModelPart armature;
+	private final ModelPart lower;
+	private final ModelPart armature;
 	public final List<String> allPartNames;
 
 	public float alphaFactor = 1;
@@ -153,6 +153,7 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 				}
 			}
 		}
+		entity.smokePos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(root(), lower, armature));
 	}
 
 	@Override

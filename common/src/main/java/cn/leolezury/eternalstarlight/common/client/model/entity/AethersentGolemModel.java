@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.AethersentGolemAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.AethersentGolem;
@@ -13,15 +14,17 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.List;
+
 public class AethersentGolemModel<T extends AethersentGolem> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("aethersent_golem"), "main");
 	private final ModelPart root;
-	public final ModelPart upper;
-	public final ModelPart body;
-	public final ModelPart leftArm;
-	public final ModelPart leftMuzzle;
-	public final ModelPart rightArm;
-	public final ModelPart rightMuzzle;
+	private final ModelPart upper;
+	private final ModelPart body;
+	private final ModelPart leftArm;
+	private final ModelPart leftMuzzle;
+	private final ModelPart rightArm;
+	private final ModelPart rightMuzzle;
 	private final ModelPart head;
 	private final ModelPart eye;
 	private final ModelPart lower;
@@ -103,6 +106,12 @@ public class AethersentGolemModel<T extends AethersentGolem> extends AnimatedEnt
 				double e = golemView.dot(eyeDiff);
 				this.eye.x += Mth.sqrt((float) Math.abs(e)) * 2.0F * (float) Math.signum(e);
 			}
+		}
+		if (entity.shootAnimationState.isStarted() && !entity.shootPosTracked) {
+			entity.leftMuzzlePos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(upper, body, leftArm, leftMuzzle));
+			entity.rightMuzzlePos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(upper, body, rightArm, rightMuzzle));
+			entity.shootPosTracked = true;
+			entity.shouldAddShootParticle = true;
 		}
 	}
 

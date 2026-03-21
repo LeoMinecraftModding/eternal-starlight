@@ -22,7 +22,7 @@ public class LunarMonstrositySporePhase extends BehaviorPhase<LunarMonstrosity> 
 	public void tick(LunarMonstrosity entity) {
 		LivingEntity target = entity.getTarget();
 		if ((entity.getBehaviorTicks() + 5) % 10 == 0 && target != null) {
-			Vec3 shootPos = ESMathUtil.rotationToPosition(entity.position().add(0, entity.getBbHeight(), 0), entity.getBbWidth() * 1.2f, 0, entity.yBodyRot + 90);
+			Vec3 shootPos = ESMathUtil.rotationToPosition(entity.position().add(0, entity.getEyeHeight(), 0), entity.getBbWidth() * 1.2f, 0, entity.yBodyRot + 90);
 			LunarSpore spore = new LunarSpore(entity.level(), entity, shootPos.x, shootPos.y, shootPos.z);
 			spore.setNoGravity(true);
 			spore.setDeltaMovement(entity.getRayRotationTarget().subtract(shootPos).normalize().scale(0.9));

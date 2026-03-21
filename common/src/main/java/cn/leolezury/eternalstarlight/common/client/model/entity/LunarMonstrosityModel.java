@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
 import cn.leolezury.eternalstarlight.common.client.model.animation.definition.LunarMonstrosityAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.*;
@@ -8,14 +9,17 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
+
+import java.util.List;
 
 public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("lunar_monstrosity"), "main");
 	private final ModelPart root;
-	public final ModelPart stemAll;
-	public final ModelPart stemMiddle;
-	public final ModelPart stemTop;
-	public final ModelPart head;
+	private final ModelPart stemAll;
+	private final ModelPart stemMiddle;
+	private final ModelPart stemTop;
+	private final ModelPart head;
 	private final ModelPart eye;
 
 	public LunarMonstrosityModel(ModelPart root) {
@@ -116,6 +120,7 @@ public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedE
 		if (entity.deathTime > 0) {
 			animate(entity.deathAnimationState, LunarMonstrosityAnimation.DEATH, ageInTicks);
 		}
+		entity.headPos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(root(), stemAll, stemMiddle, stemTop, head));
 	}
 
 	/*@Override
