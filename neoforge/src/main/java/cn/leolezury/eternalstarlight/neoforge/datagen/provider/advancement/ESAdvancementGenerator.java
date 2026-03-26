@@ -147,6 +147,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 
 		AdvancementHolder inEtherFluid = addInFluid(consumer, enterDim, "in_ether_fluid", ESItems.ETHER_BUCKET.get(), fluids.getOrThrow(ESTags.Fluids.ETHER));
 
+		AdvancementHolder forgottenNocturnalMillet = addItemObtain(consumer, inEtherFluid, "obtain_forgotten_nocturnal_millet", ESItems.FORGOTTEN_NOCTURNAL_MILLET.get());
+
 		AdvancementHolder thioquartzShard = addItemObtain(consumer, inEtherFluid, "obtain_thioquartz_shard", ESItems.THIOQUARTZ_SHARD.get());
 
 		AdvancementHolder alchemistMask = addItemObtain(consumer, thioquartzShard, "obtain_alchemist_mask", ESItems.ALCHEMIST_MASK.get());

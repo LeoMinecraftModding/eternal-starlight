@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
+import cn.leolezury.eternalstarlight.common.block.ThioquartzBlock;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import com.mojang.serialization.Codec;
@@ -30,7 +31,7 @@ public class FinalModificationFeature extends ESFeature<NoneFeatureConfiguration
 							setBlock(level, pos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
 							for (Direction dir : Direction.values()) {
 								if (context.random().nextInt(5) == 0 && (!level.getFluidState(relativePos.relative(dir)).isEmpty() || level.isEmptyBlock(relativePos.relative(dir)))) {
-									setBlock(level, relativePos.relative(dir), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState());
+									setBlock(level, relativePos.relative(dir), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.EMBEDDED, Math.random() < 0.1));
 								}
 							}
 							break;

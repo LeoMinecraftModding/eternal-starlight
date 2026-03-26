@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:in_ether_fluid",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:forgotten_nocturnal_millet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_forgotten_nocturnal_millet.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:forgotten_nocturnal_millet"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_forgotten_nocturnal_millet.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
