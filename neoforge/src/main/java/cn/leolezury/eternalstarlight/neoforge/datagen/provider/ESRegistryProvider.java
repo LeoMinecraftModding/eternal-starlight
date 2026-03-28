@@ -32,7 +32,6 @@ public class ESRegistryProvider extends DatapackBuiltinEntriesProvider {
 		.add(Registries.PAINTING_VARIANT, ESPaintingVariants::bootstrap)
 		// custom
 		.add(ESRegistries.BIOME_DATA, ESBiomeData::bootstrap)
-		.add(ESRegistries.DATA_TRANSFORMER, ESDataTransformers::bootstrap)
 		.add(ESRegistries.BOARWARF_TYPE, ESBoarwarfTypes::bootstrap)
 		.add(ESRegistries.ASTRAL_GOLEM_MATERIAL, ESAstralGolemMaterials::bootstrap)
 		.add(ESRegistries.ENT_VARIANT, ESEntVariants::bootstrap)

@@ -1,10 +1,8 @@
 {
   "biome": "eternal_starlight:the_abyss",
   "fluid": "minecraft:water",
-  "has_beaches": true,
   "has_rivers": true,
   "height": -40,
   "is_ocean": true,
-  "temperatures": [],
   "variance": 3
 }

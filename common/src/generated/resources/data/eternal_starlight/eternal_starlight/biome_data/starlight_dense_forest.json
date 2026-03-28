@@ -1,14 +1,8 @@
 {
   "biome": "eternal_starlight:starlight_dense_forest",
   "fluid": "minecraft:water",
-  "has_beaches": true,
   "has_rivers": true,
-  "height": 61,
+  "height": 65,
   "is_ocean": false,
-  "temperatures": [
-    "neutral",
-    "hot",
-    "cold"
-  ],
-  "variance": 10
+  "variance": 14
 }

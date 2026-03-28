@@ -36,7 +36,7 @@ public class AbyssalCaveFeature extends Feature<NoneFeatureConfiguration> {
 					if (ESMathUtil.isPointInEllipsoid(x, y, z, xSize, ySize, zSize)) {
 						placePos.setWithOffset(pos, x, y, z);
 						BlockState state = level.getBlockState(placePos);
-						if (state.is(ESTags.Blocks.ABYSSAL_CAVE_REPLACEABLES) || state.is(ESTags.Blocks.STARLIGHT_CARVER_REPLACEABLES) || state.getBlock() == Blocks.WATER) {
+						if (state.is(ESTags.Blocks.ABYSSAL_CAVE_REPLACEABLES) || state.is(ESTags.Blocks.STARLIGHT_CARVER_REPLACEABLES) || state.getBlock() == Blocks.WATER || (state.canBeReplaced() && !state.isAir())) {
 							hollowPositions.add(placePos.immutable());
 						} else {
 							return false;

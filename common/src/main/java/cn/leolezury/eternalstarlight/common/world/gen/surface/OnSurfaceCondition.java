@@ -16,12 +16,8 @@ public class OnSurfaceCondition implements SurfaceRules.ConditionSource {
 
 	@Override
 	public SurfaceRules.Condition apply(SurfaceRules.Context context) {
-		if (context.system instanceof StarlightSurfaceSystem system && system.getStarlightChunkGenerator() != null) {
-			if (system.getCachedStarlightBiomeSource() != null) {
-				return () -> context.blockY >= system.getStarlightChunkGenerator().getSurfaceHeight(system.getCachedStarlightBiomeSource(), context.blockX, context.blockZ) - 8;
-			} else {
-				return () -> context.blockY >= system.getStarlightChunkGenerator().getSurfaceHeight(context.blockX, context.blockZ) - 8;
-			}
+		if (context.system instanceof StarlightSurfaceSystem system && system.getStarlightBiomeSource() != null) {
+			return () -> context.blockY >= system.getStarlightBiomeSource().getHeight(context.blockX, context.blockZ, context.randomState.sampler()) - 8;
 		}
 		return () -> false;
 	}

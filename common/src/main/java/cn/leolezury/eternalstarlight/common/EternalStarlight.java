@@ -51,7 +51,6 @@ public class EternalStarlight {
 		ESSoundEvents.loadClass();
 		ESRecipeSerializers.loadClass();
 		ESRecipes.loadClass();
-		ESDataTransformerTypes.loadClass();
 		ESWeathers.loadClass();
 		ESBoarwarfProfessions.loadClass();
 		ESDataAttachments.loadClass();

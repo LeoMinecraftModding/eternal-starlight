@@ -1,13 +1,8 @@
 {
   "biome": "eternal_starlight:crystallized_desert",
   "fluid": "minecraft:water",
-  "has_beaches": true,
   "has_rivers": false,
-  "height": 60,
+  "height": 65,
   "is_ocean": false,
-  "temperatures": [
-    "hot",
-    "hot_extreme"
-  ],
-  "variance": 9
+  "variance": 14
 }

@@ -1,14 +1,8 @@
 {
   "biome": "eternal_starlight:spiral_kelp_forest",
   "fluid": "minecraft:water",
-  "has_beaches": true,
   "has_rivers": true,
   "height": 25,
   "is_ocean": true,
-  "temperatures": [
-    "cold",
-    "neutral",
-    "hot"
-  ],
   "variance": 8
 }

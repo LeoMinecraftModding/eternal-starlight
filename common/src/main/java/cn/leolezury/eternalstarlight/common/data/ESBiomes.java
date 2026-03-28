@@ -131,9 +131,10 @@ public class ESBiomes {
 
 	private static MobSpawnSettings.Builder desertSpawns() {
 		return baseSpawnBuilder()
-			.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 10, 1, 4))
+			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 8, 1, 4))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.GLEECH.get(), 10, 1, 3))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.THIRST_WALKER.get(), 10, 1, 2))
+			.addMobCharge(ESEntities.CRYSTALLIZED_MOTH.get(), 1, 0.75)
 			.addMobCharge(ESEntities.GLEECH.get(), 1, 0.75)
 			.addMobCharge(ESEntities.THIRST_WALKER.get(), 1, 0.75);
 	}

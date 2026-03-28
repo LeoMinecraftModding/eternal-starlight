@@ -1,13 +1,8 @@
 {
   "biome": "eternal_starlight:starlight_permafrost_forest",
   "fluid": "minecraft:water",
-  "has_beaches": false,
   "has_rivers": false,
   "height": 110,
   "is_ocean": false,
-  "temperatures": [
-    "cold",
-    "cold_extreme"
-  ],
   "variance": 40
 }

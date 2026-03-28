@@ -2,27 +2,29 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.world.gen.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
 import cn.leolezury.eternalstarlight.common.world.gen.surface.OnSurfaceCondition;
-import cn.leolezury.eternalstarlight.common.world.gen.system.WorldGenProvider;
-import cn.leolezury.eternalstarlight.common.world.gen.system.transformer.DataTransformer;
+import com.mojang.datafixers.util.Pair;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalLong;
 
 public class ESDimensions {
@@ -31,7 +33,7 @@ public class ESDimensions {
 	public static final ResourceKey<DimensionType> STARLIGHT_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, EternalStarlight.id("starlight"));
 	public static final ResourceKey<NoiseGeneratorSettings> STARLIGHT_NOISE_SETTINGS = ResourceKey.create(Registries.NOISE_SETTINGS, EternalStarlight.id("starlight"));
 
-	public static final int SEA_LEVEL = 50;
+	public static final int SEA_LEVEL = 48;
 
 	private static SurfaceRules.RuleSource makeAbyss() {
 		return SurfaceRules.sequence(
@@ -86,7 +88,40 @@ public class ESDimensions {
 		);
 	}
 
+	private static final ResourceKey<DensityFunction> SHIFT_X = createDensityFunctionKey("shift_x");
+	private static final ResourceKey<DensityFunction> SHIFT_Z = createDensityFunctionKey("shift_z");
+
 	public static void bootstrapNoiseSettings(BootstrapContext<NoiseGeneratorSettings> context) {
+		HolderGetter<DensityFunction> densityFunctions = context.lookup(Registries.DENSITY_FUNCTION);
+		HolderGetter<NormalNoise.NoiseParameters> noiseParameters = context.lookup(Registries.NOISE);
+
+		DensityFunction shiftX = getFunction(densityFunctions, SHIFT_X);
+		DensityFunction shiftZ = getFunction(densityFunctions, SHIFT_Z);
+		DensityFunction temperature = DensityFunctions.shiftedNoise2d(
+			shiftX, shiftZ, 0.25, noiseParameters.getOrThrow(Noises.TEMPERATURE)
+		);
+		DensityFunction vegetation = DensityFunctions.shiftedNoise2d(
+			shiftX, shiftZ, 0.25, noiseParameters.getOrThrow(Noises.VEGETATION)
+		);
+		DensityFunction depth = getFunction(densityFunctions, NoiseRouterData.DEPTH);
+		NoiseRouter router = new NoiseRouter(
+			DensityFunctions.zero(),
+			DensityFunctions.zero(),
+			DensityFunctions.zero(),
+			DensityFunctions.zero(),
+			temperature,
+			vegetation,
+			getFunction(densityFunctions, NoiseRouterData.CONTINENTS),
+			getFunction(densityFunctions, NoiseRouterData.EROSION),
+			depth,
+			getFunction(densityFunctions, NoiseRouterData.RIDGES),
+			DensityFunctions.zero(),
+			DensityFunctions.zero(),
+			DensityFunctions.zero(),
+			DensityFunctions.zero(),
+			DensityFunctions.zero()
+		);
+
 		NoiseGeneratorSettings settings = new NoiseGeneratorSettings(
 			NoiseSettings.create(
 				-64,
@@ -96,23 +131,7 @@ public class ESDimensions {
 			),
 			ESBlocks.GRIMSTONE.get().defaultBlockState(),
 			Blocks.WATER.defaultBlockState(),
-			new NoiseRouter(
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero(),
-				DensityFunctions.zero() // yeah, we're using our own worldgen system
-			),
+			router,
 			makeSurfaceRule(),
 			List.of(),
 			SEA_LEVEL,
@@ -124,53 +143,61 @@ public class ESDimensions {
 		context.register(STARLIGHT_NOISE_SETTINGS, settings);
 	}
 
+	private static ResourceKey<DensityFunction> createDensityFunctionKey(String location) {
+		return ResourceKey.create(Registries.DENSITY_FUNCTION, ResourceLocation.withDefaultNamespace(location));
+	}
+
+	private static DensityFunction getFunction(HolderGetter<DensityFunction> densityFunctions, ResourceKey<DensityFunction> key) {
+		return new DensityFunctions.HolderHolder(densityFunctions.getOrThrow(key));
+	}
+
+	private static Climate.ParameterList<Holder<BiomeData>> buildClimateList(HolderGetter<BiomeData> biomeData) {
+		List<Pair<Climate.ParameterPoint, Holder<BiomeData>>> parameterList = List.of(
+			simpleBiome(biomeData, ESBiomeData.STARLIGHT_FOREST, 0.35f, 0.3f, 0.45f, 0.3f, 0.0f, 0.0f),
+			simpleBiome(biomeData, ESBiomeData.STARLIGHT_DENSE_FOREST, 0.2f, 0.4f, 0.6f, 0.2f, 0.0f, 0.4f),
+			simpleBiome(biomeData, ESBiomeData.STARLIGHT_PERMAFROST_FOREST, -0.6f, -0.2f, 0.5f, -0.6f, 0.0f, 0.0f),
+			simpleBiome(biomeData, ESBiomeData.DARK_SWAMP, 0.45f, 0.45f, 0.4f, 0.3f, 0.0f, 0.0f),
+			simpleBiome(biomeData, ESBiomeData.SCARLET_FOREST, -0.3f, -0.3f, 0.6f, 0.3f, 0.0f, 0.5f),
+			simpleBiome(biomeData, ESBiomeData.CRYSTALLIZED_DESERT, 0.6f, -0.4f, 0.6f, 0.2f, 0.0f, 0.5f),
+			simpleOceanBiome(biomeData, ESBiomeData.STARLIT_SEA, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f),
+			simpleOceanBiome(biomeData, ESBiomeData.SPIRAL_KELP_FOREST, -0.6f, 0.0f, 0.5f, 0.0f, 0.0f),
+			simpleOceanBiome(biomeData, ESBiomeData.LUSH_SHALLOW_SEA, 0.4f, 0.0f, 0.5f, 0.0f, 0.2f)
+		);
+		return new Climate.ParameterList<>(parameterList);
+	}
+
+	private static Pair<Climate.ParameterPoint, Holder<BiomeData>> simpleBiome(HolderGetter<BiomeData> biomeData, ResourceKey<BiomeData> key, float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness) {
+		return new Pair<>(Climate.parameters(temperature, humidity, continentalness, erosion, depth, weirdness, 0), biomeData.getOrThrow(key));
+	}
+
+	private static Pair<Climate.ParameterPoint, Holder<BiomeData>> simpleOceanBiome(HolderGetter<BiomeData> biomeData, ResourceKey<BiomeData> key, float temperature, float humidity, float erosion, float depth, float weirdness) {
+		return new Pair<>(Climate.parameters(Climate.Parameter.point(temperature), Climate.Parameter.point(humidity), Climate.Parameter.span(-1.0f, -0.9f), Climate.Parameter.point(erosion), Climate.Parameter.point(depth), Climate.Parameter.point(weirdness), 0), biomeData.getOrThrow(key));
+	}
+
 	public static void bootstrapLevelStem(BootstrapContext<LevelStem> context) {
-		HolderGetter<Biome> biomeHolderGetter = context.lookup(Registries.BIOME);
-		HolderGetter<DimensionType> dimensionTypeHolderGetter = context.lookup(Registries.DIMENSION_TYPE);
-		HolderGetter<NoiseGeneratorSettings> noiseSettingsHolderGetter = context.lookup(Registries.NOISE_SETTINGS);
-		HolderGetter<DataTransformer> transformers = context.lookup(ESRegistries.DATA_TRANSFORMER);
-		List<WorldGenProvider.TransformerWithSeed> biomeTransformers = new ArrayList<>();
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_OCEAN), 0));
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.APPLY_BIOMES), 0));
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.DUPLICATE), 0));
-		for (int i = 0; i < 6; i++) {
-			biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.DUPLICATE), i));
-			biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.RANDOMIZE_BIOMES), i));
-			biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ASSIMILATE_BIOMES), i));
-			biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ASSIMILATE_LONELY_BIOMES), i));
-		}
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ASSIMILATE_LONELY_BIOMES), 0));
-		for (int i = 0; i < 4; i++) {
-			biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_BEACHES), 0));
-		}
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_RIVERS_AND_ABYSS), 0));
-		for (int i = 0; i < 3; i++) {
-			biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.ADD_TRANSITIONS), 0));
-		}
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.DUPLICATE), 0));
-		biomeTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.DUPLICATE), 0));
-		List<WorldGenProvider.TransformerWithSeed> heightTransformers = new ArrayList<>();
-		heightTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.SMOOTH_HEIGHTS_LARGE), 0));
-		heightTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.NOISE_HEIGHT), 0));
-		heightTransformers.add(new WorldGenProvider.TransformerWithSeed(transformers.getOrThrow(ESDataTransformers.SMOOTH_HEIGHTS_SMALL), 0));
-		WorldGenProvider provider = new WorldGenProvider(biomeTransformers, heightTransformers, 320, -64);
-		LevelStem levelStem = new LevelStem(dimensionTypeHolderGetter.getOrThrow(STARLIGHT_TYPE), new ESChunkGenerator(new ESBiomeSource(provider, HolderSet.direct(
-			// all biomes in our dimension
-			biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_FOREST),
-			biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST),
-			biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST),
-			biomeHolderGetter.getOrThrow(ESBiomes.DARK_SWAMP),
-			biomeHolderGetter.getOrThrow(ESBiomes.SCARLET_FOREST),
-			biomeHolderGetter.getOrThrow(ESBiomes.TORREYA_FOREST),
-			biomeHolderGetter.getOrThrow(ESBiomes.CRYSTALLIZED_DESERT),
-			biomeHolderGetter.getOrThrow(ESBiomes.SHIMMER_RIVER),
-			biomeHolderGetter.getOrThrow(ESBiomes.ETHER_RIVER),
-			biomeHolderGetter.getOrThrow(ESBiomes.STARLIT_SEA),
-			biomeHolderGetter.getOrThrow(ESBiomes.SPIRAL_KELP_FOREST),
-			biomeHolderGetter.getOrThrow(ESBiomes.LUSH_SHALLOW_SEA),
-			biomeHolderGetter.getOrThrow(ESBiomes.THE_ABYSS),
-			biomeHolderGetter.getOrThrow(ESBiomes.WARM_SHORE)
-		)), noiseSettingsHolderGetter.getOrThrow(STARLIGHT_NOISE_SETTINGS)));
+		HolderGetter<BiomeData> biomeData = context.lookup(ESRegistries.BIOME_DATA);
+		HolderGetter<DimensionType> dimensionTypes = context.lookup(Registries.DIMENSION_TYPE);
+		HolderGetter<NoiseGeneratorSettings> noiseSettings = context.lookup(Registries.NOISE_SETTINGS);
+
+		List<ESBiomeSource.RiverEntry> rivers = List.of(
+			new ESBiomeSource.RiverEntry(
+				biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.05f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)), 0.07f,
+				0, false, false),
+			new ESBiomeSource.RiverEntry(
+				biomeData.getOrThrow(ESBiomeData.ETHER_RIVER), 0.05f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.TORREYA_FOREST)), 0.07f,
+				4096, false, false),
+			new ESBiomeSource.RiverEntry(
+				biomeData.getOrThrow(ESBiomeData.THE_ABYSS), 0.05f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)), 0.08f,
+				128, true, true)
+		);
+
+		Climate.ParameterList<Holder<BiomeData>> climateList = buildClimateList(biomeData);
+
+		LevelStem levelStem = new LevelStem(dimensionTypes.getOrThrow(STARLIGHT_TYPE), new ESChunkGenerator(new ESBiomeSource(climateList, rivers), noiseSettings.getOrThrow(STARLIGHT_NOISE_SETTINGS)));
+
 		context.register(STARLIGHT_LEVEL_STEM, levelStem);
 	}
 

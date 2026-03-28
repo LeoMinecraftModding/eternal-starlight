@@ -1,16 +1,9 @@
 package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
-import cn.leolezury.eternalstarlight.common.world.gen.biomesource.IESBiomeSource;
-import net.minecraft.world.level.levelgen.SurfaceSystem;
+import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 
-public interface StarlightSurfaceSystem extends Cloneable {
-	void setStarlightChunkGenerator(ESChunkGenerator generator);
+public interface StarlightSurfaceSystem {
+	void setStarlightBiomeSource(ESBiomeSource biomeSource);
 
-	void setCachedStarlightBiomeSource(IESBiomeSource biomeSource);
-
-	ESChunkGenerator getStarlightChunkGenerator();
-
-	IESBiomeSource getCachedStarlightBiomeSource();
-
-	SurfaceSystem clone();
+	ESBiomeSource getStarlightBiomeSource();
 }

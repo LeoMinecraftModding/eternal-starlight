@@ -35,7 +35,6 @@ import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import cn.leolezury.eternalstarlight.common.weather.WeatherInstance;
 import cn.leolezury.eternalstarlight.common.weather.Weathers;
-import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
@@ -118,20 +117,10 @@ public class ESCommonHandler {
 		return starlightWeathers.getActiveWeather();
 	}
 
-	private static int ticksSinceLastUpdate = 0;
-
 	private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(EternalStarlight.id("armor.amaramber_bonus"), 7, AttributeModifier.Operation.ADD_VALUE);
 
 	public static void onServerTick(MinecraftServer server) {
-		ticksSinceLastUpdate++;
-		if (ticksSinceLastUpdate >= 20) {
-			for (ServerLevel level : server.getAllLevels()) {
-				if (level.getChunkSource().getGenerator().getBiomeSource() instanceof ESBiomeSource source) {
-					source.setCacheSize(level.players().size() * 8);
-				}
-			}
-			ticksSinceLastUpdate = 0;
-		}
+
 	}
 
 	public static void onLevelLoad(ServerLevel serverLevel) {

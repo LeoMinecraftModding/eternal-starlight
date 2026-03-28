@@ -1,9 +1,10 @@
 package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.util.FastNoise;
+import cn.leolezury.eternalstarlight.common.world.gen.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
-import cn.leolezury.eternalstarlight.common.world.gen.biomesource.IESBiomeSource;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.LandmarkStructurePlacement;
-import cn.leolezury.eternalstarlight.common.world.gen.system.BiomeData;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -28,7 +29,6 @@ import net.minecraft.world.level.levelgen.blending.Blender;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
-import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -40,18 +40,27 @@ import java.util.function.Predicate;
 public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 	private static final BlockState AIR = Blocks.AIR.defaultBlockState();
 	private static final BlockState LAVA = Blocks.LAVA.defaultBlockState();
+
+	private static final float NOISE_FREQUENCY = 1.5f;
+
 	private final BlockState defaultBlock;
 	private final int seaLevel;
 
 	public long seed = 0;
 
-	private SimplexNoise noise = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(seed)));
+	private final FastNoise caveNoise = makeNoise(seed);
 
 	public void setSeed(long newSeed) {
-		if (seed != newSeed) {
-			this.noise = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(newSeed)));
-			seed = newSeed;
+		if (this.seed != newSeed) {
+			this.seed = newSeed;
+			this.caveNoise.setSeed((int) seed);
 		}
+	}
+
+	private FastNoise makeNoise(long seed) {
+		FastNoise noise = new FastNoise((int) seed);
+		noise.setFrequency(NOISE_FREQUENCY);
+		return noise;
 	}
 
 	public static final MapCodec<ESChunkGenerator> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -66,13 +75,13 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 			this.seaLevel = settings.value().seaLevel();
 		} else {
 			this.defaultBlock = Blocks.STONE.defaultBlockState();
-			this.seaLevel = 50;
+			this.seaLevel = ESDimensions.SEA_LEVEL;
 		}
 	}
 
 	@Override
 	public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> holderLookup, RandomState randomState, long seed) {
-		setSeed(seed);
+		this.setSeed(seed);
 		if (biomeSource instanceof ESBiomeSource source) {
 			source.setSeed(seed);
 		}
@@ -99,104 +108,101 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 		int cellHeight = 16;
 		int numSec = chunkAccess.getSections().length;
 
-		IESBiomeSource cachedBiomeSource = this.biomeSource instanceof ESBiomeSource source ? source.cache() : null;
+		if (this.biomeSource instanceof ESBiomeSource source) {
+			int[][] cellHeights = new int[cellWidth][cellWidth];
+			for (int cellX = 0; cellX < cellWidth; ++cellX) {
+				for (int cellZ = 0; cellZ < cellWidth; ++cellZ) {
+					int surfaceHeight = source.getHeight(minBlockX + cellX, minBlockZ + cellZ, randomState.sampler());
+					cellHeights[cellX][cellZ] = surfaceHeight;
+				}
+			}
+			for (int secY = 0; secY < numSec; ++secY) {
+				LevelChunkSection section = chunkAccess.getSection(secY);
+				for (int relativeY = 0; relativeY < cellHeight; ++relativeY) {
+					int worldY = (minYSec + secY) * cellHeight + relativeY;
+					int blockYInCell = worldY & 15;
 
-		for (int secY = numSec - 1; secY >= 0; --secY) {
-			LevelChunkSection levelChunkSection = chunkAccess.getSection(secY);
-			for (int relativeY = cellHeight - 1; relativeY >= 0; --relativeY) {
-				int worldY = (minYSec + secY) * cellHeight + relativeY;
-				int blockYInCell = worldY & 15;
+					for (int cellBlockX = 0; cellBlockX < cellWidth; ++cellBlockX) {
+						int worldX = minBlockX + cellBlockX;
+						int blockXInCell = worldX & 15;
 
-				for (int cellBlockX = 0; cellBlockX < cellWidth; ++cellBlockX) {
-					int worldX = minBlockX + cellBlockX;
-					int blockXInCell = worldX & 15;
+						for (int cellBlockZ = 0; cellBlockZ < cellWidth; ++cellBlockZ) {
+							int worldZ = minBlockZ + cellBlockZ;
+							int blockZInCell = worldZ & 15;
 
-					for (int cellBlockZ = 0; cellBlockZ < cellWidth; ++cellBlockZ) {
-						int worldZ = minBlockZ + cellBlockZ;
-						int blockZInCell = worldZ & 15;
+							int surfaceHeight = cellHeights[cellBlockX][cellBlockZ];
+							BlockState blockState = getTargetBlock(worldX, worldY, worldZ, surfaceHeight, minY, source.getBiomeData(worldX, ESDimensions.SEA_LEVEL, worldZ, randomState.sampler()).value());
 
-						int surfaceHeight = getSurfaceHeight(cachedBiomeSource, worldX, worldZ);
-						BlockState blockState = getStateAt(worldX, worldY, worldZ, surfaceHeight, minY, getBiomeDataAt(cachedBiomeSource, worldX, worldZ));
+							double beard = beardifier.compute(new DensityFunction.SinglePointContext(worldX, worldY, worldZ));
+							if (beard > 0.1) {
+								blockState = defaultBlock;
+							}
 
-						double beard = beardifier.compute(new DensityFunction.SinglePointContext(worldX, worldY, worldZ));
-						if (beard > 0.1) {
-							blockState = defaultBlock;
-						}
-
-						if (blockState != AIR) {
-							levelChunkSection.setBlockState(blockXInCell, blockYInCell, blockZInCell, blockState, false);
-							oceanFloorMap.update(blockXInCell, worldY, blockZInCell, blockState);
-							worldSurfaceMap.update(blockXInCell, worldY, blockZInCell, blockState);
-							if (!blockState.getFluidState().isEmpty()) {
-								mutableBlockPos.set(worldX, worldY, worldZ);
-								chunkAccess.markPosForPostprocessing(mutableBlockPos);
+							if (blockState != AIR) {
+								section.setBlockState(blockXInCell, blockYInCell, blockZInCell, blockState, false);
+								oceanFloorMap.update(blockXInCell, worldY, blockZInCell, blockState);
+								worldSurfaceMap.update(blockXInCell, worldY, blockZInCell, blockState);
+								if (!blockState.getFluidState().isEmpty()) {
+									mutableBlockPos.set(worldX, worldY, worldZ);
+									chunkAccess.markPosForPostprocessing(mutableBlockPos);
+								}
 							}
 						}
 					}
 				}
 			}
 		}
+
 		return chunkAccess;
 	}
 
 	@Override
-	protected void doCreateBiomes(Blender blender, RandomState randomState, StructureManager structureManager, ChunkAccess chunkAccess) {
-		if (biomeSource instanceof ESBiomeSource source) {
-			source.setRegistryAccess(structureManager.registryAccess());
-			chunkAccess.fillBiomesFromNoise(source.cache(), randomState.sampler());
-		} else {
-			chunkAccess.fillBiomesFromNoise(this.biomeSource, randomState.sampler());
-		}
-	}
-
-	@Override
 	public void buildSurface(WorldGenRegion worldGenRegion, StructureManager structureManager, RandomState randomState, ChunkAccess chunkAccess) {
-		if (randomState.surfaceSystem() instanceof StarlightSurfaceSystem system) {
-			system.setStarlightChunkGenerator(this);
-			if (biomeSource instanceof ESBiomeSource source) {
-				randomState = ((IRandomState) (Object) randomState).clone();
-				SurfaceSystem clonedSurfaceSystem = ((StarlightSurfaceSystem) randomState.surfaceSystem()).clone();
-				((IRandomState) (Object) randomState).setSurfaceSystem(clonedSurfaceSystem);
-				((StarlightSurfaceSystem) clonedSurfaceSystem).setCachedStarlightBiomeSource(source.cache());
-			}
+		if (randomState.surfaceSystem() instanceof StarlightSurfaceSystem system && this.biomeSource instanceof ESBiomeSource source) {
+			system.setStarlightBiomeSource(source);
 		}
 		super.buildSurface(worldGenRegion, structureManager, randomState, chunkAccess);
 	}
 
 	@Override
 	public int getBaseHeight(int x, int z, Heightmap.Types types, LevelHeightAccessor levelHeightAccessor, RandomState randomState) {
-		return getSurfaceHeight(x, z);
+		if (this.biomeSource instanceof ESBiomeSource source) {
+			return source.getHeight(x, z, randomState.sampler());
+		}
+		return seaLevel;
 	}
 
 	@Override
-	public NoiseColumn getBaseColumn(int x, int z, LevelHeightAccessor levelHeightAccessor, RandomState randomState) {
-		BlockState[] states = new BlockState[generatorSettings().value().noiseSettings().clampToHeightAccessor(levelHeightAccessor).height()];
-		iterateTerrainColumn(x, z, states, null, levelHeightAccessor);
-		return new NoiseColumn(levelHeightAccessor.getMinBuildHeight(), states);
+	public NoiseColumn getBaseColumn(int x, int z, LevelHeightAccessor level, RandomState randomState) {
+		BlockState[] states = new BlockState[generatorSettings().value().noiseSettings().clampToHeightAccessor(level).height()];
+		iterateTerrainColumn(x, z, states, null, level, randomState);
+		return new NoiseColumn(level.getMinBuildHeight(), states);
 	}
 
-	private void iterateTerrainColumn(int x, int z, BlockState[] states, @Nullable Predicate<BlockState> statePredicate, LevelHeightAccessor level) {
-		int surfaceHeight = getSurfaceHeight(x, z);
-		int maxHeight = level.getMaxBuildHeight();
-		int minY = getMinY();
-		int height = level.getMinBuildHeight();
-		BiomeData data = getBiomeDataAt(x, z);
-		int index = 0;
-		while (height < maxHeight) {
-			BlockState state = getStateAt(x, height, z, surfaceHeight, minY, data);
-			if (statePredicate == null || statePredicate.test(state)) {
-				states[index] = state;
-				index++;
-				height++;
+	private void iterateTerrainColumn(int x, int z, BlockState[] states, @Nullable Predicate<BlockState> statePredicate, LevelHeightAccessor level, RandomState randomState) {
+		if (this.biomeSource instanceof ESBiomeSource source) {
+			int surfaceHeight = source.getHeight(x, z, randomState.sampler());
+			int maxHeight = level.getMaxBuildHeight();
+			int minY = getMinY();
+			int height = level.getMinBuildHeight();
+			BiomeData data = source.getBiomeData(x, height, z, randomState.sampler()).value();
+			int index = 0;
+			while (height < maxHeight) {
+				BlockState state = getTargetBlock(x, height, z, surfaceHeight, minY, data);
+				if (statePredicate == null || statePredicate.test(state)) {
+					states[index] = state;
+					index++;
+					height++;
+				}
 			}
 		}
 	}
 
-	private BlockState getStateAt(int x, int y, int z, int surfaceHeight, int minY, BiomeData data) {
+	private BlockState getTargetBlock(int x, int y, int z, int surfaceHeight, int minY, BiomeData data) {
 		BlockState state;
 		if (y <= surfaceHeight) {
 			state = defaultBlock;
-			double noiseVal = noise.getValue(x / 50d, y / 30d, z / 50d);
+			double noiseVal = caveNoise.getNoise(x / 50f, y / 30f, z / 50f);
 			if (y < surfaceHeight - 15 && y > minY + 2 && (y > minY + 4 || (int) (noiseVal * 200) % 5 == 0) && noiseVal < -0.3) {
 				state = y > minY + 8 ? AIR : LAVA;
 			}
@@ -206,34 +212,6 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 			state = AIR;
 		}
 		return state;
-	}
-
-	public int getSurfaceHeight(int x, int z) {
-		if (biomeSource instanceof ESBiomeSource source) {
-			return source.getHeight(x, z);
-		}
-		return 0;
-	}
-
-	public int getSurfaceHeight(IESBiomeSource source, int x, int z) {
-		if (source != null) {
-			return source.getHeight(x, z);
-		}
-		return 0;
-	}
-
-	private BiomeData getBiomeDataAt(int x, int z) {
-		if (biomeSource instanceof ESBiomeSource source) {
-			return source.getBiomeData(x, z);
-		}
-		return null;
-	}
-
-	private BiomeData getBiomeDataAt(IESBiomeSource source, int x, int z) {
-		if (source != null) {
-			return source.getBiomeData(x, z);
-		}
-		return null;
 	}
 
 	@Override

@@ -285,6 +285,11 @@ public class Permafrost extends ESBoss {
 	}
 
 	@Override
+	protected boolean isLootChestTooFar(BlockPos pos) {
+		return position().distanceTo(pos.getCenter()) > 10;
+	}
+
+	@Override
 	protected void modifyBossLootChest(LootChestBlockEntity blockEntity) {
 		blockEntity.setColor(0x888785);
 		blockEntity.setOutlineColor(0x9bf4f4);

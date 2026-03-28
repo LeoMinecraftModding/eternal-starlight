@@ -1,13 +1,8 @@
 {
   "biome": "eternal_starlight:lush_shallow_sea",
   "fluid": "minecraft:water",
-  "has_beaches": true,
   "has_rivers": true,
   "height": 32,
   "is_ocean": true,
-  "temperatures": [
-    "hot",
-    "hot_extreme"
-  ],
-  "variance": 4
+  "variance": 8
 }

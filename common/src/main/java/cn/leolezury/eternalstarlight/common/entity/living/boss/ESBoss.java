@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.GlobalVec3;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -278,20 +279,24 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	protected void grantSpecialLoot(ServerPlayer player) {
 	}
 
-	protected boolean canBossLootChestReplace(BlockState state) {
-		return state.isAir() || state.canBeReplaced();
+	protected boolean canBossLootChestReplace(BlockPos pos, BlockState state) {
+		return state.isAir() || (state.canBeReplaced() && ESPlatform.INSTANCE.postEntityDestroyBlockEvent(level(), pos, this));
+	}
+
+	protected boolean isLootChestTooFar(BlockPos pos) {
+		return position().distanceTo(pos.getCenter()) > 20;
 	}
 
 	protected Optional<BlockPos> getLootChestPos() {
 		BlockPos chestPos = blockPosition();
-		if (level().dimension() == initialPos.dimension() && initialPos.pos().distanceTo(position()) < 30) {
+		if (level().dimension() == initialPos.dimension() && !isLootChestTooFar(BlockPos.containing(initialPos.pos()))) {
 			chestPos = BlockPos.containing(initialPos.pos());
 		}
-		while (canBossLootChestReplace(level().getBlockState(chestPos)) && chestPos.getY() > level().getMinBuildHeight()) {
+		while (canBossLootChestReplace(chestPos, level().getBlockState(chestPos)) && chestPos.getY() > level().getMinBuildHeight()) {
 			chestPos = chestPos.below();
 		}
 		chestPos = chestPos.above();
-		if (shouldSpawnLootChest() && canBossLootChestReplace(level().getBlockState(chestPos))) {
+		if (shouldSpawnLootChest() && canBossLootChestReplace(chestPos, level().getBlockState(chestPos))) {
 			return Optional.of(chestPos);
 		}
 		return Optional.empty();
