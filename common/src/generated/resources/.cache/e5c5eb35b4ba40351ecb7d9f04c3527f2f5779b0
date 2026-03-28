@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-20T22:41:30.4740262	Advancements
+// 1.21.1	2026-03-25T16:26:34.4687021	Advancements
 bc79d3aedb5c3d78bbdf8ea64070159bb3371cb4 data/eternal_starlight/advancement/all_starlight_biomes.json
 f669cf32323b8189231a1ea04f94718c156a21b5 data/eternal_starlight/advancement/chain_tangled_skull_explosion.json
 bbc7597d700cf173452d0d1ae7c5a94322ce9ddc data/eternal_starlight/advancement/challenge_gatekeeper.json
@@ -30,6 +30,7 @@ a5b0615b221cb5715efe1a447637511e4461cae4 data/eternal_starlight/advancement/obta
 c54d10906fe16fe22a4b4dcf2fe83603ec64e28f data/eternal_starlight/advancement/obtain_deepsilver_ingot.json
 fdc3a50ed594d38414568ddd6b31843f1dbb0cd7 data/eternal_starlight/advancement/obtain_dusted_shard.json
 97e2d6422272c5fe74b0484128c6ad83fd802d19 data/eternal_starlight/advancement/obtain_flowglaze.json
+ac815a538eb0ff50bf18f83cb45101a68fd244d0 data/eternal_starlight/advancement/obtain_forgotten_nocturnal_millet.json
 7ea627ca9851dec1a04fef0a88dc5cbf689e62ce data/eternal_starlight/advancement/obtain_frozen_bomb.json
 8a09b1e686a7bfc3dbbd6e81e0851551a80b0a98 data/eternal_starlight/advancement/obtain_glacite_arrow.json
 c18d0a7d93576cbae4fca294fc9290763abdcafb data/eternal_starlight/advancement/obtain_glacite_shard.json

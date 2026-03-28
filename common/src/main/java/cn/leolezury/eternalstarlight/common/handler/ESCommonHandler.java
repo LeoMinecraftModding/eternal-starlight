@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.NocturnalMillet;
+import cn.leolezury.eternalstarlight.common.block.NocturnalMilletTopBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
@@ -938,5 +940,21 @@ public class ESCommonHandler {
 				}
 			}
 		}
+	}
+
+	public static boolean onLeftClickBlock(Level level, BlockPos pos, BlockState state) {
+		if (state.getBlock() instanceof NocturnalMilletTopBlock && state.getValue(NocturnalMillet.FORGOTTEN)) {
+			if (!level.isClientSide) {
+				ServerLevel serverLevel = (ServerLevel) level;
+				Vec3 center = Vec3.atCenterOf(pos);
+				serverLevel.sendParticles(
+					ParticleTypes.ANGRY_VILLAGER,
+					center.x, center.y, center.z,
+					5, 0.5, 0.5, 0.5, 0.0
+				);
+			}
+			return true;
+		}
+		return false;
 	}
 }

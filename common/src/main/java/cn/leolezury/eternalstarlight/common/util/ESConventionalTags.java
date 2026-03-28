@@ -15,6 +15,9 @@ public class ESConventionalTags {
 		public static final TagKey<Item> SEEDS_PUNGENCY_FRUIT = seed("pungency_fruit");
 		public static final TagKey<Item> CROPS_PUNGENCY_FRUIT = crop("pungency_fruit");
 
+		public static final TagKey<Item> SEEDS_NOCTURNAL_MILLET = seed("nocturnal_millet");
+		public static final TagKey<Item> CROPS_NOCTURNAL_MILLET = crop("nocturnal_millet");
+
 		public static final TagKey<Item> CAMPFIRES = create("campfires");
 
 		public static final TagKey<Item> ORES_STARCORE = ore("starcore");

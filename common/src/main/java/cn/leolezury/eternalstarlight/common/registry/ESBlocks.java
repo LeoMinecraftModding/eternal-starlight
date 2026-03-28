@@ -750,6 +750,8 @@ public class ESBlocks {
 	// crops
 	public static final RegistryObject<Block, CrinoaBlock> CRINOA = BLOCKS.register("crinoa", () -> new CrinoaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS).mapColor(MapColor.COLOR_PURPLE)));
 	public static final RegistryObject<Block, CrinoaBaleBlock> CRINOA_BALE = BLOCKS.register("crinoa_bale", () -> new CrinoaBaleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
+	public static final RegistryObject<Block, NocturnalMilletTopBlock> NOCTURNAL_MILLET_PANICLE = BLOCKS.register("nocturnal_millet_panicle", () -> new NocturnalMilletTopBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).mapColor(MapColor.COLOR_GRAY)));
+	public static final RegistryObject<Block, NocturnalMilletBottomBlock> NOCTURNAL_MILLET_STALK = BLOCKS.register("nocturnal_millet_stalk", () -> new NocturnalMilletBottomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).mapColor(MapColor.COLOR_GRAY)));
 
 	// aethersent
 	public static final RegistryObject<Block, Block> RAW_AETHERSENT_BLOCK = BLOCKS.register("raw_aethersent_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.COLOR_PURPLE)));
@@ -865,7 +867,7 @@ public class ESBlocks {
 
 	// ether
 	public static final RegistryObject<Block, LiquidBlock> ETHER = BLOCKS.register("ether", () -> new LiquidBlock(ESFluids.ETHER_STILL.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).mapColor(MapColor.SNOW)));
-	public static final RegistryObject<Block, Block> THIOQUARTZ_BLOCK = BLOCKS.register("thioquartz_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN).sound(SoundType.GLASS)));
+	public static final RegistryObject<Block, Block> THIOQUARTZ_BLOCK = BLOCKS.register("thioquartz_block", () -> new ThioquartzBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_BLOCK).mapColor(MapColor.COLOR_LIGHT_GREEN).sound(SoundType.GLASS)));
 	public static final RegistryObject<Block, BuddingSulfurQuartzBlock> BUDDING_THIOQUARTZ = BLOCKS.register("budding_thioquartz", () -> new BuddingSulfurQuartzBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BUDDING_AMETHYST).mapColor(MapColor.COLOR_LIGHT_GREEN).sound(SoundType.GLASS)));
 	public static final RegistryObject<Block, DirectionalBudBlock> THIOQUARTZ_CLUSTER = BLOCKS.register("thioquartz_cluster", () -> new DirectionalBudBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.5F).requiresCorrectToolForDrops().noOcclusion().lightLevel(state -> 5).sound(SoundType.GLASS)));
 	public static final RegistryObject<Block, Block> TOXITE = BLOCKS.register("toxite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(MapColor.COLOR_LIGHT_GREEN)));

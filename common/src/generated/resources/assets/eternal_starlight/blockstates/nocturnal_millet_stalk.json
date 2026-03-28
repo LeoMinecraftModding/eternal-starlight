@@ -1,0 +1,100 @@
+{
+  "variants": {
+    "age=0,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage0"
+    },
+    "age=0,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_wither"
+    },
+    "age=0,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage0_forgotten"
+    },
+    "age=0,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    },
+    "age=1,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage0"
+    },
+    "age=1,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_wither"
+    },
+    "age=1,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage0_forgotten"
+    },
+    "age=1,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    },
+    "age=2,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage1"
+    },
+    "age=2,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_wither"
+    },
+    "age=2,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage1_forgotten"
+    },
+    "age=2,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    },
+    "age=3,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage1"
+    },
+    "age=3,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_wither"
+    },
+    "age=3,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage1_forgotten"
+    },
+    "age=3,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    },
+    "age=4,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage2"
+    },
+    "age=4,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_wither"
+    },
+    "age=4,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage2_forgotten"
+    },
+    "age=4,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    },
+    "age=5,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage2"
+    },
+    "age=5,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_wither"
+    },
+    "age=5,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage2_forgotten"
+    },
+    "age=5,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    },
+    "age=6,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage2"
+    },
+    "age=6,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_wither"
+    },
+    "age=6,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage2_forgotten"
+    },
+    "age=6,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    },
+    "age=7,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3"
+    },
+    "age=7,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_wither"
+    },
+    "age=7,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    },
+    "age=7,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_stalk_stage3_forgotten"
+    }
+  }
+}

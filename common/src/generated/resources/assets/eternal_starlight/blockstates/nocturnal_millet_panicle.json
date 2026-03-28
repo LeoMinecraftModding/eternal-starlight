@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "age=0,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage0"
+    },
+    "age=0,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_wither"
+    },
+    "age=0,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage0_forgotten"
+    },
+    "age=0,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage2_forgotten"
+    },
+    "age=1,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage1"
+    },
+    "age=1,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_wither"
+    },
+    "age=1,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage1_forgotten"
+    },
+    "age=1,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage2_forgotten"
+    },
+    "age=2,forgotten=false,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage2"
+    },
+    "age=2,forgotten=false,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_wither"
+    },
+    "age=2,forgotten=true,wither=false": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage2_forgotten"
+    },
+    "age=2,forgotten=true,wither=true": {
+      "model": "eternal_starlight:block/nocturnal_millet_panicle_stage2_forgotten"
+    }
+  }
+}

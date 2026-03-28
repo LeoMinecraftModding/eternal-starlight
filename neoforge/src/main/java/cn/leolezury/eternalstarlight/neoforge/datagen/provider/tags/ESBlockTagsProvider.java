@@ -649,6 +649,12 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			.addTags(
 				Tags.Blocks.ORES
 			);
+		tag(ESTags.Blocks.FORGOTTEN_NOCTURNAL_MILLET_CONVERTIBLES)
+			.add(
+				ESBlocks.DUSTED_GRAVEL.get(),
+				ESBlocks.MOSSY_DUSTED_GRAVEL.get(),
+				ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get()
+			);
 		tag(ESTags.Blocks.STARFIRE_BIRD_NESTS)
 			.add(
 				ESBlocks.STARFIRE_BIRD_NEST.get(),
@@ -1681,7 +1687,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.CROPS)
 			.add(
 				ESBlocks.CRINOA.get(),
-				ESBlocks.PUNGENCY_FRUIT_VINES.get()
+				ESBlocks.PUNGENCY_FRUIT_VINES.get(),
+				ESBlocks.NOCTURNAL_MILLET_PANICLE.get(),
+				ESBlocks.NOCTURNAL_MILLET_STALK.get()
 			);
 		tag(BlockTags.MAINTAINS_FARMLAND)
 			.add(

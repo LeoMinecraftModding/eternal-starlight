@@ -841,6 +841,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.ALCHEMIST_MASK.get());
 		basicItem(ESItems.ALCHEMIST_ROBE.get());
 
+		basicItem(ESItems.NOCTURNAL_MILLET_SEEDS.get());
+		basicItem(ESItems.NOCTURNAL_MILLET.get());
+		basicItem(ESItems.FORGOTTEN_NOCTURNAL_MILLET.get());
+
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());
 		block(ESItems.ETERNAL_ICE_REDSTONE_ORE.get());

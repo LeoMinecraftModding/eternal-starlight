@@ -398,7 +398,9 @@ public class ESClientSetupHandler {
 		ESBlocks.FLOWGLAZE,
 		ESBlocks.FLOWGLAZE_PANE,
 		ESBlocks.DUSK_GLASS,
-		ESBlocks.STARLIGHT_PORTAL
+		ESBlocks.STARLIGHT_PORTAL,
+		ESBlocks.NOCTURNAL_MILLET_PANICLE,
+		ESBlocks.NOCTURNAL_MILLET_STALK
 	);
 
 	public static final List<WorldVisualEffectSpawnFunction> VISUAL_EFFECT_SPAWN_FUNCTIONS = List.of(

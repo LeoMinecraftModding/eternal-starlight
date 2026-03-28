@@ -758,7 +758,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.TORREYA_TILE_STAIRS.get());
 		dropSelf(ESBlocks.TORREYA_TILE_WALL.get());
 
-		dropSelf(ESBlocks.THIOQUARTZ_BLOCK.get());
+		add(ESBlocks.THIOQUARTZ_BLOCK.get(), this::createThioquartzBlockDrop);
 		add(ESBlocks.BUDDING_THIOQUARTZ.get(), noDrop());
 		add(ESBlocks.THIOQUARTZ_CLUSTER.get(), block -> createSilkTouchDispatchTable(block, LootItem.lootTableItem(ESItems.THIOQUARTZ_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise(this.applyExplosionDecay(block, LootItem.lootTableItem(ESItems.THIOQUARTZ_SHARD.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
 		dropSelf(ESBlocks.TOXITE.get());
@@ -774,6 +774,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.POLISHED_TOXITE_STAIRS.get());
 		dropSelf(ESBlocks.POLISHED_TOXITE_WALL.get());
 		dropSelf(ESBlocks.CHISELED_TOXITE.get());
+
+		add(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), this.createCropDrops(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), ESItems.NOCTURNAL_MILLET.get(), ESItems.NOCTURNAL_MILLET_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.NOCTURNAL_MILLET_PANICLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(NocturnalMilletTopBlock.AGE, 2).hasProperty(NocturnalMillet.FORGOTTEN, false))));
+		dropOther(ESBlocks.NOCTURNAL_MILLET_STALK.get(), ESItems.NOCTURNAL_MILLET_SEEDS.get());
 
 		add(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
@@ -974,6 +977,12 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 	private LootTable.Builder createLunarLeavesDrops(Block leaves, Block sapling, float... saplingChances) {
 		HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 		return this.createLeavesDrops(leaves, sapling, saplingChances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(this.doesNotHaveShearsOrSilkTouch()).add((this.applyExplosionCondition(leaves, LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()))).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+	}
+
+	private LootTable.Builder createThioquartzBlockDrop(Block block) {
+		return LootTable.lootTable()
+			.withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(ESItems.NOCTURNAL_MILLET_SEEDS.get())).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ThioquartzBlock.EMBEDDED, true)))))
+			.withPool(LootPool.lootPool().add(LootItem.lootTableItem(block)));
 	}
 
 	protected LootTable.Builder createStarfireBirdNestDrop(Block block) {

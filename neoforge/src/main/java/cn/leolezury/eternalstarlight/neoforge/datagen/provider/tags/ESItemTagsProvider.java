@@ -129,12 +129,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.SEEDS)
 			.addTags(
 				ESConventionalTags.Items.SEEDS_CRINOA,
-				ESConventionalTags.Items.SEEDS_PUNGENCY_FRUIT
+				ESConventionalTags.Items.SEEDS_PUNGENCY_FRUIT,
+				ESConventionalTags.Items.SEEDS_NOCTURNAL_MILLET
 			);
 		tag(Tags.Items.CROPS)
 			.addTags(
 				ESConventionalTags.Items.CROPS_CRINOA,
-				ESConventionalTags.Items.CROPS_PUNGENCY_FRUIT
+				ESConventionalTags.Items.CROPS_PUNGENCY_FRUIT,
+				ESConventionalTags.Items.CROPS_NOCTURNAL_MILLET
 			);
 		tag(Tags.Items.MUSHROOMS)
 			.add(
@@ -356,6 +358,15 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(ESConventionalTags.Items.CROPS_PUNGENCY_FRUIT)
 			.add(
 				ESItems.PUNGENCY_FRUIT.get()
+			);
+		tag(ESConventionalTags.Items.SEEDS_NOCTURNAL_MILLET)
+			.add(
+				ESItems.NOCTURNAL_MILLET_SEEDS.get()
+			);
+		tag(ESConventionalTags.Items.CROPS_NOCTURNAL_MILLET)
+			.add(
+				ESItems.NOCTURNAL_MILLET.get(),
+				ESItems.FORGOTTEN_NOCTURNAL_MILLET.get()
 			);
 		tag(ESConventionalTags.Items.CAMPFIRES)
 			.add(
