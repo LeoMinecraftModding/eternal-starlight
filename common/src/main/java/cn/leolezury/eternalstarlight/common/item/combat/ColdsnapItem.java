@@ -56,7 +56,12 @@ public class ColdsnapItem extends WhipItem {
 		}
 		if (entity.canFreeze() && entity instanceof LivingEntity living) {
 			entity.setTicksFrozen(Math.min(entity.getTicksFrozen() + 40, 300));
-			if (entity.getRandom().nextFloat() < 0.75) {
+			MobEffectInstance brittle = living.getEffect(ESMobEffects.BRITTLE.asHolder());
+			if (living.hasEffect(ESMobEffects.BRITTLE.asHolder()) && brittle != null) {
+				if (entity.getRandom().nextFloat() < 0.5 && brittle.getAmplifier() < 2) {
+					living.addEffect(new MobEffectInstance(ESMobEffects.BRITTLE.asHolder(), 200, brittle.getAmplifier() + 1));
+				}
+			} else if (entity.getRandom().nextFloat() < 0.75) {
 				living.addEffect(new MobEffectInstance(ESMobEffects.BRITTLE.asHolder(), 200, 0));
 			}
 		}
@@ -66,7 +71,7 @@ public class ColdsnapItem extends WhipItem {
 			cloud.setPos(entity.position());
 			entity.level().addFreshEntity(cloud);
 			coldsnap.setCloudSpawned();
-			SpecialItemCooldown.setCooldown(living, this, 300);
+			SpecialItemCooldown.setCooldown(living, this, 160);
 		}
 	}
 

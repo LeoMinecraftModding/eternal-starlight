@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.datafix;
+package cn.leolezury.eternalstarlight.fabric.datafix;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.datafixers.DataFixerBuilder;

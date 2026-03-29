@@ -1,6 +1,7 @@
-package cn.leolezury.eternalstarlight.common.mixin;
+package cn.leolezury.eternalstarlight.fabric.mixin;
 
-import cn.leolezury.eternalstarlight.common.datafix.ESDataFixers;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
+import cn.leolezury.eternalstarlight.fabric.datafix.ESDataFixers;
 import com.mojang.datafixers.DataFixerBuilder;
 import net.minecraft.util.datafix.DataFixers;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class DataFixersMixin {
 	@Inject(method = "addFixers", at = @At("RETURN"))
 	private static void addFixers(DataFixerBuilder builder, CallbackInfo ci) {
-		ESDataFixers.addFixers(builder);
+		if (ESConfig.INSTANCE.enableDataFixer) {
+			ESDataFixers.addFixers(builder);
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.mixin;
+package cn.leolezury.eternalstarlight.fabric.mixin;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

@@ -6,10 +6,12 @@
   "mixins": [
     "ArmadilloMixin",
     "AxeItemMixin",
+    "DataFixersMixin",
     "EntityMixin",
     "LiquidBlockMixin",
     "LivingEntityMixin",
     "MobMixin",
+    "NbtUtilsMixin",
     "PistonStructureResolverMixin",
     "PlayerAdvancementsMixin",
     "PlayerMixin",

@@ -241,25 +241,24 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity implements
 						entity.setItem(AlloyFurnaceMenu.RESULT_SLOT_START + i, stack.copyWithCount(stack.getCount() + existingResult.getCount()));
 					}
 				}
-				NonNullList<ItemStack> remaining = recipeHolder.value().getRemainingItems(CraftingInput.of(3, 3, ingredients));
-				for (int y = 0; y < 3; y++) {
-					for (int x = 0; x < 3; x++) {
-						int index = x + y * 3;
-						if (index >= remaining.size()) {
-							break;
-						}
+				CraftingInput.Positioned craftingInput = CraftingInput.ofPositioned(3, 3, ingredients);
+				NonNullList<ItemStack> remaining = recipeHolder.value().getRemainingItems(craftingInput.input());
+				for (int y = 0; y < craftingInput.input().height(); y++) {
+					for (int x = 0; x < craftingInput.input().width(); x++) {
+						int index = (x + craftingInput.left()) + (y + craftingInput.top()) * 3;
 						ItemStack craftItem = entity.getItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index);
-						ItemStack remainingItem = remaining.get(index);
+						ItemStack remainingItem = remaining.get(x + y * craftingInput.input().width());
 						if (!craftItem.isEmpty()) {
 							craftItem.shrink(1);
 							entity.setItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index, craftItem);
 						}
 						if (!remainingItem.isEmpty()) {
-							if (craftItem.isEmpty()) {
-								entity.setItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index, remainingItem);
-							} else if (ItemStack.isSameItemSameComponents(craftItem, remainingItem)) {
-								remainingItem.grow(craftItem.getCount());
-								entity.setItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index, remainingItem);
+							if (craftItem.isEmpty() || ItemStack.isSameItemSameComponents(craftItem, remainingItem)) {
+								int remainingCount = (craftItem.getCount() + remainingItem.getCount()) - remainingItem.getMaxStackSize();
+								entity.setItem(AlloyFurnaceMenu.INGREDIENT_SLOT_START + index, remainingItem.copyWithCount(Math.min(craftItem.getCount() + remainingItem.getCount(), remainingItem.getMaxStackSize())));
+								if (remainingCount > 0) {
+									Block.popResource(level, pos, remainingItem.copyWithCount(remainingCount));
+								}
 							} else {
 								Block.popResource(level, pos, remainingItem.copy());
 							}
