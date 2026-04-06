@@ -19,7 +19,7 @@ public class ESKeyframeAnimations {
 			List<AnimationChannel> channels = entry.getValue();
 			partOptional.ifPresent(part -> channels.forEach(channel -> {
 				Keyframe[] keyframes = channel.keyframes();
-				int fromIndex = Math.max(0, Mth.binarySearch(0, keyframes.length, p_232315_ -> elapsedSeconds <= keyframes[p_232315_].timestamp()) - 1);
+				int fromIndex = Math.max(0, Mth.binarySearch(0, keyframes.length, queryIndex -> elapsedSeconds <= keyframes[queryIndex].timestamp()) - 1);
 				int toIndex = Math.min(keyframes.length - 1, fromIndex + 1);
 				Keyframe fromKeyframe = keyframes[fromIndex];
 				Keyframe toKeyframe = keyframes[toIndex];

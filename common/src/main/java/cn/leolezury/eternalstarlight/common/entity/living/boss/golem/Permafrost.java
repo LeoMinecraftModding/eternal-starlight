@@ -209,7 +209,7 @@ public class Permafrost extends ESBoss {
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-		if (accessor.equals(BEHAVIOR_STATE) && getBehaviorState() != 0) {
+		if (accessor.equals(BEHAVIOR_STATE)) {
 			stopAllAnimStates();
 			switch (getBehaviorState()) {
 				case PermafrostMeleePhase.ID -> meleeAnimationState.start(tickCount);

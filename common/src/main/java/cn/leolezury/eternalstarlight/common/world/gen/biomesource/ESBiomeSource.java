@@ -10,6 +10,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.longs.Long2ObjectLinkedOpenHashMap;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.RegistryFileCodec;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
@@ -25,9 +26,12 @@ public class ESBiomeSource extends BiomeSource {
 	).apply(instance, instance.stable(ESBiomeSource::new)));
 
 	private static final float NOISE_FREQUENCY = 1.5f;
-	private static final int HEIGHT_GRID_COARSE = 64;
-	private static final int HEIGHT_GRID_FINE = 8;
-	private static final int HEIGHT_GRID_LOCAL = 6;
+	private static final float GRAD_STEP = 12.0f;
+	private static final float REF_GRAD = 0.003f;
+	private static final float COMP_STRENGTH = 0.4f;
+	private static final float MIN_CORE_FACTOR = 0.4f;
+	private static final float MAX_CORE_FACTOR = 1.6f;
+	private static final int HEIGHT_GRID_SIZE = 10;
 	private static final int CACHE_SIZE = 8192;
 
 	private final Climate.ParameterList<Holder<BiomeData>> climateList;
@@ -112,6 +116,34 @@ public class ESBiomeSource extends BiomeSource {
 		return result;
 	}
 
+	private float riverNoise(float x, float z, int off) {
+		float fx = (x + off) * 0.001f;
+		float fz = (z + off) * 0.001f;
+		return noises[2].getNoise(fx, fz) * 0.5f
+			+ noises[2].getNoise(fx * 2, fz * 2) * 0.3f
+			+ noises[2].getNoise(fx * 3.5f, fz * 3.5f) * 0.2f;
+	}
+
+	private float smoothGradientMagnitude(float x, float z, int off, float step, int samples) {
+		float sum = 0;
+		for (int i = 0; i < samples; i++) {
+			float offX = (i * 0.371f) % step - step / 2;
+			float offZ = (i * 0.739f) % step - step / 2;
+			float px = x + offX;
+			float pz = z + offZ;
+
+			float vxp = riverNoise(px + step, pz, off);
+			float vxm = riverNoise(px - step, pz, off);
+			float vzp = riverNoise(px, pz + step, off);
+			float vzm = riverNoise(px, pz - step, off);
+
+			float gx = (vxp - vxm) / (2 * step);
+			float gz = (vzp - vzm) / (2 * step);
+			sum += Mth.sqrt(gx * gx + gz * gz);
+		}
+		return sum / samples;
+	}
+
 	private Holder<BiomeData> computeBiomeData(int bx, int by, int bz, Climate.Sampler sampler) {
 		Climate.TargetPoint target = sampler.sample(bx >> 2, by >> 2, bz >> 2);
 
@@ -123,16 +155,21 @@ public class ESBiomeSource extends BiomeSource {
 				boolean isOcean = value.isOcean();
 				if (!(isOcean && !river.canGenerateInOcean()) && !(!isOcean && river.canGenerateInOceanOnly())) {
 					int off = river.offset();
-					double rv = noises[2].getNoise((bx + off) * 0.001f, (bz + off) * 0.001f) * 0.5
-						+ noises[2].getNoise((bx + off) * 0.002f, (bz + off) * 0.002f) * 0.3
-						+ noises[2].getNoise((bx + off) * 0.0035f, (bz + off) * 0.0035f) * 0.2;
+					double rv = riverNoise(bx, bz, off);
+					double grad = smoothGradientMagnitude(bx, bz, off, GRAD_STEP, 3);
 
-					float core = river.size();
-					float shore = river.transitionSize();
+					grad = Math.max(0.0001, grad);
 
-					if (rv > -core && rv < core) {
+					double ratio = grad / REF_GRAD;
+					double adjustedRatio = Math.pow(ratio, COMP_STRENGTH);
+					double coreEff = river.size() * Math.min(MAX_CORE_FACTOR, Math.max(MIN_CORE_FACTOR, adjustedRatio));
+					double shoreEff = river.transitionSize() * Math.min(MAX_CORE_FACTOR, Math.max(MIN_CORE_FACTOR, adjustedRatio));
+
+					shoreEff = Math.max(coreEff + 0.1, shoreEff);
+
+					if (Math.abs(rv) < coreEff) {
 						return river.riverData();
-					} else if (shore > core && rv > -shore && rv < shore && river.transitionData().isPresent()) {
+					} else if (Math.abs(rv) < shoreEff && river.transitionData().isPresent()) {
 						return river.transitionData().get();
 					}
 				}
@@ -149,7 +186,7 @@ public class ESBiomeSource extends BiomeSource {
 			if (cached != null) return cached;
 		}
 
-		int result = computeTwoLevelHeight(blockX, blockZ, sampler);
+		int result = computeHeight(blockX, blockZ, sampler);
 		synchronized (heightCache) {
 			heightCache.putAndMoveToLast(key, result);
 			if (heightCache.size() > CACHE_SIZE) heightCache.removeFirst();
@@ -157,57 +194,18 @@ public class ESBiomeSource extends BiomeSource {
 		return result;
 	}
 
-	private int computeTwoLevelHeight(int blockX, int blockZ, Climate.Sampler sampler) {
-		// coarse level
-		int cx0 = Math.floorDiv(blockX, HEIGHT_GRID_COARSE) * HEIGHT_GRID_COARSE;
-		int cz0 = Math.floorDiv(blockZ, HEIGHT_GRID_COARSE) * HEIGHT_GRID_COARSE;
-		int cx1 = cx0 + HEIGHT_GRID_COARSE;
-		int cz1 = cz0 + HEIGHT_GRID_COARSE;
-		double cfx = smoothstep((blockX - cx0) / (double) HEIGHT_GRID_COARSE);
-		double cfz = smoothstep((blockZ - cz0) / (double) HEIGHT_GRID_COARSE);
-		double ch00 = getRawHeight(cx0, cz0, sampler);
-		double ch10 = getRawHeight(cx1, cz0, sampler);
-		double ch01 = getRawHeight(cx0, cz1, sampler);
-		double ch11 = getRawHeight(cx1, cz1, sampler);
-		double coarseH = ch00 * (1 - cfx) * (1 - cfz)
-			+ ch10 * cfx * (1 - cfz)
-			+ ch01 * (1 - cfx) * cfz
-			+ ch11 * cfx * cfz;
-
-		// fine level
-		int fx0 = Math.floorDiv(blockX, HEIGHT_GRID_FINE) * HEIGHT_GRID_FINE;
-		int fz0 = Math.floorDiv(blockZ, HEIGHT_GRID_FINE) * HEIGHT_GRID_FINE;
-		int fx1 = fx0 + HEIGHT_GRID_FINE;
-		int fz1 = fz0 + HEIGHT_GRID_FINE;
-		double ffx = smoothstep((blockX - fx0) / (double) HEIGHT_GRID_FINE);
-		double ffz = smoothstep((blockZ - fz0) / (double) HEIGHT_GRID_FINE);
-		double fh00 = getRawHeight(fx0, fz0, sampler);
-		double fh10 = getRawHeight(fx1, fz0, sampler);
-		double fh01 = getRawHeight(fx0, fz1, sampler);
-		double fh11 = getRawHeight(fx1, fz1, sampler);
-		double fineH = fh00 * (1 - ffx) * (1 - ffz)
-			+ fh10 * ffx * (1 - ffz)
-			+ fh01 * (1 - ffx) * ffz
-			+ fh11 * ffx * ffz;
-
-		// local
-		int totalCount = 0;
-		int total = 0;
-		for (int i = -HEIGHT_GRID_LOCAL; i <= HEIGHT_GRID_LOCAL; i++) {
-			for (int j = -HEIGHT_GRID_LOCAL; j <= HEIGHT_GRID_LOCAL; j++) {
-				if (i * i + j * j <= HEIGHT_GRID_LOCAL * HEIGHT_GRID_LOCAL) {
-					total += getRawHeight(blockX + i, blockZ + j, sampler);
-					totalCount++;
+	private int computeHeight(int blockX, int blockZ, Climate.Sampler sampler) {
+		float totalWeight = 0;
+		float totalHeight = 0;
+		for (int i = -HEIGHT_GRID_SIZE; i <= HEIGHT_GRID_SIZE; i++) {
+			for (int j = -HEIGHT_GRID_SIZE; j <= HEIGHT_GRID_SIZE; j++) {
+				if (i * i + j * j < HEIGHT_GRID_SIZE * HEIGHT_GRID_SIZE) {
+					totalHeight += getRawHeight(blockX + i, blockZ + j, sampler) * (HEIGHT_GRID_SIZE - Mth.sqrt((float) (i * i + j * j)));
+					totalWeight += (HEIGHT_GRID_SIZE - Mth.sqrt((float) (i * i + j * j)));
 				}
 			}
 		}
-
-		double h = (coarseH * 0.7 + fineH * 0.3) * 0.8 + ((double) total / totalCount) * 0.2;
-		return (int) Math.round(h);
-	}
-
-	private static double smoothstep(double t) {
-		return t * t * (3.0 - 2.0 * t);
+		return Math.round(totalHeight / totalWeight);
 	}
 
 	private int getRawHeight(int bx, int bz, Climate.Sampler sampler) {
@@ -230,9 +228,9 @@ public class ESBiomeSource extends BiomeSource {
 		int base = data.height();
 		int variance = data.variance();
 		if (variance > 0) {
-			double n = noises[0].getNoise(bx * 0.004f, bz * 0.004f) * 0.7
-				+ noises[1].getNoise(bx * 0.0016f, bz * 0.0016f) * 0.2
-				+ noises[0].getNoise(bx * 0.0006f, bz * 0.0006f) * 0.1;
+			float n = noises[0].getNoise(bx * 0.004f, bz * 0.004f) * 0.7f
+				+ noises[1].getNoise(bx * 0.0016f, bz * 0.0016f) * 0.2f
+				+ noises[0].getNoise(bx * 0.0006f, bz * 0.0006f) * 0.1f;
 			base += (int) (n * variance);
 		}
 		return base;

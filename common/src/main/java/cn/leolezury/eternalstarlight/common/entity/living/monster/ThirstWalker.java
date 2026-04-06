@@ -212,7 +212,7 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-		if (accessor.equals(BEHAVIOR_STATE) && getBehaviorState() != 0) {
+		if (accessor.equals(BEHAVIOR_STATE)) {
 			if (getBehaviorState() == MELEE_ID) {
 				meleeAnimationState.start(tickCount);
 			} else {

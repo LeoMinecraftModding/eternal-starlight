@@ -1245,7 +1245,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_INGOT = registerItem("oxidized_golem_steel_ingot", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_NUGGET = registerItem("golem_steel_nugget", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> OXIDIZED_GOLEM_STEEL_NUGGET = registerItem("oxidized_golem_steel_nugget", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> COLDSNAP = registerItem("coldsnap", () -> new ColdsnapItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.GOLEM_STEEL, 2.8F, -3.0F))));
+	public static final RegistryObject<Item, Item> COLDSNAP = registerItem("coldsnap", () -> new ColdsnapItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.GOLEM_STEEL, 4.7F, -3.2F))));
 	public static final RegistryObject<Item, Item> ENERGY_SWORD = registerItem("energy_sword", () -> new EnergySwordItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.GOLEM_STEEL, 3, -2.4F))));
 	public static final RegistryObject<Item, Item> GOLEM_STEEL_GREATSWORD = registerItem("golem_steel_greatsword", () -> new GolemSteelGreatswordItem(ESItemTiers.GOLEM_STEEL, new Item.Properties().rarity(Rarity.RARE).attributes(GreatswordItem.createAttributes(ESItemTiers.GOLEM_STEEL, 6, -2.8F, 0.5F))));
 	public static final RegistryObject<Item, Item> MECHANICAL_CROSSBOW = registerItem("mechanical_crossbow", () -> new MechanicalCrossbowItem(new Item.Properties().rarity(Rarity.RARE).durability(1600)));

@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.util;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -59,6 +60,9 @@ public class ESEntityUtil {
 	}
 
 	public static void instantLook(LivingEntity entity, Vec3 pos) {
+		if (entity instanceof Mob mob) {
+			mob.getLookControl().setLookAt(pos.x, pos.y, pos.z, 360, 360);
+		}
 		entity.lookAt(EntityAnchorArgument.Anchor.EYES, pos);
 		entity.yBodyRot = entity.getYRot();
 		entity.yBodyRotO = entity.getYRot();

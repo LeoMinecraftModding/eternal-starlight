@@ -408,7 +408,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-		if (accessor.equals(BEHAVIOR_STATE) && getBehaviorState() != 0) {
+		if (accessor.equals(BEHAVIOR_STATE)) {
 			stopAllAnimStates();
 			switch (getBehaviorState()) {
 				case GatekeeperStepBackPhase.ID -> stepBackAnimationState.start(tickCount);

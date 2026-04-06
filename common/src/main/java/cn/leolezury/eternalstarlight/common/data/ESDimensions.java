@@ -159,19 +159,15 @@ public class ESDimensions {
 			simpleBiome(biomeData, ESBiomeData.DARK_SWAMP, 0.45f, 0.45f, 0.4f, 0.3f, 0.0f, 0.0f),
 			simpleBiome(biomeData, ESBiomeData.SCARLET_FOREST, -0.3f, -0.3f, 0.6f, 0.3f, 0.0f, 0.5f),
 			simpleBiome(biomeData, ESBiomeData.CRYSTALLIZED_DESERT, 0.6f, -0.4f, 0.6f, 0.2f, 0.0f, 0.5f),
-			simpleOceanBiome(biomeData, ESBiomeData.STARLIT_SEA, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f),
-			simpleOceanBiome(biomeData, ESBiomeData.SPIRAL_KELP_FOREST, -0.6f, 0.0f, 0.5f, 0.0f, 0.0f),
-			simpleOceanBiome(biomeData, ESBiomeData.LUSH_SHALLOW_SEA, 0.4f, 0.0f, 0.5f, 0.0f, 0.2f)
+			simpleBiome(biomeData, ESBiomeData.STARLIT_SEA, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f),
+			simpleBiome(biomeData, ESBiomeData.SPIRAL_KELP_FOREST, -0.6f, 0.0f, -1.0f, 0.5f, 0.0f, 0.0f),
+			simpleBiome(biomeData, ESBiomeData.LUSH_SHALLOW_SEA, 0.4f, 0.0f, -1.0f, 0.5f, 0.0f, 0.2f)
 		);
 		return new Climate.ParameterList<>(parameterList);
 	}
 
 	private static Pair<Climate.ParameterPoint, Holder<BiomeData>> simpleBiome(HolderGetter<BiomeData> biomeData, ResourceKey<BiomeData> key, float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness) {
 		return new Pair<>(Climate.parameters(temperature, humidity, continentalness, erosion, depth, weirdness, 0), biomeData.getOrThrow(key));
-	}
-
-	private static Pair<Climate.ParameterPoint, Holder<BiomeData>> simpleOceanBiome(HolderGetter<BiomeData> biomeData, ResourceKey<BiomeData> key, float temperature, float humidity, float erosion, float depth, float weirdness) {
-		return new Pair<>(Climate.parameters(Climate.Parameter.point(temperature), Climate.Parameter.point(humidity), Climate.Parameter.span(-1.0f, -0.9f), Climate.Parameter.point(erosion), Climate.Parameter.point(depth), Climate.Parameter.point(weirdness), 0), biomeData.getOrThrow(key));
 	}
 
 	public static void bootstrapLevelStem(BootstrapContext<LevelStem> context) {
@@ -181,8 +177,8 @@ public class ESDimensions {
 
 		List<ESBiomeSource.RiverEntry> rivers = List.of(
 			new ESBiomeSource.RiverEntry(
-				biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.05f,
-				Optional.of(biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)), 0.07f,
+				biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.03f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)), 0.05f,
 				0, false, false),
 			new ESBiomeSource.RiverEntry(
 				biomeData.getOrThrow(ESBiomeData.ETHER_RIVER), 0.05f,
@@ -190,7 +186,7 @@ public class ESDimensions {
 				4096, false, false),
 			new ESBiomeSource.RiverEntry(
 				biomeData.getOrThrow(ESBiomeData.THE_ABYSS), 0.05f,
-				Optional.of(biomeData.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)), 0.08f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)), 0.07f,
 				128, true, true)
 		);
 

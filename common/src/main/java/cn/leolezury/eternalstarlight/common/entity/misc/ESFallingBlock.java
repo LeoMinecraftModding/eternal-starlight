@@ -43,7 +43,7 @@ public class ESFallingBlock extends Entity {
 	public ESFallingBlock(Level level, double x, double y, double z, BlockState state, int duration, boolean damage) {
 		this(ESEntities.FALLING_BLOCK.get(), level);
 		setBlock(state);
-		setPos(x, y + ((1.0F - getBbHeight()) / 2.0F), z);
+		setPos(x, y, z);
 		setDeltaMovement(Vec3.ZERO);
 		this.duration = duration;
 		this.xo = x;
@@ -79,9 +79,9 @@ public class ESFallingBlock extends Entity {
 	@Override
 	public void tick() {
 		if (!isNoGravity())
-			setDeltaMovement(getDeltaMovement().add(0.0D, -0.04D, 0.0D));
+			setDeltaMovement(getDeltaMovement().add(0.0, -0.04, 0.0));
 		setPos(this.getX() + getDeltaMovement().x, this.getY() + getDeltaMovement().y, this.getZ() + getDeltaMovement().z);
-		setDeltaMovement(getDeltaMovement().scale(0.98D));
+		setDeltaMovement(getDeltaMovement().scale(0.98));
 		if (damage) {
 			for (LivingEntity living : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox())) {
 				living.hurt(damageSources().fallingBlock(this), 3);

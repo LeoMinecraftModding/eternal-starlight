@@ -80,10 +80,7 @@
         {
           "biome_data": "eternal_starlight:starlit_sea",
           "parameters": {
-            "continentalness": [
-              -1.0,
-              -0.9
-            ],
+            "continentalness": -1.0,
             "depth": 0.0,
             "erosion": 0.0,
             "humidity": 0.0,
@@ -95,10 +92,7 @@
         {
           "biome_data": "eternal_starlight:spiral_kelp_forest",
           "parameters": {
-            "continentalness": [
-              -1.0,
-              -0.9
-            ],
+            "continentalness": -1.0,
             "depth": 0.0,
             "erosion": 0.5,
             "humidity": 0.0,
@@ -110,10 +104,7 @@
         {
           "biome_data": "eternal_starlight:lush_shallow_sea",
           "parameters": {
-            "continentalness": [
-              -1.0,
-              -0.9
-            ],
+            "continentalness": -1.0,
             "depth": 0.0,
             "erosion": 0.5,
             "humidity": 0.0,
@@ -127,9 +118,9 @@
         {
           "offset": 0,
           "river": "eternal_starlight:shimmer_river",
-          "size": 0.05,
+          "size": 0.03,
           "transition": "eternal_starlight:shimmer_river_transition",
-          "transition_size": 0.07
+          "transition_size": 0.05
         },
         {
           "offset": 4096,
@@ -145,7 +136,7 @@
           "river": "eternal_starlight:the_abyss",
           "size": 0.05,
           "transition": "eternal_starlight:the_abyss_transition",
-          "transition_size": 0.08
+          "transition_size": 0.07
         }
       ]
     },

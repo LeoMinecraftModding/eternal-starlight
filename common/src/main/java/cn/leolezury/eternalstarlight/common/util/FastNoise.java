@@ -53,7 +53,6 @@ package cn.leolezury.eternalstarlight.common.util;
 // /*FNLfloat*/ float
 // /*FNLfloat*/ double
 
-// LeoLezury: Modified a bit to improve naming
 public class FastNoise {
 	public enum NoiseType {
 		OPEN_SIMPLEX_2,

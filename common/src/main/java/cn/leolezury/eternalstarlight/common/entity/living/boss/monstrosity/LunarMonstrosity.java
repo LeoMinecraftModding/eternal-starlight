@@ -233,7 +233,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
-		if (accessor.equals(BEHAVIOR_STATE) && getBehaviorState() != 0) {
+		if (accessor.equals(BEHAVIOR_STATE)) {
 			stopAllAnimStates();
 			switch (getBehaviorState()) {
 				case LunarMonstrosityToxicBreathPhase.ID -> toxicBreathAnimationState.start(tickCount);
