@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.NocturnalMillet;
 import cn.leolezury.eternalstarlight.common.block.NocturnalMilletTopBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
@@ -775,6 +774,17 @@ public class ESCommonHandler {
 		}
 	}
 
+	public static boolean onLeftClickBlock(Level level, BlockPos pos, BlockState state) {
+		if (state.getBlock() instanceof NocturnalMilletTopBlock && state.getValue(NocturnalMilletTopBlock.FORGOTTEN)) {
+			if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
+				Vec3 center = Vec3.atCenterOf(pos);
+				serverLevel.sendParticles(ESParticles.ETHER_TRAIL.get(), center.x, center.y, center.z, 5, 0, 0, 0, 0.1 + level.getRandom().nextFloat() * 0.1);
+			}
+			return false;
+		}
+		return true;
+	}
+
 	public static float onBlockBreakSpeed(Player player, BlockState state, float speed) {
 		if (player.getMainHandItem().is(ESItems.UNDERMINER.get())) {
 			int min = player.level().getMinBuildHeight();
@@ -940,21 +950,5 @@ public class ESCommonHandler {
 				}
 			}
 		}
-	}
-
-	public static boolean onLeftClickBlock(Level level, BlockPos pos, BlockState state) {
-		if (state.getBlock() instanceof NocturnalMilletTopBlock && state.getValue(NocturnalMillet.FORGOTTEN)) {
-			if (!level.isClientSide) {
-				ServerLevel serverLevel = (ServerLevel) level;
-				Vec3 center = Vec3.atCenterOf(pos);
-				serverLevel.sendParticles(
-					ParticleTypes.ANGRY_VILLAGER,
-					center.x, center.y, center.z,
-					5, 0.5, 0.5, 0.5, 0.0
-				);
-			}
-			return true;
-		}
-		return false;
 	}
 }

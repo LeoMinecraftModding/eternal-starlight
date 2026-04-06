@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-26T19:44:43.3045013	Particle Descriptions
+// 1.21.1	2026-04-06T21:37:00.3074386	Particle Descriptions
 2fa6b966de82cbc7de1510007ab8640a9d8092d4 assets/eternal_starlight/particles/advanced_glow.json
 70487e0406f4fbc40c6a147fb14954dbd60cd7e1 assets/eternal_starlight/particles/aethersent_smoke.json
 f9bd277081e5abf0df0015ffcd1efdc20c3413cd assets/eternal_starlight/particles/allied.json
@@ -13,6 +13,7 @@ b7b26972eb60ddcef9c81292eae108a617f346e9 assets/eternal_starlight/particles/ashe
 843710e4aae08e6dc849c923c265d7473a0a7528 assets/eternal_starlight/particles/dripping_mud.json
 66f3b1394df5b324d4082cd289eac9a6b57cad70 assets/eternal_starlight/particles/electric_spark.json
 641c77c49f4a8a1145185d4910cb1ef687c6e990 assets/eternal_starlight/particles/energy.json
+5dad9e4746d76ca48b02936ef8091dfa1aa356d9 assets/eternal_starlight/particles/ether_trail.json
 9a22fb5355c86494e5b317774a2fc4f96dc39212 assets/eternal_starlight/particles/explosion.json
 8358cca66d6223fb0ce11a4e5897848542248cfb assets/eternal_starlight/particles/explosion_shock.json
 2fed3eb7ee5e513af69d06c1084cdd7173d1789f assets/eternal_starlight/particles/falling_blue_crystal_moss.json

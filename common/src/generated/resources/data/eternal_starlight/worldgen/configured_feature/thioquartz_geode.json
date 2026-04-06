@@ -20,7 +20,7 @@
         "state": {
           "Name": "eternal_starlight:thioquartz_block",
           "Properties": {
-            "embedded": "false"
+            "seed": "false"
           }
         }
       },

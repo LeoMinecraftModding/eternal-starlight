@@ -1,10 +1,10 @@
 {
   "variants": {
-    "embedded=false": {
+    "seed=false": {
       "model": "eternal_starlight:block/thioquartz_block"
     },
-    "embedded=true": {
-      "model": "eternal_starlight:block/thioquartz_block_embedded"
+    "seed=true": {
+      "model": "eternal_starlight:block/thioquartz_block_seed"
     }
   }
 }

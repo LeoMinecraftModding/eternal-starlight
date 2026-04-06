@@ -1687,9 +1687,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.CROPS)
 			.add(
 				ESBlocks.CRINOA.get(),
-				ESBlocks.PUNGENCY_FRUIT_VINES.get(),
 				ESBlocks.NOCTURNAL_MILLET_PANICLE.get(),
-				ESBlocks.NOCTURNAL_MILLET_STALK.get()
+				ESBlocks.NOCTURNAL_MILLET_STALK.get(),
+				ESBlocks.PUNGENCY_FRUIT_VINES.get()
 			);
 		tag(BlockTags.MAINTAINS_FARMLAND)
 			.add(

@@ -33,10 +33,10 @@ public class FinalModificationFeature extends ESFeature<NoneFeatureConfiguration
 						BlockPos relativePos = pos.relative(direction);
 						BlockState relativeState = level.getBlockState(relativePos);
 						if (!relativeState.is(ESBlocks.ETHER.get()) && !relativeState.is(ESBlocks.THIOQUARTZ_BLOCK.get()) && !relativeState.isAir()) {
-							setBlock(level, pos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.EMBEDDED, random.nextDouble() < 0.1));
+							setBlock(level, pos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
 							for (Direction dir : Direction.values()) {
 								if (random.nextInt(3) == 0 && (level.getBlockState(relativePos.relative(dir)).getBlock() instanceof LiquidBlock || level.isEmptyBlock(relativePos.relative(dir)))) {
-									setBlock(level, relativePos.relative(dir), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.EMBEDDED, random.nextDouble() < 0.1));
+									setBlock(level, relativePos.relative(dir), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
 								}
 							}
 						}

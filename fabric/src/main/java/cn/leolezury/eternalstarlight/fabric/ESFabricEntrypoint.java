@@ -90,8 +90,8 @@ public class ESFabricEntrypoint implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(ESCommonHandler::onServerTick);
 		ServerTickEvents.START_WORLD_TICK.register(ESCommonHandler::onLevelTick);
 		ServerWorldEvents.LOAD.register((server, world) -> ESCommonHandler.onLevelLoad(world));
+		PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> ESCommonHandler.onLeftClickBlock(world, pos, state));
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> ESCommonHandler.onBlockBroken(player, pos, state));
-		PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> !ESCommonHandler.onLeftClickBlock(world, pos, state));
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register(ESCommonHandler::onAllowLivingHurt);
 		ServerLivingEntityEvents.ALLOW_DEATH.register((entity, source, amount) -> ESCommonHandler.onAllowLivingDeath(entity, source));
 		ServerLivingEntityEvents.AFTER_DEATH.register(ESCommonHandler::onLivingDeath);

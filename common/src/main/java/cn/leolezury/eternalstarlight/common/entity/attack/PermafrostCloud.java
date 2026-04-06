@@ -90,7 +90,7 @@ public class PermafrostCloud extends Entity implements TraceableEntity {
 					if (ESEntityUtil.shouldHarm(getOwner(), livingEntity)) {
 						int oldInvulnerableTime = livingEntity.invulnerableTime;
 						livingEntity.invulnerableTime = 0;
-						success = success || livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, getOwner()), 4);
+						success = livingEntity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, getOwner()), 4) || success;
 						livingEntity.invulnerableTime = oldInvulnerableTime;
 						if (livingEntity.canFreeze()) {
 							livingEntity.setTicksFrozen(Math.min(livingEntity.getTicksFrozen() + 8, 300));

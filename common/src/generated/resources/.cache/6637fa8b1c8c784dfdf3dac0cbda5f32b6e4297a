@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-28T21:07:39.4226034	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2026-04-06T20:06:10.6473442	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -99,7 +99,7 @@ f54fe57df0a3141a7f7bb9500451674330abbac8 data/minecraft/tags/block/beacon_base_b
 1e4e95143a045056cd49874265e9e15021c43dd8 data/minecraft/tags/block/ceiling_hanging_signs.json
 451bc7fc00bd9ed0a95d49c30f3accb41cb12e80 data/minecraft/tags/block/climbable.json
 a5c861e65bd285da7e6180ee485ddbd6c84b6cda data/minecraft/tags/block/combination_step_sound_blocks.json
-c9fe7ffbb54ae55fe6e8bc77e3f62c7d45af0b24 data/minecraft/tags/block/crops.json
+26d8311b8eaee2ddf93197c419887bfaedc2d509 data/minecraft/tags/block/crops.json
 0c69071d8808fc63e12b14b997cf488ed35f27be data/minecraft/tags/block/dampens_vibrations.json
 a36b4ae5759f550fdca2649a644729959b02ae48 data/minecraft/tags/block/dirt.json
 caa7d094199ccbd39b4dc4f7a538dda7484360d3 data/minecraft/tags/block/dragon_immune.json

@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.neoforge.event;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
@@ -11,9 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.ItemAbilities;
@@ -136,12 +133,22 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
+	public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
+		if (!event.isCanceled()) {
+			boolean allow = ESCommonHandler.onLeftClickBlock(event.getLevel(), event.getPos(), event.getLevel().getBlockState(event.getPos()));
+			if (!allow) {
+				event.setCanceled(true);
+			}
+		}
+	}
+
+	@SubscribeEvent
 	private static void onBlockBroken(BlockEvent.BreakEvent event) {
 		ESCommonHandler.onBlockBroken(event.getPlayer(), event.getPos(), event.getState());
 	}
 
 	@SubscribeEvent
-	private static void onBlockBroken(PlayerEvent.BreakSpeed event) {
+	private static void onBlockBreakSpeed(PlayerEvent.BreakSpeed event) {
 		event.setNewSpeed(ESCommonHandler.onBlockBreakSpeed(event.getEntity(), event.getState(), event.getNewSpeed()));
 	}
 
@@ -236,17 +243,6 @@ public class CommonEvents {
 					event.setFinalState(entry.getValue().withPropertiesOf(event.getState()));
 				}
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
-		Level level = event.getLevel();
-		BlockPos pos = event.getPos();
-		BlockState state = level.getBlockState(pos);
-
-		if (ESCommonHandler.onLeftClickBlock(level, pos, state)) {
-			event.setCanceled(true);
 		}
 	}
 }

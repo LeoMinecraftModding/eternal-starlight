@@ -8,11 +8,11 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public class ThioquartzBlock extends Block {
 	public static final MapCodec<ThioquartzBlock> CODEC = simpleCodec(ThioquartzBlock::new);
-	public static final BooleanProperty EMBEDDED = BooleanProperty.create("embedded");
+	public static final BooleanProperty SEED = BooleanProperty.create("seed");
 
 	public ThioquartzBlock(Properties properties) {
 		super(properties);
-		registerDefaultState(this.defaultBlockState().setValue(EMBEDDED, false));
+		registerDefaultState(this.defaultBlockState().setValue(SEED, false));
 	}
 
 	@Override
@@ -22,6 +22,6 @@ public class ThioquartzBlock extends Block {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(EMBEDDED);
+		builder.add(SEED);
 	}
 }

@@ -349,6 +349,8 @@ public class ESClientSetupHandler {
 		ESBlocks.GOLDEN_GRASS,
 		ESBlocks.TALL_GOLDEN_GRASS,
 		ESBlocks.CRINOA,
+		ESBlocks.NOCTURNAL_MILLET_PANICLE,
+		ESBlocks.NOCTURNAL_MILLET_STALK,
 		ESBlocks.DEEPSILVER_GRATE,
 		ESBlocks.PUNGENCY_FRUIT_VINES,
 		ESBlocks.STARFIRE_BIRD_NEST,
@@ -398,9 +400,7 @@ public class ESClientSetupHandler {
 		ESBlocks.FLOWGLAZE,
 		ESBlocks.FLOWGLAZE_PANE,
 		ESBlocks.DUSK_GLASS,
-		ESBlocks.STARLIGHT_PORTAL,
-		ESBlocks.NOCTURNAL_MILLET_PANICLE,
-		ESBlocks.NOCTURNAL_MILLET_STALK
+		ESBlocks.STARLIGHT_PORTAL
 	);
 
 	public static final List<WorldVisualEffectSpawnFunction> VISUAL_EFFECT_SPAWN_FUNCTIONS = List.of(
@@ -876,6 +876,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), StarfireExplosionParticle.SmallProvider::new);
 		strategy.register(ESParticles.SOUL_TRAIL.get(), SoulTrailParticle.Provider::new);
 		strategy.register(ESParticles.CANDLASH_TRAIL.get(), StarfireExplosionParticle.Provider::new);
+		strategy.register(ESParticles.ETHER_TRAIL.get(), TrailParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}

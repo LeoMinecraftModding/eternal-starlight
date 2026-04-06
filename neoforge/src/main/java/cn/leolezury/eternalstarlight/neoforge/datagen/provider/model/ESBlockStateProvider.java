@@ -18,6 +18,8 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
+import java.util.function.IntUnaryOperator;
+
 public class ESBlockStateProvider extends BlockStateProvider {
 	// render types
 	private static final ResourceLocation SOLID = ResourceLocation.withDefaultNamespace("solid");
@@ -384,6 +386,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		crinoa(ESBlocks.CRINOA.get());
 		directionalCubeBottomTop(ESBlocks.CRINOA_BALE.get());
 
+		nocturnalMilletTop(ESBlocks.NOCTURNAL_MILLET_PANICLE.get());
+		nocturnalMilletBottom(ESBlocks.NOCTURNAL_MILLET_STALK.get());
+
 		simpleBlock(ESBlocks.RAW_AETHERSENT_BLOCK.get());
 		simpleBlock(ESBlocks.AETHERSENT_BLOCK.get());
 
@@ -476,9 +481,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		stairsBlock(ESBlocks.POLISHED_TOXITE_STAIRS.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
 		wallBlock(ESBlocks.POLISHED_TOXITE_WALL.get(), blockTexture(ESBlocks.POLISHED_TOXITE.get()));
 		simpleBlock(ESBlocks.CHISELED_TOXITE.get());
-
-		nocturnalMilletTop(ESBlocks.NOCTURNAL_MILLET_PANICLE.get());
-		nocturnalMilletBottom(ESBlocks.NOCTURNAL_MILLET_STALK.get());
 
 		redstoneOre(ESBlocks.GRIMSTONE_REDSTONE_ORE.get());
 		redstoneOre(ESBlocks.VOIDSTONE_REDSTONE_ORE.get());
@@ -737,35 +739,36 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		ModelFile stage0 = models().singleTexture(name(block) + "_stage0", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage0")).renderType(CUTOUT);
 		ModelFile stage1 = models().singleTexture(name(block) + "_stage1", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage1")).renderType(CUTOUT);
 		ModelFile stage2 = models().singleTexture(name(block) + "_stage2", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage2")).renderType(CUTOUT);
-		ModelFile stagew = models().singleTexture(name(block) + "_wither", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_wither")).renderType(CUTOUT);
-		ModelFile stage0f = models().singleTexture(name(block) + "_stage0_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage0_forgotten")).renderType(TRANSLUCENT);
-		ModelFile stage1f = models().singleTexture(name(block) + "_stage1_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage1_forgotten")).renderType(TRANSLUCENT);
-		ModelFile stage2f = models().singleTexture(name(block) + "_stage2_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage2_forgotten")).renderType(TRANSLUCENT);
-		getVariantBuilder(block)
-			.partialState().with(BlockStateProperties.AGE_2, 0).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage0).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 1).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage1).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 2).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage2).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 0).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage0f).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 1).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage1f).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 2).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage2f).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 0).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 1).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 2).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 0).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage2f).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 1).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage2f).addModel()
-			.partialState().with(BlockStateProperties.AGE_2, 2).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage2f).addModel();
+		ModelFile stageWithered = models().singleTexture(name(block) + "_withered", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_withered")).renderType(CUTOUT);
+		ModelFile stage0Forgotten = models().singleTexture(name(block) + "_stage0_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage0_forgotten")).renderType(CUTOUT);
+		ModelFile stage1Forgotten = models().singleTexture(name(block) + "_stage1_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage1_forgotten")).renderType(CUTOUT);
+		ModelFile stage2Forgotten = models().singleTexture(name(block) + "_stage2_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage2_forgotten")).renderType(CUTOUT);
+
+		getVariantBuilder(block).forAllStates(state -> {
+			int age = state.getValue(BlockStateProperties.AGE_2);
+			boolean forgotten = state.getValue(NocturnalMilletTopBlock.FORGOTTEN);
+			boolean withered = state.getValue(NocturnalMilletTopBlock.WITHERED);
+
+			ModelFile model;
+			if (withered) {
+				model = forgotten ? stage2Forgotten : stageWithered;
+			} else {
+				if (forgotten) {
+					model = switch (age) {
+						case 0 -> stage0Forgotten;
+						case 1 -> stage1Forgotten;
+						default -> stage2Forgotten;
+					};
+				} else {
+					model = switch (age) {
+						case 0 -> stage0;
+						case 1 -> stage1;
+						default -> stage2;
+					};
+				}
+			}
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
 	}
 
 	private void nocturnalMilletBottom(Block block) {
@@ -773,76 +776,47 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		ModelFile stage1 = models().singleTexture(name(block) + "_stage1", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage1")).renderType(CUTOUT);
 		ModelFile stage2 = models().singleTexture(name(block) + "_stage2", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage2")).renderType(CUTOUT);
 		ModelFile stage3 = models().singleTexture(name(block) + "_stage3", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage3")).renderType(CUTOUT);
-		ModelFile stagew = models().singleTexture(name(block) + "_wither", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_wither")).renderType(CUTOUT);
-		ModelFile stage0f = models().singleTexture(name(block) + "_stage0_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage0_forgotten")).renderType(TRANSLUCENT);
-		ModelFile stage1f = models().singleTexture(name(block) + "_stage1_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage1_forgotten")).renderType(TRANSLUCENT);
-		ModelFile stage2f = models().singleTexture(name(block) + "_stage2_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage2_forgotten")).renderType(TRANSLUCENT);
-		ModelFile stage3f = models().singleTexture(name(block) + "_stage3_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage3_forgotten")).renderType(TRANSLUCENT);
-		getVariantBuilder(block)
-			.partialState().with(BlockStateProperties.AGE_7, 0).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage0).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 1).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage0).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 2).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage1).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 3).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage1).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 4).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage2).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 5).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage2).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 6).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage2).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 7).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage3).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 0).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage0f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 1).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage0f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 2).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage1f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 3).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage1f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 4).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage2f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 5).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage2f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 6).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage2f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 7).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, false)
-			.modelForState().modelFile(stage3f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 0).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 1).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 2).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 3).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 4).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 5).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 6).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 7).with(NocturnalMillet.FORGOTTEN, false).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stagew).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 0).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage3f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 1).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage3f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 2).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage3f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 3).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage3f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 4).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage3f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 5).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage3f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 6).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage3f).addModel()
-			.partialState().with(BlockStateProperties.AGE_7, 7).with(NocturnalMillet.FORGOTTEN, true).with(NocturnalMillet.WITHER, true)
-			.modelForState().modelFile(stage3f).addModel();
+		ModelFile stageWithered = models().singleTexture(name(block) + "_withered", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_withered")).renderType(CUTOUT);
+		ModelFile stage0Forgotten = models().singleTexture(name(block) + "_stage0_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage0_forgotten")).renderType(CUTOUT);
+		ModelFile stage1Forgotten = models().singleTexture(name(block) + "_stage1_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage1_forgotten")).renderType(CUTOUT);
+		ModelFile stage2Forgotten = models().singleTexture(name(block) + "_stage2_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage2_forgotten")).renderType(CUTOUT);
+		ModelFile stage3Forgotten = models().singleTexture(name(block) + "_stage3_forgotten", EternalStarlight.id("block/cross_crop"), "cross", blockTexture(block).withSuffix("_stage3_forgotten")).renderType(CUTOUT);
+
+		IntUnaryOperator ageToIndex = age -> {
+			if (age <= 1) return 0;
+			if (age <= 3) return 1;
+			if (age <= 6) return 2;
+			return 3;
+		};
+
+		getVariantBuilder(block).forAllStates(state -> {
+			int age = state.getValue(BlockStateProperties.AGE_7);
+			boolean forgotten = state.getValue(NocturnalMilletTopBlock.FORGOTTEN);
+			boolean withered = state.getValue(NocturnalMilletTopBlock.WITHERED);
+
+			ModelFile model;
+			if (withered) {
+				model = forgotten ? stage3Forgotten : stageWithered;
+			} else {
+				int idx = ageToIndex.applyAsInt(age);
+				if (forgotten) {
+					model = switch (idx) {
+						case 0 -> stage0Forgotten;
+						case 1 -> stage1Forgotten;
+						case 2 -> stage2Forgotten;
+						default -> stage3Forgotten;
+					};
+				} else {
+					model = switch (idx) {
+						case 0 -> stage0;
+						case 1 -> stage1;
+						case 2 -> stage2;
+						default -> stage3;
+					};
+				}
+			}
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
 	}
 
 	private void dryingRack(Block block) {
@@ -925,11 +899,11 @@ public class ESBlockStateProvider extends BlockStateProvider {
 
 	private void thioquartzBlock(Block block) {
 		ModelFile modelNormal = models().cubeAll(name(block), blockTexture(block));
-		ModelFile modelEmbedded = models().cubeAll(name(block) + "_embedded", blockTexture(block).withSuffix("_embedded"));
+		ModelFile modelEmbedded = models().cubeAll(name(block) + "_seed", blockTexture(block).withSuffix("_seed"));
 		getVariantBuilder(block)
-			.partialState().with(ThioquartzBlock.EMBEDDED, false)
+			.partialState().with(ThioquartzBlock.SEED, false)
 			.modelForState().modelFile(modelNormal).addModel()
-			.partialState().with(ThioquartzBlock.EMBEDDED, true)
+			.partialState().with(ThioquartzBlock.SEED, true)
 			.modelForState().modelFile(modelEmbedded).addModel();
 	}
 

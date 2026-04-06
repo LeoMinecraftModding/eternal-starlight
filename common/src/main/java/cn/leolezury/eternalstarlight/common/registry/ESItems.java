@@ -632,6 +632,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> CRINOA_BALE = registerItem("crinoa_bale", () -> new BlockItem(ESBlocks.CRINOA_BALE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CRINOA_BALL = registerItem("crinoa_ball", () -> new Item(new Item.Properties().food(ESFoods.CRINOA_BALL.get())));
 	public static final RegistryObject<Item, Item> CRINOA_PORRIDGE = registerItem("crinoa_porridge", () -> new Item(new Item.Properties().stacksTo(1).food(ESFoods.CRINOA_PORRIDGE.get())));
+	public static final RegistryObject<Item, Item> NOCTURNAL_MILLET_SEEDS = registerItem("nocturnal_millet_seeds", () -> new ItemNameBlockItem(ESBlocks.NOCTURNAL_MILLET_STALK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> NOCTURNAL_MILLET = registerItem("nocturnal_millet", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> FORGOTTEN_NOCTURNAL_MILLET = registerItem("forgotten_nocturnal_millet", () -> new Item(new Item.Properties()));
 
 	// aethersent
 	public static final RegistryObject<Item, Item> CRETEOR_HIDE = registerItem("creteor_hide", () -> new Item(new Item.Properties()));
@@ -1019,11 +1022,6 @@ public class ESItems {
 		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(10))));
 	public static final RegistryObject<Item, Item> ALCHEMIST_ROBE = registerItem("alchemist_robe",
 		() -> ESPlatform.INSTANCE.createAlchemistArmor(ESArmorMaterials.ALCHEMIST.asHolder(), ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(10)).component(ESDataComponents.ACCESSORY_SLOT_COUNT.get(), 3)));
-
-	public static final RegistryObject<Item, Item> NOCTURNAL_MILLET_SEEDS = registerItem("nocturnal_millet_seeds", () -> new ItemNameBlockItem(ESBlocks.NOCTURNAL_MILLET_STALK.get(), new Item.Properties()));
-	public static final RegistryObject<Item, Item> NOCTURNAL_MILLET = registerItem("nocturnal_millet", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> FORGOTTEN_NOCTURNAL_MILLET = registerItem("forgotten_nocturnal_millet", () -> new Item(new Item.Properties()));
-
 
 	public static final RegistryObject<Item, Item> GRIMSTONE_REDSTONE_ORE = registerItem("grimstone_redstone_ore", () -> new BlockItem(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> VOIDSTONE_REDSTONE_ORE = registerItem("voidstone_redstone_ore", () -> new BlockItem(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), new Item.Properties()));

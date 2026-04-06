@@ -2,6 +2,6 @@
   "parent": "eternal_starlight:block/cross_crop",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "eternal_starlight:block/nocturnal_millet_panicle_wither"
+    "cross": "eternal_starlight:block/nocturnal_millet_stalk_withered"
   }
 }

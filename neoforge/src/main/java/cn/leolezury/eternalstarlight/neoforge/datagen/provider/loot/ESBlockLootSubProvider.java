@@ -650,6 +650,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.CRINOA.get(), this.createCropDrops(ESBlocks.CRINOA.get(), ESItems.CRINOA.get(), ESItems.CRINOA_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.CRINOA.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CrinoaBlock.AGE, 7))));
 		dropSelf(ESBlocks.CRINOA_BALE.get());
 
+		add(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), this.createCropDrops(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), ESItems.NOCTURNAL_MILLET.get(), ESItems.NOCTURNAL_MILLET_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.NOCTURNAL_MILLET_PANICLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(NocturnalMilletTopBlock.AGE, 2).hasProperty(NocturnalMilletTopBlock.FORGOTTEN, false))));
+		dropOther(ESBlocks.NOCTURNAL_MILLET_STALK.get(), ESItems.NOCTURNAL_MILLET_SEEDS.get());
+
 		dropSelf(ESBlocks.RAW_AETHERSENT_BLOCK.get());
 		dropSelf(ESBlocks.AETHERSENT_BLOCK.get());
 
@@ -774,9 +777,6 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.POLISHED_TOXITE_STAIRS.get());
 		dropSelf(ESBlocks.POLISHED_TOXITE_WALL.get());
 		dropSelf(ESBlocks.CHISELED_TOXITE.get());
-
-		add(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), this.createCropDrops(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), ESItems.NOCTURNAL_MILLET.get(), ESItems.NOCTURNAL_MILLET_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.NOCTURNAL_MILLET_PANICLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(NocturnalMilletTopBlock.AGE, 2).hasProperty(NocturnalMillet.FORGOTTEN, false))));
-		dropOther(ESBlocks.NOCTURNAL_MILLET_STALK.get(), ESItems.NOCTURNAL_MILLET_SEEDS.get());
 
 		add(ESBlocks.GRIMSTONE_REDSTONE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
 		add(ESBlocks.VOIDSTONE_REDSTONE_ORE.get(), block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block, LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
@@ -981,7 +981,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 	private LootTable.Builder createThioquartzBlockDrop(Block block) {
 		return LootTable.lootTable()
-			.withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(ESItems.NOCTURNAL_MILLET_SEEDS.get())).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ThioquartzBlock.EMBEDDED, true)))))
+			.withPool(applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(ESItems.NOCTURNAL_MILLET_SEEDS.get()).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ThioquartzBlock.SEED, true))))))
 			.withPool(LootPool.lootPool().add(LootItem.lootTableItem(block)));
 	}
 

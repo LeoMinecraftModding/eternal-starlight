@@ -583,6 +583,10 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.CRINOA_BALL.get());
 		basicItem(ESItems.CRINOA_PORRIDGE.get());
 
+		basicItem(ESItems.NOCTURNAL_MILLET_SEEDS.get());
+		basicItem(ESItems.NOCTURNAL_MILLET.get());
+		basicItem(ESItems.FORGOTTEN_NOCTURNAL_MILLET.get());
+
 		basicItem(ESItems.CRETEOR_HIDE.get());
 		basicItem(ESItems.RAW_AETHERSENT.get());
 		basicItem(ESItems.AETHERSENT_INGOT.get());
@@ -840,10 +844,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.CHISELED_TOXITE.get());
 		basicItem(ESItems.ALCHEMIST_MASK.get());
 		basicItem(ESItems.ALCHEMIST_ROBE.get());
-
-		basicItem(ESItems.NOCTURNAL_MILLET_SEEDS.get());
-		basicItem(ESItems.NOCTURNAL_MILLET.get());
-		basicItem(ESItems.FORGOTTEN_NOCTURNAL_MILLET.get());
 
 		block(ESItems.GRIMSTONE_REDSTONE_ORE.get());
 		block(ESItems.VOIDSTONE_REDSTONE_ORE.get());

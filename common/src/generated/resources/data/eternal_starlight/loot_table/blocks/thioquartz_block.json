@@ -5,19 +5,21 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "eternal_starlight:thioquartz_block",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "embedded": "true"
-          }
-        },
-        {
           "condition": "minecraft:survives_explosion"
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "eternal_starlight:thioquartz_block",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "seed": "true"
+              }
+            }
+          ],
           "name": "eternal_starlight:nocturnal_millet_seeds"
         }
       ],

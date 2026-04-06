@@ -351,14 +351,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.CRINOA.get()
 			);
-		tag(ESConventionalTags.Items.SEEDS_PUNGENCY_FRUIT)
-			.add(
-				ESItems.PUNGENCY_FRUIT_SEEDS.get()
-			);
-		tag(ESConventionalTags.Items.CROPS_PUNGENCY_FRUIT)
-			.add(
-				ESItems.PUNGENCY_FRUIT.get()
-			);
 		tag(ESConventionalTags.Items.SEEDS_NOCTURNAL_MILLET)
 			.add(
 				ESItems.NOCTURNAL_MILLET_SEEDS.get()
@@ -367,6 +359,14 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.NOCTURNAL_MILLET.get(),
 				ESItems.FORGOTTEN_NOCTURNAL_MILLET.get()
+			);
+		tag(ESConventionalTags.Items.SEEDS_PUNGENCY_FRUIT)
+			.add(
+				ESItems.PUNGENCY_FRUIT_SEEDS.get()
+			);
+		tag(ESConventionalTags.Items.CROPS_PUNGENCY_FRUIT)
+			.add(
+				ESItems.PUNGENCY_FRUIT.get()
 			);
 		tag(ESConventionalTags.Items.CAMPFIRES)
 			.add(
