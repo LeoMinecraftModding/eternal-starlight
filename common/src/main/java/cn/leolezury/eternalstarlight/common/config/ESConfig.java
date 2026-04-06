@@ -20,6 +20,7 @@ public class ESConfig {
 	public boolean enablePortalShader = true;
 	public boolean enableScreenShake = true;
 	public boolean enableLootChest = true;
+	public boolean spawnInEternalStarlight = false;
 	public float aethersentMeteorDropRate = 0.0005f;
 	public boolean aethersentMeteorReplaceBlocks = false;
 	public int mobMaxTearyTicks = 200;

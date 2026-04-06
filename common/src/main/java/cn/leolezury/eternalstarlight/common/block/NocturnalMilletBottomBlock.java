@@ -13,7 +13,9 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -68,6 +70,47 @@ public class NocturnalMilletBottomBlock extends CropBlock {
 		}
 	}
 
+	protected static float getGrowthSpeed(Block block, BlockGetter level, BlockPos pos) {
+		float speed = 1.0F;
+		BlockPos belowPos = pos.below();
+
+		for (int x = -1; x <= 1; ++x) {
+			for (int z = -1; z <= 1; ++z) {
+				float speedAddition = 0.0F;
+				BlockState state = level.getBlockState(belowPos.offset(x, 0, z));
+				if (state.is(Blocks.FARMLAND)) {
+					speedAddition = 1.0F;
+					if (state.getValue(FarmBlock.MOISTURE) > 0) {
+						speedAddition = 3.0F;
+					}
+				}
+
+				if (x != 0 || z != 0) {
+					speedAddition /= 4.0F;
+				}
+
+				speed += speedAddition;
+			}
+		}
+
+		BlockPos north = pos.north();
+		BlockPos south = pos.south();
+		BlockPos west = pos.west();
+		BlockPos east = pos.east();
+		boolean westEast = level.getBlockState(west).is(block) || level.getBlockState(east).is(block);
+		boolean northSouth = level.getBlockState(north).is(block) || level.getBlockState(south).is(block);
+		if (westEast && northSouth) {
+			speed /= 2.0F;
+		} else {
+			boolean corners = level.getBlockState(west.north()).is(block) || level.getBlockState(east.north()).is(block) || level.getBlockState(east.south()).is(block) || level.getBlockState(west.south()).is(block);
+			if (corners) {
+				speed /= 2.0F;
+			}
+		}
+
+		return speed;
+	}
+
 	@Override
 	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
 		return state.getValue(WITHERED) || !state.getValue(FORGOTTEN) || super.isValidBonemealTarget(level, pos, state);
@@ -84,9 +127,6 @@ public class NocturnalMilletBottomBlock extends CropBlock {
 			}
 		} else if (level.getBlockState(pos.below()).is(ESTags.Blocks.FORGOTTEN_NOCTURNAL_MILLET_CONVERTIBLES) && !state.getValue(FORGOTTEN)) {
 			level.setBlockAndUpdate(pos, state.setValue(FORGOTTEN, true));
-			if (aboveState.is(ESBlocks.NOCTURNAL_MILLET_PANICLE.get()) && !aboveState.getValue(FORGOTTEN)) {
-				level.setBlockAndUpdate(abovePos, aboveState.setValue(FORGOTTEN, true));
-			}
 		} else {
 			this.growCrops(level, pos, state);
 		}

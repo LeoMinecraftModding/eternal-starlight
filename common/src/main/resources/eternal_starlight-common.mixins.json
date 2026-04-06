@@ -33,6 +33,7 @@
     "ProjectileWeaponItemMixin",
     "ServerEntityMixin",
     "ServerLevelMixin",
+    "ServerPlayerMixin",
     "SignBlockMixin",
     "SpawnEggItemMixin",
     "SurfaceSystemMixin",

@@ -193,15 +193,8 @@ public abstract class LivingEntityMixin {
 		return original.call(instance);
 	}
 
-	@WrapOperation(method = "triggerItemUseEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 0))
-	private void playDrinkingSound(LivingEntity instance, SoundEvent soundEvent, float volume, float pitch, Operation<Void> original) {
-		if (!((LivingEntity) (Object) this).getItemBySlot(EquipmentSlot.HEAD).is(ESItems.UNREALIUM_HELMET.get())) {
-			original.call(instance, soundEvent, volume, pitch);
-		}
-	}
-
-	@WrapOperation(method = "triggerItemUseEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 1))
-	private void playEatingSound(LivingEntity instance, SoundEvent soundEvent, float volume, float pitch, Operation<Void> original) {
+	@WrapOperation(method = "triggerItemUseEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;playSound(Lnet/minecraft/sounds/SoundEvent;FF)V"))
+	private void playEatingOrDrinkingSound(LivingEntity instance, SoundEvent soundEvent, float volume, float pitch, Operation<Void> original) {
 		if (!((LivingEntity) (Object) this).getItemBySlot(EquipmentSlot.HEAD).is(ESItems.UNREALIUM_HELMET.get())) {
 			original.call(instance, soundEvent, volume, pitch);
 		}

@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -11,10 +12,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +21,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -32,7 +31,7 @@ public class NocturnalMilletTopBlock extends CropBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
 	public static final BooleanProperty FORGOTTEN = BooleanProperty.create("forgotten");
 	public static final BooleanProperty WITHERED = BooleanProperty.create("withered");
-	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0, 0.0, 0.0, 16.0, 5.0, 16.0), Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)};
+	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0, 0.0, 0.0, 16.0, 4.0, 16.0), Block.box(0.0, 0.0, 0.0, 16.0, 10.0, 16.0), Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)};
 
 	@Override
 	public MapCodec<NocturnalMilletTopBlock> codec() {
@@ -131,6 +130,15 @@ public class NocturnalMilletTopBlock extends CropBlock {
 	}
 
 	@Override
+	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+		BlockState belowState = level.getBlockState(pos.below());
+		if (direction == Direction.DOWN && belowState.is(ESBlocks.NOCTURNAL_MILLET_STALK.get())) {
+			return state.setValue(FORGOTTEN, belowState.getValue(FORGOTTEN));
+		}
+		return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+	}
+
+	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		int age = state.getValue(AGE);
 		boolean forgotten = state.getValue(FORGOTTEN);
@@ -163,6 +171,6 @@ public class NocturnalMilletTopBlock extends CropBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return SHAPE_BY_AGE[this.getAge(state) > 0 ? 1 : 0];
+		return SHAPE_BY_AGE[state.getValue(WITHERED) && !state.getValue(FORGOTTEN) ? 1 : this.getAge(state)];
 	}
 }
