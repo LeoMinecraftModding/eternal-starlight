@@ -6,10 +6,13 @@ import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
@@ -32,10 +35,26 @@ public abstract class PlayerListMixin {
 	}
 
 	@ModifyVariable(method = "placeNewPlayer", at = @At(value = "STORE"), ordinal = 0)
-	private ResourceKey<Level> modifyDimension(ResourceKey<Level> original, Connection connection, ServerPlayer player, @Local Optional<CompoundTag> playerTag) {
+	private ResourceKey<Level> modifySpawnDimension(ResourceKey<Level> original, Connection connection, ServerPlayer player, @Local Optional<CompoundTag> playerTag) {
 		if (playerTag.isEmpty() && ESConfig.INSTANCE.spawnInEternalStarlight) {
 			return ESDimensions.STARLIGHT_KEY;
 		}
 		return original;
+	}
+
+	@WrapOperation(method = "placeNewPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;overworld()Lnet/minecraft/server/level/ServerLevel;"))
+	private ServerLevel modifyDefaultSpawnDimension(MinecraftServer instance, Operation<ServerLevel> original) {
+		if (ESConfig.INSTANCE.spawnInEternalStarlight) {
+			return instance.getLevel(ESDimensions.STARLIGHT_KEY);
+		}
+		return original.call(instance);
+	}
+
+	@WrapOperation(method = "getPlayerForLogin", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;overworld()Lnet/minecraft/server/level/ServerLevel;"))
+	private ServerLevel modifyLoginDimension(MinecraftServer instance, Operation<ServerLevel> original) {
+		if (ESConfig.INSTANCE.spawnInEternalStarlight) {
+			return instance.getLevel(ESDimensions.STARLIGHT_KEY);
+		}
+		return original.call(instance);
 	}
 }

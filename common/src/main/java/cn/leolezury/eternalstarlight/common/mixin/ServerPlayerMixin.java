@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin {
 	@WrapOperation(method = "findRespawnPositionAndUseSpawnBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;overworld()Lnet/minecraft/server/level/ServerLevel;"))
-	private ServerLevel modifyDimension(MinecraftServer instance, Operation<ServerLevel> original) {
-		if (ESConfig.INSTANCE.spawnInEternalStarlight) {
+	private ServerLevel modifyRespawnDimension(MinecraftServer instance, Operation<ServerLevel> original) {
+		if (ESConfig.INSTANCE.respawnInEternalStarlight) {
 			return instance.getLevel(ESDimensions.STARLIGHT_KEY);
 		}
 		return original.call(instance);
