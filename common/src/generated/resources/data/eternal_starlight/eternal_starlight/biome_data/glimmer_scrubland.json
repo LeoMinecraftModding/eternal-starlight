@@ -1,0 +1,8 @@
+{
+  "biome": "eternal_starlight:glimmer_scrubland",
+  "fluid": "minecraft:water",
+  "has_rivers": true,
+  "height": 60,
+  "is_ocean": false,
+  "variance": 10
+}

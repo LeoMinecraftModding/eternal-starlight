@@ -286,7 +286,7 @@ public class ESClientHandler {
 			fogEndDecrement -= 0.5f;
 			Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
 			if (camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty()) {
-				if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
+				if (biomeHolder.is(ESTags.Biomes.PERMAFROST)) {
 					fogStartDecrement += (0.5f + 0.75f);
 					fogEndDecrement += (0.5f + 0.5f);
 					fogEndDecrement = Mth.clamp(fogEndDecrement, 0, 80);
@@ -489,7 +489,7 @@ public class ESClientHandler {
 			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - Mth.clamp(fogEndDecrement, 0, RenderSystem.getShaderFogEnd() - 50));
 
 			Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
-			if (biomeHolder.is(ESBiomes.STARLIGHT_PERMAFROST_FOREST)) {
+			if (biomeHolder.is(ESTags.Biomes.PERMAFROST)) {
 				RenderSystem.setShaderFogShape(FogShape.SPHERE);
 			}
 		}

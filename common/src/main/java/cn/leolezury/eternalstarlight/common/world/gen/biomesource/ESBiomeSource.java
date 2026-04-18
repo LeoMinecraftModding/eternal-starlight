@@ -27,7 +27,7 @@ public class ESBiomeSource extends BiomeSource {
 
 	private static final float NOISE_FREQUENCY = 1.5f;
 	private static final float GRAD_STEP = 12.0f;
-	private static final float REF_GRAD = 0.003f;
+	private static final float REF_GRAD = 0.005f;
 	private static final float COMP_STRENGTH = 0.4f;
 	private static final float MIN_CORE_FACTOR = 0.4f;
 	private static final float MAX_CORE_FACTOR = 1.6f;
@@ -167,11 +167,12 @@ public class ESBiomeSource extends BiomeSource {
 
 					shoreEff = Math.max(coreEff + 0.1, shoreEff);
 
-					if (Math.abs(rv) < coreEff) {
+					// rivers are quite broken now
+					/*if (Math.abs(rv) < coreEff) {
 						return river.riverData();
 					} else if (Math.abs(rv) < shoreEff && river.transitionData().isPresent()) {
 						return river.transitionData().get();
-					}
+					}*/
 				}
 			}
 		}

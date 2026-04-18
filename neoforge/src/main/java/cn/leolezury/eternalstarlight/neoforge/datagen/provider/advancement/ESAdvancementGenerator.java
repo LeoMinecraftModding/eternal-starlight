@@ -89,7 +89,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				true, true, false)
 			.addCriterion("in_biome",
 				PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder
-					.inBiome(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST))
+					.location()
+					.setBiomes(biomes.getOrThrow(ESTags.Biomes.PERMAFROST))
 					.setY(MinMaxBounds.Doubles.atMost(-5))))
 			.save(consumer, EternalStarlight.ID + ":under_permafrost_forest");
 

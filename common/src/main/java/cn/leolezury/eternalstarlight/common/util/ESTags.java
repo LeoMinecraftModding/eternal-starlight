@@ -177,6 +177,7 @@ public class ESTags {
 	}
 
 	public static class Biomes {
+		public static final TagKey<Biome> PERMAFROST = create("permafrost");
 		public static final TagKey<Biome> HAS_PORTAL_RUINS_COMMON = create("has_portal_ruins_common");
 		public static final TagKey<Biome> HAS_PORTAL_RUINS_FOREST = create("has_portal_ruins_forest");
 		public static final TagKey<Biome> HAS_PORTAL_RUINS_DESERT = create("has_portal_ruins_desert");

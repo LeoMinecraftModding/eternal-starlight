@@ -49,6 +49,70 @@
       },
       "trigger": "minecraft:location"
     },
+    "in_glimmer_scrubland": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:glimmer_scrubland"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "in_grim_shore": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:grim_shore"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "in_icy_sea": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:icy_sea"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "in_lucent_mycelium_isle": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:lucent_mycelium_isle"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "in_lush_shallow_sea": {
       "conditions": {
         "player": [
@@ -58,6 +122,22 @@
             "predicate": {
               "location": {
                 "biomes": "eternal_starlight:lush_shallow_sea"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "in_permafrost_peaks": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:permafrost_peaks"
               }
             }
           }
@@ -161,6 +241,22 @@
       },
       "trigger": "minecraft:location"
     },
+    "in_starlight_taiga": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:starlight_taiga"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "in_starlit_sea": {
       "conditions": {
         "player": [
@@ -209,6 +305,22 @@
       },
       "trigger": "minecraft:location"
     },
+    "in_umbral_plains": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:umbral_plains"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "in_warm_shore": {
       "conditions": {
         "player": [
@@ -250,7 +362,22 @@
       "in_ether_river"
     ],
     [
+      "in_glimmer_scrubland"
+    ],
+    [
+      "in_grim_shore"
+    ],
+    [
+      "in_icy_sea"
+    ],
+    [
+      "in_lucent_mycelium_isle"
+    ],
+    [
       "in_lush_shallow_sea"
+    ],
+    [
+      "in_permafrost_peaks"
     ],
     [
       "in_scarlet_forest"
@@ -271,6 +398,9 @@
       "in_starlight_permafrost_forest"
     ],
     [
+      "in_starlight_taiga"
+    ],
+    [
       "in_starlit_sea"
     ],
     [
@@ -278,6 +408,9 @@
     ],
     [
       "in_torreya_forest"
+    ],
+    [
+      "in_umbral_plains"
     ],
     [
       "in_warm_shore"

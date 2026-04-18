@@ -23,6 +23,7 @@ import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalLong;
@@ -52,11 +53,12 @@ public class ESDimensions {
 						SurfaceRules.waterBlockCheck(-1, 0),
 						SurfaceRules.sequence(
 							SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT, ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
-							SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
 							SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState()))),
+							SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.LUCENT_MYCELIUM_ISLE), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.NIGHTFALL_PODZOL.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState()))),
 							SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState()))
 						)
 					),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
 					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.LUSH_SHALLOW_SEA), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.ICE, -0.0625, 0.025), SurfaceRules.state(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get().defaultBlockState())), SurfaceRules.state(ESBlocks.MOSSY_DUSTED_GRAVEL.get().defaultBlockState())))
 				)
 			),
@@ -78,8 +80,8 @@ public class ESDimensions {
 		return SurfaceRules.sequence(
 			SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())),
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.THE_ABYSS), makeAbyss()),
-			SurfaceRules.ifTrue(OnSurfaceCondition.INSTANCE, surface),
-			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIGHT_PERMAFROST_FOREST), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), SurfaceRules.state(ESBlocks.HAZE_ICE.get().defaultBlockState())), SurfaceRules.state(ESBlocks.ETERNAL_ICE.get().defaultBlockState()))),
+			SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ESBiomes.GRIM_SHORE)), SurfaceRules.ifTrue(OnSurfaceCondition.INSTANCE, surface)),
+			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIGHT_PERMAFROST_FOREST, ESBiomes.PERMAFROST_PEAKS), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), SurfaceRules.state(ESBlocks.HAZE_ICE.get().defaultBlockState())), SurfaceRules.state(ESBlocks.ETERNAL_ICE.get().defaultBlockState()))),
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.sequence(
 				SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(32), VerticalAnchor.absolute(40))), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState())),
 				SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(22), VerticalAnchor.absolute(30))), SurfaceRules.state(ESBlocks.PACKED_NIGHTFALL_MUD.get().defaultBlockState()))
@@ -133,7 +135,7 @@ public class ESDimensions {
 			Blocks.WATER.defaultBlockState(),
 			router,
 			makeSurfaceRule(),
-			List.of(),
+			new ESBiomeBuilder().spawnTarget(),
 			SEA_LEVEL,
 			false,
 			false,
@@ -151,25 +153,6 @@ public class ESDimensions {
 		return new DensityFunctions.HolderHolder(densityFunctions.getOrThrow(key));
 	}
 
-	private static Climate.ParameterList<Holder<BiomeData>> buildClimateList(HolderGetter<BiomeData> biomeData) {
-		List<Pair<Climate.ParameterPoint, Holder<BiomeData>>> parameterList = List.of(
-			simpleBiome(biomeData, ESBiomeData.STARLIGHT_FOREST, 0.35f, 0.3f, 0.45f, 0.3f, 0.0f, 0.0f),
-			simpleBiome(biomeData, ESBiomeData.STARLIGHT_DENSE_FOREST, 0.2f, 0.4f, 0.6f, 0.2f, 0.0f, 0.4f),
-			simpleBiome(biomeData, ESBiomeData.STARLIGHT_PERMAFROST_FOREST, -0.6f, -0.2f, 0.5f, -0.6f, 0.0f, 0.0f),
-			simpleBiome(biomeData, ESBiomeData.DARK_SWAMP, 0.45f, 0.45f, 0.4f, 0.3f, 0.0f, 0.0f),
-			simpleBiome(biomeData, ESBiomeData.SCARLET_FOREST, -0.3f, -0.3f, 0.6f, 0.3f, 0.0f, 0.5f),
-			simpleBiome(biomeData, ESBiomeData.CRYSTALLIZED_DESERT, 0.6f, -0.4f, 0.6f, 0.2f, 0.0f, 0.5f),
-			simpleBiome(biomeData, ESBiomeData.STARLIT_SEA, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f),
-			simpleBiome(biomeData, ESBiomeData.SPIRAL_KELP_FOREST, -0.6f, 0.0f, -1.0f, 0.5f, 0.0f, 0.0f),
-			simpleBiome(biomeData, ESBiomeData.LUSH_SHALLOW_SEA, 0.4f, 0.0f, -1.0f, 0.5f, 0.0f, 0.2f)
-		);
-		return new Climate.ParameterList<>(parameterList);
-	}
-
-	private static Pair<Climate.ParameterPoint, Holder<BiomeData>> simpleBiome(HolderGetter<BiomeData> biomeData, ResourceKey<BiomeData> key, float temperature, float humidity, float continentalness, float erosion, float depth, float weirdness) {
-		return new Pair<>(Climate.parameters(temperature, humidity, continentalness, erosion, depth, weirdness, 0), biomeData.getOrThrow(key));
-	}
-
 	public static void bootstrapLevelStem(BootstrapContext<LevelStem> context) {
 		HolderGetter<BiomeData> biomeData = context.lookup(ESRegistries.BIOME_DATA);
 		HolderGetter<DimensionType> dimensionTypes = context.lookup(Registries.DIMENSION_TYPE);
@@ -177,20 +160,22 @@ public class ESDimensions {
 
 		List<ESBiomeSource.RiverEntry> rivers = List.of(
 			new ESBiomeSource.RiverEntry(
-				biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.03f,
-				Optional.of(biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)), 0.05f,
+				biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.005f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)), 0.006f,
 				0, false, false),
 			new ESBiomeSource.RiverEntry(
-				biomeData.getOrThrow(ESBiomeData.ETHER_RIVER), 0.05f,
-				Optional.of(biomeData.getOrThrow(ESBiomeData.TORREYA_FOREST)), 0.07f,
-				4096, false, false),
+				biomeData.getOrThrow(ESBiomeData.ETHER_RIVER), 0.006f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.TORREYA_FOREST)), 0.007f,
+				1337, false, false),
 			new ESBiomeSource.RiverEntry(
-				biomeData.getOrThrow(ESBiomeData.THE_ABYSS), 0.05f,
-				Optional.of(biomeData.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)), 0.07f,
-				128, true, true)
+				biomeData.getOrThrow(ESBiomeData.THE_ABYSS), 0.006f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)), 0.008f,
+				1989, true, true)
 		);
 
-		Climate.ParameterList<Holder<BiomeData>> climateList = buildClimateList(biomeData);
+		List<Pair<Climate.ParameterPoint, Holder<BiomeData>>> parameterList = new ArrayList<>();
+		new ESBiomeBuilder().addBiomes(p -> parameterList.add(p.mapSecond(biomeData::getOrThrow)));
+		Climate.ParameterList<Holder<BiomeData>> climateList = new Climate.ParameterList<>(parameterList);
 
 		LevelStem levelStem = new LevelStem(dimensionTypes.getOrThrow(STARLIGHT_TYPE), new ESChunkGenerator(new ESBiomeSource(climateList, rivers), noiseSettings.getOrThrow(STARLIGHT_NOISE_SETTINGS)));
 

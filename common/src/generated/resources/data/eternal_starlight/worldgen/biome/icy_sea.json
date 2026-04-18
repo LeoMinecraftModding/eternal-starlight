@@ -1,0 +1,128 @@
+{
+  "carvers": {
+    "air": "eternal_starlight:caves"
+  },
+  "creature_spawn_probability": 0.2,
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": 5195923,
+    "foliage_color": 5195923,
+    "grass_color": 5195923,
+    "music": {
+      "max_delay": 12000,
+      "min_delay": 1200,
+      "replace_current_music": false,
+      "sound": "eternal_starlight:music.biome.starlit_sea"
+    },
+    "particle": {
+      "options": {
+        "type": "eternal_starlight:starlight"
+      },
+      "probability": 0.001
+    },
+    "sky_color": 5658761,
+    "water_color": 6187416,
+    "water_fog_color": 1184291
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "eternal_starlight:stone_ore",
+      "eternal_starlight:deepslate_ore",
+      "eternal_starlight:nightfall_dirt_ore",
+      "eternal_starlight:dimslag_ore",
+      "eternal_starlight:sand_ore",
+      "eternal_starlight:glowing_grimstone_ore",
+      "eternal_starlight:glowing_voidstone_ore",
+      "eternal_starlight:upper_starlit_diamond_ore",
+      "eternal_starlight:lower_starlit_diamond_ore",
+      "eternal_starlight:upper_deepsilver_ore",
+      "eternal_starlight:lower_deepsilver_ore",
+      "eternal_starlight:upper_redstone_ore",
+      "eternal_starlight:lower_redstone_ore",
+      "eternal_starlight:upper_saltpeter_ore",
+      "eternal_starlight:lower_saltpeter_ore",
+      "eternal_starlight:upper_starcore_ore",
+      "eternal_starlight:lower_starcore_ore"
+    ],
+    [],
+    [],
+    [
+      "eternal_starlight:cave_moss",
+      "eternal_starlight:cave_moss_vein",
+      "eternal_starlight:cave_moss_patch",
+      "eternal_starlight:bouldershroom",
+      "eternal_starlight:ice_spike",
+      "eternal_starlight:ocean_vegetation"
+    ],
+    [
+      "minecraft:freeze_top_layer",
+      "eternal_starlight:final_modification"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {
+    "eternal_starlight:lonestar_skeleton": {
+      "charge": 1.0,
+      "energy_budget": 0.5
+    },
+    "eternal_starlight:nightfall_spider": {
+      "charge": 1.0,
+      "energy_budget": 0.5
+    },
+    "eternal_starlight:seeker": {
+      "charge": 1.0,
+      "energy_budget": 0.5
+    }
+  },
+  "spawners": {
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
+      }
+    ],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "eternal_starlight:nightfall_spider",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 15
+      },
+      {
+        "type": "eternal_starlight:lonestar_skeleton",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "eternal_starlight:seeker",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 15
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": [
+      {
+        "type": "eternal_starlight:rookfish",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 16
+      }
+    ]
+  },
+  "temperature": -0.3,
+  "temperature_modifier": "frozen"
+}

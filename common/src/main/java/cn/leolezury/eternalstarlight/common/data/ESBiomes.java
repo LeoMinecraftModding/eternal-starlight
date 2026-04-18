@@ -21,18 +21,25 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 public class ESBiomes {
 	public static final ResourceKey<Biome> STARLIGHT_FOREST = create("starlight_forest");
 	public static final ResourceKey<Biome> STARLIGHT_DENSE_FOREST = create("starlight_dense_forest");
+	public static final ResourceKey<Biome> UMBRAL_PLAINS = create("umbral_plains");
+	public static final ResourceKey<Biome> GLIMMER_SCRUBLAND = create("glimmer_scrubland");
 	public static final ResourceKey<Biome> STARLIGHT_PERMAFROST_FOREST = create("starlight_permafrost_forest");
+	public static final ResourceKey<Biome> PERMAFROST_PEAKS = create("permafrost_peaks");
+	public static final ResourceKey<Biome> STARLIGHT_TAIGA = create("starlight_taiga");
 	public static final ResourceKey<Biome> DARK_SWAMP = create("dark_swamp");
 	public static final ResourceKey<Biome> SCARLET_FOREST = create("scarlet_forest");
 	public static final ResourceKey<Biome> TORREYA_FOREST = create("torreya_forest");
 	public static final ResourceKey<Biome> CRYSTALLIZED_DESERT = create("crystallized_desert");
+	public static final ResourceKey<Biome> LUCENT_MYCELIUM_ISLE = create("lucent_mycelium_isle");
 	public static final ResourceKey<Biome> SHIMMER_RIVER = create("shimmer_river");
 	public static final ResourceKey<Biome> ETHER_RIVER = create("ether_river");
 	public static final ResourceKey<Biome> STARLIT_SEA = create("starlit_sea");
+	public static final ResourceKey<Biome> ICY_SEA = create("icy_sea");
 	public static final ResourceKey<Biome> SPIRAL_KELP_FOREST = create("spiral_kelp_forest");
 	public static final ResourceKey<Biome> LUSH_SHALLOW_SEA = create("lush_shallow_sea");
 	public static final ResourceKey<Biome> THE_ABYSS = create("the_abyss");
 	public static final ResourceKey<Biome> WARM_SHORE = create("warm_shore");
+	public static final ResourceKey<Biome> GRIM_SHORE = create("grim_shore");
 
 	public static final Music MUSIC_TRANQUILITY = new Music(ESSoundEvents.MUSIC_DIMENSION.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_FOREST = new Music(ESSoundEvents.MUSIC_BIOME_STARLIGHT_FOREST.asHolder(), 1200, 12000, false);
@@ -49,18 +56,25 @@ public class ESBiomes {
 		HolderGetter<ConfiguredWorldCarver<?>> carverHolderGetter = context.lookup(Registries.CONFIGURED_CARVER);
 		context.register(STARLIGHT_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_FOREST), baseLushSpawnBuilder(), forestGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIGHT_DENSE_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_FOREST), baseLushSpawnBuilder(), denseForestGenSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(UMBRAL_PLAINS, baseBiomeBuilder(baseEffectsBuilder().foliageColorOverride(7096464).grassColorOverride(7096464).backgroundMusic(MUSIC_FOREST), baseLushSpawnBuilder(), plainsGenSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(GLIMMER_SCRUBLAND, baseBiomeBuilder(baseEffectsBuilder().foliageColorOverride(5195941).grassColorOverride(5195941).backgroundMusic(MUSIC_FOREST), baseLushSpawnBuilder(), scrublandGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIGHT_PERMAFROST_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).grassColorOverride(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), permafrostForestSpawns(), permafrostForestGenSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
+		context.register(PERMAFROST_PEAKS, baseBiomeBuilder(baseEffectsBuilder().fogColor(14803455).skyColor(14803455).grassColorOverride(14803455).backgroundMusic(MUSIC_PERMAFROST_FOREST), permafrostForestSpawns(), permafrostForestGenSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
+		context.register(STARLIGHT_TAIGA, baseBiomeBuilder(baseEffectsBuilder().grassColorOverride(14803455).backgroundMusic(MUSIC_FOREST), taigaSpawns(), taigaGenSettings(featureHolderGetter, carverHolderGetter)).temperature(0.25f).build());
 		context.register(DARK_SWAMP, baseBiomeBuilder(baseEffectsBuilder().fogColor(5250640).foliageColorOverride(7890120).skyColor(5250640).grassColorOverride(4075082).waterColor(7428526).waterFogColor(7428526).backgroundMusic(MUSIC_SWAMP), swampSpawns(), swampGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(SCARLET_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(10313569).foliageColorOverride(10313569).skyColor(10313569).grassColorOverride(10313569).backgroundMusic(MUSIC_SCARLET_FOREST), baseLushSpawnBuilder(), scarletForestGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(TORREYA_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(7229604).foliageColorOverride(7229604).skyColor(7229604).grassColorOverride(7229604).backgroundMusic(MUSIC_TORREYA_FOREST), baseLushSpawnBuilder(), torreyaForestGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_DESERT), desertSpawns(), desertGenSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
+		context.register(LUCENT_MYCELIUM_ISLE, baseBiomeBuilder(baseEffectsBuilder().grassColorOverride(6444875).backgroundMusic(MUSIC_FOREST), baseLushSpawnBuilder(), mushroomGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), riverSpawns(), riverGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseSpawnBuilder(), etherRiverGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanGenSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(ICY_SEA, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), icySeaGenSettings(featureHolderGetter, carverHolderGetter)).temperature(-0.3f).temperatureAdjustment(Biome.TemperatureModifier.FROZEN).build());
 		context.register(SPIRAL_KELP_FOREST, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA).waterColor(7883610).waterFogColor(1576722), baseAquaticSpawnBuilder(), spiralKelpForestGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(LUSH_SHALLOW_SEA, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA).waterColor(6124624).waterFogColor(4737072), baseAquaticSpawnBuilder(), lushShallowSeaGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(THE_ABYSS, baseBiomeBuilder(baseEffectsBuilder(false).waterFogColor(3409191).backgroundMusic(MUSIC_THE_ABYSS), theAbyssSpawns(), theAbyssGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(WARM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseLushSpawnBuilder(), baseLandGenSettings(featureHolderGetter, carverHolderGetter)).build());
+		context.register(GRIM_SHORE, baseBiomeBuilder(baseEffectsBuilder(), baseLushSpawnBuilder(), baseLandGenSettings(featureHolderGetter, carverHolderGetter)).build());
 	}
 
 	private static Biome.BiomeBuilder baseBiomeBuilder(BiomeSpecialEffects.Builder specialEffects, MobSpawnSettings.Builder mobSpawnSettings, BiomeGenerationSettings.Builder genSettings) {
@@ -120,6 +134,11 @@ public class ESBiomes {
 	private static MobSpawnSettings.Builder permafrostForestSpawns() {
 		return baseLushSpawnBuilder()
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.YETI.get(), 20, 3, 6))
+			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.AURORA_DEER.get(), 16, 3, 6));
+	}
+
+	private static MobSpawnSettings.Builder taigaSpawns() {
+		return baseLushSpawnBuilder()
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.AURORA_DEER.get(), 16, 3, 6));
 	}
 
@@ -250,8 +269,30 @@ public class ESBiomes {
 		return builder;
 	}
 
+	private static BiomeGenerationSettings.Builder plainsGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter);
+
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SPARSE_FOREST);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FOREST_VEGETATION);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STONE_SPIKE);
+
+		return builder;
+	}
+
+	private static BiomeGenerationSettings.Builder scrublandGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter);
+
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.SCRUBLAND_FOREST);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.FOREST_VEGETATION);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STONE_SPIKE);
+
+		return builder;
+	}
+
 	private static BiomeGenerationSettings.Builder permafrostForestGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter, true);
+		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter);
 
 		builder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ESPlacedFeatures.FALLEN_NORTHLAND_LOG);
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.GLACITE);
@@ -260,6 +301,18 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, ESPlacedFeatures.ASHEN_SNOW);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST_VEGETATION);
+
+		return builder;
+	}
+
+	private static BiomeGenerationSettings.Builder taigaGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter);
+
+		builder.addFeature(GenerationStep.Decoration.RAW_GENERATION, ESPlacedFeatures.FALLEN_NORTHLAND_LOG);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.TAIGA_FOREST);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.PERMAFROST_FOREST_VEGETATION);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.CAVE_VINE);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STONE_SPIKE);
 
 		return builder;
 	}
@@ -319,6 +372,15 @@ public class ESBiomes {
 		return builder;
 	}
 
+	private static BiomeGenerationSettings.Builder mushroomGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter);
+
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.MUSHROOM_FOREST);
+		builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ESPlacedFeatures.STONE_SPIKE);
+
+		return builder;
+	}
+
 	private static BiomeGenerationSettings.Builder riverGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder builder = baseAquaticGenSettings(featureGetter, carverGetter);
 
@@ -339,6 +401,15 @@ public class ESBiomes {
 		BiomeGenerationSettings.Builder builder = baseAquaticGenSettings(featureGetter, carverGetter);
 
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ORBFLORA);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.OCEAN_VEGETATION);
+
+		return builder;
+	}
+
+	private static BiomeGenerationSettings.Builder icySeaGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder builder = baseAquaticGenSettings(featureGetter, carverGetter);
+
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.ICE_SPIKE);
 		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.OCEAN_VEGETATION);
 
 		return builder;

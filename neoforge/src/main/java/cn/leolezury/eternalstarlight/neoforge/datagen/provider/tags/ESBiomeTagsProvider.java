@@ -19,7 +19,11 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		// no conventional tags due to modded structure generation
+		tag(ESTags.Biomes.PERMAFROST)
+			.add(
+				ESBiomes.STARLIGHT_PERMAFROST_FOREST,
+				ESBiomes.PERMAFROST_PEAKS
+			);
 		tag(ESTags.Biomes.HAS_PORTAL_RUINS_COMMON)
 			.add(
 				Biomes.PLAINS,
@@ -59,12 +63,16 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 			.add(
 				ESBiomes.STARLIGHT_FOREST,
 				ESBiomes.STARLIGHT_DENSE_FOREST,
+				ESBiomes.UMBRAL_PLAINS,
+				ESBiomes.GLIMMER_SCRUBLAND,
 				ESBiomes.STARLIGHT_PERMAFROST_FOREST
 			);
 		tag(ESTags.Biomes.HAS_CURSED_GARDEN)
 			.add(
 				ESBiomes.STARLIGHT_FOREST,
-				ESBiomes.STARLIGHT_DENSE_FOREST
+				ESBiomes.STARLIGHT_DENSE_FOREST,
+				ESBiomes.UMBRAL_PLAINS,
+				ESBiomes.GLIMMER_SCRUBLAND
 			);
 		tag(ESTags.Biomes.HAS_STRANGHOUL_DEN)
 			.add(

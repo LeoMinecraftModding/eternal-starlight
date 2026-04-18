@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
@@ -57,6 +58,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> ASHEN_SNOW = create("ashen_snow");
 	public static final ResourceKey<PlacedFeature> STARLIGHT_CRYSTAL = create("starlight_crystal");
 	public static final ResourceKey<PlacedFeature> STARLIGHT_CRYSTAL_SURFACE = create("starlight_crystal_surface");
+	public static final ResourceKey<PlacedFeature> ICE_SPIKE = create("ice_spike");
 	public static final ResourceKey<PlacedFeature> STELLAGMITE = create("stellagmite");
 	public static final ResourceKey<PlacedFeature> THIOQUARTZ_GEODE = create("thioquartz_geode");
 	public static final ResourceKey<PlacedFeature> CAVE_VINE = create("cave_vine");
@@ -81,7 +83,10 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> LUNAR_TREE_CHECKED = create("lunar_tree_checked");
 	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_TREE_CHECKED = create("lunar_huge_tree_checked");
 	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED = create("lunar_huge_starfire_birds_tree_checked");
+	public static final ResourceKey<PlacedFeature> LUNAR_SMALL_TREE_CHECKED = create("lunar_small_tree_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = create("northland_tree_checked");
+	public static final ResourceKey<PlacedFeature> NORTHLAND_THIN_TREE_CHECKED = create("northland_thin_tree_checked");
+	public static final ResourceKey<PlacedFeature> NORTHLAND_TALL_TREE_CHECKED = create("northland_tall_tree_checked");
 	public static final ResourceKey<PlacedFeature> BANYIN_TREE_CHECKED = create("banyin_tree_checked");
 	public static final ResourceKey<PlacedFeature> BANYIN_HUGE_TREE_CHECKED = create("banyin_huge_tree_checked");
 	public static final ResourceKey<PlacedFeature> SCARLET_TREE_CHECKED = create("scarlet_tree_checked");
@@ -93,10 +98,14 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> NORTHLAND_ON_SNOW = create("northland_on_snow");
 	public static final ResourceKey<PlacedFeature> STARLIGHT_FOREST = create("starlight_forest");
 	public static final ResourceKey<PlacedFeature> DENSE_FOREST = create("dense_forest");
+	public static final ResourceKey<PlacedFeature> SPARSE_FOREST = create("sparse_forest");
+	public static final ResourceKey<PlacedFeature> SCRUBLAND_FOREST = create("scrubland_forest");
 	public static final ResourceKey<PlacedFeature> SWAMP_FOREST = create("swamp_forest");
 	public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST = create("permafrost_forest");
+	public static final ResourceKey<PlacedFeature> TAIGA_FOREST = create("taiga_forest");
 	public static final ResourceKey<PlacedFeature> SCARLET_FOREST = create("scarlet_forest");
 	public static final ResourceKey<PlacedFeature> TORREYA_FOREST = create("torreya_forest");
+	public static final ResourceKey<PlacedFeature> MUSHROOM_FOREST = create("mushroom_forest");
 	public static final ResourceKey<PlacedFeature> JINGLESTEM_FOREST = create("jinglestem_forest");
 	public static final ResourceKey<PlacedFeature> DEAD_LUNAR_TREE = create("dead_lunar_tree");
 	public static final ResourceKey<PlacedFeature> LUNARIS_CACTUS = create("lunaris_cactus");
@@ -164,6 +173,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, ASHEN_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.ASHEN_SNOW), CountPlacement.of(30), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(0)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
 		PlacementUtils.register(context, STARLIGHT_CRYSTAL, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_CRYSTAL), CountPlacement.of(5), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, STARLIGHT_CRYSTAL_SURFACE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_CRYSTAL), RarityFilter.onAverageOnceEvery(25), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, ICE_SPIKE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ICE_SPIKE), RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, STELLAGMITE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STELLAGMITE), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, THIOQUARTZ_GEODE, configuredFeatures.getOrThrow(ESConfiguredFeatures.THIOQUARTZ_GEODE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)), BiomeFilter.biome());
 		PlacementUtils.register(context, CAVE_VINE, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_VINE), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
@@ -188,7 +198,10 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, LUNAR_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
 		PlacementUtils.register(context, LUNAR_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
 		PlacementUtils.register(context, LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
+		PlacementUtils.register(context, LUNAR_SMALL_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_SMALL), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()));
 		PlacementUtils.register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()));
+		PlacementUtils.register(context, NORTHLAND_THIN_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND_THIN), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()));
+		PlacementUtils.register(context, NORTHLAND_TALL_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND_TALL), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()));
 		PlacementUtils.register(context, BANYIN_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.BANYIN), PlacementUtils.filteredByBlockSurvival(ESBlocks.BANYIN_SAPLING.get()));
 		PlacementUtils.register(context, BANYIN_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.BANYIN_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.BANYIN_SAPLING.get()));
 		PlacementUtils.register(context, SCARLET_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET), PlacementUtils.filteredByBlockSurvival(ESBlocks.SCARLET_SAPLING.get()));
@@ -200,10 +213,14 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), onSnow);
 		PlacementUtils.register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 1)));
 		PlacementUtils.register(context, DENSE_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(9, 0.1F, 2)));
+		PlacementUtils.register(context, SPARSE_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SPARSE_FOREST), new ImmutableList.Builder<PlacementModifier>().add(RarityFilter.onAverageOnceEvery(6)).addAll(VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 2))).build());
+		PlacementUtils.register(context, SCRUBLAND_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCRUBLAND_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 5)));
 		PlacementUtils.register(context, PERMAFROST_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.2F, 2)));
+		PlacementUtils.register(context, TAIGA_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.TAIGA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.2F, 2)));
 		PlacementUtils.register(context, SWAMP_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
 		PlacementUtils.register(context, SCARLET_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(6, 0.1F, 2)));
 		PlacementUtils.register(context, TORREYA_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 1)));
+		PlacementUtils.register(context, MUSHROOM_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.MUSHROOM_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1F, 1)));
 		PlacementUtils.register(context, JINGLESTEM_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.JINGLESTEM_FOREST), PlacementUtils.countExtra(5, 0.2F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome());
 		PlacementUtils.register(context, DEAD_LUNAR_TREE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEAD_LUNAR_TREE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, LUNARIS_CACTUS, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNARIS_CACTUS), RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());

@@ -9,7 +9,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biomes": "eternal_starlight:starlight_permafrost_forest",
+                "biomes": "#eternal_starlight:permafrost",
                 "position": {
                   "y": {
                     "max": -5.0
