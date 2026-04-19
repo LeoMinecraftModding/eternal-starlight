@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:starlight_taiga",
   "fluid": "minecraft:water",
   "has_rivers": true,
-  "height": 80,
+  "height": 75,
   "is_ocean": false,
-  "variance": 30
+  "variance": 20
 }

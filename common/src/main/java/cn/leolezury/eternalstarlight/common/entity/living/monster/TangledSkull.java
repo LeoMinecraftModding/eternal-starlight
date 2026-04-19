@@ -334,7 +334,7 @@ public class TangledSkull extends Monster {
 		if (compoundTag.contains(TAG_SHOT_FROM_MONSTROSITY, CompoundTag.TAG_BYTE)) {
 			setShotFromMonstrosity(compoundTag.getBoolean(TAG_SHOT_FROM_MONSTROSITY));
 		}
-		if (compoundTag.contains(TAG_SHOT_MOVEMENT_X, CompoundTag.TAG_DOUBLE) && compoundTag.contains(TAG_SHOT_MOVEMENT_Y, CompoundTag.TAG_DOUBLE) && compoundTag.contains(TAG_SHOT_MOVEMENT_Z, CompoundTag.TAG_DOUBLE)) {
+		if (compoundTag.contains(TAG_SHOT_MOVEMENT_X, CompoundTag.TAG_ANY_NUMERIC) && compoundTag.contains(TAG_SHOT_MOVEMENT_Y, CompoundTag.TAG_ANY_NUMERIC) && compoundTag.contains(TAG_SHOT_MOVEMENT_Z, CompoundTag.TAG_ANY_NUMERIC)) {
 			setShotMovement(new Vec3(compoundTag.getDouble(TAG_SHOT_MOVEMENT_X), compoundTag.getDouble(TAG_SHOT_MOVEMENT_Y), compoundTag.getDouble(TAG_SHOT_MOVEMENT_Z)));
 		}
 	}

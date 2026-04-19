@@ -49,6 +49,8 @@ public class ESDimensions {
 			SurfaceRules.ifTrue(
 				SurfaceRules.ON_FLOOR,
 				SurfaceRules.sequence(
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.LUSH_SHALLOW_SEA), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.ICE, -0.0625, 0.025), SurfaceRules.state(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get().defaultBlockState())), SurfaceRules.state(ESBlocks.MOSSY_DUSTED_GRAVEL.get().defaultBlockState()))),
 					SurfaceRules.ifTrue(
 						SurfaceRules.waterBlockCheck(-1, 0),
 						SurfaceRules.sequence(
@@ -56,9 +58,7 @@ public class ESDimensions {
 							SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.FANTASY_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState()))),
 							SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0, 0), SurfaceRules.state(ESBlocks.NIGHTFALL_GRASS_BLOCK.get().defaultBlockState())), SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState()))
 						)
-					),
-					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
-					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.LUSH_SHALLOW_SEA), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.ICE, -0.0625, 0.025), SurfaceRules.state(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get().defaultBlockState())), SurfaceRules.state(ESBlocks.MOSSY_DUSTED_GRAVEL.get().defaultBlockState())))
+					)
 				)
 			),
 			SurfaceRules.ifTrue(
@@ -159,17 +159,17 @@ public class ESDimensions {
 
 		List<ESBiomeSource.RiverEntry> rivers = List.of(
 			new ESBiomeSource.RiverEntry(
-				biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER), 0.005f,
-				Optional.of(biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)), 0.006f,
+				biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER), 4.0f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.SHIMMER_RIVER_TRANSITION)), 6.0f,
 				0, false, false),
 			new ESBiomeSource.RiverEntry(
-				biomeData.getOrThrow(ESBiomeData.ETHER_RIVER), 0.006f,
-				Optional.of(biomeData.getOrThrow(ESBiomeData.TORREYA_FOREST)), 0.007f,
-				1337, false, false),
+				biomeData.getOrThrow(ESBiomeData.ETHER_RIVER), 6.0f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.TORREYA_FOREST)), 16.0f,
+				2009, false, false),
 			new ESBiomeSource.RiverEntry(
-				biomeData.getOrThrow(ESBiomeData.THE_ABYSS), 0.006f,
-				Optional.of(biomeData.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)), 0.008f,
-				1989, true, true)
+				biomeData.getOrThrow(ESBiomeData.THE_ABYSS), 16.0f,
+				Optional.of(biomeData.getOrThrow(ESBiomeData.THE_ABYSS_TRANSITION)), 24.0f,
+				707, true, true)
 		);
 
 		List<Pair<Climate.ParameterPoint, Holder<BiomeData>>> parameterList = new ArrayList<>();

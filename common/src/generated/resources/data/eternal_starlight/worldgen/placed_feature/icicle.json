@@ -39,6 +39,10 @@
       "y_spread": 1
     },
     {
+      "type": "eternal_starlight:avoid_structure",
+      "structures": "#eternal_starlight:boss_landmarks"
+    },
+    {
       "type": "minecraft:biome"
     }
   ]

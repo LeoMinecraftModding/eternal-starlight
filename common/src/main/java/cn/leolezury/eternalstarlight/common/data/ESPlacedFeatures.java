@@ -2,6 +2,8 @@ package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.placement.AvoidStructureFilter;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +21,7 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.material.Fluids;
 
 import java.util.ArrayList;
@@ -132,6 +135,7 @@ public class ESPlacedFeatures {
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+		HolderGetter<Structure> structures = context.lookup(Registries.STRUCTURE);
 		BlockPredicate snowPredicate = BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.SNOW_BLOCK, Blocks.POWDER_SNOW);
 		List<PlacementModifier> onSnow = List.of(EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.not(BlockPredicate.matchesBlocks(Blocks.POWDER_SNOW)), 8), BlockPredicateFilter.forPredicate(snowPredicate));
 		List<BlockPredicate> nearWater = new ArrayList<>();
@@ -144,12 +148,12 @@ public class ESPlacedFeatures {
 		}
 
 		PlacementUtils.register(context, FINAL_MODIFICATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.FINAL_MODIFICATION), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-		PlacementUtils.register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_SPIKE), RarityFilter.onAverageOnceEvery(25), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
-		PlacementUtils.register(context, MONOLITH, configuredFeatures.getOrThrow(ESConfiguredFeatures.MONOLITH), RarityFilter.onAverageOnceEvery(35), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
-		PlacementUtils.register(context, LUSH_MONOLITH, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUSH_MONOLITH), RarityFilter.onAverageOnceEvery(35), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome());
+		PlacementUtils.register(context, STONE_SPIKE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_SPIKE), RarityFilter.onAverageOnceEvery(25), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, new AvoidStructureFilter(structures.getOrThrow(ESTags.Structures.BOSS_LANDMARKS)), BiomeFilter.biome());
+		PlacementUtils.register(context, MONOLITH, configuredFeatures.getOrThrow(ESConfiguredFeatures.MONOLITH), RarityFilter.onAverageOnceEvery(35), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, new AvoidStructureFilter(structures.getOrThrow(ESTags.Structures.BOSS_LANDMARKS)), BiomeFilter.biome());
+		PlacementUtils.register(context, LUSH_MONOLITH, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUSH_MONOLITH), RarityFilter.onAverageOnceEvery(35), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, new AvoidStructureFilter(structures.getOrThrow(ESTags.Structures.BOSS_LANDMARKS)), BiomeFilter.biome());
 		PlacementUtils.register(context, GLACITE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLACITE), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE), BiomeFilter.biome());
-		PlacementUtils.register(context, ICICLE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ICICLE), CountPlacement.of(30), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(65)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
-		PlacementUtils.register(context, HANGING_ICICLE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ICICLE), CountPlacement.of(30), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(65)), EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
+		PlacementUtils.register(context, ICICLE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ICICLE), CountPlacement.of(30), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(65)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(1)), new AvoidStructureFilter(structures.getOrThrow(ESTags.Structures.BOSS_LANDMARKS)), BiomeFilter.biome());
+		PlacementUtils.register(context, HANGING_ICICLE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ICICLE), CountPlacement.of(30), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(65)), EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), new AvoidStructureFilter(structures.getOrThrow(ESTags.Structures.BOSS_LANDMARKS)), BiomeFilter.biome());
 		PlacementUtils.register(context, STONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
 		PlacementUtils.register(context, DEEPSLATE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEEPSLATE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
 		PlacementUtils.register(context, GLOWING_GRIMSTONE_ORE, configuredFeatures.getOrThrow(ESConfiguredFeatures.GLOWING_GRIMSTONE_ORE), commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top())));
@@ -181,8 +185,8 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, ICE_SPIKE, configuredFeatures.getOrThrow(ESConfiguredFeatures.ICE_SPIKE), RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, STELLAGMITE, configuredFeatures.getOrThrow(ESConfiguredFeatures.STELLAGMITE), RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, THIOQUARTZ_GEODE, configuredFeatures.getOrThrow(ESConfiguredFeatures.THIOQUARTZ_GEODE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)), BiomeFilter.biome());
-		PlacementUtils.register(context, CAVE_VINE, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_VINE), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
-		PlacementUtils.register(context, CAVE_MOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
+		PlacementUtils.register(context, CAVE_VINE, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_VINE), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), new AvoidStructureFilter(structures.getOrThrow(ESTags.Structures.BOSS_LANDMARKS)), BiomeFilter.biome());
+		PlacementUtils.register(context, CAVE_MOSS, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), new AvoidStructureFilter(structures.getOrThrow(ESTags.Structures.BOSS_LANDMARKS)), BiomeFilter.biome());
 		PlacementUtils.register(context, CAVE_MOSS_VEIN, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS_VEIN), CountPlacement.of(UniformInt.of(15, 20)), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, InSquarePlacement.spread(), SurfaceRelativeThresholdFilter.of(Heightmap.Types.OCEAN_FLOOR_WG, Integer.MIN_VALUE, -13), BiomeFilter.biome());
 		PlacementUtils.register(context, BOULDERSHROOM, configuredFeatures.getOrThrow(ESConfiguredFeatures.BOULDERSHROOM), CountPlacement.of(UniformInt.of(5, 10)), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(10), VerticalAnchor.aboveBottom(85)), InSquarePlacement.spread(), BiomeFilter.biome());
 		PlacementUtils.register(context, HANGING_FANTAGRASS, configuredFeatures.getOrThrow(ESConfiguredFeatures.HANGING_FANTAGRASS), CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());

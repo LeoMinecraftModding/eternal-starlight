@@ -204562,25 +204562,25 @@
         {
           "offset": 0,
           "river": "eternal_starlight:shimmer_river",
-          "size": 0.005,
+          "size": 4.0,
           "transition": "eternal_starlight:shimmer_river_transition",
-          "transition_size": 0.006
+          "transition_size": 6.0
         },
         {
-          "offset": 1337,
+          "offset": 2009,
           "river": "eternal_starlight:ether_river",
-          "size": 0.006,
+          "size": 6.0,
           "transition": "eternal_starlight:torreya_forest",
-          "transition_size": 0.007
+          "transition_size": 16.0
         },
         {
           "can_generate_in_ocean": true,
           "can_generate_in_ocean_only": true,
-          "offset": 1989,
+          "offset": 707,
           "river": "eternal_starlight:the_abyss",
-          "size": 0.006,
+          "size": 16.0,
           "transition": "eternal_starlight:the_abyss_transition",
-          "transition_size": 0.008
+          "transition_size": 24.0
         }
       ]
     },

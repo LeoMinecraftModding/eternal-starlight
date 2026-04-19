@@ -41,6 +41,7 @@ public class EternalStarlight {
 		ESMaterialConditions.loadClass();
 		ESWorldCarvers.loadClass();
 		ESFeatures.loadClass();
+		ESPlacementModifierTypes.loadClass();
 		ESTreePlacers.loadClass();
 		ESTreeDecorators.loadClass();
 		ESStructureTypes.loadClass();

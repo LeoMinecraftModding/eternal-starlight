@@ -233,7 +233,7 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.readPersistentAngerSaveData(this.level(), compoundTag);
-		if (compoundTag.contains(TAG_HUNGER_LEVEL, CompoundTag.TAG_FLOAT)) {
+		if (compoundTag.contains(TAG_HUNGER_LEVEL, CompoundTag.TAG_ANY_NUMERIC)) {
 			hungerLevel = compoundTag.getFloat(TAG_HUNGER_LEVEL);
 		}
 	}

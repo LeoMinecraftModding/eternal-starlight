@@ -57,7 +57,7 @@ public class ESBiomeData {
 			.hasRivers(false)
 			.build());
 
-		context.register(STARLIGHT_TAIGA, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_TAIGA), 80, 30)
+		context.register(STARLIGHT_TAIGA, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_TAIGA), 75, 20)
 			.build());
 
 		context.register(DARK_SWAMP, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.DARK_SWAMP), 61, 5)
@@ -94,11 +94,11 @@ public class ESBiomeData {
 			.isOcean(true)
 			.build());
 
-		context.register(THE_ABYSS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.THE_ABYSS), -55, 5)
+		context.register(THE_ABYSS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.THE_ABYSS), -50, 5)
 			.isOcean(true)
 			.build());
 
-		context.register(THE_ABYSS_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.THE_ABYSS), -40, 3)
+		context.register(THE_ABYSS_TRANSITION, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.THE_ABYSS), -10, 3)
 			.isOcean(true)
 			.build());
 

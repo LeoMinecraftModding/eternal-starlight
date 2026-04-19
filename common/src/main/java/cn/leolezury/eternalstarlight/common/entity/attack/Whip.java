@@ -243,7 +243,7 @@ public abstract class Whip extends Entity {
 		} else {
 			firedFromWeapon = null;
 		}
-		if (compoundTag.contains(TAG_DAMAGE_SCALE, CompoundTag.TAG_FLOAT)) {
+		if (compoundTag.contains(TAG_DAMAGE_SCALE, CompoundTag.TAG_ANY_NUMERIC)) {
 			damageScale = compoundTag.getFloat(TAG_DAMAGE_SCALE);
 		}
 	}

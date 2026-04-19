@@ -232,6 +232,57 @@
                     {
                       "type": "minecraft:condition",
                       "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "eternal_starlight:starlit_sea",
+                          "eternal_starlight:spiral_kelp_forest"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:block",
+                        "result_state": {
+                          "Name": "eternal_starlight:dusted_gravel"
+                        }
+                      }
+                    },
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
+                        "type": "minecraft:biome",
+                        "biome_is": [
+                          "eternal_starlight:lush_shallow_sea"
+                        ]
+                      },
+                      "then_run": {
+                        "type": "minecraft:sequence",
+                        "sequence": [
+                          {
+                            "type": "minecraft:condition",
+                            "if_true": {
+                              "type": "minecraft:noise_threshold",
+                              "max_threshold": 0.025,
+                              "min_threshold": -0.0625,
+                              "noise": "minecraft:ice"
+                            },
+                            "then_run": {
+                              "type": "minecraft:block",
+                              "result_state": {
+                                "Name": "eternal_starlight:glowing_mossy_dusted_gravel"
+                              }
+                            }
+                          },
+                          {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "eternal_starlight:mossy_dusted_gravel"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "minecraft:condition",
+                      "if_true": {
                         "type": "minecraft:water",
                         "add_stone_depth": false,
                         "offset": -1,
@@ -324,57 +375,6 @@
                                 }
                               }
                             ]
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "type": "minecraft:condition",
-                      "if_true": {
-                        "type": "minecraft:biome",
-                        "biome_is": [
-                          "eternal_starlight:starlit_sea",
-                          "eternal_starlight:spiral_kelp_forest"
-                        ]
-                      },
-                      "then_run": {
-                        "type": "minecraft:block",
-                        "result_state": {
-                          "Name": "eternal_starlight:dusted_gravel"
-                        }
-                      }
-                    },
-                    {
-                      "type": "minecraft:condition",
-                      "if_true": {
-                        "type": "minecraft:biome",
-                        "biome_is": [
-                          "eternal_starlight:lush_shallow_sea"
-                        ]
-                      },
-                      "then_run": {
-                        "type": "minecraft:sequence",
-                        "sequence": [
-                          {
-                            "type": "minecraft:condition",
-                            "if_true": {
-                              "type": "minecraft:noise_threshold",
-                              "max_threshold": 0.025,
-                              "min_threshold": -0.0625,
-                              "noise": "minecraft:ice"
-                            },
-                            "then_run": {
-                              "type": "minecraft:block",
-                              "result_state": {
-                                "Name": "eternal_starlight:glowing_mossy_dusted_gravel"
-                              }
-                            }
-                          },
-                          {
-                            "type": "minecraft:block",
-                            "result_state": {
-                              "Name": "eternal_starlight:mossy_dusted_gravel"
-                            }
                           }
                         ]
                       }

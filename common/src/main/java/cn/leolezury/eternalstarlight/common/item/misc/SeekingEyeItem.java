@@ -34,7 +34,7 @@ public class SeekingEyeItem extends Item {
 		ItemStack stack = player.getItemInHand(hand);
 		player.startUsingItem(hand);
 		if (level instanceof ServerLevel serverLevel) {
-			TagKey<Structure> key = ESTags.Structures.BOSS_STRUCTURES;
+			TagKey<Structure> key = ESTags.Structures.BOSS_LANDMARKS;
 			ItemStack otherHandStack = player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
 			if (otherHandStack.is(ESTags.Items.GOLEM_FORGE_LOCATORS)) {
 				key = ESTags.Structures.GOLEM_FORGE;

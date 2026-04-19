@@ -18,7 +18,7 @@ public class ESStructureTagsProvider extends StructureTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider arg) {
-		tag(ESTags.Structures.BOSS_STRUCTURES)
+		tag(ESTags.Structures.BOSS_LANDMARKS)
 			.add(
 				ESStructures.GOLEM_FORGE,
 				ESStructures.CURSED_GARDEN

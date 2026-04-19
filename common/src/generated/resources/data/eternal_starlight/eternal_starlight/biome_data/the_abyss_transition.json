@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:the_abyss",
   "fluid": "minecraft:water",
   "has_rivers": true,
-  "height": -40,
+  "height": -10,
   "is_ocean": true,
   "variance": 3
 }

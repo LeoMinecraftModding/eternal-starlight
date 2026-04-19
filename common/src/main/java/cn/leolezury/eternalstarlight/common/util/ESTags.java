@@ -166,7 +166,7 @@ public class ESTags {
 	}
 
 	public static class Structures {
-		public static final TagKey<Structure> BOSS_STRUCTURES = create("boss_structures");
+		public static final TagKey<Structure> BOSS_LANDMARKS = create("boss_landmarks");
 		public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
 		public static final TagKey<Structure> CURSED_GARDEN = create("cursed_garden");
 		public static final TagKey<Structure> PORTAL_RUINS = create("portal_ruins");

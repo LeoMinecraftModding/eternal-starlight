@@ -53,7 +53,7 @@ public class GuidanceOfStarsSpell extends AbstractSpell {
 	@Override
 	public void onStop(LivingEntity entity, int ticks) {
 		if (ticks >= spellProperties().spellTicks() && entity.level() instanceof ServerLevel serverLevel) {
-			TagKey<Structure> key = ESTags.Structures.BOSS_STRUCTURES;
+			TagKey<Structure> key = ESTags.Structures.BOSS_LANDMARKS;
 			BlockPos blockPos = serverLevel.findNearestMapStructure(key, entity.blockPosition(), 100, false);
 			if (blockPos != null) {
 				Vec3 startPos = entity.getEyePosition();

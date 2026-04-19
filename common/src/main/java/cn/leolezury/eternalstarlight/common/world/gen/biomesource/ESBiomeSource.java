@@ -25,12 +25,9 @@ public class ESBiomeSource extends BiomeSource {
 		RiverEntry.CODEC.listOf().fieldOf("rivers").forGetter(o -> o.rivers)
 	).apply(instance, instance.stable(ESBiomeSource::new)));
 
-	private static final float NOISE_FREQUENCY = 1.5f;
-	private static final float GRAD_STEP = 12.0f;
-	private static final float REF_GRAD = 0.005f;
-	private static final float COMP_STRENGTH = 0.4f;
-	private static final float MIN_CORE_FACTOR = 0.4f;
-	private static final float MAX_CORE_FACTOR = 1.6f;
+	private static final float NOISE_FREQUENCY = 0.005f;
+	private static final float RIVER_NOISE_FREQUENCY = 0.001f;
+	private static final float RIVER_WARP_NOISE_FREQUENCY = 0.002f;
 	private static final int HEIGHT_GRID_SIZE = 10;
 	private static final int CACHE_SIZE = 8192;
 
@@ -41,6 +38,8 @@ public class ESBiomeSource extends BiomeSource {
 	private final FastNoise[] noises = new FastNoise[]{
 		makeNoise(seed), makeNoise(seed * 2L + 5L), makeNoise(seed * 3L + 10L)
 	};
+	private final FastNoise riverNoise = makeRiverNoise(seed);
+	private final FastNoise riverWarpNoise = makeRiverWarpNoise(seed * 2L + 5L);
 
 	private final Long2ObjectLinkedOpenHashMap<Holder<BiomeData>> biomeCache =
 		new Long2ObjectLinkedOpenHashMap<>(CACHE_SIZE + 1, 0.75f);
@@ -62,6 +61,8 @@ public class ESBiomeSource extends BiomeSource {
 			this.noises[0].setSeed((int) seed);
 			this.noises[1].setSeed((int) (seed * 2L + 5L));
 			this.noises[2].setSeed((int) (seed * 3L + 10L));
+			this.riverNoise.setSeed((int) seed);
+			this.riverWarpNoise.setSeed((int) (seed * 2L + 5L));
 			this.biomeCache.clear();
 			this.rawHeightCache.clear();
 			this.heightCache.clear();
@@ -71,6 +72,21 @@ public class ESBiomeSource extends BiomeSource {
 	private FastNoise makeNoise(long seed) {
 		FastNoise noise = new FastNoise((int) seed);
 		noise.setFrequency(NOISE_FREQUENCY);
+		noise.setFractalType(FastNoise.FractalType.FBM);
+		return noise;
+	}
+
+	private FastNoise makeRiverNoise(long seed) {
+		FastNoise noise = new FastNoise((int) seed);
+		noise.setFrequency(RIVER_NOISE_FREQUENCY);
+		noise.setFractalType(FastNoise.FractalType.FBM);
+		noise.setDomainWarpAmp(80.0f);
+		return noise;
+	}
+
+	private FastNoise makeRiverWarpNoise(long seed) {
+		FastNoise noise = new FastNoise((int) seed);
+		noise.setFrequency(RIVER_WARP_NOISE_FREQUENCY);
 		return noise;
 	}
 
@@ -116,34 +132,6 @@ public class ESBiomeSource extends BiomeSource {
 		return result;
 	}
 
-	private float riverNoise(float x, float z, int off) {
-		float fx = (x + off) * 0.001f;
-		float fz = (z + off) * 0.001f;
-		return noises[2].getNoise(fx, fz) * 0.5f
-			+ noises[2].getNoise(fx * 2, fz * 2) * 0.3f
-			+ noises[2].getNoise(fx * 3.5f, fz * 3.5f) * 0.2f;
-	}
-
-	private float smoothGradientMagnitude(float x, float z, int off, float step, int samples) {
-		float sum = 0;
-		for (int i = 0; i < samples; i++) {
-			float offX = (i * 0.371f) % step - step / 2;
-			float offZ = (i * 0.739f) % step - step / 2;
-			float px = x + offX;
-			float pz = z + offZ;
-
-			float vxp = riverNoise(px + step, pz, off);
-			float vxm = riverNoise(px - step, pz, off);
-			float vzp = riverNoise(px, pz + step, off);
-			float vzm = riverNoise(px, pz - step, off);
-
-			float gx = (vxp - vxm) / (2 * step);
-			float gz = (vzp - vzm) / (2 * step);
-			sum += Mth.sqrt(gx * gx + gz * gz);
-		}
-		return sum / samples;
-	}
-
 	private Holder<BiomeData> computeBiomeData(int bx, int by, int bz, Climate.Sampler sampler) {
 		Climate.TargetPoint target = sampler.sample(bx >> 2, by >> 2, bz >> 2);
 
@@ -155,24 +143,31 @@ public class ESBiomeSource extends BiomeSource {
 				boolean isOcean = value.isOcean();
 				if (!(isOcean && !river.canGenerateInOcean()) && !(!isOcean && river.canGenerateInOceanOnly())) {
 					int off = river.offset();
-					double rv = riverNoise(bx, bz, off);
-					double grad = smoothGradientMagnitude(bx, bz, off, GRAD_STEP, 3);
+					int riverX = bx + off;
+					int riverZ = bz + off;
 
-					grad = Math.max(0.0001, grad);
+					riverNoise.domainWarp(new FastNoise.Vector2(riverX, riverZ));
 
-					double ratio = grad / REF_GRAD;
-					double adjustedRatio = Math.pow(ratio, COMP_STRENGTH);
-					double coreEff = river.size() * Math.min(MAX_CORE_FACTOR, Math.max(MIN_CORE_FACTOR, adjustedRatio));
-					double shoreEff = river.transitionSize() * Math.min(MAX_CORE_FACTOR, Math.max(MIN_CORE_FACTOR, adjustedRatio));
+					float noiseValue = riverNoise.getNoise(riverX, riverZ);
 
-					shoreEff = Math.max(coreEff + 0.1, shoreEff);
+					float delta = 1.0f;
+					float nx1 = riverNoise.getNoise(riverX + delta, riverZ);
+					float nx2 = riverNoise.getNoise(riverX - delta, riverZ);
+					float nz1 = riverNoise.getNoise(riverX, riverZ + delta);
+					float nz2 = riverNoise.getNoise(riverX, riverZ - delta);
+					float gradX = (nx1 - nx2) / (2 * delta);
+					float gradZ = (nz1 - nz2) / (2 * delta);
 
-					// rivers are quite broken now
-					/*if (Math.abs(rv) < coreEff) {
+					float gradLength = (float) Math.sqrt(gradX * gradX + gradZ * gradZ);
+					if (gradLength < 0.0001f) gradLength = 0.0001f;
+
+					double riverValue = Math.abs(noiseValue) / gradLength;
+
+					if (riverValue < river.size()) {
 						return river.riverData();
-					} else if (Math.abs(rv) < shoreEff && river.transitionData().isPresent()) {
+					} else if (riverValue < river.transitionSize() && river.transitionData().isPresent()) {
 						return river.transitionData().get();
-					}*/
+					}
 				}
 			}
 		}
@@ -229,9 +224,9 @@ public class ESBiomeSource extends BiomeSource {
 		int base = data.height();
 		int variance = data.variance();
 		if (variance > 0) {
-			float n = noises[0].getNoise(bx * 0.004f, bz * 0.004f) * 0.7f
-				+ noises[1].getNoise(bx * 0.0016f, bz * 0.0016f) * 0.2f
-				+ noises[0].getNoise(bx * 0.0006f, bz * 0.0006f) * 0.1f;
+			float n = noises[0].getNoise(bx, bz) * 0.7f
+				+ noises[1].getNoise(bx * 0.4f, bz * 0.4f) * 0.2f
+				+ noises[0].getNoise(bx * 0.15f, bz * 0.15f) * 0.1f;
 			base += (int) (n * variance);
 		}
 		return base;
