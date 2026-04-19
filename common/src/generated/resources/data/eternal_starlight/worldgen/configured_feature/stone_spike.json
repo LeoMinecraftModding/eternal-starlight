@@ -1,4 +1,47 @@
 {
-  "type": "eternal_starlight:stone_spike",
-  "config": {}
+  "type": "eternal_starlight:spike",
+  "config": {
+    "height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 32,
+      "min_inclusive": 10
+    },
+    "minor_count": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 6,
+      "min_inclusive": 1
+    },
+    "minor_height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 17,
+      "min_inclusive": 5
+    },
+    "minor_radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 3
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 7,
+      "min_inclusive": 4
+    },
+    "spike": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:grimstone"
+          },
+          "weight": 8
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:glowing_grimstone"
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
 }

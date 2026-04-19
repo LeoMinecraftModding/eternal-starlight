@@ -74,7 +74,7 @@ public class ESBiomeData {
 			.hasRivers(false)
 			.build());
 
-		context.register(LUCENT_MYCELIUM_ISLE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.LUCENT_MYCELIUM_ISLE), 75, 14)
+		context.register(LUCENT_MYCELIUM_ISLE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.LUCENT_MYCELIUM_ISLE), 65, 10)
 			.hasRivers(false)
 			.build());
 

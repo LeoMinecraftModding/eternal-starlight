@@ -487,11 +487,6 @@ public class ESClientHandler {
 		if (player.level().dimension() == ESDimensions.STARLIGHT_KEY && camera.getFluidInCamera() == FogType.NONE && player.level().getBlockState(camera.getBlockPosition()).getFluidState().isEmpty() && fogMode == FogRenderer.FogMode.FOG_TERRAIN) {
 			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() - Mth.clamp(fogStartDecrement, 0, RenderSystem.getShaderFogStart() + 5));
 			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() - Mth.clamp(fogEndDecrement, 0, RenderSystem.getShaderFogEnd() - 50));
-
-			Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
-			if (biomeHolder.is(ESTags.Biomes.PERMAFROST)) {
-				RenderSystem.setShaderFogShape(FogShape.SPHERE);
-			}
 		}
 
 		AttributeInstance fogVision = player.getAttribute(ESAttributes.FOG_VISION.asHolder());

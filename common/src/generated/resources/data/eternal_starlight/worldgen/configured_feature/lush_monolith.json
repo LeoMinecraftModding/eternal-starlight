@@ -1,0 +1,86 @@
+{
+  "type": "eternal_starlight:pillar",
+  "config": {
+    "decoration_chance": 0.2,
+    "decorations": [
+      {
+        "feature": "eternal_starlight:cave_vine",
+        "placement": [
+          {
+            "type": "minecraft:environment_scan",
+            "allowed_search_condition": {
+              "type": "minecraft:matching_blocks",
+              "blocks": "minecraft:air"
+            },
+            "direction_of_search": "up",
+            "max_steps": 12,
+            "target_condition": {
+              "type": "minecraft:has_sturdy_face",
+              "direction": "down"
+            }
+          },
+          {
+            "type": "minecraft:random_offset",
+            "xz_spread": 0,
+            "y_spread": -1
+          }
+        ]
+      },
+      {
+        "feature": "eternal_starlight:cave_moss",
+        "placement": [
+          {
+            "type": "minecraft:environment_scan",
+            "allowed_search_condition": {
+              "type": "minecraft:matching_blocks",
+              "blocks": "minecraft:air"
+            },
+            "direction_of_search": "up",
+            "max_steps": 12,
+            "target_condition": {
+              "type": "minecraft:has_sturdy_face",
+              "direction": "down"
+            }
+          },
+          {
+            "type": "minecraft:random_offset",
+            "xz_spread": 0,
+            "y_spread": -1
+          }
+        ]
+      }
+    ],
+    "height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 25,
+      "min_inclusive": 15
+    },
+    "pillar": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:grimstone"
+          },
+          "weight": 8
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:glowing_grimstone"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 3
+    },
+    "rotation": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 30,
+      "min_inclusive": 15
+    }
+  }
+}

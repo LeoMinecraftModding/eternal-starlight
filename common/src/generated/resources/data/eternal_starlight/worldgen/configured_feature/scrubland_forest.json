@@ -1,20 +1,9 @@
 {
-  "type": "minecraft:random_selector",
+  "type": "eternal_starlight:noise_boolean_selector",
   "config": {
-    "default": "eternal_starlight:lunar_small_tree_checked",
-    "features": [
-      {
-        "chance": 0.9,
-        "feature": "eternal_starlight:lunar_small_tree_checked"
-      },
-      {
-        "chance": 0.07,
-        "feature": "eternal_starlight:lunar_tree_checked"
-      },
-      {
-        "chance": 0.03,
-        "feature": "eternal_starlight:huge_glowing_mushroom_checked"
-      }
-    ]
+    "feature_false": "eternal_starlight:lunar_huge_tree_checked",
+    "feature_true": "eternal_starlight:lunar_small_tree_checked",
+    "noise_level": -0.4,
+    "noise_scale": 0.01
   }
 }

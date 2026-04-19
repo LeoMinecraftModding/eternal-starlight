@@ -6,8 +6,8 @@
   "downfall": 0.5,
   "effects": {
     "fog_color": 5195923,
-    "foliage_color": 5195941,
-    "grass_color": 5195941,
+    "foliage_color": 5195923,
+    "grass_color": 5195923,
     "music": {
       "max_delay": 12000,
       "min_delay": 1200,
@@ -30,7 +30,7 @@
       "eternal_starlight:hot_spring"
     ],
     [
-      "eternal_starlight:stone_spike"
+      "eternal_starlight:lush_monolith"
     ],
     [],
     [],

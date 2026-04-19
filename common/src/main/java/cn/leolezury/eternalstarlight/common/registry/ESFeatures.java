@@ -18,14 +18,14 @@ public class ESFeatures {
 	public static final RegistrationProvider<Feature<?>> FEATURES = RegistrationProvider.get(Registries.FEATURE, EternalStarlight.ID);
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> FINAL_MODIFICATION = FEATURES.register("final_modification", () -> new FinalModificationFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<ESLakeFeature.Configuration>> LAKE = FEATURES.register("lake", () -> new ESLakeFeature(ESLakeFeature.Configuration.CODEC));
-	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STONE_SPIKE = FEATURES.register("stone_spike", () -> new StoneSpikeFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> GLACITE = FEATURES.register("glacite", () -> new GlaciteFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ICICLE = FEATURES.register("icicle", () -> new IcicleFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<HugeMarimoldFeature.Configuration>> HUGE_MARIMOLD = FEATURES.register("huge_marimold", () -> new HugeMarimoldFeature(HugeMarimoldFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> HUGE_GLOWING_MUSHROOM = FEATURES.register("huge_glowing_mushroom", () -> new HugeGlowingMushroomFeature(HugeMushroomFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> BOULDERSHROOM = FEATURES.register("bouldershroom", () -> new BouldershroomFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STARLIGHT_CRYSTAL = FEATURES.register("starlight_crystal", () -> new StarlightCrystalFeature(NoneFeatureConfiguration.CODEC));
-	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ICE_SPIKE = FEATURES.register("ice_spike", () -> new IceSpikeFeature(NoneFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<SpikeFeature.Configuration>> SPIKE = FEATURES.register("spike", () -> new SpikeFeature(SpikeFeature.Configuration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<PillarFeature.Configuration>> PILLAR = FEATURES.register("pillar", () -> new PillarFeature(PillarFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STELLAGMITE = FEATURES.register("stellagmite", () -> new StellagmiteFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<FallenLogFeature.Configuration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(FallenLogFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<LeavesPileFeature.Configuration>> LEAVES_PILE = FEATURES.register("leaves_pile", () -> new LeavesPileFeature(LeavesPileFeature.Configuration.CODEC));
@@ -44,6 +44,7 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ABYSSAL_CAVE = FEATURES.register("abyssal_cave", () -> new AbyssalCaveFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<VelvetumossFeature.Configuration>> VELVETUMOSS = FEATURES.register("velvetumoss", () -> new VelvetumossFeature(VelvetumossFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<BlockPatchFeature.Configuration>> BLOCK_PATCH = FEATURES.register("block_patch", () -> new BlockPatchFeature(BlockPatchFeature.Configuration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<NoiseBooleanSelectorFeature.Configuration>> NOISE_BOOLEAN_SELECTOR = FEATURES.register("noise_boolean_selector", () -> new NoiseBooleanSelectorFeature(NoiseBooleanSelectorFeature.Configuration.CODEC));
 
 	public static void loadClass() {
 	}

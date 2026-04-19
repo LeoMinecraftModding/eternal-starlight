@@ -1,0 +1,39 @@
+{
+  "type": "eternal_starlight:pillar",
+  "config": {
+    "decoration_chance": 0.0,
+    "decorations": [],
+    "height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 25,
+      "min_inclusive": 15
+    },
+    "pillar": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "eternal_starlight:grimstone"
+          },
+          "weight": 8
+        },
+        {
+          "data": {
+            "Name": "eternal_starlight:glowing_grimstone"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 3
+    },
+    "rotation": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 30,
+      "min_inclusive": 15
+    }
+  }
+}

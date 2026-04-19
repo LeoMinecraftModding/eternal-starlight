@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:lucent_mycelium_isle",
   "fluid": "minecraft:water",
   "has_rivers": false,
-  "height": 75,
+  "height": 65,
   "is_ocean": false,
-  "variance": 14
+  "variance": 10
 }

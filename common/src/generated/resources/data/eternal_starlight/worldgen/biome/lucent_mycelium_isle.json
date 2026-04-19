@@ -7,7 +7,7 @@
   "effects": {
     "fog_color": 5195923,
     "foliage_color": 5195923,
-    "grass_color": 6444875,
+    "grass_color": 5260652,
     "music": {
       "max_delay": 12000,
       "min_delay": 1200,
@@ -30,7 +30,7 @@
       "eternal_starlight:hot_spring"
     ],
     [
-      "eternal_starlight:stone_spike"
+      "eternal_starlight:monolith"
     ],
     [],
     [],
@@ -65,7 +65,8 @@
       "eternal_starlight:cave_moss_vein",
       "eternal_starlight:cave_moss_patch",
       "eternal_starlight:bouldershroom",
-      "eternal_starlight:mushroom_forest"
+      "eternal_starlight:mushroom_forest",
+      "eternal_starlight:mushroom_vegetation"
     ],
     [
       "minecraft:freeze_top_layer",
@@ -73,20 +74,7 @@
     ]
   ],
   "has_precipitation": true,
-  "spawn_costs": {
-    "eternal_starlight:lonestar_skeleton": {
-      "charge": 1.0,
-      "energy_budget": 0.5
-    },
-    "eternal_starlight:nightfall_spider": {
-      "charge": 1.0,
-      "energy_budget": 0.5
-    },
-    "eternal_starlight:seeker": {
-      "charge": 1.0,
-      "energy_budget": 0.5
-    }
-  },
+  "spawn_costs": {},
   "spawners": {
     "ambient": [
       {
@@ -118,26 +106,7 @@
       }
     ],
     "misc": [],
-    "monster": [
-      {
-        "type": "eternal_starlight:nightfall_spider",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 15
-      },
-      {
-        "type": "eternal_starlight:lonestar_skeleton",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 10
-      },
-      {
-        "type": "eternal_starlight:seeker",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 15
-      }
-    ],
+    "monster": [],
     "underground_water_creature": [],
     "water_ambient": [],
     "water_creature": []
