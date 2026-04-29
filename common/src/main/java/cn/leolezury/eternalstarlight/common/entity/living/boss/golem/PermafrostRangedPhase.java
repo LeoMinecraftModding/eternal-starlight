@@ -29,7 +29,7 @@ public class PermafrostRangedPhase extends BehaviorPhase<Permafrost> {
 			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			Vec3 launchPos = entity.position().add(0, entity.getBbHeight() / 2f, 0);
 			if (entity.getBehaviorTicks() >= 21 && entity.getBehaviorTicks() <= 45) {
-				performMeleeAttack(entity, 1.5, true, 360, e -> {
+				performDefaultMeleeAttack(entity, 1.5, true, 360, e -> {
 					e.hurtMarked = true;
 					e.addDeltaMovement(e.position().subtract(entity.position()).normalize().scale(2));
 				});

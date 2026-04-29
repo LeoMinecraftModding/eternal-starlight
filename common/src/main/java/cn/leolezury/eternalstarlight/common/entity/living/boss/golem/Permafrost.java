@@ -128,7 +128,7 @@ public class Permafrost extends ESBoss {
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.permafrost.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.3)
 			.add(Attributes.FLYING_SPEED, 0.8)
-			.add(Attributes.ATTACK_DAMAGE, 12)
+			.add(Attributes.ATTACK_DAMAGE, 6)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 0.75);
 	}
 
@@ -282,11 +282,6 @@ public class Permafrost extends ESBoss {
 	@Override
 	protected SoundEvent getDeathSound() {
 		return ESSoundEvents.PERMAFROST_DEATH.get();
-	}
-
-	@Override
-	protected boolean isLootChestTooFar(BlockPos pos) {
-		return position().distanceTo(pos.getCenter()) > 10;
 	}
 
 	@Override

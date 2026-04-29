@@ -12,6 +12,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.random.WeightedEntry;
@@ -53,6 +54,8 @@ public abstract class MechanicalSpawner {
 	private SpawnData nextSpawnData;
 	private double spin;
 	private double oSpin;
+	private float animationScale;
+	private float oAnimationScale;
 	private int minSpawnDelay = 20;
 	private int maxSpawnDelay = 30;
 	private int spawnCount = 1;
@@ -78,8 +81,10 @@ public abstract class MechanicalSpawner {
 	}
 
 	public void clientTick(Level level, BlockPos pos) {
+		BlockState state = level.getBlockState(pos);
 		this.oSpin = this.spin;
-		if (this.isNearPlayer(level, pos, this.requiredPlayerRange)) {
+		this.oAnimationScale = this.animationScale;
+		if (this.isNearPlayer(level, pos, this.requiredPlayerRange) && state.getValue(MechanicalSpawnerBlock.POWER) > 0) {
 			RandomSource random = level.getRandom();
 			double x = pos.getX() + random.nextDouble();
 			double y = pos.getY() + random.nextDouble() * 2 - 1;
@@ -91,10 +96,14 @@ public abstract class MechanicalSpawner {
 			}
 
 			this.spin = (this.spin + (1000.0 / (this.spawnDelay + 200.0))) % 360.0;
+			this.animationScale = Mth.clamp(this.animationScale + 0.5F, 0, 1);
+		} else {
+			this.animationScale = Mth.clamp(this.animationScale - 0.2F, 0, 1);
 		}
 	}
 
 	public void serverTick(ServerLevel serverLevel, BlockPos pos) {
+		BlockState state = serverLevel.getBlockState(pos);
 		RandomSource random = serverLevel.getRandom();
 		if (this.isNearPlayer(serverLevel, pos, this.requiredPlayerRange)) {
 			if (this.spawnDelay == -1) {
@@ -102,7 +111,9 @@ public abstract class MechanicalSpawner {
 			}
 
 			if (this.spawnDelay > 0) {
-				this.spawnDelay--;
+				if (state.getValue(MechanicalSpawnerBlock.POWER) > 0) {
+					this.spawnDelay--;
+				}
 			} else if (serverLevel.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
 				boolean success = false;
 				SpawnData spawnData = this.getOrCreateNextSpawnData(serverLevel, random, pos);
@@ -317,5 +328,13 @@ public abstract class MechanicalSpawner {
 
 	public double getOSpin() {
 		return this.oSpin;
+	}
+
+	public float getAnimationScale() {
+		return this.animationScale;
+	}
+
+	public float getOAnimationScale() {
+		return this.oAnimationScale;
 	}
 }

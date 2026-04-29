@@ -77,7 +77,10 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.OXIDIZED_GOLEM_STEEL_NUGGET.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(5, 12)))))
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.FROZEN_TUBE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(12, 18))))));
+					.add(LootItem.lootTableItem(ESItems.FROZEN_TUBE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(12, 18)))))
+				.withPool(LootPool.lootPool()
+					.when(LootItemRandomChanceCondition.randomChance(0.5f))
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ABSOLUTE_ZERO)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
 
 		consumer.accept(ESLootTables.BOSS_STARLIGHT_GOLEM,
 			LootTable.lootTable()

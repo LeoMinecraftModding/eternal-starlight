@@ -5,10 +5,16 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
+	private final List<Entity> hitEntities = new ArrayList<>();
+
 	public static final int ID = 7;
 
 	public GatekeeperDashPhase() {
@@ -24,6 +30,7 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	public void onStart(TheGatekeeper entity) {
 		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_SWORD.get().getDefaultInstance());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
+		hitEntities.clear();
 	}
 
 	@Override
@@ -37,8 +44,11 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 			}
 			if (entity.getBehaviorTicks() >= 16 && entity.getBehaviorTicks() <= 35) {
 				performMeleeAttack(entity, 1.5, true, 360, e -> {
-					e.hurtMarked = true;
-					e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(0.2, 0.1, 0.2));
+					if (!hitEntities.contains(e) && entity.doHurtTarget(e)) {
+						e.hurtMarked = true;
+						e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(0.2, 0.1, 0.2));
+						hitEntities.add(e);
+					}
 				});
 			}
 		}

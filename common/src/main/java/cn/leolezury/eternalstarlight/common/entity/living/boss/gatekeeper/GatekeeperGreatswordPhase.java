@@ -30,7 +30,7 @@ public class GatekeeperGreatswordPhase extends BehaviorPhase<TheGatekeeper> {
 		LivingEntity target = entity.getTarget();
 		int ticks = entity.getBehaviorTicks();
 		if ((ticks == 15 || ticks == 33) && target != null) {
-			performMeleeAttack(entity, 3, true, 120, e -> {
+			performDefaultMeleeAttack(entity, 3, true, 120, e -> {
 				e.hurtMarked = true;
 				e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(0.3, 0.2, 0.3));
 			});

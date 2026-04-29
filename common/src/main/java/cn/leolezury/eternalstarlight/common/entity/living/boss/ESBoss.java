@@ -283,15 +283,8 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 		return state.isAir() || (state.canBeReplaced() && ESPlatform.INSTANCE.postEntityDestroyBlockEvent(level(), pos, this));
 	}
 
-	protected boolean isLootChestTooFar(BlockPos pos) {
-		return position().distanceTo(pos.getCenter()) > 20;
-	}
-
 	protected Optional<BlockPos> getLootChestPos() {
 		BlockPos chestPos = blockPosition();
-		if (level().dimension() == initialPos.dimension() && !isLootChestTooFar(BlockPos.containing(initialPos.pos()))) {
-			chestPos = BlockPos.containing(initialPos.pos());
-		}
 		while (canBossLootChestReplace(chestPos, level().getBlockState(chestPos)) && chestPos.getY() > level().getMinBuildHeight()) {
 			chestPos = chestPos.below();
 		}

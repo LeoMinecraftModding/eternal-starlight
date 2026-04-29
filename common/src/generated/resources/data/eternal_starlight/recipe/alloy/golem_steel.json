@@ -1,0 +1,29 @@
+{
+  "type": "eternal_starlight:alloy",
+  "burn_time": 400,
+  "ingredients": [
+    {
+      "tag": "c:ingots/deepsilver"
+    },
+    {
+      "tag": "c:ingots/deepsilver"
+    },
+    {
+      "tag": "c:ingots/deepsilver"
+    },
+    {
+      "tag": "c:nuggets/golem_steel"
+    },
+    {
+      "tag": "c:nuggets/golem_steel"
+    }
+  ],
+  "results": [
+    {
+      "amount": 1,
+      "item": {
+        "id": "eternal_starlight:golem_steel_ingot"
+      }
+    }
+  ]
+}

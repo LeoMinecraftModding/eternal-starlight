@@ -84,7 +84,7 @@ public class FrozenTube extends ThrowableProjectile implements TrailOwner {
 							level().setBlockAndUpdate(pos, Blocks.ICE.defaultBlockState());
 						}
 						if (level().getBlockState(pos).is(Blocks.LAVA) && level().getFluidState(pos).isSource() && blockPosition().distSqr(pos) <= 2 * 2) {
-							level().setBlockAndUpdate(pos, Blocks.MAGMA_BLOCK.defaultBlockState());
+							level().setBlockAndUpdate(pos, Blocks.OBSIDIAN.defaultBlockState());
 						}
 					}
 				}

@@ -271,7 +271,7 @@ public class CrystallizedMoth extends TamableAnimal implements FlyingAnimal, Neu
 				this.heal(2.0F * f);
 				return InteractionResult.sidedSuccess(this.level().isClientSide());
 			}
-			if (itemStack.getItem() == ESItems.LUNARIS_CACTUS_GEL.get()) {
+			if (itemStack.is(ESItems.LUNARIS_CACTUS_GEL.get())) {
 				itemStack.consume(1, player);
 				if (this.random.nextInt(5) == 0) {
 					ItemEntity itemEntity = this.spawnAtLocation(ESItems.SHIVERING_GEL.get(), 1);

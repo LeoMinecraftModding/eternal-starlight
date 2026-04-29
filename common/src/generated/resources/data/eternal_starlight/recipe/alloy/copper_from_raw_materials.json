@@ -1,0 +1,49 @@
+{
+  "type": "eternal_starlight:alloy",
+  "burn_time": 400,
+  "ingredients": [
+    {
+      "tag": "c:raw_materials/copper"
+    },
+    {
+      "tag": "c:raw_materials/copper"
+    },
+    {
+      "tag": "c:raw_materials/copper"
+    },
+    {
+      "item": "eternal_starlight:starcore"
+    },
+    {
+      "item": "eternal_starlight:saltpeter_powder"
+    }
+  ],
+  "results": [
+    {
+      "amount": 4,
+      "item": {
+        "id": "minecraft:copper_ingot"
+      }
+    },
+    {
+      "amount": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 3,
+        "min_inclusive": 0
+      },
+      "item": {
+        "id": "eternal_starlight:dimslag"
+      }
+    },
+    {
+      "amount": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 3,
+        "min_inclusive": 0
+      },
+      "item": {
+        "id": "eternal_starlight:dimslag"
+      }
+    }
+  ]
+}

@@ -214,7 +214,7 @@ public class ESCommonHandler {
 			tooltip.add(CommonComponents.EMPTY);
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".flowglaze_shield").withColor(0x8ed6b0));
 		}
-		if (player != null && lookup != null && itemStack.is(ESTags.Items.SEEDS_LAUNCHER_AMMO) && player.getInventory().contains(stack -> stack.getItem() == ESItems.SEEDS_LAUNCHER.get())) {
+		if (player != null && lookup != null && itemStack.is(ESTags.Items.SEEDS_LAUNCHER_AMMO) && player.getInventory().contains(stack -> stack.is(ESItems.SEEDS_LAUNCHER.get()))) {
 			tooltip.add(CommonComponents.EMPTY);
 			SeedsLauncherAmmoType type = SeedsLauncherAmmoType.getAmmoType(lookup, itemStack.getItem()).value();
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".seeds_launcher.ammo").withStyle(ChatFormatting.GRAY));
@@ -478,7 +478,7 @@ public class ESCommonHandler {
 	public static void onLivingDeath(LivingEntity entity, DamageSource source) {
 		if (entity.hasEffect(ESMobEffects.STARFIRE.asHolder())) {
 			for (LivingEntity living : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3))) {
-				if (living != entity && living != source.getDirectEntity()) {
+				if (living != entity && ESEntityUtil.shouldHarm(source.getEntity(), living)) {
 					MobEffectInstance instance = entity.getEffect(ESMobEffects.STARFIRE.asHolder());
 					if (instance != null) {
 						living.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), Math.max(instance.getDuration() / 2, 20)));
@@ -538,6 +538,8 @@ public class ESCommonHandler {
 							CustomData newData = null;
 							if (variant.is(ESPaintingVariants.ENERGIZED)) {
 								newData = data.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.ENERGIZED_SPECIAL)).getOrThrow();
+							} else if (variant.is(ESPaintingVariants.ABSOLUTE_ZERO)) {
+								newData = data.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.ABSOLUTE_ZERO_SPECIAL)).getOrThrow();
 							} else if (variant.is(ESPaintingVariants.MONSTROUS)) {
 								newData = data.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.MONSTROUS_SPECIAL)).getOrThrow();
 							}
@@ -546,9 +548,9 @@ public class ESCommonHandler {
 								copy.set(DataComponents.ENTITY_DATA, newData);
 								item.setItem(copy);
 								item.addDeltaMovement(new Vec3(0, 0.75, 0));
+								level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
 							}
 						}
-						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
 					} else if (content.is(ESTags.Items.ACCESSORIES)) {
 						item.setItem(ESItems.BUTTERFLY_WINGS_AMULET.get().getDefaultInstance());
 						item.addDeltaMovement(new Vec3(0, 0.75, 0));
@@ -556,7 +558,7 @@ public class ESCommonHandler {
 					}
 				}
 			} else {
-				if ((item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().getItem() == ESItems.MANA_CRYSTAL_SHARD.get())) {
+				if ((item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().is(ESItems.MANA_CRYSTAL_SHARD.get()))) {
 					EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(item.getItem().getItem() instanceof ManaCrystalItem crystalItem ? crystalItem.getManaType() : ManaType.LUNAR, item.position().add(0, item.getBbHeight() / 2, 0));
 				}
 			}

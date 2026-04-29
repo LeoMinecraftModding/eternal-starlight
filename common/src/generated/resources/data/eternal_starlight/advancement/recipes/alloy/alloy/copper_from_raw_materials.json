@@ -1,0 +1,63 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:raw_materials/copper"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_saltpeter_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:saltpeter_powder"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_starcore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:starcore"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:alloy/copper_from_raw_materials"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_copper_ore",
+      "has_starcore",
+      "has_saltpeter_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:alloy/copper_from_raw_materials"
+    ]
+  }
+}

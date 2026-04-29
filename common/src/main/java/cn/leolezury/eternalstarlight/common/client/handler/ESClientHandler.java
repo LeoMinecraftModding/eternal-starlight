@@ -110,6 +110,7 @@ public class ESClientHandler {
 	public static int oldSeedsLauncherAnimTicks;
 	public static int seedsLauncherAnimTicks;
 	public static final MultiBufferSource.BufferSource DELAYED_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
+	public static final MultiBufferSource.BufferSource AFTER_LEVEL_BUFFER_SOURCE = new DelayedMultiBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE));
 	private static Matrix4f modelViewMatrix = new Matrix4f();
 	public static boolean isHalloween;
 
@@ -412,6 +413,23 @@ public class ESClientHandler {
 		float aurora = Mth.lerp(partialTicks, oldAuroraIntensity, auroraIntensity);
 		if (aurora > 0 && Minecraft.getInstance().level != null) {
 			renderSkyShader(ESShaders.getAurora(), aurora);
+		}
+	}
+
+	public static void onAfterRenderLevel() {
+		RenderSystem.enableCull();
+		RenderSystem.enableBlend();
+		RenderSystem.enableDepthTest();
+		RenderSystem.depthMask(false);
+		Matrix4f matrix4f = new Matrix4f(RenderSystem.getModelViewMatrix());
+		RenderSystem.getModelViewMatrix().set(modelViewMatrix);
+		if (Minecraft.useShaderTransparency()) {
+			Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
+		}
+		AFTER_LEVEL_BUFFER_SOURCE.endBatch();
+		RenderSystem.getModelViewMatrix().set(matrix4f);
+		if (Minecraft.useShaderTransparency() && Minecraft.getInstance().levelRenderer.getCloudsTarget() != null) {
+			Minecraft.getInstance().levelRenderer.getCloudsTarget().bindWrite(false);
 		}
 	}
 

@@ -1,34 +1,7 @@
 {
   "variants": {
-    "facing=east,half=lower": {
-      "model": "eternal_starlight:block/mechanical_spawner_lower",
-      "y": 90
-    },
-    "facing=east,half=upper": {
-      "model": "eternal_starlight:block/mechanical_spawner_upper",
-      "y": 90
-    },
-    "facing=north,half=lower": {
-      "model": "eternal_starlight:block/mechanical_spawner_lower"
-    },
-    "facing=north,half=upper": {
-      "model": "eternal_starlight:block/mechanical_spawner_upper"
-    },
-    "facing=south,half=lower": {
-      "model": "eternal_starlight:block/mechanical_spawner_lower",
-      "y": 180
-    },
-    "facing=south,half=upper": {
-      "model": "eternal_starlight:block/mechanical_spawner_upper",
-      "y": 180
-    },
-    "facing=west,half=lower": {
-      "model": "eternal_starlight:block/mechanical_spawner_lower",
-      "y": 270
-    },
-    "facing=west,half=upper": {
-      "model": "eternal_starlight:block/mechanical_spawner_upper",
-      "y": 270
+    "": {
+      "model": "eternal_starlight:block/mechanical_spawner"
     }
   }
 }

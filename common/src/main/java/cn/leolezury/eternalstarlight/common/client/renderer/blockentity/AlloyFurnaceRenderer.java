@@ -25,8 +25,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
 
 public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlockEntity> {
-	private final AlloyFurnaceModel furnaceModel;
-
 	private static final ResourceLocation FURNACE_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace/alloy_furnace.png");
 	private static final ResourceLocation OXIDIZED_FURNACE_TEXTURE = EternalStarlight.id("textures/entity/alloy_furnace/oxidized_alloy_furnace.png");
 	private static final List<ResourceLocation> LIT_TEXTURES = List.of(
@@ -42,6 +40,8 @@ public class AlloyFurnaceRenderer implements BlockEntityRenderer<AlloyFurnaceBlo
 		EternalStarlight.id("textures/entity/alloy_furnace/oxidized_alloy_furnace_fan_0.png"),
 		EternalStarlight.id("textures/entity/alloy_furnace/oxidized_alloy_furnace_fan_1.png")
 	);
+
+	private final AlloyFurnaceModel furnaceModel;
 
 	public AlloyFurnaceRenderer(BlockEntityRendererProvider.Context context) {
 		this.furnaceModel = new AlloyFurnaceModel(context.bakeLayer(AlloyFurnaceModel.LAYER_LOCATION));

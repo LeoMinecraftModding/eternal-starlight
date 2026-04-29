@@ -53,5 +53,8 @@ public class ClientEvents {
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_WEATHER) {
 			ESClientHandler.onAfterRenderWeather(event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
+		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_LEVEL) {
+			ESClientHandler.onAfterRenderLevel();
+		}
 	}
 }

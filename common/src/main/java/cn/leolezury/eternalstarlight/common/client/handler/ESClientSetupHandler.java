@@ -1091,6 +1091,7 @@ public class ESClientSetupHandler {
 		strategy.register(CrescentSpearModel.LAYER_LOCATION, CrescentSpearModel::createBodyLayer);
 
 		// block entities
+		strategy.register(MechanicalSpawnerRenderer.MechanicalSpawnerModel.LAYER_LOCATION, MechanicalSpawnerRenderer.MechanicalSpawnerModel::createLayer);
 		strategy.register(LootChestRenderer.LootChestModel.LAYER_LOCATION, LootChestRenderer.LootChestModel::createLayer);
 		strategy.register(AlloyFurnaceRenderer.AlloyFurnaceModel.LAYER_LOCATION, AlloyFurnaceRenderer.AlloyFurnaceModel::createLayer);
 		strategy.register(SolarEggRenderer.SolarEggModel.LAYER_LOCATION, SolarEggRenderer.SolarEggModel::createLayer);

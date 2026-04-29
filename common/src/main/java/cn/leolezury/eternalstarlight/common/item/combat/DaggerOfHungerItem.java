@@ -88,7 +88,8 @@ public class DaggerOfHungerItem extends DualWieldingSwordItem {
 
 	@Override
 	public boolean isBarVisible(ItemStack stack) {
-		return true;
+		float hungerLevel = Mth.clamp(stack.getOrDefault(ESDataComponents.HUNGER_LEVEL.get(), 0f), -1, 1);
+		return hungerLevel < 1;
 	}
 
 	@Override

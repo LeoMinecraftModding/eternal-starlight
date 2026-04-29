@@ -68,6 +68,7 @@ import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
 import net.neoforged.neoforge.registries.*;
@@ -389,6 +390,14 @@ public class ESNeoPlatform implements ESPlatform {
 	@Override
 	public boolean canBoatInFluid(Boat boat, FluidState state) {
 		return boat.canBoatInFluid(state);
+	}
+
+	@Override
+	public Entity getPartEntityParent(Entity entity) {
+		if (entity instanceof PartEntity<?> part) {
+			return part.getParent();
+		}
+		return null;
 	}
 
 	@Override

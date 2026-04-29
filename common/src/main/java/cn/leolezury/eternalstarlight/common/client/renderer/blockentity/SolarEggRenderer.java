@@ -18,9 +18,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SolarEggRenderer implements BlockEntityRenderer<SolarEggBlockEntity> {
-	private final SolarEggModel eggModel;
-
 	private static final ResourceLocation EGG_TEXTURE = EternalStarlight.id("textures/entity/solar_egg.png");
+
+	private final SolarEggModel eggModel;
 
 	public SolarEggRenderer(BlockEntityRendererProvider.Context context) {
 		this.eggModel = new SolarEggModel(context.bakeLayer(SolarEggModel.LAYER_LOCATION));

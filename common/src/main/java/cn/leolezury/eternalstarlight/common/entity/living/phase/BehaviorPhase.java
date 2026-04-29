@@ -106,22 +106,27 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 		return Mth.degreesDifferenceAbs(angle, yAngle + 90) <= maxDiff;
 	}
 
-	public void performMeleeAttack(T entity, double range) {
-		performMeleeAttack(entity, range, false, 0, e -> {
+	public void performDefaultMeleeAttack(T entity, double range) {
+		performDefaultMeleeAttack(entity, range, false, 0, e -> {
 		});
 	}
 
-	public void performMeleeAttack(T entity, double range, boolean attackOtherEnemies, float maxAngleForOtherEnemies, Consumer<LivingEntity> onSuccess) {
+	public void performDefaultMeleeAttack(T entity, double range, boolean attackOtherEnemies, float maxAngleForOtherEnemies, Consumer<LivingEntity> onSuccess) {
+		performMeleeAttack(entity, range, attackOtherEnemies, maxAngleForOtherEnemies, living -> {
+			if (entity.doHurtTarget(living)) {
+				onSuccess.accept(living);
+			}
+		});
+	}
+
+	public void performMeleeAttack(T entity, double range, boolean attackOtherEnemies, float maxAngleForOtherEnemies, Consumer<LivingEntity> hurt) {
 		if (entity instanceof Targeting targeting) {
 			LivingEntity target = targeting.getTarget();
 			for (LivingEntity livingEntity : entity.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, entity, entity.getBoundingBox().inflate(range))) {
 				if (livingEntity == target || (attackOtherEnemies && livingEntity instanceof Targeting t && t.getTarget() == entity
 					&& (isFacingEntity(entity, livingEntity, maxAngleForOtherEnemies, entity.getYRot())
-					|| isFacingEntity(entity, livingEntity, maxAngleForOtherEnemies, entity.yBodyRot)
-					|| isFacingEntity(entity, livingEntity, maxAngleForOtherEnemies, entity.yHeadRot)))) {
-					if (entity.doHurtTarget(livingEntity)) {
-						onSuccess.accept(livingEntity);
-					}
+					|| isFacingEntity(entity, livingEntity, maxAngleForOtherEnemies, entity.yBodyRot)))) {
+					hurt.accept(livingEntity);
 				}
 			}
 		}

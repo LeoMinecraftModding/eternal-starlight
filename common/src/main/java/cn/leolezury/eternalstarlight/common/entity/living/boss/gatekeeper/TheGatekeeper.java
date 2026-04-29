@@ -540,12 +540,14 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			return false;
 		}
 		if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !(ESConfig.INSTANCE.mobsConfig.theGatekeeper.canAlwaysHurtWhenFighting() && isActivated()) && (source.getEntity() == null || getTarget() == null || getBehaviorState() == 0)) {
-			if (getBehaviorState() == 0 && source.getEntity() != null) {
-				level().broadcastEntityEvent(this, EVENT_BLOCK);
-			}
-			if (level() instanceof ServerLevel serverLevel && amount >= 7) {
-				serverLevel.sendParticles(ESParticles.PARRY.get(), getX(), getY() + getBbHeight() / 2, getZ(), 8, 0, 0, 0, 0.2 + getRandom().nextFloat() * 0.2);
-				playSound(ESSoundEvents.THE_GATEKEEPER_PARRY.get(), getSoundVolume(), getVoicePitch());
+			if (isActivated()) {
+				if (getBehaviorState() == 0 && source.getEntity() != null) {
+					level().broadcastEntityEvent(this, EVENT_BLOCK);
+				}
+				if (level() instanceof ServerLevel serverLevel && amount >= 7) {
+					serverLevel.sendParticles(ESParticles.PARRY.get(), getX(), getY() + getBbHeight() / 2, getZ(), 8, 0, 0, 0, 0.2 + getRandom().nextFloat() * 0.2);
+					playSound(ESSoundEvents.THE_GATEKEEPER_PARRY.get(), getSoundVolume(), getVoicePitch());
+				}
 			}
 			return false;
 		}

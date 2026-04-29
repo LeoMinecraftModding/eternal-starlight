@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_grimstone_deepsilver_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:ores/deepsilver"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_saltpeter_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:saltpeter_powder"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:alloy/deepsilver_from_ores"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_grimstone_deepsilver_ore",
+      "has_saltpeter_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:alloy/deepsilver_from_ores"
+    ]
+  }
+}

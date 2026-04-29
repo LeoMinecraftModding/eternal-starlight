@@ -31,6 +31,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.boss.EnderDragonPart;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
@@ -203,6 +204,14 @@ public interface ESPlatform {
 	// dispenser
 	default boolean canBoatInFluid(Boat boat, FluidState state) {
 		return state.is(FluidTags.WATER);
+	}
+
+	// part entity
+	default Entity getPartEntityParent(Entity entity) {
+		if (entity instanceof EnderDragonPart part) {
+			return part.parentMob;
+		}
+		return null;
 	}
 
 	// networking

@@ -47,7 +47,7 @@ public class ESAccessoryUtil {
 
 	public static void removeAccessory(ItemStack equipmentStack, ItemStack accessoryStack) {
 		List<ItemStack> accessories = new ArrayList<>(equipmentStack.getOrDefault(ESDataComponents.ACCESSORIES.get(), List.of()));
-		accessories.removeIf(stack -> stack.getItem() == accessoryStack.getItem());
+		accessories.removeIf(stack -> stack.is(accessoryStack.getItem()));
 		equipmentStack.set(ESDataComponents.ACCESSORIES.get(), new ItemStackList(Collections.unmodifiableList(accessories)));
 	}
 
@@ -64,7 +64,7 @@ public class ESAccessoryUtil {
 				ItemStack remain = slot.safeInsert(removed.copy());
 				applyAccessory(stack, remain);
 			}
-		} else if (accessory != null && stack.is(accessory.combinationTarget()) && getAccessorySlotCount(stack) > accessories.size() && accessories.stream().noneMatch(s -> s.getItem() == slotItem.getItem())) {
+		} else if (accessory != null && stack.is(accessory.combinationTarget()) && getAccessorySlotCount(stack) > accessories.size() && accessories.stream().noneMatch(s -> s.is(slotItem.getItem()))) {
 			ItemStack taken = slot.safeTake(slotItem.getCount(), 1, player);
 			applyAccessory(stack, taken);
 		}
@@ -83,7 +83,7 @@ public class ESAccessoryUtil {
 					removeAccessory(stack, removed);
 					access.set(removed.copy());
 				}
-			} else if (accessory != null && stack.is(accessory.combinationTarget()) && getAccessorySlotCount(stack) > accessories.size() && accessories.stream().noneMatch(s -> s.getItem() == other.getItem())) {
+			} else if (accessory != null && stack.is(accessory.combinationTarget()) && getAccessorySlotCount(stack) > accessories.size() && accessories.stream().noneMatch(s -> s.is(other.getItem()))) {
 				applyAccessory(stack, other);
 				other.shrink(1);
 			}

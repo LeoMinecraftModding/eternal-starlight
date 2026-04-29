@@ -18,7 +18,7 @@ public class EclipseCoreRenderer extends DuskLightRenderer<EclipseCoreBlockEntit
 	@Override
 	public void render(EclipseCoreBlockEntity blockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
 		super.render(blockEntity, f, poseStack, multiBufferSource, i, j);
-		VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.ECLIPSE);
+		VertexConsumer vertexConsumer = ESClientHandler.AFTER_LEVEL_BUFFER_SOURCE.getBuffer(ESRenderType.ECLIPSE);
 		PoseStack.Pose pose = poseStack.last();
 		float height = 0.5f + 7 * blockEntity.getEclipseProgress(f);
 		float size = 32 * blockEntity.getEclipseProgress(f);

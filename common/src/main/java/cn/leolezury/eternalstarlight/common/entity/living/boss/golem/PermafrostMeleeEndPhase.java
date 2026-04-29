@@ -47,7 +47,7 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 20, 0.2f, 0.3f, 3, 5.5f).send(serverLevel);
 				}
 			}
-			performMeleeAttack(entity, entity.getBehaviorTicks() == 3 ? 4.5 : 1.5, true, 360, e -> {
+			performDefaultMeleeAttack(entity, entity.getBehaviorTicks() == 3 ? 4.5 : 1.5, true, 360, e -> {
 				e.hurtMarked = true;
 				e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(1.25, 0.5, 1.25));
 			});

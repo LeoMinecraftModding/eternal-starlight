@@ -46,7 +46,7 @@ public class NocturnalMilletBottomBlock extends CropBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-		return super.mayPlaceOn(state, level, pos) || state.is(BlockTags.DIRT) || state.is(ESTags.Blocks.FORGOTTEN_NOCTURNAL_MILLET_CONVERTIBLES);
+		return super.mayPlaceOn(state, level, pos) || state.is(BlockTags.DIRT) || state.is(ESTags.Blocks.CONVERTS_NOCTURNAL_MILLET);
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class NocturnalMilletBottomBlock extends CropBlock {
 			if (aboveState.is(ESBlocks.NOCTURNAL_MILLET_PANICLE.get()) && aboveState.getValue(WITHERED)) {
 				level.setBlockAndUpdate(abovePos, aboveState.setValue(WITHERED, false));
 			}
-		} else if (level.getBlockState(pos.below()).is(ESTags.Blocks.FORGOTTEN_NOCTURNAL_MILLET_CONVERTIBLES) && !state.getValue(FORGOTTEN)) {
+		} else if (level.getBlockState(pos.below()).is(ESTags.Blocks.CONVERTS_NOCTURNAL_MILLET) && !state.getValue(FORGOTTEN)) {
 			level.setBlockAndUpdate(pos, state.setValue(FORGOTTEN, true));
 		} else {
 			this.growCrops(level, pos, state);

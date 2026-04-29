@@ -574,7 +574,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 			EnergyTransmitterBlock.DIRECT_POWER
 		);
 		accumulator(ESBlocks.ACCUMULATOR.get());
-		mechanicalSpawner(ESBlocks.MECHANICAL_SPAWNER.get());
+		particleOnly(ESBlocks.MECHANICAL_SPAWNER.get(), blockTexture(Blocks.SPAWNER));
 		particleOnly(ESBlocks.ALLOY_FURNACE.get(), itemTextureFromBlock(ESBlocks.ALLOY_FURNACE.get()));
 		particleOnly(ESBlocks.WAXED_ALLOY_FURNACE.get(), itemTextureFromBlock(ESBlocks.ALLOY_FURNACE.get()));
 		particleOnly(ESBlocks.OXIDIZED_ALLOY_FURNACE.get(), itemTextureFromBlock(ESBlocks.OXIDIZED_ALLOY_FURNACE.get()));
@@ -1559,20 +1559,6 @@ public class ESBlockStateProvider extends BlockStateProvider {
 				.end())
 			.end();
 		directionalBlock(block, modelFile);
-	}
-
-	private void mechanicalSpawner(Block block) {
-		getVariantBuilder(block).forAllStatesExcept(state ->
-			ConfiguredModel.builder()
-				.modelFile(models().orientableWithBottom(
-					name(block) + "_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName(),
-					blockTexture(block).withSuffix("_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName() + "_side"),
-					blockTexture(block).withSuffix("_" + state.getValue(MechanicalSpawnerBlock.HALF).getSerializedName() + "_front"),
-					blockTexture(block).withSuffix("_bottom"),
-					blockTexture(block).withSuffix("_top")
-				).renderType(CUTOUT))
-				.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
-				.build(), MechanicalSpawnerBlock.POWER);
 	}
 
 	private void simpleSign(Block normal, Block wall, ResourceLocation location) {

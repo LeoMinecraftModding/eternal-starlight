@@ -1,0 +1,77 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepsilver_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:ingots/deepsilver"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_golem_steel_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:ingots/golem_steel"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_malarite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:gems/malarite"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_soul_dew": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:soul_dew"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:alloy/unrealium"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_deepsilver_ingot",
+      "has_golem_steel_nugget",
+      "has_malarite",
+      "has_soul_dew"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:alloy/unrealium"
+    ]
+  }
+}

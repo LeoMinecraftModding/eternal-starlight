@@ -24,6 +24,7 @@
     "client.BossHealthOverlayMixin",
     "client.CameraMixin",
     "client.FogRendererMixin",
+    "client.GameRendererMixin",
     "client.GuiMixin",
     "client.HumanoidArmorLayerMixin",
     "client.ItemInHandRendererMixin",

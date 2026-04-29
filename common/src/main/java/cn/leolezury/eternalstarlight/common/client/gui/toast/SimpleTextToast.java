@@ -13,11 +13,9 @@ import java.util.List;
 
 public class SimpleTextToast implements Toast {
 	private static final ResourceLocation BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("toast/advancement");
-	public static final int DISPLAY_TIME = 5000;
 	private final Component title;
 	private final Component text;
 	private final ItemStack icon;
-	private boolean playedSound;
 
 	public SimpleTextToast(Component title, Component text, ItemStack icon) {
 		this.title = title;

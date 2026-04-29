@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.attack;
 
 import cn.leolezury.eternalstarlight.common.item.combat.WhipItem;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
@@ -159,26 +160,35 @@ public abstract class Whip extends Entity {
 					if (hitResult.getType() != HitResult.Type.MISS) {
 						endPos = hitResult.getLocation();
 					}
-					List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, new AABB(player.getEyePosition(), endPos).inflate(1));
+					List<Entity> entities = level().getEntitiesOfClass(Entity.class, new AABB(player.getEyePosition(), endPos).inflate(1));
 					entities.sort(Comparator.comparingDouble(e -> e.distanceToSqr(this)));
-					for (LivingEntity entity : entities) {
-						AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + 1.5f);
-						if (ESEntityUtil.shouldHarm(player, entity) && entity.isPickable() && (aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent())) {
-							DamageSource damageSource = damageSources().playerAttack(player);
-							float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE) * damageScale;
-							float knockback = player.getKnockback(entity, damageSource);
-							if (level() instanceof ServerLevel serverLevel && this.getWeaponItem() != null) {
-								damage = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), entity, damageSource, damage);
-								knockback = EnchantmentHelper.modifyKnockback(serverLevel, this.getWeaponItem(), player, damageSource, knockback);
-							}
-							if (entity.hurt(damageSource, damage)) {
-								if (getWeaponItem() != null && getWeaponItem().getItem() instanceof WhipItem whipItem) {
-									whipItem.doPostHurtEffects(this, entity);
+					for (Entity pickedEntity : entities) {
+						LivingEntity entity = null;
+						if (pickedEntity instanceof LivingEntity living) {
+							entity = living;
+						}
+						if (ESPlatform.INSTANCE.getPartEntityParent(pickedEntity) instanceof LivingEntity living) {
+							entity = living;
+						}
+						if (entity != null) {
+							AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + 1.5f);
+							if (ESEntityUtil.shouldHarm(player, entity) && entity.isPickable() && (aabb.contains(player.getEyePosition()) || aabb.clip(player.getEyePosition(), endPos).isPresent())) {
+								DamageSource damageSource = damageSources().playerAttack(player);
+								float damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE) * damageScale;
+								float knockback = player.getKnockback(entity, damageSource);
+								if (level() instanceof ServerLevel serverLevel && this.getWeaponItem() != null) {
+									damage = EnchantmentHelper.modifyDamage(serverLevel, this.getWeaponItem(), entity, damageSource, damage);
+									knockback = EnchantmentHelper.modifyKnockback(serverLevel, this.getWeaponItem(), player, damageSource, knockback);
 								}
-								if (level() instanceof ServerLevel serverLevel) {
-									EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
+								if (entity.hurt(damageSource, damage)) {
+									if (getWeaponItem() != null && getWeaponItem().getItem() instanceof WhipItem whipItem) {
+										whipItem.doPostHurtEffects(this, entity);
+									}
+									if (level() instanceof ServerLevel serverLevel) {
+										EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
+									}
+									entity.knockback(knockback * 0.5F, Mth.sin(player.getYRot() * Mth.DEG_TO_RAD), -Mth.cos(player.getYRot() * Mth.DEG_TO_RAD));
 								}
-								entity.knockback(knockback * 0.5F, Mth.sin(player.getYRot() * Mth.DEG_TO_RAD), -Mth.cos(player.getYRot() * Mth.DEG_TO_RAD));
 							}
 						}
 					}

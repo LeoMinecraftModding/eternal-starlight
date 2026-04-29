@@ -1,0 +1,40 @@
+{
+  "type": "eternal_starlight:alloy",
+  "burn_time": 400,
+  "ingredients": [
+    {
+      "tag": "c:ores/iron"
+    },
+    {
+      "item": "eternal_starlight:saltpeter_powder"
+    }
+  ],
+  "results": [
+    {
+      "amount": 2,
+      "item": {
+        "id": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "amount": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 2,
+        "min_inclusive": 0
+      },
+      "item": {
+        "id": "eternal_starlight:dimslag"
+      }
+    },
+    {
+      "amount": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 2,
+        "min_inclusive": 0
+      },
+      "item": {
+        "id": "eternal_starlight:dimslag"
+      }
+    }
+  ]
+}

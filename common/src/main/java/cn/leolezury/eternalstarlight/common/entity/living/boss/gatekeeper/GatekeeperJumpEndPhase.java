@@ -48,7 +48,7 @@ public class GatekeeperJumpEndPhase extends BehaviorPhase<TheGatekeeper> {
 				serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, serverLevel.getBlockState(entity.blockPosition().below())), entity.getX(), entity.getY(), entity.getZ(), 150, 0.5, 0.5, 0.5, 0.15);
 				ScreenShakeVfx.createInstance(level.dimension(), entity.position(), 40, 20, 0.2f, 0.3f, 3, 5.5f).send(serverLevel);
 			}
-			performMeleeAttack(entity, hammer ? 3 : 2, true, 360, e -> {
+			performDefaultMeleeAttack(entity, hammer ? 3 : 2, true, 360, e -> {
 				e.hurtMarked = true;
 				e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(1.25, 0.5, 1.25));
 			});

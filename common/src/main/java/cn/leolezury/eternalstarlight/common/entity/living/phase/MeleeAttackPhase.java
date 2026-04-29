@@ -27,7 +27,7 @@ public class MeleeAttackPhase<T extends LivingEntity & MultiBehaviorUser> extend
 	public void tick(T entity) {
 		for (Entry entry : entries) {
 			if (entity.getBehaviorTicks() == entry.tick()) {
-				performMeleeAttack(entity, entry.range());
+				performDefaultMeleeAttack(entity, entry.range());
 			}
 		}
 	}

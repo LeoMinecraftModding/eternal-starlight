@@ -10,6 +10,8 @@ public class ESPaintingVariants {
 	public static final ResourceKey<PaintingVariant> GUARDIAN = create("guardian");
 	public static final ResourceKey<PaintingVariant> ENERGIZED = create("energized");
 	public static final ResourceKey<PaintingVariant> ENERGIZED_SPECIAL = create("energized_special");
+	public static final ResourceKey<PaintingVariant> ABSOLUTE_ZERO = create("absolute_zero");
+	public static final ResourceKey<PaintingVariant> ABSOLUTE_ZERO_SPECIAL = create("absolute_zero_special");
 	public static final ResourceKey<PaintingVariant> MONSTROUS = create("monstrous");
 	public static final ResourceKey<PaintingVariant> MONSTROUS_SPECIAL = create("monstrous_special");
 	public static final ResourceKey<PaintingVariant> THE_CATALYST = create("the_catalyst");
@@ -41,6 +43,8 @@ public class ESPaintingVariants {
 		register(context, GUARDIAN, 2, 2);
 		register(context, ENERGIZED, 2, 2);
 		register(context, ENERGIZED_SPECIAL, 2, 2);
+		register(context, ABSOLUTE_ZERO, 2, 2);
+		register(context, ABSOLUTE_ZERO_SPECIAL, 2, 2);
 		register(context, MONSTROUS, 2, 2);
 		register(context, MONSTROUS_SPECIAL, 2, 2);
 		register(context, THE_CATALYST, 2, 2);

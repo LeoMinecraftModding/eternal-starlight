@@ -77,7 +77,7 @@ public record AlloyRecipe(NonNullList<Result> results, NonNullList<Ingredient> i
 
 	public record Result(ItemStack item, IntProvider amount) {
 		public static final Codec<Result> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-			ItemStack.STRICT_CODEC.fieldOf("item").forGetter(Result::item),
+			ItemStack.STRICT_SINGLE_ITEM_CODEC.fieldOf("item").forGetter(Result::item),
 			IntProvider.NON_NEGATIVE_CODEC.fieldOf("amount").forGetter(Result::amount)
 		).apply(instance, Result::new));
 

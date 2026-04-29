@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-19T21:21:29.4962704	Registries
+// 1.21.1	2026-04-29T16:37:51.2741351	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -105,6 +105,8 @@ b836516a7589afffe8c84254f6512314f5ca35be data/eternal_starlight/jukebox_song/sta
 5dc9b8a2fa4903ba4e5baa236fd2040152d456a6 data/eternal_starlight/jukebox_song/tranquility_ii.json
 7747ade817b2cfc1ca52033c8db9749a6c2d7c6a data/eternal_starlight/jukebox_song/wailing_well.json
 316091ecd6ce3bf68f04c6d290183460c9814a6d data/eternal_starlight/jukebox_song/whisper_of_the_stars.json
+7bd16fe9863c65fa54e69bf18bb11f2d78ba8dae data/eternal_starlight/painting_variant/absolute_zero.json
+1e9233399136339a1549533fcf5034cb30b79b07 data/eternal_starlight/painting_variant/absolute_zero_special.json
 bcde44abe78eae61278b05ee2902cee21b8a3271 data/eternal_starlight/painting_variant/carved_slate.json
 32ba8d7d6185fba1665a6f8f899b7b1c82d78134 data/eternal_starlight/painting_variant/cold_anomaly.json
 2e9cfb723c45978a5872bbd667d6e0519106ad51 data/eternal_starlight/painting_variant/cooler.json

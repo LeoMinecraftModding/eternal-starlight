@@ -62,6 +62,33 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.5,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "components": {
+                "minecraft:entity_data": {
+                  "id": "eternal_starlight:painting",
+                  "variant": "eternal_starlight:absolute_zero"
+                }
+              },
+              "function": "minecraft:set_components"
+            }
+          ],
+          "name": "eternal_starlight:starlit_painting"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "eternal_starlight:bosses/permafrost"

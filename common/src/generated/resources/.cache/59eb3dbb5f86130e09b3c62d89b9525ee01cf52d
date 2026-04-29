@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-06T22:30:23.5400863	Loot Tables
+// 1.21.1	2026-04-29T16:37:51.2404589	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -766,7 +766,7 @@ fb9cb6127147441247d93f0c6f7f21290b6c18bf data/eternal_starlight/loot_table/block
 019c8a21885af7e74b31f81187c1fef117ea2d61 data/eternal_starlight/loot_table/blocks/yellow_yeti_fur_carpet.json
 c2f9d2975c758e6f18efee62af3f19da0bd3353c data/eternal_starlight/loot_table/bosses/boss_common.json
 ef7ea2637a7879df0afd8061fe46d334d0c5933b data/eternal_starlight/loot_table/bosses/lunar_monstrosity.json
-8009a733b96018707e295b67a2ff30f7b94f0639 data/eternal_starlight/loot_table/bosses/permafrost.json
+52c15c5377b022a6fe81a1700eb5e8088e67626a data/eternal_starlight/loot_table/bosses/permafrost.json
 bb59cf8a00476b4443fcc68e8547f80273d42dd0 data/eternal_starlight/loot_table/bosses/starlight_golem.json
 b0f381d67ddfdd243ab6fd73beffdeb330310f8d data/eternal_starlight/loot_table/bosses/the_gatekeeper.json
 890afa5631ca14e49ce7f315fbbcfcf6aab0cf5b data/eternal_starlight/loot_table/chests/accessories.json

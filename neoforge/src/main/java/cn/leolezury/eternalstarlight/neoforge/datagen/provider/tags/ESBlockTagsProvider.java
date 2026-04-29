@@ -649,7 +649,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 			.addTags(
 				Tags.Blocks.ORES
 			);
-		tag(ESTags.Blocks.FORGOTTEN_NOCTURNAL_MILLET_CONVERTIBLES)
+		tag(ESTags.Blocks.CONVERTS_NOCTURNAL_MILLET)
 			.add(
 				ESBlocks.DUSTED_GRAVEL.get(),
 				ESBlocks.MOSSY_DUSTED_GRAVEL.get(),

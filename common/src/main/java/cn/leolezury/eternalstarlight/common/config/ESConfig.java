@@ -53,10 +53,10 @@ public class ESConfig {
 		public AttackingMobConfig luminofish = new AttackingMobConfig(3, 0, 3, 16, true);
 		public AttackingMobConfig luminaris = new AttackingMobConfig(3, 0, 3, 64, true);
 		public AttackingMobConfig twilightGaze = new AttackingMobConfig(10, 0, 3, 16, true);
-		public GatekeeperConfig theGatekeeper = new GatekeeperConfig(175, 15, 5, 200, true, false);
+		public GatekeeperConfig theGatekeeper = new GatekeeperConfig(175, 15, 1, 200, true, false);
 		public BossConfig starlightGolem = new BossConfig(200, 10, 1, 200, true);
 		public AttackingMobConfig freeze = new AttackingMobConfig(15, 0, 3, 32, true);
-		public BossConfig permafrost = new BossConfig(120, 10, 1, 200, true);
+		public BossConfig permafrost = new BossConfig(120, 10, 1, 100, true);
 		public BossConfig lunarMonstrosity = new BossConfig(200, 12, 1, 200, true);
 		public AttackingMobConfig tangled = new AttackingMobConfig(20, 0, 5, 64, true);
 		public AttackingMobConfig tangledSkull = new AttackingMobConfig(1, 0, 3, 64, true);

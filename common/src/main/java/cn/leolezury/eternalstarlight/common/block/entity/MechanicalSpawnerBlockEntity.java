@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.SpawnData;
@@ -33,6 +34,9 @@ public class MechanicalSpawnerBlockEntity extends BlockEntity implements Spawner
 		}
 	};
 
+	public AnimationState idleAnimationState = new AnimationState();
+	public int clientTickCount = 0;
+
 	public MechanicalSpawnerBlockEntity(BlockPos pos, BlockState blockState) {
 		super(ESBlockEntities.MECHANICAL_SPAWNER.get(), pos, blockState);
 	}
@@ -51,6 +55,8 @@ public class MechanicalSpawnerBlockEntity extends BlockEntity implements Spawner
 
 	public static void clientTick(Level level, BlockPos pos, BlockState state, MechanicalSpawnerBlockEntity blockEntity) {
 		blockEntity.spawner.clientTick(level, pos);
+		blockEntity.clientTickCount++;
+		blockEntity.idleAnimationState.startIfStopped(blockEntity.clientTickCount);
 	}
 
 	public static void serverTick(Level level, BlockPos pos, BlockState state, MechanicalSpawnerBlockEntity blockEntity) {

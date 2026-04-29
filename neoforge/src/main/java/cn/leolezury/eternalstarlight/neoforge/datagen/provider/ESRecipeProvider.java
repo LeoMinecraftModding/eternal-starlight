@@ -566,7 +566,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(Items.IRON_ORE), Tags.Items.ORES_IRON)
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("iron_from_ores"));
+			.save(recipeOutput, EternalStarlight.id("alloy/iron_from_ores"));
 		AlloyRecipeBuilder.alloy(ESItems.DEEPSILVER_INGOT.get().getDefaultInstance(), 2, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
@@ -574,7 +574,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(ESItems.GRIMSTONE_DEEPSILVER_ORE.get()), ESConventionalTags.Items.ORES_DEEPSILVER)
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("deepsilver_from_ores"));
+			.save(recipeOutput, EternalStarlight.id("alloy/deepsilver_from_ores"));
 		AlloyRecipeBuilder.alloy(Items.COPPER_INGOT.getDefaultInstance(), 3, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
@@ -584,7 +584,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(Items.COPPER_ORE), Tags.Items.ORES_COPPER)
 			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("copper_from_ores"));
+			.save(recipeOutput, EternalStarlight.id("alloy/copper_from_ores"));
 		AlloyRecipeBuilder.alloy(Items.GOLD_INGOT.getDefaultInstance(), 3, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
@@ -594,7 +594,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(Items.GOLD_ORE), Tags.Items.ORES_GOLD)
 			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("gold_from_ores"));
+			.save(recipeOutput, EternalStarlight.id("alloy/gold_from_ores"));
 
 		AlloyRecipeBuilder.alloy(Items.IRON_INGOT.getDefaultInstance(), 3, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
@@ -603,7 +603,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(Items.IRON_ORE), Tags.Items.RAW_MATERIALS_IRON)
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("iron_from_raw_materials"));
+			.save(recipeOutput, EternalStarlight.id("alloy/iron_from_raw_materials"));
 		AlloyRecipeBuilder.alloy(ESItems.DEEPSILVER_INGOT.get().getDefaultInstance(), 3, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 2))
@@ -611,7 +611,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.requires(ESItems.SALTPETER_POWDER.get(), 1)
 			.unlockedBy(getHasName(ESItems.GRIMSTONE_DEEPSILVER_ORE.get()), ESConventionalTags.Items.RAW_MATERIALS_DEEPSILVER)
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("deepsilver_from_raw_materials"));
+			.save(recipeOutput, EternalStarlight.id("alloy/deepsilver_from_raw_materials"));
 		AlloyRecipeBuilder.alloy(Items.COPPER_INGOT.getDefaultInstance(), 4, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
@@ -621,7 +621,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(Items.COPPER_ORE), Tags.Items.RAW_MATERIALS_COPPER)
 			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("copper_from_raw_materials"));
+			.save(recipeOutput, EternalStarlight.id("alloy/copper_from_raw_materials"));
 		AlloyRecipeBuilder.alloy(Items.GOLD_INGOT.getDefaultInstance(), 4, 400)
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
 			.result(ESItems.DIMSLAG.get().getDefaultInstance(), UniformInt.of(0, 3))
@@ -631,14 +631,14 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(Items.GOLD_ORE), Tags.Items.RAW_MATERIALS_GOLD)
 			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
 			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
-			.save(recipeOutput, EternalStarlight.id("gold_from_raw_materials"));
+			.save(recipeOutput, EternalStarlight.id("alloy/gold_from_raw_materials"));
 
 		AlloyRecipeBuilder.alloy(Items.NETHERITE_INGOT.getDefaultInstance(), 1, 400)
 			.requires(Tags.Items.INGOTS_GOLD, 4)
 			.requires(Items.NETHERITE_SCRAP, 2)
 			.unlockedBy(getHasName(Items.GOLD_INGOT), Tags.Items.INGOTS_GOLD)
 			.unlockedBy(getHasName(Items.NETHERITE_SCRAP), Items.NETHERITE_SCRAP)
-			.save(recipeOutput, EternalStarlight.id("netherite"));
+			.save(recipeOutput, EternalStarlight.id("alloy/netherite"));
 
 		AlloyRecipeBuilder.alloy(ESItems.UNREALIUM_INGOT.get().getDefaultInstance(), 1, 400)
 			.requires(ESConventionalTags.Items.INGOTS_DEEPSILVER)
@@ -649,14 +649,14 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(ESItems.GOLEM_STEEL_NUGGET.get()), ESConventionalTags.Items.INGOTS_GOLEM_STEEL)
 			.unlockedBy(getHasName(ESItems.MALARITE.get()), ESConventionalTags.Items.GEMS_MALARITE)
 			.unlockedBy(getHasName(ESItems.SOUL_DEW.get()), ESItems.SOUL_DEW.get())
-			.save(recipeOutput, EternalStarlight.id("unrealium"));
+			.save(recipeOutput, EternalStarlight.id("alloy/unrealium"));
 
 		AlloyRecipeBuilder.alloy(ESItems.GOLEM_STEEL_INGOT.get().getDefaultInstance(), 1, 400)
 			.requires(ESConventionalTags.Items.INGOTS_DEEPSILVER, 3)
 			.requires(ESConventionalTags.Items.NUGGETS_GOLEM_STEEL, 2)
 			.unlockedBy(getHasName(ESItems.DEEPSILVER_INGOT.get()), ESConventionalTags.Items.INGOTS_DEEPSILVER)
 			.unlockedBy(getHasName(ESItems.GOLEM_STEEL_NUGGET.get()), ESConventionalTags.Items.NUGGETS_GOLEM_STEEL)
-			.save(recipeOutput, EternalStarlight.id("golem_steel"));
+			.save(recipeOutput, EternalStarlight.id("alloy/golem_steel"));
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {
