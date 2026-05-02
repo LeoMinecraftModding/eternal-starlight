@@ -208,7 +208,7 @@ public class LootChestBlockEntity extends BlockEntity {
 			if (blockEntity.isFree() && blockEntity.getRewardTargets().isEmpty() && level instanceof ServerLevel serverLevel) {
 				for (int i = 0; i < 15; i++) {
 					Vec3 speed = new Vec3((level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.1F, level.getRandom().nextFloat() * 0.05F, (level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.1F).normalize();
-					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(new ExplosionShockParticleOptions(new Vector3f(FastColor.ARGB32.red(blockEntity.getColor()), FastColor.ARGB32.green(blockEntity.getColor()), FastColor.ARGB32.blue(blockEntity.getColor())), new Vector3f(FastColor.ARGB32.red(blockEntity.getOutlineColor()), FastColor.ARGB32.green(blockEntity.getOutlineColor()), FastColor.ARGB32.blue(blockEntity.getOutlineColor())), 0.8f, 0.04f, 0.8f), pos.getX() + 0.5 + speed.x * 0.2, pos.getY() + 0.5 + speed.y * 0.2, pos.getZ() + 0.5 + speed.z * 0.2, speed.x, speed.y, speed.z));
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.fromIntColor(new Vector3f(FastColor.ARGB32.red(blockEntity.getColor()), FastColor.ARGB32.green(blockEntity.getColor()), FastColor.ARGB32.blue(blockEntity.getColor())), new Vector3f(FastColor.ARGB32.red(blockEntity.getOutlineColor()), FastColor.ARGB32.green(blockEntity.getOutlineColor()), FastColor.ARGB32.blue(blockEntity.getOutlineColor())), 0.8f, 0.04f, 0.8f), pos.getX() + 0.5 + speed.x * 0.2, pos.getY() + 0.5 + speed.y * 0.2, pos.getZ() + 0.5 + speed.z * 0.2, speed.x, speed.y, speed.z));
 				}
 				level.destroyBlock(pos, false);
 			}

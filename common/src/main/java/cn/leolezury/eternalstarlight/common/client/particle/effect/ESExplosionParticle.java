@@ -35,7 +35,7 @@ public class ESExplosionParticle extends SimpleAnimatedParticle {
 
 		@Override
 		public Particle createParticle(ESExplosionParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new ESExplosionParticle(level, options.lifeScale(), x, y, z, Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), this.sprites);
+			return new ESExplosionParticle(level, options.lifeScale(), x, y, z, Color.rgbd(options.fromColor().x, options.fromColor().y, options.fromColor().z).rgb(), Color.rgbd(options.toColor().x, options.toColor().y, options.toColor().z).rgb(), this.sprites);
 		}
 	}
 }

@@ -877,6 +877,10 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.SOUL_TRAIL.get(), SoulTrailParticle.Provider::new);
 		strategy.register(ESParticles.CANDLASH_TRAIL.get(), StarfireExplosionParticle.Provider::new);
 		strategy.register(ESParticles.ETHER_TRAIL.get(), TrailParticle.Provider::new);
+		strategy.register(ESParticles.GEYSER.get(), GeyserEruptionParticle.Provider::new);
+		strategy.register(ESParticles.GEYSER_BASE.get(), GeyserBaseParticle.Provider::new);
+		strategy.register(ESParticles.GEYSER_POOF.get(), GeyserBaseParticle.Provider::new);
+		strategy.register(ESParticles.GEYSER_PLUME.get(), GeyserPlumeParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}

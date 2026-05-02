@@ -57,6 +57,9 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.SOUL_TRAIL.get(), loc("soul_trail"), 5, false);
 		sprite(ESParticles.CANDLASH_TRAIL.get(), loc("candlash_trail"));
 		sprite(ESParticles.ETHER_TRAIL.get(), loc("ether_trail"));
+		spriteSet(ESParticles.GEYSER_BASE.get(), loc("geyser_base"), 8, false);
+		spriteSet(ESParticles.GEYSER_POOF.get(), loc("geyser_poof"), 8, false);
+		spriteSet(ESParticles.GEYSER_PLUME.get(), loc("geyser_plume"), 8, false);
 		sprite(ESParticles.ADVANCED_GLOW.get(), loc("glow"));
 		sprite(ESParticles.SHINE.get(), loc("shine"));
 	}

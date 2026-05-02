@@ -13,8 +13,12 @@ import net.minecraft.util.ExtraCodecs;
 import org.joml.Vector3f;
 
 public record RingParticleOptions(Vector3f fromColor, Vector3f toColor, float scale, float lifeScale, boolean gathering) implements ParticleOptions {
+	public static RingParticleOptions fromIntColor(Vector3f fromColor, Vector3f toColor, float scale, float lifeScale, boolean gathering) {
+		return new RingParticleOptions(new Vector3f(fromColor).div(255f), new Vector3f(toColor).div(255f), scale, lifeScale, gathering);
+	}
+
 	public static RingParticleOptions getFlare(float lifeScale) {
-		return new RingParticleOptions(new Vector3f(222, 112, 255), new Vector3f(255, 255, 116), 2, lifeScale, true);
+		return fromIntColor(new Vector3f(222, 112, 255), new Vector3f(255, 255, 116), 2, lifeScale, true);
 	}
 
 	public static final MapCodec<RingParticleOptions> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(

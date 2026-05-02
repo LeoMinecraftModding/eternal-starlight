@@ -78,10 +78,10 @@ public class CrystalGreatswordItem extends GreatswordItem {
 					double x = target.getX() + (target.getRandom().nextFloat() - 0.5) * target.getBbWidth();
 					double y = target.getY() + target.getRandom().nextFloat() * target.getBbHeight();
 					double z = target.getZ() + (target.getRandom().nextFloat() - 0.5) * target.getBbWidth();
-					serverLevel.sendParticles(new ESExplosionParticleOptions(ESParticles.BLAST.get(), PARTICLE_COLORS.get(target.getRandom().nextInt(PARTICLE_COLORS.size())), PARTICLE_COLORS.get(target.getRandom().nextInt(PARTICLE_COLORS.size())), 0.5f), x, y, z, 1, 0.2, 0.2, 0.2, 0.0);
+					serverLevel.sendParticles(ESExplosionParticleOptions.fromIntColor(ESParticles.BLAST.get(), PARTICLE_COLORS.get(target.getRandom().nextInt(PARTICLE_COLORS.size())), PARTICLE_COLORS.get(target.getRandom().nextInt(PARTICLE_COLORS.size())), 0.5f), x, y, z, 1, 0.2, 0.2, 0.2, 0.0);
 					for (int j = 0; j < 4; j++) {
 						Vec3 speed = new Vec3((target.getRandom().nextFloat() - target.getRandom().nextFloat()) * 0.1F, target.getRandom().nextFloat() * 0.05F, (target.getRandom().nextFloat() - target.getRandom().nextFloat()) * 0.1F).normalize();
-						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(new ExplosionShockParticleOptions(PARTICLE_COLORS.get(target.getRandom().nextInt(PARTICLE_COLORS.size())), PARTICLE_COLORS.get(target.getRandom().nextInt(PARTICLE_COLORS.size())), 0.3f, 0.06f, 0.5f), x + speed.x * 0.6, y + speed.y * 0.6, z + speed.z * 0.6, speed.x, speed.y, speed.z));
+						ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.fromIntColor(PARTICLE_COLORS.get(target.getRandom().nextInt(PARTICLE_COLORS.size())), PARTICLE_COLORS.get(target.getRandom().nextInt(PARTICLE_COLORS.size())), 0.3f, 0.06f, 0.5f), x + speed.x * 0.6, y + speed.y * 0.6, z + speed.z * 0.6, speed.x, speed.y, speed.z));
 					}
 				}
 			}

@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-29T16:37:51.2741351	Registries
+// 1.21.1	2026-05-02T14:52:01.1732652	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -30,7 +30,7 @@ b8725efa93035b67bb13a3699a21c62bb6c4a298 data/eternal_starlight/enchantment/over
 fcf4660912152339186b46e238d371d302d916c2 data/eternal_starlight/enchantment/precision.json
 67ec33f388305347a2e8dc4ba1924915df6e0d0a data/eternal_starlight/enchantment/soul_snatcher.json
 b5efc0392f148953b683debed003d3a2f6838cb6 data/eternal_starlight/enchantment/swift_lash.json
-c8f9d2029a0e1c6142b79562933412a5717c65d0 data/eternal_starlight/enchantment/tearing.json
+626e06dca5754093babf692192058ff28c8d804f data/eternal_starlight/enchantment/tearing.json
 866a31e8894dadaa694333f9372fa62ba839632e data/eternal_starlight/enchantment/tracing.json
 29c74a7a638fd8d742357009cf7237f18e046add data/eternal_starlight/eternal_starlight/astral_golem_material/deepsilver.json
 a54d02fdd40a879fc70478ac605a1bd7c3e481af data/eternal_starlight/eternal_starlight/astral_golem_material/iron.json

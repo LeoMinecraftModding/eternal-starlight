@@ -179,6 +179,50 @@ public class ESParticles {
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> SOUL_TRAIL = PARTICLE_TYPES.register("soul_trail", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> CANDLASH_TRAIL = PARTICLE_TYPES.register("candlash_trail", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ETHER_TRAIL = PARTICLE_TYPES.register("ether_trail", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, ParticleType<GeyserParticleOptions>> GEYSER = PARTICLE_TYPES.register("geyser", () -> new ParticleType<>(true) {
+		@Override
+		public MapCodec<GeyserParticleOptions> codec() {
+			return GeyserParticleOptions.codec(ESParticles.GEYSER.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, GeyserParticleOptions> streamCodec() {
+			return GeyserParticleOptions.streamCodec(ESParticles.GEYSER.get());
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<GeyserBaseParticleOptions>> GEYSER_BASE = PARTICLE_TYPES.register("geyser_base", () -> new ParticleType<>(true) {
+		@Override
+		public MapCodec<GeyserBaseParticleOptions> codec() {
+			return GeyserBaseParticleOptions.codec(ESParticles.GEYSER_BASE.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, GeyserBaseParticleOptions> streamCodec() {
+			return GeyserBaseParticleOptions.streamCodec(ESParticles.GEYSER_BASE.get());
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<GeyserBaseParticleOptions>> GEYSER_POOF = PARTICLE_TYPES.register("geyser_poof", () -> new ParticleType<>(true) {
+		@Override
+		public MapCodec<GeyserBaseParticleOptions> codec() {
+			return GeyserBaseParticleOptions.codec(ESParticles.GEYSER_POOF.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, GeyserBaseParticleOptions> streamCodec() {
+			return GeyserBaseParticleOptions.streamCodec(ESParticles.GEYSER_POOF.get());
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<GeyserParticleOptions>> GEYSER_PLUME = PARTICLE_TYPES.register("geyser_plume", () -> new ParticleType<>(true) {
+		@Override
+		public MapCodec<GeyserParticleOptions> codec() {
+			return GeyserParticleOptions.codec(ESParticles.GEYSER_PLUME.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, GeyserParticleOptions> streamCodec() {
+			return GeyserParticleOptions.streamCodec(ESParticles.GEYSER_PLUME.get());
+		}
+	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ADVANCED_GLOW = PARTICLE_TYPES.register("advanced_glow", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> SHINE = PARTICLE_TYPES.register("shine", () -> new SimpleParticleType(false));
 

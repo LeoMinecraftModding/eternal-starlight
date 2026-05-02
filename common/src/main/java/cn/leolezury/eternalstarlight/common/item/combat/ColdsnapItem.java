@@ -48,10 +48,10 @@ public class ColdsnapItem extends WhipItem {
 			double x = entity.getX() + (entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth();
 			double y = entity.getY() + entity.getRandom().nextFloat() * entity.getBbHeight();
 			double z = entity.getZ() + (entity.getRandom().nextFloat() - 0.5) * entity.getBbWidth();
-			serverLevel.sendParticles(new ESExplosionParticleOptions(ESParticles.BLAST.get(), PARTICLE_COLORS.get(entity.getRandom().nextInt(PARTICLE_COLORS.size())), PARTICLE_COLORS.get(entity.getRandom().nextInt(PARTICLE_COLORS.size())), 0.4f), x, y, z, 1, 0.2, 0.2, 0.2, 0.0);
+			serverLevel.sendParticles(ESExplosionParticleOptions.fromIntColor(ESParticles.BLAST.get(), PARTICLE_COLORS.get(entity.getRandom().nextInt(PARTICLE_COLORS.size())), PARTICLE_COLORS.get(entity.getRandom().nextInt(PARTICLE_COLORS.size())), 0.4f), x, y, z, 1, 0.2, 0.2, 0.2, 0.0);
 			for (int i = 0; i < 4; i++) {
 				Vec3 speed = new Vec3((entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1F, entity.getRandom().nextFloat() * 0.05F, (entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1F).normalize();
-				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(new ExplosionShockParticleOptions(PARTICLE_COLORS.get(entity.getRandom().nextInt(PARTICLE_COLORS.size())), PARTICLE_COLORS.get(entity.getRandom().nextInt(PARTICLE_COLORS.size())), 0.3f, 0.06f, 0.5f), x + speed.x * 0.6, y + speed.y * 0.6, z + speed.z * 0.6, speed.x, speed.y, speed.z));
+				ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.fromIntColor(PARTICLE_COLORS.get(entity.getRandom().nextInt(PARTICLE_COLORS.size())), PARTICLE_COLORS.get(entity.getRandom().nextInt(PARTICLE_COLORS.size())), 0.3f, 0.06f, 0.5f), x + speed.x * 0.6, y + speed.y * 0.6, z + speed.z * 0.6, speed.x, speed.y, speed.z));
 			}
 		}
 		if (entity.canFreeze() && entity instanceof LivingEntity living) {

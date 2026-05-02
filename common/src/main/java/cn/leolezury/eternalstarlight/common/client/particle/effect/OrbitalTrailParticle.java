@@ -99,7 +99,7 @@ public class OrbitalTrailParticle extends TextureSheetParticle {
 
 		@Override
 		public Particle createParticle(OrbitalTrailParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new OrbitalTrailParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.lifetime(), options.owner(), Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.radius(), options.rotSpeed(), options.alpha(), sprites);
+			return new OrbitalTrailParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.lifetime(), options.owner(), Color.rgbd(options.fromColor().x, options.fromColor().y, options.fromColor().z).rgb(), Color.rgbd(options.toColor().x, options.toColor().y, options.toColor().z).rgb(), options.radius(), options.rotSpeed(), options.alpha(), sprites);
 		}
 	}
 }

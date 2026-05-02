@@ -15,6 +15,10 @@ import net.minecraft.world.entity.player.Player;
 import org.joml.Vector3f;
 
 public record OrbitalTrailParticleOptions(Vector3f fromColor, Vector3f toColor, float radius, float rotSpeed, float alpha, int lifetime, int owner) implements ParticleOptions {
+	public static OrbitalTrailParticleOptions fromIntColor(Vector3f fromColor, Vector3f toColor, float radius, float rotSpeed, float alpha, int lifetime, int owner) {
+		return new OrbitalTrailParticleOptions(new Vector3f(fromColor).div(255f), new Vector3f(toColor).div(255f), radius, rotSpeed, alpha, lifetime, owner);
+	}
+
 	public static final MapCodec<OrbitalTrailParticleOptions> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 		ExtraCodecs.VECTOR3F.fieldOf("from_color").forGetter(OrbitalTrailParticleOptions::fromColor),
 		ExtraCodecs.VECTOR3F.fieldOf("to_color").forGetter(OrbitalTrailParticleOptions::toColor),
@@ -29,7 +33,7 @@ public record OrbitalTrailParticleOptions(Vector3f fromColor, Vector3f toColor, 
 
 	public static OrbitalTrailParticleOptions magic(Player player) {
 		RandomSource random = player.getRandom();
-		return new OrbitalTrailParticleOptions(new Vector3f(182, 48, 112), new Vector3f(99, 224, 235), 0.8f + (random.nextFloat() - 0.5f) * 0.2f, (random.nextBoolean() ? -1 : 1) * (float) (15f + (random.nextFloat() - 0.5) * 7f), 0.9f + (random.nextFloat() - 0.5f) * 0.1f, (int) (75 + (random.nextFloat() - 0.5) * 10), player.getId());
+		return fromIntColor(new Vector3f(182, 48, 112), new Vector3f(99, 224, 235), 0.8f + (random.nextFloat() - 0.5f) * 0.2f, (random.nextBoolean() ? -1 : 1) * (float) (15f + (random.nextFloat() - 0.5) * 7f), 0.9f + (random.nextFloat() - 0.5f) * 0.1f, (int) (75 + (random.nextFloat() - 0.5) * 10), player.getId());
 	}
 
 	@Override

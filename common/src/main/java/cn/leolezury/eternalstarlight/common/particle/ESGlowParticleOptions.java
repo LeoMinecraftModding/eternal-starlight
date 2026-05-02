@@ -26,6 +26,10 @@ public record ESGlowParticleOptions(Vector3f fromColor, Vector3f toColor, float 
 		new Vector3f(107, 101, 155)
 	);
 
+	public static ESGlowParticleOptions fromIntColor(Vector3f fromColor, Vector3f toColor, float alpha, float lifeScale) {
+		return new ESGlowParticleOptions(new Vector3f(fromColor).div(255f), new Vector3f(toColor).div(255f), alpha, lifeScale);
+	}
+
 	public static final MapCodec<ESGlowParticleOptions> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 		ExtraCodecs.VECTOR3F.fieldOf("from_color").forGetter(ESGlowParticleOptions::fromColor),
 		ExtraCodecs.VECTOR3F.fieldOf("to_color").forGetter(ESGlowParticleOptions::toColor),
@@ -36,7 +40,7 @@ public record ESGlowParticleOptions(Vector3f fromColor, Vector3f toColor, float 
 	public static final StreamCodec<RegistryFriendlyByteBuf, ESGlowParticleOptions> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
 
 	public static ESGlowParticleOptions getSeek(RandomSource random, boolean lowTransparency, boolean extendedLife) {
-		return new ESGlowParticleOptions(SEEK_COLORS.get(random.nextInt(SEEK_COLORS.size())), SEEK_COLORS.get(random.nextInt(SEEK_COLORS.size())), lowTransparency ? 1 : 0.5f + (random.nextFloat() - 0.5f) * 0.2f, extendedLife ? 1.5f : 0.4f);
+		return fromIntColor(SEEK_COLORS.get(random.nextInt(SEEK_COLORS.size())), SEEK_COLORS.get(random.nextInt(SEEK_COLORS.size())), lowTransparency ? 1 : 0.5f + (random.nextFloat() - 0.5f) * 0.2f, extendedLife ? 1.5f : 0.4f);
 	}
 
 	@Override

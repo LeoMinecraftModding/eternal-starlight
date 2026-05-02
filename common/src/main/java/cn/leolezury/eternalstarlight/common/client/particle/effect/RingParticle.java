@@ -62,7 +62,7 @@ public class RingParticle extends SimpleAnimatedParticle {
 
 		@Override
 		public Particle createParticle(RingParticleOptions options, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
-			return new RingParticle(level, x, y, z, dx, dy, dz, Color.rgbd(options.fromColor().x / 255f, options.fromColor().y / 255f, options.fromColor().z / 255f).rgb(), Color.rgbd(options.toColor().x / 255f, options.toColor().y / 255f, options.toColor().z / 255f).rgb(), options.scale(), options.lifeScale(), options.gathering(), this.sprites);
+			return new RingParticle(level, x, y, z, dx, dy, dz, Color.rgbd(options.fromColor().x, options.fromColor().y, options.fromColor().z).rgb(), Color.rgbd(options.toColor().x, options.toColor().y, options.toColor().z).rgb(), options.scale(), options.lifeScale(), options.gathering(), this.sprites);
 		}
 	}
 }

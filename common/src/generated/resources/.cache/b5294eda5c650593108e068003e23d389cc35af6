@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-06T21:37:00.3074386	Particle Descriptions
+// 1.21.1	2026-05-02T14:52:01.168374	Particle Descriptions
 2fa6b966de82cbc7de1510007ab8640a9d8092d4 assets/eternal_starlight/particles/advanced_glow.json
 70487e0406f4fbc40c6a147fb14954dbd60cd7e1 assets/eternal_starlight/particles/aethersent_smoke.json
 f9bd277081e5abf0df0015ffcd1efdc20c3413cd assets/eternal_starlight/particles/allied.json
@@ -23,6 +23,9 @@ b7b26972eb60ddcef9c81292eae108a617f346e9 assets/eternal_starlight/particles/ashe
 dca2ec8da8a25d459d433abd9f198aecb197bd52 assets/eternal_starlight/particles/gathering_energy.json
 574fe3bad65a94f756e6c1fe35b0646527fbe284 assets/eternal_starlight/particles/gathering_flare.json
 dd3b8b6afa94f78a2a2e48541a071274775533e4 assets/eternal_starlight/particles/gathering_soul.json
+f8cc7e7111e8dc4f59e82be035b90d771a0b08ee assets/eternal_starlight/particles/geyser_base.json
+8d686c7b04b39f164a6e464bec3ad12adaf2cd2e assets/eternal_starlight/particles/geyser_plume.json
+a2808a182785a854bbfa9079b2facd17149cf1aa assets/eternal_starlight/particles/geyser_poof.json
 2fa6b966de82cbc7de1510007ab8640a9d8092d4 assets/eternal_starlight/particles/glow.json
 0b48b37ee3470d6b496033de5cd8c29afe6ad5bf assets/eternal_starlight/particles/landing_mud.json
 66f3b1394df5b324d4082cd289eac9a6b57cad70 assets/eternal_starlight/particles/lunar_slash.json
