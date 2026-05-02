@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.mixin;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
-import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -127,16 +126,6 @@ public abstract class PlayerMixin implements SpellCaster {
 		Player player = (Player) (Object) this;
 		if (ESDataAttachments.OFFHAND_ATTACK.getData(player)) {
 			cir.setReturnValue(player.getOffhandItem());
-		}
-	}
-
-	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getWeaponItem()Lnet/minecraft/world/item/ItemStack;"))
-	private void beforeAttack(Entity entity, CallbackInfo ci) {
-		Player player = (Player) (Object) this;
-		ItemStack mainHand = player.getMainHandItem();
-		ItemStack offhand = player.getOffhandItem();
-		if (ItemStack.isSameItem(mainHand, offhand) && mainHand.getItem() instanceof DualWieldingSwordItem) {
-			entity.invulnerableTime = 0;
 		}
 	}
 

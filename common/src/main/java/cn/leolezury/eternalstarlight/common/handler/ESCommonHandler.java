@@ -17,6 +17,7 @@ import cn.leolezury.eternalstarlight.common.entity.projectile.ThrownStarfire;
 import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
 import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorItem;
+import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
@@ -435,6 +436,16 @@ public class ESCommonHandler {
 		}
 	}
 
+	public static int onModifyPostAttackInvulnerabilityTicks(LivingEntity entity, DamageSource source, float amount, int ticks) {
+		if (source.isDirect() && source.getDirectEntity() != null) {
+			ItemStack weapon = source.getDirectEntity().getWeaponItem();
+			if (weapon != null && weapon.getItem() instanceof DualWieldingSwordItem) {
+				return Math.min(15, ticks);
+			}
+		}
+		return ticks;
+	}
+
 	public static float onLivingHeal(LivingEntity entity, float amount) {
 		float modified = amount;
 		AttributeInstance healMultiplier = entity.getAttribute(ESAttributes.HEAL_MULTIPLIER.asHolder());
@@ -621,7 +632,7 @@ public class ESCommonHandler {
 			ESSpellUtil.tickSpells(livingEntity);
 			SpecialItemCooldown.tick(livingEntity);
 			if (livingEntity instanceof Player player && !level.isClientSide) {
-				ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.setData(player, Math.max(ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.getData(player) + 1, 0));
+				ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.setData(player, ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.getData(player) + 1);
 				if (!ItemStack.matches(ESDataAttachments.LAST_OFFHAND_ITEM.getData(player), player.getOffhandItem())) {
 					if (!ItemStack.isSameItem(ESDataAttachments.LAST_OFFHAND_ITEM.getData(player), player.getOffhandItem())) {
 						ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.setData(player, 0);

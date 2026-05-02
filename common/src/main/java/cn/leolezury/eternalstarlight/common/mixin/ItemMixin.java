@@ -23,16 +23,8 @@ public abstract class ItemMixin {
 		return value;
 	}
 
-	@ModifyVariable(method = "finishUsingItem", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
+	@ModifyVariable(method = {"finishUsingItem", "getUseDuration"}, at = @At(value = "STORE", ordinal = 0), ordinal = 0)
 	private FoodProperties modifyFoodProperties(FoodProperties value, @Local(argsOnly = true) LivingEntity entity) {
-		if (value == null && ESAccessoryUtil.getActiveAccessoriesOnArmors(entity).contains(ESItems.FUNGUS_AMULET.get()) && ((Item) (Object) this).builtInRegistryHolder().is(ESTags.Items.CONSUMABLE_WHEN_WEARING_FUNGUS_AMULET)) {
-			return ESFoods.FUNGUS.get();
-		}
-		return value;
-	}
-
-	@ModifyVariable(method = "getUseDuration", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
-	private FoodProperties modifyFoodPropertiesForUseDuration(FoodProperties value, @Local(argsOnly = true) LivingEntity entity) {
 		if (value == null && ESAccessoryUtil.getActiveAccessoriesOnArmors(entity).contains(ESItems.FUNGUS_AMULET.get()) && ((Item) (Object) this).builtInRegistryHolder().is(ESTags.Items.CONSUMABLE_WHEN_WEARING_FUNGUS_AMULET)) {
 			return ESFoods.FUNGUS.get();
 		}

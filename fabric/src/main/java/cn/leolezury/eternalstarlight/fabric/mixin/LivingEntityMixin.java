@@ -10,7 +10,6 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
@@ -32,9 +31,6 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	protected abstract void jumpInLiquid(TagKey<Fluid> tagKey);
-
-	@Shadow
-	public abstract ItemStack getItemBySlot(EquipmentSlot equipmentSlot);
 
 	@ModifyVariable(method = "actuallyHurt", at = @At(value = "STORE", ordinal = 1), ordinal = 0, argsOnly = true)
 	private float modifyActualHurtDamage(float original, @Local(argsOnly = true) DamageSource source) {
@@ -58,10 +54,16 @@ public abstract class LivingEntityMixin {
 		return original.call(source, modified);
 	}
 
+	@Inject(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V", shift = At.Shift.AFTER))
+	private void modifyPostAttackInvulnerabilityTicks(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+		LivingEntity living = (LivingEntity) (Object) this;
+		living.invulnerableTime = ESCommonHandler.onModifyPostAttackInvulnerabilityTicks(living, source, amount, living.invulnerableTime);
+	}
+
 	@Inject(method = "hurt", at = @At("HEAD"))
-	private void hurt(DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir) {
+	private void hurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (isUsingItem() && ESCommonSetupHandler.SHIELDS.stream().anyMatch(itemSupplier -> getUseItem().is(itemSupplier.get()))) {
-			ESCommonHandler.onShieldBlock((LivingEntity) (Object) this, damageSource);
+			ESCommonHandler.onShieldBlock((LivingEntity) (Object) this, source);
 		}
 	}
 

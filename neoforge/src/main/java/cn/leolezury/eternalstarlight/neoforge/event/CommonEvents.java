@@ -63,6 +63,7 @@ public class CommonEvents {
 			}
 		}
 		event.setAmount(ESCommonHandler.onModifyLivingHurtDamage(event.getEntity(), event.getSource(), event.getAmount()));
+		event.getContainer().setPostAttackInvulnerabilityTicks(ESCommonHandler.onModifyPostAttackInvulnerabilityTicks(event.getEntity(), event.getSource(), event.getAmount(), event.getContainer().getPostAttackInvulnerabilityTicks()));
 	}
 
 	@SubscribeEvent
