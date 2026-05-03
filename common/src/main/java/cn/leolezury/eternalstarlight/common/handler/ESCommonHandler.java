@@ -156,6 +156,13 @@ public class ESCommonHandler {
 		}
 	}
 
+	public static void onPlayerJoin(Player player) {
+		if (ESConfig.INSTANCE.startWithGuidebook && !player.level().isClientSide && !ESDataAttachments.RECEIVED_GUIDEBOOK.getData(player)) {
+			ESDataAttachments.RECEIVED_GUIDEBOOK.setData(player, true);
+			ESEntityUtil.givePlayerItem(player, ESItems.BOOK.get().getDefaultInstance());
+		}
+	}
+
 	public static void onItemTooltip(Player player, TooltipFlag flags, ItemStack itemStack, List<Component> tooltip, Item.TooltipContext context) {
 		HolderLookup.Provider lookup = context.registries();
 		Accessory accessory = itemStack.get(ESDataComponents.ACCESSORY.get());

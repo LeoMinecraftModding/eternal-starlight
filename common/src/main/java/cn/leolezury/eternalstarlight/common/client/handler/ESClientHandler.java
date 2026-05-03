@@ -417,20 +417,10 @@ public class ESClientHandler {
 	}
 
 	public static void onAfterRenderLevel() {
-		RenderSystem.enableCull();
-		RenderSystem.enableBlend();
-		RenderSystem.enableDepthTest();
-		RenderSystem.depthMask(false);
 		Matrix4f matrix4f = new Matrix4f(RenderSystem.getModelViewMatrix());
 		RenderSystem.getModelViewMatrix().set(modelViewMatrix);
-		if (Minecraft.useShaderTransparency()) {
-			Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
-		}
 		AFTER_LEVEL_BUFFER_SOURCE.endBatch();
 		RenderSystem.getModelViewMatrix().set(matrix4f);
-		if (Minecraft.useShaderTransparency() && Minecraft.getInstance().levelRenderer.getCloudsTarget() != null) {
-			Minecraft.getInstance().levelRenderer.getCloudsTarget().bindWrite(false);
-		}
 	}
 
 	private static void renderSkyShader(ShaderInstance shader, float intensity) {

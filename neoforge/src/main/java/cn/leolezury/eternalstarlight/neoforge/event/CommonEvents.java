@@ -55,6 +55,11 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
+	private static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+		ESCommonHandler.onPlayerJoin(event.getEntity());
+	}
+
+	@SubscribeEvent
 	private static void onIncomingDamage(LivingIncomingDamageEvent event) {
 		if (!event.isCanceled()) {
 			boolean allow = ESCommonHandler.onAllowLivingHurt(event.getEntity(), event.getSource(), event.getAmount());

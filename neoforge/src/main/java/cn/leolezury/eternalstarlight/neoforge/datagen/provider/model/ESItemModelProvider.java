@@ -829,6 +829,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.THIOQUARTZ_CLUSTER.get());
 		basicItem(ESItems.THIOQUARTZ_SHARD.get());
 		basicItem(ESItems.THIOQUARTZ_ARROW.get());
+		basicItem(ESItems.ETHERIC_EYE.get());
 		block(ESItems.TOXITE.get());
 		block(ESItems.TOXITE_SLAB.get());
 		block(ESItems.TOXITE_STAIRS.get());

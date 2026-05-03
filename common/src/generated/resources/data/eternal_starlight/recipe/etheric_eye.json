@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "eternal_starlight:seeking_eye"
+    },
+    "T": {
+      "tag": "c:gems/thioquartz"
+    }
+  },
+  "pattern": [
+    " T ",
+    "TST",
+    " T "
+  ],
+  "result": {
+    "count": 4,
+    "id": "eternal_starlight:etheric_eye"
+  }
+}

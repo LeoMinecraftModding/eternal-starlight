@@ -22,6 +22,7 @@ public record ExplosionShockParticleOptions(Vector3f fromColor, Vector3f toColor
 	public static final ExplosionShockParticleOptions DEATH = fromIntColor(new Vector3f(220, 53, 69), new Vector3f(237, 38, 85), 1, 0.06f, 1);
 	public static final ExplosionShockParticleOptions ENERGY = fromIntColor(new Vector3f(255, 255, 255), new Vector3f(129, 212, 250), 0.5f, 0.1f, 0.6f);
 	public static final ExplosionShockParticleOptions ENERGY_SMALL = fromIntColor(new Vector3f(255, 255, 255), new Vector3f(129, 212, 250), 0.07f, 0.02f, 0.6f);
+	public static final ExplosionShockParticleOptions ETHER = fromIntColor(new Vector3f(209, 255, 225), new Vector3f(255, 255, 255), 1, 0.06f, 1);
 
 	public static ExplosionShockParticleOptions fromIntColor(Vector3f fromColor, Vector3f toColor, float lengthScale, float width, float lifeScale) {
 		return new ExplosionShockParticleOptions(new Vector3f(fromColor).div(255f), new Vector3f(toColor).div(255f), lengthScale, width, lifeScale);

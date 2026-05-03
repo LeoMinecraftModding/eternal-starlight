@@ -1005,6 +1005,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> THIOQUARTZ_CLUSTER = registerItem("thioquartz_cluster", () -> new BlockItem(ESBlocks.THIOQUARTZ_CLUSTER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> THIOQUARTZ_SHARD = registerItem("thioquartz_shard", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> THIOQUARTZ_ARROW = registerItem("thioquartz_arrow", () -> new ThioquartzArrowItem(new Item.Properties()));
+	public static final RegistryObject<Item, Item> ETHERIC_EYE = registerItem("etheric_eye", () -> new EthericEyeItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> TOXITE = registerItem("toxite", () -> new BlockItem(ESBlocks.TOXITE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TOXITE_SLAB = registerItem("toxite_slab", () -> new BlockItem(ESBlocks.TOXITE_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TOXITE_STAIRS = registerItem("toxite_stairs", () -> new BlockItem(ESBlocks.TOXITE_STAIRS.get(), new Item.Properties()));

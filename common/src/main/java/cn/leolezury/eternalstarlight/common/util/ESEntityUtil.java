@@ -1,9 +1,12 @@
 package cn.leolezury.eternalstarlight.common.util;
 
 import net.minecraft.commands.arguments.EntityAnchorArgument;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -76,5 +79,37 @@ public class ESEntityUtil {
 
 	public static VillagerTrades.ItemListing simpleTrade(ItemStack cost, ItemStack result, int maxUses) {
 		return (entity, random) -> new MerchantOffer(new ItemCost(cost.getItem(), cost.getCount()), result, maxUses, 0, 0);
+	}
+
+	public static void givePlayerItem(Player player, ItemStack stack) {
+		int maxStackSize = stack.getMaxStackSize();
+		int remaining = stack.getCount();
+
+		while (remaining > 0) {
+			int size = Math.min(maxStackSize, remaining);
+			remaining -= size;
+			ItemStack copyToDrop = stack.copyWithCount(size);
+			boolean added = player.getInventory().add(copyToDrop);
+			if (added && copyToDrop.isEmpty()) {
+				player.level()
+					.playSound(
+						null,
+						player.getX(),
+						player.getY(),
+						player.getZ(),
+						SoundEvents.ITEM_PICKUP,
+						SoundSource.PLAYERS,
+						0.2F,
+						((player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F
+					);
+				player.containerMenu.broadcastChanges();
+			} else {
+				ItemEntity drop = player.drop(copyToDrop, false);
+				if (drop != null) {
+					drop.setNoPickUpDelay();
+					drop.setTarget(player.getUUID());
+				}
+			}
+		}
 	}
 }

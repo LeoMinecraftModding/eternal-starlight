@@ -1542,6 +1542,14 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('T', ESConventionalTags.Items.GEMS_THIOQUARTZ)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_THIOQUARTZ))
 			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.ETHERIC_EYE.get(), 4)
+			.pattern(" T ")
+			.pattern("TST")
+			.pattern(" T ")
+			.define('S', ESItems.SEEKING_EYE.get())
+			.define('T', ESConventionalTags.Items.GEMS_THIOQUARTZ)
+			.unlockedBy("has_item", has(ESConventionalTags.Items.GEMS_THIOQUARTZ))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.ALCHEMIST_MASK.get())
 			.pattern("###")
 			.pattern("S S")

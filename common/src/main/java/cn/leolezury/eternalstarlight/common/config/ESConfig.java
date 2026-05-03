@@ -22,6 +22,7 @@ public class ESConfig {
 	public boolean enableLootChest = true;
 	public boolean spawnInEternalStarlight = false;
 	public boolean respawnInEternalStarlight = false;
+	public boolean startWithGuidebook = false;
 	public float aethersentMeteorDropRate = 0.0005f;
 	public boolean aethersentMeteorReplaceBlocks = false;
 	public int mobMaxTearyTicks = 200;

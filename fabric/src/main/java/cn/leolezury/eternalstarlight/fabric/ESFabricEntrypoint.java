@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.network.ESPackets;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
@@ -90,6 +91,7 @@ public class ESFabricEntrypoint implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(ESCommonHandler::onServerTick);
 		ServerTickEvents.START_WORLD_TICK.register(ESCommonHandler::onLevelTick);
 		ServerWorldEvents.LOAD.register((server, world) -> ESCommonHandler.onLevelLoad(world));
+		ServerPlayerEvents.JOIN.register(ESCommonHandler::onPlayerJoin);
 		PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> ESCommonHandler.onLeftClickBlock(world, pos, state));
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> ESCommonHandler.onBlockBroken(player, pos, state));
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register(ESCommonHandler::onAllowLivingHurt);
