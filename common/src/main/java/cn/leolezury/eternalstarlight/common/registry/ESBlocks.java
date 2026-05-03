@@ -939,10 +939,10 @@ public class ESBlocks {
 	public static final RegistryObject<Block, LootChestBlock> LOOT_CHEST = BLOCKS.register("loot_chest", () -> new LootChestBlock(BlockBehaviour.Properties.of().strength(50.0F).noOcclusion().sound(SoundType.WOOD).mapColor(MapColor.WOOD)));
 
 	// boss spawners
-	public static final RegistryObject<Block, TheGatekeeperSpawnerBlock> THE_GATEKEEPER_SPAWNER = BLOCKS.register("the_gatekeeper_spawner", () -> new TheGatekeeperSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
-	public static final RegistryObject<Block, StarlightGolemSpawnerBlock> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
-	public static final RegistryObject<Block, PermafrostSpawnerBlock> PERMAFROST_SPAWNER = BLOCKS.register("permafrost_spawner", () -> new PermafrostSpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
-	public static final RegistryObject<Block, LunarMonstrositySpawnerBlock> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, TheGatekeeperSpawnerBlock> THE_GATEKEEPER_SPAWNER = BLOCKS.register("the_gatekeeper_spawner", () -> new TheGatekeeperSpawnerBlock(BlockBehaviour.Properties.of().strength(50.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, StarlightGolemSpawnerBlock> STARLIGHT_GOLEM_SPAWNER = BLOCKS.register("starlight_golem_spawner", () -> new StarlightGolemSpawnerBlock(BlockBehaviour.Properties.of().strength(50.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, PermafrostSpawnerBlock> PERMAFROST_SPAWNER = BLOCKS.register("permafrost_spawner", () -> new PermafrostSpawnerBlock(BlockBehaviour.Properties.of().strength(50.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
+	public static final RegistryObject<Block, LunarMonstrositySpawnerBlock> LUNAR_MONSTROSITY_SPAWNER = BLOCKS.register("lunar_monstrosity_spawner", () -> new LunarMonstrositySpawnerBlock(BlockBehaviour.Properties.of().strength(50.0F).noOcclusion().mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, SolarEggBlock> SOLAR_EGG = BLOCKS.register("solar_egg", () -> new SolarEggBlock(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).noOcclusion().mapColor(MapColor.COLOR_PURPLE)));
 
 	// starlight golem

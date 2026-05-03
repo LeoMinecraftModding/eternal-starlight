@@ -12,6 +12,7 @@ import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.RingExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
@@ -337,6 +338,11 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	@Override
 	public boolean displayFireAnimation() {
 		return getBehaviorState() != LunarMonstrositySneakPhase.ID && super.displayFireAnimation();
+	}
+
+	@Override
+	protected BlockState getBossSpawner() {
+		return ESBlocks.LUNAR_MONSTROSITY_SPAWNER.get().defaultBlockState();
 	}
 
 	@Override

@@ -20,6 +20,8 @@ public class ESConfig {
 	public boolean enablePortalShader = true;
 	public boolean enableScreenShake = true;
 	public boolean enableLootChest = true;
+	public boolean enableBossRespawn = true;
+	public int bossRespawnCooldown = 36000;
 	public boolean spawnInEternalStarlight = false;
 	public boolean respawnInEternalStarlight = false;
 	public boolean startWithGuidebook = false;

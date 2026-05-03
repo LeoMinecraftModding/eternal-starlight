@@ -24,6 +24,11 @@ public class PermafrostSpawnerBlockEntity extends BossSpawnerBlockEntity<Permafr
 	}
 
 	@Override
+	protected int getRange() {
+		return 20;
+	}
+
+	@Override
 	public ParticleOptions getSpawnerParticle() {
 		return ParticleTypes.SNOWFLAKE;
 	}

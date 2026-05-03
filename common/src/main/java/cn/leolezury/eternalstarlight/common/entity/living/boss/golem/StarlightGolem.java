@@ -451,6 +451,11 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	}
 
 	@Override
+	protected BlockState getBossSpawner() {
+		return ESBlocks.STARLIGHT_GOLEM_SPAWNER.get().defaultBlockState();
+	}
+
+	@Override
 	protected void grantSpecialLoot(ServerPlayer player) {
 		ESCrestUtil.upgradeCrest(player, ESCrests.BLAZING_BEAM);
 	}

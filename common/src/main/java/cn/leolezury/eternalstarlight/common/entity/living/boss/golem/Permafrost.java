@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
+import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -282,6 +283,11 @@ public class Permafrost extends ESBoss {
 	@Override
 	protected SoundEvent getDeathSound() {
 		return ESSoundEvents.PERMAFROST_DEATH.get();
+	}
+
+	@Override
+	protected BlockState getBossSpawner() {
+		return ESBlocks.PERMAFROST_SPAWNER.get().defaultBlockState();
 	}
 
 	@Override

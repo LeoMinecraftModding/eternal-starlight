@@ -24,8 +24,8 @@ public class TheGatekeeperSpawnerBlockEntity extends BossSpawnerBlockEntity<TheG
 	}
 
 	@Override
-	protected void initializeCreature(TheGatekeeper mob) {
-		super.initializeCreature(mob);
+	protected void initializeBoss(TheGatekeeper mob) {
+		super.initializeBoss(mob);
 		mob.setStandardFight(true);
 	}
 

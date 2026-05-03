@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.LootChestBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
+import cn.leolezury.eternalstarlight.common.block.entity.spawner.BossSpawnerBlockEntity;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
@@ -39,6 +40,7 @@ import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
@@ -230,8 +232,24 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	public void remove(RemovalReason reason) {
 		if (reason == RemovalReason.KILLED) {
 			trySpawnLoot();
+			if (ESConfig.INSTANCE.enableBossRespawn) {
+				BlockState spawnerState = getBossSpawner();
+				if (!spawnerState.isAir() && initialPos.dimension() == level().dimension()) {
+					BlockPos spawnerPos = BlockPos.containing(initialPos.pos());
+					if (canBossSpawnerReplace(spawnerPos, level().getBlockState(spawnerPos))) {
+						level().setBlockAndUpdate(spawnerPos, spawnerState);
+						if (level().getBlockEntity(spawnerPos) instanceof BossSpawnerBlockEntity<?> blockEntity) {
+							blockEntity.setSpawnCooldown(ESConfig.INSTANCE.bossRespawnCooldown);
+						}
+					}
+				}
+			}
 		}
 		super.remove(reason);
+	}
+
+	protected BlockState getBossSpawner() {
+		return Blocks.AIR.defaultBlockState();
 	}
 
 	protected boolean shouldSpawnLoot() {
@@ -277,6 +295,10 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	protected void grantSpecialLoot(ServerPlayer player) {
+	}
+
+	protected boolean canBossSpawnerReplace(BlockPos pos, BlockState state) {
+		return state.isAir() || (state.canBeReplaced() && ESPlatform.INSTANCE.postEntityDestroyBlockEvent(level(), pos, this));
 	}
 
 	protected boolean canBossLootChestReplace(BlockPos pos, BlockState state) {
