@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-02T14:52:01.1732652	Registries
+// 1.21.1	2026-05-04T13:35:33.0663409	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -17,7 +17,7 @@ c9fe1d7617f62f165b0f23d77f83b908fc282569 data/eternal_starlight/damage_type/pois
 64036c89113dcd4eee30c5feccbc9f54202da1b8 data/eternal_starlight/damage_type/soul_absorb.json
 74d14ff0f4d7ce375f824722feb9d1b5032cd799 data/eternal_starlight/damage_type/starfire.json
 ae5f3ade292c8c1a8b4fabf59485df748e3b493c data/eternal_starlight/damage_type/wilt.json
-86b30e76ba119bfc0a56ed87ea2ff2dd4e1ba200 data/eternal_starlight/dimension/starlight.json
+6ed9970de83967a745662dd3499b42e65905cecc data/eternal_starlight/dimension/starlight.json
 c616b5b419be855340e096247b775c0bfd00e623 data/eternal_starlight/dimension_type/starlight.json
 58fdda43908555282d92224ca4a72c9ca74bf682 data/eternal_starlight/enchantment/abyssal_touch.json
 f39afbe0d05a469807ba2868459da1629a1f335d data/eternal_starlight/enchantment/fearless.json

@@ -1,9 +1,9 @@
 {
   "type": "eternal_starlight:starlight",
   "generator": {
-    "type": "eternal_starlight:es_gen",
+    "type": "eternal_starlight:biome_based",
     "biome_source": {
-      "type": "eternal_starlight:es_biomes",
+      "type": "eternal_starlight:multi_noise",
       "biome_data_parameters": [
         {
           "biome_data": "eternal_starlight:lucent_mycelium_isle",

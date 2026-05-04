@@ -594,8 +594,9 @@ public class ESCommonHandler {
 			}
 		}
 		if (!level.isClientSide && entity instanceof AbstractArrow arrow) {
-			if (arrow.getPickupItemStackOrigin().has(ESDataComponents.QUIVER_ARROW.get())) {
-				arrow.getPickupItemStackOrigin().remove(ESDataComponents.QUIVER_ARROW.get());
+			ItemStack pickupOrigin = arrow.getPickupItemStackOrigin();
+			if (pickupOrigin != null && pickupOrigin.has(ESDataComponents.QUIVER_ARROW.get())) {
+				pickupOrigin.remove(ESDataComponents.QUIVER_ARROW.get());
 			}
 			ItemStack weaponItem = arrow.getWeaponItem();
 			if (weaponItem != null && weaponItem.is(ESItems.UNREALIUM_CROSSBOW.get())) {
