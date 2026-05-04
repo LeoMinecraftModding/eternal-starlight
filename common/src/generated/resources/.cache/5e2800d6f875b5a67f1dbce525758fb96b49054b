@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-24T23:07:14.9032812	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2026-05-04T18:09:56.0972517	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -29,7 +29,7 @@ f1bfd8d1e58f64e87a6a8b58fa78780552b3e083 data/c/tags/item/dyed/white.json
 f0bd040a5c70355d46f29d0603177aa652593ce1 data/c/tags/item/dyed/yellow.json
 5bb788dbbe57feac0e6f7a421ad623a60751d1a1 data/c/tags/item/fences/wooden.json
 112b4065954cfe86c860906b332774bac32ded07 data/c/tags/item/fence_gates/wooden.json
-e18fa3346e2c22c5ebc6cd13d000c1b2720b3276 data/c/tags/item/foods.json
+048d04fec6d1c8470cd876a58afb13aa638a1e68 data/c/tags/item/foods.json
 f68b1445e8e902a4ca456603a16efc4c38729102 data/c/tags/item/foods/berry.json
 116ffed57cee4ddc2c46b14178918e2809039cbe data/c/tags/item/foods/cooked_fish.json
 3a4b43c6ea5f9487579cdc5d513d8299ae4524b3 data/c/tags/item/foods/cooked_meat.json
@@ -120,6 +120,7 @@ ba9125aa546790a0582445879c658b228dbb763c data/eternal_starlight/tags/item/access
 237ae0010a21b6661acf9b44a30d8c6ff981d328 data/eternal_starlight/tags/item/accessory_applicable/chest_armor.json
 e18f783b117a7e13e931b76dc1175b8cbca5eddb data/eternal_starlight/tags/item/accessory_applicable/hammer.json
 2c459201be6438a80825cfcb1ebe63fb3bd2c95c data/eternal_starlight/tags/item/affects_progression.json
+094c4fbf119c5e4e24a80e22eb90ce0466f199b3 data/eternal_starlight/tags/item/algaleaves.json
 927eea18d2e0cad6041456fa64447d58487d01e8 data/eternal_starlight/tags/item/alloy_furnaces.json
 89173160c0f37d36484b34cd74d0282331c9fe56 data/eternal_starlight/tags/item/arrow_feathers.json
 3b5e1ba4d158debd616c5654cce548bd80024eca data/eternal_starlight/tags/item/aurora_deer_food.json

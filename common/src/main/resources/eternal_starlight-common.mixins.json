@@ -35,6 +35,7 @@
     "ServerLevelMixin",
     "ServerPlayerMixin",
     "SignBlockMixin",
+    "SnowAndFreezeFeatureMixin",
     "SpawnEggItemMixin",
     "SurfaceSystemMixin",
     "TagLoaderMixin",

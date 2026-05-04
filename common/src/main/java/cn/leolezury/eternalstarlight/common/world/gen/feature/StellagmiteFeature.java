@@ -13,8 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.List;
-
 public class StellagmiteFeature extends ESFeature<NoneFeatureConfiguration> {
 	public StellagmiteFeature(Codec<NoneFeatureConfiguration> codec) {
 		super(codec);
@@ -30,7 +28,7 @@ public class StellagmiteFeature extends ESFeature<NoneFeatureConfiguration> {
 			if (value <= 0.8 || random.nextFloat() <= 0.15) {
 				state = ESBlocks.MOLTEN_STELLAGMITE.get().defaultBlockState();
 			}
-			setBlockIfEmpty(level, pos.offset(origin), state, true, s -> anyMatch(s, List.of(ESTags.Blocks.BASE_STONE_STARLIGHT)) || s.canBeReplaced());
+			setBlockIfEmpty(level, pos.offset(origin), state, true, s -> s.is(ESTags.Blocks.BASE_STONE_STARLIGHT) || s.canBeReplaced());
 		});
 		return true;
 	}

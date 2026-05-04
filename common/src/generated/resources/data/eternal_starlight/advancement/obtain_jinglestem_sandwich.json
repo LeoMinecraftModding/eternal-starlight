@@ -1,0 +1,33 @@
+{
+  "parent": "eternal_starlight:enter_starlight",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:jinglestem_sandwich"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.eternal_starlight.obtain_jinglestem_sandwich.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "eternal_starlight:jinglestem_sandwich"
+    },
+    "title": {
+      "translate": "advancements.eternal_starlight.obtain_jinglestem_sandwich.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -219,6 +219,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> JINGLESTEM_HANGING_SIGN = registerItem("jinglestem_hanging_sign", () -> new HangingSignItem(ESBlocks.JINGLESTEM_HANGING_SIGN.get(), ESBlocks.JINGLESTEM_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
 	public static final RegistryObject<Item, Item> JINGLESTEM_RAFT = registerItem("jinglestem_raft", () -> new ESBoatItem(false, ESBoat.Type.JINGLESTEM, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> JINGLESTEM_CHEST_RAFT = registerItem("jinglestem_chest_raft", () -> new ESBoatItem(true, ESBoat.Type.JINGLESTEM, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> JINGLESTEM_CRISP = registerItem("jinglestem_crisp", () -> new Item(new Item.Properties().food(ESFoods.JINGLESTEM_CRISP.get())));
+	public static final RegistryObject<Item, Item> JINGLESTEM_SANDWICH = registerItem("jinglestem_sandwich", () -> new Item(new Item.Properties().food(ESFoods.JINGLESTEM_SANDWICH.get())));
 
 	// cradlewood wood
 	public static final RegistryObject<Item, Item> CRADLEWOOD_SAPLING = registerItem("cradlewood_sapling", () -> new BlockItem(ESBlocks.CRADLEWOOD_SAPLING.get(), new Item.Properties()));
@@ -299,6 +301,7 @@ public class ESItems {
 
 	// eternal ice
 	public static final RegistryObject<Item, Item> ETERNAL_ICE = registerItem("eternal_ice", () -> new BlockItem(ESBlocks.ETERNAL_ICE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> THIN_ETERNAL_ICE = registerItem("thin_eternal_ice", () -> new BlockItem(ESBlocks.THIN_ETERNAL_ICE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICKS = registerItem("eternal_ice_bricks", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICKS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_SLAB = registerItem("eternal_ice_brick_slab", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> ETERNAL_ICE_BRICK_STAIRS = registerItem("eternal_ice_brick_stairs", () -> new BlockItem(ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), new Item.Properties()));

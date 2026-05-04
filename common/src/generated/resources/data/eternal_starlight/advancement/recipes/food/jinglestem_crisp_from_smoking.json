@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_jinglestem_sapling": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:jinglestem_sapling"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:jinglestem_crisp_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_jinglestem_sapling"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:jinglestem_crisp_from_smoking"
+    ]
+  }
+}

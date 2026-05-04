@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-04T13:35:33.0663409	Registries
+// 1.21.1	2026-05-04T18:59:11.8214824	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -218,7 +218,7 @@ fc8574b70fb466092fb7199cd5a04e93446fc589 data/eternal_starlight/worldgen/configu
 bfcb7aded73a38537df85740af7e56767a3c75b1 data/eternal_starlight/worldgen/configured_feature/hot_spring.json
 ea74e073a6e0912630a5df4fd07a34f5a1ac63f8 data/eternal_starlight/worldgen/configured_feature/huge_glowing_mushroom.json
 9ee85a75d1ef433722662164ec434473b36fee60 data/eternal_starlight/worldgen/configured_feature/huge_marimold.json
-f0028894ac94ea6f6eab67744f6a8eb41bb3ec46 data/eternal_starlight/worldgen/configured_feature/ice_spike.json
+544268683ccea0029e320733eb12734fd7cc2396 data/eternal_starlight/worldgen/configured_feature/ice_spike.json
 8771491a241ec80089c672a7fa745bd2784e7aba data/eternal_starlight/worldgen/configured_feature/icicle.json
 4561eb9300daee6ec69ab6d27473ed77094fdcee data/eternal_starlight/worldgen/configured_feature/jinglestem.json
 e9a927a4f3c42646cb88090e224f3d7ac7e0ce17 data/eternal_starlight/worldgen/configured_feature/jinglestem_forest.json

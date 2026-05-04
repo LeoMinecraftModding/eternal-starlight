@@ -29,7 +29,7 @@
     "spike": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:packed_ice"
+        "Name": "eternal_starlight:thin_eternal_ice"
       }
     }
   }

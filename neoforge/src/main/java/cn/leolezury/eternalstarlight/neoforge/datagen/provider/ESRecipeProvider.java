@@ -97,17 +97,18 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSingleConversion(recipeOutput, Items.RED_DYE, ESItems.VIVIDSTALK.get());
 		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.TALL_GLADESPIKE.get());
 
-		// food
+		// cooked food
 		addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
 		addCookingRecipes(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);
-		addSmelt(recipeOutput, 200, ESItems.LUNARIS_CACTUS_FRUIT.get(), ESItems.LUNARIS_CACTUS_GEL.get(), ESItems.LUNARIS_CACTUS_FRUIT.get());
-		addSmelt(recipeOutput, 200, ESItems.SPIRAL_KELP.get(), Items.DRIED_KELP, ESItems.SPIRAL_KELP.get());
-		addSmelt(recipeOutput, 200, ESItems.ROOKFISH.get(), ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH.get());
-		addSmelt(recipeOutput, 200, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), ESItems.LUMINOFISH.get());
-		addSmelt(recipeOutput, 200, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), ESItems.LUMINARIS.get());
-		addSmelt(recipeOutput, 200, ESItems.AURORA_DEER_STEAK.get(), ESItems.COOKED_AURORA_DEER_STEAK.get(), ESItems.AURORA_DEER_STEAK.get());
-		addSmelt(recipeOutput, 200, ESItems.RATLIN_MEAT.get(), ESItems.COOKED_RATLIN_MEAT.get(), ESItems.RATLIN_MEAT.get());
-		addSmelt(recipeOutput, 200, ESItems.SHADOW_SNAIL_MEAT.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_MEAT.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.JINGLESTEM_SAPLING.get(), ESItems.JINGLESTEM_CRISP.get(), ESItems.JINGLESTEM_SAPLING.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.LUNARIS_CACTUS_FRUIT.get(), ESItems.LUNARIS_CACTUS_GEL.get(), ESItems.LUNARIS_CACTUS_FRUIT.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.SPIRAL_KELP.get(), Items.DRIED_KELP, ESItems.SPIRAL_KELP.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.ROOKFISH.get(), ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), ESItems.LUMINOFISH.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), ESItems.LUMINARIS.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.AURORA_DEER_STEAK.get(), ESItems.COOKED_AURORA_DEER_STEAK.get(), ESItems.AURORA_DEER_STEAK.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.RATLIN_MEAT.get(), ESItems.COOKED_RATLIN_MEAT.get(), ESItems.RATLIN_MEAT.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.SHADOW_SNAIL_MEAT.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_MEAT.get());
 
 		// smelt
 		addSmelt(recipeOutput, 200, ESItems.GRIMSTONE_REDSTONE_ORE.get(), Items.REDSTONE, ESItems.GRIMSTONE_REDSTONE_ORE.get());
@@ -190,6 +191,14 @@ public class ESRecipeProvider extends RecipeProvider {
 
 		// misc
 		addShapeless(recipeOutput, ESItems.BANYIN_ROOTS.get(), ESItems.MUDDY_BANYIN_ROOTS.get(), 1, ESItems.BANYIN_ROOTS.get(), ESItems.NIGHTFALL_MUD.get());
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ESItems.JINGLESTEM_SANDWICH.get())
+			.pattern("L")
+			.pattern("C")
+			.pattern("L")
+			.define('L', ESTags.Items.ALGALEAVES)
+			.define('C', ESItems.JINGLESTEM_CRISP.get())
+			.unlockedBy("has_item", has(ESItems.JINGLESTEM_CRISP.get()))
+			.save(recipeOutput);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.FROZEN_BOMB.get(), 12)
 			.pattern("SG ")
 			.pattern("GAG")
@@ -203,7 +212,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.CRINOA.get(), ESItems.CRINOA_BALL.get(), 1, ESItems.CRINOA.get(), ESItems.CRINOA.get(), ESItems.LUNAR_BERRIES.get());
 		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.CRINOA.get(), ESItems.CRINOA_PORRIDGE.get(), 1, ESItems.CRINOA.get(), ESItems.CRINOA.get(), ESItems.CRINOA.get(), Items.BOWL);
 		customCarpet(recipeOutput, ESBlocks.CAVE_MOSS_CARPET.get(), ESBlocks.CAVE_MOSS_BLOCK.get());
-		addShapeless(recipeOutput, ESItems.BOULDERSHROOM.get(), ESItems.BOULDERSHROOM_STEW.get(), 1, ESItems.BOULDERSHROOM.get(), ESItems.GLOWING_MUSHROOM.get(), Items.BOWL);
+		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.BOULDERSHROOM.get(), ESItems.BOULDERSHROOM_STEW.get(), 1, ESItems.BOULDERSHROOM.get(), ESItems.GLOWING_MUSHROOM.get(), Items.BOWL);
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.LUNARIS_CACTUS_GEL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(), "lunaris_cactus_gel_block_from_lunaris_cactus_gel", "lunaris_cactus_gel");
 		addShapeless(recipeOutput, ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), ESBlocks.LUNARIS_CACTUS_FRUIT_LANTERN.get(), 1, ESBlocks.CARVED_LUNARIS_CACTUS_FRUIT.get(), ESBlocks.AMARAMBER_CANDLE.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.ARROW, 4)
@@ -219,7 +228,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		customCarpet(recipeOutput, ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get());
 		customCarpet(recipeOutput, ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.CRINOA.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.CRINOA_BALE.get(), "crinoa_from_crinoa_bale", "crinoa_bale");
-		addShapeless(recipeOutput, ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH_SKEWER.get(), 3, ESItems.COOKED_ROOKFISH.get(), Items.STICK, Items.STICK, Items.STICK);
+		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH_SKEWER.get(), 3, ESItems.COOKED_ROOKFISH.get(), Items.STICK, Items.STICK, Items.STICK);
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.AIR_SAC_ARROW.get(), 4)
 			.pattern("D")
 			.pattern("S")
@@ -247,8 +256,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.SHADOW_SNAIL_SHELL.get(), ESItems.SHADOW_SNAIL_SHELL_POWDER.get(), 4, ESItems.SHADOW_SNAIL_SHELL.get());
 		addSingleConversion(recipeOutput, Items.BLACK_DYE, ESItems.SHADOW_SNAIL_SHELL_POWDER.get());
-		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_PIE.get(), 1, ESItems.RAW_AMARAMBER.get(), ESItems.CRINOA.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get());
-		addShapeless(recipeOutput, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_ESCARGOT.get(), 1, ESItems.VELVETUMOSS_BALL.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_SHELL.get());
+		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_PIE.get(), 1, ESItems.RAW_AMARAMBER.get(), ESItems.CRINOA.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get());
+		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_ESCARGOT.get(), 1, ESItems.VELVETUMOSS_BALL.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_SHELL.get());
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.STARLIT_PAINTING.get())
 			.pattern("SSS")
 			.pattern("SFS")
@@ -660,6 +669,7 @@ public class ESRecipeProvider extends RecipeProvider {
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {
+		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.JINGLESTEM_SAPLING.get(), ESItems.JINGLESTEM_CRISP.get(), 0.1F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.SPIRAL_KELP.get(), Items.DRIED_KELP, 0.1F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.ROOKFISH.get(), ESItems.COOKED_ROOKFISH.get(), 0.35F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), 0.35F);
@@ -2034,7 +2044,11 @@ public class ESRecipeProvider extends RecipeProvider {
 
 	// misc
 	protected final void addSmelt(RecipeOutput recipeOutput, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id(name(output) + "_smelting_from_" + name(criteria)));
+		addSmelt(recipeOutput, RecipeCategory.MISC, time, criteria, output, input);
+	}
+
+	protected final void addSmelt(RecipeOutput recipeOutput, RecipeCategory category, int time, ItemLike criteria, ItemLike output, ItemLike... input) {
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), category, output, 1.0f, time).unlockedBy("has_item", has(criteria)).save(recipeOutput, EternalStarlight.id(name(output) + "_smelting_from_" + name(criteria)));
 	}
 
 	protected final void addBlast(RecipeOutput recipeOutput, int time, ItemLike criteria, ItemLike output, ItemLike... input) {

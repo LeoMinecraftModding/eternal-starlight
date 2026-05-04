@@ -109,6 +109,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.GLOWING_VOIDSTONE.get());
 
 		simpleBlock(ESBlocks.ETERNAL_ICE.get());
+		randomlyMirroredAndRotatedBlock(ESBlocks.THIN_ETERNAL_ICE.get());
 		stoneSet(ESBlocks.ETERNAL_ICE_BRICKS.get(), ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
 		onOffBlock(ESBlocks.ETERNAL_ICE_LANTERN.get(), BlockStateProperties.HANGING, models().getExistingFile(EternalStarlight.id("eternal_ice_lantern_hanging")), models().getExistingFile(EternalStarlight.id("eternal_ice_lantern")));
 		simpleBlock(ESBlocks.HAZE_ICE.get());

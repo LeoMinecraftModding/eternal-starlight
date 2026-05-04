@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.feature;
 
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.valuemap.MergedProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.valuemap.RotatedProvider;
 import cn.leolezury.eternalstarlight.common.world.gen.valuemap.SpikeProvider;
@@ -35,7 +36,7 @@ public class SpikeFeature extends ESFeature<SpikeFeature.Configuration> {
 			entries.add(new MergedProvider.Entry(new RotatedProvider(new SpikeProvider(config.minorRadius().sample(random), config.minorHeight().sample(random)), random.nextInt(20, 70), random.nextFloat() * 360), Vec3.ZERO));
 		}
 		entries.add(new MergedProvider.Entry(new SpikeProvider(config.radius().sample(random), config.height().sample(random)), Vec3.ZERO));
-		ValueMapGenerator.place(new MergedProvider(entries), (pos, value) -> setBlockIfEmpty(level, pos.offset(origin), config.spike().getState(random, pos.offset(origin))));
+		ValueMapGenerator.place(new MergedProvider(entries), (pos, value) -> setBlockIfEmpty(level, pos.offset(origin), config.spike().getState(random, pos.offset(origin)), true, s -> s.is(ESTags.Blocks.BASE_STONE_STARLIGHT) || s.canBeReplaced()));
 		return true;
 	}
 

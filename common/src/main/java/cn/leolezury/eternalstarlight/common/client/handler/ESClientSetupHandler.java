@@ -393,6 +393,7 @@ public class ESClientSetupHandler {
 	);
 
 	public static final List<Supplier<? extends Block>> BLOCKS_TRANSLUCENT = List.of(
+		ESBlocks.THIN_ETERNAL_ICE,
 		ESBlocks.REINFORCED_ICE,
 		ESBlocks.REINFORCED_ICE_PANE,
 		ESBlocks.LUNARIS_CACTUS_GEL_BLOCK,

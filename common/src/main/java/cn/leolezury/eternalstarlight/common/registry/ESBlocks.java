@@ -389,6 +389,7 @@ public class ESBlocks {
 
 	// eternal ice
 	public static final RegistryObject<Block, Block> ETERNAL_ICE = BLOCKS.register("eternal_ice", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
+	public static final RegistryObject<Block, HalfTransparentBlock> THIN_ETERNAL_ICE = BLOCKS.register("thin_eternal_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.PACKED_ICE).noOcclusion()));
 	public static final RegistryObject<Block, Block> ETERNAL_ICE_BRICKS = BLOCKS.register("eternal_ice_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 	public static final RegistryObject<Block, SlabBlock> ETERNAL_ICE_BRICK_SLAB = BLOCKS.register("eternal_ice_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 	public static final RegistryObject<Block, StairBlock> ETERNAL_ICE_BRICK_STAIRS = BLOCKS.register("eternal_ice_brick_stairs", () -> new StairBlock(ETERNAL_ICE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
@@ -400,7 +401,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, StairBlock> HAZE_ICE_BRICK_STAIRS = BLOCKS.register("haze_ice_brick_stairs", () -> new StairBlock(HAZE_ICE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_STAIRS).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 	public static final RegistryObject<Block, WallBlock> HAZE_ICE_BRICK_WALL = BLOCKS.register("haze_ice_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICK_WALL).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 	public static final RegistryObject<Block, HazeIceLanternBlock> HAZE_ICE_LANTERN = BLOCKS.register("haze_ice_lantern", () -> new HazeIceLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
-	public static final RegistryObject<Block, TransparentBlock> REINFORCED_ICE = BLOCKS.register("reinforced_ice", () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
+	public static final RegistryObject<Block, HalfTransparentBlock> REINFORCED_ICE = BLOCKS.register("reinforced_ice", () -> new HalfTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)));
 	public static final RegistryObject<Block, IronBarsBlock> REINFORCED_ICE_PANE = BLOCKS.register("reinforced_ice_pane", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS_PANE)));
 	public static final RegistryObject<Block, IcicleBlock> ICICLE = BLOCKS.register("icicle", () -> new IcicleBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).sound(SoundType.GLASS).mapColor(MapColor.ICE)));
 	public static final RegistryObject<Block, AshenSnowBlock> ASHEN_SNOW = BLOCKS.register("ashen_snow", () -> new AshenSnowBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SNOW).noCollission()));

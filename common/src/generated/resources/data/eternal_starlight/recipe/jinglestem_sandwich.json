@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "eternal_starlight:jinglestem_crisp"
+    },
+    "L": {
+      "tag": "eternal_starlight:algaleaves"
+    }
+  },
+  "pattern": [
+    "L",
+    "C",
+    "L"
+  ],
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:jinglestem_sandwich"
+  }
+}

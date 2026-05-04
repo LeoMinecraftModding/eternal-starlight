@@ -1217,6 +1217,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.CHISELED_VOIDSTONE.get(),
 				ESBlocks.GLOWING_VOIDSTONE.get(),
 				ESBlocks.ETERNAL_ICE.get(),
+				ESBlocks.THIN_ETERNAL_ICE.get(),
 				ESBlocks.ETERNAL_ICE_BRICKS.get(),
 				ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(),
 				ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(),
@@ -1750,6 +1751,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.NIGHTFALL_MUD.get(),
 				ESBlocks.FANTASY_GRASS_BLOCK.get(),
 				ESBlocks.FANTASY_GRASS_CARPET.get()
+			);
+		tag(BlockTags.SNOW_LAYER_CANNOT_SURVIVE_ON)
+			.add(
+				ESBlocks.THIN_ETERNAL_ICE.get()
 			);
 		tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS)
 			.addTag(ESTags.Blocks.YETI_FUR_CARPETS);
