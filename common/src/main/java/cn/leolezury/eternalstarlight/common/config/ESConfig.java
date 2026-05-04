@@ -17,6 +17,7 @@ public class ESConfig {
 	public static ESConfig INSTANCE = new ESConfig();
 
 	public boolean enableDataFixer = false;
+	public boolean blockUnknownAttachmentWarning = true;
 	public boolean enablePortalShader = true;
 	public boolean enableScreenShake = true;
 	public boolean enableLootChest = true;
