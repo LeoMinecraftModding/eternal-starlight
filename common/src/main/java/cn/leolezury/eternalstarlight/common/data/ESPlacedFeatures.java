@@ -115,6 +115,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> DEAD_LUNAR_TREE = create("dead_lunar_tree");
 	public static final ResourceKey<PlacedFeature> LUNARIS_CACTUS = create("lunaris_cactus");
 	public static final ResourceKey<PlacedFeature> FOREST_VEGETATION = create("forest_vegetation");
+	public static final ResourceKey<PlacedFeature> PLAINS_VEGETATION = create("plains_vegetation");
 	public static final ResourceKey<PlacedFeature> SWAMP_VEGETATION = create("swamp_vegetation");
 	public static final ResourceKey<PlacedFeature> UNDERGROUND_SWAMP_VEGETATION = create("underground_swamp_vegetation");
 	public static final ResourceKey<PlacedFeature> PERMAFROST_FOREST_VEGETATION = create("permafrost_forest_vegetation");
@@ -234,6 +235,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, DEAD_LUNAR_TREE, configuredFeatures.getOrThrow(ESConfiguredFeatures.DEAD_LUNAR_TREE), RarityFilter.onAverageOnceEvery(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, LUNARIS_CACTUS, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNARIS_CACTUS), RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 		PlacementUtils.register(context, FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, PLAINS_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.PLAINS_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, SWAMP_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, UNDERGROUND_SWAMP_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.UNDERGROUND_SWAMP_VEGETATION), CountPlacement.of(15), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(22), VerticalAnchor.absolute(50)), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), BiomeFilter.biome());
 		PlacementUtils.register(context, PERMAFROST_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.PERMAFROST_FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());

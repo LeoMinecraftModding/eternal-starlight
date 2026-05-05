@@ -11,24 +11,24 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ESShortBushBlock extends BushBlock {
-	public static final MapCodec<ESShortBushBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+public class ShortBushBlock extends BushBlock {
+	public static final MapCodec<ShortBushBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 		Codec.INT.fieldOf("height").forGetter((block) -> block.height),
 		propertiesCodec()
-	).apply(instance, ESShortBushBlock::new));
+	).apply(instance, ShortBushBlock::new));
 	private final int height;
 
-	public ESShortBushBlock(Properties properties) {
+	public ShortBushBlock(Properties properties) {
 		this(3, properties);
 	}
 
-	public ESShortBushBlock(int height, Properties properties) {
+	public ShortBushBlock(int height, Properties properties) {
 		super(properties);
 		this.height = height;
 	}
 
 	@Override
-	protected MapCodec<? extends ESShortBushBlock> codec() {
+	protected MapCodec<? extends ShortBushBlock> codec() {
 		return CODEC;
 	}
 

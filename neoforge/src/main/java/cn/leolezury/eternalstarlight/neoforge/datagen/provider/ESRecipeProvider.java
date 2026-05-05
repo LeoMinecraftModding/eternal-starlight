@@ -96,6 +96,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.GLADESPIKE.get());
 		addSingleConversion(recipeOutput, Items.RED_DYE, ESItems.VIVIDSTALK.get());
 		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.TALL_GLADESPIKE.get());
+		addSingleConversion(recipeOutput, Items.LIGHT_BLUE_DYE, ESItems.GLINTGRASS.get());
 
 		// cooked food
 		addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);

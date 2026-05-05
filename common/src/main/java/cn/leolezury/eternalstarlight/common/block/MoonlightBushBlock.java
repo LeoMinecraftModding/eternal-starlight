@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class MoonlightBushBlock extends ESShortBushBlock implements BonemealableBlock {
+public class MoonlightBushBlock extends ShortBushBlock implements BonemealableBlock {
 	public static final MapCodec<MoonlightBushBlock> CODEC = simpleCodec(MoonlightBushBlock::new);
 	public static final BooleanProperty BERRIES = BlockStateProperties.BERRIES;
 

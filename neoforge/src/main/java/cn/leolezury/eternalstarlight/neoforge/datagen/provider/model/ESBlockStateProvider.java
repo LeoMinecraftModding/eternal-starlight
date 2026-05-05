@@ -233,6 +233,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_VIVIDSTALK.get(), blockTexture(ESBlocks.VIVIDSTALK.get()));
 		doublePlant(ESBlocks.TALL_GLADESPIKE.get());
 		onOffBlock(ESBlocks.MOONLIGHT_BUSH.get(), MoonlightBushBlock.BERRIES, models().cross(name(ESBlocks.MOONLIGHT_BUSH.get()) + "_berries", blockTexture(ESBlocks.MOONLIGHT_BUSH.get()).withSuffix("_berries")).renderType(CUTOUT), models().cross(name(ESBlocks.MOONLIGHT_BUSH.get()), blockTexture(ESBlocks.MOONLIGHT_BUSH.get())).renderType(CUTOUT));
+		doublePlant(ESBlocks.GLINTGRASS.get());
 		cross(ESBlocks.GLOWING_MUSHROOM.get());
 		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());

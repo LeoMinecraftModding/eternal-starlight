@@ -492,6 +492,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> VIVIDSTALK = registerItem("vividstalk", () -> new BlockItem(ESBlocks.VIVIDSTALK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TALL_GLADESPIKE = registerItem("tall_gladespike", () -> new BlockItem(ESBlocks.TALL_GLADESPIKE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> MOONLIGHT_BUSH = registerItem("moonlight_bush", () -> new BlockItem(ESBlocks.MOONLIGHT_BUSH.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GLINTGRASS = registerItem("glintgrass", () -> new BlockItem(ESBlocks.GLINTGRASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM = registerItem("glowing_mushroom", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_BLOCK = registerItem("glowing_mushroom_block", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_STEM = registerItem("glowing_mushroom_stem", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_STEM.get(), new Item.Properties()));

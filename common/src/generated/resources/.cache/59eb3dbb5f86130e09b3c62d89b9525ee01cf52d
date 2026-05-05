@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-04T18:59:11.7689873	Loot Tables
+// 1.21.1	2026-05-05T11:56:57.3025623	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -234,6 +234,7 @@ d17575e5313fdeede88ad72c0e588fba301fcfaa data/eternal_starlight/loot_table/block
 7ec175b281de39d8397aff9324827611918c6725 data/eternal_starlight/loot_table/blocks/glacite_block.json
 42fd54b81f10536662513da0447a04d23f1a36aa data/eternal_starlight/loot_table/blocks/gladespike.json
 f41df2d413b009ec5dd6453f9e42f3e6319b9e76 data/eternal_starlight/loot_table/blocks/glimmerfly_bush.json
+51a2a2947e270edabfd99e6860607e33dbae5fad data/eternal_starlight/loot_table/blocks/glintgrass.json
 29116e30027cd0532583edfd66ec3666230b2e26 data/eternal_starlight/loot_table/blocks/gloreed.json
 e9c76d4a26908348671fa3f51af5585a2352b831 data/eternal_starlight/loot_table/blocks/glowing_crescent_grass.json
 fe670b5e59bde7bcbf9d5bc906f07ecd824ab5fa data/eternal_starlight/loot_table/blocks/glowing_grimstone.json

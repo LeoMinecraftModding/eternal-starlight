@@ -452,6 +452,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.VIVIDSTALK.get());
 		basicItem(ESItems.TALL_GLADESPIKE.get(), blockTextureFromItem(ESItems.TALL_GLADESPIKE.get()).withSuffix("_top"));
 		flatBlockTexture(ESItems.MOONLIGHT_BUSH.get());
+		basicItem(ESItems.GLINTGRASS.get(), blockTextureFromItem(ESItems.GLINTGRASS.get()).withSuffix("_top"));
 		flatBlockTexture(ESItems.GLOWING_MUSHROOM.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_BLOCK.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_STEM.get());
