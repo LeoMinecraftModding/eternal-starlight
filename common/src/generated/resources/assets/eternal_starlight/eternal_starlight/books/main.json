@@ -288,6 +288,27 @@
                   "translation": true
                 }
               ]
+            },
+            {
+              "icon": {
+                "count": 1,
+                "id": "eternal_starlight:nocturnal_millet"
+              },
+              "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+              "icon_frame_height": 24,
+              "icon_frame_width": 24,
+              "jump_to": "eternal_starlight:nocturnal_millet_display",
+              "listening": [],
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "item.eternal_starlight.nocturnal_millet",
+                  "translation": true
+                }
+              ]
             }
           ],
           "extra_height": 20,
@@ -3659,6 +3680,106 @@
             [
               "eternal_starlight:advancement_enter_starlight",
               "eternal_starlight:entity_seen_twilight_gaze"
+            ]
+          ],
+          "width": 130
+        }
+      }
+    ],
+    [
+      {
+        "type": "eternal_starlight:display",
+        "config": {
+          "crafting_recipe_displays": [],
+          "entity_displays": [],
+          "id": "eternal_starlight:nocturnal_millet_display",
+          "image_displays": [
+            {
+              "height": 20,
+              "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+              "width": 20,
+              "x": 55,
+              "y": 10
+            }
+          ],
+          "item_displays": [
+            {
+              "item": {
+                "count": 1,
+                "id": "eternal_starlight:nocturnal_millet"
+              },
+              "x": 57,
+              "y": 12
+            }
+          ],
+          "item_tag_displays": [],
+          "text_displays": [
+            {
+              "centered": true,
+              "line_height": 12,
+              "min_distance_to_bottom": 3,
+              "scale": 1.5,
+              "text": [
+                {
+                  "content": "${color: #acfffc}",
+                  "translation": false
+                },
+                {
+                  "content": "item.eternal_starlight.nocturnal_millet",
+                  "translation": true
+                }
+              ],
+              "width": 110,
+              "x": 65,
+              "y": 45
+            }
+          ],
+          "total_height": 60,
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_nocturnal_millet_seeds"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_forgotten_nocturnal_millet"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_nocturnal_millet"
+            ]
+          ]
+        }
+      },
+      {
+        "type": "eternal_starlight:text",
+        "config": {
+          "extra_height": 20,
+          "id": "eternal_starlight:nocturnal_millet",
+          "line_height": 12,
+          "offset": 10,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.nocturnal_millet",
+              "translation": true
+            }
+          ],
+          "unlock_conditions": [
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_nocturnal_millet_seeds"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_forgotten_nocturnal_millet"
+            ],
+            [
+              "eternal_starlight:advancement_enter_starlight",
+              "eternal_starlight:item_nocturnal_millet"
             ]
           ],
           "width": 130

@@ -12,7 +12,13 @@
                 "data": {
                   "Name": "eternal_starlight:glowing_mushroom"
                 },
-                "weight": 30
+                "weight": 20
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:shining_mushroom"
+                },
+                "weight": 20
               },
               {
                 "data": {

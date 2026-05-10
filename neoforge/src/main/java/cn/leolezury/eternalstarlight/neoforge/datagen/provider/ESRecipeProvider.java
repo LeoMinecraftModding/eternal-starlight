@@ -104,6 +104,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.JINGLESTEM_SAPLING.get(), ESItems.JINGLESTEM_CRISP.get(), ESItems.JINGLESTEM_SAPLING.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.LUNARIS_CACTUS_FRUIT.get(), ESItems.LUNARIS_CACTUS_GEL.get(), ESItems.LUNARIS_CACTUS_FRUIT.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.SPIRAL_KELP.get(), Items.DRIED_KELP, ESItems.SPIRAL_KELP.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.FORGOTTEN_NOCTURNAL_MILLET.get(), ESItems.ROASTED_FORGOTTEN_NOCTURNAL_MILLET.get(), ESItems.FORGOTTEN_NOCTURNAL_MILLET.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.ROOKFISH.get(), ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), ESItems.LUMINOFISH.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), ESItems.LUMINARIS.get());
@@ -672,6 +673,7 @@ public class ESRecipeProvider extends RecipeProvider {
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.JINGLESTEM_SAPLING.get(), ESItems.JINGLESTEM_CRISP.get(), 0.1F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.SPIRAL_KELP.get(), Items.DRIED_KELP, 0.1F);
+		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.FORGOTTEN_NOCTURNAL_MILLET.get(), ESItems.ROASTED_FORGOTTEN_NOCTURNAL_MILLET.get(), 0.1F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.ROOKFISH.get(), ESItems.COOKED_ROOKFISH.get(), 0.35F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), 0.35F);
 		simpleCooking(recipeOutput, name, recipeSerializer, factory, time, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), 0.35F);

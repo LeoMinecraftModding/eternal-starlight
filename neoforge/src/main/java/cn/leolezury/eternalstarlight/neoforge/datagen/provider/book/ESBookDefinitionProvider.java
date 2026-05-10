@@ -85,6 +85,10 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 					new IndexBookComponent.Entry(simpleColoredTranslated(ESEntities.TWILIGHT_GAZE.get().getDescriptionId()), EternalStarlight.id("twilight_gaze_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
 						ItemStack stack = ESItems.ABYSSAL_MAGMA_BLOCK.get().getDefaultInstance();
 						return (CompoundTag) stack.save(provider);
+					})),
+					new IndexBookComponent.Entry(simpleColoredTranslated(ESItems.NOCTURNAL_MILLET.get().getDescriptionId()), EternalStarlight.id("nocturnal_millet_display"), new HashSet<>(), 24, 24, EternalStarlight.id("textures/gui/screen/book/chapter_frame.png"), Util.make(() -> {
+						ItemStack stack = ESItems.NOCTURNAL_MILLET.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
 					}))
 				), 20, 20, 125, 12))
 			),
@@ -611,6 +615,25 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("twilight_gaze"), new HashSet<>(Set.of(
 					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("entity_seen_twilight_gaze"))
 				)), simpleColoredTranslatedBookContent("twilight_gaze"), 10, 20, 130, 12))
+			),
+			// nocturnal millet
+			List.of(
+				new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("nocturnal_millet_display"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_nocturnal_millet_seeds")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_nocturnal_millet")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_forgotten_nocturnal_millet"))
+				)), 60)
+					.textDisplay(simpleColoredTranslated(ESItems.NOCTURNAL_MILLET.get().getDescriptionId()), true, 65, 45, 110, 12, 3, 1.5f)
+					.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 10, 20, 20)
+					.itemDisplay(Util.make(() -> {
+						ItemStack stack = ESItems.NOCTURNAL_MILLET.get().getDefaultInstance();
+						return (CompoundTag) stack.save(provider);
+					}), 55 + 2, 10 + 2)),
+				new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("nocturnal_millet"), new HashSet<>(Set.of(
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_nocturnal_millet_seeds")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_nocturnal_millet")),
+					Sets.newHashSet(EternalStarlight.id("advancement_enter_starlight"), EternalStarlight.id("item_forgotten_nocturnal_millet"))
+				)), simpleColoredTranslatedBookContent("nocturnal_millet"), 10, 20, 130, 12))
 			)
 		), 150, 187, 10,
 			new BookDefinition.Buttons(
@@ -630,10 +653,6 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 			)
 		);
 		add(EternalStarlight.id("main"), main);
-	}
-
-	private static BookContent simpleTranslatedBookContent(String id) {
-		return new BookContent(List.of(new BookText(true, "book." + EternalStarlight.ID + "." + id)));
 	}
 
 	private static BookContent simpleColoredTranslatedBookContent(String id) {

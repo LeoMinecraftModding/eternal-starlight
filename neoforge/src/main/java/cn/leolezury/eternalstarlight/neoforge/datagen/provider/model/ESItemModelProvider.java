@@ -456,6 +456,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.GLOWING_MUSHROOM.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_BLOCK.get());
 		cubeAll(ESItems.GLOWING_MUSHROOM_STEM.get());
+		flatBlockTexture(ESItems.SHINING_MUSHROOM.get());
+		cubeAll(ESItems.SHINING_MUSHROOM_BLOCK.get());
+		cubeAll(ESItems.SHINING_MUSHROOM_STEM.get());
 		basicItem(ESItems.LUNAR_BERRIES.get());
 		flatBlockTexture(ESItems.CAVE_MOSS.get());
 		block(ESItems.CAVE_MOSS_BLOCK.get());
@@ -590,6 +593,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.NOCTURNAL_MILLET_SEEDS.get());
 		basicItem(ESItems.NOCTURNAL_MILLET.get());
 		basicItem(ESItems.FORGOTTEN_NOCTURNAL_MILLET.get());
+		basicItem(ESItems.ROASTED_FORGOTTEN_NOCTURNAL_MILLET.get());
 
 		basicItem(ESItems.CRETEOR_HIDE.get());
 		basicItem(ESItems.RAW_AETHERSENT.get());

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "eternal_starlight:forgotten_nocturnal_millet"
+  },
+  "result": {
+    "count": 1,
+    "id": "eternal_starlight:roasted_forgotten_nocturnal_millet"
+  }
+}

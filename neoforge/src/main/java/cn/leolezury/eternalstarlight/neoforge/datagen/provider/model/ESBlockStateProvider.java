@@ -238,6 +238,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		pottedPlant(ESBlocks.POTTED_GLOWING_MUSHROOM.get(), blockTexture(ESBlocks.GLOWING_MUSHROOM.get()));
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_BLOCK.get());
 		mushroomLikeBlock(ESBlocks.GLOWING_MUSHROOM_STEM.get(), name(ESBlocks.GLOWING_MUSHROOM_STEM.get()), blockTexture(ESBlocks.GLOWING_MUSHROOM_STEM.get()), name(ESBlocks.GLOWING_MUSHROOM_STEM.get()) + "_inside", blockTexture(ESBlocks.GLOWING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
+		cross(ESBlocks.SHINING_MUSHROOM.get());
+		pottedPlant(ESBlocks.POTTED_SHINING_MUSHROOM.get(), blockTexture(ESBlocks.SHINING_MUSHROOM.get()));
+		mushroomLikeBlock(ESBlocks.SHINING_MUSHROOM_BLOCK.get());
+		mushroomLikeBlock(ESBlocks.SHINING_MUSHROOM_STEM.get(), name(ESBlocks.SHINING_MUSHROOM_STEM.get()), blockTexture(ESBlocks.SHINING_MUSHROOM_STEM.get()), name(ESBlocks.SHINING_MUSHROOM_STEM.get()) + "_inside", blockTexture(ESBlocks.SHINING_MUSHROOM_BLOCK.get()).withSuffix("_inside"));
 		vinesWithFruit(ESBlocks.BERRIES_VINES.get());
 		vinesWithFruit(ESBlocks.BERRIES_VINES_PLANT.get());
 		tintedCross(ESBlocks.CAVE_MOSS.get());

@@ -100,6 +100,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> JINGLESTEM_CHECKED = create("jinglestem_checked");
 	public static final ResourceKey<PlacedFeature> HUGE_MARIMOLD_CHECKED = create("huge_marimold_checked");
 	public static final ResourceKey<PlacedFeature> HUGE_GLOWING_MUSHROOM_CHECKED = create("huge_glowing_mushroom_checked");
+	public static final ResourceKey<PlacedFeature> HUGE_SHINING_MUSHROOM_CHECKED = create("huge_shining_mushroom_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_ON_SNOW = create("northland_on_snow");
 	public static final ResourceKey<PlacedFeature> STARLIGHT_FOREST = create("starlight_forest");
 	public static final ResourceKey<PlacedFeature> DENSE_FOREST = create("dense_forest");
@@ -220,6 +221,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, JINGLESTEM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.JINGLESTEM), PlacementUtils.filteredByBlockSurvival(ESBlocks.JINGLESTEM_SAPLING.get()));
 		PlacementUtils.register(context, HUGE_MARIMOLD_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_MARIMOLD), PlacementUtils.filteredByBlockSurvival(ESBlocks.MARIMOLD.get()));
 		PlacementUtils.register(context, HUGE_GLOWING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_GLOWING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(ESBlocks.GLOWING_MUSHROOM.get()));
+		PlacementUtils.register(context, HUGE_SHINING_MUSHROOM_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.HUGE_SHINING_MUSHROOM), PlacementUtils.filteredByBlockSurvival(ESBlocks.SHINING_MUSHROOM.get()));
 		PlacementUtils.register(context, NORTHLAND_ON_SNOW, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), onSnow);
 		PlacementUtils.register(context, STARLIGHT_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.STARLIGHT_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.1F, 1)));
 		PlacementUtils.register(context, DENSE_FOREST, configuredFeatures.getOrThrow(ESConfiguredFeatures.DENSE_FOREST), VegetationPlacements.treePlacement(PlacementUtils.countExtra(9, 0.1F, 2)));

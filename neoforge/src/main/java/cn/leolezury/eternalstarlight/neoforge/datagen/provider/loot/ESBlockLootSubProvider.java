@@ -508,6 +508,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropPottedContents(ESBlocks.POTTED_GLOWING_MUSHROOM.get());
 		add(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.GLOWING_MUSHROOM.get())));
 		dropWhenSilkTouch(ESBlocks.GLOWING_MUSHROOM_STEM.get());
+		dropSelf(ESBlocks.SHINING_MUSHROOM.get());
+		dropPottedContents(ESBlocks.POTTED_SHINING_MUSHROOM.get());
+		add(ESBlocks.SHINING_MUSHROOM_BLOCK.get(), (block -> createMushroomBlockDrop(block, ESBlocks.SHINING_MUSHROOM.get())));
+		dropWhenSilkTouch(ESBlocks.SHINING_MUSHROOM_STEM.get());
 		add(ESBlocks.BERRIES_VINES.get(), this::createBerriesVinesDrop);
 		add(ESBlocks.BERRIES_VINES_PLANT.get(), this::createBerriesVinesDrop);
 		plant(ESBlocks.CAVE_MOSS.get());

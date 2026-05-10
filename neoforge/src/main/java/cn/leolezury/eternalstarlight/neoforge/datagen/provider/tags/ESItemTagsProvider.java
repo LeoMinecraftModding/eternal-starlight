@@ -78,6 +78,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.PUNGENCY_FRUIT.get(),
 				ESItems.SILVER_PUNGENCY_FRUIT.get()
 			);
+		tag(Tags.Items.FOODS_VEGETABLE)
+			.add(
+				ESItems.ROASTED_FORGOTTEN_NOCTURNAL_MILLET.get()
+			);
 		tag(Tags.Items.FOODS_BERRY)
 			.add(
 				ESItems.LUNAR_BERRIES.get(),
@@ -143,6 +147,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.MUSHROOMS)
 			.add(
 				ESItems.GLOWING_MUSHROOM.get(),
+				ESItems.SHINING_MUSHROOM.get(),
 				ESItems.BOULDERSHROOM.get(),
 				ESItems.MARIMOLD.get()
 			);
@@ -803,7 +808,10 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.PUNGENCY_FRUIT.get(),
 				ESItems.SILVER_PUNGENCY_FRUIT.get(),
 				ESItems.GOLEM_STEEL_INGOT.get(),
-				ESItems.GOLEM_STEEL_NUGGET.get()
+				ESItems.GOLEM_STEEL_NUGGET.get(),
+				ESItems.NOCTURNAL_MILLET_SEEDS.get(),
+				ESItems.NOCTURNAL_MILLET.get(),
+				ESItems.FORGOTTEN_NOCTURNAL_MILLET.get()
 			);
 		tag(ESTags.Items.GOLEM_FORGE_LOCATORS)
 			.add(

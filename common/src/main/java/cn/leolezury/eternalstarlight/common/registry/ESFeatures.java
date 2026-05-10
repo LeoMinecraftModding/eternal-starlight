@@ -22,6 +22,7 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ICICLE = FEATURES.register("icicle", () -> new IcicleFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<HugeMarimoldFeature.Configuration>> HUGE_MARIMOLD = FEATURES.register("huge_marimold", () -> new HugeMarimoldFeature(HugeMarimoldFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> HUGE_GLOWING_MUSHROOM = FEATURES.register("huge_glowing_mushroom", () -> new HugeGlowingMushroomFeature(HugeMushroomFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> HUGE_SHINING_MUSHROOM = FEATURES.register("huge_shining_mushroom", () -> new HugeShiningMushroomFeature(HugeMushroomFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> BOULDERSHROOM = FEATURES.register("bouldershroom", () -> new BouldershroomFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STARLIGHT_CRYSTAL = FEATURES.register("starlight_crystal", () -> new StarlightCrystalFeature(NoneFeatureConfiguration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<SpikeFeature.Configuration>> SPIKE = FEATURES.register("spike", () -> new SpikeFeature(SpikeFeature.Configuration.CODEC));

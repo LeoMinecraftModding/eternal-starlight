@@ -32,7 +32,7 @@ public class HugeGlowingMushroomFeature extends Feature<HugeMushroomFeatureConfi
 			return false;
 		}
 		int xzRadius = config.foliageRadius;
-		int foliageHeight = 5;
+		int capHeight = 5;
 		int trunkHeight = 10;
 		List<BlockPos> mushroomBlocks = new ArrayList<>();
 		List<BlockPos> stemBlocks = new ArrayList<>();
@@ -47,9 +47,9 @@ public class HugeGlowingMushroomFeature extends Feature<HugeMushroomFeatureConfi
 		if (!level.isEmptyBlock(pos.offset(0, 1, 0))) {
 			return false;
 		}
-		for (int y = 0; y >= -foliageHeight; y--) {
-			int radius = Mth.lerpInt((float) -y / foliageHeight, 0, xzRadius);
-			int radiusNext = Mth.lerpInt((float) (1 - y) / foliageHeight, 0, xzRadius);
+		for (int y = 0; y >= -capHeight; y--) {
+			int radius = Mth.lerpInt((float) -y / capHeight, 0, xzRadius);
+			int radiusNext = Mth.lerpInt((float) (1 - y) / capHeight, 0, xzRadius);
 			if (radius < radiusNext) {
 				radius = random.nextInt(radius, radiusNext);
 			}
@@ -79,9 +79,9 @@ public class HugeGlowingMushroomFeature extends Feature<HugeMushroomFeatureConfi
 					state = state.setValue(PipeBlock.PROPERTY_BY_DIRECTION.get(direction), false);
 				}
 			}
-			if (blockPos.getY() <= pos.getY() - foliageHeight) {
+			if (blockPos.getY() <= pos.getY() - capHeight) {
 				state = state.setValue(HugeMushroomBlock.DOWN, false);
-				if (blockPos.getY() < pos.getY() - foliageHeight) {
+				if (blockPos.getY() < pos.getY() - capHeight) {
 					state = state.setValue(HugeMushroomBlock.UP, false)
 						.setValue(HugeMushroomBlock.NORTH, false)
 						.setValue(HugeMushroomBlock.SOUTH, false)

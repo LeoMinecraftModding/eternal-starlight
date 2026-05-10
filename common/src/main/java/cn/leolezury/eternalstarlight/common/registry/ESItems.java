@@ -496,6 +496,9 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM = registerItem("glowing_mushroom", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_BLOCK = registerItem("glowing_mushroom_block", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_MUSHROOM_STEM = registerItem("glowing_mushroom_stem", () -> new BlockItem(ESBlocks.GLOWING_MUSHROOM_STEM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SHINING_MUSHROOM = registerItem("shining_mushroom", () -> new BlockItem(ESBlocks.SHINING_MUSHROOM.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SHINING_MUSHROOM_BLOCK = registerItem("shining_mushroom_block", () -> new BlockItem(ESBlocks.SHINING_MUSHROOM_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SHINING_MUSHROOM_STEM = registerItem("shining_mushroom_stem", () -> new BlockItem(ESBlocks.SHINING_MUSHROOM_STEM.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_BERRIES = registerItem("lunar_berries", () -> new ItemNameBlockItem(ESBlocks.BERRIES_VINES.get(), new Item.Properties().food(ESFoods.LUNAR_BERRIES.get())));
 	public static final RegistryObject<Item, Item> CAVE_MOSS = registerItem("cave_moss", () -> new BlockItem(ESBlocks.CAVE_MOSS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CAVE_MOSS_BLOCK = registerItem("cave_moss_block", () -> new BlockItem(ESBlocks.CAVE_MOSS_BLOCK.get(), new Item.Properties()));
@@ -639,6 +642,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> NOCTURNAL_MILLET_SEEDS = registerItem("nocturnal_millet_seeds", () -> new ItemNameBlockItem(ESBlocks.NOCTURNAL_MILLET_STALK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NOCTURNAL_MILLET = registerItem("nocturnal_millet", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> FORGOTTEN_NOCTURNAL_MILLET = registerItem("forgotten_nocturnal_millet", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> ROASTED_FORGOTTEN_NOCTURNAL_MILLET = registerItem("roasted_forgotten_nocturnal_millet", () -> new Item(new Item.Properties().food(ESFoods.CRINOA_BALL.get())));
 
 	// aethersent
 	public static final RegistryObject<Item, Item> CRETEOR_HIDE = registerItem("creteor_hide", () -> new Item(new Item.Properties()));

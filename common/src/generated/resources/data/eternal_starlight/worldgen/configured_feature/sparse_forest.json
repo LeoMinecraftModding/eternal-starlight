@@ -14,6 +14,10 @@
       {
         "chance": 0.03,
         "feature": "eternal_starlight:huge_glowing_mushroom_checked"
+      },
+      {
+        "chance": 0.03,
+        "feature": "eternal_starlight:huge_shining_mushroom_checked"
       }
     ]
   }

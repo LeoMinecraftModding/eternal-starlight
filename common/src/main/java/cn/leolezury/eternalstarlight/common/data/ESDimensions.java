@@ -92,6 +92,8 @@ public class ESDimensions {
 	private static final ResourceKey<DensityFunction> SHIFT_X = createDensityFunctionKey("shift_x");
 	private static final ResourceKey<DensityFunction> SHIFT_Z = createDensityFunctionKey("shift_z");
 
+	public static final ResourceKey<DensityFunction> DEPTH = createDensityFunctionKey("depth");
+
 	public static void bootstrapNoiseSettings(BootstrapContext<NoiseGeneratorSettings> context) {
 		HolderGetter<DensityFunction> densityFunctions = context.lookup(Registries.DENSITY_FUNCTION);
 		HolderGetter<NormalNoise.NoiseParameters> noiseParameters = context.lookup(Registries.NOISE);
@@ -104,7 +106,7 @@ public class ESDimensions {
 		DensityFunction vegetation = DensityFunctions.shiftedNoise2d(
 			shiftX, shiftZ, 0.25, noiseParameters.getOrThrow(Noises.VEGETATION)
 		);
-		DensityFunction depth = getFunction(densityFunctions, NoiseRouterData.DEPTH);
+		DensityFunction depth = getFunction(densityFunctions, DEPTH);
 		NoiseRouter router = new NoiseRouter(
 			DensityFunctions.zero(),
 			DensityFunctions.zero(),
@@ -142,6 +144,18 @@ public class ESDimensions {
 			false
 		);
 		context.register(STARLIGHT_NOISE_SETTINGS, settings);
+	}
+
+	public static void bootstrapDensityFunctions(BootstrapContext<DensityFunction> context) {
+		HolderGetter<NormalNoise.NoiseParameters> noiseParameters = context.lookup(Registries.NOISE);
+		context.register(DEPTH, DensityFunctions.add(
+			DensityFunctions.yClampedGradient(-64, 320, 1.5, -1.5),
+			DensityFunctions.flatCache(
+				DensityFunctions.cache2d(
+					DensityFunctions.noise(noiseParameters.getOrThrow(ESNoises.DEPTH_OFFSET), 0.3, 0.0)
+				)
+			)
+		));
 	}
 
 	private static ResourceKey<DensityFunction> createDensityFunctionKey(String location) {

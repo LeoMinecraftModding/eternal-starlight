@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_forgotten_nocturnal_millet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:forgotten_nocturnal_millet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:roasted_forgotten_nocturnal_millet_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_forgotten_nocturnal_millet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:roasted_forgotten_nocturnal_millet_from_smoking"
+    ]
+  }
+}

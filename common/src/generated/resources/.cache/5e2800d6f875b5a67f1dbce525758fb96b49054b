@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-04T18:09:56.0972517	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2026-05-11T01:03:13.6080773	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -38,6 +38,7 @@ c3ebce7e2a2b41cae11634857f71043a60c022e5 data/c/tags/item/foods/pie.json
 1b358a5ddc4e169992763bf5c406a16124be40eb data/c/tags/item/foods/raw_fish.json
 5efc0e8686848a02120f2a5c0704b9a4c7dcb8fa data/c/tags/item/foods/raw_meat.json
 4bdfaed30fe26d3196a1e66603a283da8b56ec29 data/c/tags/item/foods/soup.json
+e427124859d1bbb00717f979ce08445f91c7a168 data/c/tags/item/foods/vegetable.json
 52f4e331dc68426de50ca43ea9fceed37a08def0 data/c/tags/item/gems.json
 66ff992b2f3b1a07bf922f1caeb8fce665e1c4d2 data/c/tags/item/gems/glacite.json
 820388b7cf47038f17d9e1803fa7373a50fa2fb3 data/c/tags/item/gems/malarite.json
@@ -54,7 +55,7 @@ a1d32cc2de97b12c67cdef75d7c1de1199060050 data/c/tags/item/gems/starcore.json
 4a66752de496fc09ad870818723697db59c9eeb7 data/c/tags/item/ingots/oxidized_golem_steel.json
 f385c8660651bf8d8c80e7697a58141b6eeaebed data/c/tags/item/ingots/thermal_springstone.json
 32b881ea6e4f75fb23e6a2677f45674bdeab1877 data/c/tags/item/ingots/unrealium.json
-3b914b21b54471b0517d4408a01d6993cdb226f9 data/c/tags/item/mushrooms.json
+18863d437484e237031f593254bd23b46e007449 data/c/tags/item/mushrooms.json
 2c7f9115125d545d1288ec6976e4b17188c8e895 data/c/tags/item/music_discs.json
 af479a6319228bc92b7e99086f6f4859c046ac89 data/c/tags/item/nuggets.json
 e590937ef043d5bf6e6876f27d2dc83089b3c8ee data/c/tags/item/nuggets/aethersent.json
@@ -119,7 +120,7 @@ c4976770bc72233192eaafb7b91ab5b0ac597114 data/c/tags/item/tools/shield.json
 ba9125aa546790a0582445879c658b228dbb763c data/eternal_starlight/tags/item/accessory_applicable/axe.json
 237ae0010a21b6661acf9b44a30d8c6ff981d328 data/eternal_starlight/tags/item/accessory_applicable/chest_armor.json
 e18f783b117a7e13e931b76dc1175b8cbca5eddb data/eternal_starlight/tags/item/accessory_applicable/hammer.json
-2c459201be6438a80825cfcb1ebe63fb3bd2c95c data/eternal_starlight/tags/item/affects_progression.json
+d52b55fb0ecb40d5a434a142cbe3ebb49837009e data/eternal_starlight/tags/item/affects_progression.json
 094c4fbf119c5e4e24a80e22eb90ce0466f199b3 data/eternal_starlight/tags/item/algaleaves.json
 927eea18d2e0cad6041456fa64447d58487d01e8 data/eternal_starlight/tags/item/alloy_furnaces.json
 89173160c0f37d36484b34cd74d0282331c9fe56 data/eternal_starlight/tags/item/arrow_feathers.json

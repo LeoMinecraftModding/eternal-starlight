@@ -18,6 +18,8 @@ public class ESRegistryProvider extends DatapackBuiltinEntriesProvider {
 		.add(Registries.CONFIGURED_FEATURE, ESConfiguredFeatures::bootstrap)
 		.add(Registries.PLACED_FEATURE, ESPlacedFeatures::bootstrap)
 		.add(Registries.BIOME, ESBiomes::bootstrap)
+		.add(Registries.NOISE, ESNoises::bootstrap)
+		.add(Registries.DENSITY_FUNCTION, ESDimensions::bootstrapDensityFunctions)
 		.add(Registries.NOISE_SETTINGS, ESDimensions::bootstrapNoiseSettings)
 		.add(Registries.DIMENSION_TYPE, ESDimensions::bootstrapDimType)
 		.add(Registries.LEVEL_STEM, ESDimensions::bootstrapLevelStem)

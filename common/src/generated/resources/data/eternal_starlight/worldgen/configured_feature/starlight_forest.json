@@ -4,10 +4,6 @@
     "default": "eternal_starlight:lunar_tree_checked",
     "features": [
       {
-        "chance": 0.015,
-        "feature": "eternal_starlight:huge_glowing_mushroom_checked"
-      },
-      {
         "chance": 0.05,
         "feature": "eternal_starlight:lunar_tree_checked"
       },
@@ -18,6 +14,14 @@
       {
         "chance": 0.4,
         "feature": "eternal_starlight:lunar_huge_starfire_birds_tree_checked"
+      },
+      {
+        "chance": 0.015,
+        "feature": "eternal_starlight:huge_glowing_mushroom_checked"
+      },
+      {
+        "chance": 0.015,
+        "feature": "eternal_starlight:huge_shining_mushroom_checked"
       }
     ]
   }
