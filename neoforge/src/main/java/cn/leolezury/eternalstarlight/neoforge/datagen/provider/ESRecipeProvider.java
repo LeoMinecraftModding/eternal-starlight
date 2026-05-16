@@ -226,6 +226,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addShapeless(recipeOutput, ESItems.NIGHTFALL_MUD.get(), ESItems.PACKED_NIGHTFALL_MUD.get(), 1, ESItems.NIGHTFALL_MUD.get(), ESItems.CRINOA.get());
 		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.CRINOA.get(), ESItems.CRINOA_BALL.get(), 1, ESItems.CRINOA.get(), ESItems.CRINOA.get(), ESItems.LUNAR_BERRIES.get());
 		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.CRINOA.get(), ESItems.CRINOA_PORRIDGE.get(), 1, ESItems.CRINOA.get(), ESItems.CRINOA.get(), ESItems.CRINOA.get(), Items.BOWL);
+		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.STARCORE.get(), ESItems.POPPED_NOCTURNAL_MILLET_BUCKET.get(), 1, ESItems.STARCORE.get(), ESItems.NOCTURNAL_MILLET.get(), ESItems.NOCTURNAL_MILLET.get(), ESItems.NOCTURNAL_MILLET.get(), Items.BUCKET);
 		customCarpet(recipeOutput, ESBlocks.CAVE_MOSS_CARPET.get(), ESBlocks.CAVE_MOSS_BLOCK.get());
 		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.BOULDERSHROOM.get(), ESItems.BOULDERSHROOM_STEW.get(), 1, ESItems.BOULDERSHROOM.get(), ESItems.GLOWING_MUSHROOM.get(), Items.BOWL);
 		nineBlockStorageCustomUnpacking(recipeOutput, RecipeCategory.MISC, ESItems.LUNARIS_CACTUS_GEL.get(), RecipeCategory.BUILDING_BLOCKS, ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(), "lunaris_cactus_gel_block_from_lunaris_cactus_gel", "lunaris_cactus_gel");

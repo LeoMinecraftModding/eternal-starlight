@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-15T23:40:36.7154942	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2026-05-16T15:25:33.1396909	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -38,7 +38,6 @@ c3ebce7e2a2b41cae11634857f71043a60c022e5 data/c/tags/item/foods/pie.json
 1b358a5ddc4e169992763bf5c406a16124be40eb data/c/tags/item/foods/raw_fish.json
 5efc0e8686848a02120f2a5c0704b9a4c7dcb8fa data/c/tags/item/foods/raw_meat.json
 4bdfaed30fe26d3196a1e66603a283da8b56ec29 data/c/tags/item/foods/soup.json
-e427124859d1bbb00717f979ce08445f91c7a168 data/c/tags/item/foods/vegetable.json
 52f4e331dc68426de50ca43ea9fceed37a08def0 data/c/tags/item/gems.json
 66ff992b2f3b1a07bf922f1caeb8fce665e1c4d2 data/c/tags/item/gems/glacite.json
 820388b7cf47038f17d9e1803fa7373a50fa2fb3 data/c/tags/item/gems/malarite.json

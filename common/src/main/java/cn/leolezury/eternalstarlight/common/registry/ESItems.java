@@ -647,7 +647,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> NOCTURNAL_MILLET_SEEDS = registerItem("nocturnal_millet_seeds", () -> new ItemNameBlockItem(ESBlocks.NOCTURNAL_MILLET_STALK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> NOCTURNAL_MILLET = registerItem("nocturnal_millet", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> FORGOTTEN_NOCTURNAL_MILLET = registerItem("forgotten_nocturnal_millet", () -> new Item(new Item.Properties()));
-	public static final RegistryObject<Item, Item> ROASTED_FORGOTTEN_NOCTURNAL_MILLET = registerItem("roasted_forgotten_nocturnal_millet", () -> new Item(new Item.Properties().food(ESFoods.CRINOA_BALL.get())));
+	public static final RegistryObject<Item, Item> POPPED_NOCTURNAL_MILLET_BUCKET = registerItem("popped_nocturnal_millet_bucket", () -> new Item(new Item.Properties().durability(10).food(ESFoods.POPPED_NOCTURNAL_MILLET_BUCKET.get())));
+	public static final RegistryObject<Item, Item> ROASTED_FORGOTTEN_NOCTURNAL_MILLET = registerItem("roasted_forgotten_nocturnal_millet", () -> new Item(new Item.Properties().food(ESFoods.ROASTED_FORGOTTEN_NOCTURNAL_MILLET.get())));
 
 	// aethersent
 	public static final RegistryObject<Item, Item> CRETEOR_HIDE = registerItem("creteor_hide", () -> new Item(new Item.Properties()));

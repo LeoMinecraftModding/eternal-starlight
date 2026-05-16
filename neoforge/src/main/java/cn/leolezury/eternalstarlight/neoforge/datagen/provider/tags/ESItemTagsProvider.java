@@ -78,10 +78,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.PUNGENCY_FRUIT.get(),
 				ESItems.SILVER_PUNGENCY_FRUIT.get()
 			);
-		tag(Tags.Items.FOODS_VEGETABLE)
-			.add(
-				ESItems.ROASTED_FORGOTTEN_NOCTURNAL_MILLET.get()
-			);
 		tag(Tags.Items.FOODS_BERRY)
 			.add(
 				ESItems.LUNAR_BERRIES.get(),

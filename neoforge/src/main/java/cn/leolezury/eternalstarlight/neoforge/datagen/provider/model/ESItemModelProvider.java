@@ -597,6 +597,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.NOCTURNAL_MILLET_SEEDS.get());
 		basicItem(ESItems.NOCTURNAL_MILLET.get());
 		basicItem(ESItems.FORGOTTEN_NOCTURNAL_MILLET.get());
+		basicItem(ESItems.POPPED_NOCTURNAL_MILLET_BUCKET.get());
 		basicItem(ESItems.ROASTED_FORGOTTEN_NOCTURNAL_MILLET.get());
 
 		basicItem(ESItems.CRETEOR_HIDE.get());

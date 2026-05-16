@@ -13,6 +13,7 @@ import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
@@ -35,6 +36,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -182,6 +184,20 @@ public abstract class LivingEntityMixin {
 			}
 		} else if (itemStack.is(ESItems.PUNGENCY_STEW.get())) {
 			removeEffect(MobEffects.HUNGER);
+		}
+	}
+
+	@WrapOperation(method = "eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;consume(ILnet/minecraft/world/entity/LivingEntity;)V"))
+	private void consume(ItemStack instance, int count, LivingEntity livingEntity, Operation<Void> original, @Local(argsOnly = true) LocalRef<ItemStack> foodStack) {
+		if (instance.is(ESItems.POPPED_NOCTURNAL_MILLET_BUCKET.get())) {
+			if (instance.isDamageableItem() && !livingEntity.hasInfiniteMaterials()) {
+				instance.setDamageValue(instance.getDamageValue() + 1);
+				if (instance.getDamageValue() >= instance.getMaxDamage()) {
+					foodStack.set(Items.BUCKET.getDefaultInstance());
+				}
+			}
+		} else {
+			original.call(instance, count, livingEntity);
 		}
 	}
 
