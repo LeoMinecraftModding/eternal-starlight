@@ -645,6 +645,14 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				Tags.Blocks.ORES,
 				ESTags.Blocks.BASE_STONE_STARLIGHT
 			);
+		tag(ESTags.Blocks.CRYSTALBORN_CATALYST_MOSS_REPLACEABLES)
+			.add(
+				Blocks.MOSS_BLOCK,
+				ESBlocks.CAVE_MOSS_BLOCK.get()
+			)
+			.addTags(
+				BlockTags.DIRT
+			);
 		tag(ESTags.Blocks.CRYSTALBORN_CATALYST_PREFERENCES)
 			.addTags(
 				Tags.Blocks.ORES
@@ -1002,6 +1010,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.WITHERED_DESERT_AMETHYSIA.get(),
 				ESBlocks.RED_CRYSTALFLEUR.get(),
 				ESBlocks.BLUE_CRYSTALFLEUR.get(),
+				ESBlocks.FIRE_ORCHID.get(),
 				ESBlocks.RED_VELVETUMOSS_FLOWER.get()
 			);
 		tag(BlockTags.TALL_FLOWERS)

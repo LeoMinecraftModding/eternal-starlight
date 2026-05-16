@@ -467,7 +467,7 @@ public class ESBiomes {
 	private static BiomeGenerationSettings.Builder warmShoreGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder builder = baseLandGenSettings(featureGetter, carverGetter, false);
 
-		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.DESERT_VEGETATION);
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ESPlacedFeatures.BEACH_VEGETATION);
 
 		return builder;
 	}

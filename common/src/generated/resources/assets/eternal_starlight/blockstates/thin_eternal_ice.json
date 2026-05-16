@@ -1,20 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "eternal_starlight:block/thin_eternal_ice"
-      },
-      {
-        "model": "eternal_starlight:block/thin_eternal_ice_mirrored"
-      },
-      {
-        "model": "eternal_starlight:block/thin_eternal_ice",
-        "y": 180
-      },
-      {
-        "model": "eternal_starlight:block/thin_eternal_ice_mirrored",
-        "y": 180
-      }
-    ]
+    "": {
+      "model": "eternal_starlight:block/thin_eternal_ice"
+    }
   }
 }

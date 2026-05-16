@@ -67,6 +67,7 @@ public class ESRegistryRemapper {
 			// crest pot
 			addAlias(EternalStarlight.id("crest_pot"), ResourceLocation.withDefaultNamespace("flower_pot"), itemsRegister.get(), blocksRegister.get());
 		}
+		addAlias("in_abyssal_fire_ticks", "abyssal_fire_ticks", ESNeoPlatform.ATTACHMENT_TYPE_REGISTER);
 	}
 
 	private static void addAlias(String old, String replacement, DeferredRegister<?>... registers) {

@@ -17,7 +17,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -28,7 +27,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
@@ -193,7 +191,7 @@ public class CrystalbornCatalystBlockEntity extends BaseContainerBlockEntity {
 				LootParams.Builder builder = new LootParams.Builder(level).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(targetPos)).withParameter(LootContextParams.TOOL, Items.DIAMOND_PICKAXE.getDefaultInstance()).withOptionalParameter(LootContextParams.BLOCK_ENTITY, targetState.hasBlockEntity() ? level.getBlockEntity(targetPos) : null);
 				List<ItemStack> drops = targetState.getDrops(builder);
 				if (level.destroyBlock(targetPos, false)) {
-					level.setBlockAndUpdate(targetPos, (targetState.is(BlockTags.DIRT) || targetState.is(Blocks.MOSS_BLOCK)) ? ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get().defaultBlockState() : ESBlocks.CRYSTALLIZED_SAND.get().defaultBlockState());
+					level.setBlockAndUpdate(targetPos, targetState.is(ESTags.Blocks.CRYSTALBORN_CATALYST_MOSS_REPLACEABLES) ? ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get().defaultBlockState() : ESBlocks.CRYSTALLIZED_SAND.get().defaultBlockState());
 					drops.forEach(dropsConsumer);
 					pos = targetPos;
 					energyLeft -= 1;

@@ -144,6 +144,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SCARLET_FOREST_VEGETATION = create("scarlet_forest_vegetation");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TORREYA_FOREST_VEGETATION = create("torreya_forest_vegetation");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DESERT_VEGETATION = create("desert_vegetation");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BEACH_VEGETATION = create("beach_vegetation");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> MUSHROOM_VEGETATION = create("mushroom_vegetation");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_MOSS_VEGETATION = create("cave_moss_vegetation");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_MOSS_PATCH = create("cave_moss_patch");
@@ -365,7 +366,8 @@ public class ESConfiguredFeatures {
 			.add(ESBlocks.WITHERED_STARLIGHT_FLOWER.get().defaultBlockState(), 1)
 			.add(ESBlocks.MAUVE_FERN.get().defaultBlockState(), 2)
 			.add(ESBlocks.AMARAMBER_GRASS.get().defaultBlockState(), 2)
-			.add(ESBlocks.AMARAMBER_GRASS_BUSH.get().defaultBlockState(), 1)), 48));
+			.add(ESBlocks.AMARAMBER_GRASS_BUSH.get().defaultBlockState(), 1)
+			.add(ESBlocks.GLOOMCANDLE_ROOT.get().defaultBlockState(), 1)), 48));
 		FeatureUtils.register(context, DESERT_VEGETATION, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
 			.add(ESBlocks.DEAD_LUNAR_BUSH.get().defaultBlockState(), 3)
 			.add(ESBlocks.DESERT_AMETHYSIA.get().defaultBlockState(), 1)
@@ -373,6 +375,9 @@ public class ESConfiguredFeatures {
 			.add(ESBlocks.SUNSET_THORNBLOOM.get().defaultBlockState(), 1)
 			.add(ESBlocks.AMETHYSIA_GRASS.get().defaultBlockState(), 30)
 			.add(ESBlocks.MAUVE_FERN.get().defaultBlockState(), 27)), 48));
+		FeatureUtils.register(context, BEACH_VEGETATION, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+			.add(ESBlocks.BLAZEBANK_GRASS.get().defaultBlockState(), 5)
+			.add(ESBlocks.FIRE_ORCHID.get().defaultBlockState(), 1)), 48));
 		FeatureUtils.register(context, MUSHROOM_VEGETATION, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
 			.add(ESBlocks.GLOWING_MUSHROOM.get().defaultBlockState(), 20)
 			.add(ESBlocks.SHINING_MUSHROOM.get().defaultBlockState(), 20)

@@ -109,7 +109,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ESBlocks.GLOWING_VOIDSTONE.get());
 
 		simpleBlock(ESBlocks.ETERNAL_ICE.get());
-		randomlyMirroredAndRotatedBlock(ESBlocks.THIN_ETERNAL_ICE.get());
+		simpleBlock(ESBlocks.THIN_ETERNAL_ICE.get(), models().cubeAll(name(ESBlocks.THIN_ETERNAL_ICE.get()), blockTexture(ESBlocks.THIN_ETERNAL_ICE.get())).renderType(TRANSLUCENT));
 		stoneSet(ESBlocks.ETERNAL_ICE_BRICKS.get(), ESBlocks.ETERNAL_ICE_BRICK_SLAB.get(), ESBlocks.ETERNAL_ICE_BRICK_STAIRS.get(), ESBlocks.ETERNAL_ICE_BRICK_WALL.get());
 		onOffBlock(ESBlocks.ETERNAL_ICE_LANTERN.get(), BlockStateProperties.HANGING, models().getExistingFile(EternalStarlight.id("eternal_ice_lantern_hanging")), models().getExistingFile(EternalStarlight.id("eternal_ice_lantern")));
 		simpleBlock(ESBlocks.HAZE_ICE.get());
@@ -280,6 +280,7 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.AMARAMBER_GRASS.get());
 		pottedPlant(ESBlocks.POTTED_AMARAMBER_GRASS.get(), blockTexture(ESBlocks.AMARAMBER_GRASS.get()));
 		cross(ESBlocks.AMARAMBER_GRASS_BUSH.get());
+		cross(ESBlocks.GLOOMCANDLE_ROOT.get());
 
 		simpleBlock(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get());
 		simpleBlock(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
@@ -312,6 +313,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		randomlyMirroredAndRotatedBlock(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
 		carpet(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.RED_CRYSTAL_MOSS_BLOCK.get()));
 		carpet(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), blockTexture(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()));
+
+		cross(ESBlocks.FIRE_ORCHID.get());
+		pottedPlant(ESBlocks.POTTED_FIRE_ORCHID.get(), blockTexture(ESBlocks.FIRE_ORCHID.get()));
+		cross(ESBlocks.BLAZEBANK_GRASS.get());
 
 		waterlily(ESBlocks.MOONLIGHT_LILY_PAD.get());
 		waterlilyWithFlower(ESBlocks.STARLIT_LILY_PAD.get());

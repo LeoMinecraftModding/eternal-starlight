@@ -14,6 +14,7 @@ public class ESSeedsLauncherAmmoTypes {
 	public static final ResourceKey<SeedsLauncherAmmoType> MELON = create("melon");
 	public static final ResourceKey<SeedsLauncherAmmoType> PUMPKIN = create("pumpkin");
 	public static final ResourceKey<SeedsLauncherAmmoType> CRINOA = create("crinoa");
+	public static final ResourceKey<SeedsLauncherAmmoType> NOCTURNAL_MILLET = create("nocturnal_millet");
 	public static final ResourceKey<SeedsLauncherAmmoType> PUNGENCY_FRUIT = create("pungency_fruit");
 
 	public static void bootstrap(BootstrapContext<SeedsLauncherAmmoType> context) {
@@ -23,6 +24,7 @@ public class ESSeedsLauncherAmmoTypes {
 		context.register(MELON, new SeedsLauncherAmmoType(Items.MELON_SEEDS.builtInRegistryHolder(), 1.2f, 0.9f, 1.1f));
 		context.register(PUMPKIN, new SeedsLauncherAmmoType(Items.PUMPKIN_SEEDS.builtInRegistryHolder(), 0.4f, 1.5f, 0.5f));
 		context.register(CRINOA, new SeedsLauncherAmmoType(ESItems.CRINOA_SEEDS.get().builtInRegistryHolder(), 1.2f, 1, 1));
+		context.register(NOCTURNAL_MILLET, new SeedsLauncherAmmoType(ESItems.NOCTURNAL_MILLET_SEEDS.get().builtInRegistryHolder(), 1.5f, 1.5f, 0.8f));
 		context.register(PUNGENCY_FRUIT, new SeedsLauncherAmmoType(ESItems.PUNGENCY_FRUIT_SEEDS.get().builtInRegistryHolder(), 1.5f, 0.9f, 1.2f));
 	}
 

@@ -129,6 +129,7 @@ public class ESTags {
 		public static final TagKey<Block> DUSK_LIGHT_ALWAYS_PASSABLE = create("dusk_light_always_passable");
 		public static final TagKey<Block> DUSK_LIGHT_ALWAYS_UNPASSABLE = create("dusk_light_always_unpassable");
 		public static final TagKey<Block> CRYSTALBORN_CATALYST_REPLACEABLES = create("crystalborn_catalyst_replaceables");
+		public static final TagKey<Block> CRYSTALBORN_CATALYST_MOSS_REPLACEABLES = create("crystalborn_catalyst_moss_replaceables");
 		public static final TagKey<Block> CRYSTALBORN_CATALYST_PREFERENCES = create("crystalborn_catalyst_preferences");
 		public static final TagKey<Block> CONVERTS_NOCTURNAL_MILLET = create("converts_nocturnal_millet");
 		public static final TagKey<Block> STARFIRE_BIRD_NESTS = create("starfire_bird_nests");

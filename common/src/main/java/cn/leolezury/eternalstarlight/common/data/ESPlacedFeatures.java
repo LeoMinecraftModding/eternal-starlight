@@ -123,6 +123,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> SCARLET_FOREST_VEGETATION = create("scarlet_forest_vegetation");
 	public static final ResourceKey<PlacedFeature> TORREYA_FOREST_VEGETATION = create("torreya_forest_vegetation");
 	public static final ResourceKey<PlacedFeature> DESERT_VEGETATION = create("desert_vegetation");
+	public static final ResourceKey<PlacedFeature> BEACH_VEGETATION = create("beach_vegetation");
 	public static final ResourceKey<PlacedFeature> MUSHROOM_VEGETATION = create("mushroom_vegetation");
 	public static final ResourceKey<PlacedFeature> CAVE_MOSS_PATCH = create("cave_moss_patch");
 	public static final ResourceKey<PlacedFeature> WATERSIDE_VEGETATION = create("waterside_vegetation");
@@ -244,6 +245,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, SCARLET_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.SCARLET_FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, TORREYA_FOREST_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.TORREYA_FOREST_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, DESERT_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.DESERT_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, BEACH_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.BEACH_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, MUSHROOM_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.MUSHROOM_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, CAVE_MOSS_PATCH, configuredFeatures.getOrThrow(ESConfiguredFeatures.CAVE_MOSS_PATCH), CountPlacement.of(5), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, WATERSIDE_VEGETATION, configuredFeatures.getOrThrow(ESConfiguredFeatures.WATERSIDE_VEGETATION), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BlockPredicateFilter.forPredicate(BlockPredicate.anyOf(nearWater)), BiomeFilter.biome());

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "eternal_starlight:gloomcandle_root"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:lime_dye"
+  }
+}

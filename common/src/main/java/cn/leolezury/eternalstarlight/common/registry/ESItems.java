@@ -530,6 +530,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> WITHERED_STARLIGHT_FLOWER = registerItem("withered_starlight_flower", () -> new BlockItem(ESBlocks.WITHERED_STARLIGHT_FLOWER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> AMARAMBER_GRASS = registerItem("amaramber_grass", () -> new BlockItem(ESBlocks.AMARAMBER_GRASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> AMARAMBER_GRASS_BUSH = registerItem("amaramber_grass_bush", () -> new BlockItem(ESBlocks.AMARAMBER_GRASS_BUSH.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> GLOOMCANDLE_ROOT = registerItem("gloomcandle_root", () -> new BlockItem(ESBlocks.GLOOMCANDLE_ROOT.get(), new Item.Properties()));
 
 	// desert stuff
 	public static final RegistryObject<Item, Item> RED_STARLIGHT_CRYSTAL_BLOCK = registerItem("red_starlight_crystal_block", () -> new BlockItem(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get(), new Item.Properties()));
@@ -561,6 +562,10 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_BLOCK = registerItem("blue_crystal_moss_block", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> RED_CRYSTAL_MOSS_CARPET = registerItem("red_crystal_moss_carpet", () -> new BlockItem(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> BLUE_CRYSTAL_MOSS_CARPET = registerItem("blue_crystal_moss_carpet", () -> new BlockItem(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get(), new Item.Properties()));
+
+	// beach plant
+	public static final RegistryObject<Item, Item> FIRE_ORCHID = registerItem("fire_orchid", () -> new BlockItem(ESBlocks.FIRE_ORCHID.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> BLAZEBANK_GRASS = registerItem("blazebank_grass", () -> new BlockItem(ESBlocks.BLAZEBANK_GRASS.get(), new Item.Properties()));
 
 	// water plant
 	public static final RegistryObject<Item, Item> MOONLIGHT_LILY_PAD = registerItem("moonlight_lily_pad", () -> new PlaceOnWaterBlockItem(ESBlocks.MOONLIGHT_LILY_PAD.get(), new Item.Properties()));

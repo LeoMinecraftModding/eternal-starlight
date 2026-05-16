@@ -19,6 +19,7 @@ public class DesertBushBlock extends BushBlock {
 		propertiesCodec()
 	).apply(instance, DesertBushBlock::new));
 	private final int height;
+	private final VoxelShape shape;
 
 	public DesertBushBlock(Properties properties) {
 		this(3, properties);
@@ -27,6 +28,7 @@ public class DesertBushBlock extends BushBlock {
 	public DesertBushBlock(int height, Properties properties) {
 		super(properties);
 		this.height = height;
+		this.shape = Block.box(2.0D, 0.0D, 2.0D, 14.0D, height, 14.0D);
 	}
 
 	@Override
@@ -41,6 +43,6 @@ public class DesertBushBlock extends BushBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-		return Block.box(2.0D, 0.0D, 2.0D, 14.0D, height, 14.0D);
+		return shape;
 	}
 }

@@ -550,6 +550,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.AMARAMBER_GRASS.get());
 		dropPottedContents(ESBlocks.POTTED_AMARAMBER_GRASS.get());
 		dropSelf(ESBlocks.AMARAMBER_GRASS_BUSH.get());
+		plant(ESBlocks.GLOOMCANDLE_ROOT.get());
 
 		dropSelf(ESBlocks.RED_STARLIGHT_CRYSTAL_BLOCK.get());
 		dropSelf(ESBlocks.BLUE_STARLIGHT_CRYSTAL_BLOCK.get());
@@ -582,6 +583,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get());
 		dropSelf(ESBlocks.RED_CRYSTAL_MOSS_CARPET.get());
 		dropSelf(ESBlocks.BLUE_CRYSTAL_MOSS_CARPET.get());
+
+		dropSelf(ESBlocks.FIRE_ORCHID.get());
+		dropPottedContents(ESBlocks.POTTED_FIRE_ORCHID.get());
+		plant(ESBlocks.BLAZEBANK_GRASS.get());
 
 		dropSelf(ESBlocks.MOONLIGHT_LILY_PAD.get());
 		dropSelf(ESBlocks.STARLIT_LILY_PAD.get());
