@@ -1189,6 +1189,8 @@
   "effect.eternal_starlight.teary.description": "Embaça a visão do jogador e cancela o alvo de ataque dos monstros; O monstro afetado desenvolverá imunidade a isso após um certo período de tempo.",
   "effect.eternal_starlight.starfire": "Fogo Estelar",
   "effect.eternal_starlight.starfire.description": "Quando o portador do efeito é danificado, os monstros ao seu redor também recebem dano; Quando o portador do efeito morre, o efeito se espalha para os monstros ao redor.",
+  "effect.eternal_starlight.oblivion": "Oblivion",
+  "effect.eternal_starlight.oblivion.description": "Allows the player to pass through walls, while the block beneath still provides support. Sneaking allows descending through blocks. Also increases movement speed, reduces gravity, and shortens enemy follow range.",
   "attribute.name.eternal_starlight.generic.thrown_potion_distance": "Distância da Poção Arremessada",
   "attribute.name.eternal_starlight.generic.ether_resistance": "Resistência ao Éter",
   "attribute.name.eternal_starlight.generic.fire_resistance": "Resistência ao Fogo",
