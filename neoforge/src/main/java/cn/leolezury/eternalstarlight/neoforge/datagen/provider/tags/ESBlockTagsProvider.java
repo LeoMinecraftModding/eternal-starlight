@@ -690,6 +690,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.ETERNAL_ICE_LANTERN.get(),
 				ESBlocks.HAZE_ICE_LANTERN.get()
 			);
+		tag(ESTags.Blocks.UNAFFECTED_BY_OBLIVION)
+			.add(
+				Blocks.BEDROCK,
+				Blocks.BARRIER
+			);
 		// mc tags
 		tag(BlockTags.LOGS)
 			.addTags(

@@ -8,6 +8,7 @@
     "AbstractSkullBlockMixin",
     "AxeItemMixin",
     "BaseFireBlockMixin",
+    "BlockStateBaseMixin",
     "BubbleColumnBlockMixin",
     "CeilingHangingSignBlockMixin",
     "CoralBlockMixin",

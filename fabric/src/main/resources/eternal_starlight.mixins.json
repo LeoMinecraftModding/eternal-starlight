@@ -33,6 +33,7 @@
     "client.ModelBakeryMixin",
     "client.ModelManagerMixin",
     "client.PlayerRendererMixin",
+    "client.ScreenEffectRendererMixin",
     "client.SkullBlockRendererMixin"
   ],
   "injectors": {

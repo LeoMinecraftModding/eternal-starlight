@@ -1189,6 +1189,8 @@
   "effect.eternal_starlight.teary.description": "模糊玩家的视线并取消生物的攻击目标；受影响的生物会在一段时间后对此免疫",
   "effect.eternal_starlight.starfire": "星火",
   "effect.eternal_starlight.starfire.description": "效果持有者受到伤害时周围的生物也会受到伤害；效果持有者死亡时会将效果传播给周围的生物",
+  "effect.eternal_starlight.oblivion": "遗忘",
+  "effect.eternal_starlight.oblivion.description": "允许玩家穿过墙壁，但脚下的方块仍能提供支撑；潜行时可下潜穿过方块。同时提升移动速度，降低重力，并缩短敌人的跟随距离",
   "attribute.name.eternal_starlight.generic.thrown_potion_distance": "投掷型药水距离",
   "attribute.name.eternal_starlight.generic.ether_resistance": "以太抗性",
   "attribute.name.eternal_starlight.generic.fire_resistance": "火焰抗性",

@@ -57,4 +57,14 @@ public class ClientEvents {
 			ESClientHandler.onAfterRenderLevel();
 		}
 	}
+
+	@SubscribeEvent
+	private static void onRenderBlockScreenEffect(RenderBlockScreenEffectEvent event) {
+		if (!event.isCanceled()) {
+			boolean allow = ESClientHandler.onRenderBlockOverlay(event.getPlayer(), event.getBlockState());
+			if (!allow) {
+				event.setCanceled(true);
+			}
+		}
+	}
 }

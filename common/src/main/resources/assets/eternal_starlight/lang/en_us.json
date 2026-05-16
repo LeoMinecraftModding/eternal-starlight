@@ -1189,6 +1189,8 @@
   "effect.eternal_starlight.teary.description": "Blurs the player's vision and cancels mobs' attack target; Affected mob will develop immunity towards this after a certain period of time.",
   "effect.eternal_starlight.starfire": "Starfire",
   "effect.eternal_starlight.starfire.description": "When the effect holder is damaged, mobs around it also take damage; When the effect holder dies, the effect spreads to mobs around.",
+  "effect.eternal_starlight.oblivion": "Oblivion",
+  "effect.eternal_starlight.oblivion.description": "Allows the player to pass through walls, while the block beneath still provides support. Sneaking allows descending through blocks. Also increases movement speed, reduces gravity, and shortens enemy follow range.",
   "attribute.name.eternal_starlight.generic.thrown_potion_distance": "Thrown Potion Distance",
   "attribute.name.eternal_starlight.generic.ether_resistance": "Ether Resistance",
   "attribute.name.eternal_starlight.generic.fire_resistance": "Fire Resistance",
