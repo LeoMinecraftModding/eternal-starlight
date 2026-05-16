@@ -1189,6 +1189,8 @@
   "effect.eternal_starlight.teary.description": "Затуманивает зрение игрока и отменяет цель атаки мобов; у поражённого моба через определённое время вырабатывается иммунитет к этому эффекту.",
   "effect.eternal_starlight.starfire": "Звездопал",
   "effect.eternal_starlight.starfire.description": "Когда носитель получает урон, окружающие мобы тоже получают урон; при смерти носителя эффект распространяется на окружающих мобов.",
+  "effect.eternal_starlight.oblivion": "Oblivion",
+  "effect.eternal_starlight.oblivion.description": "Allows the player to pass through walls, while the block beneath still provides support. Sneaking allows descending through blocks. Also increases movement speed, reduces gravity, and shortens enemy follow range.",
   "attribute.name.eternal_starlight.generic.thrown_potion_distance": "Расстояние брошенного зелья",
   "attribute.name.eternal_starlight.generic.ether_resistance": "Сопротивление эфиру",
   "attribute.name.eternal_starlight.generic.fire_resistance": "Огнестойкость",
