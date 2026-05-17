@@ -33,7 +33,7 @@ public class HugeGlowingMushroomFeature extends Feature<HugeMushroomFeatureConfi
 		}
 		int xzRadius = config.foliageRadius;
 		int capHeight = 5;
-		int trunkHeight = 10;
+		int trunkHeight = random.nextInt(8) + 10;
 		List<BlockPos> mushroomBlocks = new ArrayList<>();
 		List<BlockPos> stemBlocks = new ArrayList<>();
 		for (int y = 0; y <= trunkHeight; y++) {

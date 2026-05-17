@@ -33,8 +33,8 @@ public class HugeShiningMushroomFeature extends Feature<HugeMushroomFeatureConfi
 			return false;
 		}
 
-		int trunkHeight = random.nextInt(3) + 4;
-		if (random.nextInt(12) == 0) {
+		int trunkHeight = random.nextInt(5) + 4;
+		if (random.nextInt(5) == 0) {
 			trunkHeight *= 2;
 		}
 
