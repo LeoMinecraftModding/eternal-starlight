@@ -65,14 +65,19 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 				ESBiomes.STARLIGHT_DENSE_FOREST,
 				ESBiomes.UMBRAL_PLAINS,
 				ESBiomes.GLIMMER_SCRUBLAND,
-				ESBiomes.STARLIGHT_PERMAFROST_FOREST
+				ESBiomes.STARLIGHT_PERMAFROST_FOREST,
+				ESBiomes.PERMAFROST_PEAKS,
+				ESBiomes.STARLIGHT_TAIGA,
+				ESBiomes.SCARLET_FOREST
 			);
 		tag(ESTags.Biomes.HAS_CURSED_GARDEN)
 			.add(
 				ESBiomes.STARLIGHT_FOREST,
 				ESBiomes.STARLIGHT_DENSE_FOREST,
 				ESBiomes.UMBRAL_PLAINS,
-				ESBiomes.GLIMMER_SCRUBLAND
+				ESBiomes.GLIMMER_SCRUBLAND,
+				ESBiomes.STARLIGHT_TAIGA,
+				ESBiomes.SCARLET_FOREST
 			);
 		tag(ESTags.Biomes.HAS_STRANGHOUL_DEN)
 			.add(

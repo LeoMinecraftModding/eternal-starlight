@@ -25,12 +25,7 @@ public class ColdsnapRenderer extends WhipRenderer<Coldsnap> {
 
 	@Override
 	public void renderWhip(Coldsnap entity, float partialTicks, PoseStack stack, MultiBufferSource buffer, int light) {
-		stack.pushPose();
 		float bob = entity.tickCount + partialTicks;
-
-		stack.scale(-1.0F, -1.0F, 1.0F);
-		stack.translate(0.0F, -1.5F, 0.0F);
-
 		this.model.setupAnim(entity, 0, 0, bob, 0, 0);
 		RenderType renderType = this.model.renderType(getTextureLocation(entity));
 		VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(buffer, renderType, false, entity.isFoil());
@@ -40,14 +35,12 @@ public class ColdsnapRenderer extends WhipRenderer<Coldsnap> {
 			entity.tipPositions.offer(getWhipTipPosition(entity, partialTicks));
 			entity.lastParticleTick = bob;
 		}
-
-		stack.popPose();
 	}
 
 	private Vec3 getWhipTipPosition(Coldsnap entity, float partialTicks) {
 		PoseStack stack = new PoseStack();
 		stack.translate(entity.getX(), entity.getY(), entity.getZ());
-		translateAndRotate(entity, partialTicks, stack, true);
+		translateAndRotate(entity, partialTicks, stack);
 		this.model.translateToTip(stack);
 		Vector4f vec = new Vector4f(0, 0, 0, 1).mul(stack.last().pose());
 		return new Vec3(vec.x(), vec.y(), vec.z());

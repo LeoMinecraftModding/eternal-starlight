@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.world.gen.structure.placement;
 
 import cn.leolezury.eternalstarlight.common.data.ESStructures;
 import cn.leolezury.eternalstarlight.common.registry.ESStructurePlacementTypes;
+import com.google.common.collect.Lists;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Vec3i;
@@ -21,9 +22,9 @@ public class LandmarkStructurePlacement extends StructurePlacement {
 		ResourceKey.codec(Registries.STRUCTURE).fieldOf("landmark").forGetter(o -> o.landmark)
 	).apply(instance, LandmarkStructurePlacement::new));
 
-	private static final List<StructureInfo> STRUCTURES = List.of(
-		new StructureInfo(ESStructures.GOLEM_FORGE, 20),
-		new StructureInfo(ESStructures.CURSED_GARDEN, 40)
+	private static final List<LandmarkEntry> STRUCTURES = Lists.newArrayList(
+		new LandmarkEntry(ESStructures.GOLEM_FORGE, 20),
+		new LandmarkEntry(ESStructures.CURSED_GARDEN, 40)
 	);
 
 	private final ResourceKey<Structure> landmark;
@@ -47,7 +48,7 @@ public class LandmarkStructurePlacement extends StructurePlacement {
 
 	@Override
 	protected boolean isPlacementChunk(ChunkGeneratorStructureState structureState, int x, int z) {
-		List<StructureInfo> possibleStructures = STRUCTURES.stream().filter(i -> Math.pow(x, 2) + Math.pow(z, 2) >= Math.pow(i.minSpawnDistance(), 2)).toList();
+		List<LandmarkEntry> possibleStructures = STRUCTURES.stream().filter(i -> Math.pow(x, 2) + Math.pow(z, 2) >= Math.pow(i.minSpawnDistance(), 2)).toList();
 		if (possibleStructures.isEmpty()) {
 			return false;
 		}
@@ -63,7 +64,7 @@ public class LandmarkStructurePlacement extends StructurePlacement {
 		return ESStructurePlacementTypes.LANDMARK.get();
 	}
 
-	private record StructureInfo(ResourceKey<Structure> structure, int minSpawnDistance) {
+	private record LandmarkEntry(ResourceKey<Structure> structure, int minSpawnDistance) {
 
 	}
 }

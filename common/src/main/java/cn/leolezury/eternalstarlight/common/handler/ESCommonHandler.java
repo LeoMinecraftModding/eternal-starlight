@@ -88,6 +88,7 @@ import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
@@ -648,6 +649,20 @@ public class ESCommonHandler {
 					ESDataAttachments.LAST_OFFHAND_ITEM.setData(player, player.getOffhandItem().copy());
 				}
 				ESCrestUtil.tickCrests(player);
+				if (player.hasEffect(ESMobEffects.OBLIVION.asHolder())) {
+					BlockPos.MutableBlockPos testPos = new BlockPos.MutableBlockPos();
+
+					for (int i = 0; i < 8; i++) {
+						double xo = player.getX() + ((i >> 0) % 2 - 0.5F) * player.getBbWidth() * 0.8F;
+						double yo = player.getEyeY() + ((i >> 1) % 2 - 0.5F) * 0.1F * player.getScale();
+						double zo = player.getZ() + ((i >> 2) % 2 - 0.5F) * player.getBbWidth() * 0.8F;
+						testPos.set(xo, yo, zo);
+						BlockState testState = player.level().getBlockState(testPos);
+						if (testState.getRenderShape() != RenderShape.INVISIBLE && testState.isViewBlocking(player.level(), testPos)) {
+							player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200));
+						}
+					}
+				}
 				if (level.getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS) && player.isEyeInFluid(FluidTags.WATER) && player.getY() < 0) {
 					int maxAir = Math.max((int) Math.round((player.getMaxAirSupply() + player.getY() * 3) / 30) * 30 - 15, 0);
 					if (player.getAirSupply() > maxAir) {

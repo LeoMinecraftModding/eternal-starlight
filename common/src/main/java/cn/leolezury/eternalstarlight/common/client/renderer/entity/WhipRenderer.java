@@ -25,13 +25,13 @@ public abstract class WhipRenderer<T extends Whip> extends EntityRenderer<T> {
 	@Override
 	public void render(T entity, float yaw, float partialTicks, PoseStack stack, MultiBufferSource buffer, int light) {
 		stack.pushPose();
-		translateAndRotate(entity, partialTicks, stack, false);
+		translateAndRotate(entity, partialTicks, stack);
 		renderWhip(entity, partialTicks, stack, buffer, light);
 		stack.popPose();
 		super.render(entity, yaw, partialTicks, stack, buffer, light);
 	}
 
-	public void translateAndRotate(T entity, float partialTicks, PoseStack stack, boolean inverted) {
+	public void translateAndRotate(T entity, float partialTicks, PoseStack stack) {
 		Player player = entity.getPlayerOwner();
 		if (player != null) {
 			Vec3 handPos = getPlayerHandPos(player, partialTicks);
@@ -42,13 +42,10 @@ public abstract class WhipRenderer<T extends Whip> extends EntityRenderer<T> {
 			);
 			stack.translate(handPos.x - pos.x, handPos.y - pos.y, handPos.z - pos.z);
 			stack.mulPose(new Quaternionf().rotationX(90 * Mth.DEG_TO_RAD));
-			if (inverted) {
-				stack.mulPose(new Quaternionf().rotationZ((Mth.lerp(partialTicks, player.yHeadRotO, player.yHeadRot) + 180) * Mth.DEG_TO_RAD));
-				stack.mulPose(new Quaternionf().rotationX(-player.getViewXRot(partialTicks) * Mth.DEG_TO_RAD));
-			} else {
-				stack.mulPose(new Quaternionf().rotationZ(Mth.lerp(partialTicks, player.yHeadRotO, player.yHeadRot) * Mth.DEG_TO_RAD));
-				stack.mulPose(new Quaternionf().rotationX(player.getViewXRot(partialTicks) * Mth.DEG_TO_RAD));
-			}
+			stack.mulPose(new Quaternionf().rotationZ(Mth.lerp(partialTicks, player.yHeadRotO, player.yHeadRot) * Mth.DEG_TO_RAD));
+			stack.mulPose(new Quaternionf().rotationX(player.getViewXRot(partialTicks) * Mth.DEG_TO_RAD));
+			stack.scale(-1.0F, -1.0F, 1.0F);
+			stack.translate(0.0F, -1.5F, 0.0F);
 		}
 	}
 
