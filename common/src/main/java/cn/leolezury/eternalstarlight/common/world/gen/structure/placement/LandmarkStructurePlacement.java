@@ -22,7 +22,7 @@ public class LandmarkStructurePlacement extends StructurePlacement {
 		ResourceKey.codec(Registries.STRUCTURE).fieldOf("landmark").forGetter(o -> o.landmark)
 	).apply(instance, LandmarkStructurePlacement::new));
 
-	private static final List<LandmarkEntry> STRUCTURES = Lists.newArrayList(
+	public static final List<LandmarkEntry> STRUCTURES = Lists.newArrayList(
 		new LandmarkEntry(ESStructures.GOLEM_FORGE, 20),
 		new LandmarkEntry(ESStructures.CURSED_GARDEN, 40)
 	);
@@ -64,7 +64,7 @@ public class LandmarkStructurePlacement extends StructurePlacement {
 		return ESStructurePlacementTypes.LANDMARK.get();
 	}
 
-	private record LandmarkEntry(ResourceKey<Structure> structure, int minSpawnDistance) {
+	public record LandmarkEntry(ResourceKey<Structure> structure, int minSpawnDistance) {
 
 	}
 }
