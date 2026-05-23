@@ -750,6 +750,10 @@ public class ESBlocks {
 	public static final RegistryObject<Block, ShortBushBlock> CRESCENTLEAF = BLOCKS.register("crescentleaf", () -> new ShortBushBlock(13, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_YELLOW)));
 	public static final RegistryObject<Block, ShortBushBlock> GOLDEN_GRASS = BLOCKS.register("golden_grass", () -> new ShortBushBlock(13, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_YELLOW)));
 	public static final RegistryObject<Block, DoublePlantBlock> TALL_GOLDEN_GRASS = BLOCKS.register("tall_golden_grass", () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(MapColor.COLOR_YELLOW)));
+	public static final RegistryObject<Block, SacredLanternvineBlock> SACRED_LANTERNVINE = BLOCKS.register("sacred_lanternvine", () -> new SacredLanternvineBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, SacredLanternvinePlantBlock> SACRED_LANTERNVINE_PLANT = BLOCKS.register("sacred_lanternvine_plant", () -> new SacredLanternvinePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES_PLANT).mapColor(MapColor.COLOR_YELLOW)));
+	public static final RegistryObject<Block, HangingSacredLanternvineBlock> HANGING_SACRED_LANTERNVINE = BLOCKS.register("hanging_sacred_lanternvine", () -> new HangingSacredLanternvineBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WEEPING_VINES).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, HangingSacredLanternvinePlantBlock> HANGING_SACRED_LANTERNVINE_PLANT = BLOCKS.register("hanging_sacred_lanternvine_plant", () -> new HangingSacredLanternvinePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WEEPING_VINES_PLANT).mapColor(MapColor.COLOR_YELLOW)));
 
 	// dirt & grass blocks
 	public static final RegistryObject<Block, Block> NIGHTFALL_DIRT = BLOCKS.register("nightfall_dirt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));

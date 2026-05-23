@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-23T19:21:49.5114168	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2026-05-24T00:14:24.4090958	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -42,7 +42,7 @@ ac6f5b8b3f0535432ae0258aa570dd16d11437ec data/c/tags/block/ores_in_ground/eterna
 5b87b123e291847286b5f065a15e87cd2e8e4fef data/c/tags/block/sandstone/slabs.json
 5dda62b0aa1ce442cd4bd50db134061efaef2e4c data/c/tags/block/sandstone/stairs.json
 c8b398a826d48a0f9f9cdfcf25cdbf300dafdf52 data/c/tags/block/skulls.json
-689c437cd44d855d93ba19066b05f1bb81bddded data/c/tags/block/stones.json
+585f4927d81ecf724152035a2bb189a6d1ee7153 data/c/tags/block/stones.json
 57a69d47b12657aced57f5cd9c0519ebdb81b393 data/c/tags/block/storage_blocks.json
 c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/block/storage_blocks/aethersent.json
 88122e86774d86833b91d449ed8166b024381d2b data/c/tags/block/storage_blocks/crinoa.json
@@ -66,7 +66,7 @@ c822c2f51a3a129f515ecc8be6763f485cdd854b data/eternal_starlight/tags/block/abyss
 1eef840b8164c4fe4c7c91c1c2f8fadddbc920c0 data/eternal_starlight/tags/block/aethersent_meteor_replaceables.json
 b51556ddc7b00df44667591a90417bcb760194f5 data/eternal_starlight/tags/block/amaramber_fire_survives_on.json
 776391ce7ff5abc370ad57a3893c8600d8efb3d3 data/eternal_starlight/tags/block/banyin_logs.json
-38a00b5242241e6c5ac0c04ba3ac7c085f4b1a7c data/eternal_starlight/tags/block/base_stone_starlight.json
+2f968b41bd74211a0577b60b557c6b54d0deb13f data/eternal_starlight/tags/block/base_stone_starlight.json
 6c0492001f8571f4726f00e1fa68a49f2b755ea3 data/eternal_starlight/tags/block/converts_nocturnal_millet.json
 4f1990eb9867b83c8a64f0adf7166ba64cfcbe9d data/eternal_starlight/tags/block/corals.json
 88b3182cadaa96603c8f6b8f329b7b47e694c9c0 data/eternal_starlight/tags/block/coral_blocks.json
@@ -99,7 +99,7 @@ f54fe57df0a3141a7f7bb9500451674330abbac8 data/minecraft/tags/block/beacon_base_b
 4650db374e342186aebf256805e916c58a0bffef data/minecraft/tags/block/candles.json
 3276fe5fe9f5770459f5545469eef8fa3872e76d data/minecraft/tags/block/candle_cakes.json
 1e4e95143a045056cd49874265e9e15021c43dd8 data/minecraft/tags/block/ceiling_hanging_signs.json
-451bc7fc00bd9ed0a95d49c30f3accb41cb12e80 data/minecraft/tags/block/climbable.json
+4e2fb3faad1ff894ee7e41ad5cba21d826c25663 data/minecraft/tags/block/climbable.json
 a5c861e65bd285da7e6180ee485ddbd6c84b6cda data/minecraft/tags/block/combination_step_sound_blocks.json
 26d8311b8eaee2ddf93197c419887bfaedc2d509 data/minecraft/tags/block/crops.json
 0c69071d8808fc63e12b14b997cf488ed35f27be data/minecraft/tags/block/dampens_vibrations.json

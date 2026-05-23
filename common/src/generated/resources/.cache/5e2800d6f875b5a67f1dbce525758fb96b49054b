@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-23T19:21:49.5462101	Tags for minecraft:item mod id eternal_starlight
+// 1.21.1	2026-05-24T00:14:24.417603	Tags for minecraft:item mod id eternal_starlight
 69165642c5517f262b2c875ba315ce65ffaf1430 data/c/tags/item/animal_foods.json
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/item/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/item/buds.json
@@ -88,7 +88,7 @@ d38249fab22efad1375ca4ab1d7e084894c894fa data/c/tags/item/raw_materials.json
 3cd5141271cc2aeca4624af1cd625293497becb5 data/c/tags/item/seeds/crinoa.json
 4a07284047b3e10bb5318db288acc50c3cc58d1a data/c/tags/item/seeds/nocturnal_millet.json
 0711db198d9ca45a09ad131c41591e20b184ce47 data/c/tags/item/seeds/pungency_fruit.json
-689c437cd44d855d93ba19066b05f1bb81bddded data/c/tags/item/stones.json
+585f4927d81ecf724152035a2bb189a6d1ee7153 data/c/tags/item/stones.json
 57a69d47b12657aced57f5cd9c0519ebdb81b393 data/c/tags/item/storage_blocks.json
 c625a3f19bec1654353dcb73615d95dd772471cf data/c/tags/item/storage_blocks/aethersent.json
 88122e86774d86833b91d449ed8166b024381d2b data/c/tags/item/storage_blocks/crinoa.json

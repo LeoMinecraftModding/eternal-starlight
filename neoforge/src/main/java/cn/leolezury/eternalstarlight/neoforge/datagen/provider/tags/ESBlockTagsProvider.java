@@ -244,6 +244,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.VOIDSTONE.get(),
 				ESBlocks.ETERNAL_ICE.get(),
 				ESBlocks.HAZE_ICE.get(),
+				ESBlocks.RADIANITE.get(),
 				ESBlocks.NEBULAITE.get(),
 				ESBlocks.STELLAGMITE.get(),
 				ESBlocks.ABYSSLATE.get(),
@@ -491,7 +492,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.GRIMSTONE.get(),
 				ESBlocks.VOIDSTONE.get(),
 				ESBlocks.ETERNAL_ICE.get(),
-				ESBlocks.HAZE_ICE.get()
+				ESBlocks.HAZE_ICE.get(),
+				ESBlocks.RADIANITE.get()
 			);
 		tag(ESTags.Blocks.STARLIGHT_CARVER_REPLACEABLES)
 			.add(
@@ -1078,7 +1080,11 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.CAVE_MOSS_PLANT.get(),
 				ESBlocks.CAVE_MOSS_VEIN.get(),
 				ESBlocks.HANGING_FANTAGRASS.get(),
-				ESBlocks.HANGING_FANTAGRASS_PLANT.get()
+				ESBlocks.HANGING_FANTAGRASS_PLANT.get(),
+				ESBlocks.SACRED_LANTERNVINE.get(),
+				ESBlocks.SACRED_LANTERNVINE_PLANT.get(),
+				ESBlocks.HANGING_SACRED_LANTERNVINE.get(),
+				ESBlocks.HANGING_SACRED_LANTERNVINE_PLANT.get()
 			);
 		tag(BlockTags.STANDING_SIGNS)
 			.add(

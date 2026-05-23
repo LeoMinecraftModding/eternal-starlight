@@ -386,6 +386,10 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		cross(ESBlocks.CRESCENTLEAF.get());
 		cross(ESBlocks.GOLDEN_GRASS.get());
 		doublePlant(ESBlocks.TALL_GOLDEN_GRASS.get());
+		cross(ESBlocks.SACRED_LANTERNVINE.get());
+		cross(ESBlocks.SACRED_LANTERNVINE_PLANT.get());
+		cross(ESBlocks.HANGING_SACRED_LANTERNVINE.get());
+		cross(ESBlocks.HANGING_SACRED_LANTERNVINE_PLANT.get());
 
 		simpleBlock(ESBlocks.NIGHTFALL_DIRT.get());
 		farmland(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());

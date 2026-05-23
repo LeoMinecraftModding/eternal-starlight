@@ -16,7 +16,9 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> {
 	public CradlewoodFeature(Codec<Configuration> codec) {
@@ -29,6 +31,7 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 		BlockPos pos = context.origin();
 		RandomSource random = context.random();
 		List<BlockPos> trunkPositions = new ArrayList<>();
+		List<BlockPos> woodPositions = new ArrayList<>();
 		List<BlockPos> leavesPositions = new ArrayList<>();
 		Configuration config = context.config();
 		int height = config.height().sample(random);
@@ -105,7 +108,6 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 		int ellipseRadiusA = horizontalLength / 2 + 1;
 
 		if (trunkRadius > 0) {
-			Set<BlockPos> expanded = new LinkedHashSet<>(trunkPositions);
 			for (BlockPos trunkPos : trunkPositions) {
 				Direction.Axis axis = computeAxisForPos(trunkPos, points, ellipseCenterX, ellipseRadiusA, horizontalAxis);
 				for (int dr = 1; dr <= trunkRadius; dr++) {
@@ -114,7 +116,7 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 							for (int dy = -dr; dy <= dr; dy++) {
 								for (int dz = -dr; dz <= dr; dz++) {
 									if (dy * dy + dz * dz <= dr * dr) {
-										expanded.add(trunkPos.offset(0, dy, dz));
+										woodPositions.add(trunkPos.offset(0, dy, dz));
 									}
 								}
 							}
@@ -123,7 +125,7 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 							for (int dx = -dr; dx <= dr; dx++) {
 								for (int dy = -dr; dy <= dr; dy++) {
 									if (dx * dx + dy * dy <= dr * dr) {
-										expanded.add(trunkPos.offset(dx, dy, 0));
+										woodPositions.add(trunkPos.offset(dx, dy, 0));
 									}
 								}
 							}
@@ -132,7 +134,7 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 							for (int dx = -dr; dx <= dr; dx++) {
 								for (int dz = -dr; dz <= dr; dz++) {
 									if (dx * dx + dz * dz <= dr * dr) {
-										expanded.add(trunkPos.offset(dx, 0, dz));
+										woodPositions.add(trunkPos.offset(dx, 0, dz));
 									}
 								}
 							}
@@ -140,12 +142,16 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 					}
 				}
 			}
-			trunkPositions.clear();
-			trunkPositions.addAll(expanded);
+			woodPositions.removeAll(trunkPositions);
 		}
 
 		for (BlockPos trunkPos : trunkPositions) {
 			if (!level.isEmptyBlock(trunkPos) && !level.getBlockState(trunkPos).is(BlockTags.REPLACEABLE_BY_TREES)) {
+				return false;
+			}
+		}
+		for (BlockPos woodPos : woodPositions) {
+			if (!level.isEmptyBlock(woodPos) && !level.getBlockState(woodPos).is(BlockTags.REPLACEABLE_BY_TREES)) {
 				return false;
 			}
 		}
@@ -160,6 +166,10 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 		for (BlockPos trunkPos : trunkPositions) {
 			Direction.Axis axis = computeAxisForPos(trunkPos, points, ellipseCenterX, ellipseRadiusA, horizontalAxis);
 			setBlock(level, trunkPos, ESBlocks.CRADLEWOOD_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis));
+		}
+		for (BlockPos trunkPos : woodPositions) {
+			Direction.Axis axis = computeAxisForPos(trunkPos, points, ellipseCenterX, ellipseRadiusA, horizontalAxis);
+			setBlock(level, trunkPos, ESBlocks.CRADLEWOOD_WOOD.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis));
 		}
 		return true;
 	}

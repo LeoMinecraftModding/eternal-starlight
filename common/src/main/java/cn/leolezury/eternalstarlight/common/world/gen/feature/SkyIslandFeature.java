@@ -4,7 +4,7 @@ import cn.leolezury.eternalstarlight.common.util.Easing;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderSet;
+import net.minecraft.core.Holder;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -147,17 +147,17 @@ public class SkyIslandFeature extends ESFeature<SkyIslandFeature.Configuration> 
 		}
 
 		for (BlockPos pos : surfaceSet) {
-			config.decorations().forEach(decoration -> {
-				if (random.nextFloat() < config.decorationChance() && pos.getCenter().subtract(origin.getCenter()).horizontalDistance() < config.decorationMaxDistance()) {
-					decoration.value().place(level, chunkGenerator, random, pos.above());
+			config.decorations().forEach(decorationEntry -> {
+				if (random.nextFloat() < decorationEntry.chance() && pos.getCenter().subtract(origin.getCenter()).horizontalDistance() < decorationEntry.maxDistance()) {
+					decorationEntry.feature().value().place(level, chunkGenerator, random, pos.above());
 				}
 			});
 		}
 
 		for (BlockPos pos : bottomSurface) {
-			config.bottomDecorations().forEach(bottomDecoration -> {
-				if (random.nextFloat() < config.bottomDecorationChance() && pos.getCenter().subtract(origin.getCenter()).horizontalDistance() < config.bottomDecorationMaxDistance()) {
-					bottomDecoration.value().place(level, chunkGenerator, random, pos.below());
+			config.bottomDecorations().forEach(bottomDecorationEntry -> {
+				if (random.nextFloat() < bottomDecorationEntry.chance() && pos.getCenter().subtract(origin.getCenter()).horizontalDistance() < bottomDecorationEntry.maxDistance()) {
+					bottomDecorationEntry.feature().value().place(level, chunkGenerator, random, pos.below());
 				}
 			});
 		}
@@ -169,26 +169,26 @@ public class SkyIslandFeature extends ESFeature<SkyIslandFeature.Configuration> 
 		BlockStateProvider composition,
 		BlockStateProvider surface,
 		BlockStateProvider dirt,
-		HolderSet<PlacedFeature> decorations,
-		float decorationChance,
-		int decorationMaxDistance,
-		HolderSet<PlacedFeature> bottomDecorations,
-		float bottomDecorationChance,
-		int bottomDecorationMaxDistance,
+		List<DecorationEntry> decorations,
+		List<DecorationEntry> bottomDecorations,
 		IntProvider size,
 		IntProvider height,
 		float noiseScale
 	) implements FeatureConfiguration {
+		public record DecorationEntry(Holder<PlacedFeature> feature, float chance, int maxDistance) {
+			public static final Codec<DecorationEntry> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+				PlacedFeature.CODEC.fieldOf("feature").forGetter(DecorationEntry::feature),
+				Codec.floatRange(0, 1).fieldOf("chance").forGetter(DecorationEntry::chance),
+				Codec.INT.fieldOf("max_distance").forGetter(DecorationEntry::maxDistance)
+			).apply(instance, DecorationEntry::new));
+		}
+
 		public static final Codec<Configuration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			BlockStateProvider.CODEC.fieldOf("composition").forGetter(Configuration::composition),
 			BlockStateProvider.CODEC.fieldOf("surface").forGetter(Configuration::surface),
 			BlockStateProvider.CODEC.fieldOf("dirt").forGetter(Configuration::dirt),
-			PlacedFeature.LIST_CODEC.fieldOf("decorations").forGetter(Configuration::decorations),
-			Codec.floatRange(0, 1).fieldOf("decoration_chance").forGetter(Configuration::decorationChance),
-			Codec.INT.fieldOf("decoration_max_distance").forGetter(Configuration::decorationMaxDistance),
-			PlacedFeature.LIST_CODEC.fieldOf("bottom_decorations").forGetter(Configuration::bottomDecorations),
-			Codec.floatRange(0, 1).fieldOf("bottom_decoration_chance").forGetter(Configuration::bottomDecorationChance),
-			Codec.INT.fieldOf("bottom_decoration_max_distance").forGetter(Configuration::bottomDecorationMaxDistance),
+			DecorationEntry.CODEC.listOf().fieldOf("decorations").forGetter(Configuration::decorations),
+			DecorationEntry.CODEC.listOf().fieldOf("bottom_decorations").forGetter(Configuration::bottomDecorations),
 			IntProvider.CODEC.fieldOf("size").forGetter(Configuration::size),
 			IntProvider.CODEC.fieldOf("height").forGetter(Configuration::height),
 			Codec.FLOAT.fieldOf("noise_scale").forGetter(Configuration::noiseScale)
@@ -197,8 +197,8 @@ public class SkyIslandFeature extends ESFeature<SkyIslandFeature.Configuration> 
 		@Override
 		public Stream<ConfiguredFeature<?, ?>> getFeatures() {
 			return Stream.concat(
-				decorations.stream().flatMap(placedFeature -> placedFeature.value().getFeatures()),
-				bottomDecorations.stream().flatMap(placedFeature -> placedFeature.value().getFeatures())
+				decorations.stream().flatMap(entry -> entry.feature().value().getFeatures()),
+				bottomDecorations.stream().flatMap(entry -> entry.feature().value().getFeatures())
 			);
 		}
 	}

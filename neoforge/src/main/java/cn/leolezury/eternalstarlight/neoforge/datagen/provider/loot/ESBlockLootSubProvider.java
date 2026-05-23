@@ -650,6 +650,10 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		plant(ESBlocks.CRESCENTLEAF.get());
 		plant(ESBlocks.GOLDEN_GRASS.get());
 		add(ESBlocks.TALL_GOLDEN_GRASS.get(), this::createDoublePlantDrops);
+		plant(ESBlocks.SACRED_LANTERNVINE.get());
+		plant(ESBlocks.SACRED_LANTERNVINE_PLANT.get());
+		plant(ESBlocks.HANGING_SACRED_LANTERNVINE.get());
+		plant(ESBlocks.HANGING_SACRED_LANTERNVINE_PLANT.get());
 
 		dropSelf(ESBlocks.NIGHTFALL_DIRT.get());
 		dropOther(ESBlocks.NIGHTFALL_FARMLAND.get(), ESBlocks.NIGHTFALL_DIRT.get());

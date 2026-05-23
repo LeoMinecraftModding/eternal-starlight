@@ -623,11 +623,12 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> STELLAFLY_BUSH = registerItem("stellafly_bush", () -> new BlockItem(ESBlocks.STELLAFLY_BUSH.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLIMMERFLY_BUSH = registerItem("glimmerfly_bush", () -> new BlockItem(ESBlocks.GLIMMERFLY_BUSH.get(), new Item.Properties()));
 
-	// floating islands plant
+	// solaris isles plant
 	public static final RegistryObject<Item, Item> SACRED_STARLIGHT_FLOWER = registerItem("sacred_starlight_flower", () -> new BlockItem(ESBlocks.SACRED_STARLIGHT_FLOWER.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CRESCENTLEAF = registerItem("crescentleaf", () -> new BlockItem(ESBlocks.CRESCENTLEAF.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GOLDEN_GRASS = registerItem("golden_grass", () -> new BlockItem(ESBlocks.GOLDEN_GRASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TALL_GOLDEN_GRASS = registerItem("tall_golden_grass", () -> new BlockItem(ESBlocks.TALL_GOLDEN_GRASS.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> SACRED_LANTERNVINE = registerItem("sacred_lanternvine", () -> new StandingAndHangingVineBlockItem(ESBlocks.SACRED_LANTERNVINE.get(), ESBlocks.HANGING_SACRED_LANTERNVINE.get(), new Item.Properties()));
 
 	// dirt & grass blocks
 	public static final RegistryObject<Item, Item> NIGHTFALL_DIRT = registerItem("nightfall_dirt", () -> new BlockItem(ESBlocks.NIGHTFALL_DIRT.get(), new Item.Properties()));

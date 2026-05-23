@@ -579,6 +579,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		flatBlockTexture(ESItems.CRESCENTLEAF.get());
 		flatBlockTexture(ESItems.GOLDEN_GRASS.get());
 		flatBlockTexture(ESItems.TALL_GOLDEN_GRASS.get());
+		flatBlockTexture(ESItems.SACRED_LANTERNVINE.get());
 
 		block(ESItems.NIGHTFALL_DIRT.get());
 		block(ESItems.NIGHTFALL_FARMLAND.get());

@@ -1,68 +1,222 @@
 {
   "type": "eternal_starlight:sky_island",
   "config": {
-    "bottom_decoration_chance": 0.04,
-    "bottom_decoration_max_distance": 2,
-    "bottom_decorations": {
-      "feature": "eternal_starlight:cradlewood",
-      "placement": []
-    },
+    "bottom_decorations": [
+      {
+        "chance": 0.04,
+        "feature": {
+          "feature": "eternal_starlight:cradlewood",
+          "placement": []
+        },
+        "max_distance": 2
+      },
+      {
+        "chance": 0.03,
+        "feature": {
+          "feature": {
+            "type": "minecraft:block_column",
+            "config": {
+              "allowed_placement": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              },
+              "direction": "down",
+              "layers": [
+                {
+                  "height": {
+                    "type": "minecraft:weighted_list",
+                    "distribution": [
+                      {
+                        "data": {
+                          "type": "minecraft:uniform",
+                          "max_inclusive": 14,
+                          "min_inclusive": 10
+                        },
+                        "weight": 1
+                      },
+                      {
+                        "data": {
+                          "type": "minecraft:uniform",
+                          "max_inclusive": 10,
+                          "min_inclusive": 6
+                        },
+                        "weight": 2
+                      },
+                      {
+                        "data": {
+                          "type": "minecraft:uniform",
+                          "max_inclusive": 6,
+                          "min_inclusive": 0
+                        },
+                        "weight": 6
+                      }
+                    ]
+                  },
+                  "provider": {
+                    "type": "minecraft:simple_state_provider",
+                    "state": {
+                      "Name": "eternal_starlight:hanging_sacred_lanternvine_plant"
+                    }
+                  }
+                },
+                {
+                  "height": 1,
+                  "provider": {
+                    "type": "minecraft:simple_state_provider",
+                    "state": {
+                      "Name": "eternal_starlight:hanging_sacred_lanternvine",
+                      "Properties": {
+                        "age": "0"
+                      }
+                    }
+                  }
+                }
+              ],
+              "prioritize_tip": true
+            }
+          },
+          "placement": [
+            {
+              "type": "minecraft:block_predicate_filter",
+              "predicate": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              }
+            }
+          ]
+        },
+        "max_distance": 24
+      }
+    ],
     "composition": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "eternal_starlight:radianite"
       }
     },
-    "decoration_chance": 0.4,
-    "decoration_max_distance": 24,
-    "decorations": {
-      "feature": {
-        "type": "minecraft:simple_block",
-        "config": {
-          "to_place": {
-            "type": "minecraft:weighted_state_provider",
-            "entries": [
-              {
-                "data": {
-                  "Name": "eternal_starlight:golden_grass"
-                },
-                "weight": 80
+    "decorations": [
+      {
+        "chance": 0.4,
+        "feature": {
+          "feature": {
+            "type": "minecraft:simple_block",
+            "config": {
+              "to_place": {
+                "type": "minecraft:weighted_state_provider",
+                "entries": [
+                  {
+                    "data": {
+                      "Name": "eternal_starlight:golden_grass"
+                    },
+                    "weight": 80
+                  },
+                  {
+                    "data": {
+                      "Name": "eternal_starlight:tall_golden_grass",
+                      "Properties": {
+                        "half": "lower"
+                      }
+                    },
+                    "weight": 30
+                  },
+                  {
+                    "data": {
+                      "Name": "eternal_starlight:crescentleaf"
+                    },
+                    "weight": 6
+                  },
+                  {
+                    "data": {
+                      "Name": "eternal_starlight:sacred_starlight_flower"
+                    },
+                    "weight": 1
+                  }
+                ]
+              }
+            }
+          },
+          "placement": [
+            {
+              "type": "minecraft:block_predicate_filter",
+              "predicate": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              }
+            }
+          ]
+        },
+        "max_distance": 24
+      },
+      {
+        "chance": 0.02,
+        "feature": {
+          "feature": {
+            "type": "minecraft:block_column",
+            "config": {
+              "allowed_placement": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
               },
-              {
-                "data": {
-                  "Name": "eternal_starlight:tall_golden_grass",
-                  "Properties": {
-                    "half": "lower"
+              "direction": "up",
+              "layers": [
+                {
+                  "height": {
+                    "type": "minecraft:weighted_list",
+                    "distribution": [
+                      {
+                        "data": {
+                          "type": "minecraft:uniform",
+                          "max_inclusive": 8,
+                          "min_inclusive": 4
+                        },
+                        "weight": 1
+                      },
+                      {
+                        "data": {
+                          "type": "minecraft:uniform",
+                          "max_inclusive": 4,
+                          "min_inclusive": 0
+                        },
+                        "weight": 6
+                      }
+                    ]
+                  },
+                  "provider": {
+                    "type": "minecraft:simple_state_provider",
+                    "state": {
+                      "Name": "eternal_starlight:sacred_lanternvine_plant"
+                    }
                   }
                 },
-                "weight": 30
-              },
-              {
-                "data": {
-                  "Name": "eternal_starlight:crescentleaf"
-                },
-                "weight": 6
-              },
-              {
-                "data": {
-                  "Name": "eternal_starlight:sacred_starlight_flower"
-                },
-                "weight": 1
+                {
+                  "height": 1,
+                  "provider": {
+                    "type": "minecraft:simple_state_provider",
+                    "state": {
+                      "Name": "eternal_starlight:sacred_lanternvine",
+                      "Properties": {
+                        "age": "0"
+                      }
+                    }
+                  }
+                }
+              ],
+              "prioritize_tip": true
+            }
+          },
+          "placement": [
+            {
+              "type": "minecraft:block_predicate_filter",
+              "predicate": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
               }
-            ]
-          }
-        }
-      },
-      "placement": [
-        {
-          "type": "minecraft:block_predicate_filter",
-          "predicate": {
-            "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
-          }
-        }
-      ]
-    },
+            }
+          ]
+        },
+        "max_distance": 24
+      }
+    ],
     "dirt": {
       "type": "minecraft:simple_state_provider",
       "state": {
