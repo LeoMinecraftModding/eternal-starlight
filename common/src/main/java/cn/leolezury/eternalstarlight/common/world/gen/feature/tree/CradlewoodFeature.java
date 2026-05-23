@@ -16,10 +16,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> {
 	public CradlewoodFeature(Codec<Configuration> codec) {
@@ -37,6 +34,7 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 		int height = config.height().sample(random);
 		int horizontalOffset = config.horizontalOffset().sample(random);
 		int leavesRadius = config.leavesRadius().sample(random);
+		int trunkRadius = config.trunkRadius().sample(random);
 		float angle = random.nextInt(360) * Mth.DEG_TO_RAD;
 		// make a trunk
 		BlockPos targetPos = pos.offset((random.nextBoolean() ? 1 : -1) * (int) Math.round(horizontalOffset * Math.sin(angle)), 0, (random.nextBoolean() ? 1 : -1) * (int) Math.round(horizontalOffset * Math.cos(angle)));
@@ -99,6 +97,53 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 				}
 			}
 		}
+
+		int dxLine = targetPos.getX() - pos.getX();
+		int dzLine = targetPos.getZ() - pos.getZ();
+		Direction.Axis horizontalAxis = Math.abs(dxLine) > Math.abs(dzLine) ? Direction.Axis.X : Direction.Axis.Z;
+		int ellipseCenterX = horizontalLength / 2;
+		int ellipseRadiusA = horizontalLength / 2 + 1;
+
+		if (trunkRadius > 0) {
+			Set<BlockPos> expanded = new LinkedHashSet<>(trunkPositions);
+			for (BlockPos trunkPos : trunkPositions) {
+				Direction.Axis axis = computeAxisForPos(trunkPos, points, ellipseCenterX, ellipseRadiusA, horizontalAxis);
+				for (int dr = 1; dr <= trunkRadius; dr++) {
+					switch (axis) {
+						case X -> {
+							for (int dy = -dr; dy <= dr; dy++) {
+								for (int dz = -dr; dz <= dr; dz++) {
+									if (dy * dy + dz * dz <= dr * dr) {
+										expanded.add(trunkPos.offset(0, dy, dz));
+									}
+								}
+							}
+						}
+						case Z -> {
+							for (int dx = -dr; dx <= dr; dx++) {
+								for (int dy = -dr; dy <= dr; dy++) {
+									if (dx * dx + dy * dy <= dr * dr) {
+										expanded.add(trunkPos.offset(dx, dy, 0));
+									}
+								}
+							}
+						}
+						case Y -> {
+							for (int dx = -dr; dx <= dr; dx++) {
+								for (int dz = -dr; dz <= dr; dz++) {
+									if (dx * dx + dz * dz <= dr * dr) {
+										expanded.add(trunkPos.offset(dx, 0, dz));
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			trunkPositions.clear();
+			trunkPositions.addAll(expanded);
+		}
+
 		for (BlockPos trunkPos : trunkPositions) {
 			if (!level.isEmptyBlock(trunkPos) && !level.getBlockState(trunkPos).is(BlockTags.REPLACEABLE_BY_TREES)) {
 				return false;
@@ -112,23 +157,53 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 		for (BlockPos leavesPos : leavesPositions) {
 			setBlock(level, leavesPos, ESBlocks.CRADLEWOOD_LEAVES.get().defaultBlockState());
 		}
-		for (int i = 0; i < trunkPositions.size(); i++) {
-			BlockPos trunkPos = trunkPositions.get(i);
-			Direction.Axis axis = Direction.Axis.Y;
-			List<Direction.Axis> availableAxes = Arrays.stream(Direction.Axis.values()).filter(o -> trunkPositions.contains(trunkPos.relative(o, 1)) || trunkPositions.contains(trunkPos.relative(o, -1))).toList();
-			if (!availableAxes.isEmpty()) {
-				axis = availableAxes.get(random.nextInt(availableAxes.size()));
-			}
+		for (BlockPos trunkPos : trunkPositions) {
+			Direction.Axis axis = computeAxisForPos(trunkPos, points, ellipseCenterX, ellipseRadiusA, horizontalAxis);
 			setBlock(level, trunkPos, ESBlocks.CRADLEWOOD_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis));
 		}
 		return true;
 	}
 
-	public record Configuration(IntProvider height, IntProvider horizontalOffset, IntProvider leavesRadius) implements FeatureConfiguration {
+	private static Direction.Axis computeAxisForPos(BlockPos pos, List<int[]> bresenhamPoints, int ellipseCenterX, int ellipseRadiusA, Direction.Axis horizontalAxis) {
+		int index = findBresenhamIndex(pos, bresenhamPoints);
+		if (index < 0) {
+			return Direction.Axis.Y;
+		}
+		double hRel = Math.abs(index - ellipseCenterX);
+		if (hRel > ellipseRadiusA * 0.6) {
+			return Direction.Axis.Y;
+		}
+		return horizontalAxis;
+	}
+
+	private static int findBresenhamIndex(BlockPos pos, List<int[]> bresenhamPoints) {
+		for (int i = 0; i < bresenhamPoints.size(); i++) {
+			int[] p = bresenhamPoints.get(i);
+			if (p[0] == pos.getX() && p[2] == pos.getZ()) {
+				return i;
+			}
+		}
+		int bestIndex = 0;
+		int bestDist = Integer.MAX_VALUE;
+		for (int i = 0; i < bresenhamPoints.size(); i++) {
+			int[] p = bresenhamPoints.get(i);
+			int dx = p[0] - pos.getX();
+			int dz = p[2] - pos.getZ();
+			int dist = dx * dx + dz * dz;
+			if (dist < bestDist) {
+				bestDist = dist;
+				bestIndex = i;
+			}
+		}
+		return bestIndex;
+	}
+
+	public record Configuration(IntProvider height, IntProvider horizontalOffset, IntProvider leavesRadius, IntProvider trunkRadius) implements FeatureConfiguration {
 		public static final Codec<Configuration> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			IntProvider.CODEC.fieldOf("height").forGetter(Configuration::height),
 			IntProvider.CODEC.fieldOf("horizontal_offset").forGetter(Configuration::horizontalOffset),
-			IntProvider.CODEC.fieldOf("leaves_radius").forGetter(Configuration::leavesRadius)
+			IntProvider.CODEC.fieldOf("leaves_radius").forGetter(Configuration::leavesRadius),
+			IntProvider.CODEC.fieldOf("trunk_radius").forGetter(Configuration::trunkRadius)
 		).apply(instance, Configuration::new));
 	}
 }

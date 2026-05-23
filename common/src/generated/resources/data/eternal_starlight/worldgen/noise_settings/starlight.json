@@ -205,7 +205,8 @@
           "invert": {
             "type": "minecraft:biome",
             "biome_is": [
-              "eternal_starlight:grim_shore"
+              "eternal_starlight:grim_shore",
+              "eternal_starlight:solaris_isles"
             ]
           }
         },

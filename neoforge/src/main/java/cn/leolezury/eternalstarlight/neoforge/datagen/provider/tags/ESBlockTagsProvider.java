@@ -1016,7 +1016,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.RED_CRYSTALFLEUR.get(),
 				ESBlocks.BLUE_CRYSTALFLEUR.get(),
 				ESBlocks.FIRE_ORCHID.get(),
-				ESBlocks.RED_VELVETUMOSS_FLOWER.get()
+				ESBlocks.RED_VELVETUMOSS_FLOWER.get(),
+				ESBlocks.SACRED_STARLIGHT_FLOWER.get()
 			);
 		tag(BlockTags.TALL_FLOWERS)
 			.add(
@@ -1033,6 +1034,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.POTTED_JINGLESTEM_SAPLING.get(),
 				ESBlocks.POTTED_CRADLEWOOD_SAPLING.get(),
 				ESBlocks.POTTED_STARLIGHT_FLOWER.get(),
+				ESBlocks.POTTED_AUREATE_FLOWER.get(),
 				ESBlocks.POTTED_CONEBLOOM.get(),
 				ESBlocks.POTTED_NIGHTFAN.get(),
 				ESBlocks.POTTED_PINK_ROSE.get(),
@@ -1051,11 +1053,16 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.POTTED_FANTAFERN.get(),
 				ESBlocks.POTTED_GREEN_FANTAFERN.get(),
 				ESBlocks.POTTED_WITHERED_STARLIGHT_FLOWER.get(),
+				ESBlocks.POTTED_AMARAMBER_GRASS.get(),
 				ESBlocks.POTTED_DEAD_LUNAR_BUSH.get(),
 				ESBlocks.POTTED_DESERT_AMETHYSIA.get(),
 				ESBlocks.POTTED_WITHERED_DESERT_AMETHYSIA.get(),
 				ESBlocks.POTTED_SUNSET_THORNBLOOM.get(),
-				ESBlocks.POTTED_RED_VELVETUMOSS_FLOWER.get()
+				ESBlocks.POTTED_RED_CRYSTALFLEUR.get(),
+				ESBlocks.POTTED_BLUE_CRYSTALFLEUR.get(),
+				ESBlocks.POTTED_FIRE_ORCHID.get(),
+				ESBlocks.POTTED_RED_VELVETUMOSS_FLOWER.get(),
+				ESBlocks.POTTED_SACRED_STARLIGHT_FLOWER.get()
 			);
 		tag(BlockTags.PORTALS)
 			.add(

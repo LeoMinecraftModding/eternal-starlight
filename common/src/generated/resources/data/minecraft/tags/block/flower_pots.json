@@ -8,6 +8,7 @@
     "eternal_starlight:potted_jinglestem_sapling",
     "eternal_starlight:potted_cradlewood_sapling",
     "eternal_starlight:potted_starlight_flower",
+    "eternal_starlight:potted_aureate_flower",
     "eternal_starlight:potted_conebloom",
     "eternal_starlight:potted_nightfan",
     "eternal_starlight:potted_pink_rose",
@@ -26,10 +27,15 @@
     "eternal_starlight:potted_fantafern",
     "eternal_starlight:potted_green_fantafern",
     "eternal_starlight:potted_withered_starlight_flower",
+    "eternal_starlight:potted_amaramber_grass",
     "eternal_starlight:potted_dead_lunar_bush",
     "eternal_starlight:potted_desert_amethysia",
     "eternal_starlight:potted_withered_desert_amethysia",
     "eternal_starlight:potted_sunset_thornbloom",
-    "eternal_starlight:potted_red_velvetumoss_flower"
+    "eternal_starlight:potted_red_crystalfleur",
+    "eternal_starlight:potted_blue_crystalfleur",
+    "eternal_starlight:potted_fire_orchid",
+    "eternal_starlight:potted_red_velvetumoss_flower",
+    "eternal_starlight:potted_sacred_starlight_flower"
   ]
 }

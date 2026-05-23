@@ -46,6 +46,7 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<VelvetumossFeature.Configuration>> VELVETUMOSS = FEATURES.register("velvetumoss", () -> new VelvetumossFeature(VelvetumossFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<BlockPatchFeature.Configuration>> BLOCK_PATCH = FEATURES.register("block_patch", () -> new BlockPatchFeature(BlockPatchFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoiseBooleanSelectorFeature.Configuration>> NOISE_BOOLEAN_SELECTOR = FEATURES.register("noise_boolean_selector", () -> new NoiseBooleanSelectorFeature(NoiseBooleanSelectorFeature.Configuration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<SkyIslandFeature.Configuration>> SKY_ISLAND = FEATURES.register("sky_island", () -> new SkyIslandFeature(SkyIslandFeature.Configuration.CODEC));
 
 	public static void loadClass() {
 	}

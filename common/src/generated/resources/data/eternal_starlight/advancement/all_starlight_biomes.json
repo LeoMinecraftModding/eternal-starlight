@@ -177,6 +177,22 @@
       },
       "trigger": "minecraft:location"
     },
+    "in_solaris_isles": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "eternal_starlight:solaris_isles"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "in_spiral_kelp_forest": {
       "conditions": {
         "player": [
@@ -384,6 +400,9 @@
     ],
     [
       "in_shimmer_river"
+    ],
+    [
+      "in_solaris_isles"
     ],
     [
       "in_spiral_kelp_forest"

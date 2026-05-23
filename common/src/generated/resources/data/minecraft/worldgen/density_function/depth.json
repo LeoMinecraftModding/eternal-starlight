@@ -12,10 +12,14 @@
     "argument": {
       "type": "minecraft:cache_2d",
       "argument": {
-        "type": "minecraft:noise",
-        "noise": "eternal_starlight:depth_offset",
-        "xz_scale": 0.3,
-        "y_scale": 0.0
+        "type": "minecraft:mul",
+        "argument1": 0.1,
+        "argument2": {
+          "type": "minecraft:noise",
+          "noise": "eternal_starlight:depth_offset",
+          "xz_scale": 0.3,
+          "y_scale": 0.0
+        }
       }
     }
   }

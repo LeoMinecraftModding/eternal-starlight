@@ -1,0 +1,69 @@
+{
+  "carvers": {},
+  "creature_spawn_probability": 0.2,
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": 5195923,
+    "foliage_color": 5195923,
+    "grass_color": 5195923,
+    "music": {
+      "max_delay": 12000,
+      "min_delay": 1200,
+      "replace_current_music": false,
+      "sound": "eternal_starlight:music.biome.starlight_forest"
+    },
+    "particle": {
+      "options": {
+        "type": "eternal_starlight:starlight"
+      },
+      "probability": 0.001
+    },
+    "sky_color": 5658761,
+    "water_color": 6187416,
+    "water_fog_color": 1184291
+  },
+  "features": [
+    [
+      "eternal_starlight:solaris_island"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 2
+      }
+    ],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "eternal_starlight:ent",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "eternal_starlight:ratlin",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 8
+      },
+      {
+        "type": "eternal_starlight:shadow_snail",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 6
+      }
+    ],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 2.0
+}

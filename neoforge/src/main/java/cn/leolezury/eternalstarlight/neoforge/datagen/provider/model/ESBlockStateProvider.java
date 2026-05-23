@@ -381,6 +381,9 @@ public class ESBlockStateProvider extends BlockStateProvider {
 		doublePlant(ESBlocks.STELLAFLY_BUSH.get());
 		doublePlant(ESBlocks.GLIMMERFLY_BUSH.get());
 
+		cross(ESBlocks.SACRED_STARLIGHT_FLOWER.get());
+		pottedPlant(ESBlocks.POTTED_SACRED_STARLIGHT_FLOWER.get(), blockTexture(ESBlocks.SACRED_STARLIGHT_FLOWER.get()));
+		cross(ESBlocks.CRESCENTLEAF.get());
 		cross(ESBlocks.GOLDEN_GRASS.get());
 		doublePlant(ESBlocks.TALL_GOLDEN_GRASS.get());
 

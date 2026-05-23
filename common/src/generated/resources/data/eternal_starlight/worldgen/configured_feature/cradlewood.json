@@ -11,6 +11,11 @@
       "max_inclusive": 16,
       "min_inclusive": 12
     },
-    "leaves_radius": 4
+    "leaves_radius": 4,
+    "trunk_radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 1,
+      "min_inclusive": 0
+    }
   }
 }

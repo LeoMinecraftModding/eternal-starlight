@@ -1,0 +1,93 @@
+{
+  "type": "eternal_starlight:sky_island",
+  "config": {
+    "bottom_decoration_chance": 0.04,
+    "bottom_decoration_max_distance": 2,
+    "bottom_decorations": {
+      "feature": "eternal_starlight:cradlewood",
+      "placement": []
+    },
+    "composition": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:radianite"
+      }
+    },
+    "decoration_chance": 0.4,
+    "decoration_max_distance": 24,
+    "decorations": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "eternal_starlight:golden_grass"
+                },
+                "weight": 80
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:tall_golden_grass",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 30
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:crescentleaf"
+                },
+                "weight": 6
+              },
+              {
+                "data": {
+                  "Name": "eternal_starlight:sacred_starlight_flower"
+                },
+                "weight": 1
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    },
+    "dirt": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:nightfall_dirt"
+      }
+    },
+    "height": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 8,
+      "min_inclusive": 4
+    },
+    "noise_scale": 0.06,
+    "size": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 20,
+      "min_inclusive": 12
+    },
+    "surface": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:golden_grass_block",
+        "Properties": {
+          "snowy": "false"
+        }
+      }
+    }
+  }
+}

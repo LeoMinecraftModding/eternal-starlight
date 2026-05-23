@@ -39,6 +39,6 @@ public abstract class ESFeature<FC extends FeatureConfiguration> extends Feature
 	}
 
 	protected BlockPos getChunkCoordinate(BlockPos origin) {
-		return new BlockPos((origin.getX() / 16) * 16, origin.getY(), (origin.getZ() / 16) * 16);
+		return new BlockPos(origin.getX() & ~15, origin.getY(), origin.getZ() & ~15);
 	}
 }

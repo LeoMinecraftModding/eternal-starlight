@@ -111,6 +111,13 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSingleConversion(recipeOutput, Items.RED_DYE, ESItems.FIRE_ORCHID.get());
 		addSingleConversion(recipeOutput, Items.RED_DYE, ESItems.BLAZEBANK_GRASS.get());
 
+		addSingleConversion(recipeOutput, Items.RED_DYE, ESItems.RED_VELVETUMOSS_FLOWER.get());
+
+		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.SACRED_STARLIGHT_FLOWER.get());
+		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.CRESCENTLEAF.get());
+		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.GOLDEN_GRASS.get());
+		addSingleConversion(recipeOutput, Items.YELLOW_DYE, ESItems.TALL_GOLDEN_GRASS.get());
+
 		// cooked food
 		addCookingRecipes(recipeOutput, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
 		addCookingRecipes(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);

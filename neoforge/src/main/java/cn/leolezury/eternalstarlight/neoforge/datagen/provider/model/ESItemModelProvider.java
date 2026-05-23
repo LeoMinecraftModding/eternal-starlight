@@ -575,6 +575,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.STELLAFLY_BUSH.get(), blockTextureFromItem(ESItems.STELLAFLY_BUSH.get()).withSuffix("_top"));
 		basicItem(ESItems.GLIMMERFLY_BUSH.get(), blockTextureFromItem(ESItems.GLIMMERFLY_BUSH.get()).withSuffix("_top"));
 
+		flatBlockTexture(ESItems.SACRED_STARLIGHT_FLOWER.get());
+		flatBlockTexture(ESItems.CRESCENTLEAF.get());
 		flatBlockTexture(ESItems.GOLDEN_GRASS.get());
 		flatBlockTexture(ESItems.TALL_GOLDEN_GRASS.get());
 

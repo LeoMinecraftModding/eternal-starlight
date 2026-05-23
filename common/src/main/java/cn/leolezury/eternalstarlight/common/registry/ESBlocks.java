@@ -744,7 +744,10 @@ public class ESBlocks {
 	public static final RegistryObject<Block, DoublePlantOnStoneBlock> STELLAFLY_BUSH = BLOCKS.register("stellafly_bush", () -> new DoublePlantOnStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(DyeColor.BLUE)));
 	public static final RegistryObject<Block, DoublePlantOnStoneBlock> GLIMMERFLY_BUSH = BLOCKS.register("glimmerfly_bush", () -> new DoublePlantOnStoneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(DyeColor.RED).lightLevel(state -> 10)));
 
-	// floating islands plant
+	// solaris isles plant
+	public static final RegistryObject<Block, FlowerBlock> SACRED_STARLIGHT_FLOWER = BLOCKS.register("sacred_starlight_flower", () -> new FlowerBlock(MobEffects.JUMP, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.COLOR_YELLOW).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, FlowerPotBlock> POTTED_SACRED_STARLIGHT_FLOWER = BLOCKS.register("potted_sacred_starlight_flower", () -> ESPlatform.INSTANCE.createFlowerPot(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SACRED_STARLIGHT_FLOWER, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).lightLevel(state -> 15)));
+	public static final RegistryObject<Block, ShortBushBlock> CRESCENTLEAF = BLOCKS.register("crescentleaf", () -> new ShortBushBlock(13, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_YELLOW)));
 	public static final RegistryObject<Block, ShortBushBlock> GOLDEN_GRASS = BLOCKS.register("golden_grass", () -> new ShortBushBlock(13, BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).mapColor(MapColor.COLOR_YELLOW)));
 	public static final RegistryObject<Block, DoublePlantBlock> TALL_GOLDEN_GRASS = BLOCKS.register("tall_golden_grass", () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).mapColor(MapColor.COLOR_YELLOW)));
 

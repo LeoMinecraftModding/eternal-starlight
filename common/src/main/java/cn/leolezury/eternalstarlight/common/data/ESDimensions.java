@@ -79,7 +79,7 @@ public class ESDimensions {
 		return SurfaceRules.sequence(
 			SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())),
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.THE_ABYSS), makeAbyss()),
-			SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ESBiomes.GRIM_SHORE)), SurfaceRules.ifTrue(OnSurfaceCondition.INSTANCE, surface)),
+			SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.isBiome(ESBiomes.GRIM_SHORE, ESBiomes.SOLARIS_ISLES)), SurfaceRules.ifTrue(OnSurfaceCondition.INSTANCE, surface)),
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIGHT_PERMAFROST_FOREST, ESBiomes.PERMAFROST_PEAKS), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), SurfaceRules.state(ESBlocks.HAZE_ICE.get().defaultBlockState())), SurfaceRules.state(ESBlocks.ETERNAL_ICE.get().defaultBlockState()))),
 			SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.sequence(
 				SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(32), VerticalAnchor.absolute(40))), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState())),
@@ -152,7 +152,7 @@ public class ESDimensions {
 			DensityFunctions.yClampedGradient(-64, 320, 1.5, -1.5),
 			DensityFunctions.flatCache(
 				DensityFunctions.cache2d(
-					DensityFunctions.noise(noiseParameters.getOrThrow(ESNoises.DEPTH_OFFSET), 0.3, 0.0)
+					DensityFunctions.mul(DensityFunctions.constant(0.1), DensityFunctions.noise(noiseParameters.getOrThrow(ESNoises.DEPTH_OFFSET), 0.3, 0.0))
 				)
 			)
 		));

@@ -645,6 +645,9 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.STELLAFLY_BUSH.get(), this::createDoublePlantDrops);
 		add(ESBlocks.GLIMMERFLY_BUSH.get(), this::createDoublePlantDrops);
 
+		dropSelf(ESBlocks.SACRED_STARLIGHT_FLOWER.get());
+		dropPottedContents(ESBlocks.POTTED_SACRED_STARLIGHT_FLOWER.get());
+		plant(ESBlocks.CRESCENTLEAF.get());
 		plant(ESBlocks.GOLDEN_GRASS.get());
 		add(ESBlocks.TALL_GOLDEN_GRASS.get(), this::createDoublePlantDrops);
 

@@ -110,6 +110,7 @@ public final class ESBiomeBuilder {
 	public void addBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<BiomeData>>> biomes) {
 		this.addOffCoastBiomes(biomes);
 		this.addInlandBiomes(biomes);
+		this.addSkyBiomes(biomes);
 		this.addUndergroundBiomes(biomes);
 	}
 
@@ -714,23 +715,21 @@ public final class ESBiomeBuilder {
 		}
 	}
 
-	private void addUndergroundBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<BiomeData>>> biomes) {
-		/*this.addUndergroundBiome(
-			biomes, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.8F, 1.0F), this.FULL_RANGE, this.FULL_RANGE, 0.0F, Biomes.DRIPSTONE_CAVES
-		);
-		this.addUndergroundBiome(
-			biomes, this.FULL_RANGE, Climate.Parameter.span(0.7F, 1.0F), this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F, Biomes.LUSH_CAVES
-		);
-		this.addBottomBiome(
+	private void addSkyBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<BiomeData>>> biomes) {
+		this.addSkyBiome(
 			biomes,
+			Climate.Parameter.span(this.temperatures[3], this.erosions[4]),
 			this.FULL_RANGE,
-			this.FULL_RANGE,
-			this.FULL_RANGE,
+			Climate.Parameter.span(this.oceanContinentalness, this.deepOceanContinentalness),
 			Climate.Parameter.span(this.erosions[0], this.erosions[1]),
 			this.FULL_RANGE,
 			0.0F,
-			Biomes.DEEP_DARK
-		);*/
+			ESBiomeData.SOLARIS_ISLES
+		);
+	}
+
+	private void addUndergroundBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<BiomeData>>> biomes) {
+
 	}
 
 	private ResourceKey<BiomeData> pickMiddleBiome(int temperatureIndex, int humidityIndex, Climate.Parameter weirdness) {
@@ -778,8 +777,22 @@ public final class ESBiomeBuilder {
 		float offset,
 		ResourceKey<BiomeData> second
 	) {
+		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(-1.0F), weirdness, offset), second));
 		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(0.0F), weirdness, offset), second));
 		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(1.0F), weirdness, offset), second));
+	}
+
+	private void addSkyBiome(
+		Consumer<Pair<Climate.ParameterPoint, ResourceKey<BiomeData>>> biomes,
+		Climate.Parameter temperature,
+		Climate.Parameter humidity,
+		Climate.Parameter continentalness,
+		Climate.Parameter erosion,
+		Climate.Parameter weirdness,
+		float offset,
+		ResourceKey<BiomeData> biome
+	) {
+		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(-1.1F, -0.5F), weirdness, offset), biome));
 	}
 
 	private void addUndergroundBiome(
@@ -793,20 +806,7 @@ public final class ESBiomeBuilder {
 		ResourceKey<BiomeData> biome
 	) {
 		biomes.accept(
-			Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(0.2F, 0.9F), weirdness, offset), biome)
+			Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(0.8F, 1.1F), weirdness, offset), biome)
 		);
-	}
-
-	private void addBottomBiome(
-		Consumer<Pair<Climate.ParameterPoint, ResourceKey<BiomeData>>> biomes,
-		Climate.Parameter temperature,
-		Climate.Parameter humidity,
-		Climate.Parameter continentalness,
-		Climate.Parameter erosion,
-		Climate.Parameter weirdness,
-		float offset,
-		ResourceKey<BiomeData> biome
-	) {
-		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(1.1F), weirdness, offset), biome));
 	}
 }

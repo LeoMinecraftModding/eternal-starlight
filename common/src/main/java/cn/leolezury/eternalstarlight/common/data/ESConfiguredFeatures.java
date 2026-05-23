@@ -160,6 +160,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BLUE_CRYSTAL_MOSS_PATCH_BONEMEAL = create("blue_crystal_moss_patch_bonemeal");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SWAMP_WATER = create("swamp_water");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HOT_SPRING = create("hot_spring");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SOLARIS_ISLAND = create("solaris_island");
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -243,7 +244,7 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, TORREYA_STARFIRE_BIRDS, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ESBlocks.TORREYA_LOG.get()), new BranchingTrunkPlacer(32, 2, 10, UniformInt.of(3, 4), UniformInt.of(2, 4)), BlockStateProvider.simple(ESBlocks.TORREYA_LEAVES.get()), new TorreyaFoliagePlacer(ConstantInt.of(5), ConstantInt.of(0)), new TwoLayersFeatureSize(4, 0, 2)).dirt(BlockStateProvider.simple(ESBlocks.NIGHTFALL_DIRT.get())).decorators(List.of(new TorreyaVinesDecorator(), new StarfireBirdNestDecorator())).build());
 		FeatureUtils.register(context, JINGLESTEM, ESFeatures.JINGLESTEM.get(), new JinglestemFeature.Configuration(UniformInt.of(8, 11), UniformInt.of(3, 5), UniformInt.of(5, 7), UniformInt.of(4, 8), true));
 		FeatureUtils.register(context, JINGLESTEM_PLANTED, ESFeatures.JINGLESTEM.get(), new JinglestemFeature.Configuration(UniformInt.of(8, 11), UniformInt.of(3, 5), UniformInt.of(5, 7), UniformInt.of(4, 8), false));
-		FeatureUtils.register(context, CRADLEWOOD, ESFeatures.CRADLEWOOD.get(), new CradlewoodFeature.Configuration(UniformInt.of(9, 12), UniformInt.of(12, 16), ConstantInt.of(4)));
+		FeatureUtils.register(context, CRADLEWOOD, ESFeatures.CRADLEWOOD.get(), new CradlewoodFeature.Configuration(UniformInt.of(9, 12), UniformInt.of(12, 16), ConstantInt.of(4), UniformInt.of(0, 1)));
 		FeatureUtils.register(context, HUGE_MARIMOLD, ESFeatures.HUGE_MARIMOLD.get(), new HugeMarimoldFeature.Configuration(UniformInt.of(9, 12), UniformInt.of(4, 5), UniformInt.of(6, 8)));
 		FeatureUtils.register(context, HUGE_GLOWING_MUSHROOM, ESFeatures.HUGE_GLOWING_MUSHROOM.get(), new HugeMushroomFeatureConfiguration(BlockStateProvider.simple(ESBlocks.GLOWING_MUSHROOM_BLOCK.get().defaultBlockState()), BlockStateProvider.simple(ESBlocks.GLOWING_MUSHROOM_STEM.get().defaultBlockState().setValue(HugeMushroomBlock.UP, false).setValue(HugeMushroomBlock.DOWN, false)), 5));
 		FeatureUtils.register(context, HUGE_SHINING_MUSHROOM, ESFeatures.HUGE_SHINING_MUSHROOM.get(), new HugeMushroomFeatureConfiguration(BlockStateProvider.simple(ESBlocks.SHINING_MUSHROOM_BLOCK.get().defaultBlockState()), BlockStateProvider.simple(ESBlocks.SHINING_MUSHROOM_STEM.get().defaultBlockState().setValue(HugeMushroomBlock.UP, false).setValue(HugeMushroomBlock.DOWN, false)), 3));
@@ -415,6 +416,26 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, BLUE_CRYSTAL_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH, new VegetationPatchConfiguration(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.simple(ESBlocks.BLUE_CRYSTAL_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(BLUE_CRYSTAL_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F));
 		FeatureUtils.register(context, SWAMP_WATER, ESFeatures.SWAMP_WATER.get());
 		FeatureUtils.register(context, HOT_SPRING, ESFeatures.LAKE.get(), new ESLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.SPRINGSTONE.get().defaultBlockState(), 10).add(ESBlocks.THERMAL_SPRINGSTONE.get().defaultBlockState(), 1).build())));
+		FeatureUtils.register(context, SOLARIS_ISLAND, ESFeatures.SKY_ISLAND.get(), new SkyIslandFeature.Configuration(
+			BlockStateProvider.simple(ESBlocks.RADIANITE.get()),
+			BlockStateProvider.simple(ESBlocks.GOLDEN_GRASS_BLOCK.get()),
+			BlockStateProvider.simple(ESBlocks.NIGHTFALL_DIRT.get()),
+			HolderSet.direct(PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
+				new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+					.add(ESBlocks.GOLDEN_GRASS.get().defaultBlockState(), 80)
+					.add(ESBlocks.TALL_GOLDEN_GRASS.get().defaultBlockState(), 30)
+					.add(ESBlocks.CRESCENTLEAF.get().defaultBlockState(), 6)
+					.add(ESBlocks.SACRED_STARLIGHT_FLOWER.get().defaultBlockState(), 1))
+			))),
+			0.4f,
+			24,
+			HolderSet.direct(PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(CRADLEWOOD))),
+			0.04f,
+			2,
+			UniformInt.of(12, 20),
+			UniformInt.of(4, 8),
+			0.06f
+		));
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> create(String name) {

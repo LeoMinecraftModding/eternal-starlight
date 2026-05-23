@@ -624,6 +624,8 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> GLIMMERFLY_BUSH = registerItem("glimmerfly_bush", () -> new BlockItem(ESBlocks.GLIMMERFLY_BUSH.get(), new Item.Properties()));
 
 	// floating islands plant
+	public static final RegistryObject<Item, Item> SACRED_STARLIGHT_FLOWER = registerItem("sacred_starlight_flower", () -> new BlockItem(ESBlocks.SACRED_STARLIGHT_FLOWER.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CRESCENTLEAF = registerItem("crescentleaf", () -> new BlockItem(ESBlocks.CRESCENTLEAF.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GOLDEN_GRASS = registerItem("golden_grass", () -> new BlockItem(ESBlocks.GOLDEN_GRASS.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> TALL_GOLDEN_GRASS = registerItem("tall_golden_grass", () -> new BlockItem(ESBlocks.TALL_GOLDEN_GRASS.get(), new Item.Properties()));
 

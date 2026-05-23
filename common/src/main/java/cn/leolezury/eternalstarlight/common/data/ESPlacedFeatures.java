@@ -135,6 +135,7 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> BLUE_CRYSTAL_MOSS_PATCH_CEILING = create("blue_crystal_moss_patch_ceiling");
 	public static final ResourceKey<PlacedFeature> SWAMP_WATER = create("swamp_water");
 	public static final ResourceKey<PlacedFeature> HOT_SPRING = create("hot_spring");
+	public static final ResourceKey<PlacedFeature> SOLARIS_ISLAND = create("solaris_island");
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -257,6 +258,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, BLUE_CRYSTAL_MOSS_PATCH_CEILING, configuredFeatures.getOrThrow(ESConfiguredFeatures.BLUE_CRYSTAL_MOSS_PATCH), CountPlacement.of(10), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, HOT_SPRING, configuredFeatures.getOrThrow(ESConfiguredFeatures.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, SOLARIS_ISLAND, configuredFeatures.getOrThrow(ESConfiguredFeatures.SOLARIS_ISLAND), CountPlacement.of(2), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(200), VerticalAnchor.absolute(280)), BiomeFilter.biome());
 	}
 
 	private static ResourceKey<PlacedFeature> create(String name) {
