@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TheGatekeeperSpawnerBlockEntity extends BossSpawnerBlockEntity<TheGatekeeper> {
@@ -16,11 +16,11 @@ public class TheGatekeeperSpawnerBlockEntity extends BossSpawnerBlockEntity<TheG
 	}
 
 	@Override
-	protected boolean spawnBoss(ServerLevelAccessor accessor) {
+	protected boolean spawnBoss(Level level) {
 		if (!ESConfig.INSTANCE.mobsConfig.theGatekeeper.canSpawn()) {
 			return false;
 		}
-		return super.spawnBoss(accessor);
+		return super.spawnBoss(level);
 	}
 
 	@Override

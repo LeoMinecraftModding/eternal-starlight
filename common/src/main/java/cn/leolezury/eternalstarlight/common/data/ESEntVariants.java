@@ -19,7 +19,7 @@ public class ESEntVariants {
 	public static void bootstrap(BootstrapContext<EntVariant> context) {
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
 		context.register(LUNAR, new EntVariant(ESItems.LUNAR_LEAVES.asHolder(), EternalStarlight.id("entity/ent/lunar"), HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_FOREST), biomes.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST))));
-		context.register(NORTHLAND, new EntVariant(ESItems.NORTHLAND_LEAVES.asHolder(), EternalStarlight.id("entity/ent/northland"), HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST), biomes.getOrThrow(ESBiomes.PERMAFROST_PEAKS))));
+		context.register(NORTHLAND, new EntVariant(ESItems.NORTHLAND_LEAVES.asHolder(), EternalStarlight.id("entity/ent/northland"), HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST), biomes.getOrThrow(ESBiomes.PERMAFROST_PEAKS), biomes.getOrThrow(ESBiomes.STARLIGHT_TAIGA))));
 		context.register(SCARLET, new EntVariant(ESItems.SCARLET_LEAVES.asHolder(), EternalStarlight.id("entity/ent/scarlet"), HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST))));
 		context.register(BANYIN, new EntVariant(ESItems.BANYIN_LEAVES.asHolder(), EternalStarlight.id("entity/ent/banyin"), HolderSet.direct(biomes.getOrThrow(ESBiomes.DARK_SWAMP))));
 	}

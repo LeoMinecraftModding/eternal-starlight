@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class PermafrostSpawnerBlockEntity extends BossSpawnerBlockEntity<Permafrost> {
@@ -16,15 +16,15 @@ public class PermafrostSpawnerBlockEntity extends BossSpawnerBlockEntity<Permafr
 	}
 
 	@Override
-	protected boolean spawnBoss(ServerLevelAccessor accessor) {
+	protected boolean spawnBoss(Level level) {
 		if (!ESConfig.INSTANCE.mobsConfig.permafrost.canSpawn()) {
 			return false;
 		}
-		return super.spawnBoss(accessor);
+		return super.spawnBoss(level);
 	}
 
 	@Override
-	protected int getRange() {
+	protected int getRequiredPlayerRange() {
 		return 20;
 	}
 

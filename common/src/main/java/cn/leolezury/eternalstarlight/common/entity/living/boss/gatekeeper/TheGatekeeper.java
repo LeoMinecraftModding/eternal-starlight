@@ -72,6 +72,7 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -161,7 +162,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			|| (getBehaviorState() == GatekeeperDashPhase.ID && getBehaviorTicks() > 16 && getBehaviorTicks() < 25));
 	}
 
-	private String gatekeeperName = "TheGatekeeper";
+	private String gatekeeperName = "Gatekeeper";
 	@Nullable
 	private Player customer;
 	@Nullable
@@ -686,14 +687,15 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				boolean blockSupport = false;
 				for (Direction direction : Direction.values()) {
 					if (direction.getAxis() != Direction.Axis.Y) {
-						BlockHitResult toSide = level().clip(new ClipContext(position().add(0, getBbHeight(), 0), position().add(0, getBbHeight(), 0).add(new Vec3(direction.step()).scale(0.75)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+						BlockHitResult toSide = level().clip(new ClipContext(position().add(0, getBbHeight(), 0), position().add(0, getBbHeight(), 0).add(new Vec3(direction.step()).scale(getBbWidth() / 2 + 0.25)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
 						if (toSide.getType() != HitResult.Type.MISS) {
 							setStandDirection(direction.getOpposite());
 							blockSupport = true;
 						}
 					}
 				}
-				if (!blockSupport) {
+				AABB box = super.getDimensions(getPose()).makeBoundingBox(position());
+				if (!blockSupport || !level().noBlockCollision(this, box)) {
 					setStandDirection(Direction.UP);
 				}
 			} else {

@@ -9,11 +9,13 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity {
@@ -33,8 +35,8 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
 		setChanged();
 	}
 
-	public boolean anyPlayerInRange() {
-		return getLevel() != null && getLevel().hasNearbyAlivePlayer(getBlockPos().getX() + 0.5D, getBlockPos().getY() + 0.5D, getBlockPos().getZ() + 0.5D, getRange());
+	private static boolean isNearPlayer(Level level, BlockPos pos, int range) {
+		return !level.getEntitiesOfClass(Player.class, new AABB(pos).inflate(range)).stream().filter(player -> !player.isSpectator()).toList().isEmpty();
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, BossSpawnerBlockEntity<?> entity) {
@@ -44,7 +46,7 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
 				entity.setChanged();
 			}
 		}
-		if (entity.spawnedBoss || !entity.anyPlayerInRange()) {
+		if (entity.spawnedBoss || !isNearPlayer(level, pos, entity.getRequiredPlayerRange())) {
 			return;
 		}
 		if (level.isClientSide) {
@@ -53,24 +55,26 @@ public abstract class BossSpawnerBlockEntity<T extends Mob> extends BlockEntity 
 				Vec3 particlePos = pos.getCenter().add((random.nextDouble() - 0.5) * 1.25, (random.nextDouble() - 0.5) * 1.25, (random.nextDouble() - 0.5) * 1.25);
 				level.addParticle(entity.getSpawnerParticle(), particlePos.x, particlePos.y, particlePos.z, 0.0, 0.0, 0.0);
 			}
-		} else if (level.getDifficulty() != Difficulty.PEACEFUL && entity.spawnCooldown <= 0 && level instanceof ServerLevelAccessor serverLevel && entity.spawnBoss(serverLevel)) {
+		} else if (level.getDifficulty() != Difficulty.PEACEFUL && entity.spawnCooldown <= 0 && entity.spawnBoss(level)) {
 			level.destroyBlock(pos, false);
 			entity.spawnedBoss = true;
 		}
 	}
 
-	protected boolean spawnBoss(ServerLevelAccessor accessor) {
+	protected boolean spawnBoss(Level level) {
 		T mob = createBoss();
 		if (mob == null) {
 			return false;
 		}
-		mob.moveTo(getBlockPos(), accessor.getLevel().getRandom().nextFloat() * 360.0F, 0.0F);
-		mob.finalizeSpawn(accessor, accessor.getCurrentDifficultyAt(getBlockPos()), MobSpawnType.SPAWNER, null);
+		mob.moveTo(getBlockPos(), level.getRandom().nextFloat() * 360.0F, 0.0F);
+		if (level instanceof ServerLevelAccessor serverLevel) {
+			mob.finalizeSpawn(serverLevel, level.getCurrentDifficultyAt(getBlockPos()), MobSpawnType.SPAWNER, null);
+		}
 		initializeBoss(mob);
-		return accessor.addFreshEntity(mob);
+		return level.addFreshEntity(mob);
 	}
 
-	protected int getRange() {
+	protected int getRequiredPlayerRange() {
 		return 50;
 	}
 

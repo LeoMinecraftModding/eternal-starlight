@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class StarlightGolemSpawnerBlockEntity extends BossSpawnerBlockEntity<StarlightGolem> {
@@ -16,11 +16,11 @@ public class StarlightGolemSpawnerBlockEntity extends BossSpawnerBlockEntity<Sta
 	}
 
 	@Override
-	protected boolean spawnBoss(ServerLevelAccessor accessor) {
+	protected boolean spawnBoss(Level level) {
 		if (!ESConfig.INSTANCE.mobsConfig.starlightGolem.canSpawn()) {
 			return false;
 		}
-		return super.spawnBoss(accessor);
+		return super.spawnBoss(level);
 	}
 
 	@Override

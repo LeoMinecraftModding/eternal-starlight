@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-16T11:32:32.6047654	Registries
+// 1.21.1	2026-05-23T13:43:51.4556487	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -73,7 +73,7 @@ b0e08bc51d684f5fde42fc0f289bae2c63a5233f data/eternal_starlight/eternal_starligh
 58c403c0ea1357cf5cd09bf26c29b5c188f958a3 data/eternal_starlight/eternal_starlight/crest/surrounding_fireballs.json
 e981f11bf6fbf0ec63fbb5041d09d4c7d48eebaf data/eternal_starlight/eternal_starlight/ent_variant/banyin.json
 137b7032f27ae1d7944f184eea4e382c318f6485 data/eternal_starlight/eternal_starlight/ent_variant/lunar.json
-36ffecf6f3760404227241dd53ea9dd9b4bec51e data/eternal_starlight/eternal_starlight/ent_variant/northland.json
+77a649a5ccba3140e91f3447840c12f611bd9bb5 data/eternal_starlight/eternal_starlight/ent_variant/northland.json
 832cc56d4ab33a60d58713912a65f11746db5fd5 data/eternal_starlight/eternal_starlight/ent_variant/scarlet.json
 e2f5acd0f63644d1dab5de9bb2556ae7d9f18270 data/eternal_starlight/eternal_starlight/seeds_launcher_ammo_type/beetroot.json
 2d7e920d441b4778cdf2f300a869f125a9fb4c38 data/eternal_starlight/eternal_starlight/seeds_launcher_ammo_type/crinoa.json
