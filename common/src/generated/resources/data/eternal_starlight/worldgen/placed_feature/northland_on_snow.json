@@ -27,6 +27,15 @@
           0
         ]
       }
+    },
+    {
+      "type": "eternal_starlight:height_range_filter",
+      "max_inclusive": {
+        "below_top": 150
+      },
+      "min_inclusive": {
+        "above_bottom": 0
+      }
     }
   ]
 }
