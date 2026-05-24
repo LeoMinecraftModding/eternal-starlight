@@ -718,10 +718,10 @@ public final class ESBiomeBuilder {
 	private void addSkyBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<BiomeData>>> biomes) {
 		this.addSkyBiome(
 			biomes,
-			Climate.Parameter.span(this.temperatures[3], this.erosions[4]),
+			Climate.Parameter.span(this.temperatures[2], this.temperatures[4]),
 			this.FULL_RANGE,
-			Climate.Parameter.span(this.oceanContinentalness, this.deepOceanContinentalness),
-			Climate.Parameter.span(this.erosions[0], this.erosions[1]),
+			this.deepOceanContinentalness,
+			Climate.Parameter.span(this.erosions[0], this.erosions[2]),
 			this.FULL_RANGE,
 			0.0F,
 			ESBiomeData.SOLARIS_ISLES
@@ -792,7 +792,7 @@ public final class ESBiomeBuilder {
 		float offset,
 		ResourceKey<BiomeData> biome
 	) {
-		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(-1.1F, -0.5F), weirdness, offset), biome));
+		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(-0.9F, -0.4F), weirdness, offset), biome));
 	}
 
 	private void addUndergroundBiome(

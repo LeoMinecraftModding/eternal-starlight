@@ -429,13 +429,13 @@ public class ESConfiguredFeatures {
 						.add(ESBlocks.TALL_GOLDEN_GRASS.get().defaultBlockState(), 30)
 						.add(ESBlocks.CRESCENTLEAF.get().defaultBlockState(), 6)
 						.add(ESBlocks.SACRED_STARLIGHT_FLOWER.get().defaultBlockState(), 1))
-				)), 0.4f, 24),
+				)), 0.8f, 24),
 				new SkyIslandFeature.Configuration.DecorationEntry(PlacementUtils.onlyWhenEmpty(Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(
 					BlockColumnConfiguration.layer(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(UniformInt.of(4, 8), 1).add(UniformInt.of(0, 4), 6).build()),
 						BlockStateProvider.simple(ESBlocks.SACRED_LANTERNVINE_PLANT.get())),
 					BlockColumnConfiguration.layer(ConstantInt.of(1),
 						BlockStateProvider.simple(ESBlocks.SACRED_LANTERNVINE.get()))),
-					Direction.UP, BlockPredicate.ONLY_IN_AIR_PREDICATE, true)), 0.02f, 24)
+					Direction.UP, BlockPredicate.ONLY_IN_AIR_PREDICATE, true)), 0.12f, 24)
 			),
 			List.of(
 				new SkyIslandFeature.Configuration.DecorationEntry(PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(CRADLEWOOD)), 0.04f, 2),
@@ -444,7 +444,7 @@ public class ESConfiguredFeatures {
 						BlockStateProvider.simple(ESBlocks.HANGING_SACRED_LANTERNVINE_PLANT.get())),
 					BlockColumnConfiguration.layer(ConstantInt.of(1),
 						BlockStateProvider.simple(ESBlocks.HANGING_SACRED_LANTERNVINE.get()))),
-					Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true)), 0.03f, 24)
+					Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true)), 0.04f, 24)
 			),
 			UniformInt.of(12, 20),
 			UniformInt.of(4, 8),

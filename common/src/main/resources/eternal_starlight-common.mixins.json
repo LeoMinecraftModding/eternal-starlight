@@ -28,6 +28,7 @@
     "ItemStackMixin",
     "LevelChunkMixin",
     "LivingEntityMixin",
+    "NaturalSpawnerMixin",
     "PlayerListMixin",
     "PlayerMixin",
     "ProjectileMixin",

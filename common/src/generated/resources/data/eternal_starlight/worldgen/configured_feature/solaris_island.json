@@ -11,7 +11,7 @@
         "max_distance": 2
       },
       {
-        "chance": 0.03,
+        "chance": 0.04,
         "feature": {
           "feature": {
             "type": "minecraft:block_column",
@@ -96,7 +96,7 @@
     },
     "decorations": [
       {
-        "chance": 0.4,
+        "chance": 0.8,
         "feature": {
           "feature": {
             "type": "minecraft:simple_block",
@@ -148,7 +148,7 @@
         "max_distance": 24
       },
       {
-        "chance": 0.02,
+        "chance": 0.12,
         "feature": {
           "feature": {
             "type": "minecraft:block_column",

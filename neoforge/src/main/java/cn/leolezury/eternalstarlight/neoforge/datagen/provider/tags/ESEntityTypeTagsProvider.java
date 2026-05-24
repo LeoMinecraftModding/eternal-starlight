@@ -94,6 +94,12 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.TINY_CRETEOR.get(),
 				EntityType.PHANTOM
 			);
+		tag(ESTags.EntityTypes.SOLARIS_ISLES_INHABITANTS)
+			.add(
+				ESEntities.ENT.get(),
+				ESEntities.RATLIN.get(),
+				ESEntities.SHADOW_SNAIL.get()
+			);
 		tag(EntityTypeTags.SKELETONS)
 			.add(
 				ESEntities.LONESTAR_SKELETON.get(),

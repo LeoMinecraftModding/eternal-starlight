@@ -89,8 +89,8 @@ public class ESDimensions {
 		);
 	}
 
-	private static final ResourceKey<DensityFunction> SHIFT_X = createDensityFunctionKey("shift_x");
-	private static final ResourceKey<DensityFunction> SHIFT_Z = createDensityFunctionKey("shift_z");
+	private static final ResourceKey<DensityFunction> SHIFT_X = createVanillaDensityFunctionKey("shift_x");
+	private static final ResourceKey<DensityFunction> SHIFT_Z = createVanillaDensityFunctionKey("shift_z");
 
 	public static final ResourceKey<DensityFunction> DEPTH = createDensityFunctionKey("depth");
 
@@ -152,14 +152,18 @@ public class ESDimensions {
 			DensityFunctions.yClampedGradient(-64, 320, 1.5, -1.5),
 			DensityFunctions.flatCache(
 				DensityFunctions.cache2d(
-					DensityFunctions.mul(DensityFunctions.constant(0.1), DensityFunctions.noise(noiseParameters.getOrThrow(ESNoises.DEPTH_OFFSET), 0.3, 0.0))
+					DensityFunctions.mul(DensityFunctions.constant(0.03), DensityFunctions.noise(noiseParameters.getOrThrow(ESNoises.DEPTH_OFFSET), 0.3, 0.0))
 				)
 			)
 		));
 	}
 
-	private static ResourceKey<DensityFunction> createDensityFunctionKey(String location) {
+	private static ResourceKey<DensityFunction> createVanillaDensityFunctionKey(String location) {
 		return ResourceKey.create(Registries.DENSITY_FUNCTION, ResourceLocation.withDefaultNamespace(location));
+	}
+
+	private static ResourceKey<DensityFunction> createDensityFunctionKey(String location) {
+		return ResourceKey.create(Registries.DENSITY_FUNCTION, EternalStarlight.id(location));
 	}
 
 	private static DensityFunction getFunction(HolderGetter<DensityFunction> densityFunctions, ResourceKey<DensityFunction> key) {

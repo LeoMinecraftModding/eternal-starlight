@@ -154,6 +154,7 @@ public class ESTags {
 		public static final TagKey<EntityType<?>> STRANGHOUL_CANNOT_HUNT = create("stranghoul_cannot_hunt");
 		public static final TagKey<EntityType<?>> STARFIRE_BIRD_AFRAID_OF = create("starfire_bird_afraid_of");
 		public static final TagKey<EntityType<?>> AETHERSENT_GOLEM_TARGETS = create("aethersent_golem_targets");
+		public static final TagKey<EntityType<?>> SOLARIS_ISLES_INHABITANTS = create("solaris_isles_inhabitants");
 
 		private static TagKey<EntityType<?>> create(String string) {
 			return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));

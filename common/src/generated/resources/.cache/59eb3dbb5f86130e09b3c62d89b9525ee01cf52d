@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-23T23:08:24.1028066	Loot Tables
+// 1.21.1	2026-05-24T11:29:37.7470984	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -298,7 +298,7 @@ dbe0b88282abaa2764d0ba3506768d12a51f7f9b data/eternal_starlight/loot_table/block
 c533017f144b4bb67120194d08bfa527da359806 data/eternal_starlight/loot_table/blocks/hanging_algaleaves_plant.json
 470012cb2d56a471bb753bfe54d0f44014d1728b data/eternal_starlight/loot_table/blocks/hanging_fantagrass.json
 b5a2bc71dddfc96e0dcf98014500362a84d47125 data/eternal_starlight/loot_table/blocks/hanging_fantagrass_plant.json
-8201a316f1a9fc9025bb806ca5e08e5754bb2322 data/eternal_starlight/loot_table/blocks/hanging_sacred_lanternvine.json
+d17ca842d7c186f2945a65793387822c9ea53336 data/eternal_starlight/loot_table/blocks/hanging_sacred_lanternvine.json
 a3afd498181c44ff94d5e75198e1e32e92faefff data/eternal_starlight/loot_table/blocks/hanging_sacred_lanternvine_plant.json
 82efa4de45e25d31e28086d2c241d73766d959c5 data/eternal_starlight/loot_table/blocks/haze_ice.json
 f11e431bce80bc6c8c9745f86bf96e7d770369b1 data/eternal_starlight/loot_table/blocks/haze_ice_bricks.json

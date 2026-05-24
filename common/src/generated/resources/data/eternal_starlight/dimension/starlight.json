@@ -306836,14 +306836,17 @@
         {
           "biome_data": "eternal_starlight:solaris_isles",
           "parameters": {
-            "continentalness": -0.455,
+            "continentalness": [
+              -1.05,
+              -0.455
+            ],
             "depth": [
-              -1.1,
-              -0.5
+              -0.9,
+              -0.4
             ],
             "erosion": [
               -1.0,
-              -0.375
+              -0.2225
             ],
             "humidity": [
               -1.0,
@@ -306851,8 +306854,8 @@
             ],
             "offset": 0.0,
             "temperature": [
-              0.2,
-              0.45
+              -0.15,
+              1.0
             ],
             "weirdness": [
               -1.0,

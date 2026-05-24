@@ -13,7 +13,7 @@
       "type": "minecraft:cache_2d",
       "argument": {
         "type": "minecraft:mul",
-        "argument1": 0.1,
+        "argument1": 0.03,
         "argument2": {
           "type": "minecraft:noise",
           "noise": "eternal_starlight:depth_offset",

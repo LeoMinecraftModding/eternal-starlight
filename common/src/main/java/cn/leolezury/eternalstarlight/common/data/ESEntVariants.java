@@ -15,6 +15,7 @@ public class ESEntVariants {
 	public static final ResourceKey<EntVariant> NORTHLAND = create("northland");
 	public static final ResourceKey<EntVariant> SCARLET = create("scarlet");
 	public static final ResourceKey<EntVariant> BANYIN = create("banyin");
+	public static final ResourceKey<EntVariant> CRADLEWOOD = create("cradlewood");
 
 	public static void bootstrap(BootstrapContext<EntVariant> context) {
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
@@ -22,6 +23,7 @@ public class ESEntVariants {
 		context.register(NORTHLAND, new EntVariant(ESItems.NORTHLAND_LEAVES.asHolder(), EternalStarlight.id("entity/ent/northland"), HolderSet.direct(biomes.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST), biomes.getOrThrow(ESBiomes.PERMAFROST_PEAKS), biomes.getOrThrow(ESBiomes.STARLIGHT_TAIGA))));
 		context.register(SCARLET, new EntVariant(ESItems.SCARLET_LEAVES.asHolder(), EternalStarlight.id("entity/ent/scarlet"), HolderSet.direct(biomes.getOrThrow(ESBiomes.SCARLET_FOREST))));
 		context.register(BANYIN, new EntVariant(ESItems.BANYIN_LEAVES.asHolder(), EternalStarlight.id("entity/ent/banyin"), HolderSet.direct(biomes.getOrThrow(ESBiomes.DARK_SWAMP))));
+		context.register(CRADLEWOOD, new EntVariant(ESItems.CRADLEWOOD_LEAVES.asHolder(), EternalStarlight.id("entity/ent/cradlewood"), HolderSet.direct(biomes.getOrThrow(ESBiomes.SOLARIS_ISLES))));
 	}
 
 	public static ResourceKey<EntVariant> create(String name) {
