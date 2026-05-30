@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-24T11:29:37.7470984	Loot Tables
+// 1.21.1	2026-05-30T14:17:41.6804598	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -411,7 +411,7 @@ de5109162b20f9fd12c40a7294881cf76f7a9e93 data/eternal_starlight/loot_table/block
 76f9c1d5fe4e92f852f5a08bb3a3e12e5f49c2d3 data/eternal_starlight/loot_table/blocks/nightfan.json
 6397e07c15ba9aa7ea9967284f6761001dbd9174 data/eternal_starlight/loot_table/blocks/nightfan_bush.json
 6ddfd71cfd7461939a8ffeb121c592d71bba0359 data/eternal_starlight/loot_table/blocks/night_sprouts.json
-9f40d499f13adba3e7720e580e020c6de1ec6408 data/eternal_starlight/loot_table/blocks/nocturnal_millet_panicle.json
+18b4f293eecf8151d60f75b595e97f31151da2bb data/eternal_starlight/loot_table/blocks/nocturnal_millet_panicle.json
 e0d4e0fd2d3df84b0594c8c5199826420cb381a4 data/eternal_starlight/loot_table/blocks/nocturnal_millet_stalk.json
 bafa6eb0b6714d7ec3ea4a54f6bbe196bfa84634 data/eternal_starlight/loot_table/blocks/northland_button.json
 f3cea2bdbfb4c9c08597331aaaad6010fb20cdf9 data/eternal_starlight/loot_table/blocks/northland_door.json

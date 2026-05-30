@@ -5,25 +5,31 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class NocturnalMilletBottomBlock extends CropBlock {
+public class NocturnalMilletBottomBlock extends Block implements BonemealableBlock {
 	public static final MapCodec<NocturnalMilletBottomBlock> CODEC = simpleCodec(NocturnalMilletBottomBlock::new);
+	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 	public static final BooleanProperty FORGOTTEN = NocturnalMilletTopBlock.FORGOTTEN;
 	public static final BooleanProperty WITHERED = NocturnalMilletTopBlock.WITHERED;
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{Block.box(3.0, 0.0, 3.0, 13.0, 9.0, 13.0), Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)};
@@ -40,13 +46,25 @@ public class NocturnalMilletBottomBlock extends CropBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
-		builder.add(FORGOTTEN, WITHERED);
+		builder.add(AGE, FORGOTTEN, WITHERED);
+	}
+
+	public int getAge(BlockState state) {
+		return state.getValue(AGE);
 	}
 
 	@Override
-	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-		return super.mayPlaceOn(state, level, pos) || state.is(BlockTags.DIRT) || state.is(ESTags.Blocks.CONVERTS_NOCTURNAL_MILLET);
+	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		BlockState belowState = level.getBlockState(pos.below());
+		return level.getRawBrightness(pos, 0) >= 8 && (belowState.is(Blocks.FARMLAND) || belowState.is(BlockTags.DIRT) || belowState.is(ESTags.Blocks.CONVERTS_NOCTURNAL_MILLET));
+	}
+
+	@Override
+	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+		if (!state.canSurvive(level, pos)) {
+			return Blocks.AIR.defaultBlockState();
+		}
+		return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
 	}
 
 	@Override
@@ -59,7 +77,7 @@ public class NocturnalMilletBottomBlock extends CropBlock {
 		BlockPos abovePos = pos.above();
 		if (level.getRawBrightness(pos, 0) >= 7) {
 			int age = this.getAge(state);
-			if (age < this.getMaxAge()) {
+			if (age < 7) {
 				float growthSpeed = getGrowthSpeed(this, level, pos);
 				if (random.nextInt((int) (25.0F / growthSpeed) + 1) == 0) {
 					level.setBlock(pos, state.setValue(AGE, getAge(state) + 1), Block.UPDATE_CLIENTS);
@@ -113,7 +131,12 @@ public class NocturnalMilletBottomBlock extends CropBlock {
 
 	@Override
 	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-		return state.getValue(WITHERED) || !state.getValue(FORGOTTEN) || super.isValidBonemealTarget(level, pos, state);
+		return state.getValue(WITHERED) || !state.getValue(FORGOTTEN) || this.getAge(state) < 7;
+	}
+
+	@Override
+	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+		return true;
 	}
 
 	@Override
@@ -132,19 +155,23 @@ public class NocturnalMilletBottomBlock extends CropBlock {
 		}
 	}
 
-	@Override
 	public void growCrops(Level level, BlockPos pos, BlockState state) {
-		int targetAge = this.getAge(state) + this.getBonemealAgeIncrease(level);
-		int maxAge = this.getMaxAge();
-		if (targetAge > maxAge) {
-			targetAge = maxAge;
+		int targetAge = this.getAge(state) + Mth.nextInt(level.random, 2, 5);
+		if (targetAge > 7) {
+			targetAge = 7;
 		}
 		level.setBlock(pos, state.setValue(AGE, targetAge), Block.UPDATE_CLIENTS);
+		if (targetAge == 7) {
+			BlockPos abovePos = pos.above();
+			if (level.getBlockState(abovePos).isAir()) {
+				level.setBlockAndUpdate(abovePos, ESBlocks.NOCTURNAL_MILLET_PANICLE.get().defaultBlockState().setValue(FORGOTTEN, state.getValue(FORGOTTEN)));
+			}
+		}
 	}
 
 	@Override
-	protected ItemLike getBaseSeedId() {
-		return ESItems.NOCTURNAL_MILLET_SEEDS.get();
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+		return new ItemStack(ESItems.NOCTURNAL_MILLET_SEEDS.get());
 	}
 
 	@Override

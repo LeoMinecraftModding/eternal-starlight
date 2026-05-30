@@ -28,6 +28,20 @@
             },
             {
               "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "eternal_starlight:nocturnal_millet_panicle",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "age": "2",
+                    "forgotten": "true"
+                  }
+                }
+              ],
+              "name": "eternal_starlight:forgotten_nocturnal_millet"
+            },
+            {
+              "type": "minecraft:item",
               "name": "eternal_starlight:nocturnal_millet_seeds"
             }
           ]
@@ -42,8 +56,7 @@
           "block": "eternal_starlight:nocturnal_millet_panicle",
           "condition": "minecraft:block_state_property",
           "properties": {
-            "age": "2",
-            "forgotten": "false"
+            "age": "2"
           }
         }
       ],

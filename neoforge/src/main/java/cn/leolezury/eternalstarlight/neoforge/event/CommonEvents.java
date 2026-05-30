@@ -23,7 +23,6 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
@@ -135,16 +134,6 @@ public class CommonEvents {
 	private static void onCriticalHit(CriticalHitEvent event) {
 		if (event.isCriticalHit()) {
 			ESCommonHandler.onCriticalHit(event.getEntity(), event.getTarget(), event.getEntity().getAttackStrengthScale(0.5f));
-		}
-	}
-
-	@SubscribeEvent
-	public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
-		if (!event.isCanceled()) {
-			boolean allow = ESCommonHandler.onLeftClickBlock(event.getLevel(), event.getPos(), event.getLevel().getBlockState(event.getPos()));
-			if (!allow) {
-				event.setCanceled(true);
-			}
 		}
 	}
 

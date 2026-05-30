@@ -668,7 +668,31 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		add(ESBlocks.CRINOA.get(), this.createCropDrops(ESBlocks.CRINOA.get(), ESItems.CRINOA.get(), ESItems.CRINOA_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.CRINOA.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CrinoaBlock.AGE, 7))));
 		dropSelf(ESBlocks.CRINOA_BALE.get());
 
-		add(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), this.createCropDrops(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), ESItems.NOCTURNAL_MILLET.get(), ESItems.NOCTURNAL_MILLET_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.NOCTURNAL_MILLET_PANICLE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(NocturnalMilletTopBlock.AGE, 2).hasProperty(NocturnalMilletTopBlock.FORGOTTEN, false))));
+		add(ESBlocks.NOCTURNAL_MILLET_PANICLE.get(), block -> this.applyExplosionDecay(block, LootTable.lootTable()
+			.withPool(LootPool.lootPool()
+				.add(AlternativesEntry.alternatives(
+					LootItem.lootTableItem(ESItems.NOCTURNAL_MILLET.get())
+						.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.NOCTURNAL_MILLET_PANICLE.get())
+							.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(NocturnalMilletTopBlock.AGE, 2)
+								.hasProperty(NocturnalMilletTopBlock.FORGOTTEN, false))),
+					LootItem.lootTableItem(ESItems.FORGOTTEN_NOCTURNAL_MILLET.get())
+						.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.NOCTURNAL_MILLET_PANICLE.get())
+							.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(NocturnalMilletTopBlock.AGE, 2)
+								.hasProperty(NocturnalMilletTopBlock.FORGOTTEN, true))),
+					LootItem.lootTableItem(ESItems.NOCTURNAL_MILLET_SEEDS.get())
+				))
+			)
+			.withPool(LootPool.lootPool()
+				.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ESBlocks.NOCTURNAL_MILLET_PANICLE.get())
+					.setProperties(StatePropertiesPredicate.Builder.properties()
+						.hasProperty(NocturnalMilletTopBlock.AGE, 2)))
+				.add(LootItem.lootTableItem(ESItems.NOCTURNAL_MILLET_SEEDS.get())
+					.apply(ApplyBonusCount.addBonusBinomialDistributionCount(enchantments.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))
+				)
+			)
+		));
 		dropOther(ESBlocks.NOCTURNAL_MILLET_STALK.get(), ESItems.NOCTURNAL_MILLET_SEEDS.get());
 
 		dropSelf(ESBlocks.RAW_AETHERSENT_BLOCK.get());

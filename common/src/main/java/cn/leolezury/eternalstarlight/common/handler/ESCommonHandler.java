@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.NocturnalMilletTopBlock;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.crest.Crest;
@@ -659,7 +658,7 @@ public class ESCommonHandler {
 						testPos.set(xo, yo, zo);
 						BlockState testState = player.level().getBlockState(testPos);
 						if (testState.getRenderShape() != RenderShape.INVISIBLE && testState.isViewBlocking(player.level(), testPos)) {
-							player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200));
+							player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 40));
 						}
 					}
 				}
@@ -808,17 +807,6 @@ public class ESCommonHandler {
 				}
 			}
 		}
-	}
-
-	public static boolean onLeftClickBlock(Level level, BlockPos pos, BlockState state) {
-		if (state.getBlock() instanceof NocturnalMilletTopBlock && state.getValue(NocturnalMilletTopBlock.FORGOTTEN)) {
-			if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
-				Vec3 center = Vec3.atCenterOf(pos);
-				serverLevel.sendParticles(ESParticles.ETHER_TRAIL.get(), center.x, center.y, center.z, 5, 0, 0, 0, 0.1 + level.getRandom().nextFloat() * 0.1);
-			}
-			return false;
-		}
-		return true;
 	}
 
 	public static float onBlockBreakSpeed(Player player, BlockState state, float speed) {
