@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common;
 import cn.leolezury.eternalstarlight.common.block.flammable.ESFlammabilityRegistry;
 import cn.leolezury.eternalstarlight.common.client.helper.ClientHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.ClientSideHelper;
-import cn.leolezury.eternalstarlight.common.client.helper.EmptyClientHelper;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.registry.*;
@@ -64,7 +63,7 @@ public class EternalStarlight {
 	}
 
 	public static ClientHelper getClientHelper() {
-		AtomicReference<ClientHelper> helper = new AtomicReference<>(new EmptyClientHelper());
+		AtomicReference<ClientHelper> helper = new AtomicReference<>(new ClientHelper());
 		ESMiscUtil.runWhenOnClient(() -> () -> helper.set(new ClientSideHelper()));
 		return helper.get();
 	}

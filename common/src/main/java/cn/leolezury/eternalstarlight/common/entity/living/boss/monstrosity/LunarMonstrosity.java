@@ -22,7 +22,6 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -66,7 +65,7 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		super(entityType, level);
 	}
 
-	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, getUUID(), BossEvent.BossBarColor.PURPLE, false);
+	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, ESServerBossEvent.LUNAR_MONSTROSITY, BossEvent.BossBarColor.PURPLE, false);
 
 	private final BehaviorManager<LunarMonstrosity> behaviorManager = new BehaviorManager<>(this, List.of(
 		new LunarMonstrosityToxicBreathPhase(),
@@ -94,12 +93,6 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	private final Vec3[] deathParticlePos = new Vec3[5];
 
 	public int fleeFromLavaCooldown = 0;
-
-	@Override
-	public void readAdditionalSaveData(CompoundTag compoundTag) {
-		super.readAdditionalSaveData(compoundTag);
-		bossEvent.setId(getUUID());
-	}
 
 	@Override
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
@@ -407,6 +400,9 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 	public void aiStep() {
 		super.aiStep();
 		bossEvent.update();
+		if (level() instanceof ServerLevel serverLevel) {
+			bossEvent.setType(serverLevel, getPhase() > 0 ? ESServerBossEvent.LUNAR_MONSTROSITY_SOUL : ESServerBossEvent.LUNAR_MONSTROSITY);
+		}
 		refreshDimensions();
 		if (!level().isClientSide) {
 			if (getTarget() != null && !getTarget().isAlive()) {

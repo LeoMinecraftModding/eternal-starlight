@@ -4,32 +4,64 @@ import cn.leolezury.eternalstarlight.common.network.*;
 import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import net.minecraft.world.phys.Vec3;
 
-public interface ClientHelper {
-	void handleServerToClientSimpleAction(SimpleActionPacket packet);
+public class ClientHelper {
+	public void handleServerToClientSimpleAction(SimpleActionPacket packet) {
 
-	void handleParticlePacket(ParticlePacket packet);
+	}
 
-	void handleOpenCrestGui(OpenCrestGuiPacket packet);
+	public void handleParticlePacket(ParticlePacket packet) {
 
-	void handleUpdateCamera(UpdateCameraPacket packet);
+	}
 
-	void handleClientMount(ClientMountPacket packet);
+	public void handleOpenCrestGui(OpenCrestGuiPacket packet) {
 
-	void handleClientDismount(ClientDismountPacket packet);
+	}
 
-	void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket packet);
+	public void handleUpdateCamera(UpdateCameraPacket packet) {
 
-	void handleUpdateBook(UpdateBookPacket packet);
+	}
 
-	void handleOpenBook(OpenBookPacket packet);
+	public void handleClientMount(ClientMountPacket packet) {
 
-	void spawnStellarRackParticles(Vec3 center);
+	}
 
-	void spawnStellarRackItemParticles(Vec3 center);
+	public void handleClientDismount(ClientDismountPacket packet) {
 
-	void spawnManaCrystalItemParticles(ManaType type, Vec3 center);
+	}
 
-	void handleMeteorShowerClientTick();
+	public void handleOpenGatekeeperGui(OpenGatekeeperGuiPacket packet) {
 
-	float handleMeteorShowerRainLevel();
+	}
+
+	public void handleUpdateBook(UpdateBookPacket packet) {
+
+	}
+
+	public void handleOpenBook(OpenBookPacket packet) {
+
+	}
+
+	public void handleUpdateBossBar(UpdateBossBarPacket packet) {
+
+	}
+
+	public void spawnStellarRackParticles(Vec3 center) {
+
+	}
+
+	public void spawnStellarRackItemParticles(Vec3 center) {
+
+	}
+
+	public void spawnManaCrystalItemParticles(ManaType type, Vec3 center) {
+
+	}
+
+	public void handleMeteorShowerClientTick() {
+
+	}
+
+	public float handleMeteorShowerRainLevel() {
+		return 0;
+	}
 }

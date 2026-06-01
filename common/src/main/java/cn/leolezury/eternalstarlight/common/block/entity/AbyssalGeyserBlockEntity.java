@@ -41,7 +41,7 @@ public class AbyssalGeyserBlockEntity extends BlockEntity {
 			if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
 				if (entity.eruptionTimer % 20 == 0) {
 					Vec3 particlePos = pos.getCenter().add(0, 0.51, 0);
-					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(GeyserParticleOptions.getAbyssalGeyser(entity.eruptionStrength), particlePos.x, particlePos.y, particlePos.z, 0.0, 0.0, 0.0));
+					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(GeyserParticleOptions.getAbyssalGeyser(entity.eruptionStrength), particlePos.x, particlePos.y, particlePos.z, 0.0, 0.0, 0.0, false));
 				}
 				if (entity.eruptionTimer == 200) {
 					AABB itemBox = new AABB(pos);

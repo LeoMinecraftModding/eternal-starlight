@@ -1,41 +1,53 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss;
 
+import cn.leolezury.eternalstarlight.common.network.UpdateBossBarPacket;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class ESServerBossEvent extends ServerBossEvent {
+	public static final int THE_GATEKEEPER = 1;
+	public static final int STARLIGHT_GOLEM = 2;
+	public static final int LUNAR_MONSTROSITY = 3;
+	public static final int LUNAR_MONSTROSITY_SOUL = 4;
+
 	private final ESBoss boss;
 	private final Set<ServerPlayer> unseenPlayers = new HashSet<>();
-	private UUID id;
+	private int type;
 
-	public ESServerBossEvent(ESBoss boss, UUID id, BossEvent.BossBarColor color, boolean darkenScreen) {
+	public ESServerBossEvent(ESBoss boss, int type, BossEvent.BossBarColor color, boolean darkenScreen) {
 		super(boss.getDisplayName(), color, BossEvent.BossBarOverlay.PROGRESS);
-		setVisible(true);
-		setId(id);
-		setDarkenScreen(darkenScreen);
 		this.boss = boss;
+		this.type = type;
+		this.setDarkenScreen(darkenScreen);
 	}
 
-	public void setId(UUID uuid) {
-		this.id = uuid;
+	public void setType(ServerLevel serverLevel, int type) {
+		if (this.type != type) {
+			ESPlatform.INSTANCE.sendToAllClients(serverLevel, new UpdateBossBarPacket(getId(), type));
+		}
+		this.type = type;
 	}
 
-	@Override
-	public UUID getId() {
-		return this.id;
+	public int getType() {
+		return type;
 	}
 
 	public void update() {
 		setProgress(this.boss.getHealth() / this.boss.getMaxHealth());
-		Iterator<ServerPlayer> it = this.unseenPlayers.iterator();
-		while (it.hasNext()) {
-			ServerPlayer player = it.next();
+		Iterator<ServerPlayer> iterator = this.unseenPlayers.iterator();
+		while (iterator.hasNext()) {
+			ServerPlayer player = iterator.next();
 			if (this.boss.getSensing().hasLineOfSight(player) && this.boss.isActivated() && this.boss.tickCount > 20) {
 				super.addPlayer(player);
-				it.remove();
+				iterator.remove();
 			}
 		}
 	}
@@ -47,12 +59,14 @@ public class ESServerBossEvent extends ServerBossEvent {
 		} else {
 			this.unseenPlayers.add(player);
 		}
+		ESPlatform.INSTANCE.sendToClient(player, new UpdateBossBarPacket(getId(), getType()));
 	}
 
 	@Override
 	public void removePlayer(ServerPlayer player) {
 		super.removePlayer(player);
 		this.unseenPlayers.remove(player);
+		ESPlatform.INSTANCE.sendToClient(player, new UpdateBossBarPacket(getId(), 0));
 	}
 
 	public void allConvertToUnseen() {

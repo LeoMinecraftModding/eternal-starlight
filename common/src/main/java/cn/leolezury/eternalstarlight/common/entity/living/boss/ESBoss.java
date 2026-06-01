@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.LootChestBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.block.entity.spawner.BossSpawnerBlockEntity;
-import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -61,9 +60,6 @@ public class ESBoss extends Monster implements MultiBehaviorUser {
 
 	protected ESBoss(EntityType<? extends ESBoss> type, Level level) {
 		super(type, level);
-		if (level.isClientSide) {
-			ESClientHandler.BOSSES.add(this);
-		}
 	}
 
 	protected static final EntityDataAccessor<Integer> PHASE = SynchedEntityData.defineId(ESBoss.class, EntityDataSerializers.INT);

@@ -40,7 +40,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ClientSideHelper implements ClientHelper {
+public class ClientSideHelper extends ClientHelper {
 	@Override
 	public void handleServerToClientSimpleAction(SimpleActionPacket packet) {
 		switch (packet.id()) {
@@ -52,7 +52,7 @@ public class ClientSideHelper implements ClientHelper {
 	public void handleParticlePacket(ParticlePacket packet) {
 		ClientLevel clientLevel = Minecraft.getInstance().level;
 		if (clientLevel != null) {
-			clientLevel.addParticle(packet.particle(), true, packet.x(), packet.y(), packet.z(), packet.dx(), packet.dy(), packet.dz());
+			clientLevel.addParticle(packet.particle(), packet.longDistance(), packet.x(), packet.y(), packet.z(), packet.dx(), packet.dy(), packet.dz());
 		}
 	}
 
@@ -194,6 +194,15 @@ public class ClientSideHelper implements ClientHelper {
 		BookDefinition definition = ESClientHandler.books.getBook(packet.bookId());
 		if (definition != null) {
 			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked()));
+		}
+	}
+
+	@Override
+	public void handleUpdateBossBar(UpdateBossBarPacket packet) {
+		if (packet.barType() == 0) {
+			ESClientHandler.BOSS_BAR_TYPES.remove(packet.barId());
+		} else {
+			ESClientHandler.BOSS_BAR_TYPES.put(packet.barId(), packet.barType());
 		}
 	}
 
