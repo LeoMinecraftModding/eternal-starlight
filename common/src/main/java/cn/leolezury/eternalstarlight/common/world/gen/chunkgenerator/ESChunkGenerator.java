@@ -1,9 +1,11 @@
 package cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator;
 
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.FastNoise;
 import cn.leolezury.eternalstarlight.common.world.gen.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
+import cn.leolezury.eternalstarlight.common.world.gen.structure.StructureTerrainAdaptor;
 import cn.leolezury.eternalstarlight.common.world.gen.structure.placement.LandmarkStructurePlacement;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.MapCodec;
@@ -11,6 +13,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.ChunkPos;
@@ -27,16 +30,16 @@ import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.status.ChunkStatus;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.blending.Blender;
-import net.minecraft.world.level.levelgen.structure.Structure;
-import net.minecraft.world.level.levelgen.structure.StructureCheckResult;
-import net.minecraft.world.level.levelgen.structure.StructureSet;
-import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 	private static final BlockState AIR = Blocks.AIR.defaultBlockState();
@@ -109,6 +112,25 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 		int cellHeight = 16;
 		int numSec = chunkAccess.getSections().length;
 
+		StructureTerrainAdaptor adaptor = null;
+		List<BoundingBox> adaptiveBoxes = new ArrayList<>();
+		Registry<Structure> registry = structureManager.registryAccess().registryOrThrow(Registries.STRUCTURE);
+		Set<Structure> adaptiveStructures = registry.getTag(ESTags.Structures.ADAPTIVE_TERRAIN)
+			.map(tag -> tag.stream().map(Holder::value).collect(Collectors.toSet()))
+			.orElse(Set.of());
+		if (!adaptiveStructures.isEmpty()) {
+			for (StructureStart start : structureManager.startsForStructure(chunkPos, s -> adaptiveStructures.contains(s))) {
+				for (StructurePiece piece : start.getPieces()) {
+					if (piece.isCloseToChunk(chunkPos, 12 + StructureTerrainAdaptor.EDGE_MARGIN)) {
+						adaptiveBoxes.add(piece.getBoundingBox());
+					}
+				}
+			}
+			if (!adaptiveBoxes.isEmpty()) {
+				adaptor = new StructureTerrainAdaptor(seed, adaptiveBoxes);
+			}
+		}
+
 		if (this.biomeSource instanceof ESBiomeSource source) {
 			int[][] cellHeights = new int[cellWidth][cellWidth];
 			for (int cellX = 0; cellX < cellWidth; ++cellX) {
@@ -135,7 +157,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 							BlockState blockState = getTargetBlock(worldX, worldY, worldZ, surfaceHeight, minY, source.getBiomeData(worldX, ESDimensions.SEA_LEVEL, worldZ, randomState.sampler()).value());
 
 							double beard = beardifier.compute(new DensityFunction.SinglePointContext(worldX, worldY, worldZ));
-							if (beard > 0.1) {
+							if (beard > 0.1 || (adaptor != null && adaptor.shouldFill(worldX, worldY, worldZ, surfaceHeight))) {
 								blockState = defaultBlock;
 							}
 

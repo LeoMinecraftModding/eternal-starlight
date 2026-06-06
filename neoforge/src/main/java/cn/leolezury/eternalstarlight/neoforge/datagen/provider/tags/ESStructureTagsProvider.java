@@ -39,5 +39,9 @@ public class ESStructureTagsProvider extends StructureTagsProvider {
 				ESStructures.PORTAL_RUINS_JUNGLE,
 				ESStructures.PORTAL_RUINS_COLD
 			);
+		tag(ESTags.Structures.ADAPTIVE_TERRAIN)
+			.add(
+				ESStructures.CURSED_GARDEN
+			);
 	}
 }
