@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "eternal_starlight:lunar_huge",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.25,
+        "feature": {
+          "feature": "eternal_starlight:lunar_cyan_huge",
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.25,
+        "feature": {
+          "feature": "eternal_starlight:lunar_purple_huge",
+          "placement": []
+        }
+      }
+    ]
+  }
+}

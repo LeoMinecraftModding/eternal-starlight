@@ -35,6 +35,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	protected void registerStatesAndModels() {
 		// woods
 		leaves(ESBlocks.LUNAR_LEAVES.get());
+		leaves(ESBlocks.CYAN_LUNAR_LEAVES.get());
+		leaves(ESBlocks.PURPLE_LUNAR_LEAVES.get());
 		woodSet(ESBlocks.LUNAR_LOG.get(), ESBlocks.LUNAR_WOOD.get(), ESBlocks.LUNAR_PLANKS.get(), ESBlocks.STRIPPED_LUNAR_LOG.get(), ESBlocks.STRIPPED_LUNAR_WOOD.get(), ESBlocks.LUNAR_DOOR.get(), false, ESBlocks.LUNAR_TRAPDOOR.get(), false, ESBlocks.LUNAR_PRESSURE_PLATE.get(), ESBlocks.LUNAR_BUTTON.get(), ESBlocks.LUNAR_FENCE.get(), ESBlocks.LUNAR_FENCE_GATE.get(), ESBlocks.LUNAR_SLAB.get(), ESBlocks.LUNAR_STAIRS.get(), ESBlocks.LUNAR_SIGN.get(), ESBlocks.LUNAR_WALL_SIGN.get(), ESBlocks.LUNAR_HANGING_SIGN.get(), ESBlocks.LUNAR_WALL_HANGING_SIGN.get());
 		cross(ESBlocks.LUNAR_SAPLING.get());
 		pottedPlant(ESBlocks.POTTED_LUNAR_SAPLING.get(), blockTexture(ESBlocks.LUNAR_SAPLING.get()));

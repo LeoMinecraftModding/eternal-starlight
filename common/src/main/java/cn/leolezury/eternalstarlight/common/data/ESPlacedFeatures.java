@@ -90,6 +90,10 @@ public class ESPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_TREE_CHECKED = create("lunar_huge_tree_checked");
 	public static final ResourceKey<PlacedFeature> LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED = create("lunar_huge_starfire_birds_tree_checked");
 	public static final ResourceKey<PlacedFeature> LUNAR_SMALL_TREE_CHECKED = create("lunar_small_tree_checked");
+	public static final ResourceKey<PlacedFeature> LUNAR_COLORED_TREE_CHECKED = create("lunar_colored_tree_checked");
+	public static final ResourceKey<PlacedFeature> LUNAR_COLORED_HUGE_TREE_CHECKED = create("lunar_colored_huge_tree_checked");
+	public static final ResourceKey<PlacedFeature> LUNAR_COLORED_HUGE_STARFIRE_BIRDS_TREE_CHECKED = create("lunar_colored_huge_starfire_birds_tree_checked");
+	public static final ResourceKey<PlacedFeature> LUNAR_COLORED_SMALL_TREE_CHECKED = create("lunar_colored_small_tree_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_TREE_CHECKED = create("northland_tree_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_THIN_TREE_CHECKED = create("northland_thin_tree_checked");
 	public static final ResourceKey<PlacedFeature> NORTHLAND_TALL_TREE_CHECKED = create("northland_tall_tree_checked");
@@ -219,6 +223,10 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, LUNAR_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()), HEIGHT_FILTER);
 		PlacementUtils.register(context, LUNAR_HUGE_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_HUGE_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()), HEIGHT_FILTER);
 		PlacementUtils.register(context, LUNAR_SMALL_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_SMALL), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()), HEIGHT_FILTER);
+		PlacementUtils.register(context, LUNAR_COLORED_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_COLORED), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()), HEIGHT_FILTER);
+		PlacementUtils.register(context, LUNAR_COLORED_HUGE_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_COLORED_HUGE), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()), HEIGHT_FILTER);
+		PlacementUtils.register(context, LUNAR_COLORED_HUGE_STARFIRE_BIRDS_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_COLORED_HUGE_STARFIRE_BIRDS), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()), HEIGHT_FILTER);
+		PlacementUtils.register(context, LUNAR_COLORED_SMALL_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.LUNAR_COLORED_SMALL), PlacementUtils.filteredByBlockSurvival(ESBlocks.LUNAR_SAPLING.get()), HEIGHT_FILTER);
 		PlacementUtils.register(context, NORTHLAND_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()), HEIGHT_FILTER);
 		PlacementUtils.register(context, NORTHLAND_THIN_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND_THIN), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()), HEIGHT_FILTER);
 		PlacementUtils.register(context, NORTHLAND_TALL_TREE_CHECKED, configuredFeatures.getOrThrow(ESConfiguredFeatures.NORTHLAND_TALL), PlacementUtils.filteredByBlockSurvival(ESBlocks.NORTHLAND_SAPLING.get()), HEIGHT_FILTER);

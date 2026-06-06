@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-24T00:14:24.4090958	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2026-06-06T12:43:04.9280655	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -112,7 +112,7 @@ a6178348bb61588af5e42836d11784d36ad01d98 data/minecraft/tags/block/flower_pots.j
 a3b5c288e24581425d5cf66d5082a574adaf87a9 data/minecraft/tags/block/guarded_by_piglins.json
 e6d222bcccd09b1bedf366a51c27712110a1b594 data/minecraft/tags/block/impermeable.json
 b58ea2fa8a7953cf65d8720c57a475e5a124a782 data/minecraft/tags/block/inside_step_sound_blocks.json
-4eb9690d6a970d9a28c95fafb91d718395c9ed69 data/minecraft/tags/block/leaves.json
+4d76cd8b050ae5c9c072510ac3891df1b8cded88 data/minecraft/tags/block/leaves.json
 b503cc4b594242e321f7797ca2925502c5f661bb data/minecraft/tags/block/logs.json
 b503cc4b594242e321f7797ca2925502c5f661bb data/minecraft/tags/block/logs_that_burn.json
 25a4e55c3725e21769cabf0ef2b970a8b9f82da2 data/minecraft/tags/block/maintains_farmland.json

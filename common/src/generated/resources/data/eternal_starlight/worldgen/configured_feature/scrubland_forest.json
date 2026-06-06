@@ -1,8 +1,8 @@
 {
   "type": "eternal_starlight:noise_boolean_selector",
   "config": {
-    "feature_false": "eternal_starlight:lunar_huge_tree_checked",
-    "feature_true": "eternal_starlight:lunar_small_tree_checked",
+    "feature_false": "eternal_starlight:lunar_colored_huge_tree_checked",
+    "feature_true": "eternal_starlight:lunar_colored_small_tree_checked",
     "noise_level": -0.4,
     "noise_scale": 0.01
   }

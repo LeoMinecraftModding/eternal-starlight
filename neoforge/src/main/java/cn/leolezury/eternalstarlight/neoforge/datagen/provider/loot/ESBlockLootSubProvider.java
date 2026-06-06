@@ -55,6 +55,8 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		HolderLookup.RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 
 		add(ESBlocks.LUNAR_LEAVES.get(), block -> this.createLunarLeavesDrops(block, ESBlocks.LUNAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ESBlocks.CYAN_LUNAR_LEAVES.get(), block -> this.createLunarLeavesDrops(block, ESBlocks.LUNAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+		add(ESBlocks.PURPLE_LUNAR_LEAVES.get(), block -> this.createLunarLeavesDrops(block, ESBlocks.LUNAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 		dropSelf(ESBlocks.LUNAR_LOG.get());
 		dropSelf(ESBlocks.LUNAR_WOOD.get());
 		dropSelf(ESBlocks.LUNAR_PLANKS.get());

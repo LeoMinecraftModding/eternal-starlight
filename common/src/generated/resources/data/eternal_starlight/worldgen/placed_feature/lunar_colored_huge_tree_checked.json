@@ -1,0 +1,26 @@
+{
+  "feature": "eternal_starlight:lunar_colored_huge",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "eternal_starlight:lunar_sapling",
+          "Properties": {
+            "stage": "0"
+          }
+        }
+      }
+    },
+    {
+      "type": "eternal_starlight:height_range_filter",
+      "max_inclusive": {
+        "below_top": 150
+      },
+      "min_inclusive": {
+        "above_bottom": 0
+      }
+    }
+  ]
+}

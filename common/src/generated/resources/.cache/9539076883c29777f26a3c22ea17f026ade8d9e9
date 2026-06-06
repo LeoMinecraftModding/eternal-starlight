@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-23T23:08:24.1226648	Item Models: eternal_starlight
+// 1.21.1	2026-06-06T12:43:04.9300641	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -246,6 +246,7 @@ dff6c553e51a895d3bae9d5ee5f7b3778414ecac assets/eternal_starlight/models/item/cu
 65a8ed7e0bdc82e7b8fb537bf2a398ac8d07cfb9 assets/eternal_starlight/models/item/cut_twilight_sandstone_slab.json
 bec2d49a9e48bc28024c1b340d216653d0dbc92d assets/eternal_starlight/models/item/cut_twilight_sandstone_stairs.json
 af618230e290297a5bbd3338cf059ee831ca717b assets/eternal_starlight/models/item/cut_twilight_sandstone_wall.json
+66c3b7b34969ccd1f80c43e285de4222bc90a1ac assets/eternal_starlight/models/item/cyan_lunar_leaves.json
 f61702d19058e6585fe9fff42be06ba64f2d25bf assets/eternal_starlight/models/item/cyan_yeti_fur.json
 a17fbf506fa3e61f59860d804364449a7c0fb407 assets/eternal_starlight/models/item/cyan_yeti_fur_carpet.json
 60f5065d929d7f64a0a4b74df0fede4b8f24392d assets/eternal_starlight/models/item/dagger_of_hunger.json
@@ -820,6 +821,7 @@ f56f67e504afe750974fc7403c9ba9f0f7a0f7ec assets/eternal_starlight/models/item/pu
 9195f496ca1c2abd5d105ba4a56da16b69a58702 assets/eternal_starlight/models/item/pungency_fruit_spear_inventory.json
 be163386ecb6f5a544b69ae18ff0b9c3098ecbc1 assets/eternal_starlight/models/item/pungency_fruit_upgrade_smithing_template.json
 f154eb5c718c74f487f89c597826f3c704865057 assets/eternal_starlight/models/item/pungency_stew.json
+3b4366df25534ee6ef6286645acac9c6bfac1401 assets/eternal_starlight/models/item/purple_lunar_leaves.json
 b04d149ec0dafb8a69f12136b71c76c6020c1211 assets/eternal_starlight/models/item/purple_scarlet_bud.json
 3a2a901bfffcf784ef6dfa7417749736e09da156 assets/eternal_starlight/models/item/purple_yeti_fur.json
 eb0cf80c2db587a578624a201ae9d16134dbee32 assets/eternal_starlight/models/item/purple_yeti_fur_carpet.json

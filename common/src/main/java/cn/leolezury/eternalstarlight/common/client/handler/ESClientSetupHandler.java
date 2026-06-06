@@ -146,6 +146,8 @@ public class ESClientSetupHandler {
 
 	public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
 		ESBlocks.LUNAR_LEAVES,
+		ESBlocks.CYAN_LUNAR_LEAVES,
+		ESBlocks.PURPLE_LUNAR_LEAVES,
 		ESBlocks.NORTHLAND_LEAVES,
 		ESBlocks.BANYIN_LEAVES,
 		ESBlocks.BANYIN_ROOTS,

@@ -59,6 +59,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 		// wood
 		flatBlockTexture(ESItems.LUNAR_SAPLING.get());
 		block(ESItems.LUNAR_LEAVES.get());
+		block(ESItems.CYAN_LUNAR_LEAVES.get());
+		block(ESItems.PURPLE_LUNAR_LEAVES.get());
 		block(ESItems.LUNAR_LOG.get());
 		block(ESItems.LUNAR_WOOD.get());
 		block(ESItems.LUNAR_PLANKS.get());

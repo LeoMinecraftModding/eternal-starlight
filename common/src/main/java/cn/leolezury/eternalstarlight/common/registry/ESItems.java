@@ -88,6 +88,8 @@ public class ESItems {
 	// lunar wood
 	public static final RegistryObject<Item, Item> LUNAR_SAPLING = registerItem("lunar_sapling", () -> new BlockItem(ESBlocks.LUNAR_SAPLING.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_LEAVES = registerItem("lunar_leaves", () -> new BlockItem(ESBlocks.LUNAR_LEAVES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> CYAN_LUNAR_LEAVES = registerItem("cyan_lunar_leaves", () -> new BlockItem(ESBlocks.CYAN_LUNAR_LEAVES.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> PURPLE_LUNAR_LEAVES = registerItem("purple_lunar_leaves", () -> new BlockItem(ESBlocks.PURPLE_LUNAR_LEAVES.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_LOG = registerItem("lunar_log", () -> new BlockItem(ESBlocks.LUNAR_LOG.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_WOOD = registerItem("lunar_wood", () -> new BlockItem(ESBlocks.LUNAR_WOOD.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUNAR_PLANKS = registerItem("lunar_planks", () -> new BlockItem(ESBlocks.LUNAR_PLANKS.get(), new Item.Properties()));

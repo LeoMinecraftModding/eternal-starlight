@@ -731,6 +731,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 		tag(BlockTags.LEAVES)
 			.add(
 				ESBlocks.LUNAR_LEAVES.get(),
+				ESBlocks.CYAN_LUNAR_LEAVES.get(),
+				ESBlocks.PURPLE_LUNAR_LEAVES.get(),
 				ESBlocks.NORTHLAND_LEAVES.get(),
 				ESBlocks.BANYIN_LEAVES.get(),
 				ESBlocks.SCARLET_LEAVES.get(),
