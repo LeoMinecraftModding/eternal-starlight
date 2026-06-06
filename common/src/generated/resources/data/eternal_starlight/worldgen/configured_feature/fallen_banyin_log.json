@@ -1,7 +1,49 @@
 {
   "type": "eternal_starlight:fallen_log",
   "config": {
-    "log": {
+    "log_decorators": [
+      {
+        "type": "eternal_starlight:log_top",
+        "decoration": {
+          "type": "minecraft:weighted_state_provider",
+          "entries": [
+            {
+              "data": {
+                "Name": "eternal_starlight:fantasy_grass_carpet"
+              },
+              "weight": 2
+            },
+            {
+              "data": {
+                "Name": "eternal_starlight:glowing_mushroom"
+              },
+              "weight": 2
+            },
+            {
+              "data": {
+                "Name": "eternal_starlight:shining_mushroom"
+              },
+              "weight": 1
+            }
+          ]
+        },
+        "directions": [
+          "up"
+        ],
+        "probability": 0.1
+      }
+    ],
+    "log_length": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 7,
+      "min_inclusive": 4
+    },
+    "stump_decorators": [
+      {
+        "type": "minecraft:trunk_vine"
+      }
+    ],
+    "trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "eternal_starlight:banyin_log",

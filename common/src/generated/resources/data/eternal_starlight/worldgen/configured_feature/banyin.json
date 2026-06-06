@@ -14,8 +14,21 @@
           "max_inclusive": 4,
           "min_inclusive": 1
         },
-        "plant_body": "eternal_starlight:hanging_fantagrass_plant",
-        "plant_head": "eternal_starlight:hanging_fantagrass"
+        "plant_body": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "eternal_starlight:hanging_fantagrass_plant"
+          }
+        },
+        "plant_head": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "eternal_starlight:hanging_fantagrass",
+            "Properties": {
+              "age": "0"
+            }
+          }
+        }
       }
     ],
     "dirt_provider": {

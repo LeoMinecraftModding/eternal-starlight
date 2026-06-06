@@ -8,6 +8,7 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import org.joml.Vector3f;
 
+// Backported from 26.1
 public class GeyserBaseParticle extends BaseAshSmokeParticle {
 	private GeyserBaseParticle(
 		final ClientLevel level,
