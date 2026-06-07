@@ -390,6 +390,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, Block> CRACKED_VOIDSTONE_TILES = BLOCKS.register("cracked_voidstone_tiles", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_DEEPSLATE_BRICKS).mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, Block> CHISELED_VOIDSTONE = BLOCKS.register("chiseled_voidstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICKS).mapColor(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<Block, Block> GLOWING_VOIDSTONE = BLOCKS.register("glowing_voidstone", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICKS).mapColor(MapColor.COLOR_BLACK).lightLevel(state -> 10)));
+	public static final RegistryObject<Block, VoidstoneSpikeBlock> VOIDSTONE_SPIKE = BLOCKS.register("voidstone_spike", () -> new VoidstoneSpikeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).mapColor(MapColor.COLOR_BLACK)));
 
 	// eternal ice
 	public static final RegistryObject<Block, Block> ETERNAL_ICE = BLOCKS.register("eternal_ice", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.GLASS).mapColor(MapColor.ICE)));

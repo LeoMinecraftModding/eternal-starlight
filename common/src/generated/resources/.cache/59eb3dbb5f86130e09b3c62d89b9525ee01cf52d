@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-06T12:43:04.9089451	Loot Tables
+// 1.21.1	2026-06-06T17:38:04.369131	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -752,6 +752,7 @@ bcdfe3372d14dbd310cd03290f5465e12c2aedc3 data/eternal_starlight/loot_table/block
 58ac8eb65f3c5801246caba7c0e7f94bb1eadf56 data/eternal_starlight/loot_table/blocks/voidstone_redstone_ore.json
 9303967f64bf2872bf3837e9e56d0c4374730c58 data/eternal_starlight/loot_table/blocks/voidstone_saltpeter_ore.json
 fc1463d8727e69997ee04ef7b0303b8d102230f1 data/eternal_starlight/loot_table/blocks/voidstone_slab.json
+966651499f5203ebd722c6486b3f53d45f55bf7b data/eternal_starlight/loot_table/blocks/voidstone_spike.json
 389924f411ea77312274ebd5131d038e2719f59e data/eternal_starlight/loot_table/blocks/voidstone_stairs.json
 e5dc6556f65d1bbe7ddaf61559f9c3cbfdb7c5ec data/eternal_starlight/loot_table/blocks/voidstone_starcore_ore.json
 d536456d7feffb9db116c15018bc857fabec71d7 data/eternal_starlight/loot_table/blocks/voidstone_starlit_diamond_ore.json

@@ -300,6 +300,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> CRACKED_VOIDSTONE_TILES = registerItem("cracked_voidstone_tiles", () -> new BlockItem(ESBlocks.CRACKED_VOIDSTONE_TILES.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> CHISELED_VOIDSTONE = registerItem("chiseled_voidstone", () -> new BlockItem(ESBlocks.CHISELED_VOIDSTONE.get(), new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLOWING_VOIDSTONE = registerItem("glowing_voidstone", () -> new BlockItem(ESBlocks.GLOWING_VOIDSTONE.get(), new Item.Properties()));
+	public static final RegistryObject<Item, Item> VOIDSTONE_SPIKE = registerItem("voidstone_spike", () -> new BlockItem(ESBlocks.VOIDSTONE_SPIKE.get(), new Item.Properties()));
 
 	// eternal ice
 	public static final RegistryObject<Item, Item> ETERNAL_ICE = registerItem("eternal_ice", () -> new BlockItem(ESBlocks.ETERNAL_ICE.get(), new Item.Properties()));

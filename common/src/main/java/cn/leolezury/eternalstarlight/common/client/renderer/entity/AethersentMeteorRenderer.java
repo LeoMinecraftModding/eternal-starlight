@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.model.ESModelUtil;
 import cn.leolezury.eternalstarlight.common.client.model.entity.AethersentMeteorModel;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
@@ -77,7 +76,7 @@ public class AethersentMeteorRenderer extends EntityRenderer<AethersentMeteor> {
 				model.alphaFactor = (1 - Mth.clamp(currentTick - snapshot.timestamp(), 0, SNAPSHOT_LIFESPAN) / SNAPSHOT_LIFESPAN) * 0.3F;
 				stack.scale(-1.0F, -1.0F, 1.0F);
 				stack.translate(0.0F, -1.5F, 0.0F);
-				renderType = ESRenderType.entityTranslucentGlow(getTextureLocation(entity));
+				renderType = RenderType.entityTranslucentEmissive(getTextureLocation(entity));
 				vertexConsumer = bufferSource.getBuffer(renderType);
 				model.renderToBuffer(stack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY);
 				stack.popPose();

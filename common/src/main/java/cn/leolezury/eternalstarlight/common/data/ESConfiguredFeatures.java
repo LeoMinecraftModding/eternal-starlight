@@ -86,6 +86,7 @@ public class ESConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_CRYSTAL = create("starlight_crystal");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ICE_SPIKE = create("ice_spike");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> STELLAGMITE = create("stellagmite");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> VOIDSTONE_SPIKE = create("voidstone_spike");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> THIOQUARTZ_GEODE = create("thioquartz_geode");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_VINE = create("cave_vine");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CAVE_MOSS = create("cave_moss");
@@ -219,6 +220,7 @@ public class ESConfiguredFeatures {
 		FeatureUtils.register(context, STARLIGHT_CRYSTAL, ESFeatures.STARLIGHT_CRYSTAL.get());
 		FeatureUtils.register(context, ICE_SPIKE, ESFeatures.SPIKE.get(), new SpikeFeature.Configuration(BlockStateProvider.simple(ESBlocks.THIN_ETERNAL_ICE.get()), UniformInt.of(25, 35), UniformInt.of(4, 7), UniformInt.of(1, 4), UniformInt.of(10, 15), UniformInt.of(4, 7)));
 		FeatureUtils.register(context, STELLAGMITE, ESFeatures.STELLAGMITE.get());
+		FeatureUtils.register(context, VOIDSTONE_SPIKE, ESFeatures.SPELEOTHEM.get(), new SpeleothemFeature.Configuration(BlockStateProvider.simple(ESBlocks.VOIDSTONE_SPIKE.get()), 0.7F, 0.5F, 0.5F));
 		FeatureUtils.register(context, THIOQUARTZ_GEODE, Feature.GEODE, new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR), BlockStateProvider.simple(ESBlocks.THIOQUARTZ_BLOCK.get()), BlockStateProvider.simple(ESBlocks.BUDDING_THIOQUARTZ.get()), BlockStateProvider.simple(ESBlocks.TOXITE.get()), BlockStateProvider.simple(ESBlocks.TOXITE.get()), List.of(ESBlocks.THIOQUARTZ_CLUSTER.get().defaultBlockState()), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7, 2.2, 3.2, 4.2), new GeodeCrackSettings(0.95, 2.0, 2), 0.35, 0.083, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05, 1));
 		FeatureUtils.register(context, CAVE_VINE, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(UniformInt.of(0, 19), 2).add(UniformInt.of(0, 2), 3).add(UniformInt.of(0, 6), 10).build()),
 			new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ESBlocks.BERRIES_VINES_PLANT.get().defaultBlockState(), 4).add(ESBlocks.BERRIES_VINES_PLANT.get().defaultBlockState().setValue(CaveVines.BERRIES, true), 1))), BlockColumnConfiguration.layer(ConstantInt.of(1),

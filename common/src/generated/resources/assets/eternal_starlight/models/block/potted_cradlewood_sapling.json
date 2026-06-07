@@ -2,6 +2,6 @@
   "parent": "minecraft:block/flower_pot_cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "plant": "eternal_starlight:block/cradlewood_sapling"
+    "plant": "eternal_starlight:block/potted_cradlewood_sapling"
   }
 }

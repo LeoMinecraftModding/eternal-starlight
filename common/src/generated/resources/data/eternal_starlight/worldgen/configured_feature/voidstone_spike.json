@@ -1,0 +1,19 @@
+{
+  "type": "eternal_starlight:speleothem",
+  "config": {
+    "chance_of_directional_spread": 0.7,
+    "chance_of_spread_radius2": 0.5,
+    "chance_of_spread_radius3": 0.5,
+    "speleothem": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "eternal_starlight:voidstone_spike",
+        "Properties": {
+          "thickness": "tip",
+          "vertical_direction": "up",
+          "waterlogged": "false"
+        }
+      }
+    }
+  }
+}

@@ -28,6 +28,7 @@ public class ESFeatures {
 	public static final RegistryObject<Feature<?>, Feature<SpikeFeature.Configuration>> SPIKE = FEATURES.register("spike", () -> new SpikeFeature(SpikeFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<PillarFeature.Configuration>> PILLAR = FEATURES.register("pillar", () -> new PillarFeature(PillarFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> STELLAGMITE = FEATURES.register("stellagmite", () -> new StellagmiteFeature(NoneFeatureConfiguration.CODEC));
+	public static final RegistryObject<Feature<?>, Feature<SpeleothemFeature.Configuration>> SPELEOTHEM = FEATURES.register("speleothem", () -> new SpeleothemFeature(SpeleothemFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<FallenLogFeature.Configuration>> FALLEN_LOG = FEATURES.register("fallen_log", () -> new FallenLogFeature(FallenLogFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<LeavesPileFeature.Configuration>> LEAVES_PILE = FEATURES.register("leaves_pile", () -> new LeavesPileFeature(LeavesPileFeature.Configuration.CODEC));
 	public static final RegistryObject<Feature<?>, Feature<NoneFeatureConfiguration>> ASHEN_SNOW = FEATURES.register("ashen_snow", () -> new AshenSnowFeature(NoneFeatureConfiguration.CODEC));

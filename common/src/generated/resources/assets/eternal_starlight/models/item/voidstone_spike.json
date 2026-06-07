@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eternal_starlight:block/voidstone_spike_up_tip"
+  }
+}

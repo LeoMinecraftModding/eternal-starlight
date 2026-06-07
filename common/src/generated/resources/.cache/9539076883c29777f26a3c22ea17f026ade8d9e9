@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-06T12:43:04.9300641	Item Models: eternal_starlight
+// 1.21.1	2026-06-06T17:38:04.3841434	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -1136,6 +1136,7 @@ b6f3dea37e1a1a1113b8759b7b92b59c89747abe assets/eternal_starlight/models/item/vo
 df35b73a5ee4d696509d02d32da3c116b81a63a5 assets/eternal_starlight/models/item/voidstone_redstone_ore.json
 3ea41f6939ba7e2d013634d57461e36dbadc7b68 assets/eternal_starlight/models/item/voidstone_saltpeter_ore.json
 4921dce6b1d16c512ee67cc59d826775d708c569 assets/eternal_starlight/models/item/voidstone_slab.json
+e6454fc19f1d9d3ba6ec758d24677fe61a1e2c56 assets/eternal_starlight/models/item/voidstone_spike.json
 64a58bfc7745d5d37d2a2929a334925580319f96 assets/eternal_starlight/models/item/voidstone_stairs.json
 4f5aa669f881eab7bef7256c2a83d19740e6e179 assets/eternal_starlight/models/item/voidstone_starcore_ore.json
 eea4a261ec42c37318ee83faecf9647b53923cc6 assets/eternal_starlight/models/item/voidstone_starlit_diamond_ore.json

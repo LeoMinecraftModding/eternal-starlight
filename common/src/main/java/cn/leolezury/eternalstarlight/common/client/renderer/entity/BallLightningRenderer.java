@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.model.entity.OrbModel;
 import cn.leolezury.eternalstarlight.common.entity.projectile.BallLightning;
@@ -10,6 +9,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -80,7 +80,7 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 			// add a full connection
 			segments.add(startPos);
 			Vec3 camPos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
-			VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.entityTranslucentGlow(TRAIL_TEXTURE));
+			VertexConsumer vertexConsumer = ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(RenderType.entityTranslucentEmissive(TRAIL_TEXTURE));
 			for (int i = 0; i < segments.size() - 1; i++) {
 				Vec3 start = segments.get(i);
 				Vec3 end = segments.get(i + 1);

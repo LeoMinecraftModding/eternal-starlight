@@ -495,6 +495,14 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.HAZE_ICE.get(),
 				ESBlocks.RADIANITE.get()
 			);
+		tag(ESTags.Blocks.SPELEOTHEMS)
+			.add(
+				ESBlocks.VOIDSTONE_SPIKE.get()
+			);
+		tag(ESTags.Blocks.SPELEOTHEM_BASE_BLOCKS)
+			.add(
+				ESBlocks.VOIDSTONE.get()
+			);
 		tag(ESTags.Blocks.STARLIGHT_CARVER_REPLACEABLES)
 			.add(
 				Blocks.SNOW
@@ -1246,6 +1254,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.CRACKED_VOIDSTONE_TILES.get(),
 				ESBlocks.CHISELED_VOIDSTONE.get(),
 				ESBlocks.GLOWING_VOIDSTONE.get(),
+				ESBlocks.VOIDSTONE_SPIKE.get(),
 				ESBlocks.ETERNAL_ICE.get(),
 				ESBlocks.THIN_ETERNAL_ICE.get(),
 				ESBlocks.ETERNAL_ICE_BRICKS.get(),

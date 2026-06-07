@@ -286,6 +286,7 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.CRACKED_VOIDSTONE_TILES.get());
 		dropSelf(ESBlocks.CHISELED_VOIDSTONE.get());
 		dropSelf(ESBlocks.GLOWING_VOIDSTONE.get());
+		dropSelf(ESBlocks.VOIDSTONE_SPIKE.get());
 
 		dropSelf(ESBlocks.ETERNAL_ICE.get());
 		dropWhenSilkTouch(ESBlocks.THIN_ETERNAL_ICE.get());

@@ -72,16 +72,6 @@ public abstract class ESRenderType extends RenderType {
 			.setOverlayState(OVERLAY)
 			.createCompositeState(true)));
 
-	public static final Function<ResourceLocation, RenderType> TRANSLUCENT_GLOW = Util.memoize(location ->
-		create(EternalStarlight.ID + ":entity_translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
-			.setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER)
-			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
-			.setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-			.setCullState(NO_CULL)
-			.setWriteMaskState(COLOR_WRITE)
-			.setOverlayState(OVERLAY)
-			.createCompositeState(true)));
-
 	public static final Function<ResourceLocation, RenderType> TRANSLUCENT_NO_DEPTH = Util.memoize(location ->
 		create(EternalStarlight.ID + ":entity_translucent_no_depth", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 			.setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_SHADER)
@@ -94,13 +84,12 @@ public abstract class ESRenderType extends RenderType {
 			.createCompositeState(true)));
 
 	public static final Function<ResourceLocation, RenderType> CUTOUT_GLOW = Util.memoize(location ->
-		create(EternalStarlight.ID + ":entity_cutout_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
+		create(EternalStarlight.ID + ":entity_translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
 			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
 			.setShaderState(RENDERTYPE_BEACON_BEAM_SHADER)
 			.setTransparencyState(NO_TRANSPARENCY)
-			.setLightmapState(LIGHTMAP)
 			.setOverlayState(OVERLAY)
-			.createCompositeState(false)));
+			.createCompositeState(true)));
 
 	public ESRenderType(String string, VertexFormat vertexFormat, VertexFormat.Mode mode, int bufferSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setupState, Runnable clearState) {
 		super(string, vertexFormat, mode, bufferSize, affectsCrumbling, sortOnUpload, setupState, clearState);
@@ -108,10 +97,6 @@ public abstract class ESRenderType extends RenderType {
 
 	public static RenderType entityTranslucentAdditiveGlow(ResourceLocation location) {
 		return TRANSLUCENT_ADDITIVE_GLOW.apply(location);
-	}
-
-	public static RenderType entityTranslucentGlow(ResourceLocation location) {
-		return TRANSLUCENT_GLOW.apply(location);
 	}
 
 	public static RenderType entityTranslucentNoDepth(ResourceLocation location) {

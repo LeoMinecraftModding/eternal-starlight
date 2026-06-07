@@ -263,6 +263,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.CRACKED_VOIDSTONE_TILES.get());
 		block(ESItems.CHISELED_VOIDSTONE.get());
 		block(ESItems.GLOWING_VOIDSTONE.get());
+		basicItem(ESItems.VOIDSTONE_SPIKE.get(), blockTextureFromItem(ESItems.VOIDSTONE_SPIKE.get()).withSuffix("_up_tip"));
 
 		block(ESItems.ETERNAL_ICE.get());
 		block(ESItems.THIN_ETERNAL_ICE.get());
