@@ -30,15 +30,15 @@ public class SolarCreeperSolarRayPhase extends BehaviorPhase<SolarCreeper> {
 
 	public static final SmoothSegmentedValue GROUP_1 = SmoothSegmentedValue
 		.of(Easing.OUT_CIRC, 0, 1, 10f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 90f / DURATION)
-		.add(Easing.OUT_CUBIC, 1, 0, 20f / DURATION)
+		.add(Easing.IDENTITY, 1, 1, 100f / DURATION)
+		.add(Easing.OUT_CUBIC, 1, 0, 10f / DURATION)
 		.add(Easing.IDENTITY, 0, 0, 80f / DURATION);
 
 	public static final SmoothSegmentedValue GROUP_2 = SmoothSegmentedValue
 		.of(Easing.IDENTITY, 0, 0, 80f / DURATION)
 		.add(Easing.OUT_CIRC, 0, 1, 10f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 90f / DURATION)
-		.add(Easing.OUT_CUBIC, 1, 0, 20f / DURATION);
+		.add(Easing.IDENTITY, 1, 1, 100f / DURATION)
+		.add(Easing.OUT_CUBIC, 1, 0, 10f / DURATION);
 
 	public static final SmoothSegmentedValue ROTATION_SPEED = SmoothSegmentedValue
 		.of(Easing.IN_QUART, 1, 1.2f, 20f / DURATION)
@@ -79,7 +79,7 @@ public class SolarCreeperSolarRayPhase extends BehaviorPhase<SolarCreeper> {
 			for (int i = 0; i < 6; i++) {
 				boolean isGroup1 = i % 2 == 0;
 				float groupScale = isGroup1 ? GROUP_1.calculate(progress) : GROUP_2.calculate(progress);
-				entity.setSolarRayLength(i, groupScale * MAX_LENGTH);
+				entity.setSolarRayWidth(i, groupScale);
 			}
 
 			Vec3 sunPos = entity.getSunAbovePos(0);
@@ -92,9 +92,8 @@ public class SolarCreeperSolarRayPhase extends BehaviorPhase<SolarCreeper> {
 			float angle = entity.getSolarRayAngle();
 
 			for (int i = 0; i < 6; i++) {
-				float laserLen = entity.getSolarRayLength(i);
-				if (laserLen > 0.5f) {
-					Vec3 idealEndPos = ESMathUtil.rotateAroundAxis(sunPos, normal, i * 60 + angle, laserLen);
+				if (entity.getSolarRayWidth(i) > 0) {
+					Vec3 idealEndPos = ESMathUtil.rotateAroundAxis(sunPos, normal, i * 60 + angle, MAX_LENGTH);
 
 					Vec3 endPos = idealEndPos;
 					ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(entity.level(), CollisionContext.of(entity), sunPos, idealEndPos);

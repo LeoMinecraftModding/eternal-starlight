@@ -53,6 +53,12 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 	private static final EntityDataAccessor<Float> SOLAR_RAY_LENGTH_3 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
 	private static final EntityDataAccessor<Float> SOLAR_RAY_LENGTH_4 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
 	private static final EntityDataAccessor<Float> SOLAR_RAY_LENGTH_5 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
+	private static final EntityDataAccessor<Float> SOLAR_RAY_WIDTH_0 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
+	private static final EntityDataAccessor<Float> SOLAR_RAY_WIDTH_1 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
+	private static final EntityDataAccessor<Float> SOLAR_RAY_WIDTH_2 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
+	private static final EntityDataAccessor<Float> SOLAR_RAY_WIDTH_3 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
+	private static final EntityDataAccessor<Float> SOLAR_RAY_WIDTH_4 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
+	private static final EntityDataAccessor<Float> SOLAR_RAY_WIDTH_5 = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
 
 	private int oldAnimationTicks, animationTicks;
 	private boolean introCompleted = false;
@@ -62,6 +68,8 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 	private float oldSolarRayAngle, renderSolarRayAngle;
 	private final float[] oldSolarRayLengths = new float[6];
 	private final float[] renderSolarRayLengths = new float[6];
+	private final float[] oldSolarRayWidths = new float[6];
+	private final float[] renderSolarRayWidths = new float[6];
 
 	public float getAnimationTicks(float partialTicks) {
 		return Mth.lerp(partialTicks, oldAnimationTicks, animationTicks);
@@ -110,6 +118,29 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 		}
 	}
 
+	public float getSolarRayWidth(int index) {
+		return switch (index) {
+			case 0 -> this.getEntityData().get(SOLAR_RAY_WIDTH_0);
+			case 1 -> this.getEntityData().get(SOLAR_RAY_WIDTH_1);
+			case 2 -> this.getEntityData().get(SOLAR_RAY_WIDTH_2);
+			case 3 -> this.getEntityData().get(SOLAR_RAY_WIDTH_3);
+			case 4 -> this.getEntityData().get(SOLAR_RAY_WIDTH_4);
+			case 5 -> this.getEntityData().get(SOLAR_RAY_WIDTH_5);
+			default -> 0;
+		};
+	}
+
+	public void setSolarRayWidth(int index, float width) {
+		switch (index) {
+			case 0 -> this.getEntityData().set(SOLAR_RAY_WIDTH_0, width);
+			case 1 -> this.getEntityData().set(SOLAR_RAY_WIDTH_1, width);
+			case 2 -> this.getEntityData().set(SOLAR_RAY_WIDTH_2, width);
+			case 3 -> this.getEntityData().set(SOLAR_RAY_WIDTH_3, width);
+			case 4 -> this.getEntityData().set(SOLAR_RAY_WIDTH_4, width);
+			case 5 -> this.getEntityData().set(SOLAR_RAY_WIDTH_5, width);
+		}
+	}
+
 	public Vector3f getRenderSolarRayNormal(float partialTicks) {
 		return new Vector3f(
 			Mth.lerp(partialTicks, oldSolarRayNormal.x(), renderSolarRayNormal.x()),
@@ -126,8 +157,12 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 		return Mth.lerp(partialTicks, oldSolarRayLengths[index], renderSolarRayLengths[index]);
 	}
 
+	public float getRenderSolarRayWidth(int index, float partialTicks) {
+		return Mth.lerp(partialTicks, oldSolarRayWidths[index], renderSolarRayWidths[index]);
+	}
+
 	public Vec3 getSunAbovePos(float partialTicks) {
-		return getPosition(partialTicks).add(0, getBbHeight() + 3, 0);
+		return getPosition(partialTicks).add(0, getBbHeight() + (getBehaviorState() == SolarCreeperBlackHolePhase.ID ? 5 : 3), 0);
 	}
 
 	public SolarCreeper(EntityType<? extends SolarCreeper> entityType, Level level) {
@@ -145,7 +180,13 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 			.define(SOLAR_RAY_LENGTH_2, 0f)
 			.define(SOLAR_RAY_LENGTH_3, 0f)
 			.define(SOLAR_RAY_LENGTH_4, 0f)
-			.define(SOLAR_RAY_LENGTH_5, 0f);
+			.define(SOLAR_RAY_LENGTH_5, 0f)
+			.define(SOLAR_RAY_WIDTH_0, 0f)
+			.define(SOLAR_RAY_WIDTH_1, 0f)
+			.define(SOLAR_RAY_WIDTH_2, 0f)
+			.define(SOLAR_RAY_WIDTH_3, 0f)
+			.define(SOLAR_RAY_WIDTH_4, 0f)
+			.define(SOLAR_RAY_WIDTH_5, 0f);
 	}
 
 	private final ESServerBossEvent bossEvent = new ESServerBossEvent(this, ESServerBossEvent.SOLAR_CREEPER, BossEvent.BossBarColor.YELLOW, false);
@@ -161,8 +202,8 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 		//new SolarCreeperSolarWindPhase(),
 		//new SolarCreeperDashPhase(),
 		//new SolarCreeperSupernovaPhase(),
-		new SolarCreeperSolarRayPhase()//,
-		//new SolarCreeperBlackHolePhase(),
+		new SolarCreeperSolarRayPhase(),
+		new SolarCreeperBlackHolePhase()//,
 		//new SolarCreeperGalaxyPhase(),
 		//new SolarCreeperPowerUpPhase()
 	));
@@ -310,6 +351,8 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 			for (int i = 0; i < 6; i++) {
 				oldSolarRayLengths[i] = renderSolarRayLengths[i];
 				renderSolarRayLengths[i] = getSolarRayLength(i);
+				oldSolarRayWidths[i] = renderSolarRayWidths[i];
+				renderSolarRayWidths[i] = getSolarRayWidth(i);
 			}
 		}
 	}
