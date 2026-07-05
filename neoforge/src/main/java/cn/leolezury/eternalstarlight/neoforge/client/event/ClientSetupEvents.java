@@ -36,7 +36,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -51,7 +50,6 @@ import org.joml.Vector3f;
 import java.io.IOException;
 import java.util.Map;
 
-@OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = EternalStarlight.ID, value = Dist.CLIENT)
 public class ClientSetupEvents {
 	@SubscribeEvent

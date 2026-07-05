@@ -37,6 +37,7 @@ public class TrailRenderer {
 
 		Vec3[] upperOffsets = new Vec3[size];
 		Vec3[] lowerOffsets = new Vec3[size];
+		boolean[] flipped = new boolean[size];
 		for (int i = 0; i < size; i++) {
 			Vec3 tangent = tangents[i];
 			if (tangent.lengthSqr() < 0.5) {
@@ -51,6 +52,7 @@ public class TrailRenderer {
 			if (i > 0 && upperOffsets[i].normalize().dot(upperOffsets[i - 1].normalize()) < 0) {
 				upperOffsets[i] = upperOffsets[i].reverse();
 				lowerOffsets[i] = lowerOffsets[i].reverse();
+				flipped[i] = true;
 			}
 		}
 
@@ -67,24 +69,32 @@ public class TrailRenderer {
 			float fromAlpha = solid ? 1 : Mth.clamp(a * from.progressFactor(), 0, 1);
 			float toAlpha = solid ? 1 : Mth.clamp(a * to.progressFactor(), 0, 1);
 
+			float fuV = flipped[i] ? v1 : v0;
+			float flV = flipped[i] ? v0 : v1;
+			float tuV = flipped[i + 1] ? v1 : v0;
+			float tlV = flipped[i + 1] ? v0 : v1;
+
+			float fromU = Mth.lerp(from.progressFactor(), u0, u1);
+			float toU = Mth.lerp(to.progressFactor(), u0, u1);
+
 			if (particleFormat) {
 				consumer.addVertex(pose, (float) fromUpper.x(), (float) fromUpper.y(), (float) fromUpper.z())
-					.setUv(Mth.lerp(from.progressFactor(), u0, u1), v0).setColor(r, g, b, fromAlpha).setLight(light);
+					.setUv(fromU, fuV).setColor(r, g, b, fromAlpha).setLight(light);
 				consumer.addVertex(pose, (float) toUpper.x(), (float) toUpper.y(), (float) toUpper.z())
-					.setUv(Mth.lerp(to.progressFactor(), u0, u1), v0).setColor(r, g, b, toAlpha).setLight(light);
+					.setUv(toU, tuV).setColor(r, g, b, toAlpha).setLight(light);
 				consumer.addVertex(pose, (float) toLower.x(), (float) toLower.y(), (float) toLower.z())
-					.setUv(Mth.lerp(to.progressFactor(), u0, u1), v1).setColor(r, g, b, toAlpha).setLight(light);
+					.setUv(toU, tlV).setColor(r, g, b, toAlpha).setLight(light);
 				consumer.addVertex(pose, (float) fromLower.x(), (float) fromLower.y(), (float) fromLower.z())
-					.setUv(Mth.lerp(from.progressFactor(), u0, u1), v1).setColor(r, g, b, fromAlpha).setLight(light);
+					.setUv(fromU, flV).setColor(r, g, b, fromAlpha).setLight(light);
 			} else {
 				consumer.addVertex(pose, (float) fromUpper.x(), (float) fromUpper.y(), (float) fromUpper.z())
-					.setColor(r, g, b, fromAlpha).setUv(Mth.lerp(from.progressFactor(), u0, u1), v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+					.setColor(r, g, b, fromAlpha).setUv(fromU, fuV).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 				consumer.addVertex(pose, (float) toUpper.x(), (float) toUpper.y(), (float) toUpper.z())
-					.setColor(r, g, b, toAlpha).setUv(Mth.lerp(to.progressFactor(), u0, u1), v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+					.setColor(r, g, b, toAlpha).setUv(toU, tuV).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 				consumer.addVertex(pose, (float) toLower.x(), (float) toLower.y(), (float) toLower.z())
-					.setColor(r, g, b, toAlpha).setUv(Mth.lerp(to.progressFactor(), u0, u1), v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+					.setColor(r, g, b, toAlpha).setUv(toU, tlV).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 				consumer.addVertex(pose, (float) fromLower.x(), (float) fromLower.y(), (float) fromLower.z())
-					.setColor(r, g, b, fromAlpha).setUv(Mth.lerp(from.progressFactor(), u0, u1), v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
+					.setColor(r, g, b, fromAlpha).setUv(fromU, flV).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0, 1, 0);
 			}
 		}
 	}

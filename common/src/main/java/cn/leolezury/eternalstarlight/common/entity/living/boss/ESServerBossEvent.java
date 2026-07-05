@@ -17,6 +17,7 @@ public class ESServerBossEvent extends ServerBossEvent {
 	public static final int STARLIGHT_GOLEM = 2;
 	public static final int LUNAR_MONSTROSITY = 3;
 	public static final int LUNAR_MONSTROSITY_SOUL = 4;
+	public static final int SOLAR_CREEPER = 5;
 
 	private final ESBoss boss;
 	private final Set<ServerPlayer> unseenPlayers = new HashSet<>();

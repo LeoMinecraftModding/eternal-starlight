@@ -521,6 +521,7 @@ public class ESClientHandler {
 			case ESServerBossEvent.STARLIGHT_GOLEM -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/starlight_golem.png");
 			case ESServerBossEvent.LUNAR_MONSTROSITY -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/lunar_monstrosity.png");
 			case ESServerBossEvent.LUNAR_MONSTROSITY_SOUL -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/lunar_monstrosity_soul.png");
+			case ESServerBossEvent.SOLAR_CREEPER -> barLocation = ResourceLocation.fromNamespaceAndPath(EternalStarlight.ID, "textures/gui/bars/solar_creeper.png");
 			default -> {
 				return false;
 			}

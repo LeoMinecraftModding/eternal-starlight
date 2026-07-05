@@ -34,7 +34,7 @@ public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper>
 		if (target != null) {
 			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			if (ticks == 22 || ticks == 41 || ticks == 62 || ticks == 81) {
-				performDefaultMeleeAttack(entity, 3, true, 120, e -> {
+				performDefaultMeleeAttack(entity, 3, true, 60, e -> {
 					e.hurtMarked = true;
 					e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(0.3, 0.2, 0.3));
 				});

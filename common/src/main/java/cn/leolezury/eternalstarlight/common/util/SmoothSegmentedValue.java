@@ -1,5 +1,11 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +16,7 @@ public record SmoothSegmentedValue(List<Segment> segments) {
 	}
 
 	public static SmoothSegmentedValue constant(float value) {
-		Segment seg = new Segment(v -> v, value, value, 1f);
+		Segment seg = new Segment(Easing.IDENTITY, value, value, 1f);
 		return new SmoothSegmentedValue(Collections.singletonList(seg));
 	}
 
@@ -46,5 +52,30 @@ public record SmoothSegmentedValue(List<Segment> segments) {
 				throw new IllegalArgumentException("Segment size must be positive");
 			}
 		}
+
+		public static final Codec<Segment> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+			Easing.CODEC.fieldOf("easing").forGetter(Segment::easing),
+			Codec.FLOAT.fieldOf("from").forGetter(Segment::from),
+			Codec.FLOAT.fieldOf("to").forGetter(Segment::to),
+			Codec.FLOAT.fieldOf("size").forGetter(Segment::size)
+		).apply(instance, Segment::new));
+
+		public static final StreamCodec<ByteBuf, Segment> STREAM_CODEC = StreamCodec.composite(
+			Easing.STREAM_CODEC, Segment::easing,
+			ByteBufCodecs.FLOAT, Segment::from,
+			ByteBufCodecs.FLOAT, Segment::to,
+			ByteBufCodecs.FLOAT, Segment::size,
+			Segment::new
+		);
 	}
+
+	public static final Codec<SmoothSegmentedValue> CODEC = Segment.CODEC.listOf().xmap(
+		SmoothSegmentedValue::new,
+		SmoothSegmentedValue::segments
+	);
+
+	public static final StreamCodec<ByteBuf, SmoothSegmentedValue> STREAM_CODEC = Segment.STREAM_CODEC.apply(ByteBufCodecs.list()).map(
+		SmoothSegmentedValue::new,
+		SmoothSegmentedValue::segments
+	);
 }

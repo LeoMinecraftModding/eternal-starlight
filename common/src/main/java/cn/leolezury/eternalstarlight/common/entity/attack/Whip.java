@@ -17,6 +17,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -34,7 +35,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class Whip extends Entity {
+public abstract class Whip extends Entity implements TraceableEntity {
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
 	private static final String TAG_OWNER = "owner";
 	private static final String TAG_WEAPON = "weapon";

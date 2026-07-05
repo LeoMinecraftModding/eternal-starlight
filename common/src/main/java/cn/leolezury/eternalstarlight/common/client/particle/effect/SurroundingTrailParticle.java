@@ -1,0 +1,105 @@
+package cn.leolezury.eternalstarlight.common.client.particle.effect;
+
+import cn.leolezury.eternalstarlight.common.client.ESRenderType;
+import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
+import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
+import cn.leolezury.eternalstarlight.common.particle.SurroundingTrailParticleOptions;
+import cn.leolezury.eternalstarlight.common.util.Color;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Camera;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
+
+public class SurroundingTrailParticle extends TextureSheetParticle {
+	private final TrailEffect effect = new TrailEffect(0.125f, 4);
+	private final int fromColor, toColor;
+	private final float radius, rotSpeed;
+	private final Entity owner;
+	private double cx, cy, cz;
+	private float yaw;
+
+	protected SurroundingTrailParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, int lifetime, int owner, int fromColor, int toColor, float radius, float rotSpeed, float alpha, SpriteSet spriteSet) {
+		super(level, x, y, z);
+		this.lifetime = lifetime;
+		this.xd = xSpeed;
+		this.yd = ySpeed;
+		this.zd = zSpeed;
+		this.fromColor = fromColor;
+		this.toColor = toColor;
+		this.radius = radius;
+		this.rotSpeed = rotSpeed;
+		this.alpha = alpha;
+		this.cx = x;
+		this.cy = y;
+		this.cz = z;
+		this.owner = level.getEntity(owner);
+		this.pickSprite(spriteSet);
+	}
+
+	@Override
+	public void tick() {
+		this.xo = this.x;
+		this.yo = this.y;
+		this.zo = this.z;
+		this.cx += xd;
+		this.cy += yd;
+		this.cz += zd;
+		if (this.owner != null) {
+			this.cx = owner.getX();
+			this.cz = owner.getZ();
+		}
+		this.yaw += rotSpeed;
+		this.yaw = Mth.wrapDegrees(yaw);
+		Vec3 pos = ESMathUtil.rotationToPosition(new Vec3(cx, cy, cz), radius, 0, yaw);
+		this.x = pos.x();
+		this.y = pos.y();
+		this.z = pos.z();
+		if (this.age > 0) {
+			this.effect.update(new Vec3(xo, yo, zo));
+		}
+		if (this.age++ >= this.lifetime) {
+			this.remove();
+		}
+	}
+
+	@Override
+	public void render(VertexConsumer consumer, Camera camera, float partialTicks) {
+		float progress = Math.min(age + partialTicks, lifetime) / lifetime;
+		Color color = Color.rgbi((int) Mth.lerp(progress, Color.rgb(fromColor).r(), Color.rgb(toColor).r()), (int) Mth.lerp(progress, Color.rgb(fromColor).g(), Color.rgb(toColor).g()), (int) Mth.lerp(progress, Color.rgb(fromColor).b(), Color.rgb(toColor).b()));
+		float a = Mth.lerp((float) (Math.abs(progress - 0.5) * 2), alpha, 0);
+		PoseStack stack = new PoseStack();
+		float x = (float) Mth.lerp(partialTicks, this.xo, this.x);
+		float y = (float) Mth.lerp(partialTicks, this.yo, this.y);
+		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
+		stack.pushPose();
+		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
+		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
+		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, false, true, color.rf(), color.gf(), color.bf(), a * 5, getU0(), getU1(), getV0(), getV1(), LightTexture.FULL_BRIGHT);
+		stack.popPose();
+	}
+
+	@Override
+	public ParticleRenderType getRenderType() {
+		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+	}
+
+	public static class Provider implements ParticleProvider<SurroundingTrailParticleOptions> {
+		private final SpriteSet sprites;
+
+		public Provider(SpriteSet spriteSet) {
+			this.sprites = spriteSet;
+		}
+
+		@Override
+		public Particle createParticle(SurroundingTrailParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+			return new SurroundingTrailParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.lifetime(), options.owner(), Color.rgbd(options.fromColor().x, options.fromColor().y, options.fromColor().z).rgb(), Color.rgbd(options.toColor().x, options.toColor().y, options.toColor().z).rgb(), options.radius(), options.rotSpeed(), options.alpha(), sprites);
+		}
+	}
+}

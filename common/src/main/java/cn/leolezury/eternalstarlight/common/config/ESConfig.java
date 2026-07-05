@@ -26,7 +26,7 @@ public class ESConfig {
 	public boolean spawnInEternalStarlight = false;
 	public boolean respawnInEternalStarlight = false;
 	public boolean startWithGuidebook = false;
-	public float aethersentMeteorDropRate = 0.0005f;
+	public float aethersentMeteorDropRate = 0.0001f;
 	public boolean aethersentMeteorReplaceBlocks = false;
 	public int mobMaxTearyTicks = 200;
 	public MobsConfig mobsConfig = new MobsConfig();

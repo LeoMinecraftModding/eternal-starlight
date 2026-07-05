@@ -43,7 +43,7 @@ public abstract class ItemEntityMixin {
 	public void tick(CallbackInfo ci) {
 		ItemEntity itemEntity = ((ItemEntity) (Object) this);
 		// max age is 6000
-		if (age < 3000 && getItem().get(DataComponents.FOOD) != null && (itemEntity.level().getBlockState(itemEntity.blockPosition()).is(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS) || itemEntity.level().getBlockState(itemEntity.blockPosition().below()).is(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS))) {
+		if (age < 3000 && getItem().get(DataComponents.FOOD) != null && (itemEntity.level().getBlockState(itemEntity.blockPosition()).is(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS) || itemEntity.level().getBlockState(itemEntity.getOnPos()).is(ESTags.Blocks.TOOTH_OF_HUNGER_BLOCKS))) {
 			age = 3000;
 		}
 	}

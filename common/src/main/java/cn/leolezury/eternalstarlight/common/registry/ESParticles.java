@@ -12,6 +12,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 
+// RippleParticleOptions is used via the particle registry factory
+
 public class ESParticles {
 	public static final RegistrationProvider<ParticleType<?>> PARTICLE_TYPES = RegistrationProvider.get(Registries.PARTICLE_TYPE, EternalStarlight.ID);
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> STARLIGHT = PARTICLE_TYPES.register("starlight", () -> new SimpleParticleType(false));
@@ -83,15 +85,15 @@ public class ESParticles {
 			return RingParticleOptions.STREAM_CODEC;
 		}
 	});
-	public static final RegistryObject<ParticleType<?>, ParticleType<OrbitalTrailParticleOptions>> ORBITAL_TRAIL = PARTICLE_TYPES.register("orbital_trail", () -> new ParticleType<>(false) {
+	public static final RegistryObject<ParticleType<?>, ParticleType<SurroundingTrailParticleOptions>> SURROUNDING_TRAIL = PARTICLE_TYPES.register("surrounding_trail", () -> new ParticleType<>(false) {
 		@Override
-		public MapCodec<OrbitalTrailParticleOptions> codec() {
-			return OrbitalTrailParticleOptions.CODEC;
+		public MapCodec<SurroundingTrailParticleOptions> codec() {
+			return SurroundingTrailParticleOptions.CODEC;
 		}
 
 		@Override
-		public StreamCodec<? super RegistryFriendlyByteBuf, OrbitalTrailParticleOptions> streamCodec() {
-			return OrbitalTrailParticleOptions.STREAM_CODEC;
+		public StreamCodec<? super RegistryFriendlyByteBuf, SurroundingTrailParticleOptions> streamCodec() {
+			return SurroundingTrailParticleOptions.STREAM_CODEC;
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> METEOR = PARTICLE_TYPES.register("meteor", () -> new SimpleParticleType(false));
@@ -127,6 +129,17 @@ public class ESParticles {
 		@Override
 		public StreamCodec<? super RegistryFriendlyByteBuf, GatheringTrailParticleOptions> streamCodec() {
 			return GatheringTrailParticleOptions.streamCodec(ESParticles.GATHERING_FLARE.get());
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<OrbitalTrailParticleOptions>> ORBITAL_FLARE = PARTICLE_TYPES.register("orbital_flare", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<OrbitalTrailParticleOptions> codec() {
+			return OrbitalTrailParticleOptions.codec(ESParticles.ORBITAL_FLARE.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, OrbitalTrailParticleOptions> streamCodec() {
+			return OrbitalTrailParticleOptions.streamCodec(ESParticles.ORBITAL_FLARE.get());
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, ParticleType<ESGlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
@@ -221,6 +234,17 @@ public class ESParticles {
 		@Override
 		public StreamCodec<? super RegistryFriendlyByteBuf, GeyserParticleOptions> streamCodec() {
 			return GeyserParticleOptions.streamCodec(ESParticles.GEYSER_PLUME.get());
+		}
+	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<RippleParticleOptions>> RIPPLE = PARTICLE_TYPES.register("ripple", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<RippleParticleOptions> codec() {
+			return RippleParticleOptions.codec(ESParticles.RIPPLE.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, RippleParticleOptions> streamCodec() {
+			return RippleParticleOptions.streamCodec(ESParticles.RIPPLE.get());
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ADVANCED_GLOW = PARTICLE_TYPES.register("advanced_glow", () -> new SimpleParticleType(false));

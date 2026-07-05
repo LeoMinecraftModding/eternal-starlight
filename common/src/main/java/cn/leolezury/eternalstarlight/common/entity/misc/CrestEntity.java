@@ -185,7 +185,7 @@ public class CrestEntity extends Entity implements TrailOwner {
 	@Override
 	public void updateTrail(TrailEffect effect) {
 		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(oldPos.add(0, getBbHeight() / 2, 0));
+		effect.update(getTrailPosition(oldPos));
 		if (isRemoved()) {
 			effect.setLength(Math.max(effect.getLength() - 1.5f, 0));
 		}

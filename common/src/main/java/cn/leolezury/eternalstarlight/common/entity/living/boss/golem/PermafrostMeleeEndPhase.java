@@ -43,11 +43,11 @@ public class PermafrostMeleeEndPhase extends BehaviorPhase<Permafrost> {
 				BlockHitResult toGround = level.clip(new ClipContext(entity.position().add(0, entity.getBbHeight(), 0), entity.position().subtract(0, 0.5, 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
 				if (toGround.getType() != HitResult.Type.MISS && level instanceof ServerLevel serverLevel) {
 					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(RingExplosionParticleOptions.ENERGY, entity.getX(), entity.getY(), entity.getZ(), 0, 0.1, 0));
-					serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, serverLevel.getBlockState(entity.blockPosition().below())), entity.getX(), entity.getY(), entity.getZ(), 150, 0.5, 0.5, 0.5, 0.15);
+					serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, serverLevel.getBlockState(entity.getOnPos())), entity.getX(), entity.getY(), entity.getZ(), 150, 0.5, 0.5, 0.5, 0.15);
 					ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 20, 0.2f, 0.3f, 3, 5.5f).send(serverLevel);
 				}
 			}
-			performDefaultMeleeAttack(entity, entity.getBehaviorTicks() == 3 ? 4.5 : 1.5, true, 360, e -> {
+			performDefaultMeleeAttack(entity, entity.getBehaviorTicks() == 3 ? 4.5 : 1.5, true, 180, e -> {
 				e.hurtMarked = true;
 				e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(1.25, 0.5, 1.25));
 			});

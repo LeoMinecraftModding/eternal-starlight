@@ -85,10 +85,11 @@ public abstract class LaserBeamRenderer<T extends RayAttack> extends EntityRende
 		VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(laserBeam)));
 
 		Vec3 bodyEndDiff = diff.normalize().scale(diff.length() - getEndLength());
+
 		consumer.addVertex(pose, sideOffset.toVector3f()).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
 		consumer.addVertex(pose, sideOffset.scale(-1).toVector3f()).setColor(-1).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		consumer.addVertex(pose, bodyEndDiff.add(sideOffset.scale(-1)).toVector3f()).setColor(-1).setUv(0.1f / getTextureWidth(), 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		consumer.addVertex(pose, bodyEndDiff.add(sideOffset).toVector3f()).setColor(-1).setUv(0.1f / getTextureWidth(), 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, bodyEndDiff.add(sideOffset.scale(-1)).toVector3f()).setColor(-1).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, bodyEndDiff.add(sideOffset).toVector3f()).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
 
 		consumer.addVertex(pose, bodyEndDiff.add(sideOffset).toVector3f()).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
 		consumer.addVertex(pose, bodyEndDiff.add(sideOffset.scale(-1)).toVector3f()).setColor(-1).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);

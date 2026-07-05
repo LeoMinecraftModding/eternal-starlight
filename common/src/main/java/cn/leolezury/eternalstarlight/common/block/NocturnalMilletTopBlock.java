@@ -101,7 +101,7 @@ public class NocturnalMilletTopBlock extends Block implements BonemealableBlock 
 						}
 					}
 
-					level.setBlock(pos, state.setValue(AGE, random.nextInt(4 - absorption) == 0 ? 2 : age).setValue(FORGOTTEN, true), Block.UPDATE_CLIENTS);
+					level.setBlock(pos, state.setValue(AGE, random.nextInt(Math.max(4 - absorption, 1)) == 0 ? 2 : age).setValue(FORGOTTEN, true), Block.UPDATE_CLIENTS);
 				}
 			} else {
 				if (age < 1) {

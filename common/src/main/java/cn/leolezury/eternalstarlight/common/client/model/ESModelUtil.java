@@ -2,13 +2,17 @@ package cn.leolezury.eternalstarlight.common.client.model;
 
 import cn.leolezury.eternalstarlight.common.util.ModelPartPose;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
@@ -16,6 +20,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
+import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import java.util.HashMap;
@@ -146,5 +151,34 @@ public class ESModelUtil {
 				part.zScale = pose.zScale();
 				part.visible = pose.visible();
 			}));
+	}
+
+	public static void renderOutlineModelPart(ModelPart part, PoseStack poseStack, VertexConsumer vertexConsumer, float expansion, float red, float green, float blue, float alpha) {
+		poseStack.pushPose();
+		part.translateAndRotate(poseStack);
+		for (ModelPart.Cube cube : (List<ModelPart.Cube>) part.cubes) {
+			for (ModelPart.Polygon polygon : cube.polygons) {
+				Vector3f normal = polygon.normal;
+				ModelPart.Vertex[] vertices = polygon.vertices;
+				if (vertices.length != 4) continue;
+				int color = FastColor.ARGB32.color((int) (alpha * 255), (int) (red * 255), (int) (green * 255), (int) (blue * 255));
+				for (int i = 0; i < 4; i++) {
+					ModelPart.Vertex v = vertices[i];
+					float ox = v.pos.x() / 16f + normal.x() * expansion;
+					float oy = v.pos.y() / 16f + normal.y() * expansion;
+					float oz = v.pos.z() / 16f + normal.z() * expansion;
+					vertexConsumer.addVertex(poseStack.last(), ox, oy, oz)
+						.setColor(color)
+						.setUv(v.u, v.v)
+						.setOverlay(OverlayTexture.NO_OVERLAY)
+						.setLight(LightTexture.FULL_BRIGHT)
+						.setNormal(poseStack.last(), normal.x(), normal.y(), normal.z());
+				}
+			}
+		}
+		for (ModelPart child : part.children.values()) {
+			renderOutlineModelPart(child, poseStack, vertexConsumer, expansion, red, green, blue, alpha);
+		}
+		poseStack.popPose();
 	}
 }

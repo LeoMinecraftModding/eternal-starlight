@@ -46,7 +46,7 @@ public abstract class EntityRenderDispatcherMixin {
 	private Quaternionf cameraOrientation;
 
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/EntityRenderer;render(Lnet/minecraft/world/entity/Entity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"))
-	private <E extends Entity> void render(E entity, double xOffset, double yOffset, double zOffset, float delta, float yRot, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, CallbackInfo ci) {
+	private <E extends Entity> void render(E entity, double x, double y, double z, float rotationYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
 		if (entity instanceof LivingEntity living && !living.isDeadOrDying()) {
 			AttributeInstance instance = living.getAttribute(Attributes.ARMOR);
 			if (instance != null && instance.hasModifier(CrystalInfectionEffect.ARMOR_MODIFIER_ID)) {
@@ -73,7 +73,7 @@ public abstract class EntityRenderDispatcherMixin {
 					poseStack.mulPose(new Quaternionf().rotationX(-pitch * Mth.DEG_TO_RAD));
 					poseStack.scale(living.getBbWidth() / 2f, living.getBbWidth() / 2f, living.getBbWidth() / 2f);
 					poseStack.translate(-0.5F, -0.5F, -0.5F);
-					ESClientPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, multiBufferSource, living.level(), random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
+					ESClientPlatform.INSTANCE.renderBlock(Minecraft.getInstance().getBlockRenderer(), poseStack, buffer, living.level(), random.nextBoolean() ? ESBlocks.RED_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState() : ESBlocks.BLUE_STARLIGHT_CRYSTAL_CLUSTER.get().defaultBlockState(), living.blockPosition(), seed);
 					poseStack.popPose();
 				}
 			}

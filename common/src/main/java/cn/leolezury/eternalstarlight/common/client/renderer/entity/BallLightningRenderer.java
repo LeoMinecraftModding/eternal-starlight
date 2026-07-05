@@ -35,8 +35,6 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 	@Override
 	public void render(BallLightning entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
 		poseStack.pushPose();
-		float yRot = -Mth.rotLerp(partialTicks, entity.yRotO, entity.getYRot());
-		float xRot = Mth.lerp(partialTicks, entity.xRotO, entity.getXRot()) - 90f;
 		float bob = entity.tickCount + partialTicks;
 
 		poseStack.translate(0.0F, entity.getBbHeight() / 2, 0.0F);
@@ -44,7 +42,7 @@ public class BallLightningRenderer extends EntityRenderer<BallLightning> {
 		poseStack.translate(0.0F, -1.5F, 0.0F);
 
 		this.model.prepareMobModel(entity, 0, 0, partialTicks);
-		this.model.setupAnim(entity, 0, 0, bob, yRot, xRot);
+		this.model.setupAnim(entity, 0, 0, bob, 0, 0);
 		this.model.renderToBuffer(poseStack, bufferSource.getBuffer(model.renderType(getTextureLocation(entity))), LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 		poseStack.popPose();
 

@@ -1,5 +1,14 @@
 package cn.leolezury.eternalstarlight.common.util;
 
+import com.mojang.serialization.Codec;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
+
 @FunctionalInterface
 public interface Easing {
 	float calculate(float f);
@@ -8,111 +17,141 @@ public interface Easing {
 		return from + calculate(f) * (to - from);
 	}
 
-	Easing IN_SINE
-		= x -> (float) (1 - Math.cos((x * Math.PI) / 2));
+	Map<String, Easing> EASINGS = new LinkedHashMap<>();
 
-	Easing OUT_SINE
-		= x -> (float) (Math.sin((x * Math.PI) / 2));
+	static void register(String name, Easing easing) {
+		EASINGS.put(name, easing);
+	}
 
-	Easing IN_OUT_SINE
-		= x -> (float) (-(Math.cos(Math.PI * x) - 1) / 2);
+	static Optional<Easing> byName(String name) {
+		return Optional.ofNullable(EASINGS.get(name));
+	}
 
-	Easing IN_QUAD
-		= x -> x * x;
+	Codec<Easing> CODEC = Codec.STRING.xmap(
+		name -> EASINGS.getOrDefault(name, v -> v),
+		easing -> EASINGS.entrySet().stream()
+			.filter(e -> e.getValue() == easing)
+			.map(Map.Entry::getKey)
+			.findFirst()
+			.orElse("identity")
+	);
 
-	Easing OUT_QUAD
-		= x -> 1 - (1 - x) * (1 - x);
+	StreamCodec<ByteBuf, Easing> STREAM_CODEC = ByteBufCodecs.STRING_UTF8.map(
+		name -> EASINGS.getOrDefault(name, v -> v),
+		easing -> EASINGS.entrySet().stream()
+			.filter(e -> e.getValue() == easing)
+			.map(Map.Entry::getKey)
+			.findFirst()
+			.orElse("identity")
+	);
 
-	Easing IN_OUT_QUAD
-		= x -> (float) (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
+	Easing IDENTITY = registerEasing("identity", v -> v);
 
-	Easing IN_CUBIC
-		= x -> x * x * x;
+	Easing IN_SINE = registerEasing("in_sine",
+		x -> (float) (1 - Math.cos((x * Math.PI) / 2)));
 
-	Easing OUT_CUBIC
-		= x -> (float) (1 - Math.pow(1 - x, 3));
+	Easing OUT_SINE = registerEasing("out_sine",
+		x -> (float) (Math.sin((x * Math.PI) / 2)));
 
-	Easing IN_OUT_CUBIC
-		= x -> (float) (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+	Easing IN_OUT_SINE = registerEasing("in_out_sine",
+		x -> (float) (-(Math.cos(Math.PI * x) - 1) / 2));
 
-	Easing IN_QUART
-		= x -> x * x * x * x;
+	Easing IN_QUAD = registerEasing("in_quad",
+		x -> x * x);
 
-	Easing OUT_QUART
-		= x -> (float) (1 - Math.pow(1 - x, 4));
+	Easing OUT_QUAD = registerEasing("out_quad",
+		x -> 1 - (1 - x) * (1 - x));
 
-	Easing IN_OUT_QUART
-		= x -> (float) (x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2);
+	Easing IN_OUT_QUAD = registerEasing("in_out_quad",
+		x -> (float) (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2));
 
-	Easing IN_QUINT
-		= x -> x * x * x * x * x;
+	Easing IN_CUBIC = registerEasing("in_cubic",
+		x -> x * x * x);
 
-	Easing OUT_QUINT
-		= x -> (float) (1 - Math.pow(1 - x, 5));
+	Easing OUT_CUBIC = registerEasing("out_cubic",
+		x -> (float) (1 - Math.pow(1 - x, 3)));
 
-	Easing IN_OUT_QUINT
-		= x -> (float) (x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2);
+	Easing IN_OUT_CUBIC = registerEasing("in_out_cubic",
+		x -> (float) (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2));
 
-	Easing IN_EXPO
-		= x -> (float) (x == 0 ? 0 : Math.pow(2, 10 * x - 10));
+	Easing IN_QUART = registerEasing("in_quart",
+		x -> x * x * x * x);
 
-	Easing OUT_EXPO
-		= x -> (float) (x == 1 ? 1 : 1 - Math.pow(2, -10 * x));
+	Easing OUT_QUART = registerEasing("out_quart",
+		x -> (float) (1 - Math.pow(1 - x, 4)));
 
-	Easing IN_OUT_EXPO
-		= x -> (float) (x == 0
+	Easing IN_OUT_QUART = registerEasing("in_out_quart",
+		x -> (float) (x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2));
+
+	Easing IN_QUINT = registerEasing("in_quint",
+		x -> x * x * x * x * x);
+
+	Easing OUT_QUINT = registerEasing("out_quint",
+		x -> (float) (1 - Math.pow(1 - x, 5)));
+
+	Easing IN_OUT_QUINT = registerEasing("in_out_quint",
+		x -> (float) (x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2));
+
+	Easing IN_EXPO = registerEasing("in_expo",
+		x -> (float) (x == 0 ? 0 : Math.pow(2, 10 * x - 10)));
+
+	Easing OUT_EXPO = registerEasing("out_expo",
+		x -> (float) (x == 1 ? 1 : 1 - Math.pow(2, -10 * x)));
+
+	Easing IN_OUT_EXPO = registerEasing("in_out_expo",
+		x -> (float) (x == 0
 		? 0
 		: x == 1
 		? 1
 		: x < 0.5 ? Math.pow(2, 20 * x - 10) / 2
-		: (2 - Math.pow(2, -20 * x + 10)) / 2);
+		  : (2 - Math.pow(2, -20 * x + 10)) / 2));
 
-	Easing IN_CIRC
-		= x -> (float) (1 - Math.sqrt(1 - Math.pow(x, 2)));
+	Easing IN_CIRC = registerEasing("in_circ",
+		x -> (float) (1 - Math.sqrt(1 - Math.pow(x, 2))));
 
-	Easing OUT_CIRC
-		= x -> (float) (Math.sqrt(1 - Math.pow(x - 1, 2)));
+	Easing OUT_CIRC = registerEasing("out_circ",
+		x -> (float) (Math.sqrt(1 - Math.pow(x - 1, 2))));
 
-	Easing IN_OUT_CIRC
-		= x -> (float) (x < 0.5
+	Easing IN_OUT_CIRC = registerEasing("in_out_circ",
+		x -> (float) (x < 0.5
 		? (1 - Math.sqrt(1 - Math.pow(2 * x, 2))) / 2
-		: (Math.sqrt(1 - Math.pow(-2 * x + 2, 2)) + 1) / 2);
+			: (Math.sqrt(1 - Math.pow(-2 * x + 2, 2)) + 1) / 2));
 
-	Easing IN_BACK
-		= x -> {
+	Easing IN_BACK = registerEasing("in_back",
+		x -> {
 		float c1 = 1.70158f;
 		float c3 = c1 + 1;
 		return c3 * x * x * x - c1 * x * x;
-	};
+		});
 
-	Easing OUT_BACK
-		= x -> {
+	Easing OUT_BACK = registerEasing("out_back",
+		x -> {
 		float c1 = 1.70158f;
 		float c3 = c1 + 1;
 		return (float) (1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2));
-	};
+		});
 
-	Easing IN_OUT_BACK
-		= x -> {
+	Easing IN_OUT_BACK = registerEasing("in_out_back",
+		x -> {
 		float c1 = 1.70158f;
 		float c2 = c1 * 1.525f;
 		return (float) (x < 0.5
 			? (Math.pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2
 			: (Math.pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2);
-	};
+		});
 
-	Easing IN_ELASTIC
-		= x -> {
+	Easing IN_ELASTIC = registerEasing("in_elastic",
+		x -> {
 		float c4 = (float) ((2f * Math.PI) / 3f);
 		return x == 0
 			? 0
 			: (float) (x == 1
 			? 1
 			: -Math.pow(2, 10 * x - 10) * Math.sin((x * 10 - 10.75) * c4));
-	};
+		});
 
-	Easing OUT_ELASTIC
-		= x -> {
+	Easing OUT_ELASTIC = registerEasing("out_elastic",
+		x -> {
 		float c4 = (float) ((2 * Math.PI) / 3);
 
 		return x == 0
@@ -120,10 +159,10 @@ public interface Easing {
 			: (float) (x == 1
 			? 1
 			: Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1);
-	};
+		});
 
-	Easing IN_OUT_ELASTIC
-		= x -> {
+	Easing IN_OUT_ELASTIC = registerEasing("in_out_elastic",
+		x -> {
 		float c5 = (float) ((2 * Math.PI) / 4.5);
 		double v = Math.sin((20 * x - 11.125) * c5);
 		return x == 0
@@ -133,10 +172,10 @@ public interface Easing {
 			: x < 0.5
 			? -(Math.pow(2, 20 * x - 10) * v) / 2
 			: (Math.pow(2, -20 * x + 10) * v) / 2 + 1);
-	};
+		});
 
-	Easing OUT_BOUNCE
-		= x -> {
+	Easing OUT_BOUNCE = registerEasing("out_bounce",
+		x -> {
 		float n1 = 7.5625f;
 		float d1 = 2.75f;
 
@@ -149,13 +188,18 @@ public interface Easing {
 		} else {
 			return n1 * (x -= (float) (2.625 / d1)) * x + 0.984375f;
 		}
-	};
+		});
 
-	Easing IN_BOUNCE
-		= x -> 1 - OUT_BOUNCE.calculate(1 - x);
+	Easing IN_BOUNCE = registerEasing("in_bounce",
+		x -> 1 - OUT_BOUNCE.calculate(1 - x));
 
-	Easing IN_OUT_BOUNCE
-		= x -> x < 0.5
+	Easing IN_OUT_BOUNCE = registerEasing("in_out_bounce",
+		x -> x < 0.5
 		? (1 - OUT_BOUNCE.calculate(1 - 2 * x)) / 2
-		: (1 + OUT_BOUNCE.calculate(2 * x - 1)) / 2;
+			: (1 + OUT_BOUNCE.calculate(2 * x - 1)) / 2);
+
+	private static Easing registerEasing(String name, Easing easing) {
+		register(name, easing);
+		return easing;
+	}
 }

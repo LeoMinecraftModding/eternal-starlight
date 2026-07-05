@@ -43,6 +43,35 @@ public class ESMathUtil {
 		return startPos.add(rotationToPosition(radius, pitch, yaw));
 	}
 
+	public static Vec3 rotateAroundAxis(Vec3 center, Vec3 axis, float rotation, float radius) {
+		return center.add(rotateAroundAxis(axis, rotation, radius));
+	}
+
+	public static Vec3 rotateAroundAxisRad(Vec3 center, Vec3 axis, float rotation, float radius) {
+		return center.add(rotateAroundAxisRad(axis, rotation, radius));
+	}
+
+	public static Vec3 rotateAroundAxis(Vec3 axis, float rotation, float radius) {
+		return rotateAroundAxisRad(axis, rotation * Mth.DEG_TO_RAD, radius);
+	}
+
+	public static Vec3 rotateAroundAxisRad(Vec3 axis, float rotation, float radius) {
+		Vec3 normAxis = axis.normalize();
+
+		Vec3 u;
+		if (Math.abs(normAxis.x) < 0.99) {
+			u = normAxis.cross(new Vec3(1, 0, 0)).normalize();
+		} else {
+			u = normAxis.cross(new Vec3(0, 1, 0)).normalize();
+		}
+		Vec3 v = normAxis.cross(u).normalize();
+
+		double cos = Math.cos(rotation);
+		double sin = Math.sin(rotation);
+
+		return u.scale(radius * cos).add(v.scale(radius * sin));
+	}
+
 	public static Vec3 lerpVec(float progress, Vec3 from, Vec3 to) {
 		return new Vec3(Mth.lerp(progress, from.x, to.x), Mth.lerp(progress, from.y, to.y), Mth.lerp(progress, from.z, to.z));
 	}

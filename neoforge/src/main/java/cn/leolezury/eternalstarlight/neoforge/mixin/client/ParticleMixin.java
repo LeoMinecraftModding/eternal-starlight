@@ -16,7 +16,7 @@ public abstract class ParticleMixin {
 			|| particle instanceof ExplosionShockParticle
 			|| particle instanceof GatheringTrailParticle
 			|| particle instanceof LunarSlashParticle
-			|| particle instanceof OrbitalTrailParticle
+			|| particle instanceof SurroundingTrailParticle
 			|| particle instanceof RingExplosionParticle
 			|| particle instanceof RingParticle
 			|| particle instanceof TrailParticle) {

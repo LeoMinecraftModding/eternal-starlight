@@ -13,9 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
-	private final List<Entity> hitEntities = new ArrayList<>();
-
 	public static final int ID = 7;
+	private final List<Entity> hitEntities = new ArrayList<>();
 
 	public GatekeeperDashPhase() {
 		super(ID, 2, 40, 150);
@@ -43,7 +42,7 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 				entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(3));
 			}
 			if (entity.getBehaviorTicks() >= 16 && entity.getBehaviorTicks() <= 35) {
-				performMeleeAttack(entity, 1.5, true, 360, e -> {
+				performMeleeAttack(entity, 1.5, true, 180, e -> {
 					if (!hitEntities.contains(e) && entity.doHurtTarget(e)) {
 						e.hurtMarked = true;
 						e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(0.2, 0.1, 0.2));

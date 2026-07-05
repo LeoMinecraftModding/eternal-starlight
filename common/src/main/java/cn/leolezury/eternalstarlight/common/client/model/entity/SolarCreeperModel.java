@@ -26,7 +26,7 @@ public class SolarCreeperModel<T extends SolarCreeper> extends AnimatedEntityMod
 
 	public SolarCreeperModel(ModelPart root) {
 		this.root = root.getChild("root");
-		this.head = this.root.getChild("head");
+		this.head = this.root.getChild("body").getChild("head");
 		this.allPartNames = Stream.concat(Stream.of("root"), ESModelUtil.getAllPartNames(this.root)).toList();
 	}
 
@@ -34,9 +34,11 @@ public class SolarCreeperModel<T extends SolarCreeper> extends AnimatedEntityMod
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create().texOffs(0, 44).addBox(-8.0F, -22.0F, -8.0F, 16.0F, 8.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-14.0F, -22.0F, -11.0F, 28.0F, 22.0F, 22.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -22.0F, 0.0F));
+		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 44).addBox(-8.0F, -22.0F, -8.0F, 16.0F, 8.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+		body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-14.0F, -22.0F, -11.0F, 28.0F, 22.0F, 22.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -22.0F, 0.0F));
 
 		root.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(0, 68).addBox(-5.0F, -1.0F, -5.0F, 10.0F, 14.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, -13.0F, -7.0F));
 

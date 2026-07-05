@@ -59,6 +59,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.entity.*;
@@ -485,6 +486,10 @@ public class ESClientSetupHandler {
 		TrailVisualEffect.registerTrailRenderType(ESEntities.GATEKEEPER_FIREBALL.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 		TrailVisualEffect.registerTrailRenderType(ESEntities.ENERGY_SPARK.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 		TrailVisualEffect.registerTrailRenderType(ESEntities.BALL_LIGHTNING.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.SOLAR_CREEPER.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.SOLAR_BOUNCING_PROJECTILE.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.SOLAR_STAR_PROJECTILE.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.PLANET_PROJECTILE.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/planet_trail.png")));
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
@@ -844,12 +849,13 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.SMOKE.get(), ESSmokeParticle.Provider::new);
 		strategy.register(ESParticles.RING_EXPLOSION.get(), RingExplosionParticle.Provider::new);
 		strategy.register(ESParticles.RING.get(), RingParticle.Provider::new);
-		strategy.register(ESParticles.ORBITAL_TRAIL.get(), OrbitalTrailParticle.Provider::new);
+		strategy.register(ESParticles.SURROUNDING_TRAIL.get(), SurroundingTrailParticle.Provider::new);
 		strategy.register(ESParticles.METEOR.get(), MeteorParticle.Provider::new);
 		strategy.register(ESParticles.PARRY.get(), TrailParticle.Provider::new);
 		strategy.register(ESParticles.GATHERING_ENERGY.get(), GatheringTrailParticle.Provider::new);
 		strategy.register(ESParticles.GATHERING_SOUL.get(), GatheringTrailParticle.Provider::new);
 		strategy.register(ESParticles.GATHERING_FLARE.get(), GatheringTrailParticle.Provider::new);
+		strategy.register(ESParticles.ORBITAL_FLARE.get(), OrbitalTrailParticle.Provider::new);
 		strategy.register(ESParticles.GLOW.get(), ESGlowParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_SMOKE.get(), AethersentSmokeParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);
@@ -899,6 +905,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.GEYSER_BASE.get(), GeyserBaseParticle.Provider::new);
 		strategy.register(ESParticles.GEYSER_POOF.get(), GeyserBaseParticle.Provider::new);
 		strategy.register(ESParticles.GEYSER_PLUME.get(), GeyserPlumeParticle.Provider::new);
+		strategy.register(ESParticles.RIPPLE.get(), RippleParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
 		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}
@@ -957,6 +964,10 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.TANGLED.get(), TangledRenderer::new);
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkullRenderer::new);
 		strategy.register(ESEntities.SOLAR_CREEPER.get(), SolarCreeperRenderer::new);
+		strategy.register(ESEntities.SOLAR_BOUNCING_PROJECTILE.get(), SolarBouncingProjectileRenderer::new);
+		strategy.register(ESEntities.SOLAR_STAR_PROJECTILE.get(), SolarStarProjectileRenderer::new);
+		strategy.register(ESEntities.SOLAR_STRIKE.get(), SolarStrikeRenderer::new);
+		strategy.register(ESEntities.PLANET_PROJECTILE.get(), PlanetProjectileRenderer::new);
 		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHuskRenderer::new);
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
 		strategy.register(ESEntities.MALARITE_SPEAR.get(), ThrownMalariteSpearRenderer::new);

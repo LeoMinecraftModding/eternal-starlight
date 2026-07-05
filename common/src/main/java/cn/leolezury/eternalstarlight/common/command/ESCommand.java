@@ -11,6 +11,7 @@ public class ESCommand {
 		commandDispatcher.register(
 			LiteralArgumentBuilder.<CommandSourceStack>literal(EternalStarlight.ID)
 				.then(ESWeatherCommand.register(commandBuildContext))
+				.then(ESBehaviorCommand.register())
 				.then(ESCrestCommand.register(commandBuildContext)));
 	}
 }

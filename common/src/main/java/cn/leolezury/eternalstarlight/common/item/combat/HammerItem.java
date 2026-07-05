@@ -59,7 +59,7 @@ public class HammerItem extends TieredItem {
 		level.playSound(null, target.blockPosition(), smashSound.value(), player.getSoundSource());
 		if (target.onGround() && level instanceof ServerLevel serverLevel) {
 			for (int i = 0; i < 360; i += 10) {
-				Vec3 vec3 = ESMathUtil.rotationToPosition(target.blockPosition().below().getCenter().add(0, -0.1, 0), 1.75f, 0, i);
+				Vec3 vec3 = ESMathUtil.rotationToPosition(target.getOnPos().getCenter().add(0, -0.1, 0), 1.75f, 0, i);
 				BlockPos particlePos = new BlockPos((int) vec3.x, (int) vec3.y, (int) vec3.z);
 				for (int j = 0; j < 5; j++) {
 					spawnBlockParticle(serverLevel, particlePos, vec3.add(0, 0.6, 0));

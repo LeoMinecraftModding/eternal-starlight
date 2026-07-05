@@ -10,8 +10,8 @@ public interface TrailOwner {
 
 	void updateTrail(TrailEffect effect);
 
-	default Vec3 getSmoothTrailPosition(Vec3 smoothPos) {
-		return this instanceof Entity entity ? smoothPos.add(0, entity.getBbHeight() / 2, 0) : smoothPos;
+	default Vec3 getTrailPosition(Vec3 pos) {
+		return this instanceof Entity entity ? pos.add(0, entity.getBbHeight() / 2, 0) : pos;
 	}
 
 	Vector4f getTrailColor();

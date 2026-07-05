@@ -16,13 +16,10 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.model.data.ModelData;
 
 @AutoService(ESClientPlatform.class)
 public class ESNeoClientPlatform implements ESClientPlatform {
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public DimensionSpecialEffects getDimEffect() {
 		return new ESNeoDimensionSpecialEffects(160.0F, false, DimensionSpecialEffects.SkyType.NONE, false, false);
@@ -33,7 +30,6 @@ public class ESNeoClientPlatform implements ESClientPlatform {
 		return new NeoGlowingBakedModel(origin);
 	}
 
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void renderBlock(BlockRenderDispatcher dispatcher, PoseStack stack, MultiBufferSource multiBufferSource, Level level, BlockState state, BlockPos pos, long seed) {
 		var model = dispatcher.getBlockModel(state);
