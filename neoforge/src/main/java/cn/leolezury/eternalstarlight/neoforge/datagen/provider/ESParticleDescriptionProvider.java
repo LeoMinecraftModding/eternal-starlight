@@ -40,6 +40,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		sprite(ESParticles.GATHERING_SOUL.get(), loc("soul_trail"));
 		sprite(ESParticles.GATHERING_FLARE.get(), loc("flare_trail"));
 		sprite(ESParticles.ORBITAL_FLARE.get(), loc("flare_trail"));
+		sprite(ESParticles.ORBITAL_SPACE_MATTER.get(), loc("space_matter_trail"));
 		sprite(ESParticles.GLOW.get(), loc("glow"));
 		sprite(ESParticles.AETHERSENT_SMOKE.get(), loc("big_smoke_3"));
 		spriteSet(ESParticles.ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);

@@ -142,6 +142,17 @@ public class ESParticles {
 			return OrbitalTrailParticleOptions.streamCodec(ESParticles.ORBITAL_FLARE.get());
 		}
 	});
+	public static final RegistryObject<ParticleType<?>, ParticleType<OrbitalTrailParticleOptions>> ORBITAL_SPACE_MATTER = PARTICLE_TYPES.register("orbital_space_matter", () -> new ParticleType<>(false) {
+		@Override
+		public MapCodec<OrbitalTrailParticleOptions> codec() {
+			return OrbitalTrailParticleOptions.codec(ESParticles.ORBITAL_SPACE_MATTER.get());
+		}
+
+		@Override
+		public StreamCodec<? super RegistryFriendlyByteBuf, OrbitalTrailParticleOptions> streamCodec() {
+			return OrbitalTrailParticleOptions.streamCodec(ESParticles.ORBITAL_SPACE_MATTER.get());
+		}
+	});
 	public static final RegistryObject<ParticleType<?>, ParticleType<ESGlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
 		@Override
 		public MapCodec<ESGlowParticleOptions> codec() {

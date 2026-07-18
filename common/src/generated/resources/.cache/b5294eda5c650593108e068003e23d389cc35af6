@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-13T15:49:54.8218792	Particle Descriptions
+// 1.21.1	2026-07-19T00:11:18.2436815	Particle Descriptions
 2fa6b966de82cbc7de1510007ab8640a9d8092d4 assets/eternal_starlight/particles/advanced_glow.json
 70487e0406f4fbc40c6a147fb14954dbd60cd7e1 assets/eternal_starlight/particles/aethersent_smoke.json
 f9bd277081e5abf0df0015ffcd1efdc20c3413cd assets/eternal_starlight/particles/allied.json
@@ -32,6 +32,7 @@ a2808a182785a854bbfa9079b2facd17149cf1aa assets/eternal_starlight/particles/geys
 abbbfb6bd6d0c800c178b50cd7cf21a535170a49 assets/eternal_starlight/particles/meteor.json
 b7b26972eb60ddcef9c81292eae108a617f346e9 assets/eternal_starlight/particles/orbital_ashen_snow.json
 574fe3bad65a94f756e6c1fe35b0646527fbe284 assets/eternal_starlight/particles/orbital_flare.json
+b846e6c8dced1e393e036e9ffbfe4848daea2f07 assets/eternal_starlight/particles/orbital_space_matter.json
 8f1d38382b29f3fc2109f6922c3d52349ffc8e83 assets/eternal_starlight/particles/parry.json
 21cdc0ed30720178ebd7bd11d6d92e9063330b1c assets/eternal_starlight/particles/pungency_fruit_smoke.json
 58aff6c09e81b4e3406646bfc889267a76b2d6a6 assets/eternal_starlight/particles/ring.json

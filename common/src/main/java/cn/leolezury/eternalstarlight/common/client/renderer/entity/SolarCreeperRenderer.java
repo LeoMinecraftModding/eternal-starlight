@@ -40,6 +40,7 @@ public class SolarCreeperRenderer<T extends SolarCreeper> extends MobRenderer<T,
 	@Override
 	public void render(T entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 		if (entity.tickCount < 3) return;
+		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
 		int state = entity.getBehaviorState();
 		float animationTicks = entity.getAnimationTicks(partialTicks);
 		float bodyScale = 1, sunScale = 0, blackHoleScale = 0, shineScale = 0, fullDuration = 0;
@@ -87,6 +88,7 @@ public class SolarCreeperRenderer<T extends SolarCreeper> extends MobRenderer<T,
 			super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
 			poseStack.popPose();
 		}
+		if (entity.getBehaviorTicks() < 3) return;
 		if (sunScale > 0) {
 			poseStack.pushPose();
 			if (state == SolarCreeperSolarRayPhase.ID || state == SolarCreeperBlackHolePhase.ID) {
@@ -123,22 +125,35 @@ public class SolarCreeperRenderer<T extends SolarCreeper> extends MobRenderer<T,
 				poseStack.translate(0.0F, entity.getBbHeight() / 2, 0.0F);
 			}
 			poseStack.scale(shineScale, shineScale, shineScale);
-			poseStack.mulPose(new Quaternionf(this.entityRenderDispatcher.cameraOrientation()).rotateY(Mth.PI));
-			PoseStack.Pose pose = poseStack.last();
-			VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.dragonRays());
-			int rays = state == SolarCreeperBlackHolePhase.ID ? 2 : 5;
-			int color = state == SolarCreeperBlackHolePhase.ID ? FastColor.ARGB32.color(255, 139, 38, 19) : FastColor.ARGB32.color(255, 255, 213, 74);
-			for (int i = 0; i < rays; i++) {
-				vertexConsumer.addVertex(pose, 0, 0, 0).setColor(color);
-				float angle = i * Mth.TWO_PI / rays + (state == SolarCreeperBlackHolePhase.ID ? (animationTicks / fullDuration) * Mth.PI * 0.2f - Mth.TWO_PI / 24 : (animationTicks / fullDuration) * Mth.PI * 1.5f);
-				vertexConsumer.addVertex(pose, Mth.sin(angle) * entity.getBbHeight() * 3, Mth.cos(angle) * entity.getBbHeight() * 3, 0).setColor(FastColor.ARGB32.color(0, 255, 213, 74));
-				float largerAngle = angle + Mth.TWO_PI / 12;
-				vertexConsumer.addVertex(pose, Mth.sin(largerAngle) * entity.getBbHeight() * 3, Mth.cos(largerAngle) * entity.getBbHeight() * 3, 0).setColor(FastColor.ARGB32.color(0, 255, 213, 74));
+			if (state == SolarCreeperBlackHolePhase.ID) {
+				poseStack.scale(entity.getBbHeight() * 4, entity.getBbHeight() * 4, entity.getBbHeight() * 4);
+				PoseStack.Pose pose = poseStack.last();
+				VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.dragonRays());
+				Vec3 camPos = camera.getPosition();
+				Vec3 sight = camPos.subtract(sunAbovePos);
+				Vec3 sideOffset = SolarCreeperBlackHolePhase.BLACK_HOLE_RAY_NORMAL.cross(sight).normalize().scale(0.2);
+				vertexConsumer.addVertex(pose, 0, 0, 0).setColor(FastColor.ARGB32.color(255, 139, 38, 19));
+				vertexConsumer.addVertex(pose, SolarCreeperBlackHolePhase.BLACK_HOLE_RAY_NORMAL.add(sideOffset).toVector3f()).setColor(FastColor.ARGB32.color(0, 229, 84, 6));
+				vertexConsumer.addVertex(pose, SolarCreeperBlackHolePhase.BLACK_HOLE_RAY_NORMAL.subtract(sideOffset).toVector3f()).setColor(FastColor.ARGB32.color(0, 229, 84, 6));
+				vertexConsumer.addVertex(pose, 0, 0, 0).setColor(FastColor.ARGB32.color(255, 139, 38, 19));
+				vertexConsumer.addVertex(pose, SolarCreeperBlackHolePhase.BLACK_HOLE_RAY_NORMAL.scale(-1).subtract(sideOffset).toVector3f()).setColor(FastColor.ARGB32.color(0, 229, 84, 6));
+				vertexConsumer.addVertex(pose, SolarCreeperBlackHolePhase.BLACK_HOLE_RAY_NORMAL.scale(-1).add(sideOffset).toVector3f()).setColor(FastColor.ARGB32.color(0, 229, 84, 6));
+			} else {
+				poseStack.mulPose(new Quaternionf(this.entityRenderDispatcher.cameraOrientation()).rotateY(Mth.PI));
+				PoseStack.Pose pose = poseStack.last();
+				VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.dragonRays());
+				int rays = 5;
+				for (int i = 0; i < rays; i++) {
+					vertexConsumer.addVertex(pose, 0, 0, 0).setColor(FastColor.ARGB32.color(255, 255, 213, 74));
+					float angle = i * Mth.TWO_PI / rays + (animationTicks / fullDuration) * Mth.PI * 1.5f;
+					vertexConsumer.addVertex(pose, Mth.sin(angle) * entity.getBbHeight() * 3, Mth.cos(angle) * entity.getBbHeight() * 3, 0).setColor(FastColor.ARGB32.color(0, 255, 213, 74));
+					float largerAngle = angle + Mth.TWO_PI / 12;
+					vertexConsumer.addVertex(pose, Mth.sin(largerAngle) * entity.getBbHeight() * 3, Mth.cos(largerAngle) * entity.getBbHeight() * 3, 0).setColor(FastColor.ARGB32.color(0, 255, 213, 74));
+				}
 			}
 			poseStack.popPose();
 		}
 		if (state == SolarCreeperSolarRayPhase.ID) {
-			Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
 			Vec3 sight = camera.getPosition().subtract(sunAbovePos);
 			Vector3f normalVec = entity.getRenderSolarRayNormal(partialTicks);
 			float angle = entity.getRenderSolarRayAngle(partialTicks);

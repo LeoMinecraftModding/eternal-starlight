@@ -49,6 +49,7 @@ public class ESBehaviorCommand {
 		for (Entity entity : entities) {
 			if (entity instanceof MultiBehaviorUser user && user.getBehaviorState() != state) {
 				user.setBehaviorState(state);
+				user.setBehaviorTicks(0);
 				count++;
 			}
 		}
