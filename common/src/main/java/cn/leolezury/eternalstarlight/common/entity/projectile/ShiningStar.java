@@ -20,10 +20,10 @@ import org.joml.Vector4f;
 
 import java.util.UUID;
 
-public class SolarStarProjectile extends ThrowableProjectile implements TrailOwner {
+public class ShiningStar extends ThrowableProjectile implements TrailOwner {
 	private static final String TAG_TARGET = "target";
 
-	public SolarStarProjectile(EntityType<? extends SolarStarProjectile> entityType, Level level) {
+	public ShiningStar(EntityType<? extends ShiningStar> entityType, Level level) {
 		super(entityType, level);
 		setNoGravity(true);
 	}

@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.creeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.entity.projectile.SolarBouncingProjectile;
+import cn.leolezury.eternalstarlight.common.entity.projectile.BouncyStar;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
@@ -35,7 +35,7 @@ public class SolarCreeperStompShootPhase extends BehaviorPhase<SolarCreeper> {
 			});
 			RippleParticleOptions.addFlareExplosionRippleParticles(serverLevel, entity.getX(), entity.getY(), entity.getZ(), entity.getRandom());
 			for (int i = -1; i <= 1; i++) {
-				SolarBouncingProjectile projectile = new SolarBouncingProjectile(ESEntities.SOLAR_BOUNCING_PROJECTILE.get(), entity.level());
+				BouncyStar projectile = new BouncyStar(ESEntities.BOUNCY_STAR.get(), entity.level());
 				projectile.setPos(entity.position());
 				projectile.setOwner(entity);
 				projectile.setTarget(target);

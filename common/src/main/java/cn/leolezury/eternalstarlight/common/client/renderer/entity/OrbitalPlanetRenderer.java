@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.OrbModel;
-import cn.leolezury.eternalstarlight.common.entity.projectile.PlanetProjectile;
+import cn.leolezury.eternalstarlight.common.entity.projectile.OrbitalPlanet;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-public class PlanetProjectileRenderer extends EntityRenderer<PlanetProjectile> {
+public class OrbitalPlanetRenderer extends EntityRenderer<OrbitalPlanet> {
 	private static final ResourceLocation[] PLANET_TEXTURES = new ResourceLocation[]{
 		EternalStarlight.id("textures/entity/solar_creeper/planet_1.png"),
 		EternalStarlight.id("textures/entity/solar_creeper/planet_2.png"),
@@ -21,15 +21,15 @@ public class PlanetProjectileRenderer extends EntityRenderer<PlanetProjectile> {
 		EternalStarlight.id("textures/entity/solar_creeper/planet_6.png")
 	};
 
-	private final OrbModel<PlanetProjectile> model;
+	private final OrbModel<OrbitalPlanet> model;
 
-	public PlanetProjectileRenderer(EntityRendererProvider.Context context) {
+	public OrbitalPlanetRenderer(EntityRendererProvider.Context context) {
 		super(context);
 		this.model = new OrbModel<>(context.bakeLayer(OrbModel.LAYER_LOCATION));
 	}
 
 	@Override
-	public void render(PlanetProjectile entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+	public void render(OrbitalPlanet entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 		poseStack.pushPose();
 		poseStack.scale(-1.0F, -1.0F, 1.0F);
 		poseStack.translate(0.0F, -1.5F, 0.0F);
@@ -44,7 +44,7 @@ public class PlanetProjectileRenderer extends EntityRenderer<PlanetProjectile> {
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(PlanetProjectile entity) {
+	public ResourceLocation getTextureLocation(OrbitalPlanet entity) {
 		return PLANET_TEXTURES[(entity.getId() % 6 + 6) % 6];
 	}
 }

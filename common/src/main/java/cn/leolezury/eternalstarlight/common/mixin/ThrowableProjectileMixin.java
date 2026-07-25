@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
+import cn.leolezury.eternalstarlight.common.entity.projectile.BouncyStar;
 import cn.leolezury.eternalstarlight.common.entity.projectile.EnergySpark;
-import cn.leolezury.eternalstarlight.common.entity.projectile.SolarBouncingProjectile;
-import cn.leolezury.eternalstarlight.common.entity.projectile.SolarStarProjectile;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ShiningStar;
 import cn.leolezury.eternalstarlight.common.entity.projectile.WiltedPetal;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -16,7 +16,7 @@ public abstract class ThrowableProjectileMixin {
 	private boolean tick(ThrowableProjectile instance, Operation<Boolean> original) {
 		return ((Object) this instanceof WiltedPetal
 			|| (Object) this instanceof EnergySpark
-			|| (Object) this instanceof SolarBouncingProjectile
-			|| (Object) this instanceof SolarStarProjectile) ? false : original.call(instance);
+			|| (Object) this instanceof BouncyStar
+			|| (Object) this instanceof ShiningStar) ? false : original.call(instance);
 	}
 }

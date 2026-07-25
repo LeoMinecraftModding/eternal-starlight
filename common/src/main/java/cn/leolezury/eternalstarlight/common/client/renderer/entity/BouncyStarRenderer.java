@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.entity.OrbModel;
-import cn.leolezury.eternalstarlight.common.entity.projectile.SolarBouncingProjectile;
+import cn.leolezury.eternalstarlight.common.entity.projectile.BouncyStar;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -11,18 +11,18 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
-public class SolarBouncingProjectileRenderer extends EntityRenderer<SolarBouncingProjectile> {
+public class BouncyStarRenderer extends EntityRenderer<BouncyStar> {
 	private static final ResourceLocation SUN_TEXTURE = EternalStarlight.id("textures/entity/solar_creeper/sun.png");
 
-	private final OrbModel<SolarBouncingProjectile> model;
+	private final OrbModel<BouncyStar> model;
 
-	public SolarBouncingProjectileRenderer(EntityRendererProvider.Context context) {
+	public BouncyStarRenderer(EntityRendererProvider.Context context) {
 		super(context);
 		this.model = new OrbModel<>(context.bakeLayer(OrbModel.LAYER_LOCATION));
 	}
 
 	@Override
-	public void render(SolarBouncingProjectile entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+	public void render(BouncyStar entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 		poseStack.pushPose();
 		float bob = entity.tickCount + partialTicks;
 
@@ -39,7 +39,7 @@ public class SolarBouncingProjectileRenderer extends EntityRenderer<SolarBouncin
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(SolarBouncingProjectile entity) {
+	public ResourceLocation getTextureLocation(BouncyStar entity) {
 		return SUN_TEXTURE;
 	}
 }

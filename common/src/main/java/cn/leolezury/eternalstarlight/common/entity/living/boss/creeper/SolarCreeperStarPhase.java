@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.creeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.entity.projectile.SolarStarProjectile;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ShiningStar;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.util.RandomSource;
@@ -29,7 +29,7 @@ public class SolarCreeperStarPhase extends BehaviorPhase<SolarCreeper> {
 			return;
 		}
 		if (ticks == 5 || ticks == 15 || ticks == 25) {
-			SolarStarProjectile projectile = new SolarStarProjectile(ESEntities.SOLAR_STAR_PROJECTILE.get(), entity.level());
+			ShiningStar projectile = new ShiningStar(ESEntities.SHINING_STAR.get(), entity.level());
 			projectile.setPos(entity.getEyePosition());
 			projectile.setOwner(entity);
 			projectile.setTarget(target);

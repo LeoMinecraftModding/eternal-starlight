@@ -660,21 +660,21 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("chain_of_souls").toString())
 	);
-	public static final RegistryObject<EntityType<?>, EntityType<SolarBouncingProjectile>> SOLAR_BOUNCING_PROJECTILE = ENTITIES.register(
-		"solar_bouncing_projectile",
-		() -> EntityType.Builder.of(SolarBouncingProjectile::new, MobCategory.MISC)
+	public static final RegistryObject<EntityType<?>, EntityType<BouncyStar>> BOUNCY_STAR = ENTITIES.register(
+		"bouncy_star",
+		() -> EntityType.Builder.of(BouncyStar::new, MobCategory.MISC)
 			.sized(0.5f, 0.5f)
 			.clientTrackingRange(10)
 			.updateInterval(1)
-			.build(EternalStarlight.id("solar_bouncing_projectile").toString())
+			.build(EternalStarlight.id("bouncy_star").toString())
 	);
-	public static final RegistryObject<EntityType<?>, EntityType<SolarStarProjectile>> SOLAR_STAR_PROJECTILE = ENTITIES.register(
-		"solar_star_projectile",
-		() -> EntityType.Builder.of(SolarStarProjectile::new, MobCategory.MISC)
+	public static final RegistryObject<EntityType<?>, EntityType<ShiningStar>> SHINING_STAR = ENTITIES.register(
+		"shining_star",
+		() -> EntityType.Builder.of(ShiningStar::new, MobCategory.MISC)
 			.sized(0.3f, 0.3f)
 			.clientTrackingRange(10)
 			.updateInterval(1)
-			.build(EternalStarlight.id("solar_star_projectile").toString())
+			.build(EternalStarlight.id("shining_star").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<SolarStrikeEntity>> SOLAR_STRIKE = ENTITIES.register(
 		"solar_strike",
@@ -684,13 +684,13 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("solar_strike").toString())
 	);
-	public static final RegistryObject<EntityType<?>, EntityType<PlanetProjectile>> PLANET_PROJECTILE = ENTITIES.register(
-		"planet_projectile",
-		() -> EntityType.Builder.of(PlanetProjectile::new, MobCategory.MISC)
+	public static final RegistryObject<EntityType<?>, EntityType<OrbitalPlanet>> ORBITAL_PLANET = ENTITIES.register(
+		"orbital_planet",
+		() -> EntityType.Builder.of(OrbitalPlanet::new, MobCategory.MISC)
 			.sized(0.5f, 0.5f)
 			.clientTrackingRange(10)
 			.updateInterval(1)
-			.build(EternalStarlight.id("planet_projectile").toString())
+			.build(EternalStarlight.id("orbital_planet").toString())
 	);
 
 	public static void loadClass() {

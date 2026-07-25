@@ -16,7 +16,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector4f;
 
-public class PlanetProjectile extends ThrowableProjectile implements TrailOwner {
+public class OrbitalPlanet extends ThrowableProjectile implements TrailOwner {
 	private float orbitAngle = 0f;
 	private float orbitRadius = 3f;
 	private float orbitSpeed = 2f;
@@ -32,7 +32,7 @@ public class PlanetProjectile extends ThrowableProjectile implements TrailOwner 
 	private LivingEntity target;
 	private float homingStrength = 0.03f;
 
-	public PlanetProjectile(EntityType<? extends PlanetProjectile> entityType, Level level) {
+	public OrbitalPlanet(EntityType<? extends OrbitalPlanet> entityType, Level level) {
 		super(entityType, level);
 		setNoGravity(true);
 	}

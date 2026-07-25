@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.entity.projectile.SolarStarProjectile;
+import cn.leolezury.eternalstarlight.common.entity.projectile.ShiningStar;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -15,16 +15,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 
-public class SolarStarProjectileRenderer extends EntityRenderer<SolarStarProjectile> {
+public class ShiningStarRenderer extends EntityRenderer<ShiningStar> {
 	private static final ResourceLocation TEXTURE_LOCATION = EternalStarlight.id("textures/entity/solar_creeper/star.png");
 	private static final RenderType RENDER_TYPE = RenderType.entityTranslucent(TEXTURE_LOCATION);
 
-	public SolarStarProjectileRenderer(EntityRendererProvider.Context context) {
+	public ShiningStarRenderer(EntityRendererProvider.Context context) {
 		super(context);
 	}
 
 	@Override
-	public void render(SolarStarProjectile entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+	public void render(ShiningStar entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 		poseStack.pushPose();
 		poseStack.translate(0.0F, entity.getBbHeight() / 2, 0.0F);
 		poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
@@ -72,7 +72,7 @@ public class SolarStarProjectileRenderer extends EntityRenderer<SolarStarProject
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(SolarStarProjectile entity) {
+	public ResourceLocation getTextureLocation(ShiningStar entity) {
 		return TEXTURE_LOCATION;
 	}
 }

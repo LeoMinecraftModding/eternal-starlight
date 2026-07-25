@@ -487,9 +487,9 @@ public class ESClientSetupHandler {
 		TrailVisualEffect.registerTrailRenderType(ESEntities.ENERGY_SPARK.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 		TrailVisualEffect.registerTrailRenderType(ESEntities.BALL_LIGHTNING.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 		TrailVisualEffect.registerTrailRenderType(ESEntities.SOLAR_CREEPER.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.SOLAR_BOUNCING_PROJECTILE.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.SOLAR_STAR_PROJECTILE.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.PLANET_PROJECTILE.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/planet_trail.png")));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.BOUNCY_STAR.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.SHINING_STAR.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
+		TrailVisualEffect.registerTrailRenderType(ESEntities.ORBITAL_PLANET.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/planet_trail.png")));
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
@@ -965,10 +965,10 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.TANGLED.get(), TangledRenderer::new);
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkullRenderer::new);
 		strategy.register(ESEntities.SOLAR_CREEPER.get(), SolarCreeperRenderer::new);
-		strategy.register(ESEntities.SOLAR_BOUNCING_PROJECTILE.get(), SolarBouncingProjectileRenderer::new);
-		strategy.register(ESEntities.SOLAR_STAR_PROJECTILE.get(), SolarStarProjectileRenderer::new);
+		strategy.register(ESEntities.BOUNCY_STAR.get(), BouncyStarRenderer::new);
+		strategy.register(ESEntities.SHINING_STAR.get(), ShiningStarRenderer::new);
 		strategy.register(ESEntities.SOLAR_STRIKE.get(), SolarStrikeRenderer::new);
-		strategy.register(ESEntities.PLANET_PROJECTILE.get(), PlanetProjectileRenderer::new);
+		strategy.register(ESEntities.ORBITAL_PLANET.get(), OrbitalPlanetRenderer::new);
 		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHuskRenderer::new);
 		strategy.register(ESEntities.SHATTERED_BLADE.get(), ThrownShatteredBladeRenderer::new);
 		strategy.register(ESEntities.MALARITE_SPEAR.get(), ThrownMalariteSpearRenderer::new);
