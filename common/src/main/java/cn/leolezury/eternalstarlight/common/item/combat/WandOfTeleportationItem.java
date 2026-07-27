@@ -60,6 +60,14 @@ public class WandOfTeleportationItem extends Item {
 		float lookPitch = -player.getXRot();
 		Vec3 endPos = ESMathUtil.rotationToPosition(startPos, 64, lookPitch, lookYaw);
 		ESEntityUtil.RaytraceResult result = ESEntityUtil.raytrace(player.level(), CollisionContext.of(player), startPos, endPos);
+		if (result.blockHitResult() != null) {
+			Vec3 target = result.blockHitResult().getLocation();
+			Vec3 diff = player.position().subtract(target);
+			target = target.add(diff.normalize().scale(Math.min(diff.length(), 2)));
+			teleportPlayer(level, player, stack, target);
+			player.awardStat(Stats.ITEM_USED.get(this));
+			return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+		}
 		if (!result.entities().isEmpty()) {
 			for (int i = 0; i < result.entities().size(); i++) {
 				if (result.entities().get(i) != player) {
@@ -69,14 +77,6 @@ public class WandOfTeleportationItem extends Item {
 					return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
 				}
 			}
-		}
-		if (result.blockHitResult() != null) {
-			Vec3 target = result.blockHitResult().getLocation();
-			Vec3 diff = player.position().subtract(target);
-			target = target.add(diff.normalize().scale(Math.min(diff.length(), 2)));
-			teleportPlayer(level, player, stack, target);
-			player.awardStat(Stats.ITEM_USED.get(this));
-			return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
 		}
 		return super.use(level, player, hand);
 	}

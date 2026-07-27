@@ -68,6 +68,45 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 		this.target = target;
 	}
 
+	private int lerpSteps;
+	private double lerpX, lerpY, lerpZ;
+	private float lerpYRot, lerpXRot;
+
+	@Override
+	public void lerpTo(double x, double y, double z, float yRot, float xRot, int steps) {
+		this.lerpSteps = steps;
+		this.lerpX = x;
+		this.lerpY = y;
+		this.lerpZ = z;
+		this.lerpYRot = yRot;
+		this.lerpXRot = xRot;
+	}
+
+	@Override
+	public double lerpTargetX() {
+		return this.lerpX;
+	}
+
+	@Override
+	public double lerpTargetY() {
+		return this.lerpY;
+	}
+
+	@Override
+	public double lerpTargetZ() {
+		return this.lerpZ;
+	}
+
+	@Override
+	public float lerpTargetYRot() {
+		return this.lerpYRot;
+	}
+
+	@Override
+	public float lerpTargetXRot() {
+		return this.lerpXRot;
+	}
+
 	@Override
 	protected ParticleOptions getTrailParticle() {
 		return ESSmokeParticleOptions.FLAME;
@@ -112,6 +151,10 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	@Override
 	public void tick() {
 		super.tick();
+		if (level().isClientSide && this.lerpSteps > 0) {
+			this.lerpPositionAndRotationStep(this.lerpSteps, this.lerpX, this.lerpY, this.lerpZ, this.lerpYRot, this.lerpXRot);
+			this.lerpSteps--;
+		}
 		if (!level().isClientSide) {
 			if (target == null && targetId != null && level() instanceof ServerLevel serverLevel) {
 				if (serverLevel.getEntity(targetId) instanceof LivingEntity livingEntity) {

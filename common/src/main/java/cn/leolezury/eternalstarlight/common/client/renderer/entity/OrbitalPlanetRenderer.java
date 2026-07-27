@@ -13,12 +13,14 @@ import net.minecraft.resources.ResourceLocation;
 
 public class OrbitalPlanetRenderer extends EntityRenderer<OrbitalPlanet> {
 	private static final ResourceLocation[] PLANET_TEXTURES = new ResourceLocation[]{
+		EternalStarlight.id("textures/entity/solar_creeper/planet_0.png"),
 		EternalStarlight.id("textures/entity/solar_creeper/planet_1.png"),
 		EternalStarlight.id("textures/entity/solar_creeper/planet_2.png"),
 		EternalStarlight.id("textures/entity/solar_creeper/planet_3.png"),
 		EternalStarlight.id("textures/entity/solar_creeper/planet_4.png"),
 		EternalStarlight.id("textures/entity/solar_creeper/planet_5.png"),
-		EternalStarlight.id("textures/entity/solar_creeper/planet_6.png")
+		EternalStarlight.id("textures/entity/solar_creeper/planet_6.png"),
+		EternalStarlight.id("textures/entity/solar_creeper/planet_7.png")
 	};
 
 	private final OrbModel<OrbitalPlanet> model;
@@ -32,9 +34,7 @@ public class OrbitalPlanetRenderer extends EntityRenderer<OrbitalPlanet> {
 	public void render(OrbitalPlanet entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 		poseStack.pushPose();
 		poseStack.scale(-1.0F, -1.0F, 1.0F);
-		poseStack.translate(0.0F, -1.5F, 0.0F);
-		poseStack.scale(0.5F, 0.5F, 0.5F);
-		poseStack.translate(0.0F, -entity.getBbHeight() / 2, 0.0F);
+		poseStack.translate(0.0F, -1.5F - entity.getBbHeight() / 2, 0.0F);
 		float bob = entity.tickCount + partialTicks;
 		this.model.prepareMobModel(entity, 0, 0, partialTicks);
 		this.model.setupAnim(entity, 0, 0, bob, 0, 0);
@@ -45,6 +45,6 @@ public class OrbitalPlanetRenderer extends EntityRenderer<OrbitalPlanet> {
 
 	@Override
 	public ResourceLocation getTextureLocation(OrbitalPlanet entity) {
-		return PLANET_TEXTURES[(entity.getId() % 6 + 6) % 6];
+		return PLANET_TEXTURES[Math.floorMod(entity.getId(), PLANET_TEXTURES.length)];
 	}
 }

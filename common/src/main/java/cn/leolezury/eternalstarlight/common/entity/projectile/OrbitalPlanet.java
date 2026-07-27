@@ -8,29 +8,25 @@ import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import org.joml.Vector4f;
 
+import java.util.UUID;
+
 public class OrbitalPlanet extends ThrowableProjectile implements TrailOwner {
-	private float orbitAngle = 0f;
-	private float orbitRadius = 3f;
-	private float orbitSpeed = 2f;
-	private int orbitPhase = 0;
-	private int orbitTicks = 0;
-	private int maxOrbitTicks = 250;
-	private LivingEntity orbitTarget;
-	private Vec3 orbitNormal;
-	private Vec3 orbitU, orbitV;
-	private int life = 0;
-	private int maxLife = 500;
-	private float baseDamage = 7f;
-	private LivingEntity target;
-	private float homingStrength = 0.03f;
+	private static final String TAG_ORBIT_RADIUS = "orbit_radius";
+	private static final String TAG_ORBIT_SPEED = "orbit_speed";
+	private static final String TAG_ORBIT_ANGLE = "orbit_angle";
+	private static final String TAG_PRE_FIRE_TICKS = "pre_fire_ticks";
+	private static final String TAG_FIRED = "fired";
+	private static final String TAG_LIFE_TICKS = "life_ticks";
 
 	public OrbitalPlanet(EntityType<? extends OrbitalPlanet> entityType, Level level) {
 		super(entityType, level);
@@ -41,114 +37,211 @@ public class OrbitalPlanet extends ThrowableProjectile implements TrailOwner {
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 	}
 
+	private Entity target;
+	private UUID targetId;
+
+	private float orbitRadius;
+	private float orbitSpeed;
+	private float orbitAngle;
+	private int preFireTicks;
+	private boolean fired;
+	private int lifeTicks;
+
+	private int lerpSteps;
+	private double lerpX, lerpY, lerpZ;
+	private float lerpYRot, lerpXRot;
+
+	@Override
+	public void lerpTo(double x, double y, double z, float yRot, float xRot, int steps) {
+		this.lerpSteps = steps;
+		this.lerpX = x;
+		this.lerpY = y;
+		this.lerpZ = z;
+		this.lerpYRot = yRot;
+		this.lerpXRot = xRot;
+	}
+
+	@Override
+	public double lerpTargetX() {
+		return this.lerpX;
+	}
+
+	@Override
+	public double lerpTargetY() {
+		return this.lerpY;
+	}
+
+	@Override
+	public double lerpTargetZ() {
+		return this.lerpZ;
+	}
+
+	@Override
+	public float lerpTargetYRot() {
+		return this.lerpYRot;
+	}
+
+	@Override
+	public float lerpTargetXRot() {
+		return this.lerpXRot;
+	}
+
+	public void setOrbitRadius(float radius) {
+		this.orbitRadius = radius;
+	}
+
+	public float getOrbitRadius() {
+		return orbitRadius;
+	}
+
+	public void setOrbitSpeed(float speed) {
+		this.orbitSpeed = speed;
+	}
+
+	public float getOrbitSpeed() {
+		return orbitSpeed;
+	}
+
+	public void setOrbitAngle(float angle) {
+		this.orbitAngle = angle;
+	}
+
+	public float getOrbitAngle() {
+		return orbitAngle;
+	}
+
+	public void setPreFireTicks(int ticks) {
+		this.preFireTicks = ticks;
+	}
+
+	public int getPreFireTicks() {
+		return preFireTicks;
+	}
+
+	public void setTarget(Entity target) {
+		this.targetId = target.getUUID();
+		this.target = target;
+	}
+
+	public void setOrbitData(float radius, float speed, float angle, int preFireTicks) {
+		setOrbitRadius(radius);
+		setOrbitSpeed(speed);
+		setOrbitAngle(angle);
+		setPreFireTicks(preFireTicks);
+	}
+
 	@Override
 	public void tick() {
 		super.tick();
-		life++;
-		if (orbitPhase == 0 && orbitTarget != null && orbitTarget.isAlive()) {
-			orbitTicks++;
-			orbitAngle += orbitSpeed * 0.05f;
-
-			if (orbitNormal == null) {
-				Vec3 toTarget;
-				if (target != null && target.isAlive()) {
-					toTarget = target.position().subtract(orbitTarget.position()).normalize();
-				} else {
-					toTarget = new Vec3(1, 0, 0);
-				}
-				Vec3 up = new Vec3(0, 1, 0);
-				orbitNormal = up.subtract(toTarget.scale(up.dot(toTarget))).normalize();
-				orbitU = toTarget.cross(orbitNormal).normalize();
-				orbitV = orbitNormal.cross(orbitU).normalize();
-			}
-
-			Vec3 bossCenter = orbitTarget.position().add(0, orbitTarget.getBbHeight() / 2, 0);
-			if (target != null && target.isAlive()) {
-				float targetDist = orbitTarget.distanceTo(target);
-				orbitRadius += (Math.min(targetDist, 12f) - orbitRadius) * 0.005f;
-			}
-
-			double x = bossCenter.x + orbitU.x * Math.cos(orbitAngle) * orbitRadius + orbitV.x * Math.sin(orbitAngle) * orbitRadius;
-			double y = bossCenter.y + orbitU.y * Math.cos(orbitAngle) * orbitRadius + orbitV.y * Math.sin(orbitAngle) * orbitRadius;
-			double z = bossCenter.z + orbitU.z * Math.cos(orbitAngle) * orbitRadius + orbitV.z * Math.sin(orbitAngle) * orbitRadius;
-			setPos(x, y, z);
-
-			if (orbitTicks >= maxOrbitTicks) {
-				orbitPhase = 1;
-				if (target != null && target.isAlive()) {
-					Vec3 toTarget = target.position().add(0, target.getBbHeight() / 2, 0).subtract(position()).normalize();
-					setDeltaMovement(toTarget.scale(0.8));
-				}
-			}
-		} else if (orbitPhase == 1) {
-			if (target != null && target.isAlive() && life % 3 == 0) {
-				Vec3 diff = target.getEyePosition().subtract(position()).normalize();
-				setDeltaMovement(getDeltaMovement().add(diff.scale(homingStrength)));
-			}
+		if (level().isClientSide && this.lerpSteps > 0) {
+			this.lerpPositionAndRotationStep(this.lerpSteps, this.lerpX, this.lerpY, this.lerpZ, this.lerpYRot, this.lerpXRot);
+			this.lerpSteps--;
 		}
-		if (life > maxLife) {
-			explode();
+		if (!level().isClientSide) {
+			if (target == null && targetId != null && level() instanceof ServerLevel serverLevel) {
+				Entity entity = serverLevel.getEntity(targetId);
+				if (entity != null) {
+					target = entity;
+				}
+				if (target == null) {
+					targetId = null;
+				}
+			}
+
+			Entity owner = getOwner();
+
+			lifeTicks++;
+			if (!fired) {
+				if (owner != null) {
+					Vec3 orbitCenter = owner.position().add(0, owner.getBbHeight() / 2, 0);
+					float currentRadius = Math.min(lifeTicks / (preFireTicks * 0.4f), 1f) * orbitRadius;
+					float nextAngle = orbitAngle + orbitSpeed;
+					double x = orbitCenter.x + currentRadius * Math.cos(Math.toRadians(nextAngle));
+					double z = orbitCenter.z + currentRadius * Math.sin(Math.toRadians(nextAngle));
+					Vec3 targetPos = new Vec3(x, orbitCenter.y, z);
+					Vec3 movement = targetPos.subtract(position()).normalize();
+					setPos(targetPos);
+					orbitAngle = nextAngle;
+					if (tickCount > preFireTicks && target != null && target.isAlive()) {
+						Vec3 toTarget = target.position().add(0, target.getBbHeight() / 2, 0).subtract(position()).normalize();
+						if (movement.dot(toTarget) >= Math.cos(Math.toRadians(60)) || tickCount > preFireTicks + 60) {
+							fired = true;
+							setDeltaMovement(movement.scale(0.6));
+						}
+					}
+				}
+			} else {
+				if (target != null && target.isAlive()) {
+					Vec3 diff = target.position().add(0, target.getBbHeight() / 2, 0).subtract(position()).normalize();
+					setDeltaMovement(getDeltaMovement().add(diff.scale(0.15)).normalize().scale(0.6));
+					Vec3 dir = getDeltaMovement().normalize();
+					Vec3 end = position().add(dir.scale(12));
+					if (ESEntityUtil.raytrace(level(), CollisionContext.of(this), position(), end, 0).entities().contains(target)) {
+						target = null;
+						targetId = null;
+					}
+				} else {
+					setDeltaMovement(getDeltaMovement().normalize().scale(0.6));
+				}
+			}
+			if (lifeTicks > preFireTicks + 240 || (owner == null && lifeTicks > 20)) {
+				explode();
+			}
 		}
 	}
 
 	@Override
 	protected void onHit(HitResult hitResult) {
-		if (hitResult.getType() != HitResult.Type.MISS && orbitPhase == 1) {
-			if (!level().isClientSide) {
-				for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2))) {
-					if (ESEntityUtil.shouldHarm(getOwner() != null ? getOwner() : this, entity)) {
-						entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.METEOR, this, getOwner()), baseDamage);
-					}
-				}
-			}
+		super.onHit(hitResult);
+		if (!level().isClientSide && hitResult.getType() != HitResult.Type.MISS && (target == null || level().getEntitiesOfClass(Entity.class, getBoundingBox().inflate(2.5)).contains(target))) {
+			explode();
 		}
 	}
 
 	private void explode() {
 		if (!level().isClientSide) {
-			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(3))) {
+			for (LivingEntity entity : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(2.5))) {
 				if (ESEntityUtil.shouldHarm(getOwner() != null ? getOwner() : this, entity)) {
-					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.METEOR, this, getOwner()), baseDamage);
+					entity.hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.METEOR, this, getOwner()), 8);
 				}
 			}
 			if (level() instanceof ServerLevel serverLevel) {
-				RippleParticleOptions.addFlareExplosionRippleParticles(serverLevel, getX(), getY() + getBbHeight() / 2, getZ(), random);
+				RippleParticleOptions.addFlareExplosionRippleParticles(serverLevel, getX(), getY() + getBbHeight() / 2, getZ(), random, 1.2f, RippleParticleOptions.GOLD, RippleParticleOptions.ORANGE);
 			}
 		}
 		discard();
 	}
 
-	public void setOrbitTarget(LivingEntity orbitTarget) {
-		this.orbitTarget = orbitTarget;
+	@Override
+	public boolean isOnFire() {
+		return false;
 	}
 
-	public void setTarget(LivingEntity target) {
-		this.target = target;
+	@Override
+	public void readAdditionalSaveData(CompoundTag compoundTag) {
+		super.readAdditionalSaveData(compoundTag);
+		orbitRadius = compoundTag.getFloat(TAG_ORBIT_RADIUS);
+		orbitSpeed = compoundTag.getFloat(TAG_ORBIT_SPEED);
+		orbitAngle = compoundTag.getFloat(TAG_ORBIT_ANGLE);
+		preFireTicks = compoundTag.getInt(TAG_PRE_FIRE_TICKS);
+		fired = compoundTag.getBoolean(TAG_FIRED);
+		lifeTicks = compoundTag.getInt(TAG_LIFE_TICKS);
 	}
 
-	public void setOrbitRadius(float orbitRadius) {
-		this.orbitRadius = orbitRadius;
-	}
-
-	public void setOrbitSpeed(float orbitSpeed) {
-		this.orbitSpeed = orbitSpeed;
-	}
-
-	public void setOrbitAngle(float orbitAngle) {
-		this.orbitAngle = orbitAngle;
-	}
-
-	public void setMaxOrbitTicks(int maxOrbitTicks) {
-		this.maxOrbitTicks = maxOrbitTicks;
-	}
-
-	public int getOrbitPhase() {
-		return orbitPhase;
+	@Override
+	public void addAdditionalSaveData(CompoundTag compoundTag) {
+		super.addAdditionalSaveData(compoundTag);
+		compoundTag.putFloat(TAG_ORBIT_RADIUS, orbitRadius);
+		compoundTag.putFloat(TAG_ORBIT_SPEED, orbitSpeed);
+		compoundTag.putFloat(TAG_ORBIT_ANGLE, orbitAngle);
+		compoundTag.putInt(TAG_PRE_FIRE_TICKS, preFireTicks);
+		compoundTag.putBoolean(TAG_FIRED, fired);
+		compoundTag.putInt(TAG_LIFE_TICKS, lifeTicks);
 	}
 
 	@Override
 	public TrailEffect createNewTrail() {
-		return new TrailEffect(0.12f, 5);
+		return new TrailEffect(0.12f, 10);
 	}
 
 	@Override
@@ -162,7 +255,7 @@ public class OrbitalPlanet extends ThrowableProjectile implements TrailOwner {
 
 	@Override
 	public Vector4f getTrailColor() {
-		return new Vector4f(1f, 0.6f, 0.2f, 1f);
+		return new Vector4f(1f, 1f, 1f, 1f);
 	}
 
 	@Override
@@ -173,23 +266,5 @@ public class OrbitalPlanet extends ThrowableProjectile implements TrailOwner {
 	@Override
 	public boolean isTrailSolid() {
 		return true;
-	}
-
-	@Override
-	public void readAdditionalSaveData(CompoundTag compoundTag) {
-		super.readAdditionalSaveData(compoundTag);
-		life = compoundTag.getInt("life");
-		orbitPhase = compoundTag.getInt("orbit_phase");
-		orbitTicks = compoundTag.getInt("orbit_ticks");
-		orbitAngle = compoundTag.getFloat("orbit_angle");
-	}
-
-	@Override
-	public void addAdditionalSaveData(CompoundTag compoundTag) {
-		super.addAdditionalSaveData(compoundTag);
-		compoundTag.putInt("life", life);
-		compoundTag.putInt("orbit_phase", orbitPhase);
-		compoundTag.putInt("orbit_ticks", orbitTicks);
-		compoundTag.putFloat("orbit_angle", orbitAngle);
 	}
 }

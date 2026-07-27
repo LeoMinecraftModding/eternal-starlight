@@ -88,6 +88,11 @@ public class ThirstWalker extends Monster implements MultiBehaviorUser, NeutralM
 		new MeleeAttackPhase<ThirstWalker>(MELEE_ID, 1, 20, 10).with(2, 7)
 	));
 
+	@Override
+	public BehaviorManager<ThirstWalker> getBehaviorManager() {
+		return behaviorManager;
+	}
+
 	public ThirstWalker(EntityType<? extends ThirstWalker> entityType, Level level) {
 		super(entityType, level);
 	}

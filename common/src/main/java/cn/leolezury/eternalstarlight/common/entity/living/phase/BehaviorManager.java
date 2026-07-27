@@ -59,6 +59,10 @@ public class BehaviorManager<T extends LivingEntity & MultiBehaviorUser> {
 		return phaseList;
 	}
 
+	public void forceStartPhase(int id) {
+		phaseList.stream().filter(phase -> phase.getId() == id).findFirst().ifPresent(phase -> phase.start(entity, this));
+	}
+
 	private Optional<BehaviorPhase<T>> selectPhase() {
 		for (int priority : priorities) {
 			List<BehaviorPhase<T>> phasesForPriority = phases.get(priority).stream().filter(p -> p.canStart(entity, cooldowns.getOrDefault(p.getId(), 0) <= 0)).toList();

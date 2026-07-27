@@ -203,10 +203,15 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 		//new SolarCreeperDashPhase(),
 		//new SolarCreeperSupernovaPhase(),
 		new SolarCreeperSolarRayPhase(),
-		new SolarCreeperBlackHolePhase()//,
-		//new SolarCreeperGalaxyPhase(),
+		new SolarCreeperBlackHolePhase(),
+		new SolarCreeperGalaxyPhase()
 		//new SolarCreeperPowerUpPhase()
 	));
+
+	@Override
+	public BehaviorManager<SolarCreeper> getBehaviorManager() {
+		return behaviorManager;
+	}
 
 	public AnimationState introAnimationState = new AnimationState();
 	public AnimationState meleeAnimationState = new AnimationState();

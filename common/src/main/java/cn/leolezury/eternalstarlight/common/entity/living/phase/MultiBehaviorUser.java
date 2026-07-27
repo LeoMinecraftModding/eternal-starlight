@@ -8,4 +8,6 @@ public interface MultiBehaviorUser {
 	void setBehaviorTicks(int ticks);
 
 	int getBehaviorTicks();
+
+	BehaviorManager<?> getBehaviorManager();
 }

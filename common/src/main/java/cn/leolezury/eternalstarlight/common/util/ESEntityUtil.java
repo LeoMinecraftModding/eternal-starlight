@@ -26,11 +26,15 @@ import java.util.List;
 
 public class ESEntityUtil {
 	public static RaytraceResult raytrace(LevelAccessor level, CollisionContext context, Vec3 from, Vec3 to) {
+		return raytrace(level, context, from, to, 0.5f);
+	}
+
+	public static RaytraceResult raytrace(LevelAccessor level, CollisionContext context, Vec3 from, Vec3 to, float entityInflation) {
 		BlockHitResult hitResult = level.clip(new ClipContext(from, to, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, context));
 		RaytraceResult result = new RaytraceResult(new ArrayList<>(), hitResult.getType() == HitResult.Type.BLOCK ? hitResult : null);
 		List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(from, to).inflate(1));
 		for (Entity entity : entities) {
-			AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + 0.5f);
+			AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius() + entityInflation);
 			if (aabb.contains(from)) {
 				result.entities().add(entity);
 				continue;

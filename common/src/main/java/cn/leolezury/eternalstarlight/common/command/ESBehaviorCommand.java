@@ -48,8 +48,7 @@ public class ESBehaviorCommand {
 		int count = 0;
 		for (Entity entity : entities) {
 			if (entity instanceof MultiBehaviorUser user && user.getBehaviorState() != state) {
-				user.setBehaviorState(state);
-				user.setBehaviorTicks(0);
+				user.getBehaviorManager().forceStartPhase(state);
 				count++;
 			}
 		}

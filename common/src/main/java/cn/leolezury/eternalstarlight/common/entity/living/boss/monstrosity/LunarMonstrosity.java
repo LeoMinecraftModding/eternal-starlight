@@ -79,6 +79,11 @@ public class LunarMonstrosity extends ESBoss implements RayAttackUser {
 		new LunarMonstrosityStunPhase()
 	));
 
+	@Override
+	public BehaviorManager<LunarMonstrosity> getBehaviorManager() {
+		return behaviorManager;
+	}
+
 	public AnimationState toxicBreathAnimationState = new AnimationState();
 	public AnimationState sporeAnimationState = new AnimationState();
 	public AnimationState thornAnimationState = new AnimationState();

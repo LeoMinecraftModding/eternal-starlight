@@ -78,6 +78,11 @@ public class Tangled extends Monster implements MultiBehaviorUser {
 		new MeleeAttackPhase<Tangled>(MELEE_ID, 1, 20, 10).with(2, 15)
 	));
 
+	@Override
+	public BehaviorManager<Tangled> getBehaviorManager() {
+		return behaviorManager;
+	}
+
 	public Tangled(EntityType<? extends Tangled> entityType, Level level) {
 		super(entityType, level);
 	}

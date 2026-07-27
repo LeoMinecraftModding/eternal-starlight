@@ -75,6 +75,11 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 		new StarlightGolemChargeEndPhase()
 	));
 
+	@Override
+	public BehaviorManager<StarlightGolem> getBehaviorManager() {
+		return behaviorManager;
+	}
+
 	public AnimationState laserBeamAnimationState = new AnimationState();
 	public AnimationState summonFlameAnimationState = new AnimationState();
 	public AnimationState smashAnimationState = new AnimationState();
@@ -129,10 +134,6 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	public boolean hasProtection() {
 		return hasProtection;
-	}
-
-	public BehaviorManager<StarlightGolem> getBehaviorManager() {
-		return behaviorManager;
 	}
 
 	@Override

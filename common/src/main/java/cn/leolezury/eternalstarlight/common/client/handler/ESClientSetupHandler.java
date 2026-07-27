@@ -1110,6 +1110,7 @@ public class ESClientSetupHandler {
 		strategy.register(TangledHeadModel.LAYER_LOCATION, TangledHeadModel::createBodyLayer);
 		strategy.register(SolarCreeperModel.LAYER_LOCATION, SolarCreeperModel::createBodyLayer);
 		strategy.register(OrbModel.LAYER_LOCATION, OrbModel::createBodyLayer);
+		strategy.register(OutlineModel.LAYER_LOCATION, OutlineModel::createBodyLayer);
 		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
 		strategy.register(ChainOfSoulsModel.LAYER_LOCATION, ChainOfSoulsModel::createBodyLayer);
 

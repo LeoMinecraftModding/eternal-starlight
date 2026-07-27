@@ -80,6 +80,14 @@ public class SolarCreeperRenderer<T extends SolarCreeper> extends MobRenderer<T,
 			shineScale = SolarCreeperBlackHolePhase.SHINE_SCALE.calculate(progress) * jitter;
 			fullDuration = SolarCreeperBlackHolePhase.DURATION;
 		}
+		if (state == SolarCreeperGalaxyPhase.ID) {
+			float progress = animationTicks / SolarCreeperGalaxyPhase.DURATION;
+			float baseScale = SolarCreeperGalaxyPhase.BODY_SCALE.calculate(progress);
+			float jitterFreq = SolarCreeperGalaxyPhase.JITTER_FREQ.calculate(progress);
+			float jitter = 1 + 0.12f * Mth.sin(jitterFreq * animationTicks * 0.3f);
+			bodyScale = baseScale * jitter;
+			fullDuration = SolarCreeperGalaxyPhase.DURATION;
+		}
 		if (bodyScale > 0) {
 			poseStack.pushPose();
 			poseStack.translate(0.0F, entity.getBbHeight() / 2, 0.0F);
@@ -174,7 +182,6 @@ public class SolarCreeperRenderer<T extends SolarCreeper> extends MobRenderer<T,
 					jitterWidth *= entity.getRenderSolarRayWidth(i, partialTicks);
 					Vec3 jitterOffset = diff.cross(sight).normalize().scale(jitterWidth / 2);
 					float staticWidth = 0.8f;
-					staticWidth = staticWidth * 0.1f * (float) Math.sin(entity.tickCount + partialTicks) + staticWidth * 0.9f;
 					staticWidth *= entity.getRenderSolarRayWidth(i, partialTicks);
 					Vec3 staticOffset = diff.cross(sight).normalize().scale(staticWidth / 2);
 					VertexConsumer consumer = buffer.getBuffer(RenderType.entityCutoutNoCull(LASER_JITTER_TEXTURE));
@@ -216,11 +223,16 @@ public class SolarCreeperRenderer<T extends SolarCreeper> extends MobRenderer<T,
 		int state = entity.getBehaviorState();
 		float animationTicks = entity.getAnimationTicks(partialTicks);
 		float shineScale = 0;
-		if (state == SolarCreeperIntroPhase.ID) {
-			shineScale = SolarCreeperIntroPhase.SHINE_SCALE.calculate(animationTicks / SolarCreeperIntroPhase.DURATION);
-		}
-		if (state == SolarCreeperSupernovaPhase.ID) {
-			shineScale = SolarCreeperSupernovaPhase.SHINE_SCALE.calculate(animationTicks / SolarCreeperSupernovaPhase.DURATION);
+		if (entity.getBehaviorTicks() >= 3) {
+			if (state == SolarCreeperIntroPhase.ID) {
+				shineScale = SolarCreeperIntroPhase.SHINE_SCALE.calculate(animationTicks / SolarCreeperIntroPhase.DURATION);
+			}
+			if (state == SolarCreeperSupernovaPhase.ID) {
+				shineScale = SolarCreeperSupernovaPhase.SHINE_SCALE.calculate(animationTicks / SolarCreeperSupernovaPhase.DURATION);
+			}
+			if (state == SolarCreeperGalaxyPhase.ID) {
+				shineScale = SolarCreeperGalaxyPhase.SHINE_SCALE.calculate(animationTicks / SolarCreeperGalaxyPhase.DURATION);
+			}
 		}
 		return Mth.clamp(shineScale, 0, 1);
 	}

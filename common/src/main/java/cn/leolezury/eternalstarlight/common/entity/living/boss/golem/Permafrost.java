@@ -60,6 +60,11 @@ public class Permafrost extends ESBoss {
 		new PermafrostSneezePhase()
 	));
 
+	@Override
+	public BehaviorManager<Permafrost> getBehaviorManager() {
+		return behaviorManager;
+	}
+
 	public AnimationState idleAnimationState = new AnimationState();
 	public AnimationState meleeAnimationState = new AnimationState();
 	public AnimationState meleeTransitionAnimationState = new AnimationState();

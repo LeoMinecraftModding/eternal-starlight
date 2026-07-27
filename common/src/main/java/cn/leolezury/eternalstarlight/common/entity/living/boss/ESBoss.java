@@ -52,7 +52,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ESBoss extends Monster implements MultiBehaviorUser {
+public abstract class ESBoss extends Monster implements MultiBehaviorUser {
 	private static final String TAG_INITIAL_POS = "initial_pos";
 	private static final String TAG_SPAWNED = "spawned";
 	private static final String TAG_PHASE = "phase";
