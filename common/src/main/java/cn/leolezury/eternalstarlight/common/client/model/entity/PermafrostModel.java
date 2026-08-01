@@ -153,7 +153,7 @@ public class PermafrostModel<T extends Permafrost> extends AnimatedEntityModel<T
 				}
 			}
 		}
-		entity.smokePos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(root(), lower, armature));
+		entity.smokePos = ESModelUtil.getModelPartWorldPosition(entity, entity.getPosition(Mth.frac(ageInTicks)), Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(root(), lower, armature));
 	}
 
 	@Override

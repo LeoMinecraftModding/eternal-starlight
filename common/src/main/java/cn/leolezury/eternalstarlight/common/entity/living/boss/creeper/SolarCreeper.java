@@ -40,7 +40,9 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SolarCreeper extends ESBoss implements TrailOwner {
 	private static final String TAG_INTRO_COMPLETED = "intro_completed";
@@ -62,6 +64,9 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 
 	private int oldAnimationTicks, animationTicks;
 	private boolean introCompleted = false;
+	private boolean generatedPowerUpPartData = false;
+	public final Map<String, Vector3f> clientPartOffsets = new HashMap<>();
+	public final Map<String, Vector3f> clientPartRotations = new HashMap<>();
 
 	private final Vector3f oldSolarRayNormal = new Vector3f();
 	private final Vector3f renderSolarRayNormal = new Vector3f();
@@ -165,6 +170,25 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 		return getPosition(partialTicks).add(0, getBbHeight() + (getBehaviorState() == SolarCreeperBlackHolePhase.ID ? 5 : 3), 0);
 	}
 
+	public void generatePowerUpPartData() {
+		if (generatedPowerUpPartData) return;
+		generatedPowerUpPartData = true;
+		clientPartOffsets.clear();
+		clientPartRotations.clear();
+		for (String name : SolarCreeperPowerUpPhase.PART_NAMES) {
+			clientPartOffsets.put(name, new Vector3f(
+				(random.nextFloat() - 0.5f) * 120,
+				(random.nextFloat() - 0.5f) * 120,
+				(random.nextFloat() - 0.5f) * 120
+			));
+			clientPartRotations.put(name, new Vector3f(
+				(random.nextFloat() - 0.5f) * Mth.TWO_PI,
+				(random.nextFloat() - 0.5f) * Mth.TWO_PI,
+				(random.nextFloat() - 0.5f) * Mth.TWO_PI
+			));
+		}
+	}
+
 	public SolarCreeper(EntityType<? extends SolarCreeper> entityType, Level level) {
 		super(entityType, level);
 		this.noCulling = true;
@@ -202,10 +226,10 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 		//new SolarCreeperSolarWindPhase(),
 		//new SolarCreeperDashPhase(),
 		//new SolarCreeperSupernovaPhase(),
-		new SolarCreeperSolarRayPhase(),
-		new SolarCreeperBlackHolePhase(),
-		new SolarCreeperGalaxyPhase()
-		//new SolarCreeperPowerUpPhase()
+		//new SolarCreeperSolarRayPhase(),
+		//new SolarCreeperBlackHolePhase(),
+		//new SolarCreeperGalaxyPhase(),
+		new SolarCreeperPowerUpPhase()
 	));
 
 	@Override
@@ -331,7 +355,7 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 	@Override
 	public void aiStep() {
 		if (!level().isClientSide) {
-			setNoGravity(!introCompleted);
+			setNoGravity(!introCompleted || getBehaviorState() == SolarCreeperPowerUpPhase.ID);
 		}
 		super.aiStep();
 		bossEvent.update();
@@ -349,6 +373,13 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 		} else {
 			oldAnimationTicks = animationTicks;
 			animationTicks = getBehaviorTicks();
+			if (getBehaviorState() == SolarCreeperPowerUpPhase.ID) {
+				generatePowerUpPartData();
+			} else if (generatedPowerUpPartData) {
+				generatedPowerUpPartData = false;
+				clientPartOffsets.clear();
+				clientPartRotations.clear();
+			}
 			oldSolarRayNormal.set(renderSolarRayNormal);
 			renderSolarRayNormal.set(getSolarRayNormal());
 			oldSolarRayAngle = renderSolarRayAngle;

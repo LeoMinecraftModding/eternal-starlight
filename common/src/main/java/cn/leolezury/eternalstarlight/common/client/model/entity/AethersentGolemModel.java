@@ -108,8 +108,8 @@ public class AethersentGolemModel<T extends AethersentGolem> extends AnimatedEnt
 			}
 		}
 		if (entity.shootAnimationState.isStarted() && !entity.shootPosTracked) {
-			entity.leftMuzzlePos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(upper, body, leftArm, leftMuzzle));
-			entity.rightMuzzlePos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(upper, body, rightArm, rightMuzzle));
+			entity.leftMuzzlePos = ESModelUtil.getModelPartWorldPosition(entity, entity.getPosition(Mth.frac(ageInTicks)), Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(upper, body, leftArm, leftMuzzle));
+			entity.rightMuzzlePos = ESModelUtil.getModelPartWorldPosition(entity, entity.getPosition(Mth.frac(ageInTicks)), Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(upper, body, rightArm, rightMuzzle));
 			entity.shootPosTracked = true;
 			entity.shouldAddShootParticle = true;
 		}

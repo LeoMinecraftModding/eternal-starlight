@@ -120,7 +120,7 @@ public class LunarMonstrosityModel<T extends LunarMonstrosity> extends AnimatedE
 		if (entity.deathTime > 0) {
 			animate(entity.deathAnimationState, LunarMonstrosityAnimation.DEATH, ageInTicks);
 		}
-		entity.headPos = ESModelUtil.getModelPartWorldPosition(entity, Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(root(), stemAll, stemMiddle, stemTop, head));
+		entity.headPos = ESModelUtil.getModelPartWorldPosition(entity, entity.getPosition(Mth.frac(ageInTicks)), Mth.lerp(Mth.frac(ageInTicks), entity.yBodyRotO, entity.yBodyRot), List.of(root(), stemAll, stemMiddle, stemTop, head));
 	}
 
 	/*@Override

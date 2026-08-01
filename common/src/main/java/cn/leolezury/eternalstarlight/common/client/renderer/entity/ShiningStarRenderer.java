@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.projectile.ShiningStar;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -27,41 +28,38 @@ public class ShiningStarRenderer extends EntityRenderer<ShiningStar> {
 	public void render(ShiningStar entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 		poseStack.pushPose();
 		poseStack.translate(0.0F, entity.getBbHeight() / 2, 0.0F);
-		poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
-
 		float age = entity.tickCount + partialTicks;
-
 		float factor = Mth.sin(age * 0.1f + entity.getId()) * 0.5f + 0.5f;
 		int r = Mth.lerpInt(factor, 135, 255);
 		int g = Mth.lerpInt(factor, 206, 215);
 		int b = Mth.lerpInt(factor, 250, 0);
-		int color = FastColor.ARGB32.color(255, r, g, b);
+		renderStar(poseStack, buffer, age, entity.getId(), 1.0f, FastColor.ARGB32.color(255, r, g, b));
+		poseStack.popPose();
+		super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
+	}
 
-		PoseStack.Pose pose;
+	public static void renderStar(PoseStack poseStack, MultiBufferSource buffer, float age, int seed, float scale, int color) {
+		poseStack.pushPose();
+		poseStack.mulPose(Minecraft.getInstance().gameRenderer.getMainCamera().rotation());
 
 		VertexConsumer consumer = buffer.getBuffer(RENDER_TYPE);
 
 		poseStack.translate(0.0F, 0.0F, 0.001F);
-		pose = poseStack.last();
-		renderDiamond(consumer, pose, 1.8F, 0.1F, color);
+		renderDiamond(consumer, poseStack.last(), 1.8F * scale, 0.1F * scale, color);
 		poseStack.translate(0.0F, 0.0F, 0.001F);
-		pose = poseStack.last();
-		renderDiamond(consumer, pose, 0.1F, 0.9F, color);
+		renderDiamond(consumer, poseStack.last(), 0.1F * scale, 0.9F * scale, color);
 
-		float pulseZRot = age * (entity.getId() % 2 == 0 ? 1.5f : -1.5f) + entity.getId() * 2;
+		float pulseZRot = age * (seed % 2 == 0 ? 1.5f : -1.5f) + seed * 2;
 		poseStack.mulPose(Axis.ZP.rotationDegrees(pulseZRot));
 		float pulseScale = 1.2F + 0.3F * Mth.sin(age * 2.1F);
 		poseStack.scale(pulseScale, pulseScale, 1.0F);
 
 		poseStack.translate(0.0F, 0.0F, 0.001F);
-		pose = poseStack.last();
-		renderDiamond(consumer, pose, 0.9F, 0.05F, color);
+		renderDiamond(consumer, poseStack.last(), 0.9F * scale, 0.05F * scale, color);
 		poseStack.translate(0.0F, 0.0F, 0.001F);
-		pose = poseStack.last();
-		renderDiamond(consumer, pose, 0.05F, 0.45F, color);
+		renderDiamond(consumer, poseStack.last(), 0.05F * scale, 0.45F * scale, color);
 
 		poseStack.popPose();
-		super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
 	}
 
 	private static void renderDiamond(VertexConsumer consumer, PoseStack.Pose pose, float xSize, float ySize, int color) {

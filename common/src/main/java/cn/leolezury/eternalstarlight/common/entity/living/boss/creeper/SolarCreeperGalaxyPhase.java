@@ -21,8 +21,7 @@ public class SolarCreeperGalaxyPhase extends BehaviorPhase<SolarCreeper> {
 
 	public static final SmoothSegmentedValue JITTER_FREQ = SmoothSegmentedValue
 		.of(Easing.IN_CUBIC, 0, 3, 80f / DURATION)
-		.add(Easing.IN_OUT_SINE, 3, 0, 10f / DURATION)
-		.add(Easing.IDENTITY, 0, 0, 210f / DURATION);
+		.add(Easing.IDENTITY, 0, 0, 220f / DURATION);
 
 	public static final SmoothSegmentedValue SHINE_SCALE = SmoothSegmentedValue
 		.of(Easing.IN_CUBIC, 0, 1, 80f / DURATION)

@@ -13,12 +13,17 @@ public class LunarMonstrositySoulPhase extends BehaviorPhase<LunarMonstrosity> {
 	public static final int ID = 8;
 
 	public LunarMonstrositySoulPhase() {
-		super(ID, 1, 100, 0);
+		super(ID, 0, 100, 0);
 	}
 
 	@Override
 	public boolean canStart(LunarMonstrosity entity, boolean cooldownOver) {
-		return false;
+		return entity.getPhase() == 0 && entity.getHealth() / entity.getMaxHealth() < 0.5;
+	}
+
+	@Override
+	public void onStart(LunarMonstrosity entity) {
+		entity.setPhase(1);
 	}
 
 	@Override

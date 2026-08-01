@@ -31,9 +31,12 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class ESModelUtil {
-	public static Vec3 getModelPartWorldPosition(Entity entity, float yaw, List<ModelPart> parts) {
+	public static Vec3 getModelPartWorldPosition(Entity entity, Vec3 pos, float yaw, List<ModelPart> parts) {
+		return pos.add(getModelPartOffsetPosition(entity, yaw, parts));
+	}
+
+	public static Vec3 getModelPartOffsetPosition(Entity entity, float yaw, List<ModelPart> parts) {
 		PoseStack stack = new PoseStack();
-		stack.translate(entity.getX(), entity.getY(), entity.getZ());
 		stack.mulPose(Axis.YP.rotationDegrees(180.0F - yaw));
 		stack.scale(-1, -1, 1);
 		stack.translate(0, -1.5f, 0);
@@ -44,8 +47,7 @@ public class ESModelUtil {
 
 		Vector4f vec = new Vector4f(0, 0, 0, 1).mul(stack.last().pose());
 		Vec3 pos = new Vec3(vec.x(), vec.y(), vec.z());
-		Vec3 subtract = pos.subtract(entity.position());
-		return entity.position().add(subtract.scale(entity instanceof LivingEntity living ? living.getScale() : 1));
+		return pos.scale(entity instanceof LivingEntity living ? living.getScale() : 1);
 	}
 
 	public static Optional<Vec3> getThirdPersonPlayerHandPosition(Player player, EntityRenderDispatcher renderDispatcher, float yaw, float partialTick, HumanoidArm arm, Vec3 offset) {
@@ -156,17 +158,39 @@ public class ESModelUtil {
 	public static void renderOutlineModelPart(ModelPart part, PoseStack poseStack, VertexConsumer vertexConsumer, float expansion, float red, float green, float blue, float alpha) {
 		poseStack.pushPose();
 		part.translateAndRotate(poseStack);
-		for (ModelPart.Cube cube : (List<ModelPart.Cube>) part.cubes) {
+		for (ModelPart.Cube cube : part.cubes) {
 			for (ModelPart.Polygon polygon : cube.polygons) {
 				Vector3f normal = polygon.normal;
 				ModelPart.Vertex[] vertices = polygon.vertices;
 				if (vertices.length != 4) continue;
 				int color = FastColor.ARGB32.color((int) (alpha * 255), (int) (red * 255), (int) (green * 255), (int) (blue * 255));
-				for (int i = 0; i < 4; i++) {
+				float minX = Float.MAX_VALUE, maxX = Float.MIN_VALUE;
+				float minY = Float.MAX_VALUE, maxY = Float.MIN_VALUE;
+				float minZ = Float.MAX_VALUE, maxZ = Float.MIN_VALUE;
+				for (ModelPart.Vertex v : vertices) {
+					float vx = v.pos.x(), vy = v.pos.y(), vz = v.pos.z();
+					if (vx < minX) minX = vx;
+					if (vx > maxX) maxX = vx;
+					if (vy < minY) minY = vy;
+					if (vy > maxY) maxY = vy;
+					if (vz < minZ) minZ = vz;
+					if (vz > maxZ) maxZ = vz;
+				}
+				for (int i = 3; i >= 0; i--) {
 					ModelPart.Vertex v = vertices[i];
-					float ox = v.pos.x() / 16f + normal.x() * expansion;
-					float oy = v.pos.y() / 16f + normal.y() * expansion;
-					float oz = v.pos.z() / 16f + normal.z() * expansion;
+					float vx = v.pos.x(), vy = v.pos.y(), vz = v.pos.z();
+					float ox = vx / 16f + normal.x() * expansion;
+					float oy = vy / 16f + normal.y() * expansion;
+					float oz = vz / 16f + normal.z() * expansion;
+					if (normal.x() == 0 && minX != maxX) {
+						ox += (vx == minX ? -expansion : expansion);
+					}
+					if (normal.y() == 0 && minY != maxY) {
+						oy += (vy == minY ? -expansion : expansion);
+					}
+					if (normal.z() == 0 && minZ != maxZ) {
+						oz += (vz == minZ ? -expansion : expansion);
+					}
 					vertexConsumer.addVertex(poseStack.last(), ox, oy, oz)
 						.setColor(color)
 						.setUv(v.u, v.v)
