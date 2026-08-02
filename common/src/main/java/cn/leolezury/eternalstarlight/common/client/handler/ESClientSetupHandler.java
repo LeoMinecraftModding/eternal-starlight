@@ -676,9 +676,9 @@ public class ESClientSetupHandler {
 	}
 
 	public static void registerBlockColors(BlockColorRegisterStrategy strategy) {
-		BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : 5195923;
-		BlockColor grassColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageGrassColor(getter, pos) : 5195923;
-		BlockColor dyeColor = (state, getter, pos, i) -> state.getBlock().defaultMapColor().col;
+		BlockColor leavesColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageFoliageColor(getter, pos) : FastColor.ARGB32.opaque(5195923);
+		BlockColor grassColor = (state, getter, pos, i) -> getter != null && pos != null ? BiomeColors.getAverageGrassColor(getter, pos) : FastColor.ARGB32.opaque(5195923);
+		BlockColor dyeColor = (state, getter, pos, i) -> FastColor.ARGB32.opaque(state.getBlock().defaultMapColor().col);
 		strategy.register(grassColor, ESBlocks.NIGHTFALL_GRASS_BLOCK.get());
 		strategy.register(grassColor, ESBlocks.CAVE_MOSS.get());
 		strategy.register(grassColor, ESBlocks.CAVE_MOSS_PLANT.get());
