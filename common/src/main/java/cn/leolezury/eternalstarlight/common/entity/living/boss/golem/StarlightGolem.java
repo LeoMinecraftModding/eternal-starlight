@@ -445,7 +445,7 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 	}
 
 	@Override
-	protected BlockState getBossSpawner() {
+	protected BlockState getBossSpawnerForRespawn() {
 		return ESBlocks.STARLIGHT_GOLEM_SPAWNER.get().defaultBlockState();
 	}
 

@@ -21,7 +21,7 @@ public abstract class ESRenderType extends RenderType {
 		.setCullState(NO_CULL)
 		.setLightmapState(LIGHTMAP)
 		.setOverlayState(OVERLAY)
-		.createCompositeState(true));
+		.createCompositeState(false));
 
 	public static final RenderType ECLIPSE = create(EternalStarlight.ID + ":eclipse", DefaultVertexFormat.BLOCK, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 		.setShaderState(new ShaderStateShard(ESShaders::getRenderTypeEclipse))
@@ -30,7 +30,7 @@ public abstract class ESRenderType extends RenderType {
 		.setCullState(NO_CULL)
 		.setLightmapState(LIGHTMAP)
 		.setOverlayState(OVERLAY)
-		.createCompositeState(true));
+		.createCompositeState(false));
 
 	public static final RenderType PARTICLE_NO_DEPTH = create(EternalStarlight.ID + ":particle_no_depth", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 		.setShaderState(new ShaderStateShard(GameRenderer::getParticleShader))
@@ -40,7 +40,7 @@ public abstract class ESRenderType extends RenderType {
 		.setLightmapState(LIGHTMAP)
 		.setOverlayState(OVERLAY)
 		.setWriteMaskState(COLOR_WRITE)
-		.createCompositeState(true));
+		.createCompositeState(false));
 
 	public static final RenderType PARTICLE_ADDITIVE_GLOW = create(EternalStarlight.ID + ":particle_additive_glow", DefaultVertexFormat.PARTICLE, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 		.setShaderState(new ShaderStateShard(GameRenderer::getParticleShader))
@@ -50,7 +50,7 @@ public abstract class ESRenderType extends RenderType {
 		.setLightmapState(LIGHTMAP)
 		.setOverlayState(OVERLAY)
 		.setWriteMaskState(COLOR_WRITE)
-		.createCompositeState(true));
+		.createCompositeState(false));
 
 	public static final RenderType DRAGON_RAYS_QUADS = create(EternalStarlight.ID + ":dragon_rays_quads", DefaultVertexFormat.POSITION_COLOR, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()
 		.setShaderState(RENDERTYPE_LIGHTNING_SHADER)
@@ -60,7 +60,7 @@ public abstract class ESRenderType extends RenderType {
 		.setLightmapState(LIGHTMAP)
 		.setOverlayState(OVERLAY)
 		.setWriteMaskState(COLOR_WRITE)
-		.createCompositeState(true));
+		.createCompositeState(false));
 
 	public static final Function<ResourceLocation, RenderType> TRANSLUCENT_ADDITIVE_GLOW = Util.memoize(location ->
 		create(EternalStarlight.ID + ":entity_translucent_additive_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, TRANSIENT_BUFFER_SIZE, true, true, RenderType.CompositeState.builder()

@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
 import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.spell.SpellCooldown;
+import cn.leolezury.eternalstarlight.common.util.ESCodecUtil;
 import cn.leolezury.eternalstarlight.common.util.SpecialItemCooldown;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -18,6 +19,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class ESDataAttachments {
 	private static final List<EntityDataAttachment<?>> ATTACHMENTS = new ArrayList<>();
@@ -47,7 +49,7 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<List<Crest.Instance>> OWNED_CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("owned_crests", List::of, Crest.Instance.LIST_CODEC, null, true));
 	public static final EntityDataAttachment<List<SpecialItemCooldown>> SPECIAL_ITEM_COOLDOWNS = register(ESPlatform.INSTANCE.registerDataAttachment("special_item_cooldowns", List::of, SpecialItemCooldown.LIST_CODEC, null, false));
 	public static final EntityDataAttachment<Integer> HUSK_OWNER_ID = register(ESPlatform.INSTANCE.registerDataAttachment("husk_owner_id", () -> -1, null, null, false));
-	public static final EntityDataAttachment<Integer> GATEKEEPER_CHALLENGE_COUNT = register(ESPlatform.INSTANCE.registerDataAttachment("gatekeeper_challenge_count", () -> 0, Codec.INT, null, true));
+	public static final EntityDataAttachment<Map<ResourceLocation, Integer>> BOSS_CHALLENGE_COUNT = register(ESPlatform.INSTANCE.registerDataAttachment("boss_challenge_count", Map::of, ESCodecUtil.createCodecForMap(ResourceLocation.CODEC, Codec.INT), null, true));
 	public static final EntityDataAttachment<Integer> STRANGHOUL_HIRING_COOLDOWN = register(ESPlatform.INSTANCE.registerDataAttachment("stranghoul_hiring_cooldown", () -> 0, Codec.INT, ByteBufCodecs.INT, true));
 	public static final EntityDataAttachment<Integer> BOARWARF_CREDIT = register(ESPlatform.INSTANCE.registerDataAttachment("boarwarf_credit", () -> 0, Codec.INT, null, true));
 	public static final EntityDataAttachment<Boolean> CRESCENT_SPEAR_DASH = register(ESPlatform.INSTANCE.registerDataAttachment("crescent_spear_dash", () -> false, null, ByteBufCodecs.BOOL, false));
