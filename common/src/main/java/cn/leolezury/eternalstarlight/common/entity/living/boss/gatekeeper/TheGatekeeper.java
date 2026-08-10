@@ -522,10 +522,12 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			getFightTarget().ifPresent(p -> {
 				if (p instanceof ServerPlayer serverPlayer) {
 					permitPlayer(serverPlayer);
-					ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.setData(serverPlayer, ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.getData(serverPlayer) + 1);
 				}
 			});
-			trySpawnLoot();
+			if (source.getEntity() instanceof ServerPlayer player && !fightParticipants.contains(player.getUUID())) {
+				fightParticipants.add(player.getUUID());
+			}
+			bossDefeat();
 			abortFight();
 		}
 	}
@@ -644,7 +646,11 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		refreshDimensions();
 		if (!level().isClientSide) {
 			if (standardFight) {
-				if (tickCount > 5 && isAlive() && isActivated() && (getTarget() == null || !getTarget().isAlive())) {
+				LivingEntity target = getTarget();
+				if ((!isAlive() || !isActivated()) || (target != null && target.isAlive())) {
+					noTargetTime = 0;
+				}
+				if (tickCount > 5 && isAlive() && isActivated() && (target == null || !target.isAlive())) {
 					noTargetTime++;
 					if (getFightTarget().isEmpty() || noTargetTime > 200) {
 						abortFight();
@@ -723,7 +729,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	public ItemStack getGatekeeperHammer() {
 		LivingEntity target = getTarget();
-		if (target instanceof ServerPlayer serverPlayer && isPlayerPermitted(serverPlayer) && ESDataAttachments.GATEKEEPER_CHALLENGE_COUNT.getData(target) > 0) {
+		if (target instanceof ServerPlayer serverPlayer && isPlayerPermitted(serverPlayer) && ESDataAttachments.BOSS_CHALLENGE_COUNT.getData(target).getOrDefault(EntityType.getKey(getType()), 0) > 0) {
 			ItemStack mace = Items.MACE.getDefaultInstance();
 			ItemAttributeModifiers morningStarAttributes = ESItems.GLISTERING_MORNING_STAR.get().getDefaultInstance().get(DataComponents.ATTRIBUTE_MODIFIERS);
 			mace.set(DataComponents.ATTRIBUTE_MODIFIERS, morningStarAttributes);

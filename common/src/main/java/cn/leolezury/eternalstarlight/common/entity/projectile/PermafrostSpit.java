@@ -112,7 +112,7 @@ public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
 		if (hitResult.getType() != HitResult.Type.MISS && getOwner() instanceof LivingEntity owner && ESEntityUtil.shouldHarm(owner, hitResult.getEntity())) {
-			hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, owner), (float) ((owner.getAttribute(Attributes.ATTACK_SPEED) != null ? owner.getAttributeValue(Attributes.ATTACK_SPEED) : 12) * 1.25));
+			hitResult.getEntity().hurt(ESDamageTypes.getIndirectEntityDamageSource(level(), ESDamageTypes.FREEZE, this, owner), (float) ((owner.getAttribute(Attributes.ATTACK_DAMAGE) != null ? owner.getAttributeValue(Attributes.ATTACK_DAMAGE) : 12) * 1.25));
 			if (hitResult.getEntity() instanceof LivingEntity living && living.canFreeze()) {
 				living.addEffect(new MobEffectInstance(ESMobEffects.BRITTLE.asHolder(), 200, 0));
 			}

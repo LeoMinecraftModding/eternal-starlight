@@ -55,9 +55,9 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 		consumer.accept(ESLootTables.BOSS_THE_GATEKEEPER,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.BOOK.get())).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKING_PLAYER, new EntityPredicate.Builder().subPredicate(PlayerPredicate.Builder.player().checkAdvancementDone(EternalStarlight.id("challenge_gatekeeper"), false).build()))))
+					.add(LootItem.lootTableItem(ESItems.BOOK.get()).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().subPredicate(PlayerPredicate.Builder.player().checkAdvancementDone(EternalStarlight.id("challenge_gatekeeper"), false).build())))))
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.ORB_OF_PROPHECY.get())).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKING_PLAYER, new EntityPredicate.Builder().subPredicate(PlayerPredicate.Builder.player().checkAdvancementDone(EternalStarlight.id("challenge_gatekeeper"), false).build()))))
+					.add(LootItem.lootTableItem(ESItems.ORB_OF_PROPHECY.get()).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().subPredicate(PlayerPredicate.Builder.player().checkAdvancementDone(EternalStarlight.id("challenge_gatekeeper"), false).build())))))
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.GLISTERING_SWORD.get()).when(LootItemRandomChanceCondition.randomChance(0.3f)))
 					.add(LootItem.lootTableItem(ESItems.GLISTERING_GREATSWORD.get()).when(LootItemRandomChanceCondition.randomChance(0.3f)))

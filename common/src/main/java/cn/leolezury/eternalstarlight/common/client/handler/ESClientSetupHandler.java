@@ -462,21 +462,15 @@ public class ESClientSetupHandler {
 		registerSimpleSpecialModel("starfire_hammer");
 		registerSimpleSpecialModel("flowglaze_scythe");
 		registerSimpleSpecialModel("glistering_greatsword");
-		registerSimpleSpecialModel("glistering_greatsword_blocking");
 		registerSimpleSpecialModel("glistering_morning_star");
 		registerSimpleSpecialModel("golem_steel_greatsword");
-		registerSimpleSpecialModel("golem_steel_greatsword_blocking");
 		registerSimpleSpecialModel("crystal_greatsword");
-		registerSimpleSpecialModel("crystal_greatsword_blocking");
 		registerSimpleSpecialModel("moonring_greatsword");
-		registerSimpleSpecialModel("moonring_greatsword_blocking");
 		registerSimpleSpecialModel("petal_scythe");
 		registerSimpleSpecialModel("crescent_spear");
 		registerSimpleSpecialModel("bonemore");
-		registerSimpleSpecialModel("bonemore_blocking");
 		registerSimpleSpecialModel("doomeden_rapier");
 		registerSimpleSpecialModel("orb_of_prophecy");
-		registerSimpleSpecialModel("orb_of_prophecy_with_crests");
 
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.LASER_BEAM), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.CastSpellHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));

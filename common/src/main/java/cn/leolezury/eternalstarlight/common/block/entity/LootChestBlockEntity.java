@@ -6,7 +6,6 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -22,11 +21,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stat;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -98,8 +94,10 @@ public class LootChestBlockEntity extends BlockEntity {
 			ServerLevel serverLevel = player.serverLevel();
 			MinecraftServer server = serverLevel.getServer();
 			LootTable table = server.reloadableRegistries().getLootTable(lootTable);
-			LootParams.Builder paramBuilder = new LootParams.Builder(serverLevel).withParameter(LootContextParams.THIS_ENTITY, player).withParameter(LootContextParams.ORIGIN, player.position()).withParameter(LootContextParams.DAMAGE_SOURCE, this.level.damageSources().generic());
-			LootParams params = paramBuilder.create(LootContextParamSets.ENTITY);
+			LootParams.Builder paramBuilder = new LootParams.Builder(serverLevel)
+				.withParameter(LootContextParams.THIS_ENTITY, player)
+				.withParameter(LootContextParams.ORIGIN, player.position());
+			LootParams params = paramBuilder.create(LootContextParamSets.CHEST);
 			itemsToEject.addAll(table.getRandomItems(params));
 		}
 		setChanged();
