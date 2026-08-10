@@ -4,6 +4,8 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.PlayerPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -14,12 +16,14 @@ import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.SetComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
@@ -51,9 +55,9 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 		consumer.accept(ESLootTables.BOSS_THE_GATEKEEPER,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.BOOK.get())))
+					.add(LootItem.lootTableItem(ESItems.BOOK.get())).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKING_PLAYER, new EntityPredicate.Builder().subPredicate(PlayerPredicate.Builder.player().checkAdvancementDone(EternalStarlight.id("challenge_gatekeeper"), false).build()))))
 				.withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(ESItems.ORB_OF_PROPHECY.get())))
+					.add(LootItem.lootTableItem(ESItems.ORB_OF_PROPHECY.get())).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKING_PLAYER, new EntityPredicate.Builder().subPredicate(PlayerPredicate.Builder.player().checkAdvancementDone(EternalStarlight.id("challenge_gatekeeper"), false).build()))))
 				.withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(ESItems.GLISTERING_SWORD.get()).when(LootItemRandomChanceCondition.randomChance(0.3f)))
 					.add(LootItem.lootTableItem(ESItems.GLISTERING_GREATSWORD.get()).when(LootItemRandomChanceCondition.randomChance(0.3f)))

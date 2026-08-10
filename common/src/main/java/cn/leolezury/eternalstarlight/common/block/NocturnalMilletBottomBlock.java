@@ -56,7 +56,7 @@ public class NocturnalMilletBottomBlock extends Block implements BonemealableBlo
 	@Override
 	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		BlockState belowState = level.getBlockState(pos.below());
-		return level.getRawBrightness(pos, 0) >= 8 && (belowState.is(Blocks.FARMLAND) || belowState.is(BlockTags.DIRT) || belowState.is(ESTags.Blocks.CONVERTS_NOCTURNAL_MILLET));
+		return level.getRawBrightness(pos, 0) >= 8 && (belowState.is(Blocks.FARMLAND) || (belowState.is(ESBlocks.NIGHTFALL_FARMLAND.get())) || belowState.is(BlockTags.DIRT) || belowState.is(ESTags.Blocks.CONVERTS_NOCTURNAL_MILLET));
 	}
 
 	@Override
