@@ -10,6 +10,7 @@ import cn.leolezury.eternalstarlight.common.item.component.ItemStackList;
 import cn.leolezury.eternalstarlight.common.item.component.LargeItemStackList;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import cn.leolezury.eternalstarlight.common.util.ESCodecUtil;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
@@ -23,13 +24,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootTable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 public class ESDataComponents {
 	public static final RegistrationProvider<DataComponentType<?>> DATA_COMPONENTS = RegistrationProvider.get(Registries.DATA_COMPONENT_TYPE, EternalStarlight.ID);
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<GuideBook>> BOOK = DATA_COMPONENTS.register("book", () -> DataComponentType.<GuideBook>builder().persistent(GuideBook.CODEC).networkSynchronized(GuideBook.STREAM_CODEC).cacheEncoding().build());
-	public static final RegistryObject<DataComponentType<?>, DataComponentType<Holder<Crest>>> CURRENT_CREST = DATA_COMPONENTS.register("current_crest", () -> DataComponentType.<Holder<Crest>>builder().persistent(RegistryFixedCodec.create(ESRegistries.CREST)).networkSynchronized(ByteBufCodecs.fromCodecWithRegistries(RegistryFixedCodec.create(ESRegistries.CREST))).build());
-	public static final RegistryObject<DataComponentType<?>, DataComponentType<ResourceKey<LootTable>>> LOOT_TABLE = DATA_COMPONENTS.register("loot_table", () -> DataComponentType.<ResourceKey<LootTable>>builder().persistent(ResourceKey.codec(Registries.LOOT_TABLE)).networkSynchronized(ResourceKey.streamCodec(Registries.LOOT_TABLE)).build());
+	public static final RegistryObject<DataComponentType<?>, DataComponentType<Holder<Crest>>> CURRENT_CREST = DATA_COMPONENTS.register("current_crest", () -> DataComponentType.<Holder<Crest>>builder().persistent(RegistryFixedCodec.create(ESRegistries.CREST)).networkSynchronized(ByteBufCodecs.fromCodecWithRegistries(RegistryFixedCodec.create(ESRegistries.CREST))).cacheEncoding().build());
+	public static final RegistryObject<DataComponentType<?>, DataComponentType<ResourceKey<LootTable>>> LOOT_TABLE = DATA_COMPONENTS.register("loot_table", () -> DataComponentType.<ResourceKey<LootTable>>builder().persistent(ResourceKey.codec(Registries.LOOT_TABLE)).networkSynchronized(ResourceKey.streamCodec(Registries.LOOT_TABLE)).cacheEncoding().build());
+	public static final RegistryObject<DataComponentType<?>, DataComponentType<Map<ResourceLocation, Integer>>> BOSS_CHALLENGE_COUNTS = DATA_COMPONENTS.register("boss_challenge_counts", () -> DataComponentType.<Map<ResourceLocation, Integer>>builder().persistent(ESCodecUtil.createCodecForMap(ResourceLocation.CODEC, Codec.INT)).cacheEncoding().build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<Boolean>> HAS_BLADE = DATA_COMPONENTS.register("has_blade", () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).cacheEncoding().build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<Float>> HUNGER_LEVEL = DATA_COMPONENTS.register("hunger_level", () -> DataComponentType.<Float>builder().persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT).cacheEncoding().build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<List<StarfireBirdNestBlockEntity.Occupant>>> BIRDS = DATA_COMPONENTS.register("birds", () -> DataComponentType.<List<StarfireBirdNestBlockEntity.Occupant>>builder().persistent(StarfireBirdNestBlockEntity.Occupant.LIST_CODEC).networkSynchronized(StarfireBirdNestBlockEntity.Occupant.STREAM_CODEC.apply(ByteBufCodecs.list())).cacheEncoding().build());

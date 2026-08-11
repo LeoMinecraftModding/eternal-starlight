@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:chest",
+  "type": "eternal_starlight:boss",
   "pools": [
     {
       "bonus_rolls": 0.0,

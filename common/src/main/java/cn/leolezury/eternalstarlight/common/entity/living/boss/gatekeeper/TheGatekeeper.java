@@ -458,7 +458,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 			AdvancementHolder killDragon = serverPlayer.getServer().getAdvancements().get(ResourceLocation.withDefaultNamespace("end/kill_dragon"));
 			if (killDragon != null && serverPlayer.getAdvancements().getOrStartProgress(killDragon).isDone() && !isPlayerPermitted(serverPlayer)) {
 				permitPlayer(serverPlayer);
-				ItemStack lootBag = getBossLootBag();
+				ItemStack lootBag = getBossLootBag(ESDataAttachments.BOSS_CHALLENGE_COUNTS.getData(player));
 				ItemEntity item = player.spawnAtLocation(lootBag);
 				if (item != null) {
 					ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
@@ -729,7 +729,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 
 	public ItemStack getGatekeeperHammer() {
 		LivingEntity target = getTarget();
-		if (target instanceof ServerPlayer serverPlayer && isPlayerPermitted(serverPlayer) && ESDataAttachments.BOSS_CHALLENGE_COUNT.getData(target).getOrDefault(EntityType.getKey(getType()), 0) > 0) {
+		if (target instanceof ServerPlayer serverPlayer && isPlayerPermitted(serverPlayer) && ESDataAttachments.BOSS_CHALLENGE_COUNTS.getData(target).getOrDefault(EntityType.getKey(getType()), 0) > 0) {
 			ItemStack mace = Items.MACE.getDefaultInstance();
 			ItemAttributeModifiers morningStarAttributes = ESItems.GLISTERING_MORNING_STAR.get().getDefaultInstance().get(DataComponents.ATTRIBUTE_MODIFIERS);
 			mace.set(DataComponents.ATTRIBUTE_MODIFIERS, morningStarAttributes);

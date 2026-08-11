@@ -222,11 +222,13 @@ public abstract class ESBoss extends Monster implements MultiBehaviorUser {
 		return ResourceKey.create(Registries.LOOT_TABLE, BuiltInRegistries.ENTITY_TYPE.getKey(getType()).withPrefix("bosses/"));
 	}
 
-	public ItemStack getBossLootBag() {
+	public ItemStack getBossLootBag(Map<ResourceLocation, Integer> challengeCounts) {
 		ItemStack lootBag = new ItemStack(ESItems.LOOT_BAG.get());
 		lootBag.applyComponentsAndValidate(DataComponentPatch.builder()
-			.set(DataComponents.LORE, new ItemLore(List.of(getDisplayName())))
-			.set(ESDataComponents.LOOT_TABLE.get(), getBossLootTable()).build());
+			.set(DataComponents.LORE, new ItemLore(List.of(getTypeName())))
+			.set(ESDataComponents.LOOT_TABLE.get(), getBossLootTable())
+			.set(ESDataComponents.BOSS_CHALLENGE_COUNTS.get(), challengeCounts)
+			.build());
 		return lootBag;
 	}
 
@@ -239,20 +241,20 @@ public abstract class ESBoss extends Monster implements MultiBehaviorUser {
 	}
 
 	protected void increaseBossChallengeCount(Player player) {
-		Map<ResourceLocation, Integer> challengeCount = ESDataAttachments.BOSS_CHALLENGE_COUNT.getData(player);
-		Map<ResourceLocation, Integer> newChallengeCount = new HashMap<>(challengeCount);
-		newChallengeCount.compute(EntityType.getKey(getType()), (k, v) -> v == null ? 1 : v + 1);
-		ESDataAttachments.BOSS_CHALLENGE_COUNT.setData(player, newChallengeCount);
+		Map<ResourceLocation, Integer> challengeCounts = ESDataAttachments.BOSS_CHALLENGE_COUNTS.getData(player);
+		Map<ResourceLocation, Integer> newChallengeCounts = new HashMap<>(challengeCounts);
+		newChallengeCounts.compute(EntityType.getKey(getType()), (k, v) -> v == null ? 1 : v + 1);
+		ESDataAttachments.BOSS_CHALLENGE_COUNTS.setData(player, newChallengeCounts);
 	}
 
 	protected void bossDefeat() {
-		trySpawnLoot();
 		for (UUID uuid : fightParticipants) {
 			Player player = level().getPlayerByUUID(uuid);
 			if (player != null && player.isAlive() && player.level().dimension() == level().dimension()) {
 				increaseBossChallengeCount(player);
 			}
 		}
+		trySpawnLoot();
 		if (ESConfig.INSTANCE.enableBossRespawn) {
 			BlockState spawnerState = getBossSpawnerForRespawn();
 			if (!spawnerState.isAir() && initialPos.dimension() == level().dimension()) {
@@ -283,9 +285,9 @@ public abstract class ESBoss extends Monster implements MultiBehaviorUser {
 	protected void trySpawnLoot() {
 		if (level() instanceof ServerLevel serverLevel && shouldSpawnLoot()) {
 			if (!spawnBossLootChest(serverLevel)) {
-				ItemStack lootBag = getBossLootBag();
 				if (fightParticipants.stream().noneMatch(uuid -> level().getPlayerByUUID(uuid) != null)) {
-					ItemEntity item = spawnAtLocation(lootBag.copy());
+					ItemStack lootBag = getBossLootBag(Collections.emptyMap());
+					ItemEntity item = spawnAtLocation(lootBag);
 					if (item != null) {
 						ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
 						item.setGlowingTag(true);
@@ -295,7 +297,8 @@ public abstract class ESBoss extends Monster implements MultiBehaviorUser {
 				for (UUID uuid : fightParticipants) {
 					Player player = level().getPlayerByUUID(uuid);
 					if (player != null && player.isAlive() && player.level().dimension() == level().dimension()) {
-						ItemEntity item = player.spawnAtLocation(lootBag.copy());
+						ItemStack lootBag = getBossLootBag(ESDataAttachments.BOSS_CHALLENGE_COUNTS.getData(player));
+						ItemEntity item = player.spawnAtLocation(lootBag);
 						if (item != null) {
 							ESDataAttachments.IMPORTANT_ITEM.setData(item, true);
 							item.setTarget(player.getUUID());
@@ -345,7 +348,10 @@ public abstract class ESBoss extends Monster implements MultiBehaviorUser {
 			if (serverLevel.getBlockEntity(chestPos) instanceof LootChestBlockEntity blockEntity) {
 				blockEntity.setLootTable(getBossLootTable());
 				for (UUID uuid : fightParticipants) {
-					blockEntity.addRewardTarget(uuid);
+					Player player = level().getPlayerByUUID(uuid);
+					if (player != null && player.isAlive() && player.level().dimension() == level().dimension()) {
+						blockEntity.addRewardTarget(uuid, ESDataAttachments.BOSS_CHALLENGE_COUNTS.getData(player));
+					}
 				}
 				modifyBossLootChest(blockEntity);
 				return true;

@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
+import cn.leolezury.eternalstarlight.common.item.loot.ESLootContextParamSets;
+import cn.leolezury.eternalstarlight.common.item.loot.ESLootContextParams;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import net.minecraft.resources.ResourceKey;
@@ -17,7 +19,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+
+import java.util.Collections;
 
 public class LootBagItem extends Item {
 	public LootBagItem(Properties properties) {
@@ -29,8 +33,11 @@ public class LootBagItem extends Item {
 		if (!level.isClientSide && level instanceof ServerLevel serverLevel && component != null) {
 			MinecraftServer server = serverLevel.getServer();
 			LootTable table = server.reloadableRegistries().getLootTable(component);
-			LootParams.Builder paramBuilder = new LootParams.Builder(serverLevel);
-			LootParams params = paramBuilder.create(LootContextParamSets.EMPTY);
+			LootParams.Builder paramBuilder = new LootParams.Builder(serverLevel)
+				.withParameter(LootContextParams.THIS_ENTITY, player)
+				.withParameter(LootContextParams.ORIGIN, player.position())
+				.withParameter(ESLootContextParams.BOSS_CHALLENGE_COUNTS, stack.getOrDefault(ESDataComponents.BOSS_CHALLENGE_COUNTS.get(), Collections.emptyMap()));
+			LootParams params = paramBuilder.create(ESLootContextParamSets.BOSS);
 			table.getRandomItems(params).forEach((loot) -> {
 				ItemEntity itemEntity = new ItemEntity(level, player.getX(), player.getY(), player.getZ(), loot);
 				ESDataAttachments.IMPORTANT_ITEM.setData(itemEntity, true);

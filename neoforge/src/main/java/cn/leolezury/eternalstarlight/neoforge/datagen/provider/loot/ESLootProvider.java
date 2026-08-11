@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider.loot;
 
+import cn.leolezury.eternalstarlight.common.item.loot.ESLootContextParamSets;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
@@ -18,7 +19,7 @@ public class ESLootProvider extends LootTableProvider {
 			new LootTableProvider.SubProviderEntry(ESBarteringLootSubProvider::new, LootContextParamSets.PIGLIN_BARTER),
 			new LootTableProvider.SubProviderEntry(ESGiftLootSubProvider::new, LootContextParamSets.GIFT),
 			new LootTableProvider.SubProviderEntry(ESFishingLootSubProvider::new, LootContextParamSets.FISHING),
-			new LootTableProvider.SubProviderEntry(ESBossLootSubProvider::new, LootContextParamSets.CHEST)
+			new LootTableProvider.SubProviderEntry(ESBossLootSubProvider::new, ESLootContextParamSets.BOSS)
 		), provider);
 	}
 }

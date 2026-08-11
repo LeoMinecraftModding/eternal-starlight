@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:chest",
+  "type": "eternal_starlight:boss",
   "pools": [
     {
       "bonus_rolls": 0.0,
@@ -8,16 +8,9 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "type_specific": {
-                  "type": "minecraft:player",
-                  "advancements": {
-                    "eternal_starlight:challenge_gatekeeper": false
-                  }
-                }
-              }
+              "boss_id": "eternal_starlight:the_gatekeeper",
+              "condition": "eternal_starlight:boss_challenge_count",
+              "max_inclusive": 1
             }
           ],
           "name": "eternal_starlight:book"
@@ -32,16 +25,9 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "type_specific": {
-                  "type": "minecraft:player",
-                  "advancements": {
-                    "eternal_starlight:challenge_gatekeeper": false
-                  }
-                }
-              }
+              "boss_id": "eternal_starlight:the_gatekeeper",
+              "condition": "eternal_starlight:boss_challenge_count",
+              "max_inclusive": 1
             }
           ],
           "name": "eternal_starlight:orb_of_prophecy"

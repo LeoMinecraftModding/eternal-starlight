@@ -5,10 +5,12 @@ import cn.leolezury.eternalstarlight.common.client.helper.ClientHelper;
 import cn.leolezury.eternalstarlight.common.client.helper.ClientSideHelper;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.item.loot.ESLootContextParamSets;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import org.slf4j.Logger;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -55,7 +57,11 @@ public class EternalStarlight {
 		ESBoarwarfProfessions.loadClass();
 		ESDataAttachments.loadClass();
 		ESRegistries.loadClass();
+		ESLootItemConditions.loadClass();
 		ESFlammabilityRegistry.registerDefaults();
+		synchronized (LootContextParamSets.REGISTRY) {
+			LootContextParamSets.REGISTRY.put(EternalStarlight.id("boss"), ESLootContextParamSets.BOSS);
+		}
 	}
 
 	public static ResourceLocation id(String string) {
