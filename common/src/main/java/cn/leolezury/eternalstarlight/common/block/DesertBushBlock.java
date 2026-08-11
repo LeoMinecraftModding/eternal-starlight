@@ -5,7 +5,9 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
@@ -13,22 +15,33 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DesertBushBlock extends BushBlock {
+import java.util.Optional;
+
+public class DesertBushBlock extends BushBlock implements SickleHarvestable {
 	public static final MapCodec<DesertBushBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 		Codec.INT.fieldOf("height").forGetter((block) -> block.height),
 		propertiesCodec()
 	).apply(instance, DesertBushBlock::new));
 	private final int height;
 	private final VoxelShape shape;
+	private final Optional<ResourceKey<Item>> seed;
 
 	public DesertBushBlock(Properties properties) {
-		this(3, properties);
+		this(3, properties, null);
 	}
 
 	public DesertBushBlock(int height, Properties properties) {
 		super(properties);
 		this.height = height;
 		this.shape = Block.box(2.0D, 0.0D, 2.0D, 14.0D, height, 14.0D);
+		this.seed = Optional.empty();
+	}
+
+	public DesertBushBlock(int height, Properties properties, Optional<ResourceKey<Item>> seed) {
+		super(properties);
+		this.height = height;
+		this.shape = Block.box(2.0D, 0.0D, 2.0D, 14.0D, height, 14.0D);
+		this.seed = seed;
 	}
 
 	@Override
@@ -44,5 +57,10 @@ public class DesertBushBlock extends BushBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
 		return shape;
+	}
+
+	@Override
+	public Optional<ResourceKey<Item>> getSeed() {
+		return this.seed;
 	}
 }

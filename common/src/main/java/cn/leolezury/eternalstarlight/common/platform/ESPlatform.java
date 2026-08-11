@@ -95,8 +95,8 @@ public interface ESPlatform {
 		return new SpawnEggItem(defaultType.get(), backgroundColor, highlightColor, properties);
 	}
 
-	default ScytheItem createScythe(Tier tier, boolean canTill, Item.Properties properties) {
-		return new ScytheItem(tier, canTill, properties);
+	default ScytheItem createScythe(Tier tier, Item.Properties properties) {
+		return new ScytheItem(tier, properties);
 	}
 
 	default ScytheItem createPetalScythe(Tier tier, boolean canTill, Item.Properties properties) {

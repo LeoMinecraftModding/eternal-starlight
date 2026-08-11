@@ -137,6 +137,7 @@ public class ESTags {
 		public static final TagKey<Block> STARFIRE_BIRD_NESTS = create("starfire_bird_nests");
 		public static final TagKey<Block> PREVENTS_MELTING = create("prevents_melting");
 		public static final TagKey<Block> UNAFFECTED_BY_OBLIVION = create("unaffected_by_oblivion");
+		public static final TagKey<Block> FARMLAND = create("farmland");
 
 		private static TagKey<Block> create(String string) {
 			return TagKey.create(Registries.BLOCK, EternalStarlight.id(string));

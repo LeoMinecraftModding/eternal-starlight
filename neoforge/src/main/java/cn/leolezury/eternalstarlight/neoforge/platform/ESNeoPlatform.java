@@ -194,8 +194,8 @@ public class ESNeoPlatform implements ESPlatform {
 	}
 
 	@Override
-	public ScytheItem createScythe(Tier tier, boolean canTill, Item.Properties properties) {
-		return new NeoScytheItem(tier, canTill, properties);
+	public ScytheItem createScythe(Tier tier, Item.Properties properties) {
+		return new NeoScytheItem(tier, properties);
 	}
 
 	@Override

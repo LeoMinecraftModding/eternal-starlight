@@ -13,6 +13,6 @@ public class NeoPetalScytheItem extends PetalScytheItem {
 
 	@Override
 	public boolean canPerformAction(ItemStack stack, ItemAbility ability) {
-		return super.canPerformAction(stack, ability) || (canTill && ItemAbilities.DEFAULT_HOE_ACTIONS.contains(ability)) || ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(ability);
+		return super.canPerformAction(stack, ability) || (ItemAbilities.DEFAULT_HOE_ACTIONS.contains(ability)) || ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(ability);
 	}
 }

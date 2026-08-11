@@ -1278,10 +1278,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.STARFIRE_HOE.get(),
 				ESItems.FLOWGLAZE_HOE.get(),
 				ESItems.AMARAMBER_HOE.get()
-			)
-			.addTags(
-				ESTags.Items.SCYTHES,
-				ESTags.Items.SICKLES
 			);
 		tag(ItemTags.SHOVELS)
 			.add(

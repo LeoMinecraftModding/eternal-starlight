@@ -7,12 +7,12 @@ import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 
 public class NeoScytheItem extends ScytheItem {
-	public NeoScytheItem(Tier tier, boolean canTill, Properties properties) {
-		super(tier, canTill, properties);
+	public NeoScytheItem(Tier tier, Properties properties) {
+		super(tier, properties);
 	}
 
 	@Override
 	public boolean canPerformAction(ItemStack stack, ItemAbility ability) {
-		return super.canPerformAction(stack, ability) || (canTill && ItemAbilities.DEFAULT_HOE_ACTIONS.contains(ability)) || ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(ability);
+		return super.canPerformAction(stack, ability) || (ItemAbilities.DEFAULT_HOE_ACTIONS.contains(ability)) || ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(ability);
 	}
 }
