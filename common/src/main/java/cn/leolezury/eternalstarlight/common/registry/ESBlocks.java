@@ -10,6 +10,8 @@ import cn.leolezury.eternalstarlight.common.data.ESConfiguredFeatures;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import cn.leolezury.eternalstarlight.common.util.CropUtil;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
@@ -32,7 +34,10 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+import java.util.List;
 import java.util.Optional;
+
+import static cn.leolezury.eternalstarlight.common.util.CropUtil.cropKey;
 
 public class ESBlocks {
 	public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(Registries.BLOCK, EternalStarlight.ID);
@@ -1065,9 +1070,20 @@ public class ESBlocks {
 	public static final RegistryObject<Block, ESPortalBlock> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel(state -> 10)));
 
 	//agriculture
-	private static Optional<ResourceKey<Item>> cropKey(String id) {
-		return Optional.of(ResourceKey.create(BuiltInRegistries.ITEM.key(), EternalStarlight.id(id)));
-	}
+	public static final RegistryObject<Block, BasicCropBlock> GRAIN_CRIMSON_THREAD_ = BLOCKS.register(
+		"grain_crimson_thread", () -> new BasicCropBlock(
+			BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT),
+			CropUtil.CropParam
+				.create(0.6f, 7, 0.08f, 0.1f, 1, 3, 12)
+			    .addModelXYZ(0, 7, 0, 7, 9, 6, 9)
+			    .addModelXYZ(1, 7, 0, 7, 9, 6, 9)
+			    .addModelXYZ(2, 7, 0, 7, 9, 8, 9)
+			    .addModelXYZ(3, 5, 0, 5, 11, 8, 11)
+				.addModelXYZ(4, 5, 0, 5, 11, 10, 11)
+				.addModelXYZ(5, 3, 0, 3, 13, 10, 13)
+			    .addModelXYZ(6, 1, 0, 1, 15, 13, 15)
+			    .addModelXYZ(7, 1, 0, 1, 15, 16, 10)
+	));
 
 	private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
 		return false;
