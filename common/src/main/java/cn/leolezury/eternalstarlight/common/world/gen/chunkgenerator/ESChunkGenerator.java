@@ -115,7 +115,7 @@ public class ESChunkGenerator extends NoiseBasedChunkGenerator {
 		StructureTerrainAdaptor adaptor = null;
 		List<BoundingBox> adaptiveBoxes = new ArrayList<>();
 		Registry<Structure> registry = structureManager.registryAccess().registryOrThrow(Registries.STRUCTURE);
-		Set<Structure> adaptiveStructures = registry.getTag(ESTags.Structures.ADAPTIVE_TERRAIN)
+		Set<Structure> adaptiveStructures = registry.getTag(ESTags.Structures.TERRAIN_ADAPTIVE)
 			.map(tag -> tag.stream().map(Holder::value).collect(Collectors.toSet()))
 			.orElse(Set.of());
 		if (!adaptiveStructures.isEmpty()) {

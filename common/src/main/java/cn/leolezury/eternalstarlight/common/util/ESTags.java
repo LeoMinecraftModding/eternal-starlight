@@ -176,7 +176,7 @@ public class ESTags {
 		public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
 		public static final TagKey<Structure> CURSED_GARDEN = create("cursed_garden");
 		public static final TagKey<Structure> PORTAL_RUINS = create("portal_ruins");
-		public static final TagKey<Structure> ADAPTIVE_TERRAIN = create("adaptive_terrain");
+		public static final TagKey<Structure> TERRAIN_ADAPTIVE = create("terrain_adaptive");
 
 		private static TagKey<Structure> create(String string) {
 			return TagKey.create(Registries.STRUCTURE, EternalStarlight.id(string));
