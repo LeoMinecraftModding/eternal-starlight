@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.NpcDialogue
 import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.NpcDialogueTextWidget;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.network.CloseGatekeeperGuiPacket;
-import cn.leolezury.eternalstarlight.common.network.TriggerEntityEventPacket;
+import cn.leolezury.eternalstarlight.common.network.GatekeeperTalkPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -115,7 +115,7 @@ public class GatekeeperDialogueScreen extends Screen {
 		}
 		y -= this.text.getIncrement(width);
 		this.text.reposition(0, y, width);
-		ESClientPlatform.INSTANCE.sendToServer(new TriggerEntityEventPacket(gatekeeper.getId(), TheGatekeeper.EVENT_TALK));
+		ESClientPlatform.INSTANCE.sendToServer(new GatekeeperTalkPacket(gatekeeper.getId()));
 	}
 
 	@Override

@@ -30,6 +30,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ComposterBlock;
 
 import java.util.Map;
 
@@ -48,14 +49,20 @@ public class ESFabricEntrypoint implements ModInitializer {
 		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
 			@Override
 			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
-				PayloadTypeRegistry.playC2S().register(packetInfo.type(), packetInfo.streamCodec());
-				PayloadTypeRegistry.playS2C().register(packetInfo.type(), packetInfo.streamCodec());
+				if (packetInfo.direction() == ESPackets.Direction.SERVER_TO_CLIENT || packetInfo.direction() == ESPackets.Direction.BIDIRECTIONAL) {
+					PayloadTypeRegistry.playS2C().register(packetInfo.type(), packetInfo.streamCodec());
+				}
+				if (packetInfo.direction() == ESPackets.Direction.CLIENT_TO_SERVER || packetInfo.direction() == ESPackets.Direction.BIDIRECTIONAL) {
+					PayloadTypeRegistry.playC2S().register(packetInfo.type(), packetInfo.streamCodec());
+				}
 			}
 		});
 		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
 			@Override
 			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
-				ServerPlayNetworking.registerGlobalReceiver(packetInfo.type(), (payload, context) -> packetInfo.handler().handle(payload, context.player()));
+				if (packetInfo.direction() != ESPackets.Direction.SERVER_TO_CLIENT) {
+					ServerPlayNetworking.registerGlobalReceiver(packetInfo.type(), (payload, context) -> packetInfo.handler().handle(payload, context.player()));
+				}
 			}
 		});
 		ESCommonSetupHandler.createAttributes(FabricDefaultAttributeRegistry::register);
@@ -71,6 +78,7 @@ public class ESFabricEntrypoint implements ModInitializer {
 				FuelRegistry.INSTANCE.add(itemTag, time);
 			}
 		});
+		ESCommonSetupHandler.COMPOSTABLES.get().object2FloatEntrySet().forEach(entry -> ComposterBlock.COMPOSTABLES.put(entry.getKey().get(), entry.getFloatValue()));
 		FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> ESCommonSetupHandler.registerPotions(new ESCommonSetupHandler.BrewingRegisterStrategy() {
 			@Override
 			public void registerConversion(Holder<Potion> input, Item ingredient, Holder<Potion> output) {

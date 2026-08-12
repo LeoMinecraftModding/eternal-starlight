@@ -47,6 +47,10 @@ processResources {
     filesMatching("META-INF/neoforge.mods.toml") {
         expand "version": project.version
     }
+
+    from(project(":common").file("src/main/resources/resourcepacks")) {
+        into("resourcepacks")
+    }
 }
 
 shadowJar {

@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider.book;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
@@ -23,7 +24,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class BookDefinitionProvider implements DataProvider {
-	private static final String DIRECTORY = "eternal_starlight/books";
+	private static final String DIRECTORY = EternalStarlight.ID + "/books";
 	protected final ResourceType resourceType;
 	protected final PackOutput.PathProvider pathProvider;
 	protected final ExistingFileHelper existingFileHelper;

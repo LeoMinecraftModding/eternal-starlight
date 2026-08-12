@@ -27,7 +27,11 @@ import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -44,6 +48,7 @@ import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtension
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 
@@ -55,6 +60,20 @@ public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void clientSetup(FMLClientSetupEvent event) {
 		event.enqueueWork(ESClientSetupHandler::clientSetup);
+	}
+
+	@SubscribeEvent
+	private static void onAddPackFinders(AddPackFindersEvent event) {
+		if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+			event.addPackFinders(
+				EternalStarlight.id("resourcepacks/starlight_3d_mace"),
+				PackType.CLIENT_RESOURCES,
+				Component.translatable("resource_pack." + EternalStarlight.ID + ".starlight_3d_mace"),
+				PackSource.BUILT_IN,
+				true,
+				Pack.Position.TOP
+			);
+		}
 	}
 
 	@SubscribeEvent

@@ -30,6 +30,9 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -39,6 +42,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -48,16 +52,26 @@ import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ESFabricClientEntrypoint implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ESClientSetupHandler.clientSetup();
+		Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(EternalStarlight.ID);
+		modContainer.ifPresent(container -> ResourceManagerHelper.registerBuiltinResourcePack(
+			EternalStarlight.id("starlight_3d_mace"),
+			container,
+			Component.translatable("resource_pack." + EternalStarlight.ID + ".starlight_3d_mace"),
+			ResourcePackActivationType.DEFAULT_ENABLED
+		));
 		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
 			@Override
 			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
-				ClientPlayNetworking.registerGlobalReceiver(packetInfo.type(), (payload, context) -> packetInfo.handler().handle(payload, context.player()));
+				if (packetInfo.direction() != ESPackets.Direction.CLIENT_TO_SERVER) {
+					ClientPlayNetworking.registerGlobalReceiver(packetInfo.type(), (payload, context) -> packetInfo.handler().handle(payload, context.player()));
+				}
 			}
 		});
 		ESClientSetupHandler.registerBlockColors(ColorProviderRegistry.BLOCK::register);

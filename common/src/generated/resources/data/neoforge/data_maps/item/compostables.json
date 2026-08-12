@@ -1,0 +1,475 @@
+{
+  "values": {
+    "eternal_starlight:abyssal_fruit": {
+      "chance": 0.65
+    },
+    "eternal_starlight:algaleaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:amaramber_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:amaramber_grass_bush": {
+      "chance": 0.3
+    },
+    "eternal_starlight:amethysia_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:aureate_flower": {
+      "chance": 0.65
+    },
+    "eternal_starlight:banyin_leaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:banyin_roots": {
+      "chance": 0.3
+    },
+    "eternal_starlight:banyin_sapling": {
+      "chance": 0.3
+    },
+    "eternal_starlight:blazebank_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:blooming_shadegrieve": {
+      "chance": 0.65
+    },
+    "eternal_starlight:blossom_of_stars": {
+      "chance": 0.65
+    },
+    "eternal_starlight:blue_crystal_moss_block": {
+      "chance": 0.65
+    },
+    "eternal_starlight:blue_crystal_moss_carpet": {
+      "chance": 0.3
+    },
+    "eternal_starlight:blue_crystal_roots": {
+      "chance": 0.3
+    },
+    "eternal_starlight:blue_crystalfleur": {
+      "chance": 0.65
+    },
+    "eternal_starlight:blue_crystalfleur_vine": {
+      "chance": 0.5
+    },
+    "eternal_starlight:bouldershroom": {
+      "chance": 0.65
+    },
+    "eternal_starlight:bouldershroom_block": {
+      "chance": 0.85
+    },
+    "eternal_starlight:bouldershroom_roots": {
+      "chance": 0.3
+    },
+    "eternal_starlight:bouldershroom_stem": {
+      "chance": 0.65
+    },
+    "eternal_starlight:carved_lunaris_cactus_fruit": {
+      "chance": 0.65
+    },
+    "eternal_starlight:cave_moss": {
+      "chance": 0.65
+    },
+    "eternal_starlight:cave_moss_block": {
+      "chance": 0.65
+    },
+    "eternal_starlight:cave_moss_carpet": {
+      "chance": 0.3
+    },
+    "eternal_starlight:circulush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:conebloom": {
+      "chance": 0.65
+    },
+    "eternal_starlight:cradlewood_leaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:cradlewood_sapling": {
+      "chance": 0.3
+    },
+    "eternal_starlight:crescent_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:crescentleaf": {
+      "chance": 0.65
+    },
+    "eternal_starlight:crinoa": {
+      "chance": 0.65
+    },
+    "eternal_starlight:crinoa_bale": {
+      "chance": 0.85
+    },
+    "eternal_starlight:crinoa_ball": {
+      "chance": 0.85
+    },
+    "eternal_starlight:crinoa_seeds": {
+      "chance": 0.3
+    },
+    "eternal_starlight:crystallized_lunar_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:cyan_lunar_leaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:dead_lunar_bush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:desert_amethysia": {
+      "chance": 0.3
+    },
+    "eternal_starlight:fantabud": {
+      "chance": 0.65
+    },
+    "eternal_starlight:fantafern": {
+      "chance": 0.65
+    },
+    "eternal_starlight:fantagrass": {
+      "chance": 0.5
+    },
+    "eternal_starlight:fantasy_grass_carpet": {
+      "chance": 0.3
+    },
+    "eternal_starlight:fire_orchid": {
+      "chance": 0.65
+    },
+    "eternal_starlight:forgotten_nocturnal_millet": {
+      "chance": 0.65
+    },
+    "eternal_starlight:gladespike": {
+      "chance": 0.65
+    },
+    "eternal_starlight:glimmerfly_bush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:glintgrass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:gloomcandle_root": {
+      "chance": 0.3
+    },
+    "eternal_starlight:gloreed": {
+      "chance": 0.65
+    },
+    "eternal_starlight:glowing_crescent_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:glowing_lunar_bush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:glowing_lunar_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:glowing_mushroom": {
+      "chance": 0.65
+    },
+    "eternal_starlight:glowing_mushroom_block": {
+      "chance": 0.85
+    },
+    "eternal_starlight:glowing_mushroom_stem": {
+      "chance": 0.65
+    },
+    "eternal_starlight:glowing_night_sprouts": {
+      "chance": 0.3
+    },
+    "eternal_starlight:glowing_parasol_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:glowlis": {
+      "chance": 0.65
+    },
+    "eternal_starlight:golden_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:green_fantabud": {
+      "chance": 0.65
+    },
+    "eternal_starlight:green_fantafern": {
+      "chance": 0.65
+    },
+    "eternal_starlight:green_fantagrass": {
+      "chance": 0.5
+    },
+    "eternal_starlight:hanging_algaleaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:hanging_fantagrass": {
+      "chance": 0.5
+    },
+    "eternal_starlight:jinglestem_crisp": {
+      "chance": 0.85
+    },
+    "eternal_starlight:jinglestem_sandwich": {
+      "chance": 0.85
+    },
+    "eternal_starlight:jinglestem_sapling": {
+      "chance": 0.3
+    },
+    "eternal_starlight:jingling_pickle": {
+      "chance": 0.65
+    },
+    "eternal_starlight:lumenstem": {
+      "chance": 0.65
+    },
+    "eternal_starlight:luminis": {
+      "chance": 0.65
+    },
+    "eternal_starlight:lunar_berries": {
+      "chance": 0.3
+    },
+    "eternal_starlight:lunar_bush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:lunar_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:lunar_leaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:lunar_reed": {
+      "chance": 0.3
+    },
+    "eternal_starlight:lunar_sapling": {
+      "chance": 0.3
+    },
+    "eternal_starlight:lunar_vine": {
+      "chance": 0.5
+    },
+    "eternal_starlight:lunaris_cactus": {
+      "chance": 0.5
+    },
+    "eternal_starlight:lunaris_cactus_fruit": {
+      "chance": 0.65
+    },
+    "eternal_starlight:lunaris_cactus_fruit_lantern": {
+      "chance": 0.65
+    },
+    "eternal_starlight:lunaris_cactus_gel": {
+      "chance": 0.65
+    },
+    "eternal_starlight:marimold": {
+      "chance": 0.65
+    },
+    "eternal_starlight:marimold_block": {
+      "chance": 0.65
+    },
+    "eternal_starlight:marimold_stem": {
+      "chance": 0.65
+    },
+    "eternal_starlight:mauve_fern": {
+      "chance": 0.65
+    },
+    "eternal_starlight:moonlight_bush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:moonlight_duckweed": {
+      "chance": 0.3
+    },
+    "eternal_starlight:moonlight_lily_pad": {
+      "chance": 0.65
+    },
+    "eternal_starlight:muddy_banyin_roots": {
+      "chance": 0.3
+    },
+    "eternal_starlight:night_sprouts": {
+      "chance": 0.3
+    },
+    "eternal_starlight:nightfan": {
+      "chance": 0.65
+    },
+    "eternal_starlight:nightfan_bush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:nocturnal_millet": {
+      "chance": 0.65
+    },
+    "eternal_starlight:nocturnal_millet_seeds": {
+      "chance": 0.3
+    },
+    "eternal_starlight:northland_leaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:northland_sapling": {
+      "chance": 0.3
+    },
+    "eternal_starlight:orange_scarlet_bud": {
+      "chance": 0.65
+    },
+    "eternal_starlight:orbflora": {
+      "chance": 0.65
+    },
+    "eternal_starlight:parasol_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:pink_rose": {
+      "chance": 0.65
+    },
+    "eternal_starlight:pink_rose_bush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:pungency_fruit": {
+      "chance": 0.65
+    },
+    "eternal_starlight:pungency_fruit_seeds": {
+      "chance": 0.3
+    },
+    "eternal_starlight:purple_lunar_leaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:purple_scarlet_bud": {
+      "chance": 0.65
+    },
+    "eternal_starlight:red_crystal_moss_block": {
+      "chance": 0.65
+    },
+    "eternal_starlight:red_crystal_moss_carpet": {
+      "chance": 0.3
+    },
+    "eternal_starlight:red_crystal_roots": {
+      "chance": 0.3
+    },
+    "eternal_starlight:red_crystalfleur": {
+      "chance": 0.65
+    },
+    "eternal_starlight:red_crystalfleur_vine": {
+      "chance": 0.5
+    },
+    "eternal_starlight:red_scarlet_bud": {
+      "chance": 0.65
+    },
+    "eternal_starlight:red_velvetumoss": {
+      "chance": 0.65
+    },
+    "eternal_starlight:red_velvetumoss_flower": {
+      "chance": 0.65
+    },
+    "eternal_starlight:red_velvetumoss_villi": {
+      "chance": 0.65
+    },
+    "eternal_starlight:roasted_forgotten_nocturnal_millet": {
+      "chance": 0.85
+    },
+    "eternal_starlight:sacred_lanternvine": {
+      "chance": 0.5
+    },
+    "eternal_starlight:sacred_starlight_flower": {
+      "chance": 0.65
+    },
+    "eternal_starlight:scarlet_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:scarlet_leaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:scarlet_leaves_pile": {
+      "chance": 0.3
+    },
+    "eternal_starlight:scarlet_sapling": {
+      "chance": 0.3
+    },
+    "eternal_starlight:sea_rosa": {
+      "chance": 0.65
+    },
+    "eternal_starlight:shadegrieve": {
+      "chance": 0.65
+    },
+    "eternal_starlight:shadow_snail_pie": {
+      "chance": 1.0
+    },
+    "eternal_starlight:shining_mushroom": {
+      "chance": 0.65
+    },
+    "eternal_starlight:shining_mushroom_block": {
+      "chance": 0.85
+    },
+    "eternal_starlight:shining_mushroom_stem": {
+      "chance": 0.65
+    },
+    "eternal_starlight:silver_pungency_fruit": {
+      "chance": 0.65
+    },
+    "eternal_starlight:small_glowing_night_sprouts": {
+      "chance": 0.3
+    },
+    "eternal_starlight:small_night_sprouts": {
+      "chance": 0.3
+    },
+    "eternal_starlight:spiral_kelp": {
+      "chance": 0.3
+    },
+    "eternal_starlight:starlight_flower": {
+      "chance": 0.65
+    },
+    "eternal_starlight:starlight_seagrass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:starlight_torchflower": {
+      "chance": 0.65
+    },
+    "eternal_starlight:starlit_lily_pad": {
+      "chance": 0.65
+    },
+    "eternal_starlight:stellafly_bush": {
+      "chance": 0.65
+    },
+    "eternal_starlight:stonett": {
+      "chance": 0.65
+    },
+    "eternal_starlight:sunset_thornbloom": {
+      "chance": 0.65
+    },
+    "eternal_starlight:swamp_rose": {
+      "chance": 0.65
+    },
+    "eternal_starlight:tall_crescent_grass": {
+      "chance": 0.5
+    },
+    "eternal_starlight:tall_gladespike": {
+      "chance": 0.5
+    },
+    "eternal_starlight:tall_glowing_crescent_grass": {
+      "chance": 0.5
+    },
+    "eternal_starlight:tall_golden_grass": {
+      "chance": 0.5
+    },
+    "eternal_starlight:tenacious_vine": {
+      "chance": 0.5
+    },
+    "eternal_starlight:torreya_leaves": {
+      "chance": 0.3
+    },
+    "eternal_starlight:torreya_sapling": {
+      "chance": 0.3
+    },
+    "eternal_starlight:torreya_vines": {
+      "chance": 0.5
+    },
+    "eternal_starlight:twilvewyrm_herb": {
+      "chance": 0.65
+    },
+    "eternal_starlight:velvetumoss": {
+      "chance": 0.65
+    },
+    "eternal_starlight:velvetumoss_ball": {
+      "chance": 0.65
+    },
+    "eternal_starlight:velvetumoss_villi": {
+      "chance": 0.65
+    },
+    "eternal_starlight:vividstalk": {
+      "chance": 0.3
+    },
+    "eternal_starlight:whisperbloom": {
+      "chance": 0.65
+    },
+    "eternal_starlight:wick_grass": {
+      "chance": 0.3
+    },
+    "eternal_starlight:withered_desert_amethysia": {
+      "chance": 0.3
+    },
+    "eternal_starlight:withered_starlight_flower": {
+      "chance": 0.65
+    }
+  }
+}

@@ -23,7 +23,13 @@ public record UpdateCrestsPacket(List<Crest.Instance> crests) implements CustomP
 		if (!player.level().isClientSide) {
 			List<Crest.Instance> crestList = packet.crests();
 			List<Crest.Instance> ownedCrests = ESCrestUtil.getOwnedCrests(player);
-			if (crestList.stream().anyMatch(crest -> ownedCrests.stream().noneMatch(c -> c.crest().is(crest.crest())))) {
+			if (crestList.stream().anyMatch(crest -> {
+				int level = crest.level();
+				if (level < 1 || level > crest.crest().value().maxLevel()) {
+					return true;
+				}
+				return ownedCrests.stream().filter(c -> c.crest().is(crest.crest())).noneMatch(c -> level <= c.level());
+			})) {
 				return;
 			}
 			ESCrestUtil.setCrests(player, crestList);

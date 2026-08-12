@@ -118,7 +118,6 @@ accessible method net/minecraft/world/item/ItemStack addModifierTooltip (Ljava/u
 # chunkgen
 extendable class net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 extendable method net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator doFill (Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/chunk/ChunkAccess;II)Lnet/minecraft/world/level/chunk/ChunkAccess;
-extendable method net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator doCreateBiomes (Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 
 # sweep attack for scythes and hammers
 accessible method net/minecraft/world/entity/player/Player getEnchantedDamage (Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/damagesource/DamageSource;)F

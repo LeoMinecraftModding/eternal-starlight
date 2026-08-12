@@ -19,7 +19,7 @@ public class BookLoader extends SimpleJsonResourceReloadListener {
 	private final Map<ResourceLocation, BookDefinition> books = new HashMap<>();
 
 	public BookLoader() {
-		super(new Gson(), "eternal_starlight/books");
+		super(new Gson(), EternalStarlight.ID + "/books");
 	}
 
 	@Nullable

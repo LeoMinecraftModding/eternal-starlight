@@ -44,7 +44,9 @@ public record SyncAttachmentsPacket(int id, EntityDataAttachment<?> attachment, 
 	}
 
 	public static void handle(SyncAttachmentsPacket packet, Player player) {
-		applyData(packet, player.level());
+		if (player.level().isClientSide) {
+			applyData(packet, player.level());
+		}
 	}
 
 	private static @Nullable Object decodeValue(SyncAttachmentsPacket packet, RegistryAccess access) {

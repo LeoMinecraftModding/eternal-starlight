@@ -21,7 +21,7 @@ public class ESFoods {
 	public static final Supplier<FoodProperties> VELVETUMOSS_BALL = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 0), 0.2F).build());
 	public static final Supplier<FoodProperties> CRINOA_BALL = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(6).saturationModifier(0.8F).build());
 	public static final Supplier<FoodProperties> CRINOA_PORRIDGE = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).usingConvertsTo(Items.BOWL).build());
-	public static final Supplier<FoodProperties> POPPED_NOCTURNAL_MILLET_BUCKET = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(5).saturationModifier(0.8F).fast().build());
+	public static final Supplier<FoodProperties> POPPED_NOCTURNAL_MILLET_BUCKET = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(5).saturationModifier(0.8F).fast().usingConvertsTo(Items.BUCKET).build());
 	public static final Supplier<FoodProperties> ROASTED_FORGOTTEN_NOCTURNAL_MILLET = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(10).saturationModifier(0.8F).effect(new MobEffectInstance(ESMobEffects.OBLIVION.asHolder(), 300, 0), 1f).alwaysEdible().build());
 	public static final Supplier<FoodProperties> PUNGENCY_FRUIT = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).build());
 	public static final Supplier<FoodProperties> PUNGENCY_STEW = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).effect(new MobEffectInstance(MobEffects.CONFUSION, 120, 0), 0.8F).usingConvertsTo(Items.BOWL).build());
@@ -29,7 +29,7 @@ public class ESFoods {
 	public static final Supplier<FoodProperties> ROTTEN_FLESH_JERKY = Suppliers.memoize(() -> new FoodProperties(5, 0.8F, false, 2.5F, Optional.empty(), List.of()));
 	public static final Supplier<FoodProperties> ROOKFISH = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(3).saturationModifier(0.1F).build());
 	public static final Supplier<FoodProperties> COOKED_ROOKFISH = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(7).saturationModifier(0.3F).build());
-	public static final Supplier<FoodProperties> ROOKFISH_SKEWER = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).usingConvertsTo(Items.STICK).build());
+	public static final Supplier<FoodProperties> ROOKFISH_SKEWER = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).fast().usingConvertsTo(Items.STICK).build());
 	public static final Supplier<FoodProperties> LUMINOFISH = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build());
 	public static final Supplier<FoodProperties> COOKED_LUMINOFISH = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(6).saturationModifier(0.8F).build());
 	public static final Supplier<FoodProperties> LUMINARIS = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build());

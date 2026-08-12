@@ -1,6 +1,8 @@
 {
   "pack": {
-    "description": "Eternal Starlight Resources",
-    "pack_format": 6
+    "description": {
+      "translate": "resource_pack.eternal_starlight.main"
+    },
+    "pack_format": 34
   }
 }

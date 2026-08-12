@@ -20,7 +20,11 @@ public class ESNeoNetworkHandler {
 		ESCommonSetupHandler.registerPackets(new ESCommonSetupHandler.NetworkRegisterStrategy() {
 			@Override
 			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
-				registrar.playBidirectional(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> context.enqueueWork(() -> packetInfo.handler().handle(packet, context.player())));
+				switch (packetInfo.direction()) {
+					case SERVER_TO_CLIENT -> registrar.playToClient(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> context.enqueueWork(() -> packetInfo.handler().handle(packet, context.player())));
+					case CLIENT_TO_SERVER -> registrar.playToServer(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> context.enqueueWork(() -> packetInfo.handler().handle(packet, context.player())));
+					case BIDIRECTIONAL -> registrar.playBidirectional(packetInfo.type(), packetInfo.streamCodec(), (packet, context) -> context.enqueueWork(() -> packetInfo.handler().handle(packet, context.player())));
+				}
 			}
 		});
 	}

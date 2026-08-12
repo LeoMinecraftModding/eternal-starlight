@@ -13,9 +13,6 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
-import cn.leolezury.eternalstarlight.common.registry.ESCreativeModeTabs;
-import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.neoforge.block.NeoTearBombBlock;
 import cn.leolezury.eternalstarlight.neoforge.block.fluid.NeoEtherFluid;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.NeoAlchemistArmorItem;
@@ -35,9 +32,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
@@ -231,21 +226,6 @@ public class ESNeoPlatform implements ESPlatform {
 	@Override
 	public UnrealiumArmorItem createUnrealiumArmor(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
 		return new NeoUnrealiumArmorItem(material, type, properties);
-	}
-
-	@Override
-	public CreativeModeTab getESTab() {
-		return CreativeModeTab.builder().icon(() -> new ItemStack(ESItems.STARLIGHT_FLOWER.get())).title(Component.translatable("name.eternal_starlight")).displayItems((displayParameters, output) -> {
-			for (ResourceKey<Item> entry : ESItems.REGISTERED_ITEMS) {
-				Item item = BuiltInRegistries.ITEM.get(entry);
-				if (item != null) {
-					output.accept(item);
-					if (item == ESItems.STARLIT_PAINTING.get()) {
-						displayParameters.holders().lookup(Registries.PAINTING_VARIANT).ifPresent((registryLookup) -> ESCreativeModeTabs.generatePresetPaintings(output, displayParameters.holders(), registryLookup, holder -> holder.is(ESTags.PaintingVariants.PLACEABLE)));
-					}
-				}
-			}
-		}).build();
 	}
 
 	@Override

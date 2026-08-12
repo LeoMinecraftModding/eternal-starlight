@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 public class TheGatekeeperNameManager extends SimpleJsonResourceReloadListener {
-	private static final ResourceLocation NAMES_LOCATION = EternalStarlight.id("eternal_starlight/gatekeeper_names/gatekeeper_names.json");
+	private static final ResourceLocation NAMES_LOCATION = EternalStarlight.id(EternalStarlight.ID + "/gatekeeper_names/gatekeeper_names.json");
 	private static final RandomSource RANDOM = RandomSource.create();
 	public static final Gson GSON_INSTANCE = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 	private final List<String> names = Lists.newArrayList();
-	private static final String FOLDER = "eternal_starlight/gatekeeper_names";
+	private static final String FOLDER = EternalStarlight.ID + "/gatekeeper_names";
 
 	public TheGatekeeperNameManager() {
 		super(GSON_INSTANCE, FOLDER);

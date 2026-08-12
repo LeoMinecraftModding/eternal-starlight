@@ -36,7 +36,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -193,7 +192,7 @@ public abstract class LivingEntityMixin {
 			if (instance.isDamageableItem() && !livingEntity.hasInfiniteMaterials()) {
 				instance.setDamageValue(instance.getDamageValue() + 1);
 				if (instance.getDamageValue() >= instance.getMaxDamage()) {
-					foodStack.set(Items.BUCKET.getDefaultInstance());
+					foodStack.set(ItemStack.EMPTY);
 				}
 			}
 		} else {
