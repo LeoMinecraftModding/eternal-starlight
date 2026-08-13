@@ -4,12 +4,15 @@ import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -64,6 +67,19 @@ public class SolarCreeperBlackHolePhase extends BehaviorPhase<SolarCreeper> {
 		RandomSource random = entity.getRandom();
 		if (entity.level() instanceof ServerLevel serverLevel) {
 			Vec3 blackHolePos = entity.getSunAbovePos(1);
+			if (ticks <= 72) {
+				int interval = Mth.lerpInt(ticks / 72f, 8, 2);
+				if (ticks % interval == 0) {
+					RippleParticleOptions shrinkingRipple = new RippleParticleOptions(ESParticles.RIPPLE.get(),
+						SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 5f, 0, 1),
+						SmoothSegmentedValue.of(Easing.OUT_QUART, 0, 0.4f, 1),
+						random.nextFloat() < 0.2F ? RippleParticleOptions.PURPLE : RippleParticleOptions.GOLD, interval * 3);
+					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(shrinkingRipple, blackHolePos.x + (random.nextFloat() - random.nextFloat()) * 0.15F, blackHolePos.y + (random.nextFloat() - random.nextFloat()) * 0.15F, blackHolePos.z + (random.nextFloat() - random.nextFloat()) * 0.15F, 0, 0, 0));
+				}
+			}
+			if (ticks == 100) {
+				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 60, 20, 0.5f, 0.5f, 4.5f, 5.5f).send(serverLevel);
+			}
 			if (ticks > 100) {
 				AABB aabb = AABB.ofSize(blackHolePos, 14, 14, 14);
 				for (Entity e : entity.level().getEntities(entity, aabb, e -> e instanceof LivingEntity living && ESEntityUtil.shouldHarm(entity, living))) {

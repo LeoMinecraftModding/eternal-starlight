@@ -27,29 +27,33 @@ public record RippleParticleOptions(ParticleType<RippleParticleOptions> type, Sm
 	public static final Vector3f LIGHT_BLUE = new Vector3f(178 / 255f, 210 / 255f, 247 / 255f);
 	public static final Vector3f DEEP_BLUE = new Vector3f(56 / 255f, 122 / 255f, 203 / 255f);
 
-	public static void addFlareExplosionRippleParticles(ServerLevel level, double x, double y, double z, RandomSource random, float scale, Vector3f flareColorA, Vector3f flareColorB) {
+	public static void addFlareExplosionRippleParticles(ServerLevel level, double x, double y, double z, RandomSource random, float scale, float lifeScale, Vector3f flareColorA, Vector3f flareColorB) {
 		RippleParticleOptions whiteRipple = new RippleParticleOptions(ESParticles.RIPPLE.get(),
 			SmoothSegmentedValue.of(Easing.OUT_QUAD, 0, 0.5f * scale, 0.25f).add(Easing.OUT_QUAD, 0.5f * scale, 0.6f * scale, 0.75f),
 			SmoothSegmentedValue.of(Easing.IDENTITY, 0.3f * scale, 0.3f * scale, 0.3f).add(Easing.OUT_QUAD, 0.3f * scale, 0, 0.7f),
-			WHITE, 12);
+			WHITE, Math.round(12 * lifeScale));
 		ESPlatform.INSTANCE.sendToAllClients(level, new ParticlePacket(whiteRipple, x + (random.nextFloat() - random.nextFloat()) * 0.15F, y + (random.nextFloat() - random.nextFloat()) * 0.15F, z + (random.nextFloat() - random.nextFloat()) * 0.15F, 0, 0, 0));
 
 		RippleParticleOptions rippleA = new RippleParticleOptions(ESParticles.RIPPLE.get(),
 			SmoothSegmentedValue.of(Easing.OUT_QUAD, 0, 1.1f * scale, 0.3f).add(Easing.OUT_QUAD, 1.1f * scale, 2.1f * scale, 0.7f),
 			SmoothSegmentedValue.of(Easing.IDENTITY, 0.4f * scale, 0.5f * scale, 0.4f).add(Easing.OUT_QUAD, 0.5f * scale, 0, 0.6f),
-			flareColorA, 14);
+			flareColorA, Math.round(14 * lifeScale));
 		ESPlatform.INSTANCE.sendToAllClients(level, new ParticlePacket(rippleA, x + (random.nextFloat() - random.nextFloat()) * 0.15F, y + (random.nextFloat() - random.nextFloat()) * 0.15F, z + (random.nextFloat() - random.nextFloat()) * 0.15F, 0, 0, 0));
 
 		RippleParticleOptions rippleB = new RippleParticleOptions(ESParticles.RIPPLE.get(),
 			SmoothSegmentedValue.of(Easing.OUT_QUAD, 0, 1.1f * scale, 0.2f).add(Easing.OUT_QUAD, 1.1f * scale, 2.1f * scale, 0.8f),
 			SmoothSegmentedValue.of(Easing.IDENTITY, 0.2f * scale, 0.3f * scale, 0.3f).add(Easing.OUT_QUAD, 0.3f * scale, 0, 0.7f),
-			flareColorB, 17);
+			flareColorB, Math.round(17 * lifeScale));
 		ESPlatform.INSTANCE.sendToAllClients(level, new ParticlePacket(rippleB, x + (random.nextFloat() - random.nextFloat()) * 0.15F, y + (random.nextFloat() - random.nextFloat()) * 0.15F, z + (random.nextFloat() - random.nextFloat()) * 0.15F, 0, 0, 0));
 
 		for (int i = 0; i < 12; i++) {
 			Vec3 speed = new Vec3((random.nextFloat() - random.nextFloat()) * 0.1F, (random.nextFloat() - random.nextFloat()) * 0.1F, (random.nextFloat() - random.nextFloat()) * 0.1F).normalize().scale(scale);
-			ESPlatform.INSTANCE.sendToAllClients(level, new ParticlePacket(new ExplosionShockParticleOptions(flareColorA, flareColorB, 1, 0.06f, 1), x + speed.x * 0.6, y + speed.y * 0.6, z + speed.z * 0.6, speed.x, speed.y, speed.z));
+			ESPlatform.INSTANCE.sendToAllClients(level, new ParticlePacket(new ExplosionShockParticleOptions(flareColorA, flareColorB, 1, 0.06f, lifeScale), x + speed.x * 0.6, y + speed.y * 0.6, z + speed.z * 0.6, speed.x, speed.y, speed.z));
 		}
+	}
+
+	public static void addFlareExplosionRippleParticles(ServerLevel level, double x, double y, double z, RandomSource random, float scale, Vector3f flareColorA, Vector3f flareColorB) {
+		addFlareExplosionRippleParticles(level, x, y, z, random, scale, 1, flareColorA, flareColorB);
 	}
 
 	public static void addFlareExplosionRippleParticles(ServerLevel level, double x, double y, double z, RandomSource random) {

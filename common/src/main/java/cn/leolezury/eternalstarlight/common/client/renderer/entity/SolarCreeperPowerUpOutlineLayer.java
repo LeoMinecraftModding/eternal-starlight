@@ -25,7 +25,7 @@ public class SolarCreeperPowerUpOutlineLayer<T extends SolarCreeper> extends Ren
 	public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		SolarCreeperModel<T> model = getParentModel();
 		VertexConsumer consumer = buffer.getBuffer(ESRenderType.entityCutoutGlow(OUTLINE_TEXTURE));
-		float healthProgress = Mth.clamp(1 - 2 * (entity.getHealth() / entity.getMaxHealth()), 0, 1);
+		float healthProgress = Mth.clamp(1 - 2 * entity.getHealthPercentage(), 0, 1);
 		float outlineR = Mth.lerp(healthProgress, 255 / 255f, 197 / 255f);
 		float outlineG = Mth.lerp(healthProgress, 255 / 255f, 26 / 255f);
 		float outlineB = Mth.lerp(healthProgress, 170 / 255f, 0 / 255f);

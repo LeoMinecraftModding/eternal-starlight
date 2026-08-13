@@ -105,7 +105,11 @@ public class SolarCreeperRenderer<T extends SolarCreeper> extends MobRenderer<T,
 			}
 			poseStack.pushPose();
 			poseStack.translate(0.0F, entity.getBbHeight() / 2, 0.0F);
-			poseStack.scale(bodyScale, bodyScale, bodyScale);
+			if (state == SolarCreeperGalaxyPhase.ID) {
+				poseStack.scale(bodyScale, 1 / (bodyScale * bodyScale), bodyScale);
+			} else {
+				poseStack.scale(bodyScale, bodyScale, bodyScale);
+			}
 			poseStack.translate(0.0F, -entity.getBbHeight() / 2, 0.0F);
 			super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
 			poseStack.popPose();

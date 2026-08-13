@@ -6,6 +6,8 @@ import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -59,17 +61,17 @@ public class SolarCreeperPowerUpPhase extends BehaviorPhase<SolarCreeper> {
 	@Override
 	public void tick(SolarCreeper entity) {
 		int ticks = entity.getBehaviorTicks();
+		RandomSource random = entity.getRandom();
 		if (entity.level() instanceof ServerLevel serverLevel) {
 			if (ticks < 30) {
 				entity.setDeltaMovement(entity.getDeltaMovement().add(0, 0.05, 0));
 			}
 			if (ticks == 30) {
 				entity.setDeltaMovement(Vec3.ZERO);
-				RippleParticleOptions.addFlareExplosionRippleParticles(serverLevel,
-					entity.getX(), entity.getY() + entity.getBbHeight() / 2,
-					entity.getZ(), entity.getRandom(), 4.5f,
-					RippleParticleOptions.PURPLE, RippleParticleOptions.GOLD);
-				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 40, 20, 0.5f, 0.7f, 3, 5.5f).send(serverLevel);
+				for (int i = 0; i < 3; i++) {
+					RippleParticleOptions.addFlareExplosionRippleParticles(serverLevel, entity.getX() + (random.nextFloat() - random.nextFloat()) * entity.getBbWidth() * 1.5, entity.getY() + entity.getBbHeight() / 2 + (random.nextFloat() - random.nextFloat()) * entity.getBbHeight() * 0.75, entity.getZ() + (random.nextFloat() - random.nextFloat()) * entity.getBbWidth() * 1.5, random, Mth.randomBetween(random, 1.8f, 2.4f), Mth.randomBetween(random, 0.4f, 0.9f), random.nextBoolean() ? RippleParticleOptions.PURPLE : RippleParticleOptions.ORANGE, RippleParticleOptions.GOLD);
+				}
+				ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 60, 40, 0.6f, 0.5f, 4.5f, 5.5f).send(serverLevel);
 			}
 		}
 	}

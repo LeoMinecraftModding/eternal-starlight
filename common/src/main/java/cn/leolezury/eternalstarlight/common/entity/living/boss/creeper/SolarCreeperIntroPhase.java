@@ -3,8 +3,9 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.creeper;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
-import cn.leolezury.eternalstarlight.common.particle.RingParticleOptions;
+import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
 import net.minecraft.server.level.ServerLevel;
@@ -49,7 +50,11 @@ public class SolarCreeperIntroPhase extends BehaviorPhase<SolarCreeper> {
 			if (ticks <= 0.7 * DURATION) {
 				int interval = Mth.lerpInt(ticks / (0.7f * DURATION), 10, 3);
 				if (ticks % interval == 0) {
-					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(RingParticleOptions.getFlare(interval / 20f), entity.getX(), entity.getY() + entity.getBbHeight() / 2, entity.getZ(), 0, 0, 0));
+					RippleParticleOptions shrinkingRipple = new RippleParticleOptions(ESParticles.RIPPLE.get(),
+						SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 3f, 0, 1),
+						SmoothSegmentedValue.of(Easing.OUT_QUART, 0, 0.4f, 1),
+						random.nextFloat() < 0.2F ? RippleParticleOptions.PURPLE : RippleParticleOptions.GOLD, interval * 3);
+					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(shrinkingRipple, entity.getX() + (random.nextFloat() - random.nextFloat()) * 0.15F, entity.getY() + entity.getBbHeight() / 2 + (random.nextFloat() - random.nextFloat()) * 0.15F, entity.getZ() + (random.nextFloat() - random.nextFloat()) * 0.15F, 0, 0, 0));
 					for (int i = 0; i < 3; i++) {
 						double dx = (random.nextDouble() * 3 + 2) * (random.nextBoolean() ? 1 : -1);
 						double dy = (random.nextDouble() * 3 + 2) * (random.nextBoolean() ? 1 : -1);
