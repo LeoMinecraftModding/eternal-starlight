@@ -2,10 +2,16 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.ArrayList;
@@ -18,22 +24,23 @@ public class CropUtil {
 	}
 
 	public static class CropParam {
-		private final List<Pair<Double, Double>> shapeX;
-		private final List<Pair<Double, Double>> shapeY;
-		private final List<Pair<Double, Double>> shapeZ;
-		private final List<Pair<BlockState, Pair<Pair<Integer, Integer>, Boolean>>> effectableCrops;
+		private final ArrayList<Pair<Double, Double>> shapeX;
+		private final ArrayList<Pair<Double, Double>> shapeY;
+		private final ArrayList<Pair<Double, Double>> shapeZ;
+		private final ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> effectableCrops;
 		private final Pair<Integer, Integer> lightLevelRange;
 		private final float lightEffect;
 		private final float moistEffect;
 		private final int growMaximum;
 		private final float growChance;
 		private final int maxAge;
+		private final int unstableAge;
 
 		public List<Pair<Double, Double>> getShapeZ() {
 			return shapeZ;
 		}
 
-		public List<Pair<BlockState, Pair<Pair<Integer, Integer>, Boolean>>> getEffectableCrops() {
+		public List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> getRelativeBlocks() {
 			return effectableCrops;
 		}
 
@@ -69,18 +76,23 @@ public class CropUtil {
 			return maxAge;
 		}
 
+		public int getUnstableAge() {
+			return unstableAge;
+		}
+
 		private CropParam(
 			float growChance,
 			int maxAge,
 			float lightEffect,
 			float moistEffect,
 			int growMaximum,
-			List<Pair<Double, Double>> shapeX,
-			List<Pair<Double, Double>> shapeY,
-			List<Pair<Double, Double>> shapeZ,
-			List<Pair<BlockState, Pair<Pair<Integer, Integer>, Boolean>>> effectableCrops,
+			ArrayList<Pair<Double, Double>> shapeX,
+			ArrayList<Pair<Double, Double>> shapeY,
+			ArrayList<Pair<Double, Double>> shapeZ,
+			ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> effectableCrops,
 			int minimumLightLevel,
-			int maximumLightLevel
+			int maximumLightLevel,
+			int unstableAge
 		) {
 			this.effectableCrops = effectableCrops;
 			this.shapeZ = shapeZ;
@@ -92,10 +104,24 @@ public class CropUtil {
 			this.growMaximum = growMaximum;
 			this.maxAge = maxAge;
 			this.growChance = growChance;
+			this.unstableAge = unstableAge;
 		}
 
-		public static CropParam create(float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel) {
-			return new CropParam(growChance, maxAge, lightEffect, moistEffect, growMaximum, List.of(), List.of(), List.of(), List.of(), minimumLightLevel, maximumLightLevel);
+		public static CropParam create(float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge) {
+			return new CropParam(
+				growChance,
+				maxAge,
+				lightEffect,
+				moistEffect,
+				growMaximum,
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				minimumLightLevel,
+				maximumLightLevel,
+			    unstableAge
+			);
 		}
 
 		public CropParam addModelXYZ(int age, double x_start, double y_start, double z_start, double x_end, double y_end, double z_end) {
@@ -105,8 +131,21 @@ public class CropUtil {
 			return this;
 		}
 
-		public CropParam addRelationship(BlockState block, int range, int effect, boolean isSymbiosis) {
-			this.effectableCrops.add(Pair.of(block, Pair.of(Pair.of(range, effect), isSymbiosis)));
+		public CropParam addRelationship(String modid, String blockId, int range, int effect, boolean isSymbiosis) {
+			var block = ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(modid, blockId));
+			this.effectableCrops.add(Pair.of(Pair.of(Optional.empty(), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
+			return this;
+		}
+
+		public CropParam addRelationship(String modid, String blockId, int range, int effect, boolean isSymbiosis, String stateName, boolean boolValue) {
+			var block = ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(modid, blockId));
+			this.effectableCrops.add(Pair.of(Pair.of(Optional.of(Pair.of(stateName, Pair.of(Optional.empty(), Optional.of(boolValue)))), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
+			return this;
+		}
+
+		public CropParam addRelationship(String modid, String blockId, int range, int effect, boolean isSymbiosis, String stateName, int targetAge, int minimumAge, int maximumAge) {
+			var block = ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(modid, blockId));
+			this.effectableCrops.add(Pair.of(Pair.of(Optional.of(Pair.of(stateName, Pair.of(Optional.of(Pair.of(targetAge, Pair.of(minimumAge, maximumAge))), Optional.empty()))), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
 			return this;
 		}
 	}

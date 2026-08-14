@@ -705,6 +705,10 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				Blocks.BEDROCK,
 				Blocks.BARRIER
 			);
+		tag(ESTags.Blocks.FARMLAND)
+			.add(
+				ESBlocks.NIGHTFALL_FARMLAND.get()
+			);
 		// mc tags
 		tag(BlockTags.LOGS)
 			.addTags(

@@ -1074,7 +1074,7 @@ public class ESBlocks {
 		"grain_crimson_thread", () -> new BasicCropBlock(
 			BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT),
 			CropUtil.CropParam
-				.create(0.6f, 7, 0.08f, 0.1f, 1, 3, 12)
+				.create(0.6f, 7, 0.2f, 0.1f, 1, 3, 12, 3)
 			    .addModelXYZ(0, 7, 0, 7, 9, 6, 9)
 			    .addModelXYZ(1, 7, 0, 7, 9, 6, 9)
 			    .addModelXYZ(2, 7, 0, 7, 9, 8, 9)

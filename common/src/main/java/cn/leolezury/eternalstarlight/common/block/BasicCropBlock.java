@@ -4,31 +4,39 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.CropUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.FarmBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import com.mojang.datafixers.util.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BasicCropBlock extends BushBlock {
-	public final IntegerProperty age;
+	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
 	public static final BooleanProperty WITHERED = BooleanProperty.create("withered");
+
 	public static final MapCodec<BasicCropBlock> CODEC = RecordCodecBuilder.mapCodec((self) -> self.group(
 		propertiesCodec(),
 		Codec.FLOAT.fieldOf("growChance").forGetter((block) -> block.growChance),
@@ -36,24 +44,27 @@ public class BasicCropBlock extends BushBlock {
 		Codec.list(Codec.pair(Codec.DOUBLE, Codec.DOUBLE)).fieldOf("shapes_x").forGetter((block) -> block.shapeX),
 		Codec.list(Codec.pair(Codec.DOUBLE, Codec.DOUBLE)).fieldOf("shapes_y").forGetter((block) -> block.shapeY),
 		Codec.list(Codec.pair(Codec.DOUBLE, Codec.DOUBLE)).fieldOf("shapes_z").forGetter((block) -> block.shapeZ),
-		Codec.list(Codec.pair(BlockState.CODEC, Codec.pair(Codec.pair(Codec.INT, Codec.INT), Codec.BOOL))).fieldOf("opposition_crops").forGetter((block) -> block.effectableCrops),
+		Codec.list(Codec.pair(Codec.pair(Codec.optionalField("block_with_state", Codec.pair(Codec.STRING, Codec.pair(Codec.optionalField("int_value_range", Codec.pair(Codec.INT, Codec.pair(Codec.INT, Codec.INT)), true).codec(), Codec.optionalField("bool_value", Codec.BOOL, true).codec())), true).codec(), ResourceKey.codec(BuiltInRegistries.BLOCK.key())), Codec.pair(Codec.pair(Codec.INT, Codec.INT), Codec.BOOL))).fieldOf("relative_blocks").forGetter((block) -> block.relativeBlocks),
 		Codec.pair(Codec.INT, Codec.INT).fieldOf("light_level_range").forGetter((block) -> block.lightLevelRange),
 		Codec.FLOAT.fieldOf("light_effect").forGetter((block) -> block.lightEffect),
 		Codec.FLOAT.fieldOf("moist_effect").forGetter((block) -> block.moistEffect),
-		Codec.INT.fieldOf("growMaximum").forGetter((block) -> block.growMaximum)
+		Codec.INT.fieldOf("growMaximum").forGetter((block) -> block.growMaximum),
+		Codec.INT.fieldOf("unstable_age").forGetter((block) -> block.unstableAge)
 	).apply(self, BasicCropBlock::new));
+	private static final Logger log = LoggerFactory.getLogger(BasicCropBlock.class);
 
 	private final List<Pair<Double, Double>> shapeX;
 	private final List<Pair<Double, Double>> shapeY;
 	private final List<Pair<Double, Double>> shapeZ;
 	private final ArrayList<VoxelShape> shapes;
-	private final List<Pair<BlockState, Pair<Pair<Integer, Integer>, Boolean>>> effectableCrops;
+	private final List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> relativeBlocks;
 	private final float growChance;
 	private final int maxAge;
 	private final Pair<Integer, Integer> lightLevelRange;
 	private final float lightEffect;
 	private final float moistEffect;
 	private final int growMaximum;
+	private final int unstableAge;
 
 	private BasicCropBlock(
 		Properties properties,
@@ -62,11 +73,12 @@ public class BasicCropBlock extends BushBlock {
 		List<Pair<Double, Double>> shapeX,
 		List<Pair<Double, Double>> shapeY,
 		List<Pair<Double, Double>> shapeZ,
-		List<Pair<BlockState, Pair<Pair<Integer, Integer>, Boolean>>> effectableCrops,
+		List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> relativeBlocks,
 		Pair<Integer, Integer> lightLevelRange,
 		float lightEffect,
 		float moistEffect,
-		int growMaximum
+		int growMaximum,
+		int unstableAge
 	) {
 		super(properties);
 		this.growChance = growChance;
@@ -82,16 +94,17 @@ public class BasicCropBlock extends BushBlock {
 			double y_e = shapeY.get(i).getSecond();
 			double z_s = shapeZ.get(i).getFirst();
 			double z_e = shapeZ.get(i).getSecond();
-			VoxelShape box = Block.box(x_s,x_e,y_s,y_e,z_s,z_e);
+			VoxelShape box = Block.box(x_s,y_s,z_s,x_e,y_e,z_e);
 			shapes.add(i, box);
 		}
 		this.shapes = shapes;
-		this.effectableCrops = effectableCrops;
+
+		this.relativeBlocks = relativeBlocks;
 		this.lightLevelRange = lightLevelRange;
 		this.lightEffect = lightEffect;
 		this.moistEffect = moistEffect;
 		this.growMaximum = growMaximum;
-		this.age = IntegerProperty.create("age", 0, maxAge);
+		this.unstableAge = unstableAge;
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(WITHERED, false));
 	}
 
@@ -106,11 +119,12 @@ public class BasicCropBlock extends BushBlock {
 			param.getShapeX(),
 			param.getShapeY(),
 			param.getShapeZ(),
-			param.getEffectableCrops(),
+			param.getRelativeBlocks(),
 			param.getLightLevelRange(),
 			param.getLightEffect(),
 			param.getMoistEffect(),
-			param.getGrowMaximum()
+			param.getGrowMaximum(),
+			param.getUnstableAge()
 		);
 	}
 
@@ -119,28 +133,57 @@ public class BasicCropBlock extends BushBlock {
 		return CODEC;
 	}
 
-	protected float getGrowthSpeed(Block block, BlockGetter getter, BlockPos pos) {
+	protected float getGrowthSpeed(ServerLevel getter, BlockPos pos) {
 		final float[] speed = {0f};
-		int lowest_light_level = this.lightLevelRange.getFirst();
-		int highest_light_level = this.lightLevelRange.getSecond();
-		if (this.isWithered(getter.getBlockState(pos))) {
-			this.effectableCrops.forEach(crop -> {
+		int lowestLightLevel = this.lightLevelRange.getFirst();
+		int highestLightLevel = this.lightLevelRange.getSecond();
+		if (!this.isWithered(getter.getBlockState(pos))) {
+			this.relativeBlocks.forEach(crop -> {
 				int range = crop.getSecond().getFirst().getFirst();
 				int efficient = crop.getSecond().getFirst().getSecond();
 				boolean symbiosis = crop.getSecond().getSecond();
 				getter.getBlockStates(new AABB(-range, -1, -range, range, 1, range)).forEach((blockState) -> {
-					if (blockState.equals(crop.getFirst())) {
-						if (symbiosis) {
-							speed[0] += efficient;
+					var nvPair = crop.getFirst().getFirst();
+
+					Block block = BuiltInRegistries.BLOCK.get(crop.getFirst().getSecond());
+					if (blockState.getBlock().equals(block)) {
+						if (nvPair.isPresent()) {
+							var pair = nvPair.get();
+							String name = pair.getFirst();
+							if (pair.getSecond().getFirst().isPresent()) {
+								int target_age = pair.getSecond().getFirst().get().getFirst();
+								var m = pair.getSecond().getFirst().get().getSecond();
+								IntegerProperty property = IntegerProperty.create(name, m.getFirst(), m.getSecond());
+								if (blockState.getValue(property) == target_age) {
+									if (symbiosis) {
+										speed[0] += efficient;
+									} else {
+										speed[0] -= efficient;
+									}
+								}
+							} else {
+								BooleanProperty property = BooleanProperty.create(name);
+								if (pair.getSecond().getSecond().get() == blockState.getValue(property)) {
+									if (symbiosis) {
+										speed[0] += efficient;
+									} else {
+										speed[0] -= efficient;
+									}
+								}
+							}
 						} else {
-							speed[0] -= efficient;
+							if (symbiosis) {
+								speed[0] += efficient;
+							} else {
+								speed[0] -= efficient;
+							}
 						}
 					}
 				});
 			});
 
-			int light_level =getter.getLightEmission(pos);
-			if (light_level >= lowest_light_level && light_level <= highest_light_level) {
+			int light_level = getter.getRawBrightness(pos, 0);
+			if (light_level >= lowestLightLevel && light_level <= highestLightLevel) {
 				speed[0] += this.lightEffect;
 			} else {
 				speed[0] -= this.lightEffect;
@@ -159,19 +202,28 @@ public class BasicCropBlock extends BushBlock {
 		int age = this.getAge(blockState);
 
 		if (age < this.getMaxAge() && !blockState.getValue(WITHERED)) {
-			float speed = getGrowthSpeed(this, serverLevel, blockPos);
+			float speed = getGrowthSpeed(serverLevel, blockPos);
 			float decay = (float) randomSource.nextIntBetweenInclusive(60, 130) / 100;
 			int progression = randomSource.nextIntBetweenInclusive(0, growMaximum);
-			int random_param = randomSource.nextIntBetweenInclusive(0, 1);
+			float random_param = (float) randomSource.nextIntBetweenInclusive(0, 80) / 100;
+
+			log.info(String.valueOf(decay));
+			log.info(String.valueOf(speed));
+			log.info(String.valueOf(random_param));
 
 			if (this.growChance > random_param) {
 				if (decay < speed) {
 					this.grow(progression, blockState, serverLevel, blockPos);
 				} else {
-					if (age == 0 && decay > 1.08) {
-						blockState.setValue(WITHERED, true);
+					if (age <= unstableAge) {
+						if (decay >= 1.15) {
+							blockState.setValue(WITHERED, true);
+						} else {
+							if (age > 0) {
+								this.grow(-progression, blockState, serverLevel, blockPos);
+							}
+						}
 					}
-					this.grow(-progression, blockState, serverLevel, blockPos);
 				}
 			}
 		} else {
@@ -184,7 +236,7 @@ public class BasicCropBlock extends BushBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(age, WITHERED);;
+		builder.add(AGE, WITHERED);;
 	}
 
 	@Override
@@ -206,7 +258,7 @@ public class BasicCropBlock extends BushBlock {
 	}
 
 	protected IntegerProperty getAgeProperty() {
-		return age;
+		return AGE;
 	}
 
 	public int getMaxAge() {
