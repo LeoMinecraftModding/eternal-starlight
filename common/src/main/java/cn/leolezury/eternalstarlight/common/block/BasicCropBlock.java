@@ -1,31 +1,38 @@
 package cn.leolezury.eternalstarlight.common.block;
 
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESFluids;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.CropUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.FarmBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import com.mojang.datafixers.util.Pair;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,9 +40,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BasicCropBlock extends BushBlock {
+public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlockContainer {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
 	public static final BooleanProperty WITHERED = BooleanProperty.create("withered");
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	public static final BooleanProperty ETHERLOGGED = BooleanProperty.create("etherlogged");
 
 	public static final MapCodec<BasicCropBlock> CODEC = RecordCodecBuilder.mapCodec((self) -> self.group(
 		propertiesCodec(),
@@ -49,7 +58,9 @@ public class BasicCropBlock extends BushBlock {
 		Codec.FLOAT.fieldOf("light_effect").forGetter((block) -> block.lightEffect),
 		Codec.FLOAT.fieldOf("moist_effect").forGetter((block) -> block.moistEffect),
 		Codec.INT.fieldOf("growMaximum").forGetter((block) -> block.growMaximum),
-		Codec.INT.fieldOf("unstable_age").forGetter((block) -> block.unstableAge)
+		Codec.INT.fieldOf("unstable_age").forGetter((block) -> block.unstableAge),
+		Codec.BOOL.fieldOf("is_aquatic").forGetter((block -> block.aquatic)),
+		Codec.BOOL.fieldOf("is_ether_fillable").forGetter((block -> block.etherFillable))
 	).apply(self, BasicCropBlock::new));
 	private static final Logger log = LoggerFactory.getLogger(BasicCropBlock.class);
 
@@ -82,6 +93,8 @@ public class BasicCropBlock extends BushBlock {
 	private final float moistEffect;
 	private final int growMaximum;
 	private final int unstableAge;
+	private final boolean aquatic;
+	private final boolean etherFillable;
 
 	private BasicCropBlock(
 		Properties properties,
@@ -95,7 +108,9 @@ public class BasicCropBlock extends BushBlock {
 		float lightEffect,
 		float moistEffect,
 		int growMaximum,
-		int unstableAge
+		int unstableAge,
+		boolean aquatic,
+		boolean etherFillable
 	) {
 		super(properties);
 		this.growChance = growChance;
@@ -122,7 +137,9 @@ public class BasicCropBlock extends BushBlock {
 		this.moistEffect = moistEffect;
 		this.growMaximum = growMaximum;
 		this.unstableAge = unstableAge;
-		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(WITHERED, false));
+		this.aquatic = aquatic;
+		this.etherFillable = etherFillable;
+		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(WITHERED, false).setValue(WATERLOGGED, false).setValue(ETHERLOGGED, false));
 	}
 
 	public BasicCropBlock(
@@ -141,7 +158,9 @@ public class BasicCropBlock extends BushBlock {
 			param.getLightEffect(),
 			param.getMoistEffect(),
 			param.getGrowMaximum(),
-			param.getUnstableAge()
+			param.getUnstableAge(),
+			param.isAquatic(),
+			param.isEtherFillable()
 		);
 	}
 
@@ -150,7 +169,19 @@ public class BasicCropBlock extends BushBlock {
 		return CODEC;
 	}
 
-	protected float getGrowthSpeed(ServerLevel getter, BlockPos pos) {
+	protected float growSpeedDecorator(float rawSpeed) {
+		return rawSpeed;
+	}
+
+	protected int detectBoxBottomModifier() {
+		return 1;
+	}
+
+	protected void operateDetectedBlockState(BlockState state, BlockPos pos) {
+		//todo Operate Event
+	}
+
+	protected final float getGrowthSpeed(ServerLevel getter, BlockPos pos, boolean triggerevent) {
 		final float[] speed = {0f};
 		int lowestLightLevel = this.lightLevelRange.getFirst();
 		int highestLightLevel = this.lightLevelRange.getSecond();
@@ -159,13 +190,16 @@ public class BasicCropBlock extends BushBlock {
 				int range = crop.getSecond().getFirst().getFirst();
 				float efficient = crop.getSecond().getFirst().getSecond();
 				boolean symbiosis = crop.getSecond().getSecond();
-				AABB detectBox = new AABB(pos.getX() - range, pos.getY() -1, pos.getZ() - range, pos.getX() + range, pos.getY() + 1, pos.getZ() + range);
+				AABB detectBox = new AABB(pos.getX() - range, pos.getY() - detectBoxBottomModifier(), pos.getZ() - range, pos.getX() + range, pos.getY() + 1, pos.getZ() + range);
 				log.info(detectBox.toString());
 				getter.getBlockStates(detectBox).forEach((blockState) -> {
 					log.info(blockState.toString());
 					var nvPair = crop.getFirst().getFirst();
 
 					Block block = BuiltInRegistries.BLOCK.get(crop.getFirst().getSecond());
+					if (triggerevent) {
+						operateDetectedBlockState(blockState, pos);
+					}
 					if (blockState.getBlock().equals(block)) {
 						log.info("ok");
 						if (nvPair.isPresent()) {
@@ -211,19 +245,25 @@ public class BasicCropBlock extends BushBlock {
 			}
 
 			BlockState farmland = getter.getBlockState(pos.below());
-			if (farmland.is(ESTags.Blocks.FARMLAND)) {
+			if (farmland.is(ESTags.Blocks.FARMLAND) && !this.aquatic) {
 				speed[0] += this.moistEffect * farmland.getValue(FarmBlock.MOISTURE);
 			}
 		}
+		speed[0] = growSpeedDecorator(speed[0]);
 		return speed[0];
 	}
 
+	protected void randomTickAddition() {
+
+	}
+
 	@Override
-	protected void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+	protected final void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+		randomTickAddition();
 		int age = this.getAge(blockState);
 
 		if (age < this.getMaxAge() && !blockState.getValue(WITHERED)) {
-			float speed = getGrowthSpeed(serverLevel, blockPos);
+			float speed = getGrowthSpeed(serverLevel, blockPos, true);
 			float decay = (float) randomSource.nextIntBetweenInclusive(60, 130) / 100;
 			int progression = randomSource.nextIntBetweenInclusive(0, growMaximum);
 			float random_param = (float) randomSource.nextIntBetweenInclusive(0, 80) / 100;
@@ -257,7 +297,7 @@ public class BasicCropBlock extends BushBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(AGE, WITHERED);;
+		builder.add(AGE, WITHERED, WATERLOGGED, ETHERLOGGED);;
 	}
 
 	@Override
@@ -286,7 +326,59 @@ public class BasicCropBlock extends BushBlock {
 		return maxAge;
 	}
 
+	@Override
 	protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
 		return this.shapes.get(getAge(blockState));
+	}
+
+	@Override
+	public ItemStack pickupBlock(@Nullable Player player, LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState) {
+		if (blockState.getValue(BlockStateProperties.WATERLOGGED)) {
+			levelAccessor.setBlock(blockPos, blockState.setValue(BlockStateProperties.WATERLOGGED, false), 3);
+			levelAccessor.destroyBlock(blockPos, true);
+
+			return new ItemStack(Items.WATER_BUCKET);
+		} else if (blockState.getValue(ETHERLOGGED)) {
+			levelAccessor.setBlock(blockPos, blockState.setValue(ETHERLOGGED, false), 3);
+			levelAccessor.destroyBlock(blockPos, true);
+
+			return new ItemStack(ESItems.ETHER_BUCKET.get());
+		} else {
+			return ItemStack.EMPTY;
+		}
+	}
+
+	@Override
+	public Optional<SoundEvent> getPickupSound() {
+		if (aquatic) {
+			return Fluids.WATER.getPickupSound();
+		} else if (etherFillable) {
+			return ESFluids.ETHER_STILL.get().getPickupSound();
+		}
+		return Optional.empty();
+	}
+
+	@Override
+	public boolean canPlaceLiquid(@Nullable Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
+		return ((fluid == Fluids.WATER && this.aquatic) || (fluid == ESFluids.ETHER_STILL.get() && this.etherFillable));
+	}
+
+	@Override
+	public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+		if (!blockState.getValue(BlockStateProperties.WATERLOGGED) && this.aquatic && fluidState.getType() == Fluids.WATER) {
+			if (!levelAccessor.isClientSide()) {
+				levelAccessor.setBlock(blockPos, blockState.setValue(BlockStateProperties.WATERLOGGED, true), 3);
+				levelAccessor.scheduleTick(blockPos, fluidState.getType(), fluidState.getType().getTickDelay(levelAccessor));
+			}
+			return true;
+		} else if (!blockState.getValue(ETHERLOGGED) && this.etherFillable && fluidState.getType() == ESFluids.ETHER_STILL.get()) {
+			if (!levelAccessor.isClientSide()) {
+				levelAccessor.setBlock(blockPos, blockState.setValue(ETHERLOGGED, true), 3);
+				levelAccessor.scheduleTick(blockPos, fluidState.getType(), fluidState.getType().getTickDelay(levelAccessor));
+			}
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

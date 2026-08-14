@@ -43,6 +43,16 @@ public class CropUtil {
 		private final float growChance;
 		private final int maxAge;
 		private final int unstableAge;
+		private final boolean isAquatic;
+		private final boolean isEtherFillable;
+
+		public boolean isEtherFillable() {
+			return isEtherFillable;
+		}
+
+		public boolean isAquatic() {
+			return isAquatic;
+		}
 
 		public List<Pair<Double, Double>> getShapeZ() {
 			return shapeZ;
@@ -100,7 +110,9 @@ public class CropUtil {
 			ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Float>, Boolean>>> effectableCrops,
 			int minimumLightLevel,
 			int maximumLightLevel,
-			int unstableAge
+			int unstableAge,
+			boolean isAquatic,
+			boolean isEtherFillable
 		) {
 			this.effectableCrops = effectableCrops;
 			this.shapeZ = shapeZ;
@@ -113,9 +125,11 @@ public class CropUtil {
 			this.maxAge = maxAge;
 			this.growChance = growChance;
 			this.unstableAge = unstableAge;
+			this.isAquatic = isAquatic;
+			this.isEtherFillable = isEtherFillable;
 		}
 
-		public static CropParam create(float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge) {
+		public static CropParam create(float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge, boolean isAquatic, boolean isEtherFillable) {
 			return new CropParam(
 				growChance,
 				maxAge,
@@ -128,7 +142,28 @@ public class CropUtil {
 				new ArrayList<>(),
 				minimumLightLevel,
 				maximumLightLevel,
-			    unstableAge
+			    unstableAge,
+				isAquatic,
+				isEtherFillable
+			);
+		}
+
+		public static CropParam createCommon(float growChance, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge) {
+			return new CropParam(
+				growChance,
+				7,
+				lightEffect,
+				moistEffect,
+				growMaximum,
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				new ArrayList<>(),
+				minimumLightLevel,
+				maximumLightLevel,
+				unstableAge,
+				false,
+				false
 			);
 		}
 
@@ -152,6 +187,12 @@ public class CropUtil {
 		public CropParam addRelationship(ResourceKey<Block> block, int range, float effect, boolean isSymbiosis, String stateName, int targetAge, int minimumAge, int maximumAge) {
 			this.effectableCrops.add(Pair.of(Pair.of(Optional.of(Pair.of(stateName, Pair.of(Optional.of(Pair.of(targetAge, Pair.of(minimumAge, maximumAge))), Optional.empty()))), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
 			return this;
+		}
+	}
+
+	public static class SubCropParam extends CropParam {
+		private SubCropParam(float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, ArrayList<Pair<Double, Double>> shapeX, ArrayList<Pair<Double, Double>> shapeY, ArrayList<Pair<Double, Double>> shapeZ, ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Float>, Boolean>>> effectableCrops, int minimumLightLevel, int maximumLightLevel, int unstableAge, boolean isAquatic, boolean isEtherFillable) {
+			super(growChance, maxAge, lightEffect, moistEffect, growMaximum, shapeX, shapeY, shapeZ, effectableCrops, minimumLightLevel, maximumLightLevel, unstableAge, isAquatic, isEtherFillable);
 		}
 	}
 }
