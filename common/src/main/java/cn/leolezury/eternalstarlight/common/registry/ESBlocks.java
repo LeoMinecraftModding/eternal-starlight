@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static cn.leolezury.eternalstarlight.common.util.CropUtil.cropKey;
+import static cn.leolezury.eternalstarlight.common.util.CropUtil.vanillaKey;
 
 public class ESBlocks {
 	public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(Registries.BLOCK, EternalStarlight.ID);
@@ -1074,7 +1075,7 @@ public class ESBlocks {
 		"grain_crimson_thread", () -> new BasicCropBlock(
 			BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT),
 			CropUtil.CropParam
-				.create(0.6f, 7, 0.2f, 0.1f, 1, 3, 12, 3)
+				.create(0.6f, 7, 0.2f, 0.05f, 1, 3, 12, 3)
 			    .addModelXYZ(0, 7, 0, 7, 9, 6, 9)
 			    .addModelXYZ(1, 7, 0, 7, 9, 6, 9)
 			    .addModelXYZ(2, 7, 0, 7, 9, 8, 9)
@@ -1083,6 +1084,7 @@ public class ESBlocks {
 				.addModelXYZ(5, 3, 0, 3, 13, 10, 13)
 			    .addModelXYZ(6, 1, 0, 1, 15, 13, 15)
 			    .addModelXYZ(7, 1, 0, 1, 15, 16, 10)
+				.addRelationship(vanillaKey("stone"), 3, 0.04f, true)
 	));
 
 	private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {

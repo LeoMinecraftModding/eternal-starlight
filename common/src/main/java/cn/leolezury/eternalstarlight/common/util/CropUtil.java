@@ -23,11 +23,19 @@ public class CropUtil {
 		return Optional.of(ResourceKey.create(BuiltInRegistries.ITEM.key(), EternalStarlight.id(id)));
 	}
 
+	public static ResourceKey<Block> esKey(String id) {
+		return ResourceKey.create(BuiltInRegistries.BLOCK.key(), EternalStarlight.id(id));
+	}
+
+	public static ResourceKey<Block> vanillaKey(String id) {
+		return ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath("minecraft", id));
+	}
+
 	public static class CropParam {
 		private final ArrayList<Pair<Double, Double>> shapeX;
 		private final ArrayList<Pair<Double, Double>> shapeY;
 		private final ArrayList<Pair<Double, Double>> shapeZ;
-		private final ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> effectableCrops;
+		private final ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Float>, Boolean>>> effectableCrops;
 		private final Pair<Integer, Integer> lightLevelRange;
 		private final float lightEffect;
 		private final float moistEffect;
@@ -40,7 +48,7 @@ public class CropUtil {
 			return shapeZ;
 		}
 
-		public List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> getRelativeBlocks() {
+		public List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Float>, Boolean>>> getRelativeBlocks() {
 			return effectableCrops;
 		}
 
@@ -89,7 +97,7 @@ public class CropUtil {
 			ArrayList<Pair<Double, Double>> shapeX,
 			ArrayList<Pair<Double, Double>> shapeY,
 			ArrayList<Pair<Double, Double>> shapeZ,
-			ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> effectableCrops,
+			ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Float>, Boolean>>> effectableCrops,
 			int minimumLightLevel,
 			int maximumLightLevel,
 			int unstableAge
@@ -131,20 +139,17 @@ public class CropUtil {
 			return this;
 		}
 
-		public CropParam addRelationship(String modid, String blockId, int range, int effect, boolean isSymbiosis) {
-			var block = ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(modid, blockId));
+		public CropParam addRelationship(ResourceKey<Block> block, int range, float effect, boolean isSymbiosis) {
 			this.effectableCrops.add(Pair.of(Pair.of(Optional.empty(), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
 			return this;
 		}
 
-		public CropParam addRelationship(String modid, String blockId, int range, int effect, boolean isSymbiosis, String stateName, boolean boolValue) {
-			var block = ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(modid, blockId));
+		public CropParam addRelationship(ResourceKey<Block> block, int range, float effect, boolean isSymbiosis, String stateName, boolean boolValue) {
 			this.effectableCrops.add(Pair.of(Pair.of(Optional.of(Pair.of(stateName, Pair.of(Optional.empty(), Optional.of(boolValue)))), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
 			return this;
 		}
 
-		public CropParam addRelationship(String modid, String blockId, int range, int effect, boolean isSymbiosis, String stateName, int targetAge, int minimumAge, int maximumAge) {
-			var block = ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(modid, blockId));
+		public CropParam addRelationship(ResourceKey<Block> block, int range, float effect, boolean isSymbiosis, String stateName, int targetAge, int minimumAge, int maximumAge) {
 			this.effectableCrops.add(Pair.of(Pair.of(Optional.of(Pair.of(stateName, Pair.of(Optional.of(Pair.of(targetAge, Pair.of(minimumAge, maximumAge))), Optional.empty()))), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
 			return this;
 		}

@@ -44,7 +44,7 @@ public class BasicCropBlock extends BushBlock {
 		Codec.list(Codec.pair(Codec.DOUBLE, Codec.DOUBLE)).fieldOf("shapes_x").forGetter((block) -> block.shapeX),
 		Codec.list(Codec.pair(Codec.DOUBLE, Codec.DOUBLE)).fieldOf("shapes_y").forGetter((block) -> block.shapeY),
 		Codec.list(Codec.pair(Codec.DOUBLE, Codec.DOUBLE)).fieldOf("shapes_z").forGetter((block) -> block.shapeZ),
-		Codec.list(Codec.pair(Codec.pair(Codec.optionalField("block_with_state", Codec.pair(Codec.STRING, Codec.pair(Codec.optionalField("int_value_range", Codec.pair(Codec.INT, Codec.pair(Codec.INT, Codec.INT)), true).codec(), Codec.optionalField("bool_value", Codec.BOOL, true).codec())), true).codec(), ResourceKey.codec(BuiltInRegistries.BLOCK.key())), Codec.pair(Codec.pair(Codec.INT, Codec.INT), Codec.BOOL))).fieldOf("relative_blocks").forGetter((block) -> block.relativeBlocks),
+		Codec.list(Codec.pair(Codec.pair(Codec.optionalField("block_with_state", Codec.pair(Codec.STRING, Codec.pair(Codec.optionalField("int_value_range", Codec.pair(Codec.INT, Codec.pair(Codec.INT, Codec.INT)), true).codec(), Codec.optionalField("bool_value", Codec.BOOL, true).codec())), true).codec(), ResourceKey.codec(BuiltInRegistries.BLOCK.key())), Codec.pair(Codec.pair(Codec.INT, Codec.FLOAT), Codec.BOOL))).fieldOf("relative_blocks").forGetter((block) -> block.relativeBlocks),
 		Codec.pair(Codec.INT, Codec.INT).fieldOf("light_level_range").forGetter((block) -> block.lightLevelRange),
 		Codec.FLOAT.fieldOf("light_effect").forGetter((block) -> block.lightEffect),
 		Codec.FLOAT.fieldOf("moist_effect").forGetter((block) -> block.moistEffect),
@@ -57,7 +57,24 @@ public class BasicCropBlock extends BushBlock {
 	private final List<Pair<Double, Double>> shapeY;
 	private final List<Pair<Double, Double>> shapeZ;
 	private final ArrayList<VoxelShape> shapes;
-	private final List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> relativeBlocks;
+	private final List<
+		Pair<
+			Pair<
+				Optional<
+					Pair<
+						String, //property name
+						Pair<
+							Optional<Pair<Integer, Pair<Integer, Integer>>>, //is int value(target age, age range)
+							Optional<Boolean> //is bool value
+							>
+						>
+					>,
+				ResourceKey<Block> //target block
+				>,
+			Pair<
+				Pair<Integer, Float>, Boolean> //range, effect, symbiosis
+			>
+		> relativeBlocks;
 	private final float growChance;
 	private final int maxAge;
 	private final Pair<Integer, Integer> lightLevelRange;
@@ -73,7 +90,7 @@ public class BasicCropBlock extends BushBlock {
 		List<Pair<Double, Double>> shapeX,
 		List<Pair<Double, Double>> shapeY,
 		List<Pair<Double, Double>> shapeZ,
-		List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Integer>, Boolean>>> relativeBlocks,
+		List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Float>, Boolean>>> relativeBlocks,
 		Pair<Integer, Integer> lightLevelRange,
 		float lightEffect,
 		float moistEffect,
@@ -140,13 +157,17 @@ public class BasicCropBlock extends BushBlock {
 		if (!this.isWithered(getter.getBlockState(pos))) {
 			this.relativeBlocks.forEach(crop -> {
 				int range = crop.getSecond().getFirst().getFirst();
-				int efficient = crop.getSecond().getFirst().getSecond();
+				float efficient = crop.getSecond().getFirst().getSecond();
 				boolean symbiosis = crop.getSecond().getSecond();
-				getter.getBlockStates(new AABB(-range, -1, -range, range, 1, range)).forEach((blockState) -> {
+				AABB detectBox = new AABB(pos.getX() - range, pos.getY() -1, pos.getZ() - range, pos.getX() + range, pos.getY() + 1, pos.getZ() + range);
+				log.info(detectBox.toString());
+				getter.getBlockStates(detectBox).forEach((blockState) -> {
+					log.info(blockState.toString());
 					var nvPair = crop.getFirst().getFirst();
 
 					Block block = BuiltInRegistries.BLOCK.get(crop.getFirst().getSecond());
 					if (blockState.getBlock().equals(block)) {
+						log.info("ok");
 						if (nvPair.isPresent()) {
 							var pair = nvPair.get();
 							String name = pair.getFirst();
