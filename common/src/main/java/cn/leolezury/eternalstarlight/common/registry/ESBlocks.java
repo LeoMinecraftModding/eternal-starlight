@@ -1084,7 +1084,8 @@ public class ESBlocks {
 			    .addModelXYZ(6, 1, 0, 1, 15, 13, 15)
 			    .addModelXYZ(7, 1, 0, 1, 15, 16, 15)
 				.addRelationship(vanillaKey("stone"), 3, 0.04f, true)
-	));
+		)
+	);
 
 	public static final RegistryObject<Block, BasicCropBlock> SACRED_LANTERN_FLOS_BOTTOM = BLOCKS.register(
 		"sacred_lantern_flos_bottom", () -> new BasicCropBlock(
@@ -1099,7 +1100,8 @@ public class ESBlocks {
 				.addModelXYZ(5, 6, 0, 6, 10, 10, 10)
 				.addModelXYZ(6, 4, 0, 4, 12, 12, 12)
 				.addModelXYZ(7, 4, 0, 4, 12, 16, 12)
-		));
+		)
+	);
 
 	public static final RegistryObject<Block, SubCropBlock> SACRED_LANTERN_FLOS_TOP = BLOCKS.register(
 		"sacred_lantern_flos_top", () -> new SubCropBlock(
@@ -1114,7 +1116,8 @@ public class ESBlocks {
 				.addModelXYZ(5, 6, 0, 6, 10, 10, 10)
 				.addModelXYZ(6, 4, 0, 4, 12, 12, 12)
 				.addModelXYZ(7, 4, 0, 4, 12, 16, 12)
-		));
+		)
+	);
 
 	private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
 		return false;
