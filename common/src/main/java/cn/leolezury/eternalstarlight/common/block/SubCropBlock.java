@@ -1,22 +1,58 @@
 package cn.leolezury.eternalstarlight.common.block;
 
-import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.CropUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+
+import java.util.Optional;
 
 public class SubCropBlock extends BasicCropBlock {
 	private final int maxHeight;
 	private final ResourceKey<Block> origin;
+	private final Optional<ResourceKey<Block>> extensionCrop;
 
-	public SubCropBlock(Properties properties, int maxHeight, ResourceKey<Block> origin, CropUtil.SubCropParam param) {
+	public SubCropBlock(Properties properties, CropUtil.CropParam param) {
 		super(properties, param);
-		this.maxHeight = maxHeight;
-		this.origin = origin;
+		this.maxHeight = param.getMaxHeight();
+		this.origin = param.getOrigin().get();
+		this.extensionCrop = param.getSubCrop();
+	}
+
+	private boolean checkBelow(BlockGetter getter, BlockPos selfPos) {
+		var belowState = getter.getBlockState(selfPos.below(1));
+		return belowState.is(BuiltInRegistries.BLOCK.get(this.origin)) || (belowState.is(this) && this.extensionCrop.isPresent());
+	}
+
+	private boolean checkHeight(BlockGetter getter, BlockPos selfPos) {
+		for (int i = 1; i < this.maxHeight; i++) {
+			if (getter.getBlockState(selfPos.below(i)).is(BuiltInRegistries.BLOCK.get(this.origin))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	protected void subCropExecute(BlockState blockState, ServerLevel level, BlockPos blockPos, RandomSource randomSource) {
+		if (this.extensionCrop.isPresent() && this.getAge(blockState) == this.getMaxAge()) {
+			if (checkHeight(level, blockPos) && checkBelow(level, blockPos)) {
+				var nextSubPos = blockPos.above(1);
+				var nextSubState = level.getBlockState(nextSubPos);
+				if (nextSubState.isAir()) {
+					var subCrop = this;
+					level.setBlock(nextSubPos, subCrop.defaultBlockState(), 2);
+					nextSubState = level.getBlockState(nextSubPos);
+					subCropExecute(nextSubState, level, nextSubPos, randomSource);
+				}
+			}
+		}
 	}
 
 	@Override
@@ -26,6 +62,6 @@ public class SubCropBlock extends BasicCropBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-		return blockState.is(BuiltInRegistries.BLOCK.get(this.origin));
+		return checkBelow(blockGetter, blockPos);
 	}
 }

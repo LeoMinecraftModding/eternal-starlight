@@ -60,7 +60,8 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		Codec.INT.fieldOf("growMaximum").forGetter((block) -> block.growMaximum),
 		Codec.INT.fieldOf("unstable_age").forGetter((block) -> block.unstableAge),
 		Codec.BOOL.fieldOf("is_aquatic").forGetter((block -> block.aquatic)),
-		Codec.BOOL.fieldOf("is_ether_fillable").forGetter((block -> block.etherFillable))
+		Codec.BOOL.fieldOf("is_ether_fillable").forGetter((block -> block.etherFillable)),
+		ResourceKey.codec(BuiltInRegistries.BLOCK.key()).optionalFieldOf("sub_crop").forGetter((block -> block.subCrop))
 	).apply(self, BasicCropBlock::new));
 	private static final Logger log = LoggerFactory.getLogger(BasicCropBlock.class);
 
@@ -95,6 +96,7 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 	private final int unstableAge;
 	private final boolean aquatic;
 	private final boolean etherFillable;
+	private final Optional<ResourceKey<Block>> subCrop;
 
 	private BasicCropBlock(
 		Properties properties,
@@ -110,7 +112,8 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		int growMaximum,
 		int unstableAge,
 		boolean aquatic,
-		boolean etherFillable
+		boolean etherFillable,
+		Optional<ResourceKey<Block>> subCrop
 	) {
 		super(properties);
 		this.growChance = growChance;
@@ -139,6 +142,7 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		this.unstableAge = unstableAge;
 		this.aquatic = aquatic;
 		this.etherFillable = etherFillable;
+		this.subCrop = subCrop;
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(WITHERED, false).setValue(WATERLOGGED, false).setValue(ETHERLOGGED, false));
 	}
 
@@ -160,7 +164,8 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 			param.getGrowMaximum(),
 			param.getUnstableAge(),
 			param.isAquatic(),
-			param.isEtherFillable()
+			param.isEtherFillable(),
+			param.getSubCrop()
 		);
 	}
 
@@ -179,6 +184,10 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 
 	protected void operateDetectedBlockState(BlockState state, BlockPos pos) {
 		//todo Operate Event
+	}
+
+	protected void farmlandAdditional(boolean isAquatic, boolean isEtherFillable, BlockPos pos, ServerLevel level) {
+
 	}
 
 	protected final float getGrowthSpeed(ServerLevel getter, BlockPos pos, boolean triggerevent) {
@@ -201,7 +210,6 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 						operateDetectedBlockState(blockState, pos);
 					}
 					if (blockState.getBlock().equals(block)) {
-						log.info("ok");
 						if (nvPair.isPresent()) {
 							var pair = nvPair.get();
 							String name = pair.getFirst();
@@ -246,6 +254,7 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 
 			BlockState farmland = getter.getBlockState(pos.below());
 			if (farmland.is(ESTags.Blocks.FARMLAND) && !this.aquatic) {
+				farmlandAdditional(aquatic, etherFillable, pos, getter);
 				speed[0] += this.moistEffect * farmland.getValue(FarmBlock.MOISTURE);
 			}
 		}
@@ -253,44 +262,62 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		return speed[0];
 	}
 
-	protected void randomTickAddition() {
+	protected void randomTickAddition(BlockState blockState, ServerLevel level, BlockPos pos, RandomSource randomSource) {
+
+	}
+
+	protected void subCropExecute(BlockState originState, ServerLevel level, BlockPos blockPos, RandomSource randomSource) {
 
 	}
 
 	@Override
-	protected final void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-		randomTickAddition();
+	protected final void randomTick(BlockState blockState, ServerLevel level, BlockPos blockPos, RandomSource randomSource) {
+		randomTickAddition(blockState, level, blockPos, randomSource);
 		int age = this.getAge(blockState);
 
-		if (age < this.getMaxAge() && !blockState.getValue(WITHERED)) {
-			float speed = getGrowthSpeed(serverLevel, blockPos, true);
-			float decay = (float) randomSource.nextIntBetweenInclusive(60, 130) / 100;
-			int progression = randomSource.nextIntBetweenInclusive(0, growMaximum);
+		if (!blockState.getValue(WITHERED)) {
 			float random_param = (float) randomSource.nextIntBetweenInclusive(0, 80) / 100;
-
-			log.info(String.valueOf(decay));
-			log.info(String.valueOf(speed));
-			log.info(String.valueOf(random_param));
-
 			if (this.growChance > random_param) {
-				if (decay < speed) {
-					this.grow(progression, blockState, serverLevel, blockPos);
-				} else {
-					if (age <= unstableAge) {
-						if (decay >= 1.15) {
-							blockState.setValue(WITHERED, true);
-						} else {
-							if (age > 0) {
-								this.grow(-progression, blockState, serverLevel, blockPos);
+				if (age < this.getMaxAge()) {
+					float speed = getGrowthSpeed(level, blockPos, true);
+					float decay = (float) randomSource.nextIntBetweenInclusive(60, 130) / 100;
+					int progression = randomSource.nextIntBetweenInclusive(0, growMaximum);
+
+					log.info(String.valueOf(decay));
+					log.info(String.valueOf(speed));
+
+					if (decay < speed) {
+						this.grow(progression, blockState, level, blockPos);
+					} else {
+						if (age <= unstableAge) {
+							if (decay >= 1.15) {
+								blockState.setValue(WITHERED, true);
+							} else {
+								if (age > 0) {
+									this.grow(-progression, blockState, level, blockPos);
+								}
 							}
 						}
 					}
+
+				} else {
+					if (this.subCrop.isEmpty()) {
+						int decay = randomSource.nextIntBetweenInclusive(-1, growMaximum + 3);
+						if (decay < 0 && randomSource.nextBoolean()) {
+							this.grow(-1, blockState, level, blockPos);
+						}
+					} else {
+						var subPos = blockPos.above(1);
+						var subState = level.getBlockState(subPos);
+						if (subState.isAir()) {
+							log.info("ok");
+							var subCrop = BuiltInRegistries.BLOCK.get(this.subCrop.get());
+							level.setBlock(subPos, subCrop.defaultBlockState(), 2);
+							subState = level.getBlockState(subPos);
+							subCropExecute(subState, level, subPos, randomSource);
+						}
+					}
 				}
-			}
-		} else {
-			int decay = randomSource.nextIntBetweenInclusive(-1, growMaximum + 3);
-			if (decay < 0 && randomSource.nextBoolean()) {
-				this.grow(-1, blockState, serverLevel, blockPos);
 			}
 		}
 	}

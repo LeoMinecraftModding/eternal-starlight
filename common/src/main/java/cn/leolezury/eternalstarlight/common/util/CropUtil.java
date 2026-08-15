@@ -2,17 +2,11 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +39,24 @@ public class CropUtil {
 		private final int unstableAge;
 		private final boolean isAquatic;
 		private final boolean isEtherFillable;
+		private final Optional<Pair<ResourceKey<Block>, Optional<ResourceKey<Block>>>> subCropBlock;
+		private final int maxHeight;
+
+		public int getMaxHeight() {
+			return maxHeight;
+		}
+
+		public Optional<ResourceKey<Block>> getSubCrop() {
+			if (this.subCropBlock.isPresent()) {
+				return this.subCropBlock.get().getSecond();
+			} else {
+				return Optional.empty();
+			}
+		}
+
+		public Optional<ResourceKey<Block>> getOrigin() {
+			return this.subCropBlock.map(Pair::getFirst);
+		}
 
 		public boolean isEtherFillable() {
 			return isEtherFillable;
@@ -112,7 +124,9 @@ public class CropUtil {
 			int maximumLightLevel,
 			int unstableAge,
 			boolean isAquatic,
-			boolean isEtherFillable
+			boolean isEtherFillable,
+			Optional<Pair<ResourceKey<Block>, Optional<ResourceKey<Block>>>> subCropBlock,
+			int maxHeight
 		) {
 			this.effectableCrops = effectableCrops;
 			this.shapeZ = shapeZ;
@@ -127,9 +141,11 @@ public class CropUtil {
 			this.unstableAge = unstableAge;
 			this.isAquatic = isAquatic;
 			this.isEtherFillable = isEtherFillable;
+			this.subCropBlock = subCropBlock;
+			this.maxHeight = maxHeight;
 		}
 
-		public static CropParam create(float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge, boolean isAquatic, boolean isEtherFillable) {
+		public static CropParam createMultipart(int maxHeight, float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge, boolean isAquatic, boolean isEtherFillable, Optional<ResourceKey<Block>> subCropBlock, ResourceKey<Block> origin) {
 			return new CropParam(
 				growChance,
 				maxAge,
@@ -144,7 +160,9 @@ public class CropUtil {
 				maximumLightLevel,
 			    unstableAge,
 				isAquatic,
-				isEtherFillable
+				isEtherFillable,
+				Optional.of(Pair.of(origin, subCropBlock)),
+				maxHeight
 			);
 		}
 
@@ -163,7 +181,9 @@ public class CropUtil {
 				maximumLightLevel,
 				unstableAge,
 				false,
-				false
+				false,
+				Optional.empty(),
+				0
 			);
 		}
 
@@ -187,12 +207,6 @@ public class CropUtil {
 		public CropParam addRelationship(ResourceKey<Block> block, int range, float effect, boolean isSymbiosis, String stateName, int targetAge, int minimumAge, int maximumAge) {
 			this.effectableCrops.add(Pair.of(Pair.of(Optional.of(Pair.of(stateName, Pair.of(Optional.of(Pair.of(targetAge, Pair.of(minimumAge, maximumAge))), Optional.empty()))), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
 			return this;
-		}
-	}
-
-	public static class SubCropParam extends CropParam {
-		private SubCropParam(float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, ArrayList<Pair<Double, Double>> shapeX, ArrayList<Pair<Double, Double>> shapeY, ArrayList<Pair<Double, Double>> shapeZ, ArrayList<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Float>, Boolean>>> effectableCrops, int minimumLightLevel, int maximumLightLevel, int unstableAge, boolean isAquatic, boolean isEtherFillable) {
-			super(growChance, maxAge, lightEffect, moistEffect, growMaximum, shapeX, shapeY, shapeZ, effectableCrops, minimumLightLevel, maximumLightLevel, unstableAge, isAquatic, isEtherFillable);
 		}
 	}
 }

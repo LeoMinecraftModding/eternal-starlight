@@ -37,8 +37,7 @@ import net.minecraft.world.level.material.PushReaction;
 import java.util.List;
 import java.util.Optional;
 
-import static cn.leolezury.eternalstarlight.common.util.CropUtil.cropKey;
-import static cn.leolezury.eternalstarlight.common.util.CropUtil.vanillaKey;
+import static cn.leolezury.eternalstarlight.common.util.CropUtil.*;
 
 public class ESBlocks {
 	public static final RegistrationProvider<Block> BLOCKS = RegistrationProvider.get(Registries.BLOCK, EternalStarlight.ID);
@@ -1071,7 +1070,7 @@ public class ESBlocks {
 	public static final RegistryObject<Block, ESPortalBlock> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel(state -> 10)));
 
 	//agriculture
-	public static final RegistryObject<Block, BasicCropBlock> GRAIN_CRIMSON_THREAD_ = BLOCKS.register(
+	public static final RegistryObject<Block, BasicCropBlock> GRAIN_CRIMSON_THREAD = BLOCKS.register(
 		"grain_crimson_thread", () -> new BasicCropBlock(
 			BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT),
 			CropUtil.CropParam
@@ -1083,9 +1082,39 @@ public class ESBlocks {
 				.addModelXYZ(4, 5, 0, 5, 11, 10, 11)
 				.addModelXYZ(5, 3, 0, 3, 13, 10, 13)
 			    .addModelXYZ(6, 1, 0, 1, 15, 13, 15)
-			    .addModelXYZ(7, 1, 0, 1, 15, 16, 10)
+			    .addModelXYZ(7, 1, 0, 1, 15, 16, 15)
 				.addRelationship(vanillaKey("stone"), 3, 0.04f, true)
 	));
+
+	public static final RegistryObject<Block, BasicCropBlock> SACRED_LANTERN_FLOS_BOTTOM = BLOCKS.register(
+		"sacred_lantern_flos_bottom", () -> new BasicCropBlock(
+			BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT),
+			CropUtil.CropParam
+				.createMultipart(1, 2.0f, 7,0.5f, 0.03f, 1, 8, 15, 3, false, false, Optional.of(esKey("sacred_lantern_flos_top")), esKey("sacred_lantern_flos_bottom"))
+				.addModelXYZ(0, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(1, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(2, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(3, 6, 0, 6, 10, 8, 10)
+				.addModelXYZ(4, 6, 0, 6, 10, 8, 10)
+				.addModelXYZ(5, 6, 0, 6, 10, 10, 10)
+				.addModelXYZ(6, 4, 0, 4, 12, 12, 12)
+				.addModelXYZ(7, 4, 0, 4, 12, 16, 12)
+		));
+
+	public static final RegistryObject<Block, SubCropBlock> SACRED_LANTERN_FLOS_TOP = BLOCKS.register(
+		"sacred_lantern_flos_top", () -> new SubCropBlock(
+			BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT),
+			CropUtil.CropParam
+				.createMultipart(1, 2.0f, 7,0.5f, 0.03f, 1, 8, 15, 3, false, false, Optional.empty(), esKey("sacred_lantern_flos_bottom"))
+				.addModelXYZ(0, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(1, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(2, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(3, 6, 0, 6, 10, 8, 10)
+				.addModelXYZ(4, 6, 0, 6, 10, 8, 10)
+				.addModelXYZ(5, 6, 0, 6, 10, 10, 10)
+				.addModelXYZ(6, 4, 0, 4, 12, 12, 12)
+				.addModelXYZ(7, 4, 0, 4, 12, 16, 12)
+		));
 
 	private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
 		return false;
