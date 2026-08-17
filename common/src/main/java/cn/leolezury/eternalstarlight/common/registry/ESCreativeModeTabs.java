@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -1119,7 +1120,7 @@ public class ESCreativeModeTabs {
 	}
 
 	private static RegistryObject<CreativeModeTab, CreativeModeTab> registerTab(String id, List<Supplier<Item>> items, Function<Item, CreativeModeTab.DisplayItemsGenerator> itemsGenerator, Supplier<ItemStack> icon) {
-		return TABS.register(id, () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
+		return TABS.register(id, () -> ESPlatform.INSTANCE.getTabBuilder()
 			.icon(icon)
 			.title(Component.translatable("tab." + EternalStarlight.ID + "." + id))
 			.displayItems((displayParameters, output) -> {

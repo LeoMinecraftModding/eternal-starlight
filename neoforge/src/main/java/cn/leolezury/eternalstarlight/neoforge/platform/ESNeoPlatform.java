@@ -229,6 +229,11 @@ public class ESNeoPlatform implements ESPlatform {
 	}
 
 	@Override
+	public CreativeModeTab.Builder getTabBuilder() {
+		return CreativeModeTab.builder();
+	}
+
+	@Override
 	public FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
 		FlowerPotBlock block = new FlowerPotBlock(pot, flower, properties);
 		((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BuiltInRegistries.BLOCK.getKey(flower.get()), () -> block);

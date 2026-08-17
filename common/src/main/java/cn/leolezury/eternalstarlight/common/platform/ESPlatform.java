@@ -127,6 +127,9 @@ public interface ESPlatform {
 		return new UnrealiumArmorItem(material, type, properties);
 	}
 
+	// item tabs
+	CreativeModeTab.Builder getTabBuilder();
+
 	// blocks
 	default FlowerPotBlock createFlowerPot(Supplier<FlowerPotBlock> pot, Supplier<? extends Block> flower, BlockBehaviour.Properties properties) {
 		return new FlowerPotBlock(flower.get(), properties);
