@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.neoforge;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.neoforge.platform.ESNeoPlatform;
+import cn.leolezury.eternalstarlight.neoforge.registry.ESCommandArgumentTypes;
 import cn.leolezury.eternalstarlight.neoforge.registry.ESFluidTypes;
 import cn.leolezury.eternalstarlight.neoforge.registry.ESRegistryRemapper;
 import net.minecraft.core.Registry;
@@ -17,6 +18,7 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 public class ESNeoEntrypoint {
 	public ESNeoEntrypoint(IEventBus modBus) {
 		ESFluidTypes.loadClass();
+		ESCommandArgumentTypes.loadClass();
 		EternalStarlight.init();
 		modBus.addListener(this::onRegister);
 		modBus.addListener(this::onNewRegistry);

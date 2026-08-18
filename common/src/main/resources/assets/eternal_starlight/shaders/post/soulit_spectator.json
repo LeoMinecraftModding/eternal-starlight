@@ -1,13 +1,13 @@
 {
   "targets": [
-    "swap",
-    "blurred"
+    "eternal_starlight_soulit_spectator_swap",
+    "eternal_starlight_soulit_spectator_blurred"
   ],
   "passes": [
     {
       "name": "bits",
       "intarget": "minecraft:main",
-      "outtarget": "swap",
+      "outtarget": "eternal_starlight_soulit_spectator_swap",
       "uniforms": [
         {
           "name": "Resolution",
@@ -25,8 +25,8 @@
     },
     {
       "name": "box_blur",
-      "intarget": "swap",
-      "outtarget": "blurred",
+      "intarget": "eternal_starlight_soulit_spectator_swap",
+      "outtarget": "eternal_starlight_soulit_spectator_blurred",
       "use_linear_filter": true,
       "uniforms": [
         {
@@ -42,18 +42,18 @@
     {
       "name": "eternal_starlight_distance_blend",
       "intarget": "minecraft:main",
-      "outtarget": "swap",
+      "outtarget": "eternal_starlight_soulit_spectator_swap",
       "auxtargets": [
         {
           "name": "BlendSampler",
-          "id": "blurred"
+          "id": "eternal_starlight_soulit_spectator_blurred"
         }
       ]
     },
     {
       "name": "box_blur",
-      "intarget": "swap",
-      "outtarget": "blurred",
+      "intarget": "eternal_starlight_soulit_spectator_swap",
+      "outtarget": "eternal_starlight_soulit_spectator_blurred",
       "use_linear_filter": true,
       "uniforms": [
         {
@@ -68,8 +68,8 @@
     },
     {
       "name": "color_convolve",
-      "intarget": "blurred",
-      "outtarget": "swap",
+      "intarget": "eternal_starlight_soulit_spectator_blurred",
+      "outtarget": "eternal_starlight_soulit_spectator_swap",
       "uniforms": [
         {
           "name": "RedMatrix",
@@ -99,7 +99,7 @@
     },
     {
       "name": "blit",
-      "intarget": "swap",
+      "intarget": "eternal_starlight_soulit_spectator_swap",
       "outtarget": "minecraft:main"
     }
   ]

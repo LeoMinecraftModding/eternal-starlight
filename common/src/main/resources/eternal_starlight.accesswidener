@@ -137,6 +137,9 @@ accessible method net/minecraft/client/renderer/RenderType create (Ljava/lang/St
 # world visual effects
 accessible field net/minecraft/client/renderer/LevelRenderer renderBuffers Lnet/minecraft/client/renderer/RenderBuffers;
 
+# post effect
+accessible field net/minecraft/client/renderer/PostChain passes Ljava/util/List;
+
 # particle
 accessible field net/minecraft/client/particle/ParticleEngine spriteSets Ljava/util/Map;
 accessible field net/minecraft/client/particle/Particle stoppedByCollision Z

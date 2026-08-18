@@ -11,6 +11,7 @@ import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogue
 import cn.leolezury.eternalstarlight.common.client.gui.toast.SimpleTextToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
+import cn.leolezury.eternalstarlight.common.client.posteffect.WorldPostEffectManager;
 import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
@@ -45,6 +46,7 @@ public class ClientSideHelper extends ClientHelper {
 	public void handleServerToClientSimpleAction(SimpleActionPacket packet) {
 		switch (packet.id()) {
 			case SimpleActionPacket.S2C_CLEAR_WEATHER -> ClientWeatherState.weather = null;
+			case SimpleActionPacket.S2C_CLEAR_POST_EFFECT -> WorldPostEffectManager.clear();
 		}
 	}
 

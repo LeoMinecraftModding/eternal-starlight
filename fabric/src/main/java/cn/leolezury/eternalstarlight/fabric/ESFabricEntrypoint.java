@@ -1,10 +1,12 @@
 package cn.leolezury.eternalstarlight.fabric;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.command.PostEffectArgument;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonSetupHandler;
 import cn.leolezury.eternalstarlight.common.network.ESPackets;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
@@ -91,6 +93,7 @@ public class ESFabricEntrypoint implements ModInitializer {
 			}
 		}));
 		CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> ESCommonSetupHandler.registerCommands(dispatcher, context)));
+		ArgumentTypeRegistry.registerArgumentType(EternalStarlight.id("post_effect"), PostEffectArgument.class, new PostEffectArgument.Info());
 		ESCommonSetupHandler.registerChunkGenerator();
 		ESCommonSetupHandler.registerBiomeSource();
 		ESCommonSetupHandler.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));

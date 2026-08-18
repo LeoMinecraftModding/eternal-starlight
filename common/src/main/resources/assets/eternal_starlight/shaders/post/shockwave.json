@@ -1,0 +1,17 @@
+{
+  "targets": [
+    "eternal_starlight_shockwave_swap"
+  ],
+  "passes": [
+    {
+      "name": "eternal_starlight_shockwave",
+      "intarget": "minecraft:main",
+      "outtarget": "eternal_starlight_shockwave_swap"
+    },
+    {
+      "name": "eternal_starlight_post_copy",
+      "intarget": "eternal_starlight_shockwave_swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

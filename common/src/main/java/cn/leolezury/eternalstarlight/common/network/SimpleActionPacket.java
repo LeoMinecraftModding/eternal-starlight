@@ -18,6 +18,7 @@ public record SimpleActionPacket(String id) implements CustomPacketPayload {
 	public static final String C2S_SWITCH_CREST = "switch_crest";
 
 	public static final String S2C_CLEAR_WEATHER = "clear_weather";
+	public static final String S2C_CLEAR_POST_EFFECT = "clear_post_effect";
 
 	public static void handle(SimpleActionPacket packet, Player player) {
 		ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleServerToClientSimpleAction(packet));

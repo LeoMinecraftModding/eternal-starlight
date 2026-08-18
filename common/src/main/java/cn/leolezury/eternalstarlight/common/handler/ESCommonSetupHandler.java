@@ -464,6 +464,7 @@ public class ESCommonSetupHandler {
 		strategy.register(ESPackets.OPEN_BOOK);
 		strategy.register(ESPackets.GATEKEEPER_TALK);
 		strategy.register(ESPackets.UPDATE_BOSS_BAR);
+		strategy.register(ESPackets.POST_EFFECT);
 	}
 
 	public interface EntityAttributeRegisterStrategy {

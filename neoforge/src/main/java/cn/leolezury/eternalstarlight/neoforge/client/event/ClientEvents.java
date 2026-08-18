@@ -52,7 +52,7 @@ public class ClientEvents {
 			ESClientHandler.onAfterRenderWeather(event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
 		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_LEVEL) {
-			ESClientHandler.onAfterRenderLevel();
+			ESClientHandler.onAfterRenderLevel(event.getModelViewMatrix(), event.getProjectionMatrix(), event.getCamera(), event.getPartialTick().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
 		}
 	}
 

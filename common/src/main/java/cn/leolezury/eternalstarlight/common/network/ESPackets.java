@@ -27,6 +27,7 @@ public class ESPackets {
 	public static final PacketInfo<OpenBookPacket> OPEN_BOOK = new PacketInfo<>(Direction.SERVER_TO_CLIENT, OpenBookPacket.TYPE, OpenBookPacket.STREAM_CODEC, OpenBookPacket::handle);
 	public static final PacketInfo<GatekeeperTalkPacket> GATEKEEPER_TALK = new PacketInfo<>(Direction.CLIENT_TO_SERVER, GatekeeperTalkPacket.TYPE, GatekeeperTalkPacket.STREAM_CODEC, GatekeeperTalkPacket::handle);
 	public static final PacketInfo<UpdateBossBarPacket> UPDATE_BOSS_BAR = new PacketInfo<>(Direction.SERVER_TO_CLIENT, UpdateBossBarPacket.TYPE, UpdateBossBarPacket.STREAM_CODEC, UpdateBossBarPacket::handle);
+	public static final PacketInfo<PostEffectPacket> POST_EFFECT = new PacketInfo<>(Direction.SERVER_TO_CLIENT, PostEffectPacket.TYPE, PostEffectPacket.STREAM_CODEC, PostEffectPacket::handle);
 
 	public record PacketInfo<T extends CustomPacketPayload>(Direction direction, CustomPacketPayload.Type<T> type, StreamCodec<RegistryFriendlyByteBuf, T> streamCodec, Handler<T> handler) {
 

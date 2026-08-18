@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.handler;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectRenderer;
+import cn.leolezury.eternalstarlight.common.client.posteffect.WorldPostEffectManager;
 import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.sound.BossMusicSoundInstance;
@@ -154,6 +156,11 @@ public class ESClientHandler {
 				}
 			}
 			SCREEN_SHAKES.removeIf(ScreenShake::shouldRemove);
+
+			// post effects
+			if (!Minecraft.getInstance().isPaused()) {
+				WorldPostEffectManager.tick();
+			}
 
 			// weather
 			if (!Minecraft.getInstance().isPaused() && ClientWeatherState.weather != null && Minecraft.getInstance().level.dimension().location().equals(ESDimensions.STARLIGHT_KEY.location())) {
@@ -336,6 +343,7 @@ public class ESClientHandler {
 		BOSS_BAR_TYPES.clear();
 		VISUAL_EFFECTS.clear();
 		SCREEN_SHAKES.clear();
+		WorldPostEffectManager.clear();
 		GUI_CRESTS.clear();
 		DREAM_CATCHER_TEXTS.clear();
 		if (bossMusicInstance != null) {
@@ -419,11 +427,12 @@ public class ESClientHandler {
 		}
 	}
 
-	public static void onAfterRenderLevel() {
+	public static void onAfterRenderLevel(Matrix4f viewMatrix, Matrix4f projectionMatrix, Camera camera, float partialTicks) {
 		Matrix4f matrix4f = new Matrix4f(RenderSystem.getModelViewMatrix());
-		RenderSystem.getModelViewMatrix().set(modelViewMatrix);
+		RenderSystem.getModelViewMatrix().set(viewMatrix);
 		AFTER_LEVEL_BUFFER_SOURCE.endBatch();
 		RenderSystem.getModelViewMatrix().set(matrix4f);
+		PostEffectRenderer.render(Minecraft.getInstance().level, camera, viewMatrix, projectionMatrix, partialTicks);
 	}
 
 	private static void renderSkyShader(ShaderInstance shader, float intensity) {
