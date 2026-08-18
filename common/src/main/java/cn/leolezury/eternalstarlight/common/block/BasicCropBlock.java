@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import cn.leolezury.eternalstarlight.common.block.entity.TreeNodeBlockEntity;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESFluids;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -18,8 +19,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -40,7 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlockContainer {
+public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlockContainer, EntityBlock {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
 	public static final BooleanProperty WITHERED = BooleanProperty.create("withered");
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -61,7 +64,8 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		Codec.INT.fieldOf("unstable_age").forGetter((block) -> block.unstableAge),
 		Codec.BOOL.fieldOf("is_aquatic").forGetter((block -> block.aquatic)),
 		Codec.BOOL.fieldOf("is_ether_fillable").forGetter((block -> block.etherFillable)),
-		ResourceKey.codec(BuiltInRegistries.BLOCK.key()).optionalFieldOf("sub_crop").forGetter((block -> block.subCrop))
+		ResourceKey.codec(BuiltInRegistries.BLOCK.key()).optionalFieldOf("sub_crop").forGetter((block -> block.subCrop)),
+		Codec.pair(CropUtil.TreeParam.CODEC, Codec.list(CropUtil.TreeParam.CODEC)).optionalFieldOf("tree_param").forGetter((block -> block.treeParam))
 	).apply(self, BasicCropBlock::new));
 	private static final Logger log = LoggerFactory.getLogger(BasicCropBlock.class);
 
@@ -97,6 +101,7 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 	private final boolean aquatic;
 	private final boolean etherFillable;
 	private final Optional<ResourceKey<Block>> subCrop;
+	private final Optional<Pair<CropUtil.TreeParam, List<CropUtil.TreeParam>>> treeParam;
 
 	private BasicCropBlock(
 		Properties properties,
@@ -113,7 +118,8 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		int unstableAge,
 		boolean aquatic,
 		boolean etherFillable,
-		Optional<ResourceKey<Block>> subCrop
+		Optional<ResourceKey<Block>> subCrop,
+		Optional<Pair<CropUtil.TreeParam, List<CropUtil.TreeParam>>> treeParam
 	) {
 		super(properties);
 		this.growChance = growChance;
@@ -143,6 +149,7 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		this.aquatic = aquatic;
 		this.etherFillable = etherFillable;
 		this.subCrop = subCrop;
+		this.treeParam = treeParam;
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(WITHERED, false).setValue(WATERLOGGED, false).setValue(ETHERLOGGED, false));
 	}
 
@@ -165,7 +172,8 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 			param.getUnstableAge(),
 			param.isAquatic(),
 			param.isEtherFillable(),
-			param.getSubCrop()
+			param.getSubCrop(),
+			param.getTreeParam()
 		);
 	}
 
@@ -328,6 +336,13 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 	}
 
 	@Override
+	protected void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockStateOld, boolean bl) {
+		if (!(this instanceof SubCropBlock) && !(this instanceof CropBranchBlock) && this.treeParam.isPresent()) {
+			level.setBlockEntity(new TreeNodeBlockEntity(blockPos, blockState, this.treeParam));
+		}
+	}
+
+	@Override
 	protected boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
 		//todo more farmland
 		return blockState.is(ESBlocks.NIGHTFALL_FARMLAND.get());
@@ -407,5 +422,11 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	@Nullable
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return null;
 	}
 }

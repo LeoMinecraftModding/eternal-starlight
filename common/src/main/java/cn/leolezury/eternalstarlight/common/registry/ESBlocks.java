@@ -11,19 +11,14 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.util.CropUtil;
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.TreeGrower;
@@ -34,7 +29,6 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
-import java.util.List;
 import java.util.Optional;
 
 import static cn.leolezury.eternalstarlight.common.util.CropUtil.*;
@@ -1108,6 +1102,22 @@ public class ESBlocks {
 			BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT),
 			CropUtil.CropParam
 				.createMultipart(1, 2.0f, 7,0.5f, 0.03f, 1, 8, 15, 3, false, false, Optional.empty(), esKey("sacred_lantern_flos_bottom"))
+				.addModelXYZ(0, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(1, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(2, 7, 0, 7, 9, 8, 9)
+				.addModelXYZ(3, 6, 0, 6, 10, 8, 10)
+				.addModelXYZ(4, 6, 0, 6, 10, 8, 10)
+				.addModelXYZ(5, 6, 0, 6, 10, 10, 10)
+				.addModelXYZ(6, 4, 0, 4, 12, 12, 12)
+				.addModelXYZ(7, 4, 0, 4, 12, 16, 12)
+		)
+	);
+
+	public static final RegistryObject<Block, BasicCropBlock> SHADOW_BERRY_TREE_ROOT = BLOCKS.register(
+		"shadow_berry_tree_root", () -> new BasicCropBlock(
+			BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT),
+			CropUtil.CropParam
+				.createMultipart(1, 2.0f, 7,0.5f, 0.03f, 1, 8, 15, 3, false, false, Optional.of(esKey("sacred_lantern_flos_top")), esKey("sacred_lantern_flos_bottom"))
 				.addModelXYZ(0, 7, 0, 7, 9, 8, 9)
 				.addModelXYZ(1, 7, 0, 7, 9, 8, 9)
 				.addModelXYZ(2, 7, 0, 7, 9, 8, 9)

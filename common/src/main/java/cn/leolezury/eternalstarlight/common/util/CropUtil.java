@@ -2,15 +2,16 @@ package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class CropUtil {
 	public static Optional<ResourceKey<Item>> cropKey(String id) {
@@ -23,6 +24,66 @@ public class CropUtil {
 
 	public static ResourceKey<Block> vanillaKey(String id) {
 		return ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath("minecraft", id));
+	}
+
+	public static class TreeParam {
+		public static Codec<TreeParam> CODEC = RecordCodecBuilder.create(instance ->
+			instance.group(
+				Codec.BOOL.fieldOf("equalize_nodes").forGetter(block -> block.equalizeNodes),
+				Codec.BOOL.fieldOf("regeneratable").forGetter(block -> block.regeneratable),
+				Codec.INT.fieldOf("regen_offset").forGetter(block -> block.regenOffset),
+				Codec.INT.fieldOf("loop_offset").forGetter(block -> block.loopOffset),
+				Codec.INT.fieldOf("lowest_node").forGetter(block -> block.lowestNode),
+				Codec.INT.fieldOf("random_offset").forGetter(block -> block.randomOffset),
+				Codec.INT.fieldOf("first_branch_length").forGetter(block -> block.firstBranchLength)
+			).apply(instance, TreeParam::new)
+		);
+
+		private final boolean equalizeNodes;
+		private final boolean regeneratable;
+		private final int regenOffset;
+		private final int loopOffset;
+		private final int lowestNode;
+		private final int randomOffset;
+		private final int firstBranchLength;
+
+		private TreeParam(boolean equalizeNodes, boolean regeneratable, int regenOffset, int loopOffset, int lowestNode, int randomOffset, int firstBranchLength) {
+			this.equalizeNodes = equalizeNodes;
+			this.regeneratable = regeneratable;
+			this.regenOffset = regenOffset;
+			this.loopOffset = loopOffset;
+			this.lowestNode = lowestNode;
+			this.randomOffset = randomOffset;
+			this.firstBranchLength = firstBranchLength;
+		}
+
+		public boolean equalizeNodes() {
+			return equalizeNodes;
+		}
+
+		public boolean isRegeneratable() {
+			return regeneratable;
+		}
+
+		public int getRegenOffset() {
+			return regenOffset;
+		}
+
+		public int getLoopOffset() {
+			return loopOffset;
+		}
+
+		public int getLowestNode() {
+			return lowestNode;
+		}
+
+		public int getRandomOffset() {
+			return randomOffset;
+		}
+
+		public int getFirstBranchLength() {
+			return firstBranchLength;
+		}
 	}
 
 	public static class CropParam {
@@ -41,6 +102,7 @@ public class CropUtil {
 		private final boolean isEtherFillable;
 		private final Optional<Pair<ResourceKey<Block>, Optional<ResourceKey<Block>>>> subCropBlock;
 		private final int maxHeight;
+		private final Optional<Pair<TreeParam, List<TreeParam>>> treeParam;
 
 		public int getMaxHeight() {
 			return maxHeight;
@@ -126,7 +188,8 @@ public class CropUtil {
 			boolean isAquatic,
 			boolean isEtherFillable,
 			Optional<Pair<ResourceKey<Block>, Optional<ResourceKey<Block>>>> subCropBlock,
-			int maxHeight
+			int maxHeight,
+			Optional<Pair<TreeParam, List<TreeParam>>> treeParam
 		) {
 			this.effectableCrops = effectableCrops;
 			this.shapeZ = shapeZ;
@@ -143,6 +206,7 @@ public class CropUtil {
 			this.isEtherFillable = isEtherFillable;
 			this.subCropBlock = subCropBlock;
 			this.maxHeight = maxHeight;
+			this.treeParam = treeParam;
 		}
 
 		public static CropParam createMultipart(int maxHeight, float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge, boolean isAquatic, boolean isEtherFillable, Optional<ResourceKey<Block>> subCropBlock, ResourceKey<Block> origin) {
@@ -158,11 +222,12 @@ public class CropUtil {
 				new ArrayList<>(),
 				minimumLightLevel,
 				maximumLightLevel,
-			    unstableAge,
+				unstableAge,
 				isAquatic,
 				isEtherFillable,
 				Optional.of(Pair.of(origin, subCropBlock)),
-				maxHeight
+				maxHeight,
+				Optional.empty()
 			);
 		}
 
@@ -183,7 +248,8 @@ public class CropUtil {
 				false,
 				false,
 				Optional.empty(),
-				0
+				0,
+				Optional.empty()
 			);
 		}
 
@@ -207,6 +273,10 @@ public class CropUtil {
 		public CropParam addRelationship(ResourceKey<Block> block, int range, float effect, boolean isSymbiosis, String stateName, int targetAge, int minimumAge, int maximumAge) {
 			this.effectableCrops.add(Pair.of(Pair.of(Optional.of(Pair.of(stateName, Pair.of(Optional.of(Pair.of(targetAge, Pair.of(minimumAge, maximumAge))), Optional.empty()))), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
 			return this;
+		}
+
+		public Optional<Pair<TreeParam, List<TreeParam>>> getTreeParam() {
+			return treeParam;
 		}
 	}
 }

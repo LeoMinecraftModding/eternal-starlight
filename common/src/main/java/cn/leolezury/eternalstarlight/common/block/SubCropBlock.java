@@ -17,6 +17,7 @@ import java.util.Optional;
 
 public class SubCropBlock extends BasicCropBlock {
 	public static final BooleanProperty IS_TOP = BooleanProperty.create("is_top");
+	public static final BooleanProperty IS_NODE = BooleanProperty.create("is_node");
 	public static final IntegerProperty BRANCHES_COUNT = IntegerProperty.create("branches_count", 0, 8);
 
 	private final int maxHeight;
@@ -29,7 +30,7 @@ public class SubCropBlock extends BasicCropBlock {
 		this.origin = param.getOrigin().get();
 		this.extensionCrop = param.getSubCrop();
 
-		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(WITHERED, false).setValue(WATERLOGGED, false).setValue(ETHERLOGGED, false).setValue(IS_TOP, false).setValue(BRANCHES_COUNT, 0));
+		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(WITHERED, false).setValue(WATERLOGGED, false).setValue(ETHERLOGGED, false).setValue(IS_TOP, false).setValue(IS_NODE, false).setValue(BRANCHES_COUNT, 0));
 	}
 
 	private boolean checkBelow(BlockGetter getter, BlockPos selfPos) {
@@ -46,13 +47,13 @@ public class SubCropBlock extends BasicCropBlock {
 		return false;
 	}
 
+	private boolean isTree() {
+		return true;
+	}
+
 	@Override
 	protected void subCropExecute(BlockState blockState, ServerLevel level, BlockPos blockPos, RandomSource randomSource) {
-		if (checkHeight(level, blockPos.above())) {
-			blockState.setValue(IS_TOP, true);
-		} else {
-			blockState.setValue(IS_TOP, false);
-		}
+		blockState.setValue(IS_TOP, checkHeight(level, blockPos.above()));
 
 		if (this.extensionCrop.isPresent() && this.getAge(blockState) == this.getMaxAge()) {
 			if (checkHeight(level, blockPos) && checkBelow(level, blockPos)) {
@@ -80,6 +81,6 @@ public class SubCropBlock extends BasicCropBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder.add(IS_TOP).add(BRANCHES_COUNT));
+		super.createBlockStateDefinition(builder.add(IS_TOP).add(BRANCHES_COUNT).add(IS_NODE));
 	}
 }
