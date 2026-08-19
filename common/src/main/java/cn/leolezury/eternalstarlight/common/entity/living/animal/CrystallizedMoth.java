@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
+import cn.leolezury.eternalstarlight.common.data.ESDimensions;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -45,7 +46,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -319,7 +319,7 @@ public class CrystallizedMoth extends TamableAnimal implements FlyingAnimal, Neu
 
 	@Override
 	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-		return !this.isTame();
+		return !this.isTame() && this.tickCount > 2400;
 	}
 
 	@Override
@@ -350,6 +350,6 @@ public class CrystallizedMoth extends TamableAnimal implements FlyingAnimal, Neu
 	}
 
 	public static boolean checkMothSpawnRules(EntityType<? extends CrystallizedMoth> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return !level.canSeeSky(pos) && pos.getY() < level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ()) - 20 && ESConfig.INSTANCE.mobsConfig.crystallizedMoth.canSpawn();
+		return !level.canSeeSky(pos) && pos.getY() <= ESDimensions.SEA_LEVEL && ESConfig.INSTANCE.mobsConfig.crystallizedMoth.canSpawn();
 	}
 }

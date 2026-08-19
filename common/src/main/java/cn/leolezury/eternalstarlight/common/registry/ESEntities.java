@@ -210,7 +210,7 @@ public class ESEntities {
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<CrystallizedMoth>> CRYSTALLIZED_MOTH = ENTITIES.register(
 		"crystallized_moth",
-		() -> EntityType.Builder.of(CrystallizedMoth::new, MobCategory.MONSTER)
+		() -> EntityType.Builder.of(CrystallizedMoth::new, MobCategory.CREATURE)
 			.sized(0.5F, 0.4375F)
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("crystallized_moth").toString())

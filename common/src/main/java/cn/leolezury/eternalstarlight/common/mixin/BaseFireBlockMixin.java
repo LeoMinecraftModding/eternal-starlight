@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.mixin;
 import cn.leolezury.eternalstarlight.common.block.AbyssalFireBlock;
 import cn.leolezury.eternalstarlight.common.block.AmaramberFireBlock;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -29,7 +28,7 @@ public abstract class BaseFireBlockMixin {
 
 	@Inject(method = "canBePlacedAt", at = @At("HEAD"), cancellable = true)
 	private static void canBePlaceAt(Level level, BlockPos blockPos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
-		if (level.getBlockState(blockPos.below()).is(ESTags.Blocks.ABYSSAL_FIRE_SURVIVES_ON)) {
+		if (AbyssalFireBlock.canSurviveOnBlock(level.getBlockState(blockPos.below()))) {
 			cir.setReturnValue(true);
 		}
 	}

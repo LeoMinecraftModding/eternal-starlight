@@ -100,6 +100,10 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.RATLIN.get(),
 				ESEntities.SHADOW_SNAIL.get()
 			);
+		tag(ESTags.EntityTypes.UNDERGROUND_CREATURES)
+			.add(
+				ESEntities.CRYSTALLIZED_MOTH.get()
+			);
 		tag(EntityTypeTags.SKELETONS)
 			.add(
 				ESEntities.LONESTAR_SKELETON.get(),

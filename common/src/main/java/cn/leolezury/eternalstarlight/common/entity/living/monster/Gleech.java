@@ -217,7 +217,7 @@ public class Gleech extends Monster {
 	}
 
 	public static boolean checkGleechSpawnRules(EntityType<? extends Gleech> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return level.getBlockState(pos.below()).is(BlockTags.SAND) && ESConfig.INSTANCE.mobsConfig.gleech.canSpawn();
+		return checkAnyLightMonsterSpawnRules(type, level, spawnType, pos, random) && level.getBlockState(pos.below()).is(BlockTags.SAND) && ESConfig.INSTANCE.mobsConfig.gleech.canSpawn();
 	}
 }
 

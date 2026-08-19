@@ -700,6 +700,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.ETERNAL_ICE_LANTERN.get(),
 				ESBlocks.HAZE_ICE_LANTERN.get()
 			);
+		tag(ESTags.Blocks.PREVENTS_MONSTER_SPAWNING)
+			.add(
+				ESBlocks.TORREYA_CAMPFIRE.get(),
+				ESBlocks.AMARAMBER_LANTERN.get(),
+				ESBlocks.AMARAMBER_CANDLE.get(),
+				ESBlocks.AMARAMBER_FIRE.get()
+			);
 		tag(ESTags.Blocks.UNAFFECTED_BY_OBLIVION)
 			.add(
 				Blocks.BEDROCK,

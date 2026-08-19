@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-06T18:35:34.6510922	Registries
+// 1.21.1	2026-08-19T15:34:44.6236466	Registries
 cdffa512172252fd00a692126bdb2d7e298e84a3 data/eternal_starlight/damage_type/bite.json
 17bc0cdfe517d40e41130efc33104996c3740073 data/eternal_starlight/damage_type/crystal_infection.json
 87798293859822fe3e1c8906d4575bc782e7977f data/eternal_starlight/damage_type/dagger_of_hunger.json
@@ -160,7 +160,7 @@ e896ad5df54caf76f16d0fe154d9063978a85708 data/eternal_starlight/trim_material/un
 1d371cf686657e21d39443e45305ffdc5b284331 data/eternal_starlight/trim_pattern/forge.json
 0748e5e6fc26503c044ff622af49d067d689492d data/eternal_starlight/trim_pattern/keeper.json
 76f96fadf2fa95ea1604edb5e2f5fb1550c16edd data/eternal_starlight/trim_pattern/twining.json
-fbfa4194b9b9cdf81bc1bbfa0afb231230bd3537 data/eternal_starlight/worldgen/biome/crystallized_desert.json
+249b7de8c0e796589c866035f05e919c64661b08 data/eternal_starlight/worldgen/biome/crystallized_desert.json
 64adc719e8e5392ef334eaef6e78b74acc6ad859 data/eternal_starlight/worldgen/biome/dark_swamp.json
 f482298b9e8df68309dd854265d83f3e3630ad3c data/eternal_starlight/worldgen/biome/ether_river.json
 77175c3ae938f112ee22757713667e1448af0467 data/eternal_starlight/worldgen/biome/glimmer_scrubland.json

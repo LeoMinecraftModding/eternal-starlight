@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-06T18:20:27.973564	Tags for minecraft:block mod id eternal_starlight
+// 1.21.1	2026-08-19T15:32:48.7134103	Tags for minecraft:block mod id eternal_starlight
 4e42849c79b21f7d80bc0c6ff216ffa705bb94aa data/c/tags/block/budding_blocks.json
 f2d1fdc1f3d6da57f00e708893a3bde6703c4d8f data/c/tags/block/buds.json
 41ca90f7ff686d13272ff2c1d1d8c24ae80b676a data/c/tags/block/clusters.json
@@ -84,6 +84,7 @@ a4e8097fff07f9a74259d6b5dd583f3437ff28a2 data/eternal_starlight/tags/block/dusk_
 f8bbc0e2015a44ff2d12ee735aa6f77e4f7ffaae data/eternal_starlight/tags/block/northland_logs.json
 a146cc38bf6425b536753f1fac03d12db91fefdf data/eternal_starlight/tags/block/portal_frame_blocks.json
 162e48fe167eb716f8b48ee3e99b2905f3411f39 data/eternal_starlight/tags/block/prevents_melting.json
+4004204b10a1db58db535b5cb9ec815293d95644 data/eternal_starlight/tags/block/prevents_monster_spawning.json
 7d3229a4651301184129cc8ba07d10d7fe7312ad data/eternal_starlight/tags/block/scarlet_logs.json
 a96f147bc24ab00450f0928247f5ab664057dc92 data/eternal_starlight/tags/block/speleothems.json
 43e10291893869a7e8454177abadbb1c1a22a01f data/eternal_starlight/tags/block/speleothem_base_blocks.json

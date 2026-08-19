@@ -29,6 +29,7 @@ public class ESConfig {
 	public float aethersentMeteorDropRate = 0.0001f;
 	public boolean aethersentMeteorReplaceBlocks = false;
 	public int mobMaxTearyTicks = 200;
+	public int mobSpawnPreventionRange = 6;
 	public MobsConfig mobsConfig = new MobsConfig();
 	public ItemsConfig itemsConfig = new ItemsConfig();
 

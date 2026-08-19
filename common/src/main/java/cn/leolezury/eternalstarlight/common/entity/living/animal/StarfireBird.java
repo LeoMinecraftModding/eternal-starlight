@@ -710,6 +710,6 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 	}
 
 	public static boolean checkStarfireBirdSpawnRules(EntityType<? extends StarfireBird> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return level.getBlockState(pos.below()).is(BlockTags.DIRT) && ESConfig.INSTANCE.mobsConfig.starfireBird.canSpawn();
+		return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && ESConfig.INSTANCE.mobsConfig.starfireBird.canSpawn();
 	}
 }
