@@ -23,6 +23,9 @@
     ],
     "jei_mod_plugin": [
       "cn.leolezury.eternalstarlight.common.compat.jei.ESJeiPlugin"
+    ],
+    "emi": [
+      "cn.leolezury.eternalstarlight.common.compat.emi.ESEmiPlugin"
     ]
   },
   "mixins": [
