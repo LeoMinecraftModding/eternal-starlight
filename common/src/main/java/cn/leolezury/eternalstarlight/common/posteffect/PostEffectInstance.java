@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.posteffect;
+package cn.leolezury.eternalstarlight.common.posteffect;
 
 import net.minecraft.world.phys.Vec3;
 

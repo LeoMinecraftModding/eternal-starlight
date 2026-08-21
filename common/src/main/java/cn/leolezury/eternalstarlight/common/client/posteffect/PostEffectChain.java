@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.posteffect;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectInstance;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectType;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.shaders.Uniform;
 import net.minecraft.client.Camera;
@@ -31,7 +33,7 @@ public class PostEffectChain implements AutoCloseable {
 		return type;
 	}
 
-	public void render(List<PostEffectInstance> instances, ClientLevel level, Camera camera, Matrix4f viewMatrix, Matrix4f projectionMatrix, float partialTicks) {
+	public void render(List<PostEffectInstance> instances, ClientLevel level, Camera camera, Matrix4f viewMatrix, Matrix4f projectionMatrix, RenderTarget depthTarget, float partialTicks) {
 		Minecraft minecraft = Minecraft.getInstance();
 		PostChain chain = loadPostEffect(minecraft, level.getGameTime());
 		if (chain == null) {
@@ -42,12 +44,14 @@ public class PostEffectChain implements AutoCloseable {
 			release();
 			return;
 		}
-		RenderTarget mainRenderTarget = minecraft.getMainRenderTarget();
-		effect.setSampler("DepthSampler", mainRenderTarget::getDepthTextureId);
+		effect.setSampler("DepthSampler", depthTarget::getDepthTextureId);
 
 		Matrix4f viewProj = new Matrix4f(projectionMatrix).mul(viewMatrix);
 		Matrix4f viewProjInv = new Matrix4f(viewProj).invert();
 		if (!viewProjInv.isFinite()) {
+			// the chain may have just been created, which leaves the window backbuffer (framebuffer 0) bound
+			// restore the main render target for the hand render
+			minecraft.getMainRenderTarget().bindWrite(true);
 			return;
 		}
 		Vec3 cameraPosition = camera.getPosition();
@@ -97,6 +101,10 @@ public class PostEffectChain implements AutoCloseable {
 		}
 		postChainWidth = -1;
 		postChainHeight = -1;
+		// PostChain.close() destroys its render targets, and RenderTarget.destroyBuffers() leaves the window backbuffer (framebuffer 0) bound
+		// we run at the AFTER_LEVEL render stage, where the vanilla pipeline still expects the main render target to be bound for the depth clear and the first-person hand render
+		// otherwise the hand is drawn into the backbuffer and gets overwritten for one frame (a flash)
+		Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
 	}
 
 	@Override

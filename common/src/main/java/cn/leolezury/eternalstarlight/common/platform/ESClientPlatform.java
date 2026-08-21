@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.platform;
 
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
-import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
+import cn.leolezury.eternalstarlight.common.client.resource.ESBookLoader;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
@@ -36,8 +36,8 @@ public interface ESClientPlatform {
 
 	// reload listeners
 
-	default BookLoader createBookLoader() {
-		return new BookLoader();
+	default ESBookLoader createBookLoader() {
+		return new ESBookLoader();
 	}
 
 	// client-side

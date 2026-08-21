@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectRenderer;
 import cn.leolezury.eternalstarlight.common.client.posteffect.WorldPostEffectManager;
-import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
+import cn.leolezury.eternalstarlight.common.client.resource.ESBookLoader;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.sound.BossMusicSoundInstance;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
@@ -76,7 +76,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ESClientHandler {
-	public static BookLoader books;
+	public static ESBookLoader books;
 	public static final Map<UUID, Integer> BOSS_BAR_TYPES = new HashMap<>();
 	public static final List<WorldVisualEffect> VISUAL_EFFECTS = new ArrayList<>();
 	public static final List<ScreenShake> SCREEN_SHAKES = new ArrayList<>();

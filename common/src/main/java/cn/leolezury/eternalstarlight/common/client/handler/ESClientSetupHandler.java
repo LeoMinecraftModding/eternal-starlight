@@ -1139,6 +1139,7 @@ public class ESClientSetupHandler {
 		strategy.accept(ESClientHandler.books);
 	}
 
+	@SuppressWarnings({"unchecked"})
 	public static void onRenderLayerAttachment(EntityType<?> entityType, LivingEntityRenderer<?, ?> renderer, EntityRendererProvider.Context context) {
 		try {
 			if (renderer.getModel() instanceof HumanoidModel<?>) {

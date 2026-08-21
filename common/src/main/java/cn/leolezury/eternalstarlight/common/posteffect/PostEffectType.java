@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.posteffect;
+package cn.leolezury.eternalstarlight.common.posteffect;
 
 import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.serialization.MapCodec;

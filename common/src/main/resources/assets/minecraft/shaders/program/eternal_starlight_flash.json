@@ -1,0 +1,143 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "one",
+    "dstrgb": "zero"
+  },
+  "vertex": "blit",
+  "fragment": "eternal_starlight_flash",
+  "attributes": [
+    "Position"
+  ],
+  "samplers": [
+    {
+      "name": "DiffuseSampler"
+    },
+    {
+      "name": "DepthSampler"
+    }
+  ],
+  "uniforms": [
+    {
+      "name": "ProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "OutSize",
+      "type": "float",
+      "count": 2,
+      "values": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "uViewProjInv",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "uCameraPosition",
+      "type": "float",
+      "count": 3,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "uEffectPositions",
+      "type": "float",
+      "count": 192,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uEffectRadii",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uEffectIntensities",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uEffectAges",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uEffectDurations",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uEffectCount",
+      "type": "int",
+      "count": 1,
+      "values": [
+        0
+      ]
+    },
+    {
+      "name": "uFlashParams",
+      "type": "float",
+      "count": 320,
+      "values": [
+        0.0
+      ]
+    }
+  ]
+}

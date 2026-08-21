@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.fabric.platform;
 
-import cn.leolezury.eternalstarlight.common.client.resource.BookLoader;
+import cn.leolezury.eternalstarlight.common.client.resource.ESBookLoader;
 import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.fabric.client.model.item.ESFabricGlowingBakedModel;
 import cn.leolezury.eternalstarlight.fabric.client.resource.ESFabricBookLoader;
@@ -13,7 +13,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 @AutoService(ESClientPlatform.class)
 public class ESFabricClientPlatform implements ESClientPlatform {
 	@Override
-	public BookLoader createBookLoader() {
+	public ESBookLoader createBookLoader() {
 		return new ESFabricBookLoader();
 	}
 

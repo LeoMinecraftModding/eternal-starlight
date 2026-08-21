@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.posteffect;
+package cn.leolezury.eternalstarlight.common.posteffect;
 
 public interface PostEffectData {
 	PostEffectType<?> type();

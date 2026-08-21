@@ -48,7 +48,7 @@ vec2 projectToScreen(vec3 worldPos) {
     return clipPos.xy / clipPos.w * 0.5 + 0.5;
 }
 
-// expanding spherical shockwave shell: refractive ring + subtle tint
+// expanding spherical shockwave shell
 void addShockwave(int index, vec3 worldPos, inout vec3 totalOffset, inout float totalDarken, inout vec3 totalTint) {
     vec3 center = getEffectPosition(index);
     float radius = max(uEffectRadii[index], 0.1);
@@ -83,7 +83,7 @@ void addShockwave(int index, vec3 worldPos, inout vec3 totalOffset, inout float 
         totalOffset += (delta / dist) * wave * mask * strength * 0.25;
     }
     totalDarken += mask * strength * 0.1;
-    totalTint += vec3(0.05, 0.15, 0.2) * mask * strength * 0.2;
+    totalTint += vec3(0.1, 0.15, 0.2) * mask * strength * 0.2;
 }
 
 void main() {

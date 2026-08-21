@@ -1,5 +1,9 @@
 package cn.leolezury.eternalstarlight.common.client.posteffect;
 
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectInstance;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectType;
+import com.mojang.blaze3d.pipeline.RenderTarget;
+import com.mojang.blaze3d.pipeline.TextureTarget;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -10,6 +14,7 @@ import java.util.*;
 
 public class PostEffectRenderer {
 	private static final Map<ResourceLocation, PostEffectChain> CHAINS = new HashMap<>();
+	private static RenderTarget depthSnapshot;
 
 	private static ClientLevel currentLevel;
 
@@ -37,7 +42,7 @@ public class PostEffectRenderer {
 			PostEffectType<?> type = entry.getKey();
 			seenTypes.add(type.id());
 			PostEffectChain chain = CHAINS.computeIfAbsent(type.id(), id -> new PostEffectChain(type));
-			chain.render(entry.getValue(), level, camera, viewMatrix, projectionMatrix, partialTicks);
+			chain.render(entry.getValue(), level, camera, viewMatrix, projectionMatrix, depthSnapshot, partialTicks);
 		}
 
 		CHAINS.entrySet().removeIf(entry -> {
@@ -47,6 +52,29 @@ public class PostEffectRenderer {
 			}
 			return false;
 		});
+
+		// restore the true level depth so post-processing from other mods running after us still sees it (our chains flatten the depth of the main target on their final copy pass)
+		if (depthSnapshot != null) {
+			minecraft.getMainRenderTarget().copyDepthFrom(depthSnapshot);
+			minecraft.getMainRenderTarget().bindWrite(true);
+		}
+	}
+
+	public static void captureDepth() {
+		Minecraft minecraft = Minecraft.getInstance();
+		if (minecraft.level == null) {
+			return;
+		}
+		RenderTarget mainRenderTarget = minecraft.getMainRenderTarget();
+		if (depthSnapshot == null || depthSnapshot.width != mainRenderTarget.width || depthSnapshot.height != mainRenderTarget.height) {
+			if (depthSnapshot != null) {
+				depthSnapshot.destroyBuffers();
+			}
+			depthSnapshot = new TextureTarget(mainRenderTarget.width, mainRenderTarget.height, true, Minecraft.ON_OSX);
+		}
+		depthSnapshot.copyDepthFrom(mainRenderTarget);
+		// copyDepthFrom leaves the window backbuffer (framebuffer 0) bound, restore the main render target for the rest of the frame
+		mainRenderTarget.bindWrite(true);
 	}
 
 	private static void releaseChains() {
@@ -56,8 +84,16 @@ public class PostEffectRenderer {
 		CHAINS.clear();
 	}
 
+	public static void reload() {
+		releaseChains();
+	}
+
 	private static void clearAll() {
 		releaseChains();
+		if (depthSnapshot != null) {
+			depthSnapshot.destroyBuffers();
+			depthSnapshot = null;
+		}
 		WorldPostEffectManager.clear();
 		currentLevel = null;
 	}

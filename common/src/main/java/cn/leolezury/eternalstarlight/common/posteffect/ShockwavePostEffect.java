@@ -1,4 +1,4 @@
-package cn.leolezury.eternalstarlight.common.client.posteffect;
+package cn.leolezury.eternalstarlight.common.posteffect;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import com.mojang.serialization.Codec;

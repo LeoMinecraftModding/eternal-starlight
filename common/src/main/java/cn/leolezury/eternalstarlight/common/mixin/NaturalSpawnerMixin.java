@@ -32,7 +32,7 @@ public abstract class NaturalSpawnerMixin {
 		if (originalValid
 			&& mob.getType().getCategory() == MobCategory.MONSTER
 			&& serverLevel.getLevel().dimension() == ESDimensions.STARLIGHT_KEY
-			&& ESBiomes.isBlockedBySpawnPreventionBlocks(serverLevel.getLevel(), mob.blockPosition())) {
+			&& ESBiomes.anyNearbySpawnPreventionBlock(serverLevel.getLevel(), mob.blockPosition())) {
 			return false;
 		}
 		return originalValid;

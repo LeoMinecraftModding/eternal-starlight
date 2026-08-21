@@ -15,10 +15,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BookLoader extends SimpleJsonResourceReloadListener {
+public class ESBookLoader extends SimpleJsonResourceReloadListener {
 	private final Map<ResourceLocation, BookDefinition> books = new HashMap<>();
 
-	public BookLoader() {
+	public ESBookLoader() {
 		super(new Gson(), EternalStarlight.ID + "/books");
 	}
 

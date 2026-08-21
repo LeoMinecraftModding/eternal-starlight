@@ -515,7 +515,7 @@ public class ESBiomes {
 		return builder;
 	}
 
-	public static boolean isBlockedBySpawnPreventionBlocks(ServerLevel level, BlockPos pos) {
+	public static boolean anyNearbySpawnPreventionBlock(ServerLevel level, BlockPos pos) {
 		int radius = ESConfig.INSTANCE.mobSpawnPreventionRange;
 		for (int dy = -radius; dy <= radius; dy++) {
 			for (int dx = -radius; dx <= radius; dx++) {

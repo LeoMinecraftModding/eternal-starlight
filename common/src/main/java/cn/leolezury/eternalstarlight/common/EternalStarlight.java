@@ -54,6 +54,7 @@ public class EternalStarlight {
 		ESRecipeSerializers.loadClass();
 		ESRecipes.loadClass();
 		ESWeathers.loadClass();
+		ESPostEffects.loadClass();
 		ESBoarwarfProfessions.loadClass();
 		ESDataAttachments.loadClass();
 		ESRegistries.loadClass();
