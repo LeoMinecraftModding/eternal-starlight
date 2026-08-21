@@ -46,7 +46,7 @@ public class FlashPostEffect extends PostEffectType<FlashPostEffect.Data> {
 	public static final FlashPostEffect INSTANCE = new FlashPostEffect();
 
 	public FlashPostEffect() {
-		super(EternalStarlight.id("flash"), Data.CODEC, Data.STREAM_CODEC);
+		super(EternalStarlight.id("shaders/post/flash.json"), Data.CODEC, Data.STREAM_CODEC);
 	}
 
 	@Override

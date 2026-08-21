@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.posteffect;
 
+import cn.leolezury.eternalstarlight.common.registry.ESPostEffects;
 import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.renderer.EffectInstance;
@@ -29,20 +30,18 @@ public abstract class PostEffectType<T extends PostEffectData> {
 	private static final float[] AGES = new float[MAX_EFFECTS];
 	private static final float[] DURATIONS = new float[MAX_EFFECTS];
 
-	private final ResourceLocation id;
 	private final MapCodec<T> codec;
 	private final StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec;
 	private final ResourceLocation postChainLocation;
 
-	protected PostEffectType(ResourceLocation id, MapCodec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec) {
-		this.id = id;
+	protected PostEffectType(ResourceLocation postChainLocation, MapCodec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec) {
+		this.postChainLocation = postChainLocation;
 		this.codec = codec;
 		this.streamCodec = streamCodec;
-		this.postChainLocation = id.withPrefix("shaders/post/").withSuffix(".json");
 	}
 
 	public ResourceLocation id() {
-		return id;
+		return ESPostEffects.POST_EFFECTS.registry().getKey(this);
 	}
 
 	public MapCodec<T> codec() {

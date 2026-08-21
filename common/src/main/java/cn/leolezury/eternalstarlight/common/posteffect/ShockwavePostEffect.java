@@ -44,7 +44,7 @@ public class ShockwavePostEffect extends PostEffectType<ShockwavePostEffect.Data
 	public static final ShockwavePostEffect INSTANCE = new ShockwavePostEffect();
 
 	public ShockwavePostEffect() {
-		super(EternalStarlight.id("shockwave"), Data.CODEC, Data.STREAM_CODEC);
+		super(EternalStarlight.id("shaders/post/shockwave.json"), Data.CODEC, Data.STREAM_CODEC);
 	}
 
 	@Override
