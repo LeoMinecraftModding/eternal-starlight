@@ -49,6 +49,7 @@
     "client.CameraMixin",
     "client.ClientLevelMixin",
     "client.ClientRecipeBookMixin",
+    "client.CreativeModeInventoryScreenMixin",
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",

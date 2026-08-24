@@ -2,9 +2,7 @@ package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
-import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
-import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import cn.leolezury.eternalstarlight.common.item.tab.ESCreativeModeTab;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -25,7 +23,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -737,7 +734,7 @@ public class ESCreativeModeTabs {
 		ESItems.ENCHANTED_GRIMSTONE_BRICKS
 	);
 
-	public static final List<Supplier<Item>> TOOLS_ITEMS = List.of(
+	public static final List<Supplier<Item>> TOOLS_AND_UTILITIES_ITEMS = List.of(
 		ESItems.LUNAR_BOAT,
 		ESItems.LUNAR_CHEST_BOAT,
 		ESItems.NORTHLAND_BOAT,
@@ -1102,44 +1099,67 @@ public class ESCreativeModeTabs {
 		ESItems.LIGHT_CRYSTAL
 	);
 
-	public static final RegistrationProvider<CreativeModeTab> TABS = RegistrationProvider.get(Registries.CREATIVE_MODE_TAB, EternalStarlight.ID);
-	public static final RegistryObject<CreativeModeTab, CreativeModeTab> BLOCKS = registerTab("blocks", BLOCKS_ITEMS, () -> new ItemStack(ESItems.NIGHTFALL_GRASS_BLOCK.get()));
-	public static final RegistryObject<CreativeModeTab, CreativeModeTab> TOOLS = registerTab("tools", TOOLS_ITEMS, item -> (displayParameters, output) -> {
-		output.accept(item);
-		if (item == ESItems.BOOK.get()) {
-			ItemStack allUnlocked = ESItems.BOOK.get().getDefaultInstance();
-			allUnlocked.set(ESDataComponents.BOOK.get(), new GuideBook(EternalStarlight.id("main"), new HashSet<>(Set.of(EternalStarlight.ID)), true));
-			output.accept(allUnlocked);
+	public static final ESCreativeModeTab MAIN = ESCreativeModeTab.create(
+		EternalStarlight.id("main"),
+		() -> new ItemStack(ESItems.NIGHTFALL_GRASS_BLOCK.get()),
+		group -> {
+			group.addSection(new ESCreativeModeTab.Section(
+				() -> new ItemStack(ESItems.NIGHTFALL_GRASS_BLOCK.get()),
+				Component.translatable("tab." + EternalStarlight.ID + ".blocks"),
+				(parameters, output) -> BLOCKS_ITEMS.forEach(item -> output.accept(item.get()))
+			));
+			group.addSection(new ESCreativeModeTab.Section(
+				() -> new ItemStack(ESItems.STARFIRE_PICKAXE.get()),
+				Component.translatable("tab." + EternalStarlight.ID + ".tools_and_utilities"),
+				(parameters, output) -> {
+					for (Supplier<Item> entry : TOOLS_AND_UTILITIES_ITEMS) {
+						Item item = entry.get();
+						output.accept(item);
+						if (item == ESItems.BOOK.get()) {
+							ItemStack allUnlocked = ESItems.BOOK.get().getDefaultInstance();
+							allUnlocked.set(ESDataComponents.BOOK.get(), new GuideBook(EternalStarlight.id("main"), new HashSet<>(Set.of(EternalStarlight.ID)), true));
+							output.accept(allUnlocked);
+						}
+					}
+				}
+			));
+			group.addSection(new ESCreativeModeTab.Section(
+				() -> new ItemStack(ESItems.FLOWGLAZE_SWORD.get()),
+				Component.translatable("tab." + EternalStarlight.ID + ".combat"),
+				(parameters, output) -> COMBAT_ITEMS.forEach(item -> output.accept(item.get()))
+			));
+			group.addSection(new ESCreativeModeTab.Section(
+				() -> new ItemStack(ESItems.SHADOW_SNAIL_PIE.get()),
+				Component.translatable("tab." + EternalStarlight.ID + ".food_and_drinks"),
+				(parameters, output) -> FOOD_AND_DRINKS_ITEMS.forEach(item -> output.accept(item.get()))
+			));
+			group.addSection(new ESCreativeModeTab.Section(
+				() -> new ItemStack(ESItems.UNREALIUM_INGOT.get()),
+				Component.translatable("tab." + EternalStarlight.ID + ".ingredients"),
+				(parameters, output) -> INGREDIENTS_ITEMS.forEach(item -> output.accept(item.get()))
+			));
+			group.addSection(new ESCreativeModeTab.Section(
+				() -> new ItemStack(ESItems.THE_GATEKEEPER_SPAWN_EGG.get()),
+				Component.translatable("tab." + EternalStarlight.ID + ".spawn_eggs"),
+				(parameters, output) -> SPAWN_EGGS_ITEMS.forEach(item -> output.accept(item.get()))
+			));
+			group.addSection(new ESCreativeModeTab.Section(
+				() -> new ItemStack(ESItems.STARLIT_PAINTING.get()),
+				Component.translatable("tab." + EternalStarlight.ID + ".misc"),
+				(parameters, output) -> {
+					for (Supplier<Item> entry : MISC_ITEMS) {
+						Item item = entry.get();
+						output.accept(item);
+						if (item == ESItems.STARLIT_PAINTING.get()) {
+							parameters.holders().lookup(Registries.PAINTING_VARIANT).ifPresent((registryLookup) -> generatePresetPaintings(output, parameters.holders(), registryLookup, holder -> holder.is(ESTags.PaintingVariants.PLACEABLE)));
+						}
+					}
+				}
+			));
 		}
-	}, () -> new ItemStack(ESItems.STARFIRE_PICKAXE.get()));
-	public static final RegistryObject<CreativeModeTab, CreativeModeTab> COMBAT = registerTab("combat", COMBAT_ITEMS, () -> new ItemStack(ESItems.FLOWGLAZE_SWORD.get()));
-	public static final RegistryObject<CreativeModeTab, CreativeModeTab> FOOD_AND_DRINKS = registerTab("food_and_drinks", FOOD_AND_DRINKS_ITEMS, () -> new ItemStack(ESItems.SHADOW_SNAIL_PIE.get()));
-	public static final RegistryObject<CreativeModeTab, CreativeModeTab> INGREDIENTS = registerTab("ingredients", INGREDIENTS_ITEMS, () -> new ItemStack(ESItems.UNREALIUM_INGOT.get()));
-	public static final RegistryObject<CreativeModeTab, CreativeModeTab> SPAWN_EGGS = registerTab("spawn_eggs", SPAWN_EGGS_ITEMS, () -> new ItemStack(ESItems.THE_GATEKEEPER_SPAWN_EGG.get()));
-	public static final RegistryObject<CreativeModeTab, CreativeModeTab> MISC = registerTab("misc", MISC_ITEMS, item -> (displayParameters, output) -> {
-		output.accept(item);
-		if (item == ESItems.STARLIT_PAINTING.get()) {
-			displayParameters.holders().lookup(Registries.PAINTING_VARIANT).ifPresent((registryLookup) -> generatePresetPaintings(output, displayParameters.holders(), registryLookup, holder -> holder.is(ESTags.PaintingVariants.PLACEABLE)));
-		}
-	}, () -> new ItemStack(ESItems.STARLIT_PAINTING.get()));
+	);
 
 	private static final Comparator<Holder<PaintingVariant>> PAINTING_COMPARATOR = Comparator.comparing(Holder::value, Comparator.comparingInt(PaintingVariant::area).thenComparing(PaintingVariant::width));
-
-	private static RegistryObject<CreativeModeTab, CreativeModeTab> registerTab(String id, List<Supplier<Item>> items, Supplier<ItemStack> icon) {
-		return registerTab(id, items, item -> (displayParameters, output) -> output.accept(item), icon);
-	}
-
-	private static RegistryObject<CreativeModeTab, CreativeModeTab> registerTab(String id, List<Supplier<Item>> items, Function<Item, CreativeModeTab.DisplayItemsGenerator> itemsGenerator, Supplier<ItemStack> icon) {
-		return TABS.register(id, () -> ESPlatform.INSTANCE.getTabBuilder()
-			.icon(icon)
-			.title(Component.translatable("tab." + EternalStarlight.ID + "." + id))
-			.displayItems((displayParameters, output) -> {
-				for (Supplier<Item> entry : items) {
-					itemsGenerator.apply(entry.get()).accept(displayParameters, output);
-				}
-			})
-			.build());
-	}
 
 	public static void generatePresetPaintings(CreativeModeTab.Output output, HolderLookup.Provider provider, HolderLookup.RegistryLookup<PaintingVariant> registryLookup, Predicate<Holder<PaintingVariant>> predicate) {
 		RegistryOps<Tag> registryOps = provider.createSerializationContext(NbtOps.INSTANCE);
