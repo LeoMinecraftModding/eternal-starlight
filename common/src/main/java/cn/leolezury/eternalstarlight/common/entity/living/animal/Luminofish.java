@@ -76,6 +76,10 @@ public class Luminofish extends AbstractSchoolingFish {
 		}
 	}
 
+	public boolean isFirstTick() {
+		return firstTick;
+	}
+
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
 		super.onSyncedDataUpdated(accessor);

@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-public record OpenBookPacket(ResourceLocation bookId, Set<ResourceLocation> unlocked) implements CustomPacketPayload {
+public record OpenBookPacket(ResourceLocation bookId, Set<ResourceLocation> unlocked, boolean allUnlocked) implements CustomPacketPayload {
 	public static final Type<OpenBookPacket> TYPE = new Type<>(EternalStarlight.id("open_book"));
 	public static final StreamCodec<RegistryFriendlyByteBuf, OpenBookPacket> STREAM_CODEC = StreamCodec.ofMember(OpenBookPacket::write, OpenBookPacket::read);
 
@@ -23,7 +23,8 @@ public record OpenBookPacket(ResourceLocation bookId, Set<ResourceLocation> unlo
 		for (int i = 0; i < size; i++) {
 			unlocked.add(ResourceLocation.parse(buf.readUtf()));
 		}
-		return new OpenBookPacket(bookId, unlocked);
+		boolean allUnlocked = buf.readBoolean();
+		return new OpenBookPacket(bookId, unlocked, allUnlocked);
 	}
 
 	public static void write(OpenBookPacket packet, FriendlyByteBuf buf) {
@@ -32,6 +33,7 @@ public record OpenBookPacket(ResourceLocation bookId, Set<ResourceLocation> unlo
 		for (ResourceLocation resourceLocation : packet.unlocked()) {
 			buf.writeUtf(resourceLocation.toString());
 		}
+		buf.writeBoolean(packet.allUnlocked());
 	}
 
 	public static void handle(OpenBookPacket packet, Player player) {

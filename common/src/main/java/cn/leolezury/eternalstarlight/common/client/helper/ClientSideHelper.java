@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
+import cn.leolezury.eternalstarlight.common.client.book.ResolvedBookDefinition;
 import cn.leolezury.eternalstarlight.common.client.book.component.BookComponentRegistry;
 import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBookComponent;
 import cn.leolezury.eternalstarlight.common.client.book.component.IndexBookComponent;
@@ -128,13 +128,13 @@ public class ClientSideHelper extends ClientHelper {
 				}
 			}
 		}
-		Set<BookDefinition> definitions = bookIds.stream().map(ESClientHandler.books::getBook).collect(Collectors.toSet());
+		Set<ResolvedBookDefinition> definitions = bookIds.stream().map(ESClientHandler.books::getBook).collect(Collectors.toSet());
 		List<IndexBookComponent.Entry> newEntries = new ArrayList<>();
 		List<IndexBookComponent.Entry> changedEntries = new ArrayList<>();
-		for (BookDefinition definition : definitions) {
+		for (ResolvedBookDefinition definition : definitions) {
 			List<IndexBookComponent.Entry> entries = new ArrayList<>();
 			definition.components().stream().flatMap(List::stream)
-				.filter(c -> c.component() == BookComponentRegistry.INDEX)
+				.filter(c -> c.component() == BookComponentRegistry.INDEX && c.isEnabled(packet.unlocked()))
 				.forEach(c -> {
 					if (c.config() instanceof IndexBookComponent.Config config) {
 						entries.addAll(config.entries());
@@ -151,7 +151,7 @@ public class ClientSideHelper extends ClientHelper {
 					Optional<ConfiguredBookComponent<?, ?>> listening = definition.getComponent(listeningId);
 					boolean oldListeningEnabled = listening.isPresent() && listening.get().isEnabled(packet.oldUnlocked());
 					boolean listeningEnabled = listening.isPresent() && listening.get().isEnabled(packet.unlocked());
-					if (!oldListeningEnabled && listeningEnabled) {
+					if (!oldListeningEnabled && listeningEnabled && enabled) {
 						changedEntries.add(entry);
 						break;
 					}
@@ -193,9 +193,9 @@ public class ClientSideHelper extends ClientHelper {
 
 	@Override
 	public void handleOpenBook(OpenBookPacket packet) {
-		BookDefinition definition = ESClientHandler.books.getBook(packet.bookId());
+		ResolvedBookDefinition definition = ESClientHandler.books.getBook(packet.bookId());
 		if (definition != null) {
-			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked()));
+			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked(), packet.allUnlocked()));
 		}
 	}
 

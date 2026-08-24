@@ -2,18 +2,18 @@ package cn.leolezury.eternalstarlight.common.client.model.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.model.animation.AnimatedEntityModel;
-import cn.leolezury.eternalstarlight.common.client.model.animation.definition.LuminoFishAnimation;
+import cn.leolezury.eternalstarlight.common.client.model.animation.definition.LuminofishAnimation;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.Luminofish;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
-public class LuminoFishModel<T extends Luminofish> extends AnimatedEntityModel<T> {
+public class LuminofishModel<T extends Luminofish> extends AnimatedEntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("luminofish"), "main");
 	private final ModelPart head;
 
-	public LuminoFishModel(ModelPart root) {
+	public LuminofishModel(ModelPart root) {
 		this.head = root.getChild("head");
 	}
 
@@ -39,9 +39,9 @@ public class LuminoFishModel<T extends Luminofish> extends AnimatedEntityModel<T
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
-		animate(entity.swimAnimationState, LuminoFishAnimation.SWIM, ageInTicks, 1.0f, entity.isInWater() ? 1.0f : 1.5f);
+		animate(entity.swimAnimationState, LuminofishAnimation.SWIM, ageInTicks, 1.0f, entity.isInWater() ? 1.0f : 1.5f);
 		if (entity.getSwellTicks() > 0) {
-			animate(entity.swellAnimationState, LuminoFishAnimation.SWELL, ageInTicks);
+			animate(entity.swellAnimationState, LuminofishAnimation.SWELL, ageInTicks);
 		}
 	}
 

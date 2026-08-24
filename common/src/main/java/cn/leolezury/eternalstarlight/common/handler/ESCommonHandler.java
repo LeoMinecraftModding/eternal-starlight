@@ -20,6 +20,7 @@ import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
+import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.item.interfaces.SwingAttackWeapon;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
@@ -208,6 +209,12 @@ public class ESCommonHandler {
 		if (accessorySlotCount > 1) {
 			tooltip.add(CommonComponents.EMPTY);
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_slot_count", accessorySlotCount).withStyle(ChatFormatting.BLUE));
+		}
+		if (itemStack.has(ESDataComponents.BOOK.get())) {
+			GuideBook book = itemStack.get(ESDataComponents.BOOK.get());
+			if (book != null && book.allUnlocked()) {
+				tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".book.all_unlocked", accessorySlotCount).withStyle(ChatFormatting.YELLOW));
+			}
 		}
 		if (itemStack.is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
 			tooltip.add(CommonComponents.EMPTY);

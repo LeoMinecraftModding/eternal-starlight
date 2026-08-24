@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
@@ -21,7 +22,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -1101,7 +1104,14 @@ public class ESCreativeModeTabs {
 
 	public static final RegistrationProvider<CreativeModeTab> TABS = RegistrationProvider.get(Registries.CREATIVE_MODE_TAB, EternalStarlight.ID);
 	public static final RegistryObject<CreativeModeTab, CreativeModeTab> BLOCKS = registerTab("blocks", BLOCKS_ITEMS, () -> new ItemStack(ESItems.NIGHTFALL_GRASS_BLOCK.get()));
-	public static final RegistryObject<CreativeModeTab, CreativeModeTab> TOOLS = registerTab("tools", TOOLS_ITEMS, () -> new ItemStack(ESItems.STARFIRE_PICKAXE.get()));
+	public static final RegistryObject<CreativeModeTab, CreativeModeTab> TOOLS = registerTab("tools", TOOLS_ITEMS, item -> (displayParameters, output) -> {
+		output.accept(item);
+		if (item == ESItems.BOOK.get()) {
+			ItemStack allUnlocked = ESItems.BOOK.get().getDefaultInstance();
+			allUnlocked.set(ESDataComponents.BOOK.get(), new GuideBook(EternalStarlight.id("main"), new HashSet<>(Set.of(EternalStarlight.ID)), true));
+			output.accept(allUnlocked);
+		}
+	}, () -> new ItemStack(ESItems.STARFIRE_PICKAXE.get()));
 	public static final RegistryObject<CreativeModeTab, CreativeModeTab> COMBAT = registerTab("combat", COMBAT_ITEMS, () -> new ItemStack(ESItems.FLOWGLAZE_SWORD.get()));
 	public static final RegistryObject<CreativeModeTab, CreativeModeTab> FOOD_AND_DRINKS = registerTab("food_and_drinks", FOOD_AND_DRINKS_ITEMS, () -> new ItemStack(ESItems.SHADOW_SNAIL_PIE.get()));
 	public static final RegistryObject<CreativeModeTab, CreativeModeTab> INGREDIENTS = registerTab("ingredients", INGREDIENTS_ITEMS, () -> new ItemStack(ESItems.UNREALIUM_INGOT.get()));

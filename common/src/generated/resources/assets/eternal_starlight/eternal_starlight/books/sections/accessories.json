@@ -1,0 +1,180 @@
+[
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "id": "eternal_starlight:accessories_display",
+      "image_displays": [
+        {
+          "height": 20,
+          "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+          "width": 20,
+          "x": 55,
+          "y": 10
+        }
+      ],
+      "item_tag_displays": [
+        {
+          "item_tag": "eternal_starlight:accessories",
+          "x": 57,
+          "y": 12
+        }
+      ],
+      "text_displays": [
+        {
+          "centered": true,
+          "line_height": 12,
+          "min_distance_to_bottom": 3,
+          "scale": 1.5,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.accessories.title",
+              "translation": true
+            }
+          ],
+          "width": 110,
+          "x": 65,
+          "y": 45
+        }
+      ],
+      "total_height": 60,
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight"
+        ]
+      ]
+    }
+  },
+  {
+    "type": "eternal_starlight:text",
+    "config": {
+      "extra_height": 0,
+      "id": "eternal_starlight:accessories",
+      "line_height": 12,
+      "offset": 10,
+      "text": [
+        {
+          "content": "${color: #acfffc}",
+          "translation": false
+        },
+        {
+          "content": "book.eternal_starlight.accessories",
+          "translation": true
+        }
+      ],
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight"
+        ]
+      ],
+      "width": 130
+    }
+  },
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "id": "eternal_starlight:butterfly_wings_amulet_display",
+      "image_displays": [
+        {
+          "height": 20,
+          "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+          "width": 20,
+          "x": 0,
+          "y": 5
+        }
+      ],
+      "item_displays": [
+        {
+          "item": {
+            "count": 1,
+            "id": "eternal_starlight:butterfly_wings_amulet"
+          },
+          "x": 2,
+          "y": 7
+        }
+      ],
+      "text_displays": [
+        {
+          "centered": false,
+          "line_height": 12,
+          "min_distance_to_bottom": 8,
+          "scale": 1.0,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.accessories.butterfly_wings_amulet",
+              "translation": true
+            }
+          ],
+          "width": 100,
+          "x": 25,
+          "y": 10
+        }
+      ],
+      "total_height": 30,
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight"
+        ]
+      ]
+    }
+  },
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "id": "eternal_starlight:pearl_necklace_display",
+      "image_displays": [
+        {
+          "height": 20,
+          "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+          "width": 20,
+          "x": 0,
+          "y": 5
+        }
+      ],
+      "item_displays": [
+        {
+          "item": {
+            "count": 1,
+            "id": "eternal_starlight:pearl_necklace"
+          },
+          "x": 2,
+          "y": 7
+        }
+      ],
+      "text_displays": [
+        {
+          "centered": false,
+          "line_height": 12,
+          "min_distance_to_bottom": 8,
+          "scale": 1.0,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.accessories.pearl_necklace",
+              "translation": true
+            }
+          ],
+          "width": 100,
+          "x": 25,
+          "y": 10
+        }
+      ],
+      "total_height": 30,
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight"
+        ]
+      ]
+    }
+  }
+]

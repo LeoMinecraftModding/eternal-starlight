@@ -74,7 +74,7 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 				graphics.renderItem(stack, x + display.x(), y + display.y());
 			}
 		}
-		for (CraftingRecipeDisplay display : config.craftingRecipeDisplays) {
+		for (CraftingRecipeDisplay display : config.craftingRecipeDisplays()) {
 			Ingredient[][] ingredients = display.getIngredients();
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
@@ -337,12 +337,12 @@ public class DisplayBookComponent extends BookComponent<DisplayBookComponent.Con
 			ResourceLocation.CODEC.fieldOf("id").forGetter(Config::id),
 			ResourceLocation.CODEC.listOf().xmap(Sets::newHashSet, Lists::newArrayList).listOf().xmap(Sets::newHashSet, Lists::newArrayList).fieldOf("unlock_conditions").forGetter(Config::unlockConditions),
 			Codec.INT.fieldOf("total_height").forGetter(Config::totalHeight),
-			TextDisplay.CODEC.listOf().fieldOf("text_displays").forGetter(Config::textDisplays),
-			EntityDisplay.CODEC.listOf().fieldOf("entity_displays").forGetter(Config::entityDisplays),
-			ItemDisplay.CODEC.listOf().fieldOf("item_displays").forGetter(Config::itemDisplays),
-			ItemTagDisplay.CODEC.listOf().fieldOf("item_tag_displays").forGetter(Config::itemTagDisplays),
-			CraftingRecipeDisplay.CODEC.listOf().fieldOf("crafting_recipe_displays").forGetter(Config::craftingRecipeDisplays),
-			ImageDisplay.CODEC.listOf().fieldOf("image_displays").forGetter(Config::imageDisplays)
+			TextDisplay.CODEC.listOf().optionalFieldOf("text_displays", new ArrayList<>()).forGetter(Config::textDisplays),
+			EntityDisplay.CODEC.listOf().optionalFieldOf("entity_displays", new ArrayList<>()).forGetter(Config::entityDisplays),
+			ItemDisplay.CODEC.listOf().optionalFieldOf("item_displays", new ArrayList<>()).forGetter(Config::itemDisplays),
+			ItemTagDisplay.CODEC.listOf().optionalFieldOf("item_tag_displays", new ArrayList<>()).forGetter(Config::itemTagDisplays),
+			CraftingRecipeDisplay.CODEC.listOf().optionalFieldOf("crafting_recipe_displays", new ArrayList<>()).forGetter(Config::craftingRecipeDisplays),
+			ImageDisplay.CODEC.listOf().optionalFieldOf("image_displays", new ArrayList<>()).forGetter(Config::imageDisplays)
 		).apply(instance, Config::new));
 
 		public Config(ResourceLocation id, HashSet<HashSet<ResourceLocation>> unlockConditions, int totalHeight) {

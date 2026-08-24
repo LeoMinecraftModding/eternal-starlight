@@ -937,7 +937,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.GRIMSTONE_GOLEM.get(), GrimstoneGolemRenderer::new);
 		strategy.register(ESEntities.AETHERSENT_GOLEM.get(), AethersentGolemRenderer::new);
 		strategy.register(ESEntities.ROOKFISH.get(), RookfishRenderer::new);
-		strategy.register(ESEntities.LUMINOFISH.get(), LuminoFishRenderer::new);
+		strategy.register(ESEntities.LUMINOFISH.get(), LuminofishRenderer::new);
 		strategy.register(ESEntities.LUMINARIS.get(), LuminarisRenderer::new);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), TwilightGazeRenderer::new);
 		strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
@@ -1080,7 +1080,7 @@ public class ESClientSetupHandler {
 		strategy.register(GrimstoneGolemModel.LAYER_LOCATION, GrimstoneGolemModel::createBodyLayer);
 		strategy.register(AethersentGolemModel.LAYER_LOCATION, AethersentGolemModel::createBodyLayer);
 		strategy.register(RookfishModel.LAYER_LOCATION, RookfishModel::createBodyLayer);
-		strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
+		strategy.register(LuminofishModel.LAYER_LOCATION, LuminofishModel::createBodyLayer);
 		strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
 		strategy.register(TwilightGazeModel.LAYER_LOCATION, TwilightGazeModel::createBodyLayer);
 		strategy.register(CandlashModel.LAYER_LOCATION, CandlashModel::createBodyLayer);

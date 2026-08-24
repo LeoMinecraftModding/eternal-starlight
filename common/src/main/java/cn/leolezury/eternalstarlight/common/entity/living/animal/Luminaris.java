@@ -93,6 +93,10 @@ public class Luminaris extends AbstractSchoolingFish implements Charger {
 		}
 	}
 
+	public boolean isFirstTick() {
+		return firstTick;
+	}
+
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
 		super.onSyncedDataUpdated(accessor);

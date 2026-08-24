@@ -801,13 +801,17 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.addTag(ESTags.Items.HAMMERS);
 		tag(ESTags.Items.AFFECTS_PROGRESSION)
 			.add(
-				ESItems.PUNGENCY_FRUIT.get(),
-				ESItems.SILVER_PUNGENCY_FRUIT.get(),
-				ESItems.GOLEM_STEEL_INGOT.get(),
-				ESItems.GOLEM_STEEL_NUGGET.get(),
+				ESItems.CARVED_LUNARIS_CACTUS_FRUIT.get(),
 				ESItems.NOCTURNAL_MILLET_SEEDS.get(),
 				ESItems.NOCTURNAL_MILLET.get(),
-				ESItems.FORGOTTEN_NOCTURNAL_MILLET.get()
+				ESItems.FORGOTTEN_NOCTURNAL_MILLET.get(),
+				ESItems.RAW_AETHERSENT.get(),
+				ESItems.PUNGENCY_FRUIT.get(),
+				ESItems.SILVER_PUNGENCY_FRUIT.get(),
+				ESItems.RAW_AMARAMBER.get(),
+				ESItems.TOOTH_OF_HUNGER.get(),
+				ESItems.GOLEM_STEEL_INGOT.get(),
+				ESItems.GOLEM_STEEL_NUGGET.get()
 			);
 		tag(ESTags.Items.GOLEM_FORGE_LOCATORS)
 			.add(

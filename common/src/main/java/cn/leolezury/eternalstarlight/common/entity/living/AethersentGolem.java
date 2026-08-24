@@ -52,6 +52,7 @@ public class AethersentGolem extends AbstractGolem {
 		return Mob.createMobAttributes()
 			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.aethersentGolem.maxHealth())
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.aethersentGolem.armor())
+			.add(Attributes.ATTACK_DAMAGE, 8)
 			.add(Attributes.KNOCKBACK_RESISTANCE, 1)
 			.add(Attributes.MOVEMENT_SPEED, 0);
 	}
@@ -136,7 +137,7 @@ public class AethersentGolem extends AbstractGolem {
 				if (!meteors.isEmpty() || !mobTargets.isEmpty()) {
 					level().broadcastEntityEvent(this, (byte) 100);
 					meteors.forEach(meteor -> meteor.dropAndDiscard(true));
-					mobTargets.forEach(living -> living.hurt(damageSources().magic(), 8));
+					mobTargets.forEach(living -> living.hurt(damageSources().magic(), (float) getAttributeValue(Attributes.ATTACK_DAMAGE)));
 					if (!meteors.isEmpty()) {
 						lookPos = meteors.getFirst().position();
 					} else {

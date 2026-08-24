@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.gui.screen;
 
 import cn.leolezury.eternalstarlight.common.client.book.BookContext;
-import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
+import cn.leolezury.eternalstarlight.common.client.book.ResolvedBookDefinition;
 import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBookComponent;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.BookHistoryButton;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.widget.BookProgressButton;
@@ -24,7 +24,7 @@ public class BookScreen extends Screen {
 	public static final int BUTTON_Z_OFFSET = 780;
 	public static final int TOOLTIP_Z_OFFSET = 790;
 
-	private final BookDefinition book;
+	private final ResolvedBookDefinition book;
 	private final BookContext context;
 	private final List<List<ConfiguredBookComponent<?, ?>>> unlockedComponents;
 	private final List<ConfiguredBookComponent<?, ?>> currentComponents = new ArrayList<>();
@@ -44,14 +44,16 @@ public class BookScreen extends Screen {
 	private final List<Stamp> stamps = new ArrayList<>();
 	private int currentIndex = 0;
 
-	public BookScreen(BookDefinition book, Set<ResourceLocation> unlocked) {
+	public BookScreen(ResolvedBookDefinition book, Set<ResourceLocation> unlocked, boolean allUnlocked) {
 		super(Component.empty());
 		this.book = book;
 		this.unlockedComponents = new ArrayList<>();
 		for (List<ConfiguredBookComponent<?, ?>> innerList : book.components()) {
 			this.unlockedComponents.add(new ArrayList<>(innerList));
 		}
-		this.unlockedComponents.forEach(list -> list.removeIf(component -> !component.isEnabled(unlocked)));
+		if (!allUnlocked) {
+			this.unlockedComponents.forEach(list -> list.removeIf(component -> !component.isEnabled(unlocked)));
+		}
 		this.unlockedComponents.removeIf(List::isEmpty);
 		if (!this.unlockedComponents.isEmpty()) {
 			this.currentComponents.addAll(this.unlockedComponents.getFirst());
@@ -76,7 +78,7 @@ public class BookScreen extends Screen {
 			}
 
 			@Override
-			public BookDefinition getBookDefinition() {
+			public ResolvedBookDefinition getBookDefinition() {
 				return book;
 			}
 
@@ -109,17 +111,14 @@ public class BookScreen extends Screen {
 
 	@Override
 	protected void init() {
-		totalHeight = 0;
-		for (ConfiguredBookComponent<?, ?> component : currentComponents) {
-			totalHeight += component.getTotalHeight(context);
-		}
-		upButton = addRenderableWidget(new BookProgressButton(getBaseX() + book.width() - book.buttons().upDownButtonWidth() - book.buttons().upDownButtonDistanceFromRight(), getBaseY() + book.buttons().upButtonOffset(), book, false, button -> {
+		updateTotalHeight();
+		upButton = addRenderableWidget(new BookProgressButton(getBaseX() + book.width() - book.buttons().upDownButtonWidth() - book.buttons().upDownButtonDistanceFromRight(), getBaseY() + book.buttons().upButtonOffset(), book.definition(), false, button -> {
 			setScrollProgress(scrollProgress - font.lineHeight);
 		}));
-		downButton = addRenderableWidget(new BookProgressButton(getBaseX() + book.width() - book.buttons().upDownButtonWidth() - book.buttons().upDownButtonDistanceFromRight(), getBaseY() + book.buttons().downButtonOffset(), book, true, button -> {
+		downButton = addRenderableWidget(new BookProgressButton(getBaseX() + book.width() - book.buttons().upDownButtonWidth() - book.buttons().upDownButtonDistanceFromRight(), getBaseY() + book.buttons().downButtonOffset(), book.definition(), true, button -> {
 			setScrollProgress(scrollProgress + font.lineHeight);
 		}));
-		leftButton = addRenderableWidget(new BookHistoryButton(getBaseX() + book.buttons().leftButtonOffset(), getBaseY() + book.buttons().leftRightButtonDistanceFromTop(), book, true, button -> {
+		leftButton = addRenderableWidget(new BookHistoryButton(getBaseX() + book.buttons().leftButtonOffset(), getBaseY() + book.buttons().leftRightButtonDistanceFromTop(), book.definition(), true, button -> {
 			if (currentIndex - 1 >= 0 && currentIndex - 1 < stamps.size()) {
 				Stamp stamp = stamps.get(currentIndex - 1);
 				jumpToComponent(stamp.id(), false);
@@ -127,7 +126,7 @@ public class BookScreen extends Screen {
 				currentIndex = currentIndex - 1;
 			}
 		}));
-		rightButton = addRenderableWidget(new BookHistoryButton(getBaseX() + book.buttons().rightButtonOffset(), getBaseY() + book.buttons().leftRightButtonDistanceFromTop(), book, false, button -> {
+		rightButton = addRenderableWidget(new BookHistoryButton(getBaseX() + book.buttons().rightButtonOffset(), getBaseY() + book.buttons().leftRightButtonDistanceFromTop(), book.definition(), false, button -> {
 			if (currentIndex + 1 >= 0 && currentIndex + 1 < stamps.size()) {
 				Stamp stamp = stamps.get(currentIndex + 1);
 				jumpToComponent(stamp.id(), false);
@@ -135,6 +134,7 @@ public class BookScreen extends Screen {
 				currentIndex = currentIndex + 1;
 			}
 		}));
+		setScrollProgress(scrollProgress);
 		updateButtonVisibility();
 	}
 
@@ -148,6 +148,7 @@ public class BookScreen extends Screen {
 				if (component.config().id().equals(id)) {
 					currentComponents.clear();
 					currentComponents.addAll(list);
+					updateTotalHeight();
 					setScrollProgress(currentHeight);
 					if (leaveStamp) {
 						List<Stamp> toRemove = new ArrayList<>();
@@ -195,7 +196,7 @@ public class BookScreen extends Screen {
 				&& y <= getBaseY() + book.scrollbar().scrollbarYOffset() + book.scrollbar().scrollbarHeight();
 			if (scrollArea && button == 0) {
 				this.scrolling = true;
-				this.mouseOffset = Mth.clamp((int) (y - (getBaseY() + book.scrollbar().scrollbarYOffset() + (int) (getMaxScroll() * ((double) scrollProgress / (double) (totalHeight - book.height() + 2 * book.frameWidth()))))), 0, getScrollButtonHeight());
+				this.mouseOffset = Mth.clamp((int) (y - (getBaseY() + book.scrollbar().scrollbarYOffset() + (int) (getMaxScroll() * ((double) scrollProgress / (double) Math.max(totalHeight - book.height() + 2 * book.frameWidth(), 1))))), 0, getScrollButtonHeight());
 				return true;
 			}
 		}
@@ -215,7 +216,7 @@ public class BookScreen extends Screen {
 	@Override
 	public boolean mouseDragged(double x, double y, int button, double dragX, double dragY) {
 		if (this.scrolling) {
-			setScrollProgress((int) ((y - this.mouseOffset - getBaseY() - book.scrollbar().scrollbarYOffset()) * (double) (totalHeight - book.height() + 2 * book.frameWidth()) / (double) getMaxScroll()));
+			setScrollProgress((int) ((y - this.mouseOffset - getBaseY() - book.scrollbar().scrollbarYOffset()) * (double) Math.max(totalHeight - book.height() + 2 * book.frameWidth(), 1) / (double) Math.max(getMaxScroll(), 1)));
 			return true;
 		} else {
 			return false;
@@ -334,6 +335,13 @@ public class BookScreen extends Screen {
 		return getBaseY() + book.frameWidth();
 	}
 
+	private void updateTotalHeight() {
+		totalHeight = 0;
+		for (ConfiguredBookComponent<?, ?> component : currentComponents) {
+			totalHeight += component.getTotalHeight(context);
+		}
+	}
+
 	private void setScrollProgress(int progress) {
 		this.scrollProgress = Mth.clamp(progress, 0, Math.max(totalHeight - book.height() + 2 * book.frameWidth(), 0));
 	}
@@ -343,7 +351,7 @@ public class BookScreen extends Screen {
 	}
 
 	private int getScrollButtonHeight() {
-		return Math.clamp((int) (book.scrollbar().scrollbarHeight() * (double) (book.height() - 2 * book.frameWidth()) / (double) totalHeight), book.scrollbar().scrollButtonWidth(), book.scrollbar().scrollbarHeight());
+		return Math.clamp((int) (book.scrollbar().scrollbarHeight() * (double) (book.height() - 2 * book.frameWidth()) / (double) Math.max(totalHeight, 1)), book.scrollbar().scrollButtonWidth(), book.scrollbar().scrollbarHeight());
 	}
 
 	private record Stamp(ResourceLocation id, int progress) {

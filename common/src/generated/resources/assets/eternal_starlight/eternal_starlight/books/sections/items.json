@@ -1,0 +1,168 @@
+[
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "id": "eternal_starlight:items_display",
+      "image_displays": [
+        {
+          "height": 20,
+          "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+          "width": 20,
+          "x": 55,
+          "y": 10
+        }
+      ],
+      "item_displays": [
+        {
+          "item": {
+            "count": 1,
+            "id": "eternal_starlight:orb_of_prophecy"
+          },
+          "x": 57,
+          "y": 12
+        }
+      ],
+      "text_displays": [
+        {
+          "centered": true,
+          "line_height": 12,
+          "min_distance_to_bottom": 3,
+          "scale": 1.5,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.items",
+              "translation": true
+            }
+          ],
+          "width": 110,
+          "x": 65,
+          "y": 45
+        }
+      ],
+      "total_height": 60,
+      "unlock_conditions": []
+    }
+  },
+  {
+    "type": "eternal_starlight:index",
+    "config": {
+      "entries": [
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:seeking_eye"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:seeking_eye_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "item.eternal_starlight.seeking_eye",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:orb_of_prophecy"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:orb_of_prophecy_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "item.eternal_starlight.orb_of_prophecy",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:crescent_pendant"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:accessories_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.accessories.title",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:nocturnal_millet"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:nocturnal_millet_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "item.eternal_starlight.nocturnal_millet",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:raw_amaramber"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:amaramber_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.amaramber.title",
+              "translation": true
+            }
+          ]
+        }
+      ],
+      "extra_height": 20,
+      "id": "eternal_starlight:items_index",
+      "line_height": 12,
+      "offset": 0,
+      "unlock_conditions": [],
+      "width": 125
+    }
+  }
+]

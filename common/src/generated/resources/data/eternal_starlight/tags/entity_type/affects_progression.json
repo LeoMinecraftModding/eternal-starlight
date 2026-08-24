@@ -1,11 +1,31 @@
 {
   "values": [
+    "eternal_starlight:gleech",
+    "eternal_starlight:lonestar_skeleton",
+    "eternal_starlight:nightfall_spider",
+    "eternal_starlight:seeker",
     "eternal_starlight:thirst_walker",
+    "eternal_starlight:creteor",
+    "eternal_starlight:tiny_creteor",
     "eternal_starlight:stranghoul",
+    "eternal_starlight:ent",
+    "eternal_starlight:ratlin",
+    "eternal_starlight:zombified_ratlin",
+    "eternal_starlight:shadow_snail",
+    "eternal_starlight:yeti",
+    "eternal_starlight:aurora_deer",
+    "eternal_starlight:crystallized_moth",
     "eternal_starlight:shimmer_lacewing",
+    "eternal_starlight:starfire_bird",
+    "eternal_starlight:grimstone_golem",
+    "eternal_starlight:aethersent_golem",
+    "eternal_starlight:rookfish",
+    "eternal_starlight:luminofish",
+    "eternal_starlight:luminaris",
     "eternal_starlight:twilight_gaze",
     "eternal_starlight:freeze",
     "eternal_starlight:permafrost",
-    "eternal_starlight:tangled"
+    "eternal_starlight:tangled",
+    "eternal_starlight:tangled_skull"
   ]
 }

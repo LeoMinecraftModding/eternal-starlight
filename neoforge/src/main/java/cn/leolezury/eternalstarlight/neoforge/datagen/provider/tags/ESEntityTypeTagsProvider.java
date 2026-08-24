@@ -36,13 +36,33 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			);
 		tag(ESTags.EntityTypes.AFFECTS_PROGRESSION)
 			.add(
+				ESEntities.GLEECH.get(),
+				ESEntities.LONESTAR_SKELETON.get(),
+				ESEntities.NIGHTFALL_SPIDER.get(),
+				ESEntities.SEEKER.get(),
 				ESEntities.THIRST_WALKER.get(),
+				ESEntities.CRETEOR.get(),
+				ESEntities.TINY_CRETEOR.get(),
 				ESEntities.STRANGHOUL.get(),
+				ESEntities.ENT.get(),
+				ESEntities.RATLIN.get(),
+				ESEntities.ZOMBIFIED_RATLIN.get(),
+				ESEntities.SHADOW_SNAIL.get(),
+				ESEntities.YETI.get(),
+				ESEntities.AURORA_DEER.get(),
+				ESEntities.CRYSTALLIZED_MOTH.get(),
 				ESEntities.SHIMMER_LACEWING.get(),
+				ESEntities.STARFIRE_BIRD.get(),
+				ESEntities.GRIMSTONE_GOLEM.get(),
+				ESEntities.AETHERSENT_GOLEM.get(),
+				ESEntities.ROOKFISH.get(),
+				ESEntities.LUMINOFISH.get(),
+				ESEntities.LUMINARIS.get(),
 				ESEntities.TWILIGHT_GAZE.get(),
 				ESEntities.FREEZE.get(),
 				ESEntities.PERMAFROST.get(),
-				ESEntities.TANGLED.get()
+				ESEntities.TANGLED.get(),
+				ESEntities.TANGLED_SKULL.get()
 			);
 		tag(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLIES)
 			.add(

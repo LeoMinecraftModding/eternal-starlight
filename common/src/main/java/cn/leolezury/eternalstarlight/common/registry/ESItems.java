@@ -1243,7 +1243,7 @@ public class ESItems {
 	// gatekeeper
 	public static final RegistryObject<Item, Item> LOOT_BAG = ITEMS.register("loot_bag", () -> new LootBagItem(new Item.Properties().fireResistant().rarity(Rarity.RARE)));
 	public static final RegistryObject<Item, Item> STARLIGHT_SILVER_COIN = ITEMS.register("starlight_silver_coin", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> BOOK = ITEMS.register("book", () -> new ESBookItem(new Item.Properties().component(ESDataComponents.BOOK.get(), new GuideBook(EternalStarlight.id("main"), new HashSet<>(Set.of(EternalStarlight.ID)))).rarity(Rarity.RARE).stacksTo(1)));
+	public static final RegistryObject<Item, Item> BOOK = ITEMS.register("book", () -> new ESBookItem(new Item.Properties().component(ESDataComponents.BOOK.get(), new GuideBook(EternalStarlight.id("main"), new HashSet<>(Set.of(EternalStarlight.ID)), false)).rarity(Rarity.RARE).stacksTo(1)));
 	public static final RegistryObject<Item, Item> SEEKING_EYE = ITEMS.register("seeking_eye", () -> new SeekingEyeItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> GLISTERING_SWORD = ITEMS.register("glistering_sword",
 		() -> new SwordItem(ESItemTiers.GLISTERING, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(ESItemTiers.GLISTERING, 3, -2.4F))));

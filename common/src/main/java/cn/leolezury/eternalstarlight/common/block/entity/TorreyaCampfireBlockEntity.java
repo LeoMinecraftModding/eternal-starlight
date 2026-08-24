@@ -31,13 +31,13 @@ public class TorreyaCampfireBlockEntity extends CampfireBlockEntity {
 			cookTick(level, blockPos, blockState, campfireBlockEntity);
 			AABB box = AABB.unitCubeFromLowerCorner(Vec3.atLowerCornerOf(blockPos)).inflate(10);
 			for (LivingEntity living : level.getEntitiesOfClass(LivingEntity.class, box)) {
-				if (!(living instanceof Enemy) && !living.hasEffect(MobEffects.REGENERATION)) {
+				if (!(living instanceof Enemy)) {
 					living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100));
 				}
 			}
 			if (blockState.getValue(TorreyaCampfireBlock.STARFIRE)) {
 				for (LivingEntity living : level.getEntitiesOfClass(LivingEntity.class, box)) {
-					if (living instanceof Enemy && !living.hasEffect(ESMobEffects.STARFIRE.asHolder())) {
+					if (living instanceof Enemy) {
 						living.addEffect(new MobEffectInstance(ESMobEffects.STARFIRE.asHolder(), 100));
 					}
 				}

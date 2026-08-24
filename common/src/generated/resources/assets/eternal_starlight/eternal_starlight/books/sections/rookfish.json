@@ -1,0 +1,142 @@
+[
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "entity_displays": [
+        {
+          "entity": {
+            "id": "eternal_starlight:rookfish"
+          },
+          "rotation": [
+            1.7224714E-4,
+            -0.2231063,
+            0.9747938,
+            7.5258047E-4
+          ],
+          "scale": 45.0,
+          "x": 65,
+          "x_rot": -25.0,
+          "y": 65,
+          "y_rot": 210.0
+        }
+      ],
+      "id": "eternal_starlight:rookfish_display",
+      "image_displays": [
+        {
+          "height": 72,
+          "location": "eternal_starlight:textures/gui/screen/book/frame_72.png",
+          "width": 72,
+          "x": 29,
+          "y": 20
+        }
+      ],
+      "text_displays": [
+        {
+          "centered": true,
+          "line_height": 12,
+          "min_distance_to_bottom": 3,
+          "scale": 1.5,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.rookfish",
+              "translation": true
+            }
+          ],
+          "width": 110,
+          "x": 65,
+          "y": 110
+        }
+      ],
+      "total_height": 125,
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:entity_seen_rookfish"
+        ]
+      ]
+    }
+  },
+  {
+    "type": "eternal_starlight:mob_info",
+    "config": {
+      "button_height": 10,
+      "button_width": 6,
+      "center_x": 65,
+      "entries": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "attribute_text_style": {
+            "color": "#ACFFFC"
+          },
+          "icon": "eternal_starlight:textures/gui/screen/book/attribute_max_health.png",
+          "icon_height": 12,
+          "icon_width": 12,
+          "text": []
+        },
+        {
+          "attribute": "minecraft:generic.armor",
+          "attribute_text_style": {
+            "color": "#ACFFFC"
+          },
+          "icon": "eternal_starlight:textures/gui/screen/book/attribute_armor.png",
+          "icon_height": 12,
+          "icon_width": 12,
+          "text": []
+        },
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "attribute_text_style": {
+            "color": "#ACFFFC"
+          },
+          "icon": "eternal_starlight:textures/gui/screen/book/attribute_movement_speed.png",
+          "icon_height": 12,
+          "icon_width": 12,
+          "text": []
+        }
+      ],
+      "height": 12,
+      "id": "eternal_starlight:rookfish_info",
+      "left_button": "eternal_starlight:textures/gui/screen/book/left.png",
+      "mob": "eternal_starlight:rookfish",
+      "right_button": "eternal_starlight:textures/gui/screen/book/right.png",
+      "tooltip_width": 150,
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:entity_seen_rookfish"
+        ]
+      ],
+      "width": 24
+    }
+  },
+  {
+    "type": "eternal_starlight:text",
+    "config": {
+      "extra_height": 20,
+      "id": "eternal_starlight:rookfish",
+      "line_height": 12,
+      "offset": 10,
+      "text": [
+        {
+          "content": "${color: #acfffc}",
+          "translation": false
+        },
+        {
+          "content": "book.eternal_starlight.rookfish",
+          "translation": true
+        }
+      ],
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:entity_seen_rookfish"
+        ]
+      ],
+      "width": 130
+    }
+  }
+]

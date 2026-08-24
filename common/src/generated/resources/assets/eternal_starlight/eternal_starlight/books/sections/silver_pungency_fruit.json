@@ -1,0 +1,137 @@
+[
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "id": "eternal_starlight:silver_pungency_fruit_display",
+      "image_displays": [
+        {
+          "height": 20,
+          "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+          "width": 20,
+          "x": 55,
+          "y": 10
+        }
+      ],
+      "item_displays": [
+        {
+          "item": {
+            "count": 1,
+            "id": "eternal_starlight:silver_pungency_fruit"
+          },
+          "x": 57,
+          "y": 12
+        }
+      ],
+      "text_displays": [
+        {
+          "centered": true,
+          "line_height": 12,
+          "min_distance_to_bottom": 3,
+          "scale": 1.5,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "item.eternal_starlight.silver_pungency_fruit",
+              "translation": true
+            }
+          ],
+          "width": 110,
+          "x": 65,
+          "y": 45
+        }
+      ],
+      "total_height": 60,
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:item_pungency_fruit",
+          "eternal_starlight:entity_seen_stranghoul"
+        ],
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:item_silver_pungency_fruit",
+          "eternal_starlight:entity_seen_stranghoul"
+        ]
+      ]
+    }
+  },
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "crafting_recipe_displays": [
+        {
+          "recipe": "eternal_starlight:silver_pungency_fruit",
+          "slot_height": 20,
+          "slot_width": 20,
+          "x": 35,
+          "y": 10
+        }
+      ],
+      "id": "eternal_starlight:silver_pungency_fruit_recipe",
+      "image_displays": [
+        {
+          "height": 60,
+          "location": "eternal_starlight:textures/gui/screen/book/crafting_3.png",
+          "width": 60,
+          "x": 35,
+          "y": 10
+        },
+        {
+          "height": 12,
+          "location": "eternal_starlight:textures/gui/screen/book/recipe_crafting.png",
+          "width": 12,
+          "x": 59,
+          "y": 75
+        }
+      ],
+      "total_height": 90,
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:item_pungency_fruit",
+          "eternal_starlight:entity_seen_stranghoul"
+        ],
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:item_silver_pungency_fruit",
+          "eternal_starlight:entity_seen_stranghoul"
+        ]
+      ]
+    }
+  },
+  {
+    "type": "eternal_starlight:text",
+    "config": {
+      "extra_height": 20,
+      "id": "eternal_starlight:silver_pungency_fruit",
+      "line_height": 12,
+      "offset": 10,
+      "text": [
+        {
+          "content": "${color: #acfffc}",
+          "translation": false
+        },
+        {
+          "content": "book.eternal_starlight.silver_pungency_fruit",
+          "translation": true
+        }
+      ],
+      "unlock_conditions": [
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:item_pungency_fruit",
+          "eternal_starlight:entity_seen_stranghoul"
+        ],
+        [
+          "eternal_starlight:advancement_enter_starlight",
+          "eternal_starlight:item_silver_pungency_fruit",
+          "eternal_starlight:entity_seen_stranghoul"
+        ]
+      ],
+      "width": 130
+    }
+  }
+]

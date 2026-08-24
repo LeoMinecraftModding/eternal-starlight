@@ -11,15 +11,17 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.HashSet;
 
-public record GuideBook(ResourceLocation id, HashSet<String> listeningNamespaces) {
+public record GuideBook(ResourceLocation id, HashSet<String> listeningNamespaces, boolean allUnlocked) {
 	public static final Codec<GuideBook> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 		ResourceLocation.CODEC.fieldOf("id").forGetter(GuideBook::id),
-		Codec.STRING.listOf().xmap(Sets::newHashSet, Lists::newArrayList).fieldOf("listening_namespaces").forGetter(GuideBook::listeningNamespaces)
+		Codec.STRING.listOf().xmap(Sets::newHashSet, Lists::newArrayList).fieldOf("listening_namespaces").forGetter(GuideBook::listeningNamespaces),
+		Codec.BOOL.fieldOf("all_unlocked").forGetter(GuideBook::allUnlocked)
 	).apply(instance, GuideBook::new));
 
 	public static final StreamCodec<? super RegistryFriendlyByteBuf, GuideBook> STREAM_CODEC = StreamCodec.composite(
 		ResourceLocation.STREAM_CODEC, GuideBook::id,
 		ByteBufCodecs.fromCodec(Codec.STRING.listOf().xmap(Sets::newHashSet, Lists::newArrayList)), GuideBook::listeningNamespaces,
+		ByteBufCodecs.BOOL, GuideBook::allUnlocked,
 		GuideBook::new
 	);
 }

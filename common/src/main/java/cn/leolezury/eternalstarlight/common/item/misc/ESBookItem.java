@@ -26,7 +26,7 @@ public class ESBookItem extends Item {
 		if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
 			GuideBook guideBook = stack.get(ESDataComponents.BOOK.get());
 			if (guideBook != null) {
-				ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenBookPacket(guideBook.id(), new HashSet<>(ESBookUtil.getUnlockedParts(serverPlayer))));
+				ESPlatform.INSTANCE.sendToClient(serverPlayer, new OpenBookPacket(guideBook.id(), new HashSet<>(ESBookUtil.getUnlockedParts(serverPlayer)), guideBook.allUnlocked()));
 			}
 		}
 		return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);

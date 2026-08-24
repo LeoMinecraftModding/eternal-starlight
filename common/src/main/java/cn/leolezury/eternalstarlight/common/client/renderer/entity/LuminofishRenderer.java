@@ -1,8 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.renderer.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.model.entity.LuminoFishModel;
-import cn.leolezury.eternalstarlight.common.client.renderer.layer.LuminoFishGlowLayer;
+import cn.leolezury.eternalstarlight.common.client.model.entity.LuminofishModel;
+import cn.leolezury.eternalstarlight.common.client.renderer.layer.LuminofishGlowLayer;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.Luminofish;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -10,18 +10,18 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class LuminoFishRenderer<T extends Luminofish> extends MobRenderer<T, LuminoFishModel<T>> {
+public class LuminofishRenderer<T extends Luminofish> extends MobRenderer<T, LuminofishModel<T>> {
 	private static final ResourceLocation ENTITY_TEXTURE = EternalStarlight.id("textures/entity/luminofish.png");
 
-	public LuminoFishRenderer(EntityRendererProvider.Context context) {
-		super(context, new LuminoFishModel<>(context.bakeLayer(LuminoFishModel.LAYER_LOCATION)), 0.3f);
-		this.addLayer(new LuminoFishGlowLayer<>(this));
+	public LuminofishRenderer(EntityRendererProvider.Context context) {
+		super(context, new LuminofishModel<>(context.bakeLayer(LuminofishModel.LAYER_LOCATION)), 0.3f);
+		this.addLayer(new LuminofishGlowLayer<>(this));
 	}
 
 	@Override
 	protected void setupRotations(T livingEntity, PoseStack poseStack, float f, float g, float h, float i) {
 		super.setupRotations(livingEntity, poseStack, f, g, h, i);
-		if (!livingEntity.isInWater()) {
+		if (!livingEntity.isInWater() && !livingEntity.isFirstTick()) {
 			poseStack.translate(0.1F, 0.1F, -0.1F);
 			poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
 		}

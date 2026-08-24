@@ -1,20 +1,18 @@
 package cn.leolezury.eternalstarlight.common.client.book;
 
-import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBookComponent;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
-import java.util.Optional;
 
-public record BookDefinition(List<List<ConfiguredBookComponent<?, ?>>> components,
+public record BookDefinition(List<ResourceLocation> sections,
 							 int width, int height, int frameWidth,
 							 Buttons buttons,
 							 Scrollbar scrollbar,
 							 Textures textures) {
 	public static final Codec<BookDefinition> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-		ConfiguredBookComponent.CODEC.listOf().listOf().fieldOf("components").forGetter(BookDefinition::components),
+		ResourceLocation.CODEC.listOf().fieldOf("sections").forGetter(BookDefinition::sections),
 		Codec.INT.fieldOf("width").forGetter(BookDefinition::width),
 		Codec.INT.fieldOf("height").forGetter(BookDefinition::height),
 		Codec.INT.fieldOf("frame_width").forGetter(BookDefinition::frameWidth),
@@ -59,14 +57,5 @@ public record BookDefinition(List<List<ConfiguredBookComponent<?, ?>>> component
 			ResourceLocation.CODEC.fieldOf("left_button").forGetter(Textures::leftButton),
 			ResourceLocation.CODEC.fieldOf("right_button").forGetter(Textures::rightButton)
 		).apply(instance, Textures::new));
-	}
-
-	public Optional<ConfiguredBookComponent<?, ?>> getComponent(ResourceLocation id) {
-		for (ConfiguredBookComponent<?, ?> component : components().stream().flatMap(List::stream).toList()) {
-			if (component.config().id().equals(id)) {
-				return Optional.of(component);
-			}
-		}
-		return Optional.empty();
 	}
 }

@@ -1,0 +1,155 @@
+[
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "id": "eternal_starlight:cover",
+      "image_displays": [
+        {
+          "height": 40,
+          "location": "eternal_starlight:textures/gui/screen/book/icon.png",
+          "width": 40,
+          "x": 45,
+          "y": 30
+        },
+        {
+          "height": 16,
+          "location": "eternal_starlight:textures/gui/screen/book/separator.png",
+          "width": 64,
+          "x": 33,
+          "y": 75
+        }
+      ],
+      "text_displays": [
+        {
+          "centered": true,
+          "line_height": 12,
+          "min_distance_to_bottom": 8,
+          "scale": 1.5,
+          "text": [
+            {
+              "content": "${color: #acfffc}${link: eternal_starlight:index}",
+              "translation": false
+            },
+            {
+              "content": "item.eternal_starlight.book",
+              "translation": true
+            }
+          ],
+          "width": 110,
+          "x": 65,
+          "y": 100
+        }
+      ],
+      "total_height": 150,
+      "unlock_conditions": []
+    }
+  },
+  {
+    "type": "eternal_starlight:index",
+    "config": {
+      "entries": [
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:orb_of_prophecy"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:items_index",
+          "listening": [
+            "eternal_starlight:seeking_eye_display",
+            "eternal_starlight:nocturnal_millet_display",
+            "eternal_starlight:amaramber_display",
+            "eternal_starlight:accessories_display",
+            "eternal_starlight:orb_of_prophecy_display"
+          ],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.items",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:starfire_bird_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:mobs_index",
+          "listening": [
+            "eternal_starlight:shadow_snail_display",
+            "eternal_starlight:crystallized_moth_display",
+            "eternal_starlight:luminaris_display",
+            "eternal_starlight:zombified_ratlin_display",
+            "eternal_starlight:yeti_display",
+            "eternal_starlight:aurora_deer_display",
+            "eternal_starlight:twilight_gaze_display",
+            "eternal_starlight:gleech_display",
+            "eternal_starlight:seeker_display",
+            "eternal_starlight:thirst_walker_display",
+            "eternal_starlight:ent_display",
+            "eternal_starlight:shimmer_lacewing_display",
+            "eternal_starlight:tiny_creteor_display",
+            "eternal_starlight:ratlin_display",
+            "eternal_starlight:aethersent_golem_display",
+            "eternal_starlight:lonestar_skeleton_display",
+            "eternal_starlight:starfire_bird_display",
+            "eternal_starlight:rookfish_display",
+            "eternal_starlight:grimstone_golem_display",
+            "eternal_starlight:stranghoul_display",
+            "eternal_starlight:nightfall_spider_display",
+            "eternal_starlight:creteor_display",
+            "eternal_starlight:luminofish_display"
+          ],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.mobs",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:aetherstrike_rocket"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:misc_index",
+          "listening": [
+            "eternal_starlight:meteor_shower_display"
+          ],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.misc",
+              "translation": true
+            }
+          ]
+        }
+      ],
+      "extra_height": 20,
+      "id": "eternal_starlight:index",
+      "line_height": 12,
+      "offset": 20,
+      "unlock_conditions": [],
+      "width": 125
+    }
+  }
+]

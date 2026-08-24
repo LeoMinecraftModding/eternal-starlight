@@ -1,0 +1,579 @@
+[
+  {
+    "type": "eternal_starlight:display",
+    "config": {
+      "id": "eternal_starlight:mobs_display",
+      "image_displays": [
+        {
+          "height": 20,
+          "location": "eternal_starlight:textures/gui/screen/book/slot.png",
+          "width": 20,
+          "x": 55,
+          "y": 10
+        }
+      ],
+      "item_displays": [
+        {
+          "item": {
+            "count": 1,
+            "id": "eternal_starlight:starfire_bird_egg"
+          },
+          "x": 57,
+          "y": 12
+        }
+      ],
+      "text_displays": [
+        {
+          "centered": true,
+          "line_height": 12,
+          "min_distance_to_bottom": 3,
+          "scale": 1.5,
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.mobs",
+              "translation": true
+            }
+          ],
+          "width": 110,
+          "x": 65,
+          "y": 45
+        }
+      ],
+      "total_height": 60,
+      "unlock_conditions": []
+    }
+  },
+  {
+    "type": "eternal_starlight:index",
+    "config": {
+      "entries": [
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:glistering_morning_star"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:bosses_index",
+          "listening": [
+            "eternal_starlight:the_gatekeeper_display",
+            "eternal_starlight:lunar_monstrosity_display",
+            "eternal_starlight:starlight_golem_display"
+          ],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "book.eternal_starlight.mobs.bosses",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:gleech_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:gleech_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.gleech",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:lonestar_skeleton_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:lonestar_skeleton_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.lonestar_skeleton",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:nightfall_spider_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:nightfall_spider_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.nightfall_spider",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:seeker_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:seeker_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.seeker",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:thirst_walker_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:thirst_walker_display",
+          "listening": [
+            "eternal_starlight:dagger_of_hunger_display",
+            "eternal_starlight:crystalborn_catalyst_display"
+          ],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.thirst_walker",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:creteor_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:creteor_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.creteor",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:tiny_creteor_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:tiny_creteor_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.tiny_creteor",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:stranghoul_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:stranghoul_display",
+          "listening": [
+            "eternal_starlight:pungency_fruit_display",
+            "eternal_starlight:seeds_launcher_display",
+            "eternal_starlight:drying_rack_display",
+            "eternal_starlight:silver_pungency_fruit_display"
+          ],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.stranghoul",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:ent_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:ent_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.ent",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:ratlin_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:ratlin_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.ratlin",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:zombified_ratlin_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:zombified_ratlin_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.zombified_ratlin",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:shadow_snail_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:shadow_snail_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.shadow_snail",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:yeti_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:yeti_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.yeti",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:aurora_deer_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:aurora_deer_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.aurora_deer",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:crystallized_moth_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:crystallized_moth_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.crystallized_moth",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:shimmer_lacewing_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:shimmer_lacewing_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.shimmer_lacewing",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:starfire_bird_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:starfire_bird_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.starfire_bird",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:grimstone_golem_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:grimstone_golem_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.grimstone_golem",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:aethersent_golem_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:aethersent_golem_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.aethersent_golem",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:rookfish_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:rookfish_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.rookfish",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:luminofish_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:luminofish_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.luminofish",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:luminaris_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:luminaris_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.luminaris",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:twilight_gaze_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:twilight_gaze_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.twilight_gaze",
+              "translation": true
+            }
+          ]
+        }
+      ],
+      "extra_height": 20,
+      "id": "eternal_starlight:mobs_index",
+      "line_height": 12,
+      "offset": 0,
+      "unlock_conditions": [],
+      "width": 125
+    }
+  }
+]
