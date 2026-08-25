@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.item.recipe.*;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.ConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
@@ -154,61 +153,6 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('C', ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get())
 			.define('G', Items.GLASS)
 			.unlockedBy("has_item", has(ESItems.BLUE_STARLIGHT_CRYSTAL_SHARD.get()))
-			.save(recipeOutput);
-		addShapeless(recipeOutput, ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get(), ESItems.MANA_CRYSTAL.get(), 1, ESItems.TERRA_CRYSTAL.get(), ESItems.WIND_CRYSTAL.get(), ESItems.WATER_CRYSTAL.get(), ESItems.LUNAR_CRYSTAL.get(), ESItems.BLAZE_CRYSTAL.get(), ESItems.LIGHT_CRYSTAL.get());
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.TERRA, ESItems.TERRA_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("terra_crystal_special"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WIND, ESItems.WIND_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("wind_crystal_special"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.WATER, ESItems.WATER_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("water_crystal_special"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LUNAR, ESItems.LUNAR_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("lunar_crystal_special"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.BLAZE, ESItems.BLAZE_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("blaze_crystal_special"));
-		SpecialRecipeBuilder.special(category -> new ManaCrystalRecipe(category, ManaType.LIGHT, ESItems.LIGHT_CRYSTAL.get())).save(recipeOutput, EternalStarlight.id("light_crystal_special"));
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.TERRA_CRYSTAL.get())
-			.pattern(" S ")
-			.pattern("SCS")
-			.pattern(" S ")
-			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
-			.define('C', ESTags.Items.TERRA_CRYSTAL_INGREDIENTS)
-			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.WIND_CRYSTAL.get())
-			.pattern(" S ")
-			.pattern("SCS")
-			.pattern(" S ")
-			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
-			.define('C', ESTags.Items.WIND_CRYSTAL_INGREDIENTS)
-			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.WATER_CRYSTAL.get())
-			.pattern(" S ")
-			.pattern("SCS")
-			.pattern(" S ")
-			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
-			.define('C', ESTags.Items.WATER_CRYSTAL_INGREDIENTS)
-			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.LUNAR_CRYSTAL.get())
-			.pattern(" S ")
-			.pattern("SCS")
-			.pattern(" S ")
-			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
-			.define('C', ESTags.Items.LUNAR_CRYSTAL_INGREDIENTS)
-			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.BLAZE_CRYSTAL.get())
-			.pattern(" S ")
-			.pattern("SCS")
-			.pattern(" S ")
-			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
-			.define('C', ESTags.Items.BLAZE_CRYSTAL_INGREDIENTS)
-			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
-			.save(recipeOutput);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ESItems.LIGHT_CRYSTAL.get())
-			.pattern(" S ")
-			.pattern("SCS")
-			.pattern(" S ")
-			.define('S', ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get())
-			.define('C', ESTags.Items.LIGHT_CRYSTAL_INGREDIENTS)
-			.unlockedBy("has_item", has(ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()))
 			.save(recipeOutput);
 
 		// misc

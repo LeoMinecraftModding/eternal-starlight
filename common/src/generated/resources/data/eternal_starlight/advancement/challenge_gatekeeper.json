@@ -11,7 +11,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "minecraft:diamond_sword"
+      "id": "eternal_starlight:glistering_sword"
     },
     "title": {
       "translate": "advancements.eternal_starlight.challenge_gatekeeper.title"

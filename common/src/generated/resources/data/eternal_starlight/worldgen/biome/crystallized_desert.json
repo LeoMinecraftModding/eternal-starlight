@@ -81,10 +81,6 @@
   ],
   "has_precipitation": false,
   "spawn_costs": {
-    "eternal_starlight:crystallized_moth": {
-      "charge": 1.0,
-      "energy_budget": 0.75
-    },
     "eternal_starlight:gleech": {
       "charge": 1.0,
       "energy_budget": 0.75
@@ -116,7 +112,14 @@
       }
     ],
     "axolotls": [],
-    "creature": [],
+    "creature": [
+      {
+        "type": "eternal_starlight:crystallized_moth",
+        "maxCount": 6,
+        "minCount": 1,
+        "weight": 15
+      }
+    ],
     "misc": [],
     "monster": [
       {
@@ -136,12 +139,6 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 15
-      },
-      {
-        "type": "eternal_starlight:crystallized_moth",
-        "maxCount": 4,
-        "minCount": 1,
-        "weight": 8
       },
       {
         "type": "eternal_starlight:gleech",

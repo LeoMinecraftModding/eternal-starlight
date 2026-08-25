@@ -80,20 +80,6 @@ public class ESTags {
 		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
 		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
 		public static final TagKey<Item> ARROW_FEATHERS = create("arrow_feathers");
-		public static final TagKey<Item> MANA_CRYSTAL_INGREDIENTS = create("mana_crystal_ingredients");
-		public static final TagKey<Item> MANA_CRYSTALS = create("mana_crystals");
-		public static final TagKey<Item> TERRA_CRYSTAL_INGREDIENTS = create("terra_crystal_ingredients");
-		public static final TagKey<Item> TERRA_CRYSTALS = create("terra_crystals");
-		public static final TagKey<Item> WIND_CRYSTAL_INGREDIENTS = create("wind_crystal_ingredients");
-		public static final TagKey<Item> WIND_CRYSTALS = create("wind_crystals");
-		public static final TagKey<Item> WATER_CRYSTAL_INGREDIENTS = create("water_crystal_ingredients");
-		public static final TagKey<Item> WATER_CRYSTALS = create("water_crystals");
-		public static final TagKey<Item> LUNAR_CRYSTAL_INGREDIENTS = create("lunar_crystal_ingredients");
-		public static final TagKey<Item> LUNAR_CRYSTALS = create("lunar_crystals");
-		public static final TagKey<Item> BLAZE_CRYSTAL_INGREDIENTS = create("blaze_crystal_ingredients");
-		public static final TagKey<Item> BLAZE_CRYSTALS = create("blaze_crystals");
-		public static final TagKey<Item> LIGHT_CRYSTAL_INGREDIENTS = create("light_crystal_ingredients");
-		public static final TagKey<Item> LIGHT_CRYSTALS = create("light_crystals");
 		public static final TagKey<Item> WIP = create("wip");
 
 		private static TagKey<Item> create(String string) {
@@ -136,6 +122,7 @@ public class ESTags {
 		public static final TagKey<Block> CONVERTS_NOCTURNAL_MILLET = create("converts_nocturnal_millet");
 		public static final TagKey<Block> STARFIRE_BIRD_NESTS = create("starfire_bird_nests");
 		public static final TagKey<Block> PREVENTS_MELTING = create("prevents_melting");
+		public static final TagKey<Block> PREVENTS_MONSTER_SPAWNING = create("prevents_monster_spawning");
 		public static final TagKey<Block> UNAFFECTED_BY_OBLIVION = create("unaffected_by_oblivion");
 
 		private static TagKey<Block> create(String string) {
@@ -157,6 +144,7 @@ public class ESTags {
 		public static final TagKey<EntityType<?>> STARFIRE_BIRD_AFRAID_OF = create("starfire_bird_afraid_of");
 		public static final TagKey<EntityType<?>> AETHERSENT_GOLEM_TARGETS = create("aethersent_golem_targets");
 		public static final TagKey<EntityType<?>> SOLARIS_ISLES_INHABITANTS = create("solaris_isles_inhabitants");
+		public static final TagKey<EntityType<?>> UNDERGROUND_CREATURES = create("underground_creatures");
 
 		private static TagKey<EntityType<?>> create(String string) {
 			return TagKey.create(Registries.ENTITY_TYPE, EternalStarlight.id(string));

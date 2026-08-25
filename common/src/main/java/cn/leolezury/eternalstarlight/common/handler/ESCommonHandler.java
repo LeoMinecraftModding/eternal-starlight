@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.handler;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.fluid.EtherFluid;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
-import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
@@ -20,9 +19,9 @@ import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
+import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.item.interfaces.SwingAttackWeapon;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
-import cn.leolezury.eternalstarlight.common.item.misc.ManaCrystalItem;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
@@ -31,7 +30,6 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
-import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.*;
 import cn.leolezury.eternalstarlight.common.weather.AbstractWeather;
 import cn.leolezury.eternalstarlight.common.weather.WeatherInstance;
@@ -41,7 +39,6 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -208,6 +205,12 @@ public class ESCommonHandler {
 		if (accessorySlotCount > 1) {
 			tooltip.add(CommonComponents.EMPTY);
 			tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".accessory_slot_count", accessorySlotCount).withStyle(ChatFormatting.BLUE));
+		}
+		if (itemStack.has(ESDataComponents.BOOK.get())) {
+			GuideBook book = itemStack.get(ESDataComponents.BOOK.get());
+			if (book != null && book.allUnlocked()) {
+				tooltip.add(Component.translatable("tooltip." + EternalStarlight.ID + ".book.all_unlocked", accessorySlotCount).withStyle(ChatFormatting.YELLOW));
+			}
 		}
 		if (itemStack.is(ESTags.Items.FLOWGLAZE_WEAPONS)) {
 			tooltip.add(CommonComponents.EMPTY);
@@ -425,22 +428,6 @@ public class ESCommonHandler {
 		if (entity instanceof Player player && player.level().getBiome(player.blockPosition()).is(ESBiomes.THE_ABYSS) && player.isEyeInFluid(FluidTags.WATER) && player.getAirSupply() > 0) {
 			player.setAirSupply(Math.max(player.getAirSupply() - 30, 0));
 		}
-
-		if (source.getDirectEntity() instanceof Player player) {
-			if (player.getRandom().nextInt(15) == 0) {
-				Inventory inventory = player.getInventory();
-				boolean hasCrystals = false;
-				for (int i = 0; i < inventory.getContainerSize(); i++) {
-					if (inventory.getItem(i).is(ESTags.Items.MANA_CRYSTALS)) {
-						hasCrystals = true;
-					}
-				}
-				if (hasCrystals) {
-					ItemEntity itemEntity = new ItemEntity(player.level(), entity.getX(), entity.getY(), entity.getZ(), ESItems.MANA_CRYSTAL_SHARD.get().getDefaultInstance());
-					player.level().addFreshEntity(itemEntity);
-				}
-			}
-		}
 	}
 
 	public static int onModifyPostAttackInvulnerabilityTicks(LivingEntity entity, DamageSource source, float amount, int ticks) {
@@ -575,10 +562,6 @@ public class ESCommonHandler {
 						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
 					}
 				}
-			} else {
-				if ((item.getItem().is(ESTags.Items.MANA_CRYSTALS) || item.getItem().is(ESItems.MANA_CRYSTAL_SHARD.get()))) {
-					EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(item.getItem().getItem() instanceof ManaCrystalItem crystalItem ? crystalItem.getManaType() : ManaType.LUNAR, item.position().add(0, item.getBbHeight() / 2, 0));
-				}
 			}
 		}
 		if (!level.isClientSide) {
@@ -637,7 +620,6 @@ public class ESCommonHandler {
 			}
 		}
 		if (entity instanceof LivingEntity livingEntity) {
-			ESSpellUtil.tickSpells(livingEntity);
 			SpecialItemCooldown.tick(livingEntity);
 			if (livingEntity instanceof Player player && !level.isClientSide) {
 				ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.setData(player, ESDataAttachments.OFFHAND_ATTACK_STRENGTH_TIMER.getData(player) + 1);
@@ -647,7 +629,6 @@ public class ESCommonHandler {
 					}
 					ESDataAttachments.LAST_OFFHAND_ITEM.setData(player, player.getOffhandItem().copy());
 				}
-				ESCrestUtil.tickCrests(player);
 				if (player.hasEffect(ESMobEffects.OBLIVION.asHolder())) {
 					BlockPos.MutableBlockPos testPos = new BlockPos.MutableBlockPos();
 
@@ -923,54 +904,6 @@ public class ESCommonHandler {
 				ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
 				if (stack.getItem() instanceof SwingAttackWeapon weapon) {
 					weapon.performSwingAttack(stack, player);
-				}
-			}
-			case SimpleActionPacket.C2S_SWITCH_CREST -> {
-				List<Crest.Instance> crests = ESCrestUtil.getOwnedCrests(player);
-				ItemStack mainHand = player.getMainHandItem();
-				ItemStack offHand = player.getOffhandItem();
-				ItemStack spellItem;
-				Holder<Crest> component = null;
-				Holder<Crest> nextCrest = null;
-				if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
-					component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
-					spellItem = mainHand;
-				} else if (offHand.has(ESDataComponents.CURRENT_CREST.get())) {
-					component = offHand.get(ESDataComponents.CURRENT_CREST.get());
-					spellItem = offHand;
-				} else if (mainHand.is(ESItems.ORB_OF_PROPHECY.get())) {
-					spellItem = mainHand;
-				} else if (offHand.is(ESItems.ORB_OF_PROPHECY.get())) {
-					spellItem = offHand;
-				} else {
-					spellItem = null;
-				}
-				if (component != null) {
-					find:
-					for (int i = 0; i < crests.size(); i++) {
-						if (crests.get(i).crest().is(component) && i < crests.size() - 1) {
-							for (int j = i + 1; j < crests.size(); j++) {
-								if (crests.get(j).crest().value().getSpell().isPresent()) {
-									nextCrest = crests.get(j).crest();
-									break find;
-								}
-							}
-						}
-					}
-				} else {
-					for (Crest.Instance instance : crests) {
-						if (instance.crest().value().getSpell().isPresent()) {
-							nextCrest = instance.crest();
-							break;
-						}
-					}
-				}
-				if (spellItem != null) {
-					if (nextCrest != null && nextCrest.isBound()) {
-						spellItem.applyComponentsAndValidate(DataComponentPatch.builder().set(ESDataComponents.CURRENT_CREST.get(), nextCrest).build());
-					} else {
-						spellItem.remove(ESDataComponents.CURRENT_CREST.get());
-					}
 				}
 			}
 		}

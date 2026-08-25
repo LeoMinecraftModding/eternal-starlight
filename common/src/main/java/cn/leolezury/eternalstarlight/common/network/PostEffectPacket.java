@@ -1,9 +1,10 @@
 package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectData;
-import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectRegistry;
-import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectType;
+import cn.leolezury.eternalstarlight.common.client.posteffect.WorldPostEffectManager;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectData;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectType;
+import cn.leolezury.eternalstarlight.common.registry.ESPostEffects;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -19,7 +20,7 @@ public record PostEffectPacket(ResourceLocation typeId, PostEffectData data, Vec
 
 	public static PostEffectPacket read(FriendlyByteBuf buf) {
 		ResourceLocation typeId = buf.readResourceLocation();
-		PostEffectType<?> type = PostEffectRegistry.get(typeId);
+		PostEffectType<?> type = ESPostEffects.get(typeId);
 		PostEffectData data = type == null ? null : readData(buf, type);
 		Vec3 position = new Vec3(buf.readDouble(), buf.readDouble(), buf.readDouble());
 		int duration = buf.readVarInt();
@@ -48,8 +49,9 @@ public record PostEffectPacket(ResourceLocation typeId, PostEffectData data, Vec
 	}
 
 	public static void handle(PostEffectPacket packet, Player player) {
-		if (packet.data() != null) {
-			PostEffectRegistry.spawnOnClient(packet.typeId(), packet.data(), packet.position(), packet.duration(), packet.radius(), packet.intensity());
+		PostEffectType<?> type = packet.data() == null ? null : ESPostEffects.get(packet.typeId());
+		if (type != null) {
+			WorldPostEffectManager.spawn(type, packet.data(), packet.position(), packet.duration(), packet.radius(), packet.intensity());
 		}
 	}
 

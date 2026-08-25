@@ -59,7 +59,6 @@ public class ESBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<DuskLockboxBlockEntity>> DUSK_LOCKBOX = BLOCK_ENTITIES.register("dusk_lockbox", () -> BlockEntityType.Builder.of(DuskLockboxBlockEntity::new, ESBlocks.DUSK_LOCKBOX.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<FlareSpawnerBlockEntity>> FLARE_SPAWNER = BLOCK_ENTITIES.register("flare_spawner", () -> BlockEntityType.Builder.of(FlareSpawnerBlockEntity::new, ESBlocks.FLARE_SPAWNER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<EclipseCoreBlockEntity>> ECLIPSE_CORE = BLOCK_ENTITIES.register("eclipse_core", () -> BlockEntityType.Builder.of(EclipseCoreBlockEntity::new, ESBlocks.ECLIPSE_CORE.get()).build(null));
-	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StellarRackBlockEntity>> STELLAR_RACK = BLOCK_ENTITIES.register("stellar_rack", () -> BlockEntityType.Builder.of(StellarRackBlockEntity::new, ESBlocks.STELLAR_RACK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalBlockEntity>> STARLIGHT_PORTAL = BLOCK_ENTITIES.register("starlight_portal", () -> BlockEntityType.Builder.of(ESPortalBlockEntity::new, ESBlocks.STARLIGHT_PORTAL.get()).build(null));
 
 	public static void loadClass() {

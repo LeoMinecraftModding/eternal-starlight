@@ -1,12 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.book.BookDefinition;
+import cn.leolezury.eternalstarlight.common.client.book.ResolvedBookDefinition;
 import cn.leolezury.eternalstarlight.common.client.book.component.BookComponentRegistry;
 import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBookComponent;
 import cn.leolezury.eternalstarlight.common.client.book.component.IndexBookComponent;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
-import cn.leolezury.eternalstarlight.common.client.gui.screen.CrestSelectionScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogueScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.toast.SimpleTextToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
@@ -20,7 +19,6 @@ import cn.leolezury.eternalstarlight.common.network.*;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
@@ -55,17 +53,6 @@ public class ClientSideHelper extends ClientHelper {
 		ClientLevel clientLevel = Minecraft.getInstance().level;
 		if (clientLevel != null) {
 			clientLevel.addParticle(packet.particle(), packet.longDistance(), packet.x(), packet.y(), packet.z(), packet.dx(), packet.dy(), packet.dz());
-		}
-	}
-
-	@Override
-	public void handleOpenCrestGui(OpenCrestGuiPacket packet) {
-		if (packet.ownedCrests().isEmpty()) {
-			if (Minecraft.getInstance().player != null) {
-				Minecraft.getInstance().player.displayClientMessage(Component.translatable("message." + EternalStarlight.ID + ".no_crest"), true);
-			}
-		} else {
-			Minecraft.getInstance().setScreen(new CrestSelectionScreen(packet.crests(), packet.ownedCrests()));
 		}
 	}
 
@@ -128,13 +115,13 @@ public class ClientSideHelper extends ClientHelper {
 				}
 			}
 		}
-		Set<BookDefinition> definitions = bookIds.stream().map(ESClientHandler.books::getBook).collect(Collectors.toSet());
+		Set<ResolvedBookDefinition> definitions = bookIds.stream().map(ESClientHandler.books::getBook).collect(Collectors.toSet());
 		List<IndexBookComponent.Entry> newEntries = new ArrayList<>();
 		List<IndexBookComponent.Entry> changedEntries = new ArrayList<>();
-		for (BookDefinition definition : definitions) {
+		for (ResolvedBookDefinition definition : definitions) {
 			List<IndexBookComponent.Entry> entries = new ArrayList<>();
 			definition.components().stream().flatMap(List::stream)
-				.filter(c -> c.component() == BookComponentRegistry.INDEX)
+				.filter(c -> c.component() == BookComponentRegistry.INDEX && c.isEnabled(packet.unlocked()))
 				.forEach(c -> {
 					if (c.config() instanceof IndexBookComponent.Config config) {
 						entries.addAll(config.entries());
@@ -151,7 +138,7 @@ public class ClientSideHelper extends ClientHelper {
 					Optional<ConfiguredBookComponent<?, ?>> listening = definition.getComponent(listeningId);
 					boolean oldListeningEnabled = listening.isPresent() && listening.get().isEnabled(packet.oldUnlocked());
 					boolean listeningEnabled = listening.isPresent() && listening.get().isEnabled(packet.unlocked());
-					if (!oldListeningEnabled && listeningEnabled) {
+					if (!oldListeningEnabled && listeningEnabled && enabled) {
 						changedEntries.add(entry);
 						break;
 					}
@@ -193,9 +180,9 @@ public class ClientSideHelper extends ClientHelper {
 
 	@Override
 	public void handleOpenBook(OpenBookPacket packet) {
-		BookDefinition definition = ESClientHandler.books.getBook(packet.bookId());
+		ResolvedBookDefinition definition = ESClientHandler.books.getBook(packet.bookId());
 		if (definition != null) {
-			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked()));
+			Minecraft.getInstance().setScreen(new BookScreen(definition, packet.unlocked(), packet.allUnlocked()));
 		}
 	}
 
@@ -209,82 +196,10 @@ public class ClientSideHelper extends ClientHelper {
 	}
 
 	@Override
-	public void spawnStellarRackParticles(Vec3 center) {
-		if (AdvancedParticleOptions.RANDOM.nextFloat() < 0.3) {
-			if (AdvancedParticleOptions.RANDOM.nextBoolean()) {
-				float size = (float) (1f + (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5) * 0.4);
-				new AdvancedParticleOptions()
-					.speed(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.1f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.1f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_BACK, 0.1f, 0.3f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.1f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.1f, 1))
-					.spinSpeed(SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, (float) ((12 + (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5) * 10) * Mth.DEG_TO_RAD), (float) ((18 + (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5) * 10) * Mth.DEG_TO_RAD), 1))
-					.quadSize(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, size, 0.4f).add(Easing.IN_OUT_BOUNCE, size, 0, 0.6f))
-					.lifetime((int) (40 + (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5) * 20))
-					.color(SmoothSegmentedValue.of(Easing.IN_OUT_QUART, 100 * 0.3f / 255f, 151 * 0.3f / 255f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 228 * 0.3f / 255f, 255 * 0.3f / 255f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 254 * 0.3f / 255f, 250 * 0.3f / 255f, 1),
-						SmoothSegmentedValue.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_QUAD, 1f, 0, 0.3f))
-					.defaultOperators()
-					.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.SHINE.get()), (float) center.x, (float) center.y, (float) center.z);
-			}
-
-			for (int i = 0; i < 4; i++) {
-				new AdvancedParticleOptions()
-					.speed(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.1f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.1f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_BACK, 0.1f, 0.3f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.1f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.1f, 1))
-					.spinSpeed(SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 18 * Mth.DEG_TO_RAD, 36 * Mth.DEG_TO_RAD, 1))
-					.quadSize(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, 0.2f, 0.6f).add(Easing.IN_OUT_BOUNCE, 0.2f, 0, 0.4f))
-					.lifetime((int) (40 + (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5) * 20))
-					.color(SmoothSegmentedValue.of(Easing.IN_OUT_QUART, 251 * 0.3f / 255f, 198 * 0.3f / 255f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 125 * 0.3f / 255f, 124 * 0.3f / 255f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 2 * 0.3f / 255f, 180 * 0.3f / 255f, 1),
-						SmoothSegmentedValue.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_QUAD, 1f, 0, 0.3f))
-					.defaultOperators()
-					.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.ADVANCED_GLOW.get()), (float) center.x, (float) center.y, (float) center.z);
-			}
-		}
-		for (int i = 0; i < 5; i++) {
-			new AdvancedParticleOptions()
-				.speed(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1))
-				.spinSpeed(SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 18 * Mth.DEG_TO_RAD, 36 * Mth.DEG_TO_RAD, 1))
-				.quadSize(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, 0.15f, 0.5f).add(Easing.IN_OUT_BOUNCE, 0.15f, 0, 0.5f))
-				.lifetime(12)
-				.color(SmoothSegmentedValue.of(Easing.IN_OUT_QUART, 251 * 0.3f / 255f, 198 * 0.3f / 255f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 125 * 0.3f / 255f, 124 * 0.3f / 255f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 2 * 0.3f / 255f, 180 * 0.3f / 255f, 1),
-					SmoothSegmentedValue.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_QUAD, 1f, 0, 0.3f))
-				.defaultOperators()
-				.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.ADVANCED_GLOW.get()), (float) center.x, (float) center.y + 0.45f, (float) center.z);
-		}
-	}
-
-	@Override
-	public void spawnStellarRackItemParticles(Vec3 center) {
-		for (int i = 0; i < 5; i++) {
-			new AdvancedParticleOptions()
-				.speed(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1))
-				.spinSpeed(SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 18 * Mth.DEG_TO_RAD, 36 * Mth.DEG_TO_RAD, 1))
-				.quadSize(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, 0.15f, 0.5f).add(Easing.IN_OUT_BOUNCE, 0.15f, 0, 0.5f))
-				.lifetime(12)
-				.color(SmoothSegmentedValue.of(Easing.IN_OUT_QUART, 251 * 0.3f / 255f, 198 * 0.3f / 255f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 125 * 0.3f / 255f, 124 * 0.3f / 255f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 2 * 0.3f / 255f, 180 * 0.3f / 255f, 1),
-					SmoothSegmentedValue.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_QUAD, 1f, 0, 0.3f))
-				.defaultOperators()
-				.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.ADVANCED_GLOW.get()), (float) center.x, (float) center.y, (float) center.z);
-		}
-	}
-
-	@Override
-	public void spawnManaCrystalItemParticles(ManaType type, Vec3 center) {
+	public void spawnGlowParticles(int color, Vec3 center) {
 		for (int i = 0; i < 5; i++) {
 			Vec3 pos = center.offsetRandom(AdvancedParticleOptions.RANDOM, 0.5f);
-			Color color = Color.rgb(type.getColor());
+			Color particleColor = Color.rgb(color);
 			new AdvancedParticleOptions()
 				.speed(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1),
 					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, AdvancedParticleOptions.RANDOM.nextFloat() * 0.015f, 1),
@@ -292,9 +207,9 @@ public class ClientSideHelper extends ClientHelper {
 				.spinSpeed(SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 18 * Mth.DEG_TO_RAD, 36 * Mth.DEG_TO_RAD, 1))
 				.quadSize(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, 0.25f, 0.6f).add(Easing.IN_OUT_BOUNCE, 0.25f, 0, 0.4f))
 				.lifetime(12)
-				.color(SmoothSegmentedValue.of(Easing.IN_OUT_QUART, color.r() * 0.4f / 255f, 0.3f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, color.g() * 0.4f / 255f, 0.3f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, color.b() * 0.4f / 255f, 0.3f, 1),
+				.color(SmoothSegmentedValue.of(Easing.IN_OUT_QUART, particleColor.r() * 0.4f / 255f, 0.3f, 1),
+					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, particleColor.g() * 0.4f / 255f, 0.3f, 1),
+					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, particleColor.b() * 0.4f / 255f, 0.3f, 1),
 					SmoothSegmentedValue.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_QUAD, 1f, 0, 0.3f))
 				.defaultOperators()
 				.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.ADVANCED_GLOW.get()), (float) pos.x, (float) pos.y, (float) pos.z);

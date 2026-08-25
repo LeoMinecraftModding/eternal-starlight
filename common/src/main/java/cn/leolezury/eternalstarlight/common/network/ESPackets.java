@@ -15,8 +15,6 @@ public class ESPackets {
 	public static final PacketInfo<ParticlePacket> PARTICLE = new PacketInfo<>(Direction.SERVER_TO_CLIENT, ParticlePacket.TYPE, ParticlePacket.STREAM_CODEC, ParticlePacket::handle);
 	public static final PacketInfo<VfxPacket> VFX = new PacketInfo<>(Direction.SERVER_TO_CLIENT, VfxPacket.TYPE, VfxPacket.STREAM_CODEC, VfxPacket::handle);
 	public static final PacketInfo<UpdateWeatherPacket> UPDATE_WEATHER = new PacketInfo<>(Direction.SERVER_TO_CLIENT, UpdateWeatherPacket.TYPE, UpdateWeatherPacket.STREAM_CODEC, UpdateWeatherPacket::handle);
-	public static final PacketInfo<OpenCrestGuiPacket> OPEN_CREST_GUI = new PacketInfo<>(Direction.SERVER_TO_CLIENT, OpenCrestGuiPacket.TYPE, OpenCrestGuiPacket.STREAM_CODEC, OpenCrestGuiPacket::handle);
-	public static final PacketInfo<UpdateCrestsPacket> UPDATE_CRESTS = new PacketInfo<>(Direction.CLIENT_TO_SERVER, UpdateCrestsPacket.TYPE, UpdateCrestsPacket.STREAM_CODEC, UpdateCrestsPacket::handle);
 	public static final PacketInfo<UpdateCameraPacket> UPDATE_CAMERA = new PacketInfo<>(Direction.SERVER_TO_CLIENT, UpdateCameraPacket.TYPE, UpdateCameraPacket.STREAM_CODEC, UpdateCameraPacket::handle);
 	public static final PacketInfo<ClientMountPacket> CLIENT_MOUNT = new PacketInfo<>(Direction.SERVER_TO_CLIENT, ClientMountPacket.TYPE, ClientMountPacket.STREAM_CODEC, ClientMountPacket::handle);
 	public static final PacketInfo<ClientDismountPacket> CLIENT_DISMOUNT = new PacketInfo<>(Direction.SERVER_TO_CLIENT, ClientDismountPacket.TYPE, ClientDismountPacket.STREAM_CODEC, ClientDismountPacket::handle);

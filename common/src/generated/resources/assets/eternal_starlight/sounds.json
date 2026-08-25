@@ -5,12 +5,6 @@
     ],
     "subtitle": "subtitles.block.eternal_starlight.ether.transform"
   },
-  "block.stellar_rack.ambient": {
-    "sounds": [
-      "eternal_starlight:block/stellar_rack/idle"
-    ],
-    "subtitle": "subtitles.block.eternal_starlight.stellar_rack.ambient"
-  },
   "entity.aethersent_golem.death": {
     "sounds": [
       "mob/irongolem/death"

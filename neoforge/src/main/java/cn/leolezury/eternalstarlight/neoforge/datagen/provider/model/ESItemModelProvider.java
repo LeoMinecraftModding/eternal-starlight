@@ -1107,16 +1107,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		block(ESItems.REDSTONE_DOOMEDEN_KEYHOLE.get());
 
 		inventoryModel(ESItems.ORB_OF_PROPHECY.get());
-		block(ESItems.STELLAR_RACK.get());
-		block(ESItems.ENCHANTED_GRIMSTONE_BRICKS.get());
-		basicItem(ESItems.MANA_CRYSTAL.get());
-		basicItem(ESItems.TERRA_CRYSTAL.get());
-		basicItem(ESItems.WIND_CRYSTAL.get());
-		basicItem(ESItems.WATER_CRYSTAL.get());
-		basicItem(ESItems.LUNAR_CRYSTAL.get());
-		basicItem(ESItems.BLAZE_CRYSTAL.get());
-		basicItem(ESItems.LIGHT_CRYSTAL.get());
-		basicItem(ESItems.MANA_CRYSTAL_SHARD.get());
 
 		basicItem(ESItems.KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE.get());
 		basicItem(ESItems.FORGE_ARMOR_TRIM_SMITHING_TEMPLATE.get());

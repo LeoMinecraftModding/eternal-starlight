@@ -1,5 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.posteffect;
 
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectData;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectInstance;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectType;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;

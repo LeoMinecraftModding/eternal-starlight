@@ -10,7 +10,7 @@ public interface BookContext {
 
 	Font getFont();
 
-	BookDefinition getBookDefinition();
+	ResolvedBookDefinition getBookDefinition();
 
 	int getContentX();
 

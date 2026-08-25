@@ -801,13 +801,17 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.addTag(ESTags.Items.HAMMERS);
 		tag(ESTags.Items.AFFECTS_PROGRESSION)
 			.add(
-				ESItems.PUNGENCY_FRUIT.get(),
-				ESItems.SILVER_PUNGENCY_FRUIT.get(),
-				ESItems.GOLEM_STEEL_INGOT.get(),
-				ESItems.GOLEM_STEEL_NUGGET.get(),
+				ESItems.CARVED_LUNARIS_CACTUS_FRUIT.get(),
 				ESItems.NOCTURNAL_MILLET_SEEDS.get(),
 				ESItems.NOCTURNAL_MILLET.get(),
-				ESItems.FORGOTTEN_NOCTURNAL_MILLET.get()
+				ESItems.FORGOTTEN_NOCTURNAL_MILLET.get(),
+				ESItems.RAW_AETHERSENT.get(),
+				ESItems.PUNGENCY_FRUIT.get(),
+				ESItems.SILVER_PUNGENCY_FRUIT.get(),
+				ESItems.RAW_AMARAMBER.get(),
+				ESItems.TOOTH_OF_HUNGER.get(),
+				ESItems.GOLEM_STEEL_INGOT.get(),
+				ESItems.GOLEM_STEEL_NUGGET.get()
 			);
 		tag(ESTags.Items.GOLEM_FORGE_LOCATORS)
 			.add(
@@ -833,126 +837,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.addTag(Tags.Items.FEATHERS)
 			.add(
 				ESItems.SPIRAL_KELP.get()
-			);
-		tag(ESTags.Items.MANA_CRYSTAL_INGREDIENTS)
-			.add(
-				ESItems.RED_STARLIGHT_CRYSTAL_SHARD.get()
-			);
-		tag(ESTags.Items.MANA_CRYSTALS)
-			.addTags(
-				ESTags.Items.TERRA_CRYSTALS,
-				ESTags.Items.WIND_CRYSTALS,
-				ESTags.Items.WATER_CRYSTALS,
-				ESTags.Items.LUNAR_CRYSTALS,
-				ESTags.Items.BLAZE_CRYSTALS,
-				ESTags.Items.LIGHT_CRYSTALS
-			);
-		tag(ESTags.Items.TERRA_CRYSTAL_INGREDIENTS)
-			.add(
-				Items.DIRT,
-				Items.MUD,
-				Items.PODZOL,
-				Items.COARSE_DIRT,
-				Items.ROOTED_DIRT,
-				ESItems.NIGHTFALL_DIRT.get(),
-				ESItems.NIGHTFALL_GRASS_BLOCK.get(),
-				ESItems.NIGHTFALL_PODZOL.get(),
-				ESItems.TENACIOUS_NIGHTFALL_GRASS_BLOCK.get(),
-				ESItems.NIGHTFALL_MUD.get(),
-				ESItems.GLOWING_NIGHTFALL_MUD.get(),
-				ESItems.FANTASY_GRASS_BLOCK.get(),
-				ESItems.CONEBLOOM.get()
-			);
-		tag(ESTags.Items.TERRA_CRYSTALS)
-			.add(
-				ESItems.TERRA_CRYSTAL.get(),
-				ESItems.MANA_CRYSTAL.get()
-			);
-		tag(ESTags.Items.WIND_CRYSTAL_INGREDIENTS)
-			.add(
-				Items.WIND_CHARGE,
-				Items.BREEZE_ROD,
-				ESItems.WHISPERBLOOM.get()
-			);
-		tag(ESTags.Items.WIND_CRYSTALS)
-			.add(
-				ESItems.WIND_CRYSTAL.get(),
-				ESItems.MANA_CRYSTAL.get()
-			);
-		tag(ESTags.Items.WATER_CRYSTAL_INGREDIENTS)
-			.add(
-				Items.ICE,
-				Items.PACKED_ICE,
-				Items.BLUE_ICE,
-				Items.KELP,
-				Items.SEAGRASS,
-				Items.SEA_PICKLE,
-				ESItems.ABYSSAL_FRUIT.get(),
-				ESItems.ORBFLORA.get(),
-				ESItems.SPIRAL_KELP.get(),
-				ESItems.SEA_ROSA.get(),
-				ESItems.WICK_GRASS.get(),
-				ESItems.LUMENSTEM.get(),
-				ESItems.CIRCULUSH.get(),
-				ESItems.MARIMOLD.get(),
-				ESItems.STONETT.get(),
-				ESItems.LUMINIS.get(),
-				ESItems.GLOWLIS.get(),
-				ESItems.GLOREED.get(),
-				ESItems.STARLIGHT_SEAGRASS.get(),
-				ESItems.JINGLING_PICKLE.get(),
-				ESItems.MOONLIGHT_DUCKWEED.get(),
-				ESItems.MOONLIGHT_LILY_PAD.get(),
-				ESItems.STARLIT_LILY_PAD.get()
-			);
-		tag(ESTags.Items.WATER_CRYSTALS)
-			.add(
-				ESItems.WATER_CRYSTAL.get(),
-				ESItems.MANA_CRYSTAL.get()
-			);
-		tag(ESTags.Items.LUNAR_CRYSTAL_INGREDIENTS)
-			.add(
-				Items.ENDER_EYE,
-				Items.END_STONE,
-				ESItems.STARLIGHT_FLOWER.get(),
-				ESItems.LUNAR_BERRIES.get(),
-				ESItems.LUNAR_GRASS.get(),
-				ESItems.GLOWING_LUNAR_GRASS.get(),
-				ESItems.LUNAR_REED.get(),
-				ESItems.LUNARIS_CACTUS.get(),
-				ESItems.LUNARIS_CACTUS_GEL_BLOCK.get(),
-				ESItems.LUNARIS_CACTUS_FRUIT.get()
-			);
-		tag(ESTags.Items.LUNAR_CRYSTALS)
-			.add(
-				ESItems.LUNAR_CRYSTAL.get(),
-				ESItems.MANA_CRYSTAL.get()
-			);
-		tag(ESTags.Items.BLAZE_CRYSTAL_INGREDIENTS)
-			.add(
-				Items.BLAZE_ROD,
-				Items.BLAZE_POWDER,
-				Items.FIRE_CHARGE,
-				ESItems.SUNSET_THORNBLOOM.get(),
-				ESItems.THERMAL_SPRINGSTONE.get(),
-				ESItems.THERMAL_SPRINGSTONE_INGOT.get()
-			);
-		tag(ESTags.Items.BLAZE_CRYSTALS)
-			.add(
-				ESItems.BLAZE_CRYSTAL.get(),
-				ESItems.MANA_CRYSTAL.get()
-			);
-		tag(ESTags.Items.LIGHT_CRYSTAL_INGREDIENTS)
-			.add(
-				Items.SOUL_TORCH,
-				Items.TORCHFLOWER,
-				ESItems.STARLIGHT_TORCHFLOWER.get(),
-				ESItems.ORBFLORA_LIGHT.get()
-			);
-		tag(ESTags.Items.LIGHT_CRYSTALS)
-			.add(
-				ESItems.LIGHT_CRYSTAL.get(),
-				ESItems.MANA_CRYSTAL.get()
 			);
 		tag(ESTags.Items.WIP)
 			.add(
@@ -1012,9 +896,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
 				ESItems.DOOMEDEN_LIGHT.get(),
 				ESItems.DOOMEDEN_KEYHOLE.get(),
-				ESItems.REDSTONE_DOOMEDEN_KEYHOLE.get(),
-				ESItems.STELLAR_RACK.get(),
-				ESItems.ENCHANTED_GRIMSTONE_BRICKS.get()
+				ESItems.REDSTONE_DOOMEDEN_KEYHOLE.get()
 			);
 		// mc tags
 		copy(BlockTags.LOGS, ItemTags.LOGS);

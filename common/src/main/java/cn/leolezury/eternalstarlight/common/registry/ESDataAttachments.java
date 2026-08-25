@@ -1,10 +1,7 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
-import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
-import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
-import cn.leolezury.eternalstarlight.common.spell.SpellCooldown;
 import cn.leolezury.eternalstarlight.common.util.ESCodecUtil;
 import cn.leolezury.eternalstarlight.common.util.SpecialItemCooldown;
 import com.mojang.serialization.Codec;
@@ -32,9 +29,6 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<Integer> CONCENTRATION_LEVEL = register(ESPlatform.INSTANCE.registerDataAttachment("concentration_level", () -> 0, null, null, false));
 	public static final EntityDataAttachment<BlockPos> FLOWGLAZE_DESTROY_BLOCK_TARGET = register(ESPlatform.INSTANCE.registerDataAttachment("flowglaze_destroy_block_target", () -> null, null, null, false));
 	public static final EntityDataAttachment<Integer> FLOWGLAZE_DESTROY_BLOCK_TICKS = register(ESPlatform.INSTANCE.registerDataAttachment("flowglaze_destroy_block_ticks", () -> 0, null, null, false));
-	public static final EntityDataAttachment<SpellCastData> SPELL_CAST_DATA = register(ESPlatform.INSTANCE.registerDataAttachment("spell_cast_data", SpellCastData::getDefault, null, SpellCastData.STREAM_CODEC, false));
-	public static final EntityDataAttachment<List<SpellCooldown>> SPELL_COOLDOWNS = register(ESPlatform.INSTANCE.registerDataAttachment("spell_cooldowns", List::of, SpellCooldown.LIST_CODEC, null, false));
-	public static final EntityDataAttachment<SpellCastData.SpellSource> SPELL_SOURCE = register(ESPlatform.INSTANCE.registerDataAttachment("spell_source", () -> e -> false, null, null, false));
 	public static final EntityDataAttachment<Boolean> IN_ETHER = register(ESPlatform.INSTANCE.registerDataAttachment("in_ether", () -> false, Codec.BOOL, ByteBufCodecs.BOOL, false));
 	public static final EntityDataAttachment<Integer> IN_ETHER_TICKS = register(ESPlatform.INSTANCE.registerDataAttachment("in_ether_ticks", () -> 0, Codec.INT, ByteBufCodecs.INT, false));
 	public static final EntityDataAttachment<Boolean> OBTAINED_BLOSSOM_OF_STARS = register(ESPlatform.INSTANCE.registerDataAttachment("obtained_blossom_of_stars", () -> false, Codec.BOOL, null, true));
@@ -44,9 +38,6 @@ public class ESDataAttachments {
 	public static final EntityDataAttachment<String> ARROW_TYPE = register(ESPlatform.INSTANCE.registerDataAttachment("arrow_type", () -> "", Codec.STRING, null, false));
 	public static final EntityDataAttachment<Float> FLOWGLAZE_ARROW_EXTRA_BASE_DAMAGE = register(ESPlatform.INSTANCE.registerDataAttachment("flowglaze_arrow_extra_base_damage", () -> 0f, Codec.FLOAT, null, false));
 	public static final EntityDataAttachment<Integer> METEOR_COOLDOWN = register(ESPlatform.INSTANCE.registerDataAttachment("meteor_cooldown", () -> 0, Codec.INT, null, false));
-	public static final EntityDataAttachment<List<Crest.Instance>> OLD_ACTIVE_CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("old_active_crests", List::of, Crest.Instance.LIST_CODEC, null, true));
-	public static final EntityDataAttachment<List<Crest.Instance>> CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("crests", List::of, Crest.Instance.LIST_CODEC, null, true));
-	public static final EntityDataAttachment<List<Crest.Instance>> OWNED_CRESTS = register(ESPlatform.INSTANCE.registerDataAttachment("owned_crests", List::of, Crest.Instance.LIST_CODEC, null, true));
 	public static final EntityDataAttachment<List<SpecialItemCooldown>> SPECIAL_ITEM_COOLDOWNS = register(ESPlatform.INSTANCE.registerDataAttachment("special_item_cooldowns", List::of, SpecialItemCooldown.LIST_CODEC, null, false));
 	public static final EntityDataAttachment<Integer> HUSK_OWNER_ID = register(ESPlatform.INSTANCE.registerDataAttachment("husk_owner_id", () -> -1, null, null, false));
 	public static final EntityDataAttachment<Map<ResourceLocation, Integer>> BOSS_CHALLENGE_COUNTS = register(ESPlatform.INSTANCE.registerDataAttachment("boss_challenge_counts", Map::of, ESCodecUtil.createCodecForMap(ResourceLocation.CODEC, Codec.INT), null, true));

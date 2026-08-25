@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-12T01:05:36.0253031	Loot Tables
+// 1.21.1	2026-08-25T16:18:36.1668184	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -199,7 +199,6 @@ c9927f28f70a8bd1eb88ff57cdd90333ba90ce7a data/eternal_starlight/loot_table/block
 71b042b1e8f5455cda20a70f7611e719aed7f1f6 data/eternal_starlight/loot_table/blocks/dusted_brick_wall.json
 6a1d32cca89807a4e9bf4216b7b77432bf8edc14 data/eternal_starlight/loot_table/blocks/dusted_gravel.json
 e00d6d875796eefeb459938c9cb224464adeb094 data/eternal_starlight/loot_table/blocks/eclipse_core.json
-b6a08ea55b5f2a51ba553515ab37d17068d77e30 data/eternal_starlight/loot_table/blocks/enchanted_grimstone_bricks.json
 491c5a2fd8f3d221db5c784b707ed0897e5bc12d data/eternal_starlight/loot_table/blocks/energy_block.json
 b05e630470cb2c1d029dd62f20958bba7973bed9 data/eternal_starlight/loot_table/blocks/energy_transmitter.json
 1b775ad65cc2f653093e5efaf1fb233b0afd2263 data/eternal_starlight/loot_table/blocks/eternal_ice.json
@@ -648,7 +647,6 @@ db26dae80ec77ed59ba059943a715ca36c2a1f30 data/eternal_starlight/loot_table/block
 2fa665cb565f178893b7f95ad752e0b22f8e4894 data/eternal_starlight/loot_table/blocks/stellagmite_slab.json
 40eeb89da79b30fc6869050032044b591e96691f data/eternal_starlight/loot_table/blocks/stellagmite_stairs.json
 721657b58567645f9777176e35e1f9fdb5a377c2 data/eternal_starlight/loot_table/blocks/stellagmite_wall.json
-42afb8884aa860fb4769fa37d2cfc882c20b96e8 data/eternal_starlight/loot_table/blocks/stellar_rack.json
 25cd99a6efdcf35bb6988a70c01f24fab00d2334 data/eternal_starlight/loot_table/blocks/stonett.json
 11f0f60b47a631e4c8abb4f12cf0c533fe90074c data/eternal_starlight/loot_table/blocks/stripped_banyin_log.json
 c5f720d91b54ca0bb894bc6217dc49547a840f1d data/eternal_starlight/loot_table/blocks/stripped_banyin_wood.json

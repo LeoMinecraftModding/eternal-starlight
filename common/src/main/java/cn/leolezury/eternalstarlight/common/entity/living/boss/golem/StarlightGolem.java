@@ -4,7 +4,6 @@ import cn.leolezury.eternalstarlight.common.block.EnergyBlock;
 import cn.leolezury.eternalstarlight.common.block.WeatheringGolemSteel;
 import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
-import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.RayAttackUser;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
@@ -451,7 +450,6 @@ public class StarlightGolem extends ESBoss implements RayAttackUser {
 
 	@Override
 	protected void grantSpecialLoot(ServerPlayer player) {
-		ESCrestUtil.upgradeCrest(player, ESCrests.BLAZING_BEAM);
 	}
 
 	@Override

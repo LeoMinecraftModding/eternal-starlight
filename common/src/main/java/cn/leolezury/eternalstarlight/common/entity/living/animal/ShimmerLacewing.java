@@ -32,7 +32,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -188,6 +187,6 @@ public class ShimmerLacewing extends Animal implements VariantHolder<Holder<Shim
 	}
 
 	public static boolean checkLacewingSpawnRules(EntityType<? extends ShimmerLacewing> type, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-		return pos.getY() >= level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, pos).getY() && ESConfig.INSTANCE.mobsConfig.shimmerLacewing.canSpawn();
+		return level.canSeeSky(pos) && ESConfig.INSTANCE.mobsConfig.shimmerLacewing.canSpawn();
 	}
 }

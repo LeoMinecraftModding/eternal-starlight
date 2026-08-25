@@ -1,9 +1,9 @@
 package cn.leolezury.eternalstarlight.common.command;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectData;
-import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectRegistry;
-import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectType;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectData;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectType;
+import cn.leolezury.eternalstarlight.common.registry.ESPostEffects;
 import com.google.gson.JsonObject;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.arguments.ArgumentType;
@@ -46,9 +46,9 @@ public class PostEffectArgument implements ArgumentType<PostEffectData> {
 
 	public static PostEffectData readPostEffect(StringReader reader) throws CommandSyntaxException {
 		ResourceLocation id = ResourceLocation.read(reader);
-		PostEffectType<?> type = PostEffectRegistry.get(id);
+		PostEffectType<?> type = ESPostEffects.get(id);
 		if (type == null && id.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {
-			type = PostEffectRegistry.get(EternalStarlight.id(id.getPath()));
+			type = ESPostEffects.get(EternalStarlight.id(id.getPath()));
 		}
 		if (type == null) {
 			throw ERROR_UNKNOWN_EFFECT.createWithContext(reader, id);
@@ -63,7 +63,7 @@ public class PostEffectArgument implements ArgumentType<PostEffectData> {
 
 	@Override
 	public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-		return SharedSuggestionProvider.suggestResource(PostEffectRegistry.keys(), builder);
+		return SharedSuggestionProvider.suggestResource(ESPostEffects.keys(), builder);
 	}
 
 	@Override

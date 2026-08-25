@@ -700,6 +700,13 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.ETERNAL_ICE_LANTERN.get(),
 				ESBlocks.HAZE_ICE_LANTERN.get()
 			);
+		tag(ESTags.Blocks.PREVENTS_MONSTER_SPAWNING)
+			.add(
+				ESBlocks.TORREYA_CAMPFIRE.get(),
+				ESBlocks.AMARAMBER_LANTERN.get(),
+				ESBlocks.AMARAMBER_CANDLE.get(),
+				ESBlocks.AMARAMBER_FIRE.get()
+			);
 		tag(ESTags.Blocks.UNAFFECTED_BY_OBLIVION)
 			.add(
 				Blocks.BEDROCK,
@@ -1553,9 +1560,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
 				ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
 				ESBlocks.DOOMEDEN_KEYHOLE.get(),
-				ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get(),
-				ESBlocks.STELLAR_RACK.get(),
-				ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()
+				ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get()
 			);
 		tag(BlockTags.MINEABLE_WITH_AXE)
 			.add(

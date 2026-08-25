@@ -34,6 +34,7 @@ accessible method net/minecraft/world/item/AxeItem <init> (Lnet/minecraft/world/
 accessible method net/minecraft/world/item/HoeItem <init> (Lnet/minecraft/world/item/Tier;Lnet/minecraft/world/item/Item$Properties;)V
 accessible field net/minecraft/world/item/Item components Lnet/minecraft/core/component/DataComponentMap;
 mutable field net/minecraft/world/item/Item components Lnet/minecraft/core/component/DataComponentMap;
+accessible class net/minecraft/world/item/CreativeModeTab$TabVisibility
 accessible method net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType <init> (Lcom/mojang/serialization/MapCodec;)V
 accessible method net/minecraft/world/level/levelgen/feature/trunkplacers/TrunkPlacerType <init> (Lcom/mojang/serialization/MapCodec;)V
 accessible method net/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacerType <init> (Lcom/mojang/serialization/MapCodec;)V
@@ -144,10 +145,6 @@ accessible field net/minecraft/client/renderer/PostChain passes Ljava/util/List;
 accessible field net/minecraft/client/particle/ParticleEngine spriteSets Ljava/util/Map;
 accessible field net/minecraft/client/particle/Particle stoppedByCollision Z
 
-# spellcasting camera
-accessible method net/minecraft/client/Camera move (FFF)V
-accessible method net/minecraft/client/Camera getMaxZoom (F)F
-
 # astral golem
 accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer renderArmorPiece (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;)V
 accessible method net/minecraft/client/renderer/entity/layers/HumanoidArmorLayer getArmorModel (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/client/model/HumanoidModel;
@@ -175,6 +172,12 @@ accessible method net/minecraft/client/renderer/entity/player/PlayerRenderer set
 
 # gui
 accessible method net/minecraft/client/gui/Gui renderTextureOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/ResourceLocation;F)V
+
+# creative mode tab sections
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen leftPos I
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen topPos I
+accessible method net/minecraft/client/gui/screens/Screen addRenderableWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+accessible method net/minecraft/client/gui/screens/Screen removeWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
 
 # freeze rendertype
 extendable method net/minecraft/client/model/Model renderType (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;

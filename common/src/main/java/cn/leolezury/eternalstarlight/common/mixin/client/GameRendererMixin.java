@@ -2,10 +2,12 @@ package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
+import cn.leolezury.eternalstarlight.common.client.posteffect.PostEffectRenderer;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.PostChain;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceProvider;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,5 +34,10 @@ public abstract class GameRendererMixin {
 				loadEffect(ResourceLocation.withDefaultNamespace("shaders/post/blur.json"));
 			}
 		}
+	}
+
+	@Inject(method = "reloadShaders", at = @At("TAIL"))
+	private void reloadShaders(ResourceProvider resourceProvider, CallbackInfo ci) {
+		PostEffectRenderer.reload();
 	}
 }

@@ -18,11 +18,8 @@ public abstract class GuiMixin {
 	@Inject(method = "renderCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getTicksFrozen()I", shift = At.Shift.AFTER))
 	private void renderCameraOverlays(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
 		ESClientHandler.renderOffhandAttackIndicator(guiGraphics);
-		ESClientHandler.renderSpellCrosshair(guiGraphics, guiGraphics.guiWidth(), guiGraphics.guiHeight());
 		ESClientHandler.renderEtherErosion(guiGraphics);
-		ESClientHandler.renderOrbOfProphecyUse(guiGraphics);
 		ESClientHandler.renderDreamCatcher(guiGraphics);
-		ESClientHandler.renderCurrentCrest(guiGraphics);
 		ESClientHandler.renderCarvedLunarisCactusFruitBlur(guiGraphics);
 		ESClientHandler.renderPortalOverlay(guiGraphics);
 	}

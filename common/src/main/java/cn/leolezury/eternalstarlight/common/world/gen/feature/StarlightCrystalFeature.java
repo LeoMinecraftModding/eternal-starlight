@@ -57,7 +57,7 @@ public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration>
 					if (x * x + z * z < 5 * 5) {
 						BlockPos placePos = origin.offset(x, y, z);
 						if (random.nextBoolean()) {
-							if (random.nextInt(8) == 0) {
+							if (random.nextInt(4) == 0) {
 								List<Direction> possibleDirs = new ArrayList<>();
 								for (Direction direction : Direction.values()) {
 									BlockPos relativePos = placePos.relative(direction);
@@ -66,7 +66,7 @@ public class StarlightCrystalFeature extends ESFeature<NoneFeatureConfiguration>
 									}
 								}
 								if (!possibleDirs.isEmpty()) {
-									if (random.nextInt(6) == 0) {
+									if (random.nextInt(10) == 0) {
 										for (Direction direction : Direction.values()) {
 											if (possibleDirs.contains(direction)) {
 												vineState = vineState.setValue(PipeBlock.PROPERTY_BY_DIRECTION.get(direction), random.nextBoolean());

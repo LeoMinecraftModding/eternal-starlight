@@ -452,8 +452,6 @@ public class ESCommonSetupHandler {
 		strategy.register(ESPackets.PARTICLE);
 		strategy.register(ESPackets.VFX);
 		strategy.register(ESPackets.UPDATE_WEATHER);
-		strategy.register(ESPackets.OPEN_CREST_GUI);
-		strategy.register(ESPackets.UPDATE_CRESTS);
 		strategy.register(ESPackets.UPDATE_CAMERA);
 		strategy.register(ESPackets.CLIENT_MOUNT);
 		strategy.register(ESPackets.CLIENT_DISMOUNT);

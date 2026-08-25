@@ -1,10 +1,12 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -12,14 +14,25 @@ import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.Music;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class ESBiomes {
 	public static final ResourceKey<Biome> STARLIGHT_FOREST = create("starlight_forest");
@@ -163,10 +176,9 @@ public class ESBiomes {
 
 	private static MobSpawnSettings.Builder desertSpawns() {
 		return baseSpawnBuilder()
-			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 8, 1, 4))
+			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.CRYSTALLIZED_MOTH.get(), 15, 1, 6))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.GLEECH.get(), 10, 1, 3))
 			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.THIRST_WALKER.get(), 10, 1, 2))
-			.addMobCharge(ESEntities.CRYSTALLIZED_MOTH.get(), 1, 0.75)
 			.addMobCharge(ESEntities.GLEECH.get(), 1, 0.75)
 			.addMobCharge(ESEntities.THIRST_WALKER.get(), 1, 0.75);
 	}
@@ -515,8 +527,53 @@ public class ESBiomes {
 		return builder;
 	}
 
+	public static boolean anyNearbySpawnPreventionBlock(ServerLevel level, BlockPos pos) {
+		int radius = ESConfig.INSTANCE.mobSpawnPreventionRange;
+		for (int dy = -radius; dy <= radius; dy++) {
+			for (int dx = -radius; dx <= radius; dx++) {
+				for (int dz = -radius; dz <= radius; dz++) {
+					if (dx * dx + dy * dy + dz * dz <= radius * radius) {
+						BlockPos check = pos.offset(dx, dy, dz);
+						if (level.isLoaded(check)) {
+							BlockState checkState = level.getBlockState(check);
+							if (checkState.is(ESTags.Blocks.PREVENTS_MONSTER_SPAWNING) && checkState.getLightEmission() > 0) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
 	public static boolean anyNearbyGoldenGrassBlock(LevelAccessor level, BlockPos pos) {
 		return BlockPos.withinManhattanStream(pos, 3, 3, 3).anyMatch(nearPos -> level.getBlockState(nearPos).is(ESBlocks.GOLDEN_GRASS_BLOCK.get()));
+	}
+
+	public static boolean isUndergroundCreature(EntityType<?> type) {
+		return type.is(ESTags.EntityTypes.UNDERGROUND_CREATURES);
+	}
+
+	public static Optional<BlockPos> findRandomUndergroundCreatureSpawnPos(ServerLevelAccessor level, EntityType<?> type, int startY, int x, int z, MobSpawnType spawnType) {
+		List<Integer> validYs = new ArrayList<>();
+		for (int y = startY; y > level.getMinBuildHeight(); y--) {
+			BlockPos pos = new BlockPos(x, y, z);
+			if (isValidSpawnRulePosition(level, type, pos, spawnType)) {
+				validYs.add(y);
+			}
+		}
+		if (validYs.isEmpty()) {
+			return Optional.empty();
+		}
+		RandomSource random = RandomSource.create((long) x * 341873128712L + (long) z * 132897987541L);
+		return Optional.of(new BlockPos(x, validYs.get(random.nextInt(validYs.size())), z));
+	}
+
+	public static boolean isValidSpawnRulePosition(ServerLevelAccessor level, EntityType<?> type, BlockPos pos, MobSpawnType spawnType) {
+		BlockState state = level.getBlockState(pos);
+		return NaturalSpawner.isValidEmptySpawnBlock(level, pos, state, state.getFluidState(), type)
+			&& SpawnPlacements.checkSpawnRules(type, level, spawnType, pos, level.getRandom());
 	}
 
 	public static ResourceKey<Biome> create(String name) {

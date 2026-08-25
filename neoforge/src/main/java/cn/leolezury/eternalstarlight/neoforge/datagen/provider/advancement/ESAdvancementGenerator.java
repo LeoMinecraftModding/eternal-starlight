@@ -18,7 +18,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.material.Fluid;
@@ -37,7 +36,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 		HolderLookup.RegistryLookup<Fluid> fluids = registries.lookupOrThrow(Registries.FLUID);
 
 		AdvancementHolder root = Advancement.Builder.advancement().display(
-				ESBlocks.LUNAR_LOG.get(),
+				ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".root.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".root.description"),
 				EternalStarlight.id("textures/block/lunar_log.png"),
@@ -49,7 +48,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.save(consumer, EternalStarlight.ID + ":root");
 
 		AdvancementHolder challengeGatekeeper = Advancement.Builder.advancement().parent(root).display(
-				Items.DIAMOND_SWORD,
+				ESItems.GLISTERING_SWORD.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".challenge_gatekeeper.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".challenge_gatekeeper.description"),
 				null,
@@ -61,7 +60,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 		AdvancementHolder obtainOrbOfProphecy = addItemObtain(consumer, challengeGatekeeper, "obtain_orb_of_prophecy", ESItems.ORB_OF_PROPHECY.get());
 
 		AdvancementHolder enterDim = Advancement.Builder.advancement().parent(obtainOrbOfProphecy).display(
-				ESBlocks.LUNAR_LOG.get(),
+				ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".enter_starlight.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".enter_starlight.description"),
 				null,
@@ -253,7 +252,7 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 		AdvancementHolder jinglestemSandwich = addItemObtain(consumer, enterDim, "obtain_jinglestem_sandwich", ESItems.JINGLESTEM_SANDWICH.get());
 
 		Advancement.Builder allStarlightBiomesBuilder = Advancement.Builder.advancement().parent(enterDim).display(
-				ESBlocks.NIGHTFALL_GRASS_BLOCK.get(),
+				ESBlocks.GOLDEN_GRASS_BLOCK.get(),
 				Component.translatable("advancements." + EternalStarlight.ID + ".all_starlight_biomes.title"),
 				Component.translatable("advancements." + EternalStarlight.ID + ".all_starlight_biomes.description"),
 				null,

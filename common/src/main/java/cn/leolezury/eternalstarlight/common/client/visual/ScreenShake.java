@@ -16,12 +16,11 @@ public class ScreenShake {
 	private final float verticalPower;
 	private final float horizontalFreq;
 	private final float verticalFreq;
-
-	private Easing fadeEasing = Easing.IN_QUART;
+	private final Easing fadeEasing;
 
 	private int age;
 
-	public ScreenShake(ResourceLocation dimension, Vec3 pos, float radius, int duration, float horizontalPower, float verticalPower, float horizontalFreq, float verticalFreq) {
+	public ScreenShake(ResourceLocation dimension, Vec3 pos, float radius, int duration, float horizontalPower, float verticalPower, float horizontalFreq, float verticalFreq, Easing fadeEasing) {
 		this.dimension = dimension;
 		this.pos = pos;
 		this.radius = radius;
@@ -30,9 +29,6 @@ public class ScreenShake {
 		this.verticalPower = verticalPower;
 		this.horizontalFreq = horizontalFreq;
 		this.verticalFreq = verticalFreq;
-	}
-
-	public void setFadeEasing(Easing fadeEasing) {
 		this.fadeEasing = fadeEasing;
 	}
 

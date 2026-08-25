@@ -46,9 +46,9 @@
     "WallHangingSignBlockMixin"
   ],
   "client": [
-    "client.CameraMixin",
     "client.ClientLevelMixin",
     "client.ClientRecipeBookMixin",
+    "client.CreativeModeInventoryScreenMixin",
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
     "client.GameRendererMixin",
@@ -56,6 +56,7 @@
     "client.ItemInHandLayerMixin",
     "client.ItemInHandRendererMixin",
     "client.ItemRendererMixin",
+    "client.LevelRendererMixin",
     "client.LivingEntityRendererMixin",
     "client.LocalPlayerMixin",
     "client.MinecraftMixin",

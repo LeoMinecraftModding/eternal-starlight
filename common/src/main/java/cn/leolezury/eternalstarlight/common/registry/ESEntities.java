@@ -210,7 +210,7 @@ public class ESEntities {
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<CrystallizedMoth>> CRYSTALLIZED_MOTH = ENTITIES.register(
 		"crystallized_moth",
-		() -> EntityType.Builder.of(CrystallizedMoth::new, MobCategory.MONSTER)
+		() -> EntityType.Builder.of(CrystallizedMoth::new, MobCategory.CREATURE)
 			.sized(0.5F, 0.4375F)
 			.clientTrackingRange(8)
 			.build(EternalStarlight.id("crystallized_moth").toString())
@@ -279,14 +279,6 @@ public class ESEntities {
 			.clientTrackingRange(4)
 			.updateInterval(4)
 			.build(EternalStarlight.id("eye_of_seeking").toString())
-	);
-	public static final RegistryObject<EntityType<?>, EntityType<CrestEntity>> CREST = ENTITIES.register(
-		"crest",
-		() -> EntityType.Builder.<CrestEntity>of(CrestEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F)
-			.clientTrackingRange(4)
-			.updateInterval(4)
-			.build(EternalStarlight.id("crest").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<TheGatekeeper>> THE_GATEKEEPER = ENTITIES.register(
 		"the_gatekeeper",

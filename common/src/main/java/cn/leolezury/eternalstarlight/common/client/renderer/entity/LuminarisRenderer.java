@@ -21,7 +21,7 @@ public class LuminarisRenderer<T extends Luminaris> extends MobRenderer<T, Lumin
 	@Override
 	protected void setupRotations(T livingEntity, PoseStack poseStack, float f, float g, float h, float i) {
 		super.setupRotations(livingEntity, poseStack, f, g, h, i);
-		if (!livingEntity.isInWater()) {
+		if (!livingEntity.isInWater() && !livingEntity.isFirstTick()) {
 			poseStack.translate(0.1F, 0.1F, -0.1F);
 			poseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
 		}

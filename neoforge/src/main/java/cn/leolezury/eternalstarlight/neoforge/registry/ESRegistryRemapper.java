@@ -66,6 +66,19 @@ public class ESRegistryRemapper {
 
 			// crest pot
 			addAlias(EternalStarlight.id("crest_pot"), ResourceLocation.withDefaultNamespace("flower_pot"), itemsRegister.get(), blocksRegister.get());
+
+			// removed items
+			ResourceLocation air = ResourceLocation.withDefaultNamespace("air");
+			addAlias(EternalStarlight.id("enchanted_grimstone_bricks"), air, itemsRegister.get(), blocksRegister.get());
+			addAlias(EternalStarlight.id("stellar_rack"), air, itemsRegister.get(), blocksRegister.get());
+			addAlias(EternalStarlight.id("mana_crystal"), air, itemsRegister.get());
+			addAlias(EternalStarlight.id("mana_crystal_shard"), air, itemsRegister.get());
+			addAlias(EternalStarlight.id("terra_crystal"), air, itemsRegister.get());
+			addAlias(EternalStarlight.id("wind_crystal"), air, itemsRegister.get());
+			addAlias(EternalStarlight.id("water_crystal"), air, itemsRegister.get());
+			addAlias(EternalStarlight.id("lunar_crystal"), air, itemsRegister.get());
+			addAlias(EternalStarlight.id("blaze_crystal"), air, itemsRegister.get());
+			addAlias(EternalStarlight.id("light_crystal"), air, itemsRegister.get());
 		}
 		addAlias("in_abyssal_fire_ticks", "abyssal_fire_ticks", ESNeoPlatform.ATTACHMENT_TYPE_REGISTER);
 	}

@@ -40,11 +40,8 @@ import cn.leolezury.eternalstarlight.common.item.misc.GalacticQuiverItem;
 import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
-import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.Util;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
@@ -96,7 +93,6 @@ import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
-import org.lwjgl.glfw.GLFW;
 
 import java.util.HashMap;
 import java.util.List;
@@ -443,12 +439,6 @@ public class ESClientSetupHandler {
 
 	public static boolean modifiedBakedModels = false;
 
-	public static final String KEY_CATEGORY_ETERNAL_STARLIGHT = "key.categories." + EternalStarlight.ID;
-
-	public static final Map<ResourceLocation, KeyMapping> KEY_MAPPINGS = Map.of(
-		EternalStarlight.id("switch_crest"), new KeyMapping(Util.makeDescriptionId("key", EternalStarlight.id("switch_crest")), InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, KEY_CATEGORY_ETERNAL_STARLIGHT)
-	);
-
 	public static final SimplexNoise COLOR_NOISE = new SimplexNoise(new WorldgenRandom(new LegacyRandomSource(1225L)));
 
 	public static void clientSetup() {
@@ -473,10 +463,8 @@ public class ESClientSetupHandler {
 		registerSimpleSpecialModel("orb_of_prophecy");
 
 		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
-		PlayerAnimator.register(new PlayerAnimator.CastSpellAnimationTrigger(ESSpells.LASER_BEAM), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.GATHER_HANDS, PlayerAnimation.FIRST_PERSON_GATHER_HANDS, List.of(new PlayerAnimator.CastSpellHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 
 		TrailVisualEffect.registerTrailRenderType(ESEntities.AETHERSENT_METEOR.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.CREST.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 		TrailVisualEffect.registerTrailRenderType(ESEntities.GATEKEEPER_FIREBALL.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 		TrailVisualEffect.registerTrailRenderType(ESEntities.ENERGY_SPARK.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 		TrailVisualEffect.registerTrailRenderType(ESEntities.BALL_LIGHTNING.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
@@ -783,7 +771,6 @@ public class ESClientSetupHandler {
 	}
 
 	public static void registerShaders(ShaderRegisterStrategy strategy) {
-		strategy.register(EternalStarlight.id("crest_selection_gui"), DefaultVertexFormat.POSITION_TEX, ESShaders::setCrestSelectionGui);
 		strategy.register(EternalStarlight.id("rendertype_starlight_portal"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeStarlightPortal);
 		strategy.register(EternalStarlight.id("rendertype_eclipse"), DefaultVertexFormat.BLOCK, ESShaders::setRenderTypeEclipse);
 		strategy.register(EternalStarlight.id("aurora"), DefaultVertexFormat.POSITION_COLOR, ESShaders::setAurora);
@@ -913,7 +900,6 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
 		strategy.register(ESEntities.CHEST_BOAT.get(), (context) -> new ESBoatRenderer(context, true));
 		strategy.register(ESEntities.EYE_OF_SEEKING.get(), ThrownItemRenderer::new);
-		strategy.register(ESEntities.CREST.get(), EmptyRenderer::new);
 		strategy.register(ESEntities.BOARWARF.get(), BoarwarfRenderer::new);
 		strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
 		strategy.register(ESEntities.GLEECH.get(), GleechRenderer::new);
@@ -937,7 +923,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.GRIMSTONE_GOLEM.get(), GrimstoneGolemRenderer::new);
 		strategy.register(ESEntities.AETHERSENT_GOLEM.get(), AethersentGolemRenderer::new);
 		strategy.register(ESEntities.ROOKFISH.get(), RookfishRenderer::new);
-		strategy.register(ESEntities.LUMINOFISH.get(), LuminoFishRenderer::new);
+		strategy.register(ESEntities.LUMINOFISH.get(), LuminofishRenderer::new);
 		strategy.register(ESEntities.LUMINARIS.get(), LuminarisRenderer::new);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), TwilightGazeRenderer::new);
 		strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
@@ -1011,7 +997,6 @@ public class ESClientSetupHandler {
 		strategy.register(ESBlockEntities.DUSK_EMITTER.get(), DuskLightRenderer::new);
 		strategy.register(ESBlockEntities.FLARE_SPAWNER.get(), FlareSpawnerRenderer::new);
 		strategy.register(ESBlockEntities.ECLIPSE_CORE.get(), EclipseCoreRenderer::new);
-		strategy.register(ESBlockEntities.STELLAR_RACK.get(), StellarRackRenderer::new);
 		strategy.register(ESBlockEntities.STARLIGHT_PORTAL.get(), ESPortalRenderer::new);
 	}
 
@@ -1080,7 +1065,7 @@ public class ESClientSetupHandler {
 		strategy.register(GrimstoneGolemModel.LAYER_LOCATION, GrimstoneGolemModel::createBodyLayer);
 		strategy.register(AethersentGolemModel.LAYER_LOCATION, AethersentGolemModel::createBodyLayer);
 		strategy.register(RookfishModel.LAYER_LOCATION, RookfishModel::createBodyLayer);
-		strategy.register(LuminoFishModel.LAYER_LOCATION, LuminoFishModel::createBodyLayer);
+		strategy.register(LuminofishModel.LAYER_LOCATION, LuminofishModel::createBodyLayer);
 		strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
 		strategy.register(TwilightGazeModel.LAYER_LOCATION, TwilightGazeModel::createBodyLayer);
 		strategy.register(CandlashModel.LAYER_LOCATION, CandlashModel::createBodyLayer);
@@ -1139,6 +1124,7 @@ public class ESClientSetupHandler {
 		strategy.accept(ESClientHandler.books);
 	}
 
+	@SuppressWarnings({"unchecked"})
 	public static void onRenderLayerAttachment(EntityType<?> entityType, LivingEntityRenderer<?, ?> renderer, EntityRendererProvider.Context context) {
 		try {
 			if (renderer.getModel() instanceof HumanoidModel<?>) {

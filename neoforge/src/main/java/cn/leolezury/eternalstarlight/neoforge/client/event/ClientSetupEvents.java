@@ -16,7 +16,6 @@ import cn.leolezury.eternalstarlight.neoforge.registry.ESFluidTypes;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Camera;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -284,25 +283,15 @@ public class ClientSetupEvents {
 	@SubscribeEvent
 	private static void onRegisterGuiLayers(RegisterGuiLayersEvent event) {
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("offhand_attack_indicator"), (graphics, partialTicks) -> ESClientHandler.renderOffhandAttackIndicator(graphics));
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("spell_crosshair"), (graphics, partialTicks) -> ESClientHandler.renderSpellCrosshair(graphics, graphics.guiWidth(), graphics.guiHeight()));
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("ether_erosion"), (graphics, partialTicks) -> ESClientHandler.renderEtherErosion(graphics));
 		event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, EternalStarlight.id("ether_armor"), (graphics, partialTicks) -> {
 			if (Minecraft.getInstance().gameMode != null && Minecraft.getInstance().gameMode.canHurtPlayer()) {
 				ESClientHandler.renderEtherArmor(graphics, graphics.guiWidth(), graphics.guiHeight());
 			}
 		});
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("orb_of_prophecy_use"), (graphics, partialTicks) -> ESClientHandler.renderOrbOfProphecyUse(graphics));
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("dream_catcher"), (graphics, partialTicks) -> ESClientHandler.renderDreamCatcher(graphics));
-		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("current_crest"), (graphics, partialTicks) -> ESClientHandler.renderCurrentCrest(graphics));
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("carved_lunaris_cactus_fruit_blur"), (graphics, partialTicks) -> ESClientHandler.renderCarvedLunarisCactusFruitBlur(graphics));
 		event.registerAbove(VanillaGuiLayers.CAMERA_OVERLAYS, EternalStarlight.id("portal"), (graphics, partialTicks) -> ESClientHandler.renderPortalOverlay(graphics));
-	}
-
-	@SubscribeEvent
-	private static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
-		for (Map.Entry<ResourceLocation, KeyMapping> mapping : ESClientSetupHandler.KEY_MAPPINGS.entrySet()) {
-			event.register(mapping.getValue());
-		}
 	}
 
 	@SubscribeEvent
