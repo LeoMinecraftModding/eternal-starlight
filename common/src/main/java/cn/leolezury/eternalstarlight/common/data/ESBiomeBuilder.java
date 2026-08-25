@@ -716,15 +716,42 @@ public final class ESBiomeBuilder {
 	}
 
 	private void addSkyBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<BiomeData>>> biomes) {
+		Climate.Parameter solarisTemperature = Climate.Parameter.span(this.temperatures[2], this.temperatures[4]);
+		Climate.Parameter solarisErosion = Climate.Parameter.span(this.erosions[0], this.erosions[2]);
+
 		this.addSkyBiome(
 			biomes,
-			Climate.Parameter.span(this.temperatures[2], this.temperatures[4]),
+			solarisTemperature,
 			this.FULL_RANGE,
 			this.deepOceanContinentalness,
-			Climate.Parameter.span(this.erosions[0], this.erosions[2]),
+			solarisErosion,
 			this.FULL_RANGE,
 			0.0F,
 			ESBiomeData.SOLARIS_ISLES
+		);
+
+		// Solaris Isles used to be the only entry off the surface depth, so the nearest-match search handed it the
+		// whole sky band no matter how far the climate actually strayed from the range above. These four cover the
+		// rest of that band -- the complement of the range above, sliced into boxes so nothing overlaps it and ties.
+		this.addSkyBiome(
+			biomes, this.FULL_RANGE, this.FULL_RANGE, this.mushroomFieldsContinentalness,
+			this.FULL_RANGE, this.FULL_RANGE, 0.0F, ESBiomeData.STARLIT_SKY
+		);
+		this.addSkyBiome(
+			biomes, this.FULL_RANGE, this.FULL_RANGE,
+			Climate.Parameter.span(this.oceanContinentalness, this.FULL_RANGE),
+			this.FULL_RANGE, this.FULL_RANGE, 0.0F, ESBiomeData.STARLIT_SKY
+		);
+		this.addSkyBiome(
+			biomes, this.FULL_RANGE, this.FULL_RANGE, this.deepOceanContinentalness,
+			Climate.Parameter.span(this.erosions[3], this.erosions[6]),
+			this.FULL_RANGE, 0.0F, ESBiomeData.STARLIT_SKY
+		);
+		this.addSkyBiome(
+			biomes,
+			Climate.Parameter.span(this.temperatures[0], this.temperatures[1]),
+			this.FULL_RANGE, this.deepOceanContinentalness, solarisErosion,
+			this.FULL_RANGE, 0.0F, ESBiomeData.STARLIT_SKY
 		);
 	}
 
