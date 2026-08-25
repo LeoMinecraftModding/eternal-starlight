@@ -2,25 +2,13 @@ package cn.leolezury.eternalstarlight.common.vfx;
 
 import cn.leolezury.eternalstarlight.common.network.VfxPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
-import java.util.Optional;
-
-public record VfxInstance(Optional<SyncedVfxType> type, CompoundTag data) {
-	public static final Codec<VfxInstance> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-		ResourceLocation.CODEC.xmap(VfxRegistry::get, t -> VfxRegistry.getKey(t.orElse(null))).fieldOf("type").forGetter(VfxInstance::type),
-		CompoundTag.CODEC.fieldOf("data").forGetter(VfxInstance::data)
-	).apply(instance, VfxInstance::new));
-
-	public VfxInstance(SyncedVfxType type, CompoundTag data) {
-		this(Optional.of(type), data);
-	}
-
+public record VfxInstance(VfxType<?> type, ResourceKey<Level> dimension, Vec3 position, int duration, float radius, VfxData data) {
 	public void send(ServerLevel level) {
-		ESPlatform.INSTANCE.sendToAllClients(level, new VfxPacket(this));
+		ESPlatform.INSTANCE.sendToAllClients(level, new VfxPacket(type.id(), data, dimension, position, duration, radius));
 	}
 }

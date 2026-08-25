@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.entity.LootChestBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
-import cn.leolezury.eternalstarlight.common.data.ESCrests;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
@@ -17,7 +16,6 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESBookUtil;
-import cn.leolezury.eternalstarlight.common.util.ESCrestUtil;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
 import com.mojang.datafixers.util.Pair;
@@ -763,7 +761,6 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	@Override
 	protected void grantSpecialLoot(ServerPlayer player) {
 		permitPlayer(player);
-		ESCrestUtil.upgradeCrest(player, ESCrests.GUIDANCE_OF_STARS);
 	}
 
 	@Override

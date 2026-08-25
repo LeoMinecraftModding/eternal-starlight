@@ -10,13 +10,11 @@ import cn.leolezury.eternalstarlight.common.item.armor.GlaciteArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.*;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
-import cn.leolezury.eternalstarlight.common.item.magic.LivingArmItem;
 import cn.leolezury.eternalstarlight.common.item.magic.OrbOfProphecyItem;
 import cn.leolezury.eternalstarlight.common.item.misc.*;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
-import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -1344,7 +1342,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> BROKEN_DOOMEDEN_BONE = ITEMS.register("broken_doomeden_bone", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item, Item> BONEMORE = ITEMS.register("bonemore", () -> new GreatswordItem(ESItemTiers.DOOMEDEN, new Item.Properties().rarity(Rarity.EPIC).attributes(GreatswordItem.createAttributes(ESItemTiers.DOOMEDEN, 6, -2.8F, 0.5F))));
 	public static final RegistryObject<Item, Item> BOW_OF_BLOOD = ITEMS.register("bow_of_blood", () -> new BloodBowItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
-	public static final RegistryObject<Item, Item> LIVING_ARM = ITEMS.register("living_arm", () -> new LivingArmItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item, Item> LIVING_ARM = ITEMS.register("living_arm", () -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item, Item> DOOMED_TORCH = ITEMS.register("doomed_torch", () -> new StandingAndWallBlockItem(ESBlocks.DOOMED_TORCH.get(), ESBlocks.WALL_DOOMED_TORCH.get(), new Item.Properties(), Direction.DOWN));
 	public static final RegistryObject<Item, Item> DOOMED_REDSTONE_TORCH = ITEMS.register("doomed_redstone_torch", () -> new StandingAndWallBlockItem(ESBlocks.DOOMED_REDSTONE_TORCH.get(), ESBlocks.WALL_DOOMED_REDSTONE_TORCH.get(), new Item.Properties(), Direction.DOWN));
 	public static final RegistryObject<Item, Item> DOOMEDEN_CARRION = ITEMS.register("doomeden_carrion", () -> new Item(new Item.Properties().food(ESFoods.DOOMEDEN_CARRION.get())));
@@ -1373,16 +1371,6 @@ public class ESItems {
 
 	// magic
 	public static final RegistryObject<Item, Item> ORB_OF_PROPHECY = ITEMS.register("orb_of_prophecy", () -> new OrbOfProphecyItem(new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item, Item> STELLAR_RACK = ITEMS.register("stellar_rack", () -> new BlockItem(ESBlocks.STELLAR_RACK.get(), new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> ENCHANTED_GRIMSTONE_BRICKS = ITEMS.register("enchanted_grimstone_bricks", () -> new BlockItem(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> MANA_CRYSTAL = ITEMS.register("mana_crystal", () -> new ManaCrystalItem(ManaType.EMPTY, new Item.Properties().durability(1800).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> TERRA_CRYSTAL = ITEMS.register("terra_crystal", () -> new ManaCrystalItem(ManaType.TERRA, new Item.Properties().durability(300).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> WIND_CRYSTAL = ITEMS.register("wind_crystal", () -> new ManaCrystalItem(ManaType.WIND, new Item.Properties().durability(300).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> WATER_CRYSTAL = ITEMS.register("water_crystal", () -> new ManaCrystalItem(ManaType.WATER, new Item.Properties().durability(300).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> LUNAR_CRYSTAL = ITEMS.register("lunar_crystal", () -> new ManaCrystalItem(ManaType.LUNAR, new Item.Properties().durability(300).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> BLAZE_CRYSTAL = ITEMS.register("blaze_crystal", () -> new ManaCrystalItem(ManaType.BLAZE, new Item.Properties().durability(300).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> LIGHT_CRYSTAL = ITEMS.register("light_crystal", () -> new ManaCrystalItem(ManaType.LIGHT, new Item.Properties().durability(300).rarity(Rarity.RARE)));
-	public static final RegistryObject<Item, Item> MANA_CRYSTAL_SHARD = ITEMS.register("mana_crystal_shard", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 
 	// trim
 	public static final RegistryObject<Item, Item> KEEPER_ARMOR_TRIM_SMITHING_TEMPLATE = ITEMS.register("keeper_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(EternalStarlight.id("keeper")));

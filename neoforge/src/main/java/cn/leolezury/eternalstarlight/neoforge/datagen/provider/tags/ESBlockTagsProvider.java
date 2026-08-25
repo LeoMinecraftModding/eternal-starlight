@@ -1560,9 +1560,7 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 				ESBlocks.CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
 				ESBlocks.CHARGED_CHISELED_POLISHED_DOOMEDEN_BRICKS.get(),
 				ESBlocks.DOOMEDEN_KEYHOLE.get(),
-				ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get(),
-				ESBlocks.STELLAR_RACK.get(),
-				ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get()
+				ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get()
 			);
 		tag(BlockTags.MINEABLE_WITH_AXE)
 			.add(

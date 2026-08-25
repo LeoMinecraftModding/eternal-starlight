@@ -1,6 +1,0 @@
-{
-  "type": "water",
-  "max_level": 3,
-  "spell": "eternal_starlight:icy_spikes",
-  "texture": "eternal_starlight:textures/crest/icy_spikes.png"
-}

@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import it.unimi.dsi.fastutil.objects.Object2FloatArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
@@ -123,7 +122,7 @@ public abstract class AbstractDuskLightBlockEntity extends BlockEntity implement
 				}
 				if (entity.isFaceActivated(state, direction) && entity.lit) {
 					entity.beamProgresses.put(direction, Mth.clamp(entity.beamProgresses.getFloat(direction) + 0.3f, 0, entity.lengths.getOrDefault(direction, 0) / MAX_LENGTH));
-					EternalStarlight.getClientHelper().spawnManaCrystalItemParticles(ManaType.BLAZE, pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(entity.lengths.getOrDefault(direction, 0) + 0.5)));
+					EternalStarlight.getClientHelper().spawnGlowParticles(0xc54e55, pos.getCenter().add(new Vec3(direction.getStepX(), direction.getStepY(), direction.getStepZ()).scale(entity.lengths.getOrDefault(direction, 0) + 0.5)));
 				} else {
 					entity.beamProgresses.put(direction, Mth.clamp(entity.beamProgresses.getFloat(direction) - 0.3f, 0, 1));
 				}

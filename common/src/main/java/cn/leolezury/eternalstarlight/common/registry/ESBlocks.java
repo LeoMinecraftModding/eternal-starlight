@@ -1056,8 +1056,6 @@ public class ESBlocks {
 	public static final RegistryObject<Block, RedstoneDoomedenKeyholeBlock> REDSTONE_DOOMEDEN_KEYHOLE = BLOCKS.register("redstone_doomeden_keyhole", () -> new RedstoneDoomedenKeyholeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(MapColor.COLOR_GREEN)));
 
 	// magic
-	public static final RegistryObject<Block, StellarRackBlock> STELLAR_RACK = BLOCKS.register("stellar_rack", () -> new StellarRackBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN).lightLevel(state -> 12)));
-	public static final RegistryObject<Block, EnchantedGrimstoneBricksBlock> ENCHANTED_GRIMSTONE_BRICKS = BLOCKS.register("enchanted_grimstone_bricks", () -> new EnchantedGrimstoneBricksBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
 	public static final RegistryObject<Block, ESPortalBlock> STARLIGHT_PORTAL = BLOCKS.register("starlight_portal", () -> new ESPortalBlock(BlockBehaviour.Properties.of().strength(-1F).noCollission().lightLevel(state -> 10)));
 
 	private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {

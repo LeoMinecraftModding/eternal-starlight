@@ -1,8 +1,5 @@
 package cn.leolezury.eternalstarlight.common.client.model.animation;
 
-import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
-import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
-import cn.leolezury.eternalstarlight.common.spell.AbstractSpell;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.PlayerModel;
@@ -35,21 +32,6 @@ public class PlayerAnimator {
 		@Override
 		public float animateTicks(AbstractClientPlayer player, float ageInTicks) {
 			return Math.min(player.getUseItem().getUseDuration(player), player.getTicksUsingItem() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
-		}
-	}
-
-	public record CastSpellAnimationTrigger(Supplier<? extends AbstractSpell> spellSupplier) implements AnimationTrigger {
-		@Override
-		public boolean shouldPlay(AbstractClientPlayer player) {
-			return player instanceof SpellCaster && ESDataAttachments.SPELL_CAST_DATA.getData(player).hasSpell() && ESDataAttachments.SPELL_CAST_DATA.getData(player).spell() == spellSupplier.get();
-		}
-
-		@Override
-		public float animateTicks(AbstractClientPlayer player, float ageInTicks) {
-			if (player instanceof SpellCaster) {
-				return Math.min(ESDataAttachments.SPELL_CAST_DATA.getData(player).spell().spellProperties().totalTicks(), ESDataAttachments.SPELL_CAST_DATA.getData(player).castTicks() + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()));
-			}
-			return 0;
 		}
 	}
 
@@ -255,13 +237,6 @@ public class PlayerAnimator {
 
 		private Vec3 makeModelPartRot(ModelPart part) {
 			return new Vec3(part.xRot, part.yRot, part.zRot);
-		}
-	}
-
-	public static class CastSpellHandAnimationTransformer extends UseItemHandAnimationTransformer {
-		@Override
-		public boolean shouldApply(PlayerAnimationState state, AbstractClientPlayer player, PlayerModel<?> model) {
-			return player instanceof SpellCaster && ESDataAttachments.SPELL_CAST_DATA.getData(player).offhand();
 		}
 	}
 

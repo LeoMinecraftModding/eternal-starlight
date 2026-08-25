@@ -11,23 +11,17 @@ import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
 import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
-import cn.leolezury.eternalstarlight.common.crest.Crest;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.data.ESRegistries;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.item.combat.DualWieldingSwordItem;
-import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateBookProgressionPacket;
 import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.*;
-import cn.leolezury.eternalstarlight.common.spell.SpellCastData;
 import cn.leolezury.eternalstarlight.common.util.ESBlockUtil;
-import cn.leolezury.eternalstarlight.common.util.ESGuiUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.shaders.FogShape;
@@ -36,7 +30,6 @@ import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.AttackIndicatorStatus;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.Options;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.LerpingBossEvent;
 import net.minecraft.client.player.LocalPlayer;
@@ -47,10 +40,8 @@ import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
@@ -88,7 +79,6 @@ public class ESClientHandler {
 	private static final ResourceLocation ETHER_ARMOR_EMPTY = EternalStarlight.id("textures/gui/hud/ether_armor_empty.png");
 	private static final ResourceLocation ETHER_ARMOR_HALF = EternalStarlight.id("textures/gui/hud/ether_armor_half.png");
 	private static final ResourceLocation ETHER_ARMOR_FULL = EternalStarlight.id("textures/gui/hud/ether_armor_full.png");
-	private static final ResourceLocation ORB_OF_PROPHECY_USE = EternalStarlight.id("textures/misc/orb_of_prophecy_use.png");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_FULL_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_full");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_background");
 	private static final ResourceLocation CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE = ResourceLocation.withDefaultNamespace("hud/crosshair_attack_indicator_progress");
@@ -96,7 +86,6 @@ public class ESClientHandler {
 	private static final ResourceLocation HOTBAR_ATTACK_INDICATOR_PROGRESS_SPRITE = ResourceLocation.withDefaultNamespace("hud/hotbar_attack_indicator_progress");
 	private static final ResourceLocation LUNARIS_CACTUS_BLUR_LOCATION = EternalStarlight.id("textures/misc/lunaris_cactus_blur.png");
 	public static final ResourceLocation WIP_LOCATION = EternalStarlight.id("textures/gui/wip.png");
-	private static final Map<ResourceKey<Crest>, GuiCrest> GUI_CRESTS = new HashMap<>();
 	private static final List<DreamCatcherText> DREAM_CATCHER_TEXTS = new ArrayList<>();
 	private static final Set<EntityType<?>> CROSSHAIR_PICKED_ENTITIES = new HashSet<>();
 	public static int clientTickCount = 0;
@@ -238,45 +227,6 @@ public class ESClientHandler {
 			}
 			auroraIntensity = Mth.clamp(auroraIntensity, 0, 1);
 
-			// crests
-			List<ResourceKey<Crest>> crestsToRemove = new ArrayList<>();
-			for (ResourceKey<Crest> key : GUI_CRESTS.keySet()) {
-				GuiCrest crest = GUI_CRESTS.get(key);
-				if (Math.abs(crest.angle + 135) < 0.1 && !crest.shouldShow) {
-					crestsToRemove.add(key);
-				}
-			}
-			for (ResourceKey<Crest> key : crestsToRemove) {
-				GUI_CRESTS.remove(key);
-			}
-			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
-				entry.getValue().tick();
-			}
-			ItemStack mainHand = player.getMainHandItem();
-			ItemStack offHand = player.getOffhandItem();
-			Holder<Crest> component = null;
-			if (mainHand.has(ESDataComponents.CURRENT_CREST.get())) {
-				component = mainHand.get(ESDataComponents.CURRENT_CREST.get());
-			} else if (offHand.has(ESDataComponents.CURRENT_CREST.get())) {
-				component = offHand.get(ESDataComponents.CURRENT_CREST.get());
-			}
-			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
-				entry.getValue().shouldShow = false;
-			}
-			if (component != null && component.isBound()) {
-				Registry<Crest> registry = player.registryAccess().registryOrThrow(ESRegistries.CREST);
-				Optional<ResourceKey<Crest>> key = registry.getResourceKey(component.value());
-				if (key.isPresent()) {
-					if (!GUI_CRESTS.containsKey(key.get())) {
-						GUI_CRESTS.put(key.get(), new GuiCrest());
-					}
-					GUI_CRESTS.get(key.get()).shouldShow = true;
-				}
-			}
-			if (ESClientSetupHandler.KEY_MAPPINGS.get(EternalStarlight.id("switch_crest")).consumeClick()) {
-				ESClientPlatform.INSTANCE.sendToServer(new SimpleActionPacket(SimpleActionPacket.C2S_SWITCH_CREST));
-			}
-
 			// soulit spectator
 			if (resetCameraIn > 0) {
 				resetCameraIn--;
@@ -344,7 +294,6 @@ public class ESClientHandler {
 		VISUAL_EFFECTS.clear();
 		SCREEN_SHAKES.clear();
 		WorldPostEffectManager.clear();
-		GUI_CRESTS.clear();
 		DREAM_CATCHER_TEXTS.clear();
 		if (bossMusicInstance != null) {
 			Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
@@ -661,38 +610,6 @@ public class ESClientHandler {
 		RenderSystem.disableBlend();
 	}
 
-	public static void renderSpellCrosshair(GuiGraphics guiGraphics, int screenWidth, int screenHeight) {
-		RenderSystem.enableBlend();
-		RenderSystem.blendFuncSeparate(
-			GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR,
-			GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR,
-			GlStateManager.SourceFactor.ONE,
-			GlStateManager.DestFactor.ZERO
-		);
-		Options options = Minecraft.getInstance().options;
-		if (options.getCameraType().isFirstPerson()) {
-			LocalPlayer player = Minecraft.getInstance().player;
-			if (player instanceof SpellCaster && ESDataAttachments.SPELL_CAST_DATA.getData(player).hasSpell()) {
-				SpellCastData data = ESDataAttachments.SPELL_CAST_DATA.getData(player);
-				if (Minecraft.getInstance().options.attackIndicator().get() == AttackIndicatorStatus.CROSSHAIR) {
-					float f = Math.min(1, (float) data.castTicks() / data.spell().spellProperties().preparationTicks());
-					if (data.castTicks() > data.spell().spellProperties().preparationTicks()) {
-						f = Math.max(0, 1 - (float) (data.castTicks() - data.spell().spellProperties().preparationTicks()) / data.spell().spellProperties().spellTicks());
-					}
-
-					int j = screenHeight / 2 - 7 + 16;
-					int k = screenWidth / 2 - 8;
-
-					int l = (int) (f * 17.0F);
-					guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_BACKGROUND_SPRITE, k, j, 16, 4);
-					guiGraphics.blitSprite(CROSSHAIR_ATTACK_INDICATOR_PROGRESS_SPRITE, 16, 4, 0, 0, k, j, l, 4);
-				}
-			}
-		}
-		RenderSystem.defaultBlendFunc();
-		RenderSystem.disableBlend();
-	}
-
 	public static void renderEtherErosion(GuiGraphics guiGraphics) {
 		float erosionProgress = ESDataAttachments.IN_ETHER_TICKS.getData(Minecraft.getInstance().player) / 140f;
 		if (erosionProgress > 0) {
@@ -731,32 +648,6 @@ public class ESClientHandler {
 		}
 	}
 
-	public static void renderOrbOfProphecyUse(GuiGraphics guiGraphics) {
-		LocalPlayer player = Minecraft.getInstance().player;
-		if (player != null && player.isUsingItem() && player.getUseItem().is(ESItems.ORB_OF_PROPHECY.get()) && !player.getUseItem().has(ESDataComponents.CURRENT_CREST.get())) {
-			int usingTicks = player.getTicksUsingItem();
-			float ticks = Math.min(usingTicks + Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally()), 150f);
-			float progress = Math.min(ticks, 150f) / 150f;
-			if (usingTicks < 150) {
-				renderTextureOverlay(guiGraphics, ORB_OF_PROPHECY_USE, progress);
-			}
-		}
-	}
-
-	public static void renderCurrentCrest(GuiGraphics guiGraphics) {
-		if (Minecraft.getInstance().player != null) {
-			Registry<Crest> registry = Minecraft.getInstance().player.registryAccess().registryOrThrow(ESRegistries.CREST);
-			float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
-			for (Map.Entry<ResourceKey<Crest>, GuiCrest> entry : GUI_CRESTS.entrySet()) {
-				GuiCrest guiCrest = entry.getValue();
-				Crest crest = registry.get(entry.getKey());
-				if (crest != null) {
-					ESGuiUtil.blitFloat(guiGraphics, crest.texture(), guiCrest.getX(partialTicks), guiCrest.getY(partialTicks), 72, 72, 72, 72);
-				}
-			}
-		}
-	}
-
 	public static void renderCarvedLunarisCactusFruitBlur(GuiGraphics guiGraphics) {
 		if (Minecraft.getInstance().options.getCameraType().isFirstPerson() && Minecraft.getInstance().player != null) {
 			ItemStack itemStack = Minecraft.getInstance().player.getInventory().getArmor(3);
@@ -788,25 +679,6 @@ public class ESClientHandler {
 			return player.getRandom().nextInt(2);
 		}
 		return 0;
-	}
-
-	private static class GuiCrest {
-		private boolean shouldShow = false;
-		private float prevAngle = -135;
-		private float angle = -135;
-
-		public void tick() {
-			prevAngle = angle;
-			angle = Mth.approachDegrees(angle, shouldShow ? 45 : -135, 15);
-		}
-
-		public float getX(float partialTicks) {
-			return (float) Math.cos(Mth.lerp(partialTicks, prevAngle, angle) * Mth.DEG_TO_RAD) * 36 * Mth.SQRT_OF_TWO - 36;
-		}
-
-		public float getY(float partialTicks) {
-			return (float) Math.sin(Mth.lerp(partialTicks, prevAngle, angle) * Mth.DEG_TO_RAD) * 36 * Mth.SQRT_OF_TWO - 36;
-		}
 	}
 
 	private static class DreamCatcherText {

@@ -27,7 +27,6 @@ public class EternalStarlight {
 		ESDataComponents.loadClass();
 		ESEnchantmentEffectComponents.loadClass();
 		ESArmorMaterials.loadClass();
-		ESSpells.loadClass();
 		ESEntities.loadClass();
 		ESPotions.loadClass();
 		ESItems.loadClass();
@@ -55,6 +54,7 @@ public class EternalStarlight {
 		ESRecipes.loadClass();
 		ESWeathers.loadClass();
 		ESPostEffects.loadClass();
+		ESVfx.loadClass();
 		ESBoarwarfProfessions.loadClass();
 		ESDataAttachments.loadClass();
 		ESRegistries.loadClass();

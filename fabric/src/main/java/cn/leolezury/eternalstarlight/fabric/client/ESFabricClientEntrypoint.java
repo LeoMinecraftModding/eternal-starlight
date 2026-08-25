@@ -21,7 +21,6 @@ import cn.leolezury.eternalstarlight.fabric.client.renderer.armor.UnrealiumArmor
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -33,7 +32,6 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.particle.ParticleEngine;
@@ -44,14 +42,12 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -109,10 +105,6 @@ public class ESFabricClientEntrypoint implements ClientModInitializer {
 		}
 		for (Supplier<? extends Block> blockSupplier : ESClientSetupHandler.BLOCKS_TRANSLUCENT) {
 			BlockRenderLayerMap.INSTANCE.putBlock(blockSupplier.get(), RenderType.translucent());
-		}
-
-		for (Map.Entry<ResourceLocation, KeyMapping> mapping : ESClientSetupHandler.KEY_MAPPINGS.entrySet()) {
-			KeyBindingHelper.registerKeyBinding(mapping.getValue());
 		}
 
 		DimensionRenderingRegistry.registerDimensionEffects(EternalStarlight.id("special_effect"), ESClientPlatform.INSTANCE.getDimEffect());

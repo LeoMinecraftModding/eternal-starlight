@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
 import cn.leolezury.eternalstarlight.common.network.*;
-import cn.leolezury.eternalstarlight.common.spell.ManaType;
 import net.minecraft.world.phys.Vec3;
 
 public class ClientHelper {
@@ -10,10 +9,6 @@ public class ClientHelper {
 	}
 
 	public void handleParticlePacket(ParticlePacket packet) {
-
-	}
-
-	public void handleOpenCrestGui(OpenCrestGuiPacket packet) {
 
 	}
 
@@ -45,15 +40,7 @@ public class ClientHelper {
 
 	}
 
-	public void spawnStellarRackParticles(Vec3 center) {
-
-	}
-
-	public void spawnStellarRackItemParticles(Vec3 center) {
-
-	}
-
-	public void spawnManaCrystalItemParticles(ManaType type, Vec3 center) {
+	public void spawnGlowParticles(int color, Vec3 center) {
 
 	}
 

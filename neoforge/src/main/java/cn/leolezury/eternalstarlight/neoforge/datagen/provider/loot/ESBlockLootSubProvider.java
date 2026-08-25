@@ -963,8 +963,6 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		dropSelf(ESBlocks.DOOMEDEN_KEYHOLE.get());
 		dropSelf(ESBlocks.REDSTONE_DOOMEDEN_KEYHOLE.get());
 
-		dropSelf(ESBlocks.STELLAR_RACK.get());
-		add(ESBlocks.ENCHANTED_GRIMSTONE_BRICKS.get(), noDrop());
 		add(ESBlocks.STARLIGHT_PORTAL.get(), noDrop());
 	}
 

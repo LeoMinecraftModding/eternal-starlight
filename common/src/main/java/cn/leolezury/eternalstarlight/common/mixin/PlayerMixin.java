@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Grappling;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.SpellCaster;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
@@ -37,7 +36,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
-public abstract class PlayerMixin implements SpellCaster {
+public abstract class PlayerMixin {
 	@Shadow
 	@NotNull
 	public abstract ItemStack getWeaponItem();

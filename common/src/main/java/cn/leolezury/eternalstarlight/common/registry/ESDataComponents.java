@@ -2,8 +2,6 @@ package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.entity.StarfireBirdNestBlockEntity;
-import cn.leolezury.eternalstarlight.common.crest.Crest;
-import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.item.component.ItemStackList;
@@ -12,11 +10,9 @@ import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvid
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.util.ESCodecUtil;
 import com.mojang.serialization.Codec;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.resources.RegistryFixedCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Unit;
@@ -30,7 +26,6 @@ import java.util.function.Function;
 public class ESDataComponents {
 	public static final RegistrationProvider<DataComponentType<?>> DATA_COMPONENTS = RegistrationProvider.get(Registries.DATA_COMPONENT_TYPE, EternalStarlight.ID);
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<GuideBook>> BOOK = DATA_COMPONENTS.register("book", () -> DataComponentType.<GuideBook>builder().persistent(GuideBook.CODEC).networkSynchronized(GuideBook.STREAM_CODEC).cacheEncoding().build());
-	public static final RegistryObject<DataComponentType<?>, DataComponentType<Holder<Crest>>> CURRENT_CREST = DATA_COMPONENTS.register("current_crest", () -> DataComponentType.<Holder<Crest>>builder().persistent(RegistryFixedCodec.create(ESRegistries.CREST)).networkSynchronized(ByteBufCodecs.fromCodecWithRegistries(RegistryFixedCodec.create(ESRegistries.CREST))).cacheEncoding().build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<ResourceKey<LootTable>>> LOOT_TABLE = DATA_COMPONENTS.register("loot_table", () -> DataComponentType.<ResourceKey<LootTable>>builder().persistent(ResourceKey.codec(Registries.LOOT_TABLE)).networkSynchronized(ResourceKey.streamCodec(Registries.LOOT_TABLE)).cacheEncoding().build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<Map<ResourceLocation, Integer>>> BOSS_CHALLENGE_COUNTS = DATA_COMPONENTS.register("boss_challenge_counts", () -> DataComponentType.<Map<ResourceLocation, Integer>>builder().persistent(ESCodecUtil.createCodecForMap(ResourceLocation.CODEC, Codec.INT)).cacheEncoding().build());
 	public static final RegistryObject<DataComponentType<?>, DataComponentType<Boolean>> HAS_BLADE = DATA_COMPONENTS.register("has_blade", () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).cacheEncoding().build());

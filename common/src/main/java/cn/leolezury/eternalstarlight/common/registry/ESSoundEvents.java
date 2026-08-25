@@ -155,7 +155,6 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> TANGLED_SKULL_ROAR = register("entity.tangled_skull.roar");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> ETHER_TRANSFORM = register("block.ether.transform");
-	public static final RegistryObject<SoundEvent, SoundEvent> STELLAR_RACK_AMBIENT = register("block.stellar_rack.ambient");
 
 	public static RegistryObject<SoundEvent, SoundEvent> register(String name) {
 		return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(EternalStarlight.id(name)));

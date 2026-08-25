@@ -280,14 +280,6 @@ public class ESEntities {
 			.updateInterval(4)
 			.build(EternalStarlight.id("eye_of_seeking").toString())
 	);
-	public static final RegistryObject<EntityType<?>, EntityType<CrestEntity>> CREST = ENTITIES.register(
-		"crest",
-		() -> EntityType.Builder.<CrestEntity>of(CrestEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F)
-			.clientTrackingRange(4)
-			.updateInterval(4)
-			.build(EternalStarlight.id("crest").toString())
-	);
 	public static final RegistryObject<EntityType<?>, EntityType<TheGatekeeper>> THE_GATEKEEPER = ENTITIES.register(
 		"the_gatekeeper",
 		() -> EntityType.Builder.of(TheGatekeeper::new, MobCategory.MONSTER)
