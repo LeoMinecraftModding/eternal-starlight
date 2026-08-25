@@ -23,6 +23,7 @@ public class ESBiomeData {
 	public static final ResourceKey<BiomeData> CRYSTALLIZED_DESERT = create("crystallized_desert");
 	public static final ResourceKey<BiomeData> LUCENT_MYCELIUM_ISLE = create("lucent_mycelium_isle");
 	public static final ResourceKey<BiomeData> SOLARIS_ISLES = create("solaris_isles");
+	public static final ResourceKey<BiomeData> STARLIT_SKY = create("starlit_sky");
 	public static final ResourceKey<BiomeData> SHIMMER_RIVER = create("shimmer_river");
 	public static final ResourceKey<BiomeData> ETHER_RIVER = create("ether_river");
 	public static final ResourceKey<BiomeData> SHIMMER_RIVER_TRANSITION = create("shimmer_river_transition");
@@ -80,6 +81,10 @@ public class ESBiomeData {
 			.build());
 
 		context.register(SOLARIS_ISLES, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.SOLARIS_ISLES), 64, 6)
+			.hasRivers(false)
+			.build());
+
+		context.register(STARLIT_SKY, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIT_SKY), 64, 0)
 			.hasRivers(false)
 			.build());
 

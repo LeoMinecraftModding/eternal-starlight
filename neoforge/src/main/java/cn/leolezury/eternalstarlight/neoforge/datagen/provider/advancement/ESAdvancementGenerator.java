@@ -262,7 +262,8 @@ public class ESAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.rewards(AdvancementRewards.Builder.experience(500));
 		List<ResourceKey<Biome>> biomeIds = biomes.listElementIds().sorted(ResourceKey::compareTo).toList();
 		for (ResourceKey<Biome> key : biomeIds) {
-			if (key.location().getNamespace().equals(EternalStarlight.ID)) {
+			// the sky filler is open air above every biome, not somewhere to travel to
+			if (key.location().getNamespace().equals(EternalStarlight.ID) && key != ESBiomes.STARLIT_SKY) {
 				allStarlightBiomesBuilder.addCriterion("in_" + key.location().getPath(), PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(key))));
 			}
 		}

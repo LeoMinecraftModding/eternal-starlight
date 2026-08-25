@@ -48,6 +48,7 @@ public class ESBiomes {
 	public static final ResourceKey<Biome> CRYSTALLIZED_DESERT = create("crystallized_desert");
 	public static final ResourceKey<Biome> LUCENT_MYCELIUM_ISLE = create("lucent_mycelium_isle");
 	public static final ResourceKey<Biome> SOLARIS_ISLES = create("solaris_isles");
+	public static final ResourceKey<Biome> STARLIT_SKY = create("starlit_sky");
 	public static final ResourceKey<Biome> SHIMMER_RIVER = create("shimmer_river");
 	public static final ResourceKey<Biome> ETHER_RIVER = create("ether_river");
 	public static final ResourceKey<Biome> STARLIT_SEA = create("starlit_sea");
@@ -84,6 +85,7 @@ public class ESBiomes {
 		context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_DESERT), desertSpawns(), desertGenSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
 		context.register(LUCENT_MYCELIUM_ISLE, baseBiomeBuilder(baseEffectsBuilder().grassColorOverride(5260652).backgroundMusic(MUSIC_FOREST), mushroomSpawns(), mushroomGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(SOLARIS_ISLES, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_FOREST), solarisSpawns(), solarisGenSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
+		context.register(STARLIT_SKY, baseBiomeBuilder(baseEffectsBuilder(), skySpawns(), skyGenSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).build());
 		context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), riverSpawns(), riverGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseSpawnBuilder(), etherRiverGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(STARLIT_SEA, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_STARLIT_SEA), baseAquaticSpawnBuilder(), oceanGenSettings(featureHolderGetter, carverHolderGetter)).build());
@@ -193,6 +195,11 @@ public class ESBiomes {
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ENT.get(), 10, 1, 2))
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.RATLIN.get(), 8, 1, 3))
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.SHADOW_SNAIL.get(), 6, 1, 2));
+	}
+
+	/** Open air above the world -- nothing spawns here. */
+	private static MobSpawnSettings.Builder skySpawns() {
+		return new MobSpawnSettings.Builder();
 	}
 
 	private static MobSpawnSettings.Builder riverSpawns() {
@@ -427,6 +434,11 @@ public class ESBiomes {
 		builder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ESPlacedFeatures.SOLARIS_ISLAND);
 
 		return builder;
+	}
+
+	/** The filler that keeps Solaris Isles inside its own climate range -- it generates nothing itself. */
+	private static BiomeGenerationSettings.Builder skyGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		return new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 	}
 
 	private static BiomeGenerationSettings.Builder riverGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {

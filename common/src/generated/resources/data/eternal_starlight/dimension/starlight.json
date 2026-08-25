@@ -306862,6 +306862,126 @@
               1.0
             ]
           }
+        },
+        {
+          "biome_data": "eternal_starlight:starlit_sky",
+          "parameters": {
+            "continentalness": [
+              -1.2,
+              -1.05
+            ],
+            "depth": [
+              -0.9,
+              -0.4
+            ],
+            "erosion": [
+              -1.0,
+              1.0
+            ],
+            "humidity": [
+              -1.0,
+              1.0
+            ],
+            "offset": 0.0,
+            "temperature": [
+              -1.0,
+              1.0
+            ],
+            "weirdness": [
+              -1.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "biome_data": "eternal_starlight:starlit_sky",
+          "parameters": {
+            "continentalness": [
+              -0.455,
+              1.0
+            ],
+            "depth": [
+              -0.9,
+              -0.4
+            ],
+            "erosion": [
+              -1.0,
+              1.0
+            ],
+            "humidity": [
+              -1.0,
+              1.0
+            ],
+            "offset": 0.0,
+            "temperature": [
+              -1.0,
+              1.0
+            ],
+            "weirdness": [
+              -1.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "biome_data": "eternal_starlight:starlit_sky",
+          "parameters": {
+            "continentalness": [
+              -1.05,
+              -0.455
+            ],
+            "depth": [
+              -0.9,
+              -0.4
+            ],
+            "erosion": [
+              -0.2225,
+              1.0
+            ],
+            "humidity": [
+              -1.0,
+              1.0
+            ],
+            "offset": 0.0,
+            "temperature": [
+              -1.0,
+              1.0
+            ],
+            "weirdness": [
+              -1.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "biome_data": "eternal_starlight:starlit_sky",
+          "parameters": {
+            "continentalness": [
+              -1.05,
+              -0.455
+            ],
+            "depth": [
+              -0.9,
+              -0.4
+            ],
+            "erosion": [
+              -1.0,
+              -0.2225
+            ],
+            "humidity": [
+              -1.0,
+              1.0
+            ],
+            "offset": 0.0,
+            "temperature": [
+              -1.0,
+              -0.15
+            ],
+            "weirdness": [
+              -1.0,
+              1.0
+            ]
+          }
         }
       ],
       "rivers": [
