@@ -61,8 +61,8 @@ public class ESBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<EclipseCoreBlockEntity>> ECLIPSE_CORE = BLOCK_ENTITIES.register("eclipse_core", () -> BlockEntityType.Builder.of(EclipseCoreBlockEntity::new, ESBlocks.ECLIPSE_CORE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<StellarRackBlockEntity>> STELLAR_RACK = BLOCK_ENTITIES.register("stellar_rack", () -> BlockEntityType.Builder.of(StellarRackBlockEntity::new, ESBlocks.STELLAR_RACK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<ESPortalBlockEntity>> STARLIGHT_PORTAL = BLOCK_ENTITIES.register("starlight_portal", () -> BlockEntityType.Builder.of(ESPortalBlockEntity::new, ESBlocks.STARLIGHT_PORTAL.get()).build(null));
-	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TreeNodeBlockEntity>> TREE_NODE = BLOCK_ENTITIES.register("tree_node", () -> BlockEntityType.Builder.of(
-		TreeNodeBlockEntity::new,
+	public static final RegistryObject<BlockEntityType<?>, BlockEntityType<TreeRootBlockEntity>> TREE_NODE = BLOCK_ENTITIES.register("tree_root", () -> BlockEntityType.Builder.of(
+		TreeRootBlockEntity::new,
 		ESBlocks.SHADOW_BERRY_TREE_ROOT.get()
 	).build(null));
 

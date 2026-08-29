@@ -20,13 +20,11 @@ public class SubCropBlock extends BasicCropBlock {
 	public static final BooleanProperty IS_NODE = BooleanProperty.create("is_node");
 	public static final IntegerProperty BRANCHES_COUNT = IntegerProperty.create("branches_count", 0, 8);
 
-	private final int maxHeight;
 	private final ResourceKey<Block> origin;
 	private final Optional<ResourceKey<Block>> extensionCrop;
 
 	public SubCropBlock(Properties properties, CropUtil.CropParam param) {
 		super(properties, param);
-		this.maxHeight = param.getMaxHeight();
 		this.origin = param.getOrigin().get();
 		this.extensionCrop = param.getSubCrop();
 
@@ -39,7 +37,7 @@ public class SubCropBlock extends BasicCropBlock {
 	}
 
 	private boolean checkHeight(BlockGetter getter, BlockPos selfPos) {
-		for (int i = 1; i < this.maxHeight; i++) {
+		for (int i = 1; i < this.getMaxHeight(); i++) {
 			if (getter.getBlockState(selfPos.below(i)).is(BuiltInRegistries.BLOCK.get(this.origin))) {
 				return true;
 			}
@@ -71,7 +69,7 @@ public class SubCropBlock extends BasicCropBlock {
 
 	@Override
 	protected int detectBoxBottomModifier() {
-		return this.maxHeight + 1;
+		return this.getMaxHeight() + 1;
 	}
 
 	@Override

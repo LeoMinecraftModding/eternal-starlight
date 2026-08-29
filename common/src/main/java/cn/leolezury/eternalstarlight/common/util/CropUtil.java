@@ -29,40 +29,89 @@ public class CropUtil {
 	public static class TreeParam {
 		public static Codec<TreeParam> CODEC = RecordCodecBuilder.create(instance ->
 			instance.group(
-				Codec.BOOL.fieldOf("equalize_nodes").forGetter(block -> block.equalizeNodes),
-				Codec.BOOL.fieldOf("regeneratable").forGetter(block -> block.regeneratable),
+				Codec.INT.fieldOf("loop_times").forGetter(block -> block.loopTimes),
 				Codec.INT.fieldOf("regen_offset").forGetter(block -> block.regenOffset),
 				Codec.INT.fieldOf("loop_offset").forGetter(block -> block.loopOffset),
 				Codec.INT.fieldOf("lowest_node").forGetter(block -> block.lowestNode),
+				Codec.INT.fieldOf("top_node").forGetter(block -> block.topNode),
 				Codec.INT.fieldOf("random_offset").forGetter(block -> block.randomOffset),
-				Codec.INT.fieldOf("first_branch_length").forGetter(block -> block.firstBranchLength)
+				Codec.INT.fieldOf("first_branch_length").forGetter(block -> block.firstBranchLength),
+				Codec.INT.fieldOf("loop_branch_length_modifier").forGetter(block -> block.loopBranchLengthModifier),
+				Codec.INT.fieldOf("random_branch_length_modifier").forGetter(block -> block.randomBranchLengthModifier),
+				Codec.INT.fieldOf("regen_branch_length_modifier").forGetter(block -> block.regenBranchLengthModifier),
+				Codec.INT.fieldOf("branch_count").forGetter(block -> block.branchCount),
+				Codec.INT.fieldOf("loop_branch_count_modifier").forGetter(block -> block.loopBranchCountModifier),
+				Codec.INT.fieldOf("random_branch_count_modifier").forGetter(block -> block.randomBranchCountModifier),
+				Codec.INT.fieldOf("regen_branch_count_modifier").forGetter(block -> block.regenBranchCountModifier)
 			).apply(instance, TreeParam::new)
 		);
 
-		private final boolean equalizeNodes;
-		private final boolean regeneratable;
+		private final int loopTimes;
 		private final int regenOffset;
 		private final int loopOffset;
 		private final int lowestNode;
+		private final int topNode;
 		private final int randomOffset;
 		private final int firstBranchLength;
+		private final int loopBranchLengthModifier;
+		private final int regenBranchLengthModifier;
+		private final int randomBranchLengthModifier;
+		private final int branchCount;
+		private final int loopBranchCountModifier;
+		private final int randomBranchCountModifier;
+		private final int regenBranchCountModifier;
 
-		private TreeParam(boolean equalizeNodes, boolean regeneratable, int regenOffset, int loopOffset, int lowestNode, int randomOffset, int firstBranchLength) {
-			this.equalizeNodes = equalizeNodes;
-			this.regeneratable = regeneratable;
+		private TreeParam(int loopTimes, int regenOffset, int loopOffset, int lowestNode, int topNode, int randomOffset, int firstBranchLength, int loopBranchLengthModifier, int randomBranchLengthModifier, int regenBranchLengthModifier, int branchCount, int loopBranchCountModifier, int regenBranchCountModifier, int randomBranchCountModifier) {
+			this.loopTimes = loopTimes;
 			this.regenOffset = regenOffset;
 			this.loopOffset = loopOffset;
 			this.lowestNode = lowestNode;
+			this.topNode = topNode;
 			this.randomOffset = randomOffset;
 			this.firstBranchLength = firstBranchLength;
+			this.loopBranchLengthModifier = loopBranchLengthModifier;
+			this.randomBranchLengthModifier= randomBranchLengthModifier;
+			this.regenBranchLengthModifier = regenBranchLengthModifier;
+			this.branchCount = branchCount;
+			this.loopBranchCountModifier = loopBranchCountModifier;
+			this.randomBranchCountModifier = randomBranchCountModifier;
+			this.regenBranchCountModifier = regenBranchCountModifier;
 		}
 
-		public boolean equalizeNodes() {
-			return equalizeNodes;
+		public int getRandomBranchCountModifier() {
+			return randomBranchCountModifier;
 		}
 
-		public boolean isRegeneratable() {
-			return regeneratable;
+		public int getRegenBranchCountModifier() {
+			return regenBranchCountModifier;
+		}
+
+		public int getLoopBranchCountModifier() {
+			return loopBranchCountModifier;
+		}
+
+		public int getBranchCount() {
+			return branchCount;
+		}
+
+		public int getRegenBranchLengthModifier() {
+			return regenBranchLengthModifier;
+		}
+
+		public int getLoopBranchLengthModifier() {
+			return loopBranchLengthModifier;
+		}
+
+		public int getRandomBranchLengthModifier() {
+			return randomBranchLengthModifier;
+		}
+
+		public int getTopNode() {
+			return topNode;
+		}
+
+		public int getLoopTimes() {
+			return loopTimes;
 		}
 
 		public int getRegenOffset() {
@@ -102,7 +151,7 @@ public class CropUtil {
 		private final boolean isEtherFillable;
 		private final Optional<Pair<ResourceKey<Block>, Optional<ResourceKey<Block>>>> subCropBlock;
 		private final int maxHeight;
-		private final Optional<Pair<TreeParam, List<TreeParam>>> treeParam;
+		private final Optional<TreeParam> treeParam;
 
 		public int getMaxHeight() {
 			return maxHeight;
@@ -189,7 +238,7 @@ public class CropUtil {
 			boolean isEtherFillable,
 			Optional<Pair<ResourceKey<Block>, Optional<ResourceKey<Block>>>> subCropBlock,
 			int maxHeight,
-			Optional<Pair<TreeParam, List<TreeParam>>> treeParam
+			Optional<TreeParam> treeParam
 		) {
 			this.effectableCrops = effectableCrops;
 			this.shapeZ = shapeZ;
@@ -275,7 +324,7 @@ public class CropUtil {
 			return this;
 		}
 
-		public Optional<Pair<TreeParam, List<TreeParam>>> getTreeParam() {
+		public Optional<TreeParam> getTreeParam() {
 			return treeParam;
 		}
 	}
