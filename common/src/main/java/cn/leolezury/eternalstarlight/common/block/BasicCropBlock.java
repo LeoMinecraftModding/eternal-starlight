@@ -336,16 +336,19 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 							subState = level.getBlockState(subPos);
 							subCropExecute(subState, level, subPos, randomSource);
 						}
+						if (level.getBlockEntity(blockPos) instanceof TreeRootBlockEntity root) {
+							root.applyNode(level, blockPos, this.maxHeight);
+						}
 					}
 				}
 			}
 		}
 	}
 
-	@Override
-	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-		return createTickerHelper(blockEntityType, ESBlockEntities.TREE_NODE.get(), TreeRootBlockEntity::tick);
-	}
+//	@Override
+//	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+//		return createTickerHelper(blockEntityType, ESBlockEntities.TREE_NODE.get(), TreeRootBlockEntity::tick);
+//	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -355,7 +358,7 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 	@Override
 	protected void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockStateOld, boolean bl) {
 		if (!(this instanceof SubCropBlock) && !(this instanceof CropBranchBlock) && this.treeParam.isPresent()) {
-			level.setBlockEntity(new TreeRootBlockEntity(blockPos, blockState, this.treeParam));
+			level.setBlockEntity(new TreeRootBlockEntity(blockPos, blockState, this.treeParam.get()));
 		}
 	}
 

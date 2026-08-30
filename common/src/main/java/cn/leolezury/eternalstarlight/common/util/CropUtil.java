@@ -7,7 +7,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -26,113 +25,62 @@ public class CropUtil {
 		return ResourceKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath("minecraft", id));
 	}
 
-	public static class TreeParam {
+	public record NodeDecorator(int branchCount, int branchLength, boolean leafOnly, int layerAbove, int layerBelow, int offsetAbove, int offsetBelow) {
+		public static Codec<NodeDecorator> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+			Codec.INT.fieldOf("branch_count").forGetter(ins -> ins.branchCount),
+			Codec.INT.fieldOf("branch_length").forGetter(ins -> ins.branchLength),
+			Codec.BOOL.fieldOf("leaf_only").forGetter(ins -> ins.leafOnly),
+			Codec.INT.fieldOf("layer_above").forGetter(ins -> ins.layerAbove),
+			Codec.INT.fieldOf("layer_below").forGetter(ins -> ins.layerBelow),
+			Codec.INT.fieldOf("offset_above").forGetter(ins -> ins.offsetAbove),
+			Codec.INT.fieldOf("offset_below").forGetter(ins -> ins.offsetBelow)
+		).apply(instance, NodeDecorator::new));
+
+		public static NodeDecorator createSimpleTreeParam(int branchCount, int branchLength, boolean leafOnly, int layerAbove, int layerBelow, int offsetAbove, int offsetBelow) {
+			return new NodeDecorator(branchCount, branchLength, leafOnly, layerAbove, layerBelow, offsetAbove, offsetBelow);
+		}
+
+		public static NodeDecorator createSimpleTreeParam(int branchCount, int branchLength) {
+			return new NodeDecorator(branchCount, branchLength, false, 0, 0, 0, 0);
+		}
+	}
+
+	public record TreeParam(
+		int regenOffset,
+		int randomOffset,
+		int downLoopBranchLengthModifier,
+		int upLoopBranchLengthModifier,
+		int randomBranchLengthModifier,
+		int regenBranchLengthModifier,
+		int regenBranchCountModifier,
+		int randomBranchCountModifier,
+		int branchCount,
+		boolean leafOnly,
+		Pair<Integer, Integer> branchLength,
+		Pair<Integer, Integer> nodePos,
+		Pair<Integer, Integer> loopOffset,
+		Pair<Integer, Integer> loopTimes,
+		List<NodeDecorator> additionalNodeDecorator
+	) {
 		public static Codec<TreeParam> CODEC = RecordCodecBuilder.create(instance ->
 			instance.group(
-				Codec.INT.fieldOf("loop_times").forGetter(block -> block.loopTimes),
 				Codec.INT.fieldOf("regen_offset").forGetter(block -> block.regenOffset),
-				Codec.INT.fieldOf("loop_offset").forGetter(block -> block.loopOffset),
-				Codec.INT.fieldOf("lowest_node").forGetter(block -> block.lowestNode),
-				Codec.INT.fieldOf("top_node").forGetter(block -> block.topNode),
 				Codec.INT.fieldOf("random_offset").forGetter(block -> block.randomOffset),
-				Codec.INT.fieldOf("first_branch_length").forGetter(block -> block.firstBranchLength),
-				Codec.INT.fieldOf("loop_branch_length_modifier").forGetter(block -> block.loopBranchLengthModifier),
+				Codec.INT.fieldOf("down_loop_branch_length_modifier").forGetter(block -> block.downLoopBranchLengthModifier),
+				Codec.INT.fieldOf("up_loop_branch_length_modifier").forGetter(block -> block.upLoopBranchLengthModifier),
 				Codec.INT.fieldOf("random_branch_length_modifier").forGetter(block -> block.randomBranchLengthModifier),
 				Codec.INT.fieldOf("regen_branch_length_modifier").forGetter(block -> block.regenBranchLengthModifier),
-				Codec.INT.fieldOf("branch_count").forGetter(block -> block.branchCount),
-				Codec.INT.fieldOf("loop_branch_count_modifier").forGetter(block -> block.loopBranchCountModifier),
+				Codec.INT.fieldOf("regen_branch_count_modifier").forGetter(block -> block.regenBranchCountModifier),
 				Codec.INT.fieldOf("random_branch_count_modifier").forGetter(block -> block.randomBranchCountModifier),
-				Codec.INT.fieldOf("regen_branch_count_modifier").forGetter(block -> block.regenBranchCountModifier)
+				Codec.INT.fieldOf("branch_count").forGetter(block -> block.branchCount),
+				Codec.BOOL.fieldOf("leaf_only").forGetter(block -> block.leafOnly),
+				Codec.pair(Codec.INT, Codec.INT).fieldOf("branch_length").forGetter(block -> block.branchLength),
+				Codec.pair(Codec.INT, Codec.INT).fieldOf("node_pos").forGetter(block -> block.nodePos),
+				Codec.pair(Codec.INT, Codec.INT).fieldOf("loop_offset").forGetter(block -> block.loopOffset),
+				Codec.pair(Codec.INT, Codec.INT).fieldOf("loop_times").forGetter(block -> block.loopTimes),
+				Codec.list(NodeDecorator.CODEC).fieldOf("additional_layer_decorator").forGetter(block -> block.additionalNodeDecorator)
 			).apply(instance, TreeParam::new)
 		);
-
-		private final int loopTimes;
-		private final int regenOffset;
-		private final int loopOffset;
-		private final int lowestNode;
-		private final int topNode;
-		private final int randomOffset;
-		private final int firstBranchLength;
-		private final int loopBranchLengthModifier;
-		private final int regenBranchLengthModifier;
-		private final int randomBranchLengthModifier;
-		private final int branchCount;
-		private final int loopBranchCountModifier;
-		private final int randomBranchCountModifier;
-		private final int regenBranchCountModifier;
-
-		private TreeParam(int loopTimes, int regenOffset, int loopOffset, int lowestNode, int topNode, int randomOffset, int firstBranchLength, int loopBranchLengthModifier, int randomBranchLengthModifier, int regenBranchLengthModifier, int branchCount, int loopBranchCountModifier, int regenBranchCountModifier, int randomBranchCountModifier) {
-			this.loopTimes = loopTimes;
-			this.regenOffset = regenOffset;
-			this.loopOffset = loopOffset;
-			this.lowestNode = lowestNode;
-			this.topNode = topNode;
-			this.randomOffset = randomOffset;
-			this.firstBranchLength = firstBranchLength;
-			this.loopBranchLengthModifier = loopBranchLengthModifier;
-			this.randomBranchLengthModifier= randomBranchLengthModifier;
-			this.regenBranchLengthModifier = regenBranchLengthModifier;
-			this.branchCount = branchCount;
-			this.loopBranchCountModifier = loopBranchCountModifier;
-			this.randomBranchCountModifier = randomBranchCountModifier;
-			this.regenBranchCountModifier = regenBranchCountModifier;
-		}
-
-		public int getRandomBranchCountModifier() {
-			return randomBranchCountModifier;
-		}
-
-		public int getRegenBranchCountModifier() {
-			return regenBranchCountModifier;
-		}
-
-		public int getLoopBranchCountModifier() {
-			return loopBranchCountModifier;
-		}
-
-		public int getBranchCount() {
-			return branchCount;
-		}
-
-		public int getRegenBranchLengthModifier() {
-			return regenBranchLengthModifier;
-		}
-
-		public int getLoopBranchLengthModifier() {
-			return loopBranchLengthModifier;
-		}
-
-		public int getRandomBranchLengthModifier() {
-			return randomBranchLengthModifier;
-		}
-
-		public int getTopNode() {
-			return topNode;
-		}
-
-		public int getLoopTimes() {
-			return loopTimes;
-		}
-
-		public int getRegenOffset() {
-			return regenOffset;
-		}
-
-		public int getLoopOffset() {
-			return loopOffset;
-		}
-
-		public int getLowestNode() {
-			return lowestNode;
-		}
-
-		public int getRandomOffset() {
-			return randomOffset;
-		}
-
-		public int getFirstBranchLength() {
-			return firstBranchLength;
-		}
 	}
 
 	public static class CropParam {
