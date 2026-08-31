@@ -36,27 +36,21 @@ public class CropUtil {
 			Codec.INT.fieldOf("offset_below").forGetter(ins -> ins.offsetBelow)
 		).apply(instance, NodeDecorator::new));
 
-		public static NodeDecorator createSimpleTreeParam(int branchCount, int branchLength, boolean leafOnly, int layerAbove, int layerBelow, int offsetAbove, int offsetBelow) {
+		public static NodeDecorator createNodeParam(int branchCount, int branchLength, boolean leafOnly, int layerAbove, int layerBelow, int offsetAbove, int offsetBelow) {
 			return new NodeDecorator(branchCount, branchLength, leafOnly, layerAbove, layerBelow, offsetAbove, offsetBelow);
-		}
-
-		public static NodeDecorator createSimpleTreeParam(int branchCount, int branchLength) {
-			return new NodeDecorator(branchCount, branchLength, false, 0, 0, 0, 0);
 		}
 	}
 
 	public record TreeParam(
 		int regenOffset,
 		int randomOffset,
-		int downLoopBranchLengthModifier,
-		int upLoopBranchLengthModifier,
 		int randomBranchLengthModifier,
 		int regenBranchLengthModifier,
 		int regenBranchCountModifier,
 		int randomBranchCountModifier,
 		int branchCount,
+		int branchLength,
 		boolean leafOnly,
-		Pair<Integer, Integer> branchLength,
 		Pair<Integer, Integer> nodePos,
 		Pair<Integer, Integer> loopOffset,
 		Pair<Integer, Integer> loopTimes,
@@ -66,21 +60,204 @@ public class CropUtil {
 			instance.group(
 				Codec.INT.fieldOf("regen_offset").forGetter(block -> block.regenOffset),
 				Codec.INT.fieldOf("random_offset").forGetter(block -> block.randomOffset),
-				Codec.INT.fieldOf("down_loop_branch_length_modifier").forGetter(block -> block.downLoopBranchLengthModifier),
-				Codec.INT.fieldOf("up_loop_branch_length_modifier").forGetter(block -> block.upLoopBranchLengthModifier),
 				Codec.INT.fieldOf("random_branch_length_modifier").forGetter(block -> block.randomBranchLengthModifier),
 				Codec.INT.fieldOf("regen_branch_length_modifier").forGetter(block -> block.regenBranchLengthModifier),
 				Codec.INT.fieldOf("regen_branch_count_modifier").forGetter(block -> block.regenBranchCountModifier),
 				Codec.INT.fieldOf("random_branch_count_modifier").forGetter(block -> block.randomBranchCountModifier),
 				Codec.INT.fieldOf("branch_count").forGetter(block -> block.branchCount),
+				Codec.INT.fieldOf("branch_length").forGetter(block -> block.branchLength),
 				Codec.BOOL.fieldOf("leaf_only").forGetter(block -> block.leafOnly),
-				Codec.pair(Codec.INT, Codec.INT).fieldOf("branch_length").forGetter(block -> block.branchLength),
 				Codec.pair(Codec.INT, Codec.INT).fieldOf("node_pos").forGetter(block -> block.nodePos),
 				Codec.pair(Codec.INT, Codec.INT).fieldOf("loop_offset").forGetter(block -> block.loopOffset),
 				Codec.pair(Codec.INT, Codec.INT).fieldOf("loop_times").forGetter(block -> block.loopTimes),
 				Codec.list(NodeDecorator.CODEC).fieldOf("additional_layer_decorator").forGetter(block -> block.additionalNodeDecorator)
 			).apply(instance, TreeParam::new)
 		);
+
+		public static TreeParam create(
+			int regenOffset,
+			int randomOffset,
+			int randomBranchLengthModifier,
+			int regenBranchLengthModifier,
+			int regenBranchCountModifier,
+			int randomBranchCountModifier,
+			int branchCount,
+			boolean leafOnly,
+			int firstBranchLength,
+			int firstNodePos,
+			int topNodePos,
+			int upLoopOffset,
+			int downLoopOffset,
+			int upLoopTimes,
+			int downLoopTimes,
+			NodeDecorator topNode,
+			Optional<List<NodeDecorator>> additionalNodeDecorator
+		) {
+			var list = new ArrayList<NodeDecorator>();
+			additionalNodeDecorator.ifPresent(list::addAll);
+			list.addLast(topNode);
+			return new TreeParam(
+				regenOffset,
+				randomOffset,
+				randomBranchLengthModifier,
+				regenBranchLengthModifier,
+				regenBranchCountModifier,
+				randomBranchCountModifier,
+				branchCount,
+				firstBranchLength,
+				leafOnly,
+				Pair.of(firstNodePos, topNodePos),
+				Pair.of(upLoopOffset, downLoopOffset),
+				Pair.of(upLoopTimes, downLoopTimes),
+				list
+			);
+		}
+
+		public static TreeParam createEqualized(
+			int regenOffset,
+			int regenBranchLengthModifier,
+			int regenBranchCountModifier,
+			int branchCount,
+			boolean leafOnly,
+			int firstBranchLength,
+			int firstNodePos,
+			int topNodePos,
+			int upLoopOffset,
+			int downLoopOffset,
+			int upLoopTimes,
+			int downLoopTimes,
+			NodeDecorator topNode,
+			List<NodeDecorator> additionalNodeDecorator
+		) {
+			return create(
+				regenOffset,
+				0,
+				0,
+				regenBranchLengthModifier,
+				regenBranchCountModifier,
+				0,
+				branchCount,
+				leafOnly,
+				firstBranchLength,
+				firstNodePos,
+				topNodePos,
+				upLoopOffset,
+				downLoopOffset,
+				upLoopTimes,
+				downLoopTimes,
+				topNode,
+				Optional.of(additionalNodeDecorator)
+			);
+		}
+
+		public static TreeParam createEqualized(
+			int regenOffset,
+			int regenBranchLengthModifier,
+			int regenBranchCountModifier,
+			int branchCount,
+			boolean leafOnly,
+			int firstBranchLength,
+			int firstNodePos,
+			int topNodePos,
+			int upLoopOffset,
+			int downLoopOffset,
+			int upLoopTimes,
+			int downLoopTimes,
+			NodeDecorator topNode
+		) {
+			return create(
+				regenOffset,
+				0,
+				0,
+				regenBranchLengthModifier,
+				regenBranchCountModifier,
+				0,
+				branchCount,
+				leafOnly,
+				firstBranchLength,
+				firstNodePos,
+				topNodePos,
+				upLoopOffset,
+				downLoopOffset,
+				upLoopTimes,
+				downLoopTimes,
+				topNode,
+				Optional.empty()
+			);
+		}
+
+		public static TreeParam createChaos(
+			int randomOffset,
+			int randomBranchLengthModifier,
+			int randomBranchCountModifier,
+			int branchCount,
+			boolean leafOnly,
+			int firstBranchLength,
+			int firstNodePos,
+			int topNodePos,
+			int upLoopOffset,
+			int downLoopOffset,
+			int upLoopTimes,
+			int downLoopTimes,
+			NodeDecorator topNode
+		) {
+			return create(
+				0,
+				randomOffset,
+				randomBranchLengthModifier,
+				0,
+				0,
+				randomBranchCountModifier,
+				branchCount,
+				leafOnly,
+				firstBranchLength,
+				firstNodePos,
+				topNodePos,
+				upLoopOffset,
+				downLoopOffset,
+				upLoopTimes,
+				downLoopTimes,
+				topNode,
+				Optional.empty()
+			);
+		}
+
+		public static TreeParam createChaos(
+			int randomOffset,
+			int randomBranchLengthModifier,
+			int randomBranchCountModifier,
+			int branchCount,
+			boolean leafOnly,
+			int firstBranchLength,
+			int firstNodePos,
+			int topNodePos,
+			int upLoopOffset,
+			int downLoopOffset,
+			int upLoopTimes,
+			int downLoopTimes,
+			NodeDecorator topNode,
+			List<NodeDecorator> additionalNodeDecorator
+		) {
+			return create(
+				0,
+				randomOffset,
+				randomBranchLengthModifier,
+				0,
+				0,
+				randomBranchCountModifier,
+				branchCount,
+				leafOnly,
+				firstBranchLength,
+				firstNodePos,
+				topNodePos,
+				upLoopOffset,
+				downLoopOffset,
+				upLoopTimes,
+				downLoopTimes,
+				topNode,
+				Optional.of(additionalNodeDecorator)
+			);
+		}
 	}
 
 	public static class CropParam {

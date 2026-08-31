@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-import static cn.leolezury.eternalstarlight.common.util.CropUtil.NodeDecorator.createSimpleTreeParam;
+import static cn.leolezury.eternalstarlight.common.util.CropUtil.NodeDecorator.createNodeParam;
 
 public class TreeRootBlockEntity extends BlockEntity {
 	private Map<Integer, CropUtil.NodeDecorator> nbMap;
@@ -60,8 +60,6 @@ public class TreeRootBlockEntity extends BlockEntity {
 		int topNode = param.nodePos().getSecond();
 		int randomOffset = param.randomOffset();
 		int firstBranchLength = param.branchLength().getFirst();
-		int upLoopBranchLengthModifier = param.upLoopBranchLengthModifier();
-		int downLoopBranchLengthModifier = param.downLoopBranchLengthModifier();
 		int randomBranchLengthModifier = param.randomBranchLengthModifier();
 		int regenBranchLengthModifier =  param.regenBranchLengthModifier();
 		int firstBranchCount = param.branchCount();
@@ -70,10 +68,10 @@ public class TreeRootBlockEntity extends BlockEntity {
 		boolean leafOnly = param.leafOnly();
 		List<CropUtil.NodeDecorator> decorators = param.additionalNodeDecorator();
 
-		if (!this.level.isClientSide() && decorators.getFirst() != null && decorators.getLast() != null) {
+		if (!this.level.isClientSide() && decorators.getLast() != null) {
 			var random = this.level.random;
 
-			nodes.put(lowestNode, decorators.getFirst());
+			nodes.put(lowestNode, new CropUtil.NodeDecorator(firstBranchCount, firstBranchLength, leafOnly, upLoopTimes, downLoopTimes, loopOffsetUp, loopOffsetDown));
 			nodes.put(topNode, decorators.getLast());
 
 			for (int i = 1; lowestNode + regenOffset * i + randomOffset < topNode; i++) {
@@ -86,22 +84,20 @@ public class TreeRootBlockEntity extends BlockEntity {
 
 				nodes.putIfAbsent(
 					index,
-					createSimpleTreeParam(
+					createNodeParam(
 						length + branchLengthRandomOffset,
 						count +  branchCountRandomOffset,
 						leafOnly,
 						upLoopTimes,
 						downLoopTimes,
-						loopOffsetUp + upLoopBranchLengthModifier * i,
-						loopOffsetDown + downLoopBranchLengthModifier * i
+						loopOffsetUp,
+						loopOffsetDown
 					)
 				);
 
 				if (i != 1 && lowestNode + regenOffset * i != topNode) {
-					decorators.removeFirst();
 					decorators.removeLast();
-
-					decorators.forEach(decorator -> nodes.put(index, decorator));
+					nodes.put(index, decorators.get(i));
 				}
 			}
 		}
