@@ -1206,6 +1206,7 @@
   "attribute.name.eternal_starlight.generic.thrown_potion_distance": "投げたポーションの飛距離",
   "attribute.name.eternal_starlight.generic.ether_resistance": "エーテル耐性",
   "attribute.name.eternal_starlight.generic.fire_resistance": "火炎耐性",
+  "attribute.name.eternal_starlight.generic.cold_resistance": "Cold Resistance",
   "attribute.name.eternal_starlight.generic.meteor_counterattack_chance": "流星反撃確率",
   "attribute.name.eternal_starlight.generic.heal_multiplier": "回復倍率",
   "attribute.name.eternal_starlight.generic.enemy_follow_range_multiplier": "敵の追跡範囲倍率",
