@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-23T17:52:40.4779808	Book definitions generator for eternal_starlight
+// 1.21.1	2026-08-28T00:23:27.0536098	Book definitions generator for eternal_starlight
 e72745e84d0f059ec938a727882fda0fe1da92bf assets/eternal_starlight/eternal_starlight/books/main.json
 e6f49918ea472a13649fec32ca804eb0cad7d1ca assets/eternal_starlight/eternal_starlight/books/sections/accessories.json
 1f009c6eeb70d9f1a6b70db16fb9c6717d1c1fef assets/eternal_starlight/eternal_starlight/books/sections/accumulator.json
@@ -34,7 +34,7 @@ c21e68b13e4967fd2b2fccd56c4e951b9e20e3bc assets/eternal_starlight/eternal_starli
 a9430b7413347a5e2728effde6bdbbe272c8aeda assets/eternal_starlight/eternal_starlight/books/sections/rookfish.json
 80f117343e9eac6e932082ddcfa0c946a9d16115 assets/eternal_starlight/eternal_starlight/books/sections/seeds_launcher.json
 46b67d33029eb417ac32b1cdec466ac812b5404b assets/eternal_starlight/eternal_starlight/books/sections/seeker.json
-8be1b85c7f584f77538f01f31079c52e0f235eaf assets/eternal_starlight/eternal_starlight/books/sections/seeking_eye.json
+c8d0cb613a55905cc4e6a0628dde9d2052f1de6f assets/eternal_starlight/eternal_starlight/books/sections/seeking_eye.json
 6eaaa6b14e116b0af4cb1a3e0e45ce0e4a97edee assets/eternal_starlight/eternal_starlight/books/sections/shadow_snail.json
 0f2f6e117708b2f070ffb6a84ec16dfa00b70e84 assets/eternal_starlight/eternal_starlight/books/sections/shimmer_lacewing.json
 a6d689e3d5a6d57193fbdfe1c20e62fba3f3eeb7 assets/eternal_starlight/eternal_starlight/books/sections/silver_pungency_fruit.json

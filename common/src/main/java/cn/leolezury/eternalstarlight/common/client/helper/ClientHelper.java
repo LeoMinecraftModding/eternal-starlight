@@ -44,11 +44,15 @@ public class ClientHelper {
 
 	}
 
-	public void handleMeteorShowerClientTick() {
+	public void meteorShowerClientTick() {
 
 	}
 
-	public float handleMeteorShowerRainLevel() {
+	public float getWeatherStateRainLevel() {
 		return 0;
+	}
+
+	public void openSeekingEyeGui() {
+
 	}
 }

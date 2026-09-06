@@ -813,26 +813,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.GOLEM_STEEL_INGOT.get(),
 				ESItems.GOLEM_STEEL_NUGGET.get()
 			);
-		tag(ESTags.Items.GOLEM_FORGE_LOCATORS)
-			.add(
-				Items.REDSTONE,
-				ESItems.OXIDIZED_GOLEM_STEEL_INGOT.get(),
-				ESItems.GOLEM_STEEL_INGOT.get()
-			);
-		tag(ESTags.Items.CURSED_GARDEN_LOCATORS)
-			.add(
-				Items.VINE,
-				ESItems.CAVE_MOSS.get(),
-				ESItems.LUNAR_BERRIES.get(),
-				ESItems.CAVE_MOSS_BLOCK.get(),
-				ESItems.CAVE_MOSS_CARPET.get(),
-				ESItems.RED_CRYSTAL_MOSS_BLOCK.get(),
-				ESItems.BLUE_CRYSTAL_MOSS_BLOCK.get(),
-				ESItems.RED_CRYSTAL_MOSS_CARPET.get(),
-				ESItems.BLUE_CRYSTAL_MOSS_CARPET.get(),
-				ESItems.RED_CRYSTAL_ROOTS.get(),
-				ESItems.BLUE_CRYSTAL_ROOTS.get()
-			);
 		tag(ESTags.Items.ARROW_FEATHERS)
 			.addTag(Tags.Items.FEATHERS)
 			.add(

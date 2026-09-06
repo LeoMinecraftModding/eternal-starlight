@@ -77,8 +77,6 @@ public class ESTags {
 		public static final TagKey<Item> AXE_ACCESSORY_APPLICABLE = create("accessory_applicable/axe");
 		public static final TagKey<Item> HAMMER_ACCESSORY_APPLICABLE = create("accessory_applicable/hammer");
 		public static final TagKey<Item> AFFECTS_PROGRESSION = create("affects_progression");
-		public static final TagKey<Item> GOLEM_FORGE_LOCATORS = create("golem_forge_locators");
-		public static final TagKey<Item> CURSED_GARDEN_LOCATORS = create("cursed_garden_locators");
 		public static final TagKey<Item> ARROW_FEATHERS = create("arrow_feathers");
 		public static final TagKey<Item> WIP = create("wip");
 
@@ -161,8 +159,6 @@ public class ESTags {
 
 	public static class Structures {
 		public static final TagKey<Structure> BOSS_LANDMARKS = create("boss_landmarks");
-		public static final TagKey<Structure> GOLEM_FORGE = create("golem_forge");
-		public static final TagKey<Structure> CURSED_GARDEN = create("cursed_garden");
 		public static final TagKey<Structure> PORTAL_RUINS = create("portal_ruins");
 		public static final TagKey<Structure> TERRAIN_ADAPTIVE = create("terrain_adaptive");
 

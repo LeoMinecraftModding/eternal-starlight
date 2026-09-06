@@ -23,14 +23,6 @@ public class ESStructureTagsProvider extends StructureTagsProvider {
 				ESStructures.GOLEM_FORGE,
 				ESStructures.CURSED_GARDEN
 			);
-		tag(ESTags.Structures.GOLEM_FORGE)
-			.add(
-				ESStructures.GOLEM_FORGE
-			);
-		tag(ESTags.Structures.CURSED_GARDEN)
-			.add(
-				ESStructures.CURSED_GARDEN
-			);
 		tag(ESTags.Structures.PORTAL_RUINS)
 			.add(
 				ESStructures.PORTAL_RUINS_COMMON,

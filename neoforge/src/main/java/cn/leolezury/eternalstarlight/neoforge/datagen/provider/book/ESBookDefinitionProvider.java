@@ -240,16 +240,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				.textDisplay(simpleColoredTranslated(ESItems.SEEKING_EYE.get().getDescriptionId()), true, 65, 45, 110, 12, 3, 1.5f)
 				.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 10, 20, 20)
 				.itemDisplay(itemTag(provider, ESItems.SEEKING_EYE.get()), 55 + 2, 10 + 2)),
-			new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("seeking_eye"), enterUnlock(), simpleColoredTranslatedBookContent("seeking_eye"), 10, 20, 130, 12)),
-			new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("seeking_eye_locators"), enterUnlock(), simpleColoredTranslatedBookContent("seeking_eye.locator_items"), 0, 0, 130, 12)),
-			new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("seeking_eye_locators_starlight_golem"), enterUnlock(), 50)
-				.textDisplay(new BookContent(List.of(new BookText(false, "${color: #acfffc}${link: " + EternalStarlight.ID + ":starlight_golem_display}"), new BookText(true, ESEntities.STARLIGHT_GOLEM.get().getDescriptionId()))), true, 65, 35, 110, 9, 6, 1)
-				.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 5, 20, 20)
-				.itemTagDisplay(ESTags.Items.GOLEM_FORGE_LOCATORS, 55 + 2, 5 + 2)),
-			new ConfiguredBookComponent<>(BookComponentRegistry.DISPLAY, new DisplayBookComponent.Config(EternalStarlight.id("seeking_eye_locators_lunar_monstrosity"), enterUnlock(), 50)
-				.textDisplay(new BookContent(List.of(new BookText(false, "${color: #acfffc}${link: " + EternalStarlight.ID + ":lunar_monstrosity_display}"), new BookText(true, ESEntities.LUNAR_MONSTROSITY.get().getDescriptionId()))), true, 65, 35, 110, 9, 6, 1)
-				.imageDisplay(EternalStarlight.id("textures/gui/screen/book/slot.png"), 55, 5, 20, 20)
-				.itemTagDisplay(ESTags.Items.CURSED_GARDEN_LOCATORS, 55 + 2, 5 + 2))
+			new ConfiguredBookComponent<>(BookComponentRegistry.TEXT, new TextBookComponent.Config(EternalStarlight.id("seeking_eye"), enterUnlock(), simpleColoredTranslatedBookContent("seeking_eye"), 10, 20, 130, 12))
 		);
 	}
 

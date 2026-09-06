@@ -463,6 +463,7 @@ public class ESCommonSetupHandler {
 		strategy.register(ESPackets.GATEKEEPER_TALK);
 		strategy.register(ESPackets.UPDATE_BOSS_BAR);
 		strategy.register(ESPackets.POST_EFFECT);
+		strategy.register(ESPackets.SELECT_SEEKING_EYE_TARGET);
 	}
 
 	public interface EntityAttributeRegisterStrategy {

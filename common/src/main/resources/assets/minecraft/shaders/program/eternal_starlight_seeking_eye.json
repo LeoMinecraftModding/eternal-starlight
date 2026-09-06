@@ -1,0 +1,151 @@
+{
+  "vertex": "blit",
+  "fragment": "eternal_starlight_seeking_eye",
+  "attributes": [
+    "Position"
+  ],
+  "samplers": [
+    {
+      "name": "DiffuseSampler"
+    }
+  ],
+  "uniforms": [
+    {
+      "name": "ProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "OutSize",
+      "type": "float",
+      "count": 2,
+      "values": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "ScreenSize",
+      "type": "float",
+      "count": 2,
+      "values": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "uTime",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uFade",
+      "type": "float",
+      "count": 1,
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "name": "uStarCount",
+      "type": "int",
+      "count": 1,
+      "values": [
+        0
+      ]
+    },
+    {
+      "name": "uHoverIndex",
+      "type": "int",
+      "count": 1,
+      "values": [
+        -1
+      ]
+    },
+    {
+      "name": "uStarPositions",
+      "type": "float",
+      "count": 128,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uStarRadii",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uStarColors",
+      "type": "float",
+      "count": 192,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uStarAlphas",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uStarPhases",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uStarRotations",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uStarRayCounts",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "uStarRayLengths",
+      "type": "float",
+      "count": 64,
+      "values": [
+        0.0
+      ]
+    }
+  ]
+}

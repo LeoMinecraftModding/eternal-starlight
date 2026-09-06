@@ -63,7 +63,7 @@ public class ESFabricEntrypoint implements ModInitializer {
 			@Override
 			public <T extends CustomPacketPayload> void register(ESPackets.PacketInfo<T> packetInfo) {
 				if (packetInfo.direction() != ESPackets.Direction.SERVER_TO_CLIENT) {
-					ServerPlayNetworking.registerGlobalReceiver(packetInfo.type(), (payload, context) -> packetInfo.handler().handle(payload, context.player()));
+					ServerPlayNetworking.registerGlobalReceiver(packetInfo.type(), (payload, context) -> context.server().execute(() -> packetInfo.handler().handle(payload, context.player())));
 				}
 			}
 		});

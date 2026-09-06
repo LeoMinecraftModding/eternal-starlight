@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.client.book.component.ConfiguredBook
 import cn.leolezury.eternalstarlight.common.client.book.component.IndexBookComponent;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.BookScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.GatekeeperDialogueScreen;
+import cn.leolezury.eternalstarlight.common.client.gui.screen.SeekingEyeScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.toast.SimpleTextToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
@@ -217,7 +218,7 @@ public class ClientSideHelper extends ClientHelper {
 	}
 
 	@Override
-	public void handleMeteorShowerClientTick() {
+	public void meteorShowerClientTick() {
 		ClientLevel level = Minecraft.getInstance().level;
 		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
 		if (level != null && level.getGameTime() % 20 == 0) {
@@ -228,9 +229,14 @@ public class ClientSideHelper extends ClientHelper {
 	}
 
 	@Override
-	public float handleMeteorShowerRainLevel() {
+	public float getWeatherStateRainLevel() {
 		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
 		ClientWeatherState.levelTarget = 1;
 		return ClientWeatherState.getRainLevel(partialTick);
+	}
+
+	@Override
+	public void openSeekingEyeGui() {
+		Minecraft.getInstance().setScreen(new SeekingEyeScreen());
 	}
 }

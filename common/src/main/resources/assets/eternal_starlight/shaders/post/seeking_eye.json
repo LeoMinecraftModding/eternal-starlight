@@ -1,0 +1,17 @@
+{
+  "targets": [
+    "eternal_starlight_seeking_eye_swap"
+  ],
+  "passes": [
+    {
+      "name": "eternal_starlight_seeking_eye",
+      "intarget": "minecraft:main",
+      "outtarget": "eternal_starlight_seeking_eye_swap"
+    },
+    {
+      "name": "eternal_starlight_post_copy",
+      "intarget": "eternal_starlight_seeking_eye_swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

@@ -277,7 +277,7 @@ public class ESEntities {
 		() -> EntityType.Builder.<EyeOfSeeking>of(EyeOfSeeking::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F)
 			.clientTrackingRange(4)
-			.updateInterval(4)
+			.updateInterval(1)
 			.build(EternalStarlight.id("eye_of_seeking").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<TheGatekeeper>> THE_GATEKEEPER = ENTITIES.register(

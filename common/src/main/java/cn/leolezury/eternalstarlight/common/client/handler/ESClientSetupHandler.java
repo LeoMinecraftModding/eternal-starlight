@@ -7,8 +7,6 @@ import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.AlloyFurnaceScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrateScreen;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.CrystalbornCatalystScreen;
-import cn.leolezury.eternalstarlight.common.client.model.animation.PlayerAnimator;
-import cn.leolezury.eternalstarlight.common.client.model.animation.definition.PlayerAnimation;
 import cn.leolezury.eternalstarlight.common.client.model.armor.AlchemistArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.StarlitDiamondArmorModel;
 import cn.leolezury.eternalstarlight.common.client.model.armor.ThermalSpringStoneArmorModel;
@@ -462,7 +460,8 @@ public class ESClientSetupHandler {
 		registerSimpleSpecialModel("doomeden_rapier");
 		registerSimpleSpecialModel("orb_of_prophecy");
 
-		PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
+		// TODO REWORK PLAYER ANIMATION SYSTEM
+		// PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 
 		TrailVisualEffect.registerTrailRenderType(ESEntities.AETHERSENT_METEOR.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
 		TrailVisualEffect.registerTrailRenderType(ESEntities.GATEKEEPER_FIREBALL.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
@@ -899,7 +898,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.AETHERSTRIKE_ROCKET.get(), AetherstrikeRocketRenderer::new);
 		strategy.register(ESEntities.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
 		strategy.register(ESEntities.CHEST_BOAT.get(), (context) -> new ESBoatRenderer(context, true));
-		strategy.register(ESEntities.EYE_OF_SEEKING.get(), ThrownItemRenderer::new);
+		strategy.register(ESEntities.EYE_OF_SEEKING.get(), EyeOfSeekingRenderer::new);
 		strategy.register(ESEntities.BOARWARF.get(), BoarwarfRenderer::new);
 		strategy.register(ESEntities.ASTRAL_GOLEM.get(), AstralGolemRenderer::new);
 		strategy.register(ESEntities.GLEECH.get(), GleechRenderer::new);

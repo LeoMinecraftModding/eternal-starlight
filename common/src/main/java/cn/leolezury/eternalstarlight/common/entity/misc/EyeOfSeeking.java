@@ -11,181 +11,231 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Optional;
+import java.util.UUID;
+
 public class EyeOfSeeking extends Entity implements ItemSupplier {
 	private static final String TAG_ITEM = "item";
-	private static final String TAG_SURVIVE_AFTER_DEATH = "survive_after_death";
+	private static final String TAG_TARGET = "target";
+	private static final String TAG_OWNER = "owner";
 
-	private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(EyeOfSeeking.class, EntityDataSerializers.ITEM_STACK);
-	private double tx;
-	private double ty;
-	private double tz;
-	private int life;
-	private boolean surviveAfterDeath;
+	private static final EntityDataAccessor<ItemStack> ITEM_STACK = SynchedEntityData.defineId(EyeOfSeeking.class, EntityDataSerializers.ITEM_STACK);
+	private static final EntityDataAccessor<Optional<BlockPos>> TARGET = SynchedEntityData.defineId(EyeOfSeeking.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
+	private static final EntityDataAccessor<Integer> OWNER_ID = SynchedEntityData.defineId(EyeOfSeeking.class, EntityDataSerializers.INT);
+
+	private UUID ownerId;
+	private Player cachedOwner;
+
+	private int lerpSteps;
+	private double lerpX, lerpY, lerpZ;
+	private float lerpYRot, lerpXRot;
 
 	public EyeOfSeeking(EntityType<? extends EyeOfSeeking> entityType, Level level) {
 		super(entityType, level);
+		this.noCulling = true;
 	}
 
-	public EyeOfSeeking(Level level, double d, double e, double f) {
+	public EyeOfSeeking(Level level, double x, double y, double z) {
 		this(ESEntities.EYE_OF_SEEKING.get(), level);
-		this.setPos(d, e, f);
+		this.setPos(x, y, z);
 	}
 
 	public void setItem(ItemStack itemStack) {
 		if (itemStack.isEmpty()) {
-			this.getEntityData().set(DATA_ITEM_STACK, this.getDefaultItem());
+			this.getEntityData().set(ITEM_STACK, this.getDefaultItem());
 		} else {
-			this.getEntityData().set(DATA_ITEM_STACK, itemStack.copyWithCount(1));
+			this.getEntityData().set(ITEM_STACK, itemStack.copyWithCount(1));
 		}
+	}
 
+	public void setOwner(UUID ownerId) {
+		this.ownerId = ownerId;
+		this.cachedOwner = null;
+	}
+
+	public int getOwnerId() {
+		return this.getEntityData().get(OWNER_ID);
+	}
+
+	public void setOwnerId(int ownerId) {
+		this.getEntityData().set(OWNER_ID, ownerId);
+	}
+
+	public void signalTo(BlockPos blockPos) {
+		this.getEntityData().set(TARGET, Optional.of(blockPos.immutable()));
+	}
+
+	public Optional<BlockPos> getTarget() {
+		return this.getEntityData().get(TARGET);
 	}
 
 	@Override
 	public ItemStack getItem() {
-		return this.getEntityData().get(DATA_ITEM_STACK);
+		return this.getEntityData().get(ITEM_STACK);
 	}
 
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		builder.define(DATA_ITEM_STACK, this.getDefaultItem());
+		builder.define(ITEM_STACK, this.getDefaultItem());
+		builder.define(TARGET, Optional.empty());
+		builder.define(OWNER_ID, -1);
 	}
 
+	@Override
+	public void lerpTo(double x, double y, double z, float yRot, float xRot, int steps) {
+		this.lerpSteps = steps;
+		this.lerpX = x;
+		this.lerpY = y;
+		this.lerpZ = z;
+		this.lerpYRot = yRot;
+		this.lerpXRot = xRot;
+	}
+
+	@Override
+	public double lerpTargetX() {
+		return this.lerpX;
+	}
+
+	@Override
+	public double lerpTargetY() {
+		return this.lerpY;
+	}
+
+	@Override
+	public double lerpTargetZ() {
+		return this.lerpZ;
+	}
+
+	@Override
+	public float lerpTargetYRot() {
+		return this.lerpYRot;
+	}
+
+	@Override
+	public float lerpTargetXRot() {
+		return this.lerpXRot;
+	}
+
+	@Override
 	public boolean shouldRenderAtSqrDistance(double d) {
 		double e = this.getBoundingBox().getSize() * 4.0;
 		if (Double.isNaN(e)) {
 			e = 4.0;
 		}
-
 		e *= 64.0;
 		return d < e * e;
 	}
 
-	public void signalTo(BlockPos blockPos) {
-		double d = blockPos.getX();
-		int i = blockPos.getY();
-		double e = blockPos.getZ();
-		double f = d - this.getX();
-		double g = e - this.getZ();
-		double h = Math.sqrt(f * f + g * g);
-		if (h > 12.0) {
-			this.tx = this.getX() + f / h * 12.0;
-			this.tz = this.getZ() + g / h * 12.0;
-			this.ty = this.getY() + 8.0;
-		} else {
-			this.tx = d;
-			this.ty = i;
-			this.tz = e;
+	public Player getOwner() {
+		if (cachedOwner != null && (cachedOwner.isRemoved() || cachedOwner.level() != level() || !cachedOwner.getUUID().equals(ownerId))) {
+			cachedOwner = null;
 		}
-
-		this.life = 0;
-		this.surviveAfterDeath = this.random.nextInt(5) > 0;
+		if (cachedOwner == null) {
+			if (level().isClientSide) {
+				Entity entity = level().getEntity(getOwnerId());
+				if (entity instanceof Player player) {
+					cachedOwner = player;
+				}
+			} else if (ownerId != null && level() instanceof ServerLevel serverLevel) {
+				cachedOwner = serverLevel.getPlayerByUUID(ownerId);
+			}
+		}
+		return cachedOwner;
 	}
 
-	public void setSurviveAfterDeath(boolean surviveAfterDeath) {
-		this.surviveAfterDeath = surviveAfterDeath;
-	}
-
-	@Override
-	public void lerpMotion(double d, double e, double f) {
-		this.setDeltaMovement(d, e, f);
-		if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
-			double g = Math.sqrt(d * d + f * f);
-			this.setYRot((float) (Mth.atan2(d, f) * 57.2957763671875));
-			this.setXRot((float) (Mth.atan2(e, g) * 57.2957763671875));
-			this.yRotO = this.getYRot();
-			this.xRotO = this.getXRot();
-		}
-
-	}
-
-	protected float lerpRotation(float f, float g) {
-		while (g - f < -180.0F) {
-			f -= 360.0F;
-		}
-
-		while (g - f >= 180.0F) {
-			f += 360.0F;
-		}
-
-		return Mth.lerp(0.2F, f, g);
+	public Vec3 getTargetPosition() {
+		return getTarget().map(Vec3::atCenterOf).orElse(null);
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		Vec3 vec3 = this.getDeltaMovement();
-		double d = this.getX() + vec3.x;
-		double e = this.getY() + vec3.y;
-		double f = this.getZ() + vec3.z;
-		double g = vec3.horizontalDistance();
-		this.setXRot(lerpRotation(this.xRotO, (float) (Mth.atan2(vec3.y, g) * 57.2957763671875)));
-		this.setYRot(lerpRotation(this.yRotO, (float) (Mth.atan2(vec3.x, vec3.z) * 57.2957763671875)));
-		if (!this.level().isClientSide) {
-			double h = this.tx - d;
-			double i = this.tz - f;
-			float j = (float) Math.sqrt(h * h + i * i);
-			float k = (float) Mth.atan2(i, h);
-			double l = Mth.lerp(0.0025, g, j);
-			double m = vec3.y;
-			if (j < 1.0F) {
-				l *= 0.8;
-				m *= 0.8;
-			}
-
-			int n = this.getY() < this.ty ? 1 : -1;
-			vec3 = new Vec3(Math.cos(k) * l, m + ((double) n - m) * 0.014999999664723873, Math.sin(k) * l);
-			this.setDeltaMovement(vec3);
+		if (level().isClientSide && this.lerpSteps > 0) {
+			this.lerpPositionAndRotationStep(this.lerpSteps, this.lerpX, this.lerpY, this.lerpZ, this.lerpYRot, this.lerpXRot);
+			this.lerpSteps--;
 		}
-
-		if (this.isInWater()) {
-			for (int p = 0; p < 4; ++p) {
-				this.level().addParticle(ParticleTypes.BUBBLE, d - vec3.x * 0.25, e - vec3.y * 0.25, f - vec3.z * 0.25, vec3.x, vec3.y, vec3.z);
-			}
-		} else {
-			this.level().addParticle(ParticleTypes.PORTAL, d - vec3.x * 0.25 + this.random.nextDouble() * 0.6 - 0.3, e - vec3.y * 0.25 - 0.5, f - vec3.z * 0.25 + this.random.nextDouble() * 0.6 - 0.3, vec3.x, vec3.y, vec3.z);
-		}
-
-		if (!this.level().isClientSide) {
-			this.setPos(d, e, f);
-			++this.life;
-			if (this.life > 80 && !this.level().isClientSide) {
-				this.playSound(ESSoundEvents.SEEKING_EYE_DEATH.get(), 1.0F, 1.0F);
+		Vec3 targetPos = getTargetPosition();
+		if (targetPos == null) {
+			if (!level().isClientSide) {
 				this.discard();
-				if (this.surviveAfterDeath) {
-					this.level().addFreshEntity(new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), this.getItem()));
-				} else if (level() instanceof ServerLevel serverLevel) {
-					serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, getItem()), this.getX() + (this.random.nextFloat() - 0.5) * getBbWidth(), this.getY() + random.nextFloat() * getBbHeight(), this.getZ() + (this.random.nextFloat() - 0.5) * getBbWidth(), 5, 0.2, 0.2, 0.2, 0.0);
+			}
+			return;
+		}
+		if (!level().isClientSide) {
+			Player owner = getOwner();
+			if (owner == null || owner.level() != level()) {
+				this.discard();
+				return;
+			}
+			int ownerEntityId = owner.getId();
+			if (getOwnerId() != ownerEntityId) {
+				setOwnerId(ownerEntityId);
+			}
+			Vec3 ownerPos = owner.position().add(0, owner.getBbHeight() / 2, 0);
+			setPos(getPositionForOwner(ownerPos, targetPos));
+		}
+	}
+
+	public Vec3 getPositionForOwner(Vec3 ownerPos, Vec3 targetPos) {
+		Vec3 toTarget = targetPos.subtract(ownerPos);
+		Vec3 horizontal = new Vec3(toTarget.x, 0, toTarget.z);
+		double length = Math.max(toTarget.length(), 0.1);
+		double horizontalLength = Math.max(horizontal.length(), 0.1);
+		return ownerPos.add(toTarget.scale(Math.min(1.5 / horizontalLength, 2 / length)));
+	}
+
+	@Override
+	public InteractionResult interact(Player player, InteractionHand hand) {
+		if (!level().isClientSide) {
+			this.playSound(ESSoundEvents.SEEKING_EYE_DEATH.get(), 1.0F, 1.0F);
+			if (this.random.nextFloat() < 0.2F) {
+				if (level() instanceof ServerLevel serverLevel) {
+					serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, this.getItem()), this.getX(), this.getY() + this.getBbHeight() / 2, this.getZ(), 10, 0.2, 0.2, 0.2, 0.1);
+				}
+			} else if (!player.hasInfiniteMaterials()) {
+				ItemStack item = this.getItem();
+				if (!player.getInventory().add(item)) {
+					this.level().addFreshEntity(new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), item));
 				}
 			}
-		} else {
-			this.setPosRaw(d, e, f);
+			this.discard();
 		}
-
+		return InteractionResult.SUCCESS;
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		compoundTag.put(TAG_ITEM, this.getItem().save(this.registryAccess()));
-		compoundTag.putBoolean(TAG_SURVIVE_AFTER_DEATH, surviveAfterDeath);
+		getTarget().ifPresent(pos -> compoundTag.putLong(TAG_TARGET, pos.asLong()));
+		if (ownerId != null) {
+			compoundTag.putUUID(TAG_OWNER, ownerId);
+		}
 	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
-		if (compoundTag.contains(TAG_ITEM, 10)) {
+		if (compoundTag.contains(TAG_ITEM, CompoundTag.TAG_COMPOUND)) {
 			this.setItem(ItemStack.parse(this.registryAccess(), compoundTag.getCompound(TAG_ITEM)).orElse(this.getDefaultItem()));
 		} else {
 			this.setItem(this.getDefaultItem());
 		}
-		this.surviveAfterDeath = compoundTag.getBoolean(TAG_SURVIVE_AFTER_DEATH);
+		if (compoundTag.contains(TAG_TARGET)) {
+			this.signalTo(BlockPos.of(compoundTag.getLong(TAG_TARGET)));
+		}
+		if (compoundTag.hasUUID(TAG_OWNER)) {
+			this.ownerId = compoundTag.getUUID(TAG_OWNER);
+		}
 	}
 
 	private ItemStack getDefaultItem() {
@@ -193,7 +243,12 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 	}
 
 	@Override
-	public boolean isAttackable() {
-		return false;
+	public boolean isPickable() {
+		return true;
+	}
+
+	@Override
+	public float getPickRadius() {
+		return 1.0F;
 	}
 }
