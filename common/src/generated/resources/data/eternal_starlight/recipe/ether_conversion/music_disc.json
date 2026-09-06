@@ -1,0 +1,22 @@
+{
+  "type": "eternal_starlight:ether_conversion",
+  "input": {
+    "tag": "c:music_discs"
+  },
+  "outputs": [
+    {
+      "output": {
+        "count": 1,
+        "id": "eternal_starlight:music_disc_spirit"
+      },
+      "weight": 1
+    },
+    {
+      "output": {
+        "count": 1,
+        "id": "eternal_starlight:music_disc_ether_rain"
+      },
+      "weight": 1
+    }
+  ]
+}

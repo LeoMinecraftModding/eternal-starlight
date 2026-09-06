@@ -1,17 +1,22 @@
 package cn.leolezury.eternalstarlight.common.mixin.client;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.registry.ESAttributes;
 import cn.leolezury.eternalstarlight.common.registry.ESDataAttachments;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -31,6 +36,19 @@ public abstract class ScreenEffectRendererMixin {
 				renderAbyssalFlame(poseStack);
 			}
 		}
+	}
+
+	@WrapOperation(method = "renderFire", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/VertexConsumer;setColor(FFFF)Lcom/mojang/blaze3d/vertex/VertexConsumer;"))
+	private static VertexConsumer setColor(VertexConsumer instance, float r, float g, float b, float a, Operation<VertexConsumer> original) {
+		LocalPlayer player = Minecraft.getInstance().player;
+		float newA = a;
+		if (player != null) {
+			AttributeInstance resistance = player.getAttribute(ESAttributes.FIRE_RESISTANCE.asHolder());
+			if (resistance != null) {
+				newA *= (float) (1 - resistance.getValue());
+			}
+		}
+		return original.call(instance, r, g, b, newA);
 	}
 
 	@Unique

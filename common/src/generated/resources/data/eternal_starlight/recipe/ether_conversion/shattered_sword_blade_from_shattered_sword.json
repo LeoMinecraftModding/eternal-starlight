@@ -1,0 +1,15 @@
+{
+  "type": "eternal_starlight:ether_conversion",
+  "input": {
+    "item": "eternal_starlight:shattered_sword"
+  },
+  "outputs": [
+    {
+      "output": {
+        "count": 1,
+        "id": "eternal_starlight:shattered_sword_blade"
+      },
+      "weight": 1
+    }
+  ]
+}

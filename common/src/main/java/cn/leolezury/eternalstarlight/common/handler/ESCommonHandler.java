@@ -6,7 +6,6 @@ import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.data.ESDimensions;
-import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.entity.attack.CrystalCluster;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
@@ -22,6 +21,7 @@ import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.item.interfaces.SwingAttackWeapon;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
+import cn.leolezury.eternalstarlight.common.item.recipe.EtherConversionRecipe;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
@@ -39,12 +39,9 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -70,8 +67,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
-import net.minecraft.world.entity.decoration.Painting;
-import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -80,7 +75,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -258,6 +253,14 @@ public class ESCommonHandler {
 		if (entity.getItemBySlot(EquipmentSlot.CHEST).is(ESItems.UNREALIUM_CHESTPLATE.get()) && source.is(DamageTypes.CRAMMING)) {
 			return false;
 		}
+		AttributeInstance fireResistance = entity.getAttribute(ESAttributes.FIRE_RESISTANCE.asHolder());
+		if (source.is(DamageTypeTags.IS_FIRE) && fireResistance != null && fireResistance.getValue() >= 1.0f) {
+			return false;
+		}
+		AttributeInstance coldResistance = entity.getAttribute(ESAttributes.COLD_RESISTANCE.asHolder());
+		if (source.is(ESTags.DamageTypes.IS_COLD) && coldResistance != null && coldResistance.getValue() >= 1.0f) {
+			return false;
+		}
 		return true;
 	}
 
@@ -300,6 +303,12 @@ public class ESCommonHandler {
 				}
 			}
 			AttributeInstance resistance = entity.getAttribute(ESAttributes.FIRE_RESISTANCE.asHolder());
+			if (resistance != null) {
+				modified *= (1 - (float) resistance.getValue());
+			}
+		}
+		if (source.is(ESTags.DamageTypes.IS_COLD)) {
+			AttributeInstance resistance = entity.getAttribute(ESAttributes.COLD_RESISTANCE.asHolder());
 			if (resistance != null) {
 				modified *= (1 - (float) resistance.getValue());
 			}
@@ -532,35 +541,22 @@ public class ESCommonHandler {
 			if (!level.isClientSide) {
 				if (item.tickCount % 100 == 0 && ESBlockUtil.isEntityInBlock(item, ESBlocks.ETHER.get())) {
 					ItemStack content = item.getItem();
-					if (content.is(ConventionalTags.Items.MUSIC_DISCS) && !content.is(ESItems.MUSIC_DISC_SPIRIT.get()) && !content.is(ESItems.MUSIC_DISC_ETHER_RAIN.get())) {
-						item.setItem(level.getRandom().nextBoolean() ? ESItems.MUSIC_DISC_SPIRIT.get().getDefaultInstance() : ESItems.MUSIC_DISC_ETHER_RAIN.get().getDefaultInstance());
-						item.addDeltaMovement(new Vec3(0, 0.75, 0));
-						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
-					} else if (content.is(ESItems.STARLIT_PAINTING.get())) {
-						CustomData data = content.get(DataComponents.ENTITY_DATA);
-						if (data != null) {
-							Holder<PaintingVariant> variant = data.read(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC).getOrThrow();
-							CustomData newData = null;
-							if (variant.is(ESPaintingVariants.ENERGIZED)) {
-								newData = data.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.ENERGIZED_SPECIAL)).getOrThrow();
-							} else if (variant.is(ESPaintingVariants.ABSOLUTE_ZERO)) {
-								newData = data.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.ABSOLUTE_ZERO_SPECIAL)).getOrThrow();
-							} else if (variant.is(ESPaintingVariants.MONSTROUS)) {
-								newData = data.update(level.registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.MONSTROUS_SPECIAL)).getOrThrow();
-							}
-							if (newData != null) {
-								ItemStack copy = content.copy();
-								copy.set(DataComponents.ENTITY_DATA, newData);
-								item.setItem(copy);
-								item.addDeltaMovement(new Vec3(0, 0.75, 0));
+					level.getRecipeManager().getRecipeFor(ESRecipes.ETHER_CONVERSION.get(), new SingleRecipeInput(content), level).ifPresent(recipeHolder -> {
+						EtherConversionRecipe recipe = recipeHolder.value();
+						if (content.getCount() >= recipe.inputCount()) {
+							ItemStack output = recipe.rollOutput(level.getRandom());
+							if (!output.isEmpty()) {
+								content.shrink(recipe.inputCount());
+								ItemEntity outputItem = new ItemEntity(level, item.getX(), item.getY(), item.getZ(), output);
+								outputItem.addDeltaMovement(new Vec3(0, 0.75, 0));
+								level.addFreshEntity(outputItem);
 								level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
+								if (content.isEmpty()) {
+									item.discard();
+								}
 							}
 						}
-					} else if (content.is(ESTags.Items.ACCESSORIES)) {
-						item.setItem(ESItems.BUTTERFLY_WINGS_AMULET.get().getDefaultInstance());
-						item.addDeltaMovement(new Vec3(0, 0.75, 0));
-						level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
-					}
+					});
 				}
 			}
 		}

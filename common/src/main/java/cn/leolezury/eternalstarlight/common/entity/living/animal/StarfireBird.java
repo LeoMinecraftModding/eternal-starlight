@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.StarfireBirdNestBlock;
 import cn.leolezury.eternalstarlight.common.block.entity.StarfireBirdNestBlockEntity;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
@@ -10,12 +11,15 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESPoiTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
+import cn.leolezury.eternalstarlight.common.util.ESCodecUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -61,9 +65,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.EnumSet;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class StarfireBird extends Animal implements FlyingAnimal {
 	public static final String TAG_SPECIAL_VARIANT = "special_variant";
@@ -71,8 +73,10 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 	private static final String TAG_STAY_OUT_OF_NEST_TICKS = "stay_out_of_nest_ticks";
 	private static final String TAG_HAS_EGG = "has_egg";
 	private static final String TAG_TRUSTED_PLAYERS = "trusted_players";
-	private static final String TAG_GIFT_COUNT = "gift_count";
+	private static final String TAG_GIFT_ALLOWANCES = "gift_allowances";
 	private static final String TAG_GIFT_COOLDOWN = "gift_cooldown";
+	private static final int MAX_GIFT_ALLOWANCE = 4;
+	private static final Codec<Map<UUID, Integer>> GIFT_ALLOWANCES_CODEC = ESCodecUtil.createCodecForMap(UUIDUtil.CODEC, Codec.INT);
 	protected static final EntityDataAccessor<Boolean> SPECIAL_VARIANT = SynchedEntityData.defineId(StarfireBird.class, EntityDataSerializers.BOOLEAN);
 
 	public boolean isSpecialVariant() {
@@ -114,11 +118,19 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 		}
 	}
 
-	private int giftCount;
 	private int giftCooldown;
+	private final Map<UUID, Integer> giftAllowances = new HashMap<>();
 
-	public void addGiftCount() {
-		giftCount++;
+	public void addGiftAllowance(@Nullable UUID uuid) {
+		if (uuid != null && !isBaby()) {
+			giftAllowances.merge(uuid, 2 + random.nextInt(3), (existing, granted) -> Math.min(existing + granted, MAX_GIFT_ALLOWANCE));
+		}
+	}
+
+	public void consumeGiftAllowance(@Nullable UUID uuid) {
+		if (uuid != null) {
+			giftAllowances.computeIfPresent(uuid, (ignored, count) -> count > 1 ? count - 1 : null);
+		}
 	}
 
 	private float oldFlapScale, flapScale;
@@ -230,8 +242,10 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 				loveCause.awardStat(Stats.ANIMALS_BRED);
 				CriteriaTriggers.BRED_ANIMALS.trigger(loveCause, this.animal, this.partner, null);
 				StarfireBird.this.addTrustedPlayer(loveCause.getUUID());
+				StarfireBird.this.addGiftAllowance(loveCause.getUUID());
 				if (this.partner instanceof StarfireBird bird) {
 					bird.addTrustedPlayer(loveCause.getUUID());
+					bird.addGiftAllowance(loveCause.getUUID());
 				}
 			}
 
@@ -466,12 +480,20 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 		}
 
 		private boolean canUseGoal() {
-			if (StarfireBird.this.giftCooldown > 0 || StarfireBird.this.giftCount <= 0) {
+			if (StarfireBird.this.giftCooldown > 0) {
 				return false;
 			}
-			if ((giftTarget == null || !giftTarget.isAlive()) && !StarfireBird.this.trustedPlayers.isEmpty()) {
-				UUID playerId = StarfireBird.this.trustedPlayers.get(StarfireBird.this.getRandom().nextInt(StarfireBird.this.trustedPlayers.size()));
-				giftTarget = StarfireBird.this.level().getPlayerByUUID(playerId);
+			if ((giftTarget == null || !giftTarget.isAlive()) && !StarfireBird.this.giftAllowances.isEmpty()) {
+				List<UUID> availablePlayers = new ArrayList<>();
+				for (Map.Entry<UUID, Integer> entry : StarfireBird.this.giftAllowances.entrySet()) {
+					if (entry.getValue() > 0) {
+						availablePlayers.add(entry.getKey());
+					}
+				}
+				if (!availablePlayers.isEmpty()) {
+					UUID playerId = availablePlayers.get(StarfireBird.this.getRandom().nextInt(availablePlayers.size()));
+					giftTarget = StarfireBird.this.level().getPlayerByUUID(playerId);
+				}
 			}
 			return tryTicks < 300 && giftTarget != null && giftTarget.isAlive() && !StarfireBird.this.isBaby();
 		}
@@ -503,9 +525,9 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 					for (ItemStack item : items) {
 						BehaviorUtils.throwItem(StarfireBird.this, item, giftTarget.position().add(0, giftTarget.getBbHeight() / 2, 0));
 					}
+					StarfireBird.this.consumeGiftAllowance(giftTarget.getUUID());
 					giftTarget = null;
 					StarfireBird.this.giftCooldown = 600;
-					StarfireBird.this.giftCount--;
 				}
 			}
 			this.tryTicks++;
@@ -583,6 +605,7 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 		boolean success = super.hurt(source, amount);
 		if (success && source.getEntity() instanceof Player player) {
 			trustedPlayers.remove(player.getUUID());
+			giftAllowances.remove(player.getUUID());
 		}
 		return success;
 	}
@@ -634,7 +657,10 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 				}
 			}
 		}
-		giftCount = compoundTag.getInt(TAG_GIFT_COUNT);
+		this.giftAllowances.clear();
+		if (compoundTag.contains(TAG_GIFT_ALLOWANCES)) {
+			GIFT_ALLOWANCES_CODEC.parse(NbtOps.INSTANCE, compoundTag.get(TAG_GIFT_ALLOWANCES)).resultOrPartial((string) -> EternalStarlight.LOGGER.error("Failed to parse Starfire Bird gift allowances: '{}'", string)).ifPresent(parsed -> parsed.forEach((uuid, count) -> this.giftAllowances.put(uuid, Math.min(count, MAX_GIFT_ALLOWANCE))));
+		}
 		giftCooldown = compoundTag.getInt(TAG_GIFT_COOLDOWN);
 	}
 
@@ -654,7 +680,7 @@ public class StarfireBird extends Animal implements FlyingAnimal {
 			}
 		}
 		compoundTag.put(TAG_TRUSTED_PLAYERS, listTag);
-		compoundTag.putInt(TAG_GIFT_COUNT, giftCount);
+		compoundTag.put(TAG_GIFT_ALLOWANCES, GIFT_ALLOWANCES_CODEC.encodeStart(NbtOps.INSTANCE, this.giftAllowances).getOrThrow());
 		compoundTag.putInt(TAG_GIFT_COOLDOWN, giftCooldown);
 	}
 

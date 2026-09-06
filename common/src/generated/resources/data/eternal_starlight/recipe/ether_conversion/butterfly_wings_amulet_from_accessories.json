@@ -1,0 +1,15 @@
+{
+  "type": "eternal_starlight:ether_conversion",
+  "input": {
+    "tag": "eternal_starlight:accessories"
+  },
+  "outputs": [
+    {
+      "output": {
+        "count": 1,
+        "id": "eternal_starlight:butterfly_wings_amulet"
+      },
+      "weight": 1
+    }
+  ]
+}

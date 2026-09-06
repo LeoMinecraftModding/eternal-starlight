@@ -200,9 +200,9 @@ public class StarfireBirdNestBlockEntity extends SimpleContainerBlockEntity {
 								loveCause = level.getPlayerByUUID(blockEntity.lastSeedPlayer);
 							}
 							bird.setInLove(loveCause);
+							bird.addTrustedPlayer(blockEntity.lastSeedPlayer);
+							bird.addGiftAllowance(blockEntity.lastSeedPlayer);
 						}
-						bird.addTrustedPlayer(blockEntity.lastSeedPlayer);
-						bird.addGiftCount();
 						bird.setStayOutOfNestTicks(renterCooldown);
 					}
 

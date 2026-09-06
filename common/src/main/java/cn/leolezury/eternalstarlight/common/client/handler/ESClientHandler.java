@@ -463,6 +463,12 @@ public class ESClientHandler {
 			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() + (float) fogVision.getValue());
 			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() + (float) fogVision.getValue());
 		}
+
+		AttributeInstance fireResistance = player.getAttribute(ESAttributes.FIRE_RESISTANCE.asHolder());
+		if (fireResistance != null && camera.getFluidInCamera() == FogType.LAVA) {
+			RenderSystem.setShaderFogStart(RenderSystem.getShaderFogStart() + (float) fireResistance.getValue() * 15);
+			RenderSystem.setShaderFogEnd(RenderSystem.getShaderFogEnd() + (float) fireResistance.getValue() * 15);
+		}
 	}
 
 	public static boolean onRenderBlockOverlay(Player player, BlockState state) {

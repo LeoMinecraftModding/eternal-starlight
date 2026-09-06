@@ -13,17 +13,8 @@ import net.minecraft.world.entity.LivingEntity;
 public class AlchemistArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(EternalStarlight.id("alchemist_armor"), "main");
 
-	public final ModelPart head;
-	public final ModelPart body;
-	public final ModelPart rightArm;
-	public final ModelPart leftArm;
-
 	public AlchemistArmorModel(ModelPart root) {
 		super(root);
-		this.head = root.getChild("head");
-		this.body = root.getChild("body");
-		this.rightArm = root.getChild("right_arm");
-		this.leftArm = root.getChild("left_arm");
 	}
 
 	public static LayerDefinition createBodyLayer() {

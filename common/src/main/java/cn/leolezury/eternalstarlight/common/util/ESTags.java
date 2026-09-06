@@ -151,6 +151,7 @@ public class ESTags {
 
 	public static class DamageTypes {
 		public static final TagKey<DamageType> BYPASSES_CRESCENT_PENDANT = create("bypasses_crescent_pendant");
+		public static final TagKey<DamageType> IS_COLD = create("is_cold");
 
 		private static TagKey<DamageType> create(String string) {
 			return TagKey.create(Registries.DAMAGE_TYPE, EternalStarlight.id(string));

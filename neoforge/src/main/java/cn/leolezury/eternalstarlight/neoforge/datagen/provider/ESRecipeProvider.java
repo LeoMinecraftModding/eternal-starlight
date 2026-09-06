@@ -1,24 +1,30 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
 import cn.leolezury.eternalstarlight.common.item.recipe.*;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
-import cn.leolezury.eternalstarlight.common.util.ConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESConventionalTags;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentPredicate;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -265,7 +271,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("FFF")
 			.pattern("FPF")
 			.pattern("FFF")
-			.define('P', ConventionalTags.Items.ENDER_PEARLS)
+			.define('P', Tags.Items.ENDER_PEARLS)
 			.define('F', ESItems.STARLIGHT_FLOWER.get())
 			.unlockedBy("has_item", has(ESItems.STARLIGHT_FLOWER.get()))
 			.save(recipeOutput);
@@ -633,6 +639,47 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(ESItems.DEEPSILVER_INGOT.get()), ESConventionalTags.Items.INGOTS_DEEPSILVER)
 			.unlockedBy(getHasName(ESItems.GOLEM_STEEL_NUGGET.get()), ESConventionalTags.Items.NUGGETS_GOLEM_STEEL)
 			.save(recipeOutput, EternalStarlight.id("alloy/golem_steel"));
+
+		// ether conversion
+		List<EtherConversionRecipe.WeightedOutput> musicDiscOutputs = List.of(
+			new EtherConversionRecipe.WeightedOutput(ESItems.MUSIC_DISC_SPIRIT.get().getDefaultInstance(), 1),
+			new EtherConversionRecipe.WeightedOutput(ESItems.MUSIC_DISC_ETHER_RAIN.get().getDefaultInstance(), 1)
+		);
+		addEtherConversionRecipe(recipeOutput, "music_disc", Ingredient.of(Tags.Items.MUSIC_DISCS), musicDiscOutputs);
+		addEtherConversionRecipe(recipeOutput, "butterfly_wings_amulet_from_accessories", Ingredient.of(ESTags.Items.ACCESSORIES), ESItems.BUTTERFLY_WINGS_AMULET.get().getDefaultInstance());
+		addEtherConversionRecipe(recipeOutput, "shattered_sword_blade_from_shattered_sword", Ingredient.of(ESItems.SHATTERED_SWORD.get()), ESItems.SHATTERED_SWORD_BLADE.get().getDefaultInstance());
+		addEtherConversionRecipe(recipeOutput, "energized_painting", Ingredient.of(ESItems.STARLIT_PAINTING.get()), starlitPaintingComponents(ESPaintingVariants.ENERGIZED), List.of(new EtherConversionRecipe.WeightedOutput(starlitPainting(ESPaintingVariants.ENERGIZED_SPECIAL), 1)));
+		addEtherConversionRecipe(recipeOutput, "absolute_zero_painting", Ingredient.of(ESItems.STARLIT_PAINTING.get()), starlitPaintingComponents(ESPaintingVariants.ABSOLUTE_ZERO), List.of(new EtherConversionRecipe.WeightedOutput(starlitPainting(ESPaintingVariants.ABSOLUTE_ZERO_SPECIAL), 1)));
+		addEtherConversionRecipe(recipeOutput, "monstrous_painting", Ingredient.of(ESItems.STARLIT_PAINTING.get()), starlitPaintingComponents(ESPaintingVariants.MONSTROUS), List.of(new EtherConversionRecipe.WeightedOutput(starlitPainting(ESPaintingVariants.MONSTROUS_SPECIAL), 1)));
+	}
+
+	private void addEtherConversionRecipe(RecipeOutput recipeOutput, String name, Ingredient input, DataComponentPredicate components, List<EtherConversionRecipe.WeightedOutput> outputs) {
+		SpecialRecipeBuilder.special(category -> new EtherConversionRecipe(input, 1, components, outputs)).save(recipeOutput, EternalStarlight.id("ether_conversion/" + name));
+	}
+
+	private void addEtherConversionRecipe(RecipeOutput recipeOutput, String name, Ingredient input, List<EtherConversionRecipe.WeightedOutput> outputs) {
+		addEtherConversionRecipe(recipeOutput, name, input, DataComponentPredicate.EMPTY, outputs);
+	}
+
+	private void addEtherConversionRecipe(RecipeOutput recipeOutput, String name, Ingredient input, ItemStack output) {
+		addEtherConversionRecipe(recipeOutput, name, input, DataComponentPredicate.EMPTY, List.of(new EtherConversionRecipe.WeightedOutput(output, 1)));
+	}
+
+	private static CompoundTag starlitPaintingData(ResourceKey<PaintingVariant> variant) {
+		CompoundTag compoundTag = new CompoundTag();
+		compoundTag.putString("id", EternalStarlight.ID + ":painting");
+		compoundTag.putString("variant", variant.location().toString());
+		return compoundTag;
+	}
+
+	private static ItemStack starlitPainting(ResourceKey<PaintingVariant> variant) {
+		ItemStack stack = new ItemStack(ESItems.STARLIT_PAINTING.get());
+		stack.set(DataComponents.ENTITY_DATA, CustomData.of(starlitPaintingData(variant)));
+		return stack;
+	}
+
+	private static DataComponentPredicate starlitPaintingComponents(ResourceKey<PaintingVariant> variant) {
+		return DataComponentPredicate.builder().expect(DataComponents.ENTITY_DATA, CustomData.of(starlitPaintingData(variant))).build();
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

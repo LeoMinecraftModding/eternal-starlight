@@ -48,6 +48,7 @@ public class ShatteredSwordItem extends SwordItem {
 				setHasBlade(itemStack, false);
 			}
 			player.awardStat(Stats.ITEM_USED.get(this));
+			player.getCooldowns().addCooldown(this, 10);
 			return InteractionResultHolder.success(itemStack);
 		} else {
 			if (player.hasInfiniteMaterials()) {

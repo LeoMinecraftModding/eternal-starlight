@@ -35,7 +35,7 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 		tag(ESTags.Biomes.HAS_PORTAL_RUINS_JUNGLE)
 			.addTag(Tags.Biomes.IS_JUNGLE);
 		tag(ESTags.Biomes.HAS_PORTAL_RUINS_COLD)
-			.addTag(Tags.Biomes.IS_COLD);
+			.addTag(Tags.Biomes.IS_COLD_OVERWORLD);
 		tag(ESTags.Biomes.HAS_GOLEM_FORGE)
 			.add(
 				ESBiomes.STARLIGHT_FOREST,

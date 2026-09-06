@@ -993,17 +993,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.JINGLESTEM_CHEST_RAFT.get(),
 				ESItems.CRADLEWOOD_CHEST_BOAT.get()
 			);
-		tag(ItemTags.FREEZE_IMMUNE_WEARABLES)
-			.add(
-				ESItems.THERMAL_SPRINGSTONE_HELMET.get(),
-				ESItems.THERMAL_SPRINGSTONE_CHESTPLATE.get(),
-				ESItems.THERMAL_SPRINGSTONE_LEGGINGS.get(),
-				ESItems.THERMAL_SPRINGSTONE_BOOTS.get(),
-				ESItems.GLACITE_HELMET.get(),
-				ESItems.GLACITE_CHESTPLATE.get(),
-				ESItems.GLACITE_LEGGINGS.get(),
-				ESItems.GLACITE_BOOTS.get()
-			);
 		tag(ItemTags.MEAT)
 			.add(
 				ESItems.ROTTEN_FLESH_JERKY.get(),

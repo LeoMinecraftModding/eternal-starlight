@@ -116,6 +116,7 @@ public abstract class LivingEntityMixin {
 			.add(ESAttributes.THROWN_POTION_DISTANCE.asHolder())
 			.add(ESAttributes.ETHER_RESISTANCE.asHolder())
 			.add(ESAttributes.FIRE_RESISTANCE.asHolder())
+			.add(ESAttributes.COLD_RESISTANCE.asHolder())
 			.add(ESAttributes.METEOR_COUNTERATTACK_CHANCE.asHolder())
 			.add(ESAttributes.HEAL_MULTIPLIER.asHolder())
 			.add(ESAttributes.ENEMY_FOLLOW_RANGE_MULTIPLIER.asHolder());
@@ -276,6 +277,10 @@ public abstract class LivingEntityMixin {
 
 	@WrapOperation(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;knockback(DDD)V"))
 	private void knockback(LivingEntity instance, double strength, double x, double z, Operation<Void> original, @Local(argsOnly = true) DamageSource source) {
+		if (source.getDirectEntity() instanceof Player player && player.getMainHandItem().is(ESTags.Items.WHIPS)) {
+			original.call(instance, strength * 0.2, x, z);
+			return;
+		}
 		if (source.getDirectEntity() instanceof AbstractArrow arrow) {
 			ItemStack weaponItem = arrow.getWeaponItem();
 			if (weaponItem != null && weaponItem.is(ESItems.UNREALIUM_CROSSBOW.get())) {
