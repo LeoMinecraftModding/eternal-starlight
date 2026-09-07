@@ -270,17 +270,13 @@ public class CropUtil {
 		private final float moistEffect;
 		private final int growMaximum;
 		private final float growChance;
-		private final int maxAge;
 		private final int unstableAge;
 		private final boolean isAquatic;
 		private final boolean isEtherFillable;
 		private final Optional<Pair<ResourceKey<Block>, Optional<ResourceKey<Block>>>> subCropBlock;
 		private final int maxHeight;
 		private final Optional<TreeParam> treeParam;
-
-		public int getMaxHeight() {
-			return maxHeight;
-		}
+		private final Optional<Pair<ResourceKey<Block>, ResourceKey<Block>>> branchAndLeaf;
 
 		public Optional<ResourceKey<Block>> getSubCrop() {
 			if (this.subCropBlock.isPresent()) {
@@ -288,6 +284,14 @@ public class CropUtil {
 			} else {
 				return Optional.empty();
 			}
+		}
+
+		public Optional<TreeParam> getTreeParam() {
+			return treeParam;
+		}
+
+		public Optional<Pair<ResourceKey<Block>, ResourceKey<Block>>> getBranchAndLeaf() {
+			return branchAndLeaf;
 		}
 
 		public Optional<ResourceKey<Block>> getOrigin() {
@@ -338,12 +342,12 @@ public class CropUtil {
 			return growChance;
 		}
 
-		public int getMaxAge() {
-			return maxAge;
-		}
-
 		public int getUnstableAge() {
 			return unstableAge;
+		}
+
+		public int getMaxHeight() {
+			return maxHeight;
 		}
 
 		private CropParam(
@@ -363,7 +367,8 @@ public class CropUtil {
 			boolean isEtherFillable,
 			Optional<Pair<ResourceKey<Block>, Optional<ResourceKey<Block>>>> subCropBlock,
 			int maxHeight,
-			Optional<TreeParam> treeParam
+			Optional<TreeParam> treeParam,
+			Optional<Pair<ResourceKey<Block>, ResourceKey<Block>>> branchAndLeaf
 		) {
 			this.effectableCrops = effectableCrops;
 			this.shapeZ = shapeZ;
@@ -373,7 +378,6 @@ public class CropUtil {
 			this.lightEffect = lightEffect;;
 			this.moistEffect = moistEffect;
 			this.growMaximum = growMaximum;
-			this.maxAge = maxAge;
 			this.growChance = growChance;
 			this.unstableAge = unstableAge;
 			this.isAquatic = isAquatic;
@@ -381,12 +385,13 @@ public class CropUtil {
 			this.subCropBlock = subCropBlock;
 			this.maxHeight = maxHeight;
 			this.treeParam = treeParam;
+			this.branchAndLeaf = branchAndLeaf;
 		}
 
-		public static CropParam createMultipart(int maxHeight, float growChance, int maxAge, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge, boolean isAquatic, boolean isEtherFillable, Optional<ResourceKey<Block>> subCropBlock, ResourceKey<Block> origin) {
+		public static CropParam createMultipart(int maxHeight, float growChance, float lightEffect, float moistEffect, int growMaximum, int minimumLightLevel, int maximumLightLevel, int unstableAge, boolean isAquatic, boolean isEtherFillable, Optional<ResourceKey<Block>> subCropBlock, ResourceKey<Block> origin) {
 			return new CropParam(
 				growChance,
-				maxAge,
+				7,
 				lightEffect,
 				moistEffect,
 				growMaximum,
@@ -401,6 +406,7 @@ public class CropUtil {
 				isEtherFillable,
 				Optional.of(Pair.of(origin, subCropBlock)),
 				maxHeight,
+				Optional.empty(),
 				Optional.empty()
 			);
 		}
@@ -423,6 +429,7 @@ public class CropUtil {
 				false,
 				Optional.empty(),
 				0,
+				Optional.empty(),
 				Optional.empty()
 			);
 		}
@@ -447,10 +454,6 @@ public class CropUtil {
 		public CropParam addRelationship(ResourceKey<Block> block, int range, float effect, boolean isSymbiosis, String stateName, int targetAge, int minimumAge, int maximumAge) {
 			this.effectableCrops.add(Pair.of(Pair.of(Optional.of(Pair.of(stateName, Pair.of(Optional.of(Pair.of(targetAge, Pair.of(minimumAge, maximumAge))), Optional.empty()))), block), Pair.of(Pair.of(range, effect), isSymbiosis)));
 			return this;
-		}
-
-		public Optional<TreeParam> getTreeParam() {
-			return treeParam;
 		}
 	}
 }

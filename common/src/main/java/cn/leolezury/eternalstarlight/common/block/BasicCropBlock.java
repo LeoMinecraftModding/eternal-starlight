@@ -62,13 +62,9 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		Codec.list(Codec.pair(Codec.DOUBLE, Codec.DOUBLE)).fieldOf("shapes_z").forGetter((block) -> block.shapeZ),
 		Codec.list(Codec.pair(Codec.pair(Codec.optionalField("block_with_state", Codec.pair(Codec.STRING, Codec.pair(Codec.optionalField("int_value_range", Codec.pair(Codec.INT, Codec.pair(Codec.INT, Codec.INT)), true).codec(), Codec.optionalField("bool_value", Codec.BOOL, true).codec())), true).codec(), ResourceKey.codec(BuiltInRegistries.BLOCK.key())), Codec.pair(Codec.pair(Codec.INT, Codec.FLOAT), Codec.BOOL))).fieldOf("relative_blocks").forGetter((block) -> block.relativeBlocks),
 		Codec.pair(Codec.INT, Codec.INT).fieldOf("light_level_range").forGetter((block) -> block.lightLevelRange),
-//		Codec.FLOAT.fieldOf("light_effect").forGetter((block) -> block.lightEffect),
-//		Codec.FLOAT.fieldOf("moist_effect").forGetter((block) -> block.moistEffect),
 		Codec.pair(Codec.FLOAT, Codec.FLOAT).fieldOf("environment_effect").forGetter((block) -> block.environmentEffect),
 		Codec.INT.fieldOf("growMaximum").forGetter((block) -> block.growMaximum),
 		Codec.INT.fieldOf("unstable_age").forGetter((block) -> block.unstableAge),
-//		Codec.BOOL.fieldOf("is_aquatic").forGetter((block -> block.aquatic)),
-//		Codec.BOOL.fieldOf("is_ether_fillable").forGetter((block -> block.etherFillable)),
 		Codec.pair(Codec.BOOL, Codec.BOOL).fieldOf("liquid_fillable").forGetter((block -> block.liquidFillable)),
 		Codec.INT.fieldOf("max_height").forGetter((block -> block.maxHeight)),
 		ResourceKey.codec(BuiltInRegistries.BLOCK.key()).optionalFieldOf("sub_crop").forGetter((block -> block.subCrop)),
@@ -121,13 +117,9 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 		List<Pair<Double, Double>> shapeZ,
 		List<Pair<Pair<Optional<Pair<String, Pair<Optional<Pair<Integer, Pair<Integer, Integer>>>, Optional<Boolean>>>>, ResourceKey<Block>>, Pair<Pair<Integer, Float>, Boolean>>> relativeBlocks,
 		Pair<Integer, Integer> lightLevelRange,
-//		float lightEffect,
-//		float moistEffect,
 		Pair<Float, Float> environmentEffect,
 		int growMaximum,
 		int unstableAge,
-//		boolean aquatic,
-//		boolean etherFillable,
 		Pair<Boolean, Boolean> liquidFillable,
 		int maxHeight,
 		Optional<ResourceKey<Block>> subCrop,
@@ -153,13 +145,9 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 
 		this.relativeBlocks = relativeBlocks;
 		this.lightLevelRange = lightLevelRange;
-//		this.lightEffect = lightEffect;
-//		this.moistEffect = moistEffect;
 		this.environmentEffect = environmentEffect;
 		this.growMaximum = growMaximum;
 		this.unstableAge = unstableAge;
-//		this.aquatic = aquatic;
-//		this.etherFillable = etherFillable;
 		this.liquidFillable = liquidFillable;
 		this.subCrop = subCrop;
 		this.treeParam = treeParam;
@@ -286,7 +274,11 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 
 	}
 
-	protected void subCropExecute(BlockState originState, ServerLevel level, BlockPos blockPos, RandomSource randomSource) {
+	protected void subCropExecute(BlockState originState, ServerLevel level, BlockPos blockPos) {
+
+	}
+
+	protected void treeNodeExecute(ServerLevel level, BlockPos pos) {
 
 	}
 
@@ -329,16 +321,18 @@ public class BasicCropBlock extends BushBlock implements BucketPickup, LiquidBlo
 					} else {
 						var subPos = blockPos.above(1);
 						var subState = level.getBlockState(subPos);
+						var subCrop = BuiltInRegistries.BLOCK.get(this.subCrop.get());
+
 						if (subState.isAir()) {
 							log.info("ok");
-							var subCrop = BuiltInRegistries.BLOCK.get(this.subCrop.get());
 							level.setBlock(subPos, subCrop.defaultBlockState(), 2);
 							subState = level.getBlockState(subPos);
-							subCropExecute(subState, level, subPos, randomSource);
+							subCropExecute(subState, level, subPos);
 						}
 						if (level.getBlockEntity(blockPos) instanceof TreeRootBlockEntity root) {
 							root.applyNode(level, blockPos, this.maxHeight);
 						}
+						treeNodeExecute(level, subPos);
 					}
 				}
 			}

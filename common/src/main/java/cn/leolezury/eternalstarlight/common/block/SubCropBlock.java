@@ -1,6 +1,9 @@
 package cn.leolezury.eternalstarlight.common.block;
 
+import cn.leolezury.eternalstarlight.common.block.entity.TreeNodeBlockEntity;
+import cn.leolezury.eternalstarlight.common.registry.ESBlockEntities;
 import cn.leolezury.eternalstarlight.common.util.CropUtil;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -12,7 +15,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.AABB;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class SubCropBlock extends BasicCropBlock {
@@ -22,11 +28,13 @@ public class SubCropBlock extends BasicCropBlock {
 
 	private final ResourceKey<Block> origin;
 	private final Optional<ResourceKey<Block>> extensionCrop;
+	private final Optional<Pair<ResourceKey<Block>, ResourceKey<Block>>> branchAndLeaf;
 
 	public SubCropBlock(Properties properties, CropUtil.CropParam param) {
 		super(properties, param);
 		this.origin = param.getOrigin().get();
 		this.extensionCrop = param.getSubCrop();
+		this.branchAndLeaf = param.getBranchAndLeaf();
 
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(WITHERED, false).setValue(WATERLOGGED, false).setValue(ETHERLOGGED, false).setValue(IS_TOP, false).setValue(IS_NODE, false).setValue(BRANCHES_COUNT, 0));
 	}
@@ -45,12 +53,8 @@ public class SubCropBlock extends BasicCropBlock {
 		return false;
 	}
 
-	private boolean isTree() {
-		return true;
-	}
-
 	@Override
-	protected void subCropExecute(BlockState blockState, ServerLevel level, BlockPos blockPos, RandomSource randomSource) {
+	protected void subCropExecute(BlockState blockState, ServerLevel level, BlockPos blockPos) {
 		blockState.setValue(IS_TOP, checkHeight(level, blockPos.above()));
 
 		if (this.extensionCrop.isPresent() && this.getAge(blockState) == this.getMaxAge()) {
@@ -61,7 +65,43 @@ public class SubCropBlock extends BasicCropBlock {
 					var subCrop = this;
 					level.setBlock(nextSubPos, subCrop.defaultBlockState(), 2);
 					nextSubState = level.getBlockState(nextSubPos);
-					subCropExecute(nextSubState, level, nextSubPos, randomSource);
+					subCropExecute(nextSubState, level, nextSubPos);
+				}
+			}
+		}
+	}
+
+	@Override
+	protected void treeNodeExecute(ServerLevel level, BlockPos pos) {
+		if (this.branchAndLeaf.isPresent() && level.getBlockEntity(pos) instanceof TreeNodeBlockEntity node) {
+			var random = level.random;
+
+			var branch =  branchAndLeaf.get().getFirst();
+			var leaf = branchAndLeaf.get().getSecond();
+			var param = node.getDecorator().get();
+			var empty = new ArrayList<BlockPos>();
+
+			for (int x = -1; x < 1; x++) {
+				for (int z = -1; z < 1; z++) {
+					var targetPos = new BlockPos(pos.getX() + x, pos.getY(), pos.getZ() + z);
+					if (!level.getBlockState(targetPos).is(branch)) {
+						empty.add(targetPos);
+					}
+				}
+			}
+
+			if (empty.size() < param.branchCount()) {
+				var nextPos = new ArrayList<>(List.of(pos.east(), pos.south(), pos.west(), pos.north()));
+				var crossPos = new ArrayList<>(List.of(pos.east().north(), pos.east().south(), pos.west().north(), pos.west().north()));
+
+				if (random.nextInt(0, 100) > 20) {
+					empty.stream().filter(nextPos::contains).forEach(position -> {
+						level.setBlock(position, BuiltInRegistries.BLOCK.get(branch).defaultBlockState(), 2);
+					});
+				} else {
+					empty.stream().filter(crossPos::contains).forEach(position -> {
+						level.setBlock(position, BuiltInRegistries.BLOCK.get(branch).defaultBlockState(), 2);
+					});
 				}
 			}
 		}

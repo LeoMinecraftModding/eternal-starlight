@@ -59,7 +59,7 @@ public class TreeRootBlockEntity extends BlockEntity {
 		int lowestNode = param.nodePos().getFirst();
 		int topNode = param.nodePos().getSecond();
 		int randomOffset = param.randomOffset();
-		int firstBranchLength = param.branchLength().getFirst();
+		int firstBranchLength = param.branchLength();
 		int randomBranchLengthModifier = param.randomBranchLengthModifier();
 		int regenBranchLengthModifier =  param.regenBranchLengthModifier();
 		int firstBranchCount = param.branchCount();

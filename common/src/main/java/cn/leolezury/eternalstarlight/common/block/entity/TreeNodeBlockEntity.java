@@ -9,12 +9,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.Optional;
 
 public class TreeNodeBlockEntity extends BlockEntity {
-	private int branchCount;
-	private int branchLength;
-	private boolean leafOnly;
+	private final Optional<CropUtil.NodeDecorator> decorator;
 
 	private TreeNodeBlockEntity(BlockPos blockPos, BlockState blockState, Optional<CropUtil.NodeDecorator> param) {
 		super(ESBlockEntities.TREE_NODE.get(), blockPos, blockState);
+
+		this.decorator = param;
 	}
 
 	public TreeNodeBlockEntity(BlockPos blockPos, BlockState blockState, CropUtil.NodeDecorator param) {
@@ -23,5 +23,10 @@ public class TreeNodeBlockEntity extends BlockEntity {
 
 	public TreeNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
 		this(blockPos, blockState, Optional.empty());
+	}
+
+
+	public Optional<CropUtil.NodeDecorator> getDecorator() {
+		return decorator;
 	}
 }
