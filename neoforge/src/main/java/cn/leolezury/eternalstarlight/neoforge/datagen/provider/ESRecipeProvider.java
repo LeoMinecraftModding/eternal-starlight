@@ -1,7 +1,9 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariant;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
+import cn.leolezury.eternalstarlight.common.entity.misc.ESPainting;
 import cn.leolezury.eternalstarlight.common.item.recipe.*;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -14,13 +16,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -648,6 +648,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addEtherConversionRecipe(recipeOutput, "music_disc", Ingredient.of(Tags.Items.MUSIC_DISCS), musicDiscOutputs);
 		addEtherConversionRecipe(recipeOutput, "butterfly_wings_amulet_from_accessories", Ingredient.of(ESTags.Items.ACCESSORIES), ESItems.BUTTERFLY_WINGS_AMULET.get().getDefaultInstance());
 		addEtherConversionRecipe(recipeOutput, "shattered_sword_blade_from_shattered_sword", Ingredient.of(ESItems.SHATTERED_SWORD.get()), ESItems.SHATTERED_SWORD_BLADE.get().getDefaultInstance());
+		addEtherConversionRecipe(recipeOutput, "guardian_painting", Ingredient.of(ESItems.STARLIT_PAINTING.get()), starlitPaintingComponents(ESPaintingVariants.GUARDIAN), List.of(new EtherConversionRecipe.WeightedOutput(starlitPainting(ESPaintingVariants.GUARDIAN_SPECIAL), 1)));
 		addEtherConversionRecipe(recipeOutput, "energized_painting", Ingredient.of(ESItems.STARLIT_PAINTING.get()), starlitPaintingComponents(ESPaintingVariants.ENERGIZED), List.of(new EtherConversionRecipe.WeightedOutput(starlitPainting(ESPaintingVariants.ENERGIZED_SPECIAL), 1)));
 		addEtherConversionRecipe(recipeOutput, "absolute_zero_painting", Ingredient.of(ESItems.STARLIT_PAINTING.get()), starlitPaintingComponents(ESPaintingVariants.ABSOLUTE_ZERO), List.of(new EtherConversionRecipe.WeightedOutput(starlitPainting(ESPaintingVariants.ABSOLUTE_ZERO_SPECIAL), 1)));
 		addEtherConversionRecipe(recipeOutput, "monstrous_painting", Ingredient.of(ESItems.STARLIT_PAINTING.get()), starlitPaintingComponents(ESPaintingVariants.MONSTROUS), List.of(new EtherConversionRecipe.WeightedOutput(starlitPainting(ESPaintingVariants.MONSTROUS_SPECIAL), 1)));
@@ -665,21 +666,14 @@ public class ESRecipeProvider extends RecipeProvider {
 		addEtherConversionRecipe(recipeOutput, name, input, DataComponentPredicate.EMPTY, List.of(new EtherConversionRecipe.WeightedOutput(output, 1)));
 	}
 
-	private static CompoundTag starlitPaintingData(ResourceKey<PaintingVariant> variant) {
-		CompoundTag compoundTag = new CompoundTag();
-		compoundTag.putString("id", EternalStarlight.ID + ":painting");
-		compoundTag.putString("variant", variant.location().toString());
-		return compoundTag;
-	}
-
-	private static ItemStack starlitPainting(ResourceKey<PaintingVariant> variant) {
+	private static ItemStack starlitPainting(ResourceKey<ESPaintingVariant> variant) {
 		ItemStack stack = new ItemStack(ESItems.STARLIT_PAINTING.get());
-		stack.set(DataComponents.ENTITY_DATA, CustomData.of(starlitPaintingData(variant)));
+		stack.set(DataComponents.ENTITY_DATA, CustomData.of(ESPainting.paintingData(variant)));
 		return stack;
 	}
 
-	private static DataComponentPredicate starlitPaintingComponents(ResourceKey<PaintingVariant> variant) {
-		return DataComponentPredicate.builder().expect(DataComponents.ENTITY_DATA, CustomData.of(starlitPaintingData(variant))).build();
+	private static DataComponentPredicate starlitPaintingComponents(ResourceKey<ESPaintingVariant> variant) {
+		return DataComponentPredicate.builder().expect(DataComponents.ENTITY_DATA, CustomData.of(ESPainting.paintingData(variant))).build();
 	}
 
 	private <T extends AbstractCookingRecipe> void addCookingRecipes(RecipeOutput recipeOutput, String name, RecipeSerializer<T> recipeSerializer, AbstractCookingRecipe.Factory<T> factory, int time) {

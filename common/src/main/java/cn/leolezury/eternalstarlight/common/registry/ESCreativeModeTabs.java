@@ -1,19 +1,15 @@
 package cn.leolezury.eternalstarlight.common.registry;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariant;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
+import cn.leolezury.eternalstarlight.common.entity.misc.ESPainting;
 import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.item.tab.ESCreativeModeTab;
-import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.RegistryOps;
-import net.minecraft.world.entity.decoration.Painting;
-import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +19,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class ESCreativeModeTabs {
@@ -1141,7 +1136,7 @@ public class ESCreativeModeTabs {
 						Item item = entry.get();
 						output.accept(item);
 						if (item == ESItems.STARLIT_PAINTING.get()) {
-							parameters.holders().lookup(Registries.PAINTING_VARIANT).ifPresent((registryLookup) -> generatePresetPaintings(output, parameters.holders(), registryLookup, holder -> holder.is(ESTags.PaintingVariants.PLACEABLE)));
+							parameters.holders().lookup(ESRegistries.PAINTING_VARIANT).ifPresent((registryLookup) -> generatePresetPaintings(output, registryLookup));
 						}
 					}
 				}
@@ -1149,16 +1144,12 @@ public class ESCreativeModeTabs {
 		}
 	);
 
-	private static final Comparator<Holder<PaintingVariant>> PAINTING_COMPARATOR = Comparator.comparing(Holder::value, Comparator.comparingInt(PaintingVariant::area).thenComparing(PaintingVariant::width));
+	private static final Comparator<Holder<ESPaintingVariant>> PAINTING_COMPARATOR = Comparator.comparing(Holder::value, Comparator.comparingInt(ESPaintingVariant::area).thenComparing(ESPaintingVariant::width));
 
-	public static void generatePresetPaintings(CreativeModeTab.Output output, HolderLookup.Provider provider, HolderLookup.RegistryLookup<PaintingVariant> registryLookup, Predicate<Holder<PaintingVariant>> predicate) {
-		RegistryOps<Tag> registryOps = provider.createSerializationContext(NbtOps.INSTANCE);
-		registryLookup.listElements().filter(predicate).sorted(PAINTING_COMPARATOR).forEach((reference) -> {
-			CustomData customData = CustomData.EMPTY.update(registryOps, Painting.VARIANT_MAP_CODEC, reference).getOrThrow().update((compoundTag) -> {
-				compoundTag.putString("id", EternalStarlight.ID + ":painting");
-			});
+	public static void generatePresetPaintings(CreativeModeTab.Output output, HolderLookup.RegistryLookup<ESPaintingVariant> registryLookup) {
+		registryLookup.listElements().sorted(PAINTING_COMPARATOR).forEach((reference) -> {
 			ItemStack itemStack = new ItemStack(ESItems.STARLIT_PAINTING.get());
-			itemStack.set(DataComponents.ENTITY_DATA, customData);
+			itemStack.set(DataComponents.ENTITY_DATA, CustomData.of(ESPainting.paintingData(reference.key())));
 			output.accept(itemStack);
 		});
 	}

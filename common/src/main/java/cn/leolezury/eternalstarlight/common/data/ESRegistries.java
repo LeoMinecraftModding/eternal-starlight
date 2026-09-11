@@ -20,6 +20,7 @@ public class ESRegistries {
 	public static final ResourceKey<Registry<ShimmerLacewingVariant>> SHIMMER_LACEWING_VARIANT = ResourceKey.createRegistryKey(EternalStarlight.id("shimmer_lacewing_variant"));
 	public static final ResourceKey<Registry<SeekerVariant>> SEEKER_VARIANT = ResourceKey.createRegistryKey(EternalStarlight.id("seeker_variant"));
 	public static final ResourceKey<Registry<SeedsLauncherAmmoType>> SEEDS_LAUNCHER_AMMO_TYPE = ResourceKey.createRegistryKey(EternalStarlight.id("seeds_launcher_ammo_type"));
+	public static final ResourceKey<Registry<ESPaintingVariant>> PAINTING_VARIANT = ResourceKey.createRegistryKey(EternalStarlight.id("painting_variant"));
 
 	static {
 		ESPlatform.INSTANCE.registerDatapackRegistry(BIOME_DATA, BiomeData.CODEC, BiomeData.CODEC);
@@ -29,6 +30,7 @@ public class ESRegistries {
 		ESPlatform.INSTANCE.registerDatapackRegistry(SHIMMER_LACEWING_VARIANT, ShimmerLacewingVariant.CODEC, ShimmerLacewingVariant.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(SEEKER_VARIANT, SeekerVariant.CODEC, SeekerVariant.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(SEEDS_LAUNCHER_AMMO_TYPE, SeedsLauncherAmmoType.CODEC, SeedsLauncherAmmoType.CODEC);
+		ESPlatform.INSTANCE.registerDatapackRegistry(PAINTING_VARIANT, ESPaintingVariant.CODEC, ESPaintingVariant.CODEC);
 	}
 
 	public static void loadClass() {

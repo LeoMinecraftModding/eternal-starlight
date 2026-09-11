@@ -1,19 +1,15 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider.loot;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.data.ESLootTables;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
+import cn.leolezury.eternalstarlight.common.entity.misc.ESPainting;
 import cn.leolezury.eternalstarlight.common.item.loot.BossChallengeCountCondition;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.decoration.Painting;
-import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -31,8 +27,6 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 
 	@Override
 	public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
-		HolderLookup.RegistryLookup<PaintingVariant> paintings = this.registries.lookupOrThrow(Registries.PAINTING_VARIANT);
-
 		consumer.accept(ESLootTables.BOSS_COMMON,
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
@@ -82,7 +76,7 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 					.add(LootItem.lootTableItem(ESItems.FROZEN_TUBE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(12, 18)))))
 				.withPool(LootPool.lootPool()
 					.when(LootItemRandomChanceCondition.randomChance(0.5f))
-					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ABSOLUTE_ZERO)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.of(ESPainting.paintingData(ESPaintingVariants.ABSOLUTE_ZERO)))))));
 
 		consumer.accept(ESLootTables.BOSS_STARLIGHT_GOLEM,
 			LootTable.lootTable()
@@ -102,7 +96,7 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get())))
 				.withPool(LootPool.lootPool()
 					.when(LootItemRandomChanceCondition.randomChance(0.5f))
-					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.ENERGIZED)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.of(ESPainting.paintingData(ESPaintingVariants.ENERGIZED)))))));
 
 		consumer.accept(ESLootTables.BOSS_LUNAR_MONSTROSITY,
 			LootTable.lootTable()
@@ -136,6 +130,6 @@ public record ESBossLootSubProvider(HolderLookup.Provider registries) implements
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_FAKE_LIGHT.get())))
 				.withPool(LootPool.lootPool()
 					.when(LootItemRandomChanceCondition.randomChance(0.5f))
-					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(registries.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, paintings.getOrThrow(ESPaintingVariants.MONSTROUS)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")))))));
+					.add(LootItem.lootTableItem(ESItems.STARLIT_PAINTING.get()).apply(SetComponentsFunction.setComponent(DataComponents.ENTITY_DATA, CustomData.of(ESPainting.paintingData(ESPaintingVariants.MONSTROUS)))))));
 	}
 }

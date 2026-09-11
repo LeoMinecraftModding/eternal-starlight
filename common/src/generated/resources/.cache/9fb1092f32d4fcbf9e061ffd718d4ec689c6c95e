@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-06T15:04:40.2271776	Recipes
+// 1.21.1	2026-09-11T23:01:32.6244425	Recipes
 1652cca6cf60ee8fe41f68f81cce14623ce04557 data/eternal_starlight/advancement/recipes/alloy/alloy/copper_from_ores.json
 b41a1cf963490edf3dd90c6295f40d064ee3b286 data/eternal_starlight/advancement/recipes/alloy/alloy/copper_from_raw_materials.json
 b0d8c0c49ce8100f8a0473827e2e54240926a5f8 data/eternal_starlight/advancement/recipes/alloy/alloy/deepsilver_from_ores.json
@@ -1622,6 +1622,7 @@ cc8fbd0aa9cca29672101c50eb5ffc378ea1ee66 data/eternal_starlight/recipe/eternal_i
 badd189f82cfcc8d054e84c5104a7d2e221682b1 data/eternal_starlight/recipe/ether_conversion/absolute_zero_painting.json
 6fef964c44affd099666f6c3a34bb2e52dd4d151 data/eternal_starlight/recipe/ether_conversion/butterfly_wings_amulet_from_accessories.json
 37078fa6a343d01f947c307b0bf70221105bb728 data/eternal_starlight/recipe/ether_conversion/energized_painting.json
+f78feee9fae14830a1adb6e8d37c94db9e462d60 data/eternal_starlight/recipe/ether_conversion/guardian_painting.json
 ac3ab0cfad69aff09d6b2005fe474d8113d52455 data/eternal_starlight/recipe/ether_conversion/monstrous_painting.json
 4e538ed636c88af2f743e41156684d977d332d13 data/eternal_starlight/recipe/ether_conversion/music_disc.json
 5e85a539a60daa91d2e9506f29339ae54358ed3e data/eternal_starlight/recipe/ether_conversion/shattered_sword_blade_from_shattered_sword.json

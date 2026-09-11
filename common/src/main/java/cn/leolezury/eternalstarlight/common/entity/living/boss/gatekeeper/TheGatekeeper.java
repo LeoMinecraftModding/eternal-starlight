@@ -9,6 +9,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent
 import cn.leolezury.eternalstarlight.common.entity.living.goal.GatekeeperTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
+import cn.leolezury.eternalstarlight.common.entity.misc.ESPainting;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
 import cn.leolezury.eternalstarlight.common.network.OpenGatekeeperGuiPacket;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
@@ -25,7 +26,6 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
@@ -54,7 +54,6 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.Npc;
@@ -813,7 +812,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				new ItemStack(ESItems.STARLIGHT_SILVER_COIN.get(), 10),
 				Util.make(() -> {
 					ItemStack stack = ESItems.STARLIT_PAINTING.get().getDefaultInstance();
-					stack.set(DataComponents.ENTITY_DATA, CustomData.EMPTY.update(level().registryAccess().createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC, level().registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getHolderOrThrow(ESPaintingVariants.GUARDIAN)).getOrThrow().update((compoundTag) -> compoundTag.putString("id", EternalStarlight.ID + ":painting")));
+					stack.set(DataComponents.ENTITY_DATA, CustomData.of(ESPainting.paintingData(ESPaintingVariants.GUARDIAN)));
 					return stack;
 				}),
 				10

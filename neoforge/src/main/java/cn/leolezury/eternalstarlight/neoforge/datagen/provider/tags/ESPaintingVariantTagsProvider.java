@@ -1,19 +1,21 @@
 package cn.leolezury.eternalstarlight.neoforge.datagen.provider.tags;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariant;
 import cn.leolezury.eternalstarlight.common.data.ESPaintingVariants;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.PaintingVariantTagsProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ESPaintingVariantTagsProvider extends PaintingVariantTagsProvider {
+public class ESPaintingVariantTagsProvider extends TagsProvider<ESPaintingVariant> {
 	public ESPaintingVariantTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-		super(output, lookupProvider, EternalStarlight.ID, existingFileHelper);
+		super(output, ESRegistries.PAINTING_VARIANT, lookupProvider, EternalStarlight.ID, existingFileHelper);
 	}
 
 	@Override
@@ -43,7 +45,13 @@ public class ESPaintingVariantTagsProvider extends PaintingVariantTagsProvider {
 				ESPaintingVariants.RIVEN_WELKIN,
 				ESPaintingVariants.UMBROUS_ALCHEMIST,
 				ESPaintingVariants.EXTINGUISHED_SUN,
-				ESPaintingVariants.NOVUS_SOL
+				ESPaintingVariants.NOVUS_SOL,
+				ESPaintingVariants.MONSTROSITY_HUNTER,
+				ESPaintingVariants.IMAGINARY,
+				ESPaintingVariants.A_THOUSAND_SUNS,
+				ESPaintingVariants.THE_DARK_SIDE_OF_A_STAR,
+				ESPaintingVariants.SPACE_OF_COLOR_LUMPS,
+				ESPaintingVariants.JORMUNGAND
 			);
 	}
 }

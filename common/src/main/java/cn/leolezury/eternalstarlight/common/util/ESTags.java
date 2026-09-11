@@ -1,12 +1,13 @@
 package cn.leolezury.eternalstarlight.common.util;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariant;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
@@ -204,10 +205,10 @@ public class ESTags {
 	}
 
 	public static class PaintingVariants {
-		public static final TagKey<PaintingVariant> PLACEABLE = create("placeable");
+		public static final TagKey<ESPaintingVariant> PLACEABLE = create("placeable");
 
-		private static TagKey<PaintingVariant> create(String string) {
-			return TagKey.create(Registries.PAINTING_VARIANT, EternalStarlight.id(string));
+		private static TagKey<ESPaintingVariant> create(String string) {
+			return TagKey.create(ESRegistries.PAINTING_VARIANT, EternalStarlight.id(string));
 		}
 	}
 

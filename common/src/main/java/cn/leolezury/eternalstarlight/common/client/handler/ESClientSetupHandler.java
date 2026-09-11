@@ -57,7 +57,10 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.*;
-import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.BakedModel;
@@ -893,7 +896,7 @@ public class ESClientSetupHandler {
 
 	public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {
 		strategy.register(ESEntities.FALLING_BLOCK.get(), ESFallingBlockRenderer::new);
-		strategy.register(ESEntities.PAINTING.get(), PaintingRenderer::new);
+		strategy.register(ESEntities.PAINTING.get(), ESPaintingRenderer::new);
 		strategy.register(ESEntities.AETHERSENT_METEOR.get(), AethersentMeteorRenderer::new);
 		strategy.register(ESEntities.AETHERSTRIKE_ROCKET.get(), AetherstrikeRocketRenderer::new);
 		strategy.register(ESEntities.BOAT.get(), (context) -> new ESBoatRenderer(context, false));
@@ -1121,6 +1124,7 @@ public class ESClientSetupHandler {
 	public static void addClientReloadListeners(Consumer<PreparableReloadListener> strategy) {
 		ESClientHandler.books = ESClientPlatform.INSTANCE.createBookLoader();
 		strategy.accept(ESClientHandler.books);
+		strategy.accept(ESClientPlatform.INSTANCE.createResourceReloadListener());
 	}
 
 	@SuppressWarnings({"unchecked"})

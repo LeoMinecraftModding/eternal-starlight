@@ -1,0 +1,27 @@
+{
+  "type": "eternal_starlight:ether_conversion",
+  "components": {
+    "minecraft:entity_data": {
+      "id": "eternal_starlight:painting",
+      "variant": "eternal_starlight:guardian"
+    }
+  },
+  "input": {
+    "item": "eternal_starlight:starlit_painting"
+  },
+  "outputs": [
+    {
+      "output": {
+        "components": {
+          "minecraft:entity_data": {
+            "id": "eternal_starlight:painting",
+            "variant": "eternal_starlight:guardian_special"
+          }
+        },
+        "count": 1,
+        "id": "eternal_starlight:starlit_painting"
+      },
+      "weight": 1
+    }
+  ]
+}

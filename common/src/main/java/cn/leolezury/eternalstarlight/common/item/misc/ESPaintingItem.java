@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.item.misc;
 
+import cn.leolezury.eternalstarlight.common.data.ESPaintingVariant;
+import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESPainting;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import net.minecraft.ChatFormatting;
@@ -7,12 +9,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.HangingEntity;
-import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HangingEntityItem;
 import net.minecraft.world.item.Item;
@@ -71,20 +74,22 @@ public class ESPaintingItem extends HangingEntityItem {
 	@Override
 	public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
 		super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
-		HolderLookup.Provider provider = tooltipContext.registries();
-		if (provider != null) {
-			CustomData customData = itemStack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
-			if (!customData.isEmpty()) {
-				customData.read(provider.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC).result().ifPresentOrElse((holder) -> {
-					holder.unwrapKey().ifPresent((resourceKey) -> {
-						list.add(Component.translatable(resourceKey.location().toLanguageKey("painting", "title")).withStyle(ChatFormatting.YELLOW));
-						list.add(Component.translatable(resourceKey.location().toLanguageKey("painting", "author")).withStyle(ChatFormatting.GRAY));
-					});
-					list.add(Component.translatable("painting.dimensions", holder.value().width(), holder.value().height()));
-				}, () -> list.add(TOOLTIP_RANDOM_VARIANT));
-			} else if (tooltipFlag.isCreative()) {
-				list.add(TOOLTIP_RANDOM_VARIANT);
+		CustomData customData = itemStack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
+		if (!customData.isEmpty()) {
+			CompoundTag tag = customData.copyTag();
+			ResourceLocation variantId = ResourceLocation.tryParse(tag.getString(ESPainting.TAG_VARIANT));
+			if (variantId != null) {
+				list.add(Component.translatable(variantId.toLanguageKey("painting", "title")).withStyle(ChatFormatting.YELLOW));
+				list.add(Component.translatable(variantId.toLanguageKey("painting", "author")).withStyle(ChatFormatting.GRAY));
+				HolderLookup.Provider provider = tooltipContext.registries();
+				if (provider != null) {
+					ResourceKey<ESPaintingVariant> key = ResourceKey.create(ESRegistries.PAINTING_VARIANT, variantId);
+					provider.lookup(ESRegistries.PAINTING_VARIANT).flatMap(registry -> registry.get(key)).ifPresent(holder ->
+						list.add(Component.translatable("painting.dimensions", holder.value().width(), holder.value().height())));
+				}
 			}
+		} else if (tooltipFlag.isCreative()) {
+			list.add(TOOLTIP_RANDOM_VARIANT);
 		}
 	}
 }

@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.platform;
 
 import cn.leolezury.eternalstarlight.common.client.ESDimensionSpecialEffects;
 import cn.leolezury.eternalstarlight.common.client.resource.ESBookLoader;
+import cn.leolezury.eternalstarlight.common.client.resource.ESClientResourceReloadListener;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
@@ -12,6 +13,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -38,6 +40,10 @@ public interface ESClientPlatform {
 
 	default ESBookLoader createBookLoader() {
 		return new ESBookLoader();
+	}
+
+	default ResourceManagerReloadListener createResourceReloadListener() {
+		return new ESClientResourceReloadListener();
 	}
 
 	// client-side
