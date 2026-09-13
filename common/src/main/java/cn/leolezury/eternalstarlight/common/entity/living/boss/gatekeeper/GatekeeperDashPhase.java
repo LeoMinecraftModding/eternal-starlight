@@ -39,15 +39,15 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	public void tick(TheGatekeeper entity) {
 		LivingEntity target = entity.getTarget();
 		if (target != null) {
-			ESEntityUtil.instantLook(entity, target.getEyePosition());
 			if (entity.getBehaviorTicks() < 16) {
+				ESEntityUtil.instantLook(entity, target.getEyePosition());
 				capturedYRot = entity.yBodyRot;
 			} else {
 				ESEntityUtil.instantLook(entity, ESMathUtil.rotationToPosition(new Vec3(entity.getX(), target.getEyeY(), entity.getZ()), 1, 0, capturedYRot + 90));
 			}
 			if (entity.getBehaviorTicks() == 16) {
 				entity.hurtMarked = true;
-				entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(3));
+				entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(3.2));
 			}
 			if (entity.getBehaviorTicks() >= 16 && entity.getBehaviorTicks() <= 35) {
 				performMeleeAttack(entity, 1.5, true, 180, e -> {
