@@ -1825,5 +1825,7 @@
   "gui.eternal_starlight.jei.category.drying": "Secagem",
   "gui.eternal_starlight.jei.category.alloy": "Liga",
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling": "Resfriamento da Fornalha de Liga",
-  "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "Tempo de Superaquecimento %sx"
+  "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "Tempo de Superaquecimento %sx",
+  "gui.eternal_starlight.jei.category.ether_conversion": "Ether Conversion",
+  "gui.eternal_starlight.jei.category.ether_conversion.chance": "Chance: %s%%"
 }
