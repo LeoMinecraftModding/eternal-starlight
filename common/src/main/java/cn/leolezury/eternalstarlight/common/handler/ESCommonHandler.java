@@ -551,6 +551,9 @@ public class ESCommonHandler {
 								outputItem.addDeltaMovement(new Vec3(0, 0.75, 0));
 								level.addFreshEntity(outputItem);
 								level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
+								if (level instanceof ServerLevel serverLevel) {
+									serverLevel.sendParticles(ESParticles.ETHER_TRAIL.get(), item.getX(), item.getY() + item.getBbHeight() / 2, item.getZ(), 8, 0, 0, 0, 0.1 + item.getRandom().nextFloat() * 0.2);
+								}
 								if (content.isEmpty()) {
 									item.discard();
 								}

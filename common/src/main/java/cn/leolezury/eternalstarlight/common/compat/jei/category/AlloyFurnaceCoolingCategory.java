@@ -62,7 +62,7 @@ public class AlloyFurnaceCoolingCategory extends AbstractRecipeCategory<AlloyFur
 		IDrawableStatic coolingIcon = new DrawableBuilder(EternalStarlight.id("textures/gui/jei/alloy_furnace/cooling_progress.png"), 0, 0, 15, 15).setTextureSize(15, 15).build();
 		IDrawableAnimated animatedFill = new DrawableAnimated(coolingIcon, duration, IDrawableAnimated.StartDirection.TOP, true);
 		IDrawable drawableCombined = new DrawableCombined(new DrawableBuilder(EternalStarlight.id("textures/gui/jei/alloy_furnace/cooling_background.png"), 0, 0, 15, 15).setTextureSize(15, 15).build(), animatedFill);
-		builder.addDrawable(drawableCombined)
+		builder.addDrawableWidget(drawableCombined)
 			.setPosition(1, 0);
 
 		builder.addText(List.of(createDurationText(duration), createEfficiencyText(efficiency)), getWidth() - 20, getHeight())

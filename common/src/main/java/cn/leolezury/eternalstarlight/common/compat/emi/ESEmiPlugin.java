@@ -2,10 +2,7 @@ package cn.leolezury.eternalstarlight.common.compat.emi;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
-import cn.leolezury.eternalstarlight.common.compat.emi.recipe.AlloyEmiRecipe;
-import cn.leolezury.eternalstarlight.common.compat.emi.recipe.AlloyFurnaceCoolingEmiRecipe;
-import cn.leolezury.eternalstarlight.common.compat.emi.recipe.DryingEmiRecipe;
-import cn.leolezury.eternalstarlight.common.compat.emi.recipe.GeyserSmokingEmiRecipe;
+import cn.leolezury.eternalstarlight.common.compat.emi.recipe.*;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMenuTypes;
@@ -32,6 +29,7 @@ public class ESEmiPlugin implements EmiPlugin {
 	public static final EmiRecipeCategory DRYING = category("drying", EmiStack.of(ESItems.DRYING_RACK.get()));
 	public static final EmiRecipeCategory ALLOY = category("alloy", EmiStack.of(ESItems.ALLOY_FURNACE.get()));
 	public static final EmiRecipeCategory ALLOY_FURNACE_COOLING = category("alloy_furnace_cooling", EmiStack.of(ESItems.FROZEN_TUBE.get()));
+	public static final EmiRecipeCategory ETHER_CONVERSION = category("ether_conversion", EmiStack.of(ESItems.ETHER_BUCKET.get()));
 
 	private static final ItemLike[] ALLOY_FURNACES = {
 		ESBlocks.ALLOY_FURNACE.get(),
@@ -45,6 +43,7 @@ public class ESEmiPlugin implements EmiPlugin {
 		registry.addCategory(DRYING);
 		registry.addCategory(ALLOY);
 		registry.addCategory(ALLOY_FURNACE_COOLING);
+		registry.addCategory(ETHER_CONVERSION);
 
 		addWorkstations(registry, GEYSER_SMOKING,
 			ESBlocks.ABYSSAL_GEYSER.get(),
@@ -55,12 +54,14 @@ public class ESEmiPlugin implements EmiPlugin {
 		addWorkstations(registry, ALLOY, ALLOY_FURNACES);
 		addWorkstations(registry, ALLOY_FURNACE_COOLING, ALLOY_FURNACES);
 		addWorkstations(registry, VanillaEmiRecipeCategories.FUEL, ALLOY_FURNACES);
+		addWorkstations(registry, ETHER_CONVERSION, ESItems.ETHER_BUCKET.get());
 
 		RecipeManager manager = registry.getRecipeManager();
 		manager.getAllRecipesFor(ESRecipes.GEYSER_SMOKING.get()).forEach(holder -> registry.addRecipe(new GeyserSmokingEmiRecipe(holder)));
 		manager.getAllRecipesFor(ESRecipes.DRYING.get()).forEach(holder -> registry.addRecipe(new DryingEmiRecipe(holder)));
 		manager.getAllRecipesFor(ESRecipes.ALLOY.get()).forEach(holder -> registry.addRecipe(new AlloyEmiRecipe(holder)));
 		AlloyFurnaceBlock.getCoolingRegistry().forEach((item, cooling) -> registry.addRecipe(new AlloyFurnaceCoolingEmiRecipe(item, cooling)));
+		manager.getAllRecipesFor(ESRecipes.ETHER_CONVERSION.get()).forEach(holder -> registry.addRecipe(new EtherConversionEmiRecipe(holder)));
 
 		registry.addRecipeHandler(ESMenuTypes.ALLOY_FURNACE.get(), new AlloyFurnaceEmiRecipeHandler());
 	}

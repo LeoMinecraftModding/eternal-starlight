@@ -11,7 +11,7 @@ public class GatekeeperGreatswordPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 5;
 
 	public GatekeeperGreatswordPhase() {
-		super(ID, 1, 47, 100);
+		super(ID, 1, 50, 100);
 	}
 
 	@Override

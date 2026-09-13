@@ -59,7 +59,7 @@ public class DryingCategory extends AbstractRecipeCategory<RecipeHolder<DryingRe
 	public void createRecipeExtras(IRecipeExtrasBuilder builder, RecipeHolder<DryingRecipe> recipeHolder, IFocusGroup focuses) {
 		DryingRecipe recipe = recipeHolder.value();
 
-		builder.addRecipeArrow().setPosition(26, 9);
+		builder.addRecipeArrowWidget().setPosition(26, 9);
 
 		addDryTime(builder, recipe.durationTicks());
 	}

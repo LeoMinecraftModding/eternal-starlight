@@ -106,21 +106,21 @@ public class AlloyCategory extends AbstractRecipeCategory<RecipeHolder<AlloyReci
 	protected void addRecipeArrow(IRecipeExtrasBuilder builder, int burnTime) {
 		IDrawableStatic icon = new DrawableBuilder(EternalStarlight.id("textures/gui/sprites/screen/alloy_furnace/burn_progress.png"), 0, 0, 24, 16).setTextureSize(24, 16).build();
 		IDrawableAnimated animatedFill = new DrawableAnimated(icon, burnTime, IDrawableAnimated.StartDirection.LEFT, false);
-		builder.addDrawable(animatedFill)
+		builder.addDrawableWidget(animatedFill)
 			.setPosition(80, 5);
 	}
 
 	protected void addRecipeFlame(IRecipeExtrasBuilder builder) {
 		IDrawableStatic icon = new DrawableBuilder(EternalStarlight.id("textures/gui/sprites/screen/alloy_furnace/lit_progress.png"), 0, 0, 14, 14).setTextureSize(14, 14).build();
 		IDrawableAnimated animatedFill = new DrawableAnimated(icon, 300, IDrawableAnimated.StartDirection.TOP, true);
-		builder.addDrawable(animatedFill)
+		builder.addDrawableWidget(animatedFill)
 			.setPosition(1, 24);
 	}
 
 	protected void addRecipeCooling(IRecipeExtrasBuilder builder) {
 		IDrawableStatic icon = new DrawableBuilder(EternalStarlight.id("textures/gui/sprites/screen/alloy_furnace/cooling_progress.png"), 0, 0, 16, 16).setTextureSize(16, 16).build();
 		IDrawableAnimated animatedFill = new DrawableAnimated(icon, 300, IDrawableAnimated.StartDirection.TOP, true);
-		builder.addDrawable(animatedFill)
+		builder.addDrawableWidget(animatedFill)
 			.setPosition(76, 22);
 	}
 

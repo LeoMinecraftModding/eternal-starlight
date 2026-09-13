@@ -43,6 +43,6 @@ public class GeyserSmokingCategory extends AbstractRecipeCategory<RecipeHolder<G
 
 	@Override
 	public void createRecipeExtras(IRecipeExtrasBuilder builder, RecipeHolder<GeyserSmokingRecipe> recipeHolder, IFocusGroup focuses) {
-		builder.addRecipeArrow().setPosition(26, 9);
+		builder.addRecipeArrowWidget().setPosition(26, 9);
 	}
 }

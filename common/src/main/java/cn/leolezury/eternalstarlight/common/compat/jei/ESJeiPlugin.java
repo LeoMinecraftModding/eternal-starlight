@@ -3,13 +3,11 @@ package cn.leolezury.eternalstarlight.common.compat.jei;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.AlloyFurnaceScreen;
-import cn.leolezury.eternalstarlight.common.compat.jei.category.AlloyCategory;
-import cn.leolezury.eternalstarlight.common.compat.jei.category.AlloyFurnaceCoolingCategory;
-import cn.leolezury.eternalstarlight.common.compat.jei.category.DryingCategory;
-import cn.leolezury.eternalstarlight.common.compat.jei.category.GeyserSmokingCategory;
+import cn.leolezury.eternalstarlight.common.compat.jei.category.*;
 import cn.leolezury.eternalstarlight.common.compat.jei.recipe.AlloyFurnaceCoolingRecipe;
 import cn.leolezury.eternalstarlight.common.item.menu.AlloyFurnaceMenu;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMenuTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
 import mezz.jei.api.IModPlugin;
@@ -32,7 +30,8 @@ public class ESJeiPlugin implements IModPlugin {
 			new GeyserSmokingCategory(guiHelper),
 			new DryingCategory(guiHelper),
 			new AlloyCategory(guiHelper),
-			new AlloyFurnaceCoolingCategory(guiHelper)
+			new AlloyFurnaceCoolingCategory(guiHelper),
+			new EtherConversionCategory(guiHelper)
 		);
 	}
 
@@ -43,6 +42,7 @@ public class ESJeiPlugin implements IModPlugin {
 			registration.addRecipes(GeyserSmokingCategory.GEYSER_SMOKING, manager.getAllRecipesFor(ESRecipes.GEYSER_SMOKING.get()));
 			registration.addRecipes(DryingCategory.DRYING, manager.getAllRecipesFor(ESRecipes.DRYING.get()));
 			registration.addRecipes(AlloyCategory.ALLOY, manager.getAllRecipesFor(ESRecipes.ALLOY.get()));
+			registration.addRecipes(EtherConversionCategory.ETHER_CONVERSION, manager.getAllRecipesFor(ESRecipes.ETHER_CONVERSION.get()));
 		}
 		registration.addRecipes(AlloyFurnaceCoolingCategory.ALLOY_FURNACE_COOLING, AlloyFurnaceBlock.getCoolingRegistry().entrySet().stream().map(entry -> new AlloyFurnaceCoolingRecipe(entry.getKey(), entry.getValue())).toList());
 	}
@@ -83,6 +83,9 @@ public class ESJeiPlugin implements IModPlugin {
 			ESBlocks.ALLOY_FURNACE.get(),
 			ESBlocks.WAXED_ALLOY_FURNACE.get(),
 			ESBlocks.OXIDIZED_ALLOY_FURNACE.get()
+		);
+		registration.addRecipeCatalysts(EtherConversionCategory.ETHER_CONVERSION,
+			ESItems.ETHER_BUCKET.get()
 		);
 	}
 
