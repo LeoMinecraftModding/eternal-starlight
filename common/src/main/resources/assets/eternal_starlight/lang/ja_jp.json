@@ -1796,10 +1796,10 @@
   "book.eternal_starlight.crystallized_moth": "結晶化した砂漠の地下を彷徨い、強力な音波の衝撃波を使ってコウモリを狩ることに長けたハンターだ。一見か弱い昆虫に見えるが侮るなかれ。飛行によって攻撃をかわすだけでなく、盾で防ぐことのできない音波を放つこともできる。さらに、戦闘では互いに連携して戦う。むやみに冒険者を襲うことはなく、十分な肉を与えれば、忠実な護衛として戦ってくれるようになる。\n手懐けられたケッショウガは、ルナリスサボテンのゲルを震えるゲルに変えることができる。この高密度なゲルは、音響爆弾やクリスタルの大剣のクラフトに用いられる重要なクラフト素材である。",
   "book.eternal_starlight.shimmer_lacewing": "薄明りの川や闇の沼地、陽光の浮島の近辺を飛び回る昆虫で、青色や紫色、橙色に輝く四対の翅を持っている。その存在は他の生物にとって脅威でも恩恵でもなかったが、星明りの文明が存在していた時代、この小さな生物は子供たちに愛されていた。",
   "book.eternal_starlight.starfire_bird": "星明りの森に生息するこの小鳥たちは、赤色や青色の羽根を持ち、星火として知られる独自の物質を生み出すことができる。星火は武器として投げられるほか、熱泉石製の装備品やカヤの焚き火を強化することができ、黄昏の砂を溶かして流璃に変えることもできる。\nこの特別な素材を手に入れるには、愛らしい鳥たちの機嫌をとることが不可欠である。ルナの木の樹冠にある巣を見つけ、贈り物として種を置いてみよう。すると、セイカノトリはお礼として星火を含む様々な貴重なアイテムをくれる。\nそびえ立つルナの木を登るのが危険に思えるなら、自分でセイカノトリの巣箱を建てたり、シルクタッチの付与された斧を使って、巣ごと鳥たちを木の上から回収することもできる。\nセイカノトリの繁殖は複雑ではない。2羽に種を与えれば、巣の中に卵を産む。卵が孵化するまでの間は、シルクタッチの付与された斧を持っていない限りは巣を壊してはならない。さもなければ、卵は巣とともに破壊されてしまう。",
-  "book.eternal_starlight.grimstone_golem": "The most basic golem, summoned by placing a Carved Lunaris Cactus Fruit on top of Grimstone Bricks. They are commonly used as item display stands.",
-  "book.eternal_starlight.aethersent_golem": "A golem invented by the ancient Starlighters to protect against meteor showers, summoned by placing a Carved Lunaris Cactus Fruit on a Block of Aethersent. Its powerful cannon can deliver precise, devastating strikes against any aerial enemy that approaches. It can even shatter falling meteors before they destroy the buildings below. However, it is completely incapable of attacking targets on the ground.",
-  "book.eternal_starlight.rookfish": "A common aquatic creature that spits ink to blind its enemies when hurt. They are remarkably useful creatures: not only can they be carried in buckets for long-distance transport, but they can also be turned into all sorts of delicacies. Their air sacs are likewise a valuable resource, used to craft Air Sac gear for working underwater and Air Sac Arrows.",
-  "book.eternal_starlight.luminofish": "Small fish that swim in schools through the Abyss. When attacked, they puff up their bodies to release poison. Despite being poisonous, their toxin is easily broken down by stomach acid, so they can still be eaten as food.",
+  "book.eternal_starlight.grimstone_golem": "もっとも基本的なゴーレムであり、グリムストーンレンガの上にくり抜かれたルナリスサボテンの実を置くことで召喚される。おもにアイテムの展示台として利用されている。",
+  "book.eternal_starlight.aethersent_golem": "古代の星明りの民によって流星群から身を守るために発明されたゴーレムで、エーテルセントブロックの上にくり抜かれたルナリスサボテンの実を置くことで召喚される。圧倒的な火力を誇る砲塔は、接近する飛行迎撃対象を正確無比な一撃で打ち砕き、地表を脅かす落下隕石すらも直撃前に粉砕する。ただし、対地攻撃能力は一切持たない。",
+  "book.eternal_starlight.rookfish": "危険を感じると墨を吐いて敵の目を眩ませる、一般的な水生生物。バケツに入れて遠隔地へ運べるだけでなく、多様な珍味としても重宝される。さらに、その気嚢は水中活動用の気嚢の装備や気嚢の矢の素材として欠かせない貴重な資源となる。",
+  "book.eternal_starlight.luminofish": "深淵を群れで泳ぐ小型の魚。攻撃されると体を膨らませて猛毒を放出する。有毒であるにもかかわらず、胃酸で容易に分解される性質があるため、調理すれば食べることができる。",
   "book.eternal_starlight.luminaris": "One of the common aquatic creatures of the Abyss. Though capable of fighting, they will not attack divers on their own, only striking back when hurt.\nThe Luminaris has a glowing horn on its head that lures small creatures nearby for it to feed on. Besides that, they are renowned for their schooling behavior, swimming in groups, hunting in groups, and defending in groups. If you provoke one, the whole school will come to its aid. Though a single Luminaris has limited strength, their cooperative strategy is enough to make any enemy think twice before attacking.",
   "book.eternal_starlight.twilight_gaze": "Twilight Gaze are famed for their glowing purple eyes. In the Abyss, where they originate, these eyes let them see clearly in total darkness. They love the environment of the Abyss and will try to return to it if they stray too far away. This fish will not attack on its own, but harm one, and the Twilight Gaze will not hesitate to swarm you as one.",
   "book.eternal_starlight.the_gatekeeper": "The Gatekeepers guard the gates of the Starlight dimension. As members of this ancient and mysterious order, we come from all walks of life, yet we all share one age-old and sacred duty: to guard the gates of the Starlight dimension and ensure that only the brave and the strong may enter.",
@@ -1826,6 +1826,6 @@
   "gui.eternal_starlight.jei.category.alloy": "合金",
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling": "合金炉の冷却",
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "過熱時間：%s倍",
-  "gui.eternal_starlight.jei.category.ether_conversion": "Ether Conversion",
-  "gui.eternal_starlight.jei.category.ether_conversion.chance": "Chance: %s%%"
+  "gui.eternal_starlight.jei.category.ether_conversion": "エーテルによる変換",
+  "gui.eternal_starlight.jei.category.ether_conversion.chance": "確率：%s%%"
 }
