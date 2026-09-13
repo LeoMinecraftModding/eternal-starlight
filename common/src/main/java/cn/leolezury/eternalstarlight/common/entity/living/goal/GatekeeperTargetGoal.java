@@ -31,8 +31,6 @@ public class GatekeeperTargetGoal extends TargetGoal {
 	public void start() {
 		if (this.mob instanceof TheGatekeeper gatekeeper && gatekeeper.getFightTarget().isPresent()) {
 			this.mob.setTarget(gatekeeper.getFightTarget().get());
-			this.targetMob = this.mob.getTarget();
-			this.unseenMemoryTicks = 300;
 		}
 		super.start();
 	}

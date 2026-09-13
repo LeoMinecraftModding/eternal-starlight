@@ -1,0 +1,8 @@
+{
+  "comparator_output": 13,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.les_iles_du_ciel"
+  },
+  "length_in_seconds": 123.0,
+  "sound_event": "eternal_starlight:music_disc.les_iles_du_ciel"
+}

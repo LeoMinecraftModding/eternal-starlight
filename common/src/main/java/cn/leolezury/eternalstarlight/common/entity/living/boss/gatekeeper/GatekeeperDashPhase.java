@@ -4,10 +4,12 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 	public static final int ID = 7;
 	private final List<Entity> hitEntities = new ArrayList<>();
+	private float capturedYRot;
 
 	public GatekeeperDashPhase() {
 		super(ID, 2, 40, 150);
@@ -37,6 +40,11 @@ public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
 		LivingEntity target = entity.getTarget();
 		if (target != null) {
 			ESEntityUtil.instantLook(entity, target.getEyePosition());
+			if (entity.getBehaviorTicks() < 16) {
+				capturedYRot = entity.yBodyRot;
+			} else {
+				ESEntityUtil.instantLook(entity, ESMathUtil.rotationToPosition(new Vec3(entity.getX(), target.getEyeY(), entity.getZ()), 1, 0, capturedYRot + 90));
+			}
 			if (entity.getBehaviorTicks() == 16) {
 				entity.hurtMarked = true;
 				entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(3));

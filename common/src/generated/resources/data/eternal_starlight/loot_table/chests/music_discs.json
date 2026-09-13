@@ -42,11 +42,15 @@
         },
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:music_disc_tranquility_ii"
+          "name": "eternal_starlight:music_disc_les_iles_du_ciel"
         },
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:music_disc_atlantis"
+          "name": "eternal_starlight:music_disc_solaris"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_tranquility_ii"
         }
       ],
       "rolls": 1.0

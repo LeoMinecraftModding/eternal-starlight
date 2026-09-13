@@ -79,6 +79,7 @@ public class ESRegistryRemapper {
 			addAlias(EternalStarlight.id("lunar_crystal"), air, itemsRegister.get());
 			addAlias(EternalStarlight.id("blaze_crystal"), air, itemsRegister.get());
 			addAlias(EternalStarlight.id("light_crystal"), air, itemsRegister.get());
+			addAlias(EternalStarlight.id("music_disc_atlantis"), air, itemsRegister.get());
 		}
 		addAlias("in_abyssal_fire_ticks", "abyssal_fire_ticks", ESNeoPlatform.ATTACHMENT_TYPE_REGISTER);
 	}

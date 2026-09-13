@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "eternal_starlight:item/music_disc_atlantis"
+    "layer0": "eternal_starlight:item/music_disc_solaris"
   }
 }

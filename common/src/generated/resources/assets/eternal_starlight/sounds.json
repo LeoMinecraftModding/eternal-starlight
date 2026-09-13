@@ -809,6 +809,31 @@
       }
     ]
   },
+  "music.biome.solaris_isles": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/les_iles_du_ciel",
+        "stream": true,
+        "weight": 5
+      },
+      {
+        "name": "eternal_starlight:music/dimension/tranquility",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/nest",
+        "stream": true
+      }
+    ]
+  },
   "music.biome.starlight_forest": {
     "sounds": [
       {
@@ -832,7 +857,7 @@
   "music.biome.starlight_permafrost_forest": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/biome/starlight_permafrost_forest",
+        "name": "eternal_starlight:music/biome/solaris",
         "stream": true,
         "weight": 5
       },
@@ -965,14 +990,6 @@
       }
     ]
   },
-  "music_disc.atlantis": {
-    "sounds": [
-      {
-        "name": "eternal_starlight:music/disc/atlantis",
-        "stream": true
-      }
-    ]
-  },
   "music_disc.brisk": {
     "sounds": [
       {
@@ -1001,6 +1018,14 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/boss/lunar_monstrosity",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.les_iles_du_ciel": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/les_iles_du_ciel",
         "stream": true
       }
     ]
@@ -1057,6 +1082,14 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/disc/sacred_desert",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.solaris": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/solaris",
         "stream": true
       }
     ]

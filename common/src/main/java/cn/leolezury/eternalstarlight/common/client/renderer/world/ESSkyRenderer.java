@@ -25,6 +25,14 @@ public class ESSkyRenderer {
 	private static final ResourceLocation DEAD_STAR_LOCATION = EternalStarlight.id("textures/environment/dead_star.png");
 	private static final float TIME = 12500f;
 	private static final float FIXED_TIME = (float) (Mth.frac(TIME / 24000.0 - 0.25) * 2.0 + 0.5 - Math.cos(Mth.frac(TIME / 24000.0 - 0.25) * Math.PI) / 2.0) / 3.0F;
+	private static final float STAR_SPHERE_RADIUS = 100.0F;
+	private static final float DEAD_STAR_HALF_SIZE = 60.0F;
+	// The opaque circle in dead_star.png is 48px wide in an 80px texture, i.e. 0.6 of the quad
+	private static final float DEAD_STAR_DISK_RADIUS = DEAD_STAR_HALF_SIZE * 0.6F;
+	private static final float STAR_HOLE_RADIUS = DEAD_STAR_DISK_RADIUS + 2.0F;
+	private static final float STAR_FALLOFF_END_RADIUS = DEAD_STAR_HALF_SIZE;
+	private static final float STAR_HOLE_ANGLE = (float) Mth.atan2(STAR_HOLE_RADIUS, STAR_SPHERE_RADIUS);
+	private static final float STAR_FALLOFF_END_ANGLE = (float) Mth.atan2(STAR_FALLOFF_END_RADIUS, STAR_SPHERE_RADIUS);
 	private static VertexBuffer starBuffer;
 
 	public static boolean renderSky(ClientLevel level, Matrix4f modelViewMatrix, Matrix4f matrix, float partialTicks, Camera camera, Runnable setupFog) {
@@ -102,7 +110,7 @@ public class ESSkyRenderer {
 			poseStack.mulPose(com.mojang.math.Axis.YP.rotationDegrees(-90.0F));
 			poseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(FIXED_TIME * 360.0F));
 			Matrix4f matrix4f4 = poseStack.last().pose();
-			l = 60.0F;
+			l = DEAD_STAR_HALF_SIZE;
 			RenderSystem.setShader(GameRenderer::getPositionTexShader);
 			RenderSystem.setShaderTexture(0, DEAD_STAR_LOCATION);
 			BufferBuilder bufferBuilder2 = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
@@ -156,7 +164,7 @@ public class ESSkyRenderer {
 
 	private static MeshData drawStars(Tesselator tesselator) {
 		RandomSource randomSource = RandomSource.create(10842L);
-		float f = 100.0F;
+		RandomSource densityRandom = RandomSource.create(336103L);
 		BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
 		for (int j = 0; j < 3000; ++j) {
@@ -166,13 +174,20 @@ public class ESSkyRenderer {
 			float l = 0.15F + randomSource.nextFloat() * 0.1F;
 			float m = Mth.lengthSquared(g, h, k);
 			if (!(m <= 0.010000001F) && !(m >= 1.0F)) {
-				Vector3f vector3f = (new Vector3f(g, h, k)).normalize(100.0F);
+				Vector3f vector3f = (new Vector3f(g, h, k)).normalize(STAR_SPHERE_RADIUS);
 				float n = (float) (randomSource.nextDouble() * 3.1415927410125732 * 2.0);
 				Quaternionf quaternionf = (new Quaternionf()).rotateTo(new Vector3f(0.0F, 0.0F, -1.0F), vector3f).rotateZ(n);
-				bufferBuilder.addVertex(vector3f.add((new Vector3f(l, -l, 0.0F)).rotate(quaternionf)));
-				bufferBuilder.addVertex(vector3f.add((new Vector3f(l, l, 0.0F)).rotate(quaternionf)));
-				bufferBuilder.addVertex(vector3f.add((new Vector3f(-l, l, 0.0F)).rotate(quaternionf)));
-				bufferBuilder.addVertex(vector3f.add((new Vector3f(-l, -l, 0.0F)).rotate(quaternionf)));
+				// Drop stars that would be drawn over the dead star's opaque disk (centered at local +Y),
+				// fading the density back to normal around it so the sky still looks natural.
+				float dot = h / Mth.sqrt(m);
+				float angle = (float) Math.acos(Mth.clamp(dot, -1.0F, 1.0F));
+				float keepChance = (float) Mth.smoothstep(Mth.clampedMap(angle, STAR_HOLE_ANGLE, STAR_FALLOFF_END_ANGLE, 0.0F, 1.0F));
+				if (densityRandom.nextFloat() < keepChance) {
+					bufferBuilder.addVertex(vector3f.add((new Vector3f(l, -l, 0.0F)).rotate(quaternionf)));
+					bufferBuilder.addVertex(vector3f.add((new Vector3f(l, l, 0.0F)).rotate(quaternionf)));
+					bufferBuilder.addVertex(vector3f.add((new Vector3f(-l, l, 0.0F)).rotate(quaternionf)));
+					bufferBuilder.addVertex(vector3f.add((new Vector3f(-l, -l, 0.0F)).rotate(quaternionf)));
+				}
 			}
 		}
 

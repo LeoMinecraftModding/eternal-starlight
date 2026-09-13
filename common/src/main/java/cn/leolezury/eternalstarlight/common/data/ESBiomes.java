@@ -68,6 +68,7 @@ public class ESBiomes {
 	public static final Music MUSIC_DESERT = new Music(ESSoundEvents.MUSIC_BIOME_CRYSTALLIZED_DESERT.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_STARLIT_SEA = new Music(ESSoundEvents.MUSIC_BIOME_STARLIT_SEA.asHolder(), 1200, 12000, false);
 	public static final Music MUSIC_THE_ABYSS = new Music(ESSoundEvents.MUSIC_BIOME_THE_ABYSS.asHolder(), 1200, 12000, false);
+	public static final Music MUSIC_SOLARIS_ISLES = new Music(ESSoundEvents.MUSIC_BIOME_SOLARIS_ISLES.asHolder(), 1200, 12000, false);
 
 	public static void bootstrap(BootstrapContext<Biome> context) {
 		HolderGetter<PlacedFeature> featureHolderGetter = context.lookup(Registries.PLACED_FEATURE);
@@ -84,7 +85,7 @@ public class ESBiomes {
 		context.register(TORREYA_FOREST, baseBiomeBuilder(baseEffectsBuilder().fogColor(7229604).foliageColorOverride(7229604).skyColor(7229604).grassColorOverride(7229604).backgroundMusic(MUSIC_TORREYA_FOREST), baseLushSpawnBuilder(), torreyaForestGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(CRYSTALLIZED_DESERT, baseBiomeBuilder(baseEffectsBuilder().fogColor(8349826).foliageColorOverride(8349826).skyColor(8349826).grassColorOverride(8349826).backgroundMusic(MUSIC_DESERT), desertSpawns(), desertGenSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
 		context.register(LUCENT_MYCELIUM_ISLE, baseBiomeBuilder(baseEffectsBuilder().grassColorOverride(5260652).backgroundMusic(MUSIC_FOREST), mushroomSpawns(), mushroomGenSettings(featureHolderGetter, carverHolderGetter)).build());
-		context.register(SOLARIS_ISLES, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_FOREST), solarisSpawns(), solarisGenSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
+		context.register(SOLARIS_ISLES, baseBiomeBuilder(baseEffectsBuilder().backgroundMusic(MUSIC_SOLARIS_ISLES), solarisSpawns(), solarisGenSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).temperature(2.0f).build());
 		context.register(STARLIT_SKY, baseBiomeBuilder(baseEffectsBuilder(), skySpawns(), skyGenSettings(featureHolderGetter, carverHolderGetter)).hasPrecipitation(false).build());
 		context.register(SHIMMER_RIVER, baseBiomeBuilder(baseEffectsBuilder(), riverSpawns(), riverGenSettings(featureHolderGetter, carverHolderGetter)).build());
 		context.register(ETHER_RIVER, baseBiomeBuilder(baseEffectsBuilder().fogColor(14417883).foliageColorOverride(14417883).skyColor(14417883).grassColorOverride(14417883).waterColor(14417883).waterFogColor(14417883), baseSpawnBuilder(), etherRiverGenSettings(featureHolderGetter, carverHolderGetter)).build());

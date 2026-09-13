@@ -26,7 +26,7 @@ public class ESDataFixers {
 			default -> id;
 		}));
 		builder.addFixer(ItemRenameFix.create(schema, "Remove removed item ids", id -> switch (id) {
-			case EternalStarlight.ID + ":enchanted_grimstone_bricks", EternalStarlight.ID + ":stellar_rack", EternalStarlight.ID + ":mana_crystal", EternalStarlight.ID + ":mana_crystal_shard", EternalStarlight.ID + ":terra_crystal", EternalStarlight.ID + ":wind_crystal", EternalStarlight.ID + ":water_crystal", EternalStarlight.ID + ":lunar_crystal", EternalStarlight.ID + ":blaze_crystal", EternalStarlight.ID + ":light_crystal" -> "minecraft:air";
+			case EternalStarlight.ID + ":enchanted_grimstone_bricks", EternalStarlight.ID + ":stellar_rack", EternalStarlight.ID + ":mana_crystal", EternalStarlight.ID + ":mana_crystal_shard", EternalStarlight.ID + ":terra_crystal", EternalStarlight.ID + ":wind_crystal", EternalStarlight.ID + ":water_crystal", EternalStarlight.ID + ":lunar_crystal", EternalStarlight.ID + ":blaze_crystal", EternalStarlight.ID + ":light_crystal", EternalStarlight.ID + ":music_disc_atlantis" -> "minecraft:air";
 			default -> id;
 		}));
 	}
