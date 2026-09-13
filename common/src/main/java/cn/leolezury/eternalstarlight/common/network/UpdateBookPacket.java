@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -21,7 +20,7 @@ public record UpdateBookPacket(Set<ResourceLocation> oldUnlocked, Set<ResourceLo
 	);
 
 	public static void handle(UpdateBookPacket packet, Player player) {
-		ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleUpdateBook(packet));
+		EternalStarlight.getClientHelper().handleUpdateBook(packet);
 	}
 
 	@Override

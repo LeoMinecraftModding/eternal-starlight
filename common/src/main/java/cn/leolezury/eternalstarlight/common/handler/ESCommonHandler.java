@@ -23,11 +23,13 @@ import cn.leolezury.eternalstarlight.common.item.interfaces.SwingAttackWeapon;
 import cn.leolezury.eternalstarlight.common.item.interfaces.TickableArmor;
 import cn.leolezury.eternalstarlight.common.item.recipe.EtherConversionRecipe;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
+import cn.leolezury.eternalstarlight.common.network.PostEffectPacket;
 import cn.leolezury.eternalstarlight.common.network.SimpleActionPacket;
 import cn.leolezury.eternalstarlight.common.network.UpdateWeatherPacket;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
+import cn.leolezury.eternalstarlight.common.posteffect.FlashPostEffect;
 import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
 import cn.leolezury.eternalstarlight.common.util.*;
@@ -553,6 +555,7 @@ public class ESCommonHandler {
 								level.playSound(null, item.blockPosition(), ESSoundEvents.ETHER_TRANSFORM.get(), SoundSource.BLOCKS, 1f, 1f);
 								if (level instanceof ServerLevel serverLevel) {
 									serverLevel.sendParticles(ESParticles.ETHER_TRAIL.get(), item.getX(), item.getY() + item.getBbHeight() / 2, item.getZ(), 8, 0, 0, 0, 0.1 + item.getRandom().nextFloat() * 0.2);
+									ESPlatform.INSTANCE.sendToAllClients(serverLevel, new PostEffectPacket(ESPostEffects.FLASH.get(), new FlashPostEffect.Data(2, 8, 0xd1ffe1), item.position().add(0, item.getBbHeight() / 2, 0), 20, 6.0F, 1.0F));
 								}
 								if (content.isEmpty()) {
 									item.discard();

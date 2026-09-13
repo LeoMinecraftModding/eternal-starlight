@@ -31,7 +31,7 @@ public class SonarParticle extends SimpleAnimatedParticle {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.onGround || this.xd == 0.0 || this.zd == 0.0) {
+		if (this.onGround || this.stoppedByCollision || this.xd == 0.0 || this.zd == 0.0) {
 			this.remove();
 		}
 		alpha = 1f - (float) age / lifetime;

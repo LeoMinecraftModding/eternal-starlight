@@ -43,7 +43,7 @@ public class ESPostEffectCommand {
 	private static int spawn(CommandContext<CommandSourceStack> context, int duration, float radius, float intensity) {
 		PostEffectData data = PostEffectArgument.getPostEffect(context, "effect");
 		Vec3 position = Vec3Argument.getVec3(context, "pos");
-		ESPlatform.INSTANCE.sendToAllClients(context.getSource().getLevel(), new PostEffectPacket(data.type().id(), data, position, duration, radius, intensity));
+		ESPlatform.INSTANCE.sendToAllClients(context.getSource().getLevel(), new PostEffectPacket(data.type(), data, position, duration, radius, intensity));
 		context.getSource().sendSuccess(() -> Component.translatable("commands." + EternalStarlight.ID + ".posteffect.spawned", data.type().id().toString(), formatPosition(position), duration), true);
 		return 1;
 	}

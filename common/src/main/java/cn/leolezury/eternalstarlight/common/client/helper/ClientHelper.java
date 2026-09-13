@@ -40,6 +40,10 @@ public class ClientHelper {
 
 	}
 
+	public void handlePostEffect(PostEffectPacket packet) {
+
+	}
+
 	public void spawnGlowParticles(int color, Vec3 center) {
 
 	}

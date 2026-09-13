@@ -31,7 +31,7 @@ public class TrailParticle extends TextureSheetParticle {
 	public void tick() {
 		super.tick();
 		this.effect.update(new Vec3(xo, yo, zo));
-		if (onGround) {
+		if (onGround || stoppedByCollision) {
 			effect.setLength(Math.max(effect.getLength() - 0.75f, 0));
 			if (effect.getLength() <= 0) {
 				remove();

@@ -26,7 +26,7 @@ public class SmokeTrailParticle extends NoRenderParticle {
 			level.addParticle(ParticleTypes.SMOKE, true, x + (random.nextFloat() - 0.5) * 0.15, y + (random.nextFloat() - 0.5) * 0.15, z + (random.nextFloat() - 0.5) * 0.15, 0, 0, 0);
 			level.addParticle(ParticleTypes.LARGE_SMOKE, true, x + (random.nextFloat() - 0.5) * 0.15, y + (random.nextFloat() - 0.5) * 0.15, z + (random.nextFloat() - 0.5) * 0.15, 0, 0, 0);
 		}
-		if (this.onGround) {
+		if (this.onGround || this.stoppedByCollision) {
 			remove();
 		}
 	}

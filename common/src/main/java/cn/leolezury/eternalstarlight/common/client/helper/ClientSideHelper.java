@@ -17,6 +17,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGat
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.network.*;
+import cn.leolezury.eternalstarlight.common.posteffect.PostEffectType;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
@@ -193,6 +194,14 @@ public class ClientSideHelper extends ClientHelper {
 			ESClientHandler.BOSS_BAR_TYPES.remove(packet.barId());
 		} else {
 			ESClientHandler.BOSS_BAR_TYPES.put(packet.barId(), packet.barType());
+		}
+	}
+
+	@Override
+	public void handlePostEffect(PostEffectPacket packet) {
+		PostEffectType<?> type = packet.effectType();
+		if (type != null) {
+			WorldPostEffectManager.spawn(type, packet.data(), packet.position(), packet.duration(), packet.radius(), packet.intensity());
 		}
 	}
 

@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -13,7 +12,7 @@ public record ClientDismountPacket(int riderId) implements CustomPacketPayload {
 	public static final StreamCodec<RegistryFriendlyByteBuf, ClientDismountPacket> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.INT, ClientDismountPacket::riderId, ClientDismountPacket::new);
 
 	public static void handle(ClientDismountPacket packet, Player player) {
-		ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleClientDismount(packet));
+		EternalStarlight.getClientHelper().handleClientDismount(packet);
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.posteffect.WorldPostEffectManager;
 import cn.leolezury.eternalstarlight.common.posteffect.PostEffectData;
 import cn.leolezury.eternalstarlight.common.posteffect.PostEffectType;
 import cn.leolezury.eternalstarlight.common.registry.ESPostEffects;
@@ -13,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
-public record PostEffectPacket(ResourceLocation typeId, PostEffectData data, Vec3 position, int duration, float radius, float intensity) implements CustomPacketPayload {
+public record PostEffectPacket(PostEffectType<?> effectType, PostEffectData data, Vec3 position, int duration, float radius, float intensity) implements CustomPacketPayload {
 	public static final Type<PostEffectPacket> TYPE = new Type<>(EternalStarlight.id("post_effect"));
 
 	public static final StreamCodec<RegistryFriendlyByteBuf, PostEffectPacket> STREAM_CODEC = StreamCodec.ofMember(PostEffectPacket::write, PostEffectPacket::read);
@@ -26,7 +25,7 @@ public record PostEffectPacket(ResourceLocation typeId, PostEffectData data, Vec
 		int duration = buf.readVarInt();
 		float radius = buf.readFloat();
 		float intensity = buf.readFloat();
-		return new PostEffectPacket(typeId, data, position, duration, radius, intensity);
+		return new PostEffectPacket(type, data, position, duration, radius, intensity);
 	}
 
 	private static <T extends PostEffectData> T readData(FriendlyByteBuf buf, PostEffectType<T> type) {
@@ -34,7 +33,7 @@ public record PostEffectPacket(ResourceLocation typeId, PostEffectData data, Vec
 	}
 
 	public static void write(PostEffectPacket packet, FriendlyByteBuf buf) {
-		buf.writeResourceLocation(packet.typeId());
+		buf.writeResourceLocation(packet.effectType().id());
 		writeData(buf, packet.data());
 		buf.writeDouble(packet.position().x);
 		buf.writeDouble(packet.position().y);
@@ -49,10 +48,7 @@ public record PostEffectPacket(ResourceLocation typeId, PostEffectData data, Vec
 	}
 
 	public static void handle(PostEffectPacket packet, Player player) {
-		PostEffectType<?> type = packet.data() == null ? null : ESPostEffects.get(packet.typeId());
-		if (type != null) {
-			WorldPostEffectManager.spawn(type, packet.data(), packet.position(), packet.duration(), packet.radius(), packet.intensity());
-		}
+		EternalStarlight.getClientHelper().handlePostEffect(packet);
 	}
 
 	@Override

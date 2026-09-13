@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.network;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.handler.ESCommonHandler;
-import cn.leolezury.eternalstarlight.common.util.ESMiscUtil;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -20,7 +19,7 @@ public record SimpleActionPacket(String id) implements CustomPacketPayload {
 	public static final String S2C_CLEAR_POST_EFFECT = "clear_post_effect";
 
 	public static void handle(SimpleActionPacket packet, Player player) {
-		ESMiscUtil.runWhenOnClient(() -> () -> EternalStarlight.getClientHelper().handleServerToClientSimpleAction(packet));
+		EternalStarlight.getClientHelper().handleServerToClientSimpleAction(packet);
 		if (player instanceof ServerPlayer serverPlayer) {
 			ESCommonHandler.onClientToServerSimpleAction(serverPlayer, packet.id());
 		}

@@ -32,7 +32,7 @@ public class MeteorParticle extends TextureSheetParticle {
 		super.tick();
 		level.addParticle(ESExplosionParticleOptions.AETHERSENT, true, x, y, z, 0, 0, 0);
 		this.effect.update(new Vec3(xo, yo, zo));
-		if (onGround) {
+		if (onGround || stoppedByCollision) {
 			effect.setLength(Math.max(effect.getLength() - 0.75f, 0));
 			if (effect.getLength() <= 0) {
 				remove();
