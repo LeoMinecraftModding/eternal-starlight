@@ -1825,5 +1825,7 @@
   "gui.eternal_starlight.jei.category.drying": "乾燥",
   "gui.eternal_starlight.jei.category.alloy": "合金",
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling": "合金炉の冷却",
-  "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "過熱時間：%s倍"
+  "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "過熱時間：%s倍",
+  "gui.eternal_starlight.jei.category.ether_conversion": "Ether Conversion",
+  "gui.eternal_starlight.jei.category.ether_conversion.chance": "Chance: %s%%"
 }
