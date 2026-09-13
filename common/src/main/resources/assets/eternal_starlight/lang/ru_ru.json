@@ -1825,5 +1825,7 @@
   "gui.eternal_starlight.jei.category.drying": "Сушка",
   "gui.eternal_starlight.jei.category.alloy": "Сплав",
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling": "Охлаждение доменной печи",
-  "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "%sx время перегрева"
+  "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "%sx время перегрева",
+  "gui.eternal_starlight.jei.category.ether_conversion": "Ether Conversion",
+  "gui.eternal_starlight.jei.category.ether_conversion.chance": "Chance: %s%%"
 }
