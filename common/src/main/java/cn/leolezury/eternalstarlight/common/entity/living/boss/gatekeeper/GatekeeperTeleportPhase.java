@@ -5,7 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 
 public class GatekeeperTeleportPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 12;
+	public static final int ID = 13;
 
 	public GatekeeperTeleportPhase() {
 		super(ID, 1, 37, 120);

@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
 public class GatekeeperGreatswordPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 5;
+	public static final int ID = 6;
 
 	public GatekeeperGreatswordPhase() {
 		super(ID, 1, 50, 100);

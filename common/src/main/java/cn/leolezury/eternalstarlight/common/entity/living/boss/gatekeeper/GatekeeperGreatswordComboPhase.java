@@ -10,7 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
 public class GatekeeperGreatswordComboPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 8;
+	public static final int ID = 9;
 
 	public GatekeeperGreatswordComboPhase() {
 		super(ID, 1, 105, 150);

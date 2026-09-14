@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GatekeeperDashPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 7;
+	public static final int ID = 8;
 	private final List<Entity> hitEntities = new ArrayList<>();
 	private float capturedYRot;
 

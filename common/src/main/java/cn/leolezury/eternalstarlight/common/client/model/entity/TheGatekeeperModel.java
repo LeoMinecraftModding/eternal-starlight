@@ -122,6 +122,7 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 		} else if (entity.deathTime <= 0) {
 			if (entity.getBehaviorState() != GatekeeperStepBackPhase.ID
 				&& entity.getBehaviorState() != GatekeeperJumpEndPhase.ID
+				&& entity.getBehaviorState() != GatekeeperSwordPhase.ID
 				&& entity.getBehaviorState() != GatekeeperGreatswordPhase.ID
 				&& entity.getBehaviorState() != GatekeeperHammerPhase.ID
 				&& entity.getBehaviorState() != GatekeeperDashPhase.ID
@@ -135,6 +136,7 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 					case GatekeeperJumpStartPhase.ID -> animate(entity.jumpStartAnimationState, TheGatekeeperAnimation.JUMP_START, ageInTicks);
 					case GatekeeperJumpTransitionPhase.ID -> animate(entity.jumpTransitionAnimationState, TheGatekeeperAnimation.JUMP_TRANSITION, ageInTicks);
 					case GatekeeperJumpEndPhase.ID -> animate(entity.jumpEndAnimationState, TheGatekeeperAnimation.JUMP_END, ageInTicks);
+					case GatekeeperSwordPhase.ID -> animate(entity.swordAnimationState, TheGatekeeperAnimation.SWORD, ageInTicks);
 					case GatekeeperGreatswordPhase.ID -> animate(entity.greatswordAnimationState, TheGatekeeperAnimation.GREATSWORD, ageInTicks);
 					case GatekeeperHammerPhase.ID -> animate(entity.hammerAnimationState, TheGatekeeperAnimation.HAMMER, ageInTicks);
 					case GatekeeperDashPhase.ID -> animate(entity.dashAnimationState, TheGatekeeperAnimation.DASH, ageInTicks);

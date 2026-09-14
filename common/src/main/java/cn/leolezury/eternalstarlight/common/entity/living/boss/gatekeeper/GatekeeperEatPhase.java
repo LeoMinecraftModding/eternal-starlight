@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class GatekeeperEatPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 13;
+	public static final int ID = 14;
 
 	public GatekeeperEatPhase() {
 		super(ID, 1, 55, 400);

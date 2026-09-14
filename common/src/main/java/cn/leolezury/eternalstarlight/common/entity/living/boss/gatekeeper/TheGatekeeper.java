@@ -116,6 +116,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		new GatekeeperJumpStartPhase(),
 		new GatekeeperJumpTransitionPhase(),
 		new GatekeeperJumpEndPhase(),
+		new GatekeeperSwordPhase(),
 		new GatekeeperGreatswordPhase(),
 		new GatekeeperHammerPhase(),
 		new GatekeeperDashPhase(),
@@ -140,6 +141,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public AnimationState jumpStartAnimationState = new AnimationState();
 	public AnimationState jumpTransitionAnimationState = new AnimationState();
 	public AnimationState jumpEndAnimationState = new AnimationState();
+	public AnimationState swordAnimationState = new AnimationState();
 	public AnimationState greatswordAnimationState = new AnimationState();
 	public AnimationState hammerAnimationState = new AnimationState();
 	public AnimationState dashAnimationState = new AnimationState();
@@ -395,6 +397,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 		jumpStartAnimationState.stop();
 		jumpTransitionAnimationState.stop();
 		jumpEndAnimationState.stop();
+		swordAnimationState.stop();
 		greatswordAnimationState.stop();
 		hammerAnimationState.stop();
 		dashAnimationState.stop();
@@ -417,6 +420,7 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 				case GatekeeperJumpStartPhase.ID -> jumpStartAnimationState.start(tickCount);
 				case GatekeeperJumpTransitionPhase.ID -> jumpTransitionAnimationState.start(tickCount);
 				case GatekeeperJumpEndPhase.ID -> jumpEndAnimationState.start(tickCount);
+				case GatekeeperSwordPhase.ID -> swordAnimationState.start(tickCount);
 				case GatekeeperGreatswordPhase.ID -> greatswordAnimationState.start(tickCount);
 				case GatekeeperHammerPhase.ID -> hammerAnimationState.start(tickCount);
 				case GatekeeperDashPhase.ID -> dashAnimationState.start(tickCount);

@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
 public class GatekeeperCastFireballPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 11;
+	public static final int ID = 12;
 
 	public GatekeeperCastFireballPhase() {
 		super(ID, 1, 37, 200);

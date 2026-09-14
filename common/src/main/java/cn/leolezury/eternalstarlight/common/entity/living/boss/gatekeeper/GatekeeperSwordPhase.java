@@ -1,16 +1,17 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
+import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
-public class GatekeeperHammerPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 7;
+public class GatekeeperSwordPhase extends BehaviorPhase<TheGatekeeper> {
+	public static final int ID = 5;
 
-	public GatekeeperHammerPhase() {
-		super(ID, 1, 35, 100);
+	public GatekeeperSwordPhase() {
+		super(ID, 1, 41, 80);
 	}
 
 	@Override
@@ -20,7 +21,7 @@ public class GatekeeperHammerPhase extends BehaviorPhase<TheGatekeeper> {
 
 	@Override
 	public void onStart(TheGatekeeper entity) {
-		entity.setItemInHand(InteractionHand.MAIN_HAND, entity.getGatekeeperHammer());
+		entity.setItemInHand(InteractionHand.MAIN_HAND, ESItems.GLISTERING_SWORD.get().getDefaultInstance());
 		entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 	}
 
@@ -28,14 +29,14 @@ public class GatekeeperHammerPhase extends BehaviorPhase<TheGatekeeper> {
 	public void tick(TheGatekeeper entity) {
 		LivingEntity target = entity.getTarget();
 		int ticks = entity.getBehaviorTicks();
-		if (ticks == 18 && target != null) {
-			performDefaultMeleeAttack(entity, 2, true, 45, e -> {
+		if ((ticks == 13 || ticks == 27) && target != null) {
+			performDefaultMeleeAttack(entity, 2, true, 60, e -> {
 				e.hurtMarked = true;
-				e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(0.6, 0.5, 0.6));
+				e.addDeltaMovement(e.position().subtract(entity.position()).normalize().multiply(0.3, 0.2, 0.3));
 			});
-			entity.playSound(SoundEvents.MACE_SMASH_GROUND_HEAVY);
+			entity.playSound(SoundEvents.PLAYER_ATTACK_SWEEP);
 			entity.hurtMarked = true;
-			entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(0.7));
+			entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(0.6));
 		}
 	}
 

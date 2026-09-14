@@ -12,7 +12,7 @@ import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 
 public class GatekeeperBowComboPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 10;
+	public static final int ID = 11;
 
 	public GatekeeperBowComboPhase() {
 		super(ID, 1, 76, 150);

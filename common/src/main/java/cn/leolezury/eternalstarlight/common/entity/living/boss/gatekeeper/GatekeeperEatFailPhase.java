@@ -7,7 +7,7 @@ import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.item.ItemStack;
 
 public class GatekeeperEatFailPhase extends BehaviorPhase<TheGatekeeper> {
-	public static final int ID = 14;
+	public static final int ID = 15;
 
 	public GatekeeperEatFailPhase() {
 		super(ID, 1, 22, 0);

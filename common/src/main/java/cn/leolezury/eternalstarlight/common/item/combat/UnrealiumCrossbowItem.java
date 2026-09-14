@@ -18,7 +18,7 @@ public class UnrealiumCrossbowItem extends CrossbowItem {
 	protected Projectile createProjectile(Level level, LivingEntity shooter, ItemStack weapon, ItemStack ammo, boolean isCrit) {
 		Projectile projectile = super.createProjectile(level, shooter, weapon, ammo, isCrit);
 		if (projectile instanceof AbstractArrow arrow) {
-			arrow.setBaseDamage(arrow.getBaseDamage() + 0.6 + arrow.getPierceLevel() * 0.1);
+			arrow.setBaseDamage(arrow.getBaseDamage() + 0.4 + arrow.getPierceLevel() * 0.15);
 			arrow.setPierceLevel(Byte.MAX_VALUE);
 		}
 		return projectile;
