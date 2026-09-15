@@ -62,7 +62,7 @@ public class PostEffectRenderer {
 
 	public static void captureDepth() {
 		Minecraft minecraft = Minecraft.getInstance();
-		if (minecraft.level == null) {
+		if (minecraft.level == null || WorldPostEffectManager.isEmpty()) {
 			return;
 		}
 		RenderTarget mainRenderTarget = minecraft.getMainRenderTarget();
@@ -94,6 +94,8 @@ public class PostEffectRenderer {
 			depthSnapshot.destroyBuffers();
 			depthSnapshot = null;
 		}
+		// depthSnapshot.destroyBuffers() leaves the window backbuffer (framebuffer 0) bound
+		Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
 		WorldPostEffectManager.clear();
 		currentLevel = null;
 	}

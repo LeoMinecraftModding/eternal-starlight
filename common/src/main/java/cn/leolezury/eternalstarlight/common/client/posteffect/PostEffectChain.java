@@ -44,6 +44,11 @@ public class PostEffectChain implements AutoCloseable {
 			release();
 			return;
 		}
+		if (depthTarget == null) {
+			// loadPostEffect may have just created the chain, which leaves the window backbuffer (framebuffer 0) bound
+			minecraft.getMainRenderTarget().bindWrite(true);
+			return;
+		}
 		effect.setSampler("DepthSampler", depthTarget::getDepthTextureId);
 
 		Matrix4f viewProj = new Matrix4f(projectionMatrix).mul(viewMatrix);

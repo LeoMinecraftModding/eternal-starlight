@@ -374,6 +374,11 @@ public class ESClientHandler {
 		if (aurora > 0 && Minecraft.getInstance().level != null) {
 			renderSkyShader(ESShaders.getAurora(), aurora);
 		}
+		// restore the states vanilla expects for the rest of the weather block and for later AFTER_WEATHER listeners
+		RenderSystem.enableCull();
+		RenderSystem.enableBlend();
+		RenderSystem.enableDepthTest();
+		RenderSystem.depthMask(false);
 	}
 
 	public static void onAfterRenderLevel(Matrix4f viewMatrix, Matrix4f projectionMatrix, Camera camera, float partialTicks) {
@@ -398,8 +403,8 @@ public class ESClientHandler {
 		buffer.addVertex(scale, y, -scale).setColor(1F, 1F, 1F, 1F);
 		buffer.addVertex(scale, y, scale).setColor(1F, 1F, 1F, 1F);
 
-		RenderSystem.enableBlend();
-		RenderSystem.enableDepthTest();
+		// blend and depth test are set up by the caller; this helper only owns the shader and the shader color
+		float[] lastColor = RenderSystem.getShaderColor().clone();
 		RenderSystem.setShaderColor(1F, 1F, 1F, intensity);
 		ShaderInstance last = RenderSystem.getShader();
 		RenderSystem.setShader(() -> shader);
@@ -407,9 +412,7 @@ public class ESClientHandler {
 		BufferUploader.drawWithShader(buffer.buildOrThrow());
 		shader.clear();
 		RenderSystem.setShader(() -> last);
-		RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
-		RenderSystem.disableDepthTest();
-		RenderSystem.disableBlend();
+		RenderSystem.setShaderColor(lastColor[0], lastColor[1], lastColor[2], lastColor[3]);
 	}
 
 	public static Vec3 onComputeCameraAngles(Vec3 angles) {
