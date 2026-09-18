@@ -23,6 +23,9 @@ public class ESJukeboxSongs {
 	public static final ResourceKey<JukeboxSong> STARS_SHINING_UPON_THE_SEA = create("stars_shining_upon_the_sea");
 	public static final ResourceKey<JukeboxSong> LES_ILES_DU_CIEL = create("les_iles_du_ciel");
 	public static final ResourceKey<JukeboxSong> SOLARIS = create("solaris");
+	public static final ResourceKey<JukeboxSong> DEEP_BLUE = create("deep_blue");
+	public static final ResourceKey<JukeboxSong> THE_DARK_SIDE = create("the_dark_side");
+	public static final ResourceKey<JukeboxSong> VIRIDESCENT = create("viridescent");
 	public static final ResourceKey<JukeboxSong> OPTIMIZED_OPTION = create("optimized_option");
 	public static final ResourceKey<JukeboxSong> MECHANICAL_FOSSIL = create("mechanical_fossil");
 	public static final ResourceKey<JukeboxSong> FAKE_LIGHT = create("fake_light");
@@ -45,6 +48,9 @@ public class ESJukeboxSongs {
 		register(context, STARS_SHINING_UPON_THE_SEA, ESSoundEvents.MUSIC_DISC_STARS_SHINING_UPON_THE_SEA.asHolder(), 194, 12);
 		register(context, LES_ILES_DU_CIEL, ESSoundEvents.MUSIC_DISC_LES_ILES_DU_CIEL.asHolder(), 123, 13);
 		register(context, SOLARIS, ESSoundEvents.MUSIC_DISC_SOLARIS.asHolder(), 174, 15);
+		register(context, DEEP_BLUE, ESSoundEvents.MUSIC_DISC_DEEP_BLUE.asHolder(), 279, 5);
+		register(context, THE_DARK_SIDE, ESSoundEvents.MUSIC_DISC_THE_DARK_SIDE.asHolder(), 149, 14);
+		register(context, VIRIDESCENT, ESSoundEvents.MUSIC_DISC_VIRIDESCENT.asHolder(), 230, 15);
 		register(context, OPTIMIZED_OPTION, ESSoundEvents.MUSIC_DISC_OPTIMIZED_OPTION.asHolder(), 188, 1);
 		register(context, MECHANICAL_FOSSIL, ESSoundEvents.MUSIC_DISC_MECHANICAL_FOSSIL.asHolder(), 222, 2);
 		register(context, FAKE_LIGHT, ESSoundEvents.MUSIC_DISC_FAKE_LIGHT.asHolder(), 170, 3);

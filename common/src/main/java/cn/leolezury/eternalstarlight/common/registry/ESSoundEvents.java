@@ -16,6 +16,8 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_TORREYA_FOREST = register("music.biome.torreya_forest");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_CRYSTALLIZED_DESERT = register("music.biome.crystallized_desert");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_STARLIT_SEA = register("music.biome.starlit_sea");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_SPIRAL_KELP_FOREST = register("music.biome.spiral_kelp_forest");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_LUSH_SHALLOW_SEA = register("music.biome.lush_shallow_sea");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_THE_ABYSS = register("music.biome.the_abyss");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BIOME_SOLARIS_ISLES = register("music.biome.solaris_isles");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_BOSS_GATEKEEPER = register("music.boss.gatekeeper");
@@ -33,6 +35,9 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_STARS_SHINING_UPON_THE_SEA = register("music_disc.stars_shining_upon_the_sea");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_LES_ILES_DU_CIEL = register("music_disc.les_iles_du_ciel");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_SOLARIS = register("music_disc.solaris");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_DEEP_BLUE = register("music_disc.deep_blue");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_THE_DARK_SIDE = register("music_disc.the_dark_side");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_VIRIDESCENT = register("music_disc.viridescent");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_OPTIMIZED_OPTION = register("music_disc.optimized_option");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_MECHANICAL_FOSSIL = register("music_disc.mechanical_fossil");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_FAKE_LIGHT = register("music_disc.fake_light");

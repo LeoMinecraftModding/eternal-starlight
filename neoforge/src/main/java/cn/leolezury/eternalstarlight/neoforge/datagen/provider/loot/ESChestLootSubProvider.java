@@ -42,6 +42,9 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_STARS_SHINING_UPON_THE_SEA.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_LES_ILES_DU_CIEL.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_SOLARIS.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_DEEP_BLUE.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_THE_DARK_SIDE.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_VIRIDESCENT.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY_II.get()))));
 
 		consumer.accept(ESLootTables.CHEST_ACCESSORIES,

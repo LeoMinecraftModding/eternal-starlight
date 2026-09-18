@@ -50,6 +50,18 @@
         },
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_deep_blue"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_the_dark_side"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_viridescent"
+        },
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:music_disc_tranquility_ii"
         }
       ],

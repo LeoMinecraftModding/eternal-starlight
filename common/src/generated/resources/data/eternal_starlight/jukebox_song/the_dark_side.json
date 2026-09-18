@@ -1,0 +1,8 @@
+{
+  "comparator_output": 14,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.the_dark_side"
+  },
+  "length_in_seconds": 149.0,
+  "sound_event": "eternal_starlight:music_disc.the_dark_side"
+}

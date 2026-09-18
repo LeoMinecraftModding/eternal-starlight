@@ -784,10 +784,31 @@
       }
     ]
   },
+  "music.biome.lush_shallow_sea": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/viridescent",
+        "stream": true,
+        "weight": 5
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/nest",
+        "stream": true
+      }
+    ]
+  },
   "music.biome.scarlet_forest": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/biome/scarlet_forest",
+        "name": "eternal_starlight:music/biome/deep_blue",
         "stream": true,
         "weight": 5
       },
@@ -819,6 +840,27 @@
       {
         "name": "eternal_starlight:music/dimension/tranquility",
         "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/nest",
+        "stream": true
+      }
+    ]
+  },
+  "music.biome.spiral_kelp_forest": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/the_dark_side",
+        "stream": true,
+        "weight": 5
       },
       {
         "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
@@ -998,6 +1040,14 @@
       }
     ]
   },
+  "music_disc.deep_blue": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/deep_blue",
+        "stream": true
+      }
+    ]
+  },
   "music_disc.dusk_o_ereyesterday": {
     "sounds": [
       {
@@ -1110,6 +1160,14 @@
       }
     ]
   },
+  "music_disc.the_dark_side": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/the_dark_side",
+        "stream": true
+      }
+    ]
+  },
   "music_disc.the_thorny_reign": {
     "sounds": [
       {
@@ -1130,6 +1188,14 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/disc/tranquility_ii",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.viridescent": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/viridescent",
         "stream": true
       }
     ]

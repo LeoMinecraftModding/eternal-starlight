@@ -1,0 +1,8 @@
+{
+  "comparator_output": 5,
+  "description": {
+    "translate": "jukebox_song.eternal_starlight.deep_blue"
+  },
+  "length_in_seconds": 279.0,
+  "sound_event": "eternal_starlight:music_disc.deep_blue"
+}
