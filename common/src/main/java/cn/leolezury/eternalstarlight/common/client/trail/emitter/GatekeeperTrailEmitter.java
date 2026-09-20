@@ -24,24 +24,24 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 	private static final Vector4f NEAR_COLOR = new Vector4f(1, 1, 1, 1);
 	private static final Vector4f FAR_COLOR = new Vector4f(101 / 255f, 125 / 255f, 201 / 255f, 1);
 
-	private static final EasingCurve SWORD_LENGTH = EasingCurve.
-		of(Easing.IDENTITY, 0, 0, 8)
+	private static final EasingCurve SWORD_LENGTH = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 8)
 		.add(Easing.IN_OUT_SINE, 0, 2, 5)
 		.add(Easing.IN_OUT_SINE, 2, 0, 5)
 		.add(Easing.IDENTITY, 0, 0, 4)
 		.add(Easing.IN_OUT_SINE, 0, 2, 5)
 		.add(Easing.IN_OUT_SINE, 2, 0, 5);
 
-	private static final EasingCurve GREATSWORD_LENGTH = EasingCurve.
-		of(Easing.IDENTITY, 0, 0, 10)
+	private static final EasingCurve GREATSWORD_LENGTH = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 10)
 		.add(Easing.IN_OUT_SINE, 0, 3, 5)
 		.add(Easing.IN_OUT_SINE, 3, 0, 5)
 		.add(Easing.IDENTITY, 0, 0, 8)
 		.add(Easing.IN_OUT_SINE, 0, 3, 5)
 		.add(Easing.IN_OUT_SINE, 3, 0, 5);
 
-	private static final EasingCurve GREATSWORD_COMBO_LENGTH = EasingCurve.
-		of(Easing.IDENTITY, 0, 0, 17)
+	private static final EasingCurve GREATSWORD_COMBO_LENGTH = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 17)
 		.add(Easing.IN_OUT_SINE, 0, 3, 5)
 		.add(Easing.IN_OUT_SINE, 3, 0, 5)
 		.add(Easing.IDENTITY, 0, 0, 9)
@@ -54,8 +54,8 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 		.add(Easing.IN_OUT_SINE, 0, 3, 5)
 		.add(Easing.IN_OUT_SINE, 3, 0, 5);
 
-	private static final EasingCurve HAMMER_LENGTH = EasingCurve.
-		of(Easing.IDENTITY, 0, 0, 13)
+	private static final EasingCurve HAMMER_LENGTH = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 13)
 		.add(Easing.IN_OUT_SINE, 0, 2.5f, 5)
 		.add(Easing.IN_OUT_SINE, 2.5f, 0, 5);
 
