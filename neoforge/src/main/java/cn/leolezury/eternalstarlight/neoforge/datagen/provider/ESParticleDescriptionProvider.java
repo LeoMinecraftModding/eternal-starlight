@@ -32,8 +32,6 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.BLAST.get(), loc("blast"), 4, false);
 		spriteSet(ESParticles.SMOKE.get(), loc("big_smoke"), 12, false);
 		sprite(ESParticles.RING_EXPLOSION.get(), loc("ring"));
-		sprite(ESParticles.RING.get(), loc("ring"));
-		sprite(ESParticles.SURROUNDING_TRAIL.get(), loc("trail"));
 		sprite(ESParticles.METEOR.get(), loc("trail"));
 		sprite(ESParticles.PARRY.get(), loc("parry_trail"));
 		sprite(ESParticles.GATHERING_ENERGY.get(), loc("energy_trail"));
@@ -41,7 +39,6 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		sprite(ESParticles.GATHERING_FLARE.get(), loc("flare_trail"));
 		sprite(ESParticles.ORBITAL_FLARE.get(), loc("flare_trail"));
 		sprite(ESParticles.ORBITAL_SPACE_MATTER.get(), loc("space_matter_trail"));
-		sprite(ESParticles.GLOW.get(), loc("glow"));
 		sprite(ESParticles.AETHERSENT_SMOKE.get(), loc("big_smoke_3"));
 		spriteSet(ESParticles.ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);
 		spriteSet(ESParticles.ORBITAL_ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);
@@ -64,7 +61,6 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.GEYSER_PLUME.get(), loc("geyser_plume"), 8, false);
 		sprite(ESParticles.RIPPLE.get(), loc("blank"));
 		sprite(ESParticles.ADVANCED_GLOW.get(), loc("glow"));
-		sprite(ESParticles.SHINE.get(), loc("shine"));
 	}
 
 	private ResourceLocation loc(String s) {

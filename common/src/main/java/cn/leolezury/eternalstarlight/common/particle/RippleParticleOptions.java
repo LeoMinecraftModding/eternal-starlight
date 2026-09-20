@@ -19,13 +19,17 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
-public record RippleParticleOptions(ParticleType<RippleParticleOptions> type, SmoothSegmentedValue radius, SmoothSegmentedValue width, Vector3f color, int lifetime) implements ParticleOptions {
+public record RippleParticleOptions(ParticleType<RippleParticleOptions> type, ParticleFacing facing, SmoothSegmentedValue radius, SmoothSegmentedValue width, Vector3f color, int lifetime) implements ParticleOptions {
 	public static final Vector3f PURPLE = new Vector3f(222f / 255f, 112f / 255f, 1);
 	public static final Vector3f GOLD = new Vector3f(1, 1, 116f / 255f);
 	public static final Vector3f ORANGE = new Vector3f(1, 213 / 255f, 74 / 255f);
 	public static final Vector3f WHITE = new Vector3f(1, 1, 1);
 	public static final Vector3f LIGHT_BLUE = new Vector3f(178 / 255f, 210 / 255f, 247 / 255f);
 	public static final Vector3f DEEP_BLUE = new Vector3f(56 / 255f, 122 / 255f, 203 / 255f);
+
+	public RippleParticleOptions(ParticleType<RippleParticleOptions> type, SmoothSegmentedValue radius, SmoothSegmentedValue width, Vector3f color, int lifetime) {
+		this(type, ParticleFacing.CAMERA, radius, width, color, lifetime);
+	}
 
 	public static void addFlareExplosionRippleParticles(ServerLevel level, double x, double y, double z, RandomSource random, float scale, float lifeScale, Vector3f flareColorA, Vector3f flareColorB) {
 		RippleParticleOptions whiteRipple = new RippleParticleOptions(ESParticles.RIPPLE.get(),
@@ -69,12 +73,20 @@ public record RippleParticleOptions(ParticleType<RippleParticleOptions> type, Sm
 			SmoothSegmentedValue.CODEC.fieldOf("radius").forGetter(RippleParticleOptions::radius),
 			SmoothSegmentedValue.CODEC.fieldOf("width").forGetter(RippleParticleOptions::width),
 			ExtraCodecs.VECTOR3F.fieldOf("color").forGetter(RippleParticleOptions::color),
-			Codec.INT.fieldOf("lifetime").forGetter(RippleParticleOptions::lifetime)
-		).apply(instance, (radius, width, color, lifetime) -> new RippleParticleOptions(type, radius, width, color, lifetime)));
+			Codec.INT.fieldOf("lifetime").forGetter(RippleParticleOptions::lifetime),
+			ParticleFacing.CODEC.optionalFieldOf("facing", ParticleFacing.CAMERA).forGetter(RippleParticleOptions::facing)
+		).apply(instance, (radius, width, color, lifetime, facing) -> new RippleParticleOptions(type, facing, radius, width, color, lifetime)));
 	}
 
 	public static StreamCodec<RegistryFriendlyByteBuf, RippleParticleOptions> streamCodec(ParticleType<RippleParticleOptions> type) {
-		return ByteBufCodecs.fromCodecWithRegistries(codec(type).codec());
+		return StreamCodec.composite(
+			SmoothSegmentedValue.STREAM_CODEC, RippleParticleOptions::radius,
+			SmoothSegmentedValue.STREAM_CODEC, RippleParticleOptions::width,
+			ByteBufCodecs.VECTOR3F, RippleParticleOptions::color,
+			ByteBufCodecs.VAR_INT, RippleParticleOptions::lifetime,
+			ParticleFacing.STREAM_CODEC, RippleParticleOptions::facing,
+			(radius, width, color, lifetime, facing) -> new RippleParticleOptions(type, facing, radius, width, color, lifetime)
+		);
 	}
 
 	@Override

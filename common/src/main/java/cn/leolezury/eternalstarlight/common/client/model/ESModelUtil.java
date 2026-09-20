@@ -35,7 +35,15 @@ public class ESModelUtil {
 		return pos.add(getModelPartOffsetPosition(entity, yaw, parts));
 	}
 
+	public static Vec3 getModelPartWorldPosition(Entity entity, Vec3 pos, float yaw, List<ModelPart> parts, Vector3f localOffset) {
+		return pos.add(getModelPartOffsetPosition(entity, yaw, parts, localOffset));
+	}
+
 	public static Vec3 getModelPartOffsetPosition(Entity entity, float yaw, List<ModelPart> parts) {
+		return getModelPartOffsetPosition(entity, yaw, parts, new Vector3f(0, 0, 0));
+	}
+
+	public static Vec3 getModelPartOffsetPosition(Entity entity, float yaw, List<ModelPart> parts, Vector3f localOffset) {
 		PoseStack stack = new PoseStack();
 		stack.mulPose(Axis.YP.rotationDegrees(180.0F - yaw));
 		stack.scale(-1, -1, 1);
@@ -45,7 +53,7 @@ public class ESModelUtil {
 			part.translateAndRotate(stack);
 		}
 
-		Vector4f vec = new Vector4f(0, 0, 0, 1).mul(stack.last().pose());
+		Vector4f vec = new Vector4f(localOffset.x(), localOffset.y(), localOffset.z(), 1).mul(stack.last().pose());
 		Vec3 pos = new Vec3(vec.x(), vec.y(), vec.z());
 		return pos.scale(entity instanceof LivingEntity living ? living.getScale() : 1);
 	}

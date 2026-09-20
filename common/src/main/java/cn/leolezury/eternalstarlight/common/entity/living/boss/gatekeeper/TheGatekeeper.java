@@ -157,6 +157,17 @@ public class TheGatekeeper extends ESBoss implements Npc, Merchant {
 	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>(50);
 	public float lastTrailTick = 0;
 
+	@Nullable
+	public Vec3 leftHandPos;
+	@Nullable
+	public Vec3 leftHandDirPos;
+	@Nullable
+	public Vec3 rightHandPos;
+	@Nullable
+	public Vec3 rightHandDirPos;
+	public float lastBladeTrailTick = 0;
+	public int lastBladeTrailState = -1;
+
 	public boolean shouldAddTrailSnapshot() {
 		return Mth.degreesDifferenceAbs(getYRot(), yBodyRot) < 30
 			&& Mth.degreesDifferenceAbs(getYRot(), yBodyRotO) < 30

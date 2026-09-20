@@ -1,11 +1,9 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -17,16 +15,16 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Fireball;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector4f;
 
 import java.util.UUID;
 
-public class GatekeeperFireball extends Fireball implements TrailOwner {
+public class GatekeeperFireball extends Fireball {
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
 
@@ -180,6 +178,11 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 	}
 
 	@Override
+	public boolean ignoreExplosion(Explosion explosion) {
+		return true;
+	}
+
+	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		if (compoundTag.hasUUID(TAG_TARGET)) {
@@ -195,29 +198,5 @@ public class GatekeeperFireball extends Fireball implements TrailOwner {
 			compoundTag.putUUID(TAG_TARGET, target.getUUID());
 		}
 		compoundTag.putInt(TAG_SPAWNED_TICKS, getSpawnedTicks());
-	}
-
-	@Override
-	public TrailEffect createNewTrail() {
-		return new TrailEffect(0.5f, 18);
-	}
-
-	@Override
-	public void updateTrail(TrailEffect effect) {
-		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(getTrailPosition(oldPos));
-		if (isRemoved()) {
-			effect.setLength(Math.max(effect.getLength() - 0.5f, 0));
-		}
-	}
-
-	@Override
-	public Vector4f getTrailColor() {
-		return new Vector4f(250 / 255f, 150 / 255f, 5 / 255f, 1.5f);
-	}
-
-	@Override
-	public boolean isTrailFullBright() {
-		return true;
 	}
 }

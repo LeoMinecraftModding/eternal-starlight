@@ -1,14 +1,12 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -24,11 +22,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import org.joml.Vector4f;
 
 import java.util.UUID;
 
-public class BallLightning extends ThrowableProjectile implements TrailOwner {
+public class BallLightning extends ThrowableProjectile {
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_SPAWNED_TICKS = "spawned_ticks";
 
@@ -189,24 +186,5 @@ public class BallLightning extends ThrowableProjectile implements TrailOwner {
 			compoundTag.putUUID(TAG_TARGET, target.getUUID());
 		}
 		compoundTag.putInt(TAG_SPAWNED_TICKS, getSpawnedTicks());
-	}
-
-	@Override
-	public TrailEffect createNewTrail() {
-		return new TrailEffect(0.125f, 10);
-	}
-
-	@Override
-	public void updateTrail(TrailEffect effect) {
-		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(getTrailPosition(oldPos));
-		if (isRemoved()) {
-			effect.setLength(Math.max(effect.getLength() - 0.5f, 0));
-		}
-	}
-
-	@Override
-	public Vector4f getTrailColor() {
-		return new Vector4f(128 / 255f, 255 / 255f, 255 / 255f, 2f);
 	}
 }

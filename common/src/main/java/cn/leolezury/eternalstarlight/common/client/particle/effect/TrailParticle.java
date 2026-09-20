@@ -1,7 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
-import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import cn.leolezury.eternalstarlight.common.client.trail.Trail;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailRenderer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -14,7 +15,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 public class TrailParticle extends TextureSheetParticle {
-	private final TrailEffect effect = new TrailEffect(0.05f, 0.8f);
+	private final Trail trail = new Trail(0.05f, 0.8f);
 
 	protected TrailParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet spriteSet) {
 		super(level, x, y, z);
@@ -30,10 +31,10 @@ public class TrailParticle extends TextureSheetParticle {
 	@Override
 	public void tick() {
 		super.tick();
-		this.effect.update(new Vec3(xo, yo, zo));
+		this.trail.update(new Vec3(xo, yo, zo));
 		if (onGround || stoppedByCollision) {
-			effect.setLength(Math.max(effect.getLength() - 0.75f, 0));
-			if (effect.getLength() <= 0) {
+			trail.setLength(Math.max(trail.getLength() - 0.75f, 0));
+			if (trail.getLength() <= 0) {
 				remove();
 			}
 		}
@@ -47,9 +48,10 @@ public class TrailParticle extends TextureSheetParticle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
+		this.trail.setUv(getU0(), getU1(), getV0(), getV1());
+		this.trail.prepareRender(TrailPoint.cameraFacing(new Vec3(x, y, z)), partialTicks);
 		RenderSystem.disableCull();
-		TrailRenderer.render(this.effect, consumer, stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, true, true, 1, 1, 1, 1, getU0(), getU1(), getV0(), getV1(), LightTexture.FULL_BRIGHT);
+		TrailRenderer.render(this.trail, consumer, stack, true, true, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

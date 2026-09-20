@@ -32,7 +32,9 @@ public abstract class AbstractWeather {
 
 	public abstract void clientTick();
 
-	public abstract float modifyRainLevel(float original);
+	public float modifyRainLevel(float original) {
+		return original;
+	}
 
 	public String getDescriptionId() {
 		return Util.makeDescriptionId("weather", ESWeathers.WEATHERS.registry().getKey(this));

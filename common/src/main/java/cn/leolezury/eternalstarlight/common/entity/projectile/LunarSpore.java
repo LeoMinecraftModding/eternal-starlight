@@ -1,13 +1,10 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
-import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ESSmokeParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -22,9 +19,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Vector4f;
 
-public class LunarSpore extends ThrowableProjectile implements TrailOwner {
+public class LunarSpore extends ThrowableProjectile {
 	public LunarSpore(EntityType<? extends LunarSpore> type, Level level) {
 		super(type, level);
 	}
@@ -93,27 +89,5 @@ public class LunarSpore extends ThrowableProjectile implements TrailOwner {
 			}
 		}
 		discard();
-	}
-
-	@Override
-	public TrailEffect createNewTrail() {
-		return new TrailEffect(0.4f, switch (getOwner()) {
-			case LunarMonstrosity ignored -> 15;
-			case null, default -> 12;
-		});
-	}
-
-	@Override
-	public void updateTrail(TrailEffect effect) {
-		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(getTrailPosition(oldPos));
-		if (isRemoved()) {
-			effect.setLength(Math.max(effect.getLength() - 0.5f, 0));
-		}
-	}
-
-	@Override
-	public Vector4f getTrailColor() {
-		return new Vector4f(32 / 255f, 32 / 255f, 64 / 255f, 2f);
 	}
 }

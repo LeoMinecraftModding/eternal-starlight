@@ -72,28 +72,6 @@ public class ESParticles {
 			return RingExplosionParticleOptions.STREAM_CODEC;
 		}
 	});
-	public static final RegistryObject<ParticleType<?>, ParticleType<RingParticleOptions>> RING = PARTICLE_TYPES.register("ring", () -> new ParticleType<>(false) {
-		@Override
-		public MapCodec<RingParticleOptions> codec() {
-			return RingParticleOptions.CODEC;
-		}
-
-		@Override
-		public StreamCodec<? super RegistryFriendlyByteBuf, RingParticleOptions> streamCodec() {
-			return RingParticleOptions.STREAM_CODEC;
-		}
-	});
-	public static final RegistryObject<ParticleType<?>, ParticleType<SurroundingTrailParticleOptions>> SURROUNDING_TRAIL = PARTICLE_TYPES.register("surrounding_trail", () -> new ParticleType<>(false) {
-		@Override
-		public MapCodec<SurroundingTrailParticleOptions> codec() {
-			return SurroundingTrailParticleOptions.CODEC;
-		}
-
-		@Override
-		public StreamCodec<? super RegistryFriendlyByteBuf, SurroundingTrailParticleOptions> streamCodec() {
-			return SurroundingTrailParticleOptions.STREAM_CODEC;
-		}
-	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> METEOR = PARTICLE_TYPES.register("meteor", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> PARRY = PARTICLE_TYPES.register("parry", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, ParticleType<GatheringTrailParticleOptions>> GATHERING_ENERGY = PARTICLE_TYPES.register("gathering_energy", () -> new ParticleType<>(false) {
@@ -149,17 +127,6 @@ public class ESParticles {
 		@Override
 		public StreamCodec<? super RegistryFriendlyByteBuf, OrbitalTrailParticleOptions> streamCodec() {
 			return OrbitalTrailParticleOptions.streamCodec(ESParticles.ORBITAL_SPACE_MATTER.get());
-		}
-	});
-	public static final RegistryObject<ParticleType<?>, ParticleType<ESGlowParticleOptions>> GLOW = PARTICLE_TYPES.register("glow", () -> new ParticleType<>(false) {
-		@Override
-		public MapCodec<ESGlowParticleOptions> codec() {
-			return ESGlowParticleOptions.CODEC;
-		}
-
-		@Override
-		public StreamCodec<? super RegistryFriendlyByteBuf, ESGlowParticleOptions> streamCodec() {
-			return ESGlowParticleOptions.STREAM_CODEC;
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> AETHERSENT_SMOKE = PARTICLE_TYPES.register("aethersent_smoke", () -> new SimpleParticleType(false));
@@ -257,7 +224,6 @@ public class ESParticles {
 		}
 	});
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ADVANCED_GLOW = PARTICLE_TYPES.register("advanced_glow", () -> new SimpleParticleType(false));
-	public static final RegistryObject<ParticleType<?>, SimpleParticleType> SHINE = PARTICLE_TYPES.register("shine", () -> new SimpleParticleType(false));
 
 	public static void loadClass() {
 	}

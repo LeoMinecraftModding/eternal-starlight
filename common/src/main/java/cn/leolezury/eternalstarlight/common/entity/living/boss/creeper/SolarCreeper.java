@@ -1,15 +1,11 @@
 package cn.leolezury.eternalstarlight.common.entity.living.boss.creeper;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESBoss;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.ESServerBossEvent;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.MoveToTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
-import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -37,14 +33,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SolarCreeper extends ESBoss implements TrailOwner {
+public class SolarCreeper extends ESBoss {
 	private static final String TAG_INTRO_COMPLETED = "intro_completed";
 
 	private static final EntityDataAccessor<Float> HEALTH_PERCENTAGE = SynchedEntityData.defineId(SolarCreeper.class, EntityDataSerializers.FLOAT);
@@ -263,17 +257,6 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 	public AnimationState powerUpAnimationState = new AnimationState();
 	public AnimationState deathAnimationState = new AnimationState();
 
-	public final List<Pair<Vec3, ModelSnapshot>> trailSnapshots = new ArrayList<>(50);
-	public float lastTrailTick = 0;
-
-	public boolean shouldAddTrailSnapshot() {
-		return Mth.degreesDifferenceAbs(getYRot(), yBodyRot) < 30
-			&& Mth.degreesDifferenceAbs(getYRot(), yBodyRotO) < 30
-			&& Mth.degreesDifferenceAbs(yBodyRot, yBodyRotO) < 30
-			&& (getBehaviorState() == SolarCreeperJumpTransitionPhase.ID
-			|| getBehaviorState() == SolarCreeperDashPhase.ID);
-	}
-
 	@Override
 	public void startSeenByPlayer(ServerPlayer serverPlayer) {
 		super.startSeenByPlayer(serverPlayer);
@@ -453,40 +436,5 @@ public class SolarCreeper extends ESBoss implements TrailOwner {
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putBoolean(TAG_INTRO_COMPLETED, introCompleted);
-	}
-
-	@Override
-	public TrailEffect createNewTrail() {
-		return new TrailEffect(0.15f, 0);
-	}
-
-	@Override
-	public void updateTrail(TrailEffect effect) {
-		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(getTrailPosition(oldPos));
-		int state = getBehaviorState();
-		if (isRemoved() || getDeltaMovement().length() < 0.01
-			|| !(state == SolarCreeperJumpStartPhase.ID
-			|| state == SolarCreeperJumpTransitionPhase.ID
-			|| state == SolarCreeperDashPhase.ID)) {
-			effect.setLength(Math.max(effect.getLength() - 0.5f, 0));
-		} else {
-			effect.setLength(Math.min(effect.getLength() + 2.5f, 8));
-		}
-	}
-
-	@Override
-	public Vector4f getTrailColor() {
-		return new Vector4f(1f, 1f, 1f, 1f);
-	}
-
-	@Override
-	public boolean isTrailFullBright() {
-		return true;
-	}
-
-	@Override
-	public boolean isTrailSolid() {
-		return true;
 	}
 }

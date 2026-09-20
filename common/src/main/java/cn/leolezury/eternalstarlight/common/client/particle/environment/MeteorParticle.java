@@ -2,9 +2,10 @@ package cn.leolezury.eternalstarlight.common.client.particle.environment;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
-import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
+import cn.leolezury.eternalstarlight.common.client.trail.Trail;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailRenderer;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
@@ -16,7 +17,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 public class MeteorParticle extends TextureSheetParticle {
-	private final TrailEffect effect = new TrailEffect(0.8f, 15);
+	private final Trail trail = new Trail(0.8f, 15);
 
 	protected MeteorParticle(ClientLevel level, double x, double y, double z, SpriteSet spriteSet) {
 		super(level, x, y, z);
@@ -31,10 +32,10 @@ public class MeteorParticle extends TextureSheetParticle {
 	public void tick() {
 		super.tick();
 		level.addParticle(ESExplosionParticleOptions.AETHERSENT, true, x, y, z, 0, 0, 0);
-		this.effect.update(new Vec3(xo, yo, zo));
+		this.trail.update(TrailPoint.cameraFacing(new Vec3(xo, yo, zo)).color(144 / 255f, 94 / 255f, 168 / 255f, 2f));
 		if (onGround || stoppedByCollision) {
-			effect.setLength(Math.max(effect.getLength() - 0.75f, 0));
-			if (effect.getLength() <= 0) {
+			trail.setLength(Math.max(trail.getLength() - 0.75f, 0));
+			if (trail.getLength() <= 0) {
 				remove();
 			}
 		}
@@ -51,8 +52,9 @@ public class MeteorParticle extends TextureSheetParticle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
-		TrailRenderer.render(this.effect, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW), stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, false, true, 144 / 255f, 94 / 255f, 168 / 255f, 2f, getU0(), getU1(), getV0(), getV1(), LightTexture.FULL_BRIGHT);
+		this.trail.setUv(getU0(), getU1(), getV0(), getV1());
+		this.trail.prepareRender(TrailPoint.cameraFacing(new Vec3(x, y, z)), partialTicks);
+		TrailRenderer.render(this.trail, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW), stack, true, false, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

@@ -3,13 +3,11 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
 import cn.leolezury.eternalstarlight.common.entity.attack.PermafrostCloud;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESMobEffects;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -27,9 +25,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Vector4f;
 
-public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
+public class PermafrostSpit extends ThrowableProjectile {
 	private static final String TAG_SMALL = "small";
 
 	protected static final EntityDataAccessor<Boolean> SMALL = SynchedEntityData.defineId(PermafrostSpit.class, EntityDataSerializers.BOOLEAN);
@@ -129,24 +126,5 @@ public class PermafrostSpit extends ThrowableProjectile implements TrailOwner {
 	protected void addAdditionalSaveData(CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
 		tag.putBoolean(TAG_SMALL, isSmall());
-	}
-
-	@Override
-	public TrailEffect createNewTrail() {
-		return new TrailEffect(0.3f, 8);
-	}
-
-	@Override
-	public void updateTrail(TrailEffect effect) {
-		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(getTrailPosition(oldPos));
-		if (isRemoved()) {
-			effect.setLength(Math.max(effect.getLength() - 0.9f, 0));
-		}
-	}
-
-	@Override
-	public Vector4f getTrailColor() {
-		return new Vector4f(104 / 255f, 204 / 255f, 255 / 255f, 1f);
 	}
 }

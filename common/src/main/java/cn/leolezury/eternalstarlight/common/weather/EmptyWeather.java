@@ -1,7 +1,5 @@
 package cn.leolezury.eternalstarlight.common.weather;
 
-import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 
@@ -43,12 +41,5 @@ public class EmptyWeather extends AbstractWeather {
 	@Override
 	public void clientTick() {
 
-	}
-
-	@Override
-	public float modifyRainLevel(float original) {
-		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
-		ClientWeatherState.levelTarget = 1;
-		return ClientWeatherState.getRainLevel(partialTick);
 	}
 }
