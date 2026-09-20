@@ -23,7 +23,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.Color;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -211,16 +211,16 @@ public class ClientSideHelper extends ClientHelper {
 			Vec3 pos = center.offsetRandom(AdvancedParticleOptions.RANDOM, 0.5f);
 			Color particleColor = Color.rgb(color);
 			new AdvancedParticleOptions()
-				.speed(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, AdvancedParticleOptions.RANDOM.nextFloat() * 0.015f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1))
-				.spinSpeed(SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 18 * Mth.DEG_TO_RAD, 36 * Mth.DEG_TO_RAD, 1))
-				.quadSize(SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, 0.25f, 0.6f).add(Easing.IN_OUT_BOUNCE, 0.25f, 0, 0.4f))
+				.speed(EasingCurve.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1),
+					EasingCurve.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, AdvancedParticleOptions.RANDOM.nextFloat() * 0.015f, 1),
+					EasingCurve.of(Easing.IN_OUT_SINE, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, (AdvancedParticleOptions.RANDOM.nextFloat() - 0.5f) * 0.03f, 1))
+				.spinSpeed(EasingCurve.of(Easing.IN_OUT_QUAD, 18 * Mth.DEG_TO_RAD, 36 * Mth.DEG_TO_RAD, 1))
+				.quadSize(EasingCurve.of(Easing.IN_OUT_SINE, 0, 0.25f, 0.6f).add(Easing.IN_OUT_BOUNCE, 0.25f, 0, 0.4f))
 				.lifetime(12)
-				.color(SmoothSegmentedValue.of(Easing.IN_OUT_QUART, particleColor.r() * 0.4f / 255f, 0.3f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, particleColor.g() * 0.4f / 255f, 0.3f, 1),
-					SmoothSegmentedValue.of(Easing.IN_OUT_SINE, particleColor.b() * 0.4f / 255f, 0.3f, 1),
-					SmoothSegmentedValue.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_QUAD, 1f, 0, 0.3f))
+				.color(EasingCurve.of(Easing.IN_OUT_QUART, particleColor.r() * 0.4f / 255f, 0.3f, 1),
+					EasingCurve.of(Easing.IN_OUT_SINE, particleColor.g() * 0.4f / 255f, 0.3f, 1),
+					EasingCurve.of(Easing.IN_OUT_SINE, particleColor.b() * 0.4f / 255f, 0.3f, 1),
+					EasingCurve.of(Easing.OUT_QUINT, 0, 1f, 0.7f).add(Easing.IN_OUT_QUAD, 1f, 0, 0.3f))
 				.defaultOperators()
 				.spawn(BuiltInRegistries.PARTICLE_TYPE.getKey(ESParticles.ADVANCED_GLOW.get()), (float) pos.x, (float) pos.y, (float) pos.z);
 		}

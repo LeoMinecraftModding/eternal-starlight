@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
 import cn.leolezury.eternalstarlight.common.client.trail.TrailRenderer;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -20,12 +20,12 @@ import org.joml.Vector3f;
 public class OrbitalTrailParticle extends TextureSheetParticle {
 	private final Trail trail;
 	private final Vec3 center, axis;
-	private final SmoothSegmentedValue radius, speed, length;
+	private final EasingCurve radius, speed, length;
 	private final float red, green, blue;
 	private final boolean reverseSpeed;
 	private float angle;
 
-	protected OrbitalTrailParticle(ClientLevel level, double x, double y, double z, Vector3f axis, SmoothSegmentedValue radius, SmoothSegmentedValue speed, float width, SmoothSegmentedValue length, Vector3f color, int lifetime, SpriteSet spriteSet) {
+	protected OrbitalTrailParticle(ClientLevel level, double x, double y, double z, Vector3f axis, EasingCurve radius, EasingCurve speed, float width, EasingCurve length, Vector3f color, int lifetime, SpriteSet spriteSet) {
 		super(level, x, y, z);
 		this.trail = new Trail(width, length.calculate(0));
 		this.center = new Vec3(x, y, z);

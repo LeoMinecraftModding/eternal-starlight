@@ -3,7 +3,7 @@ package cn.leolezury.eternalstarlight.common.entity.living.boss.creeper;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -14,38 +14,34 @@ import java.util.List;
 
 public class SolarCreeperPowerUpPhase extends BehaviorPhase<SolarCreeper> {
 	public static final int ID = 14;
-	public static final int DURATION = 240;
 
 	public static final List<String> PART_NAMES = List.of("root", "body", "head", "leg1", "leg2", "leg3", "leg4");
 
-	public static final SmoothSegmentedValue SHATTER_DEGREE = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 30f / DURATION)
-		.add(Easing.OUT_CIRC, 0, 0.9f, 15f / DURATION)
-		.add(Easing.OUT_QUART, 0.9f, 1, 45f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 80f / DURATION)
-		.add(Easing.IN_EXPO, 1, 0, 20f / DURATION)
-		.add(Easing.IDENTITY, 0, 0, 50f / DURATION);
+	public static final EasingCurve SHATTER_DEGREE = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 30)
+		.add(Easing.OUT_CIRC, 0, 0.9f, 15)
+		.add(Easing.OUT_QUART, 0.9f, 1, 45)
+		.add(Easing.IDENTITY, 1, 1, 80)
+		.add(Easing.IN_EXPO, 1, 0, 20);
 
-	public static final SmoothSegmentedValue STAR_SCALE = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 80f / DURATION)
-		.add(Easing.OUT_BACK, 0, 1.5f, 10f / DURATION)
-		.add(Easing.IDENTITY, 1.5f, 1.5f, 100f / DURATION)
-		.add(Easing.IN_OUT_CIRC, 1.5f, 0, 10f / DURATION)
-		.add(Easing.IDENTITY, 0, 0, 40f / DURATION);
+	public static final EasingCurve STAR_SCALE = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 80)
+		.add(Easing.OUT_BACK, 0, 1.5f, 10)
+		.add(Easing.IDENTITY, 1.5f, 1.5f, 100)
+		.add(Easing.IN_OUT_CIRC, 1.5f, 0, 10);
 
-	public static final SmoothSegmentedValue CONNECTION_DEGREE = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 90f / DURATION)
-		.add(Easing.IN_OUT_SINE, 0, 1, 80f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 20f / DURATION)
-		.add(Easing.OUT_QUART, 1, 0, 50f / DURATION);
+	public static final EasingCurve CONNECTION_DEGREE = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 90)
+		.add(Easing.IN_OUT_SINE, 0, 1, 80)
+		.add(Easing.IDENTITY, 1, 1, 20)
+		.add(Easing.OUT_QUART, 1, 0, 50);
 
-	public static final SmoothSegmentedValue OUTLINE_DEGREE = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 90f / DURATION)
-		.add(Easing.IN_OUT_SINE, 0, 1, 80f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 70f / DURATION);
+	public static final EasingCurve OUTLINE_DEGREE = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 90)
+		.add(Easing.IN_OUT_SINE, 0, 1, 80);
 
 	public SolarCreeperPowerUpPhase() {
-		super(ID, 0, DURATION, 0);
+		super(ID, 0, 240, 0);
 	}
 
 	@Override

@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public record SmoothSegmentedValue(List<Segment> segments) {
-	public static SmoothSegmentedValue of(Easing easing, float from, float to, float size) {
-		return new SmoothSegmentedValue(List.of(new Segment(easing, from, to, size)));
+public record EasingCurve(List<Segment> segments) {
+	public static EasingCurve of(Easing easing, float from, float to, float size) {
+		return new EasingCurve(List.of(new Segment(easing, from, to, size)));
 	}
 
-	public static SmoothSegmentedValue constant(float value) {
+	public static EasingCurve constant(float value) {
 		Segment seg = new Segment(Easing.IDENTITY, value, value, 1f);
-		return new SmoothSegmentedValue(Collections.singletonList(seg));
+		return new EasingCurve(Collections.singletonList(seg));
 	}
 
-	public SmoothSegmentedValue add(Easing easing, float from, float to, float size) {
+	public EasingCurve add(Easing easing, float from, float to, float size) {
 		List<Segment> newSegments = new ArrayList<>(segments);
 		newSegments.add(new Segment(easing, from, to, size));
-		return new SmoothSegmentedValue(Collections.unmodifiableList(newSegments));
+		return new EasingCurve(Collections.unmodifiableList(newSegments));
 	}
 
 	public float calculate(float progress) {
@@ -69,13 +69,13 @@ public record SmoothSegmentedValue(List<Segment> segments) {
 		);
 	}
 
-	public static final Codec<SmoothSegmentedValue> CODEC = Segment.CODEC.listOf().xmap(
-		SmoothSegmentedValue::new,
-		SmoothSegmentedValue::segments
+	public static final Codec<EasingCurve> CODEC = Segment.CODEC.listOf().xmap(
+		EasingCurve::new,
+		EasingCurve::segments
 	);
 
-	public static final StreamCodec<ByteBuf, SmoothSegmentedValue> STREAM_CODEC = Segment.STREAM_CODEC.apply(ByteBufCodecs.list()).map(
-		SmoothSegmentedValue::new,
-		SmoothSegmentedValue::segments
+	public static final StreamCodec<ByteBuf, EasingCurve> STREAM_CODEC = Segment.STREAM_CODEC.apply(ByteBufCodecs.list()).map(
+		EasingCurve::new,
+		EasingCurve::segments
 	);
 }

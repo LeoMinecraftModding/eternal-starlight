@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.projectile.OrbitalPlanet;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -16,19 +16,17 @@ public class SolarCreeperGalaxyPhase extends BehaviorPhase<SolarCreeper> {
 	public static final int ID = 13;
 	public static final int DURATION = 300;
 
-	public static final SmoothSegmentedValue BODY_SCALE = SmoothSegmentedValue
-		.of(Easing.IN_CUBIC, 1, 0.8f, 80f / DURATION)
-		.add(Easing.IN_OUT_SINE, 0.8f, 1, 10f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 210f / DURATION);
+	public static final EasingCurve BODY_SCALE = EasingCurve
+		.of(Easing.IN_CUBIC, 1, 0.8f, 80)
+		.add(Easing.IN_OUT_SINE, 0.8f, 1, 10);
 
-	public static final SmoothSegmentedValue JITTER_FREQ = SmoothSegmentedValue
-		.of(Easing.IN_CUBIC, 0, 3, 80f / DURATION)
-		.add(Easing.IDENTITY, 0, 0, 220f / DURATION);
+	public static final EasingCurve JITTER_FREQ = EasingCurve
+		.of(Easing.IN_CUBIC, 0, 3, 80)
+		.add(Easing.IDENTITY, 0, 0, 220);
 
-	public static final SmoothSegmentedValue SHINE_SCALE = SmoothSegmentedValue
-		.of(Easing.IN_CUBIC, 0, 1, 80f / DURATION)
-		.add(Easing.IN_OUT_SINE, 1, 0, 10f / DURATION)
-		.add(Easing.IDENTITY, 0, 0, 210f / DURATION);
+	public static final EasingCurve SHINE_SCALE = EasingCurve
+		.of(Easing.IN_CUBIC, 0, 1, 80)
+		.add(Easing.IN_OUT_SINE, 1, 0, 10);
 
 	public SolarCreeperGalaxyPhase() {
 		super(ID, 1, DURATION, 500);

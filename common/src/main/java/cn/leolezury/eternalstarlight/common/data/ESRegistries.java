@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.data;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
+import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolant;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.EntVariant;
 import cn.leolezury.eternalstarlight.common.entity.living.animal.ShimmerLacewingVariant;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.SeekerVariant;
@@ -20,6 +21,7 @@ public class ESRegistries {
 	public static final ResourceKey<Registry<ShimmerLacewingVariant>> SHIMMER_LACEWING_VARIANT = ResourceKey.createRegistryKey(EternalStarlight.id("shimmer_lacewing_variant"));
 	public static final ResourceKey<Registry<SeekerVariant>> SEEKER_VARIANT = ResourceKey.createRegistryKey(EternalStarlight.id("seeker_variant"));
 	public static final ResourceKey<Registry<SeedsLauncherAmmoType>> SEEDS_LAUNCHER_AMMO_TYPE = ResourceKey.createRegistryKey(EternalStarlight.id("seeds_launcher_ammo_type"));
+	public static final ResourceKey<Registry<AlloyFurnaceCoolant>> ALLOY_FURNACE_COOLANT = ResourceKey.createRegistryKey(EternalStarlight.id("alloy_furnace_coolant"));
 	public static final ResourceKey<Registry<ESPaintingVariant>> PAINTING_VARIANT = ResourceKey.createRegistryKey(EternalStarlight.id("painting_variant"));
 
 	static {
@@ -30,6 +32,7 @@ public class ESRegistries {
 		ESPlatform.INSTANCE.registerDatapackRegistry(SHIMMER_LACEWING_VARIANT, ShimmerLacewingVariant.CODEC, ShimmerLacewingVariant.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(SEEKER_VARIANT, SeekerVariant.CODEC, SeekerVariant.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(SEEDS_LAUNCHER_AMMO_TYPE, SeedsLauncherAmmoType.CODEC, SeedsLauncherAmmoType.CODEC);
+		ESPlatform.INSTANCE.registerDatapackRegistry(ALLOY_FURNACE_COOLANT, AlloyFurnaceCoolant.CODEC, AlloyFurnaceCoolant.CODEC);
 		ESPlatform.INSTANCE.registerDatapackRegistry(PAINTING_VARIANT, ESPaintingVariant.CODEC, ESPaintingVariant.CODEC);
 	}
 

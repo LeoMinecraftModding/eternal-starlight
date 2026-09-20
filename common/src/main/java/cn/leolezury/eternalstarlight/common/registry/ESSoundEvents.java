@@ -27,7 +27,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_WHISPER_OF_THE_STARS = register("music_disc.whisper_of_the_stars");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_DUSK_O_EREYESTERDAY = register("music_disc.dusk_o_ereyesterday");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_TRANQUILITY = register("music_disc.tranquility");
-	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_NEST = register("music_disc.nest");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_NEST_II = register("music_disc.nest_ii");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_POSTERITY = register("music_disc.posterity");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_THE_THORNY_REIGN = register("music_disc.the_thorny_reign");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_PROFUNDITY = register("music_disc.profundity");
@@ -47,6 +47,7 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_ETHER_RAIN = register("music_disc.ether_rain");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_BRISK = register("music_disc.brisk");
 	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_MOONLIGHT = register("music_disc.moonlight");
+	public static final RegistryObject<SoundEvent, SoundEvent> MUSIC_DISC_NEST = register("music_disc.nest");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_ALCHEMIST = register("item.armor.equip_alchemist");
 	public static final RegistryObject<SoundEvent, SoundEvent> ARMOR_EQUIP_AMARAMBER = register("item.armor.equip_amaramber");

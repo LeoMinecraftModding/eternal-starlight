@@ -754,7 +754,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -779,7 +779,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -800,7 +800,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -825,7 +825,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -850,7 +850,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -871,7 +871,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -891,7 +891,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -916,7 +916,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -937,7 +937,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -958,7 +958,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -983,7 +983,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -1027,7 +1027,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -1099,7 +1099,15 @@
   "music_disc.nest": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/disc/nest",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.nest_ii": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]

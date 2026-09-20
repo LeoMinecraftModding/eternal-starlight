@@ -152,7 +152,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get(),
 				ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get(),
 				ESItems.MUSIC_DISC_TRANQUILITY.get(),
-				ESItems.MUSIC_DISC_NEST.get(),
+				ESItems.MUSIC_DISC_NEST_II.get(),
 				ESItems.MUSIC_DISC_POSTERITY.get(),
 				ESItems.MUSIC_DISC_THE_THORNY_REIGN.get(),
 				ESItems.MUSIC_DISC_PROFUNDITY.get(),
@@ -171,7 +171,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.MUSIC_DISC_SPIRIT.get(),
 				ESItems.MUSIC_DISC_ETHER_RAIN.get(),
 				ESItems.MUSIC_DISC_BRISK.get(),
-				ESItems.MUSIC_DISC_MOONLIGHT.get()
+				ESItems.MUSIC_DISC_MOONLIGHT.get(),
+				ESItems.MUSIC_DISC_NEST.get()
 			);
 		tag(Tags.Items.GEMS)
 			.add(

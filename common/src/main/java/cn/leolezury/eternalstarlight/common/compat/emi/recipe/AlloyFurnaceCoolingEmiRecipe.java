@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.compat.emi.recipe;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolingItem;
+import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolant;
 import cn.leolezury.eternalstarlight.common.compat.emi.ESEmiPlugin;
 import dev.emi.emi.api.recipe.BasicEmiRecipe;
 import dev.emi.emi.api.stack.EmiStack;
@@ -17,15 +17,15 @@ public class AlloyFurnaceCoolingEmiRecipe extends BasicEmiRecipe {
 	private static final ResourceLocation COOLING_BACKGROUND = EternalStarlight.id("textures/gui/jei/alloy_furnace/cooling_background.png");
 	private static final ResourceLocation COOLING_PROGRESS = EternalStarlight.id("textures/gui/jei/alloy_furnace/cooling_progress.png");
 
-	private final AlloyFurnaceCoolingItem cooling;
+	private final AlloyFurnaceCoolant cooling;
 
-	public AlloyFurnaceCoolingEmiRecipe(Item item, AlloyFurnaceCoolingItem cooling) {
+	public AlloyFurnaceCoolingEmiRecipe(Item item, AlloyFurnaceCoolant cooling) {
 		super(ESEmiPlugin.ALLOY_FURNACE_COOLING, syntheticId(item), maxWidth(), 34);
 		this.cooling = cooling;
 		this.inputs.add(EmiStack.of(item));
 	}
 
-	/** Cooling entries are code-driven, so they need an ID EMI can tell apart from a real recipe. */
+	/** One coolant entry can cover several items, so the recipe ID is built from the item to stay unique. */
 	private static ResourceLocation syntheticId(Item item) {
 		ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
 		return EternalStarlight.id("/alloy_furnace_cooling/" + itemId.getNamespace() + "/" + itemId.getPath());

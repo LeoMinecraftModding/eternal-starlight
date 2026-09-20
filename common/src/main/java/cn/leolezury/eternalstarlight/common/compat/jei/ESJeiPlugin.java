@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.compat.jei;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
+import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolant;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.AlloyFurnaceScreen;
 import cn.leolezury.eternalstarlight.common.compat.jei.category.*;
 import cn.leolezury.eternalstarlight.common.compat.jei.recipe.AlloyFurnaceCoolingRecipe;
@@ -43,8 +43,8 @@ public class ESJeiPlugin implements IModPlugin {
 			registration.addRecipes(DryingCategory.DRYING, manager.getAllRecipesFor(ESRecipes.DRYING.get()));
 			registration.addRecipes(AlloyCategory.ALLOY, manager.getAllRecipesFor(ESRecipes.ALLOY.get()));
 			registration.addRecipes(EtherConversionCategory.ETHER_CONVERSION, manager.getAllRecipesFor(ESRecipes.ETHER_CONVERSION.get()));
+			registration.addRecipes(AlloyFurnaceCoolingCategory.ALLOY_FURNACE_COOLING, AlloyFurnaceCoolant.getCoolantMap(Minecraft.getInstance().level.registryAccess()).entrySet().stream().map(entry -> new AlloyFurnaceCoolingRecipe(entry.getKey(), entry.getValue())).toList());
 		}
-		registration.addRecipes(AlloyFurnaceCoolingCategory.ALLOY_FURNACE_COOLING, AlloyFurnaceBlock.getCoolingRegistry().entrySet().stream().map(entry -> new AlloyFurnaceCoolingRecipe(entry.getKey(), entry.getValue())).toList());
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -59,8 +59,8 @@ public class GatekeeperBowComboPhase extends BehaviorPhase<TheGatekeeper> {
 					entity.level().addFreshEntity(arrow);
 					RippleParticleOptions ripple = new RippleParticleOptions(ESParticles.RIPPLE.get(),
 						ParticleFacing.fromNormal(arrow.getDeltaMovement()),
-						SmoothSegmentedValue.of(Easing.OUT_QUAD, 0, 0.6f, 1),
-						SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 0.25f, 0, 1),
+						EasingCurve.of(Easing.OUT_QUAD, 0, 0.6f, 1),
+						EasingCurve.of(Easing.IN_OUT_QUAD, 0.25f, 0, 1),
 						RippleParticleOptions.WHITE, 10);
 					Vec3 pos = new Vec3(arrow.getX(), entity.getY() + entity.getBbHeight() * 0.65, arrow.getZ()).add(0, arrow.getBbHeight() / 2, 0).add(arrow.getDeltaMovement().normalize().scale(0.5));
 					ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ripple, pos.x, pos.y, pos.z, 0, 0, 0));

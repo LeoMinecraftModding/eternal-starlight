@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.particle.ParticleFacing;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -13,12 +13,12 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class RippleParticle extends TextureSheetParticle {
-	private final SmoothSegmentedValue radius;
-	private final SmoothSegmentedValue width;
+	private final EasingCurve radius;
+	private final EasingCurve width;
 	private final float red, green, blue;
 	private final ParticleFacing facing;
 
-	protected RippleParticle(ClientLevel level, double x, double y, double z, ParticleFacing facing, SmoothSegmentedValue radius, SmoothSegmentedValue width, Vector3f color, int lifetime, SpriteSet spriteSet) {
+	protected RippleParticle(ClientLevel level, double x, double y, double z, ParticleFacing facing, EasingCurve radius, EasingCurve width, Vector3f color, int lifetime, SpriteSet spriteSet) {
 		super(level, x, y, z);
 		this.radius = radius;
 		this.width = width;

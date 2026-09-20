@@ -1382,7 +1382,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MUSIC_DISC_WHISPER_OF_THE_STARS = ITEMS.register("music_disc_whisper_of_the_stars", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.WHISPER_OF_THE_STARS)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_DUSK_O_EREYESTERDAY = ITEMS.register("music_disc_dusk_o_ereyesterday", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.DUSK_O_EREYESTERDAY)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_TRANQUILITY = ITEMS.register("music_disc_tranquility", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.TRANQUILITY)));
-	public static final RegistryObject<Item, Item> MUSIC_DISC_NEST = ITEMS.register("music_disc_nest", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.NEST)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_NEST_II = ITEMS.register("music_disc_nest_ii", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.NEST_II)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_POSTERITY = ITEMS.register("music_disc_posterity", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.POSTERITY)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_THE_THORNY_REIGN = ITEMS.register("music_disc_the_thorny_reign", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.THE_THORNY_REIGN)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_PROFUNDITY = ITEMS.register("music_disc_profundity", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.PROFUNDITY)));
@@ -1402,6 +1402,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> MUSIC_DISC_ETHER_RAIN = ITEMS.register("music_disc_ether_rain", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.ETHER_RAIN)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_BRISK = ITEMS.register("music_disc_brisk", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.BRISK)));
 	public static final RegistryObject<Item, Item> MUSIC_DISC_MOONLIGHT = ITEMS.register("music_disc_moonlight", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.MOONLIGHT)));
+	public static final RegistryObject<Item, Item> MUSIC_DISC_NEST = ITEMS.register("music_disc_nest", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ESJukeboxSongs.NEST)));
 
 	// hide it from creative mode tab
 	public static final RegistryObject<Item, Item> BLOSSOM_OF_STARS = ITEMS.register("blossom_of_stars", () -> new BlossomOfStarsItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.1f).effect(new MobEffectInstance(ESMobEffects.DREAM_CATCHER.asHolder(), 2400, 0), 1F).alwaysEdible().build()).rarity(Rarity.RARE)));

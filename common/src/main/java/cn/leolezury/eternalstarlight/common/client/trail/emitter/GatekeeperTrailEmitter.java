@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.*;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.AnimationState;
@@ -24,7 +24,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 	private static final Vector4f NEAR_COLOR = new Vector4f(1, 1, 1, 1);
 	private static final Vector4f FAR_COLOR = new Vector4f(101 / 255f, 125 / 255f, 201 / 255f, 1);
 
-	private static final SmoothSegmentedValue SWORD_LENGTH = SmoothSegmentedValue.
+	private static final EasingCurve SWORD_LENGTH = EasingCurve.
 		of(Easing.IDENTITY, 0, 0, 8)
 		.add(Easing.IN_OUT_SINE, 0, 2, 5)
 		.add(Easing.IN_OUT_SINE, 2, 0, 5)
@@ -32,7 +32,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 		.add(Easing.IN_OUT_SINE, 0, 2, 5)
 		.add(Easing.IN_OUT_SINE, 2, 0, 5);
 
-	private static final SmoothSegmentedValue GREATSWORD_LENGTH = SmoothSegmentedValue.
+	private static final EasingCurve GREATSWORD_LENGTH = EasingCurve.
 		of(Easing.IDENTITY, 0, 0, 10)
 		.add(Easing.IN_OUT_SINE, 0, 3, 5)
 		.add(Easing.IN_OUT_SINE, 3, 0, 5)
@@ -40,7 +40,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 		.add(Easing.IN_OUT_SINE, 0, 3, 5)
 		.add(Easing.IN_OUT_SINE, 3, 0, 5);
 
-	private static final SmoothSegmentedValue GREATSWORD_COMBO_LENGTH = SmoothSegmentedValue.
+	private static final EasingCurve GREATSWORD_COMBO_LENGTH = EasingCurve.
 		of(Easing.IDENTITY, 0, 0, 17)
 		.add(Easing.IN_OUT_SINE, 0, 3, 5)
 		.add(Easing.IN_OUT_SINE, 3, 0, 5)
@@ -54,7 +54,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 		.add(Easing.IN_OUT_SINE, 0, 3, 5)
 		.add(Easing.IN_OUT_SINE, 3, 0, 5);
 
-	private static final SmoothSegmentedValue HAMMER_LENGTH = SmoothSegmentedValue.
+	private static final EasingCurve HAMMER_LENGTH = EasingCurve.
 		of(Easing.IDENTITY, 0, 0, 13)
 		.add(Easing.IN_OUT_SINE, 0, 2.5f, 5)
 		.add(Easing.IN_OUT_SINE, 2.5f, 0, 5);
@@ -88,7 +88,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 			trail.clear();
 			trail.setLengthImmediate(0);
 		}
-		SmoothSegmentedValue curve = lengthCurve(state);
+		EasingCurve curve = lengthCurve(state);
 		float length = curve == null || tick <= 0 ? 0 : curve.calculate(tick);
 		trail.setLengthImmediate(length);
 		if (length <= 0) {
@@ -196,7 +196,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 	}
 
 	@Nullable
-	private static SmoothSegmentedValue lengthCurve(int state) {
+	private static EasingCurve lengthCurve(int state) {
 		return switch (state) {
 			case GatekeeperSwordPhase.ID -> SWORD_LENGTH;
 			case GatekeeperGreatswordPhase.ID -> GREATSWORD_LENGTH;
