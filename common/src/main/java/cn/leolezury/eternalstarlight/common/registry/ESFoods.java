@@ -34,7 +34,9 @@ public class ESFoods {
 	public static final Supplier<FoodProperties> COOKED_LUMINOFISH = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(6).saturationModifier(0.8F).build());
 	public static final Supplier<FoodProperties> LUMINARIS = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build());
 	public static final Supplier<FoodProperties> COOKED_LUMINARIS = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(6).saturationModifier(0.8F).build());
-	public static final Supplier<FoodProperties> AURORA_DEER_STEAK = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build());
+	public static final Supplier<FoodProperties> CONICERAS_TENTACLES = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build());
+	public static final Supplier<FoodProperties> GRILLED_CONICERAS_TENTACLES = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(3).saturationModifier(0.6F).build());
+	public static final Supplier<FoodProperties> AURORA_DEER_STEAK = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(3).saturationModifier(0.6F).build());
 	public static final Supplier<FoodProperties> COOKED_AURORA_DEER_STEAK = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build());
 	public static final Supplier<FoodProperties> RATLIN_MEAT = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).build());
 	public static final Supplier<FoodProperties> COOKED_RATLIN_MEAT = Suppliers.memoize(() -> new FoodProperties.Builder().nutrition(6).saturationModifier(0.8F).build());

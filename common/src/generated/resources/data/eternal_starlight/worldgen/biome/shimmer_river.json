@@ -125,6 +125,12 @@
         "maxCount": 4,
         "minCount": 2,
         "weight": 16
+      },
+      {
+        "type": "eternal_starlight:coniceras",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 10
       }
     ]
   },

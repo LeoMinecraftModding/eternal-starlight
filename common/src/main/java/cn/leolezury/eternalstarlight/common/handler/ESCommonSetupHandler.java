@@ -278,6 +278,7 @@ public class ESCommonSetupHandler {
 		DispenserBlock.registerProjectileBehavior(ESItems.AMARAMBER_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.VORACIOUS_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.AIR_SAC_ARROW.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.SPIRAL_ARROW.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_TUBE.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.SONAR_BOMB.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.ASHEN_SNOWBALL.get());
@@ -495,6 +496,7 @@ public class ESCommonSetupHandler {
 		strategy.register(ESEntities.ROOKFISH.get(), Squid.createAttributes().build());
 		strategy.register(ESEntities.LUMINOFISH.get(), Luminofish.createAttributes().build());
 		strategy.register(ESEntities.LUMINARIS.get(), Luminaris.createAttributes().build());
+		strategy.register(ESEntities.CONICERAS.get(), Coniceras.createAttributes().build());
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), TwilightGaze.createAttributes().build());
 		strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeper.createAttributes().build());
 		strategy.register(ESEntities.STARLIGHT_GOLEM.get(), StarlightGolem.createAttributes().build());
@@ -535,6 +537,7 @@ public class ESCommonSetupHandler {
 		strategy.register(ESEntities.ROOKFISH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Rookfish::checkRookfishSpawnRules);
 		strategy.register(ESEntities.LUMINOFISH.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminofish::checkLuminoFishSpawnRules);
 		strategy.register(ESEntities.LUMINARIS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Luminaris::checkLuminarisSpawnRules);
+		strategy.register(ESEntities.CONICERAS.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Coniceras::checkConicerasSpawnRules);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TwilightGaze::checkTwilightGazeSpawnRules);
 		strategy.register(ESEntities.FREEZE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Freeze::checkFreezeSpawnRules);
 		strategy.register(ESEntities.TANGLED.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Tangled::checkTangledSpawnRules);

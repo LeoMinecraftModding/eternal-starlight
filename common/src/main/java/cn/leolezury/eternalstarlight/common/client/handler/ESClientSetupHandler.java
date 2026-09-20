@@ -927,6 +927,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.ROOKFISH.get(), RookfishRenderer::new);
 		strategy.register(ESEntities.LUMINOFISH.get(), LuminofishRenderer::new);
 		strategy.register(ESEntities.LUMINARIS.get(), LuminarisRenderer::new);
+		strategy.register(ESEntities.CONICERAS.get(), ConicerasRenderer::new);
 		strategy.register(ESEntities.TWILIGHT_GAZE.get(), TwilightGazeRenderer::new);
 		strategy.register(ESEntities.THE_GATEKEEPER.get(), TheGatekeeperRenderer::new);
 		strategy.register(ESEntities.GATEKEEPER_FIREBALL.get(), GatekeeperFireballRenderer::new);
@@ -965,6 +966,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.AMARAMBER_ARROW.get(), AmaramberArrowRenderer::new);
 		strategy.register(ESEntities.VORACIOUS_ARROW.get(), VoraciousArrowRenderer::new);
 		strategy.register(ESEntities.AIR_SAC_ARROW.get(), AirSacArrowRenderer::new);
+		strategy.register(ESEntities.SPIRAL_ARROW.get(), SpiralArrowRenderer::new);
 		strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.ASHEN_SNOWBALL.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.FROZEN_BOMB.get(), ThrownItemRenderer::new);
@@ -1032,6 +1034,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESBoatRenderer.createBoatModelName(ESBoat.Type.CRADLEWOOD), BoatModel::createBodyModel);
 		strategy.register(ESBoatRenderer.createChestBoatModelName(ESBoat.Type.CRADLEWOOD), ChestBoatModel::createBodyModel);
 		strategy.register(AethersentMeteorModel.LAYER_LOCATION, AethersentMeteorModel::createBodyLayer);
+		strategy.register(SpiralArrowModel.LAYER_LOCATION, SpiralArrowModel::createBodyLayer);
 		strategy.register(BoarwarfModel.LAYER_LOCATION, BoarwarfModel::createBodyLayer);
 		strategy.register(BoarwarfBlacksmithModel.LAYER_LOCATION, BoarwarfBlacksmithModel::createBodyLayer);
 		strategy.register(BoarwarfChefModel.LAYER_LOCATION, BoarwarfChefModel::createBodyLayer);
@@ -1069,6 +1072,7 @@ public class ESClientSetupHandler {
 		strategy.register(RookfishModel.LAYER_LOCATION, RookfishModel::createBodyLayer);
 		strategy.register(LuminofishModel.LAYER_LOCATION, LuminofishModel::createBodyLayer);
 		strategy.register(LuminarisModel.LAYER_LOCATION, LuminarisModel::createBodyLayer);
+		strategy.register(ConicerasModel.LAYER_LOCATION, ConicerasModel::createBodyLayer);
 		strategy.register(TwilightGazeModel.LAYER_LOCATION, TwilightGazeModel::createBodyLayer);
 		strategy.register(CandlashModel.LAYER_LOCATION, CandlashModel::createBodyLayer);
 		strategy.register(TentacleSpikeModel.LAYER_LOCATION, TentacleSpikeModel::createBodyLayer);

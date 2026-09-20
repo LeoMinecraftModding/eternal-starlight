@@ -87,6 +87,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 		tag(Tags.Items.FOODS_RAW_MEAT)
 			.add(
 				ESItems.ROOKFISH.get(),
+				ESItems.CONICERAS_TENTACLES.get(),
 				ESItems.AURORA_DEER_STEAK.get(),
 				ESItems.RATLIN_MEAT.get(),
 				ESItems.SHADOW_SNAIL_MEAT.get()
@@ -95,6 +96,7 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			.add(
 				ESItems.ROTTEN_FLESH_JERKY.get(),
 				ESItems.COOKED_ROOKFISH.get(),
+				ESItems.GRILLED_CONICERAS_TENTACLES.get(),
 				ESItems.COOKED_AURORA_DEER_STEAK.get(),
 				ESItems.COOKED_RATLIN_MEAT.get(),
 				ESItems.COOKED_SHADOW_SNAIL_MEAT.get()
@@ -1003,6 +1005,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.COOKED_LUMINOFISH.get(),
 				ESItems.LUMINARIS.get(),
 				ESItems.COOKED_LUMINARIS.get(),
+				ESItems.CONICERAS_TENTACLES.get(),
+				ESItems.GRILLED_CONICERAS_TENTACLES.get(),
 				ESItems.AURORA_DEER_STEAK.get(),
 				ESItems.COOKED_AURORA_DEER_STEAK.get(),
 				ESItems.RATLIN_MEAT.get(),
@@ -1155,7 +1159,8 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.AMARAMBER_ARROW.get(),
 				ESItems.THIOQUARTZ_ARROW.get(),
 				ESItems.VORACIOUS_ARROW.get(),
-				ESItems.AIR_SAC_ARROW.get()
+				ESItems.AIR_SAC_ARROW.get(),
+				ESItems.SPIRAL_ARROW.get()
 			);
 		tag(ItemTags.TRIM_MATERIALS)
 			.add(
