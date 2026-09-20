@@ -157,7 +157,8 @@ public class ESBiomes {
 
 	private static MobSpawnSettings.Builder baseAquaticSpawnBuilder() {
 		return baseSpawnBuilder()
-			.addSpawn(MobCategory.WATER_CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ROOKFISH.get(), 16, 2, 4));
+			.addSpawn(MobCategory.WATER_CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ROOKFISH.get(), 16, 2, 4))
+			.addSpawn(MobCategory.WATER_CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.CONICERAS.get(), 10, 1, 1));
 	}
 
 	private static MobSpawnSettings.Builder permafrostForestSpawns() {

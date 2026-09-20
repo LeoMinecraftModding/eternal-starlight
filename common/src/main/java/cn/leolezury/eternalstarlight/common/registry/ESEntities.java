@@ -272,6 +272,13 @@ public class ESEntities {
 			.clientTrackingRange(10)
 			.build(EternalStarlight.id("twilight_gaze").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<Coniceras>> CONICERAS = ENTITIES.register(
+		"coniceras",
+		() -> EntityType.Builder.of(Coniceras::new, MobCategory.WATER_CREATURE)
+			.sized(1.0F, 0.5F)
+			.clientTrackingRange(10)
+			.build(EternalStarlight.id("coniceras").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<EyeOfSeeking>> EYE_OF_SEEKING = ENTITIES.register(
 		"eye_of_seeking",
 		() -> EntityType.Builder.<EyeOfSeeking>of(EyeOfSeeking::new, MobCategory.MISC)
@@ -539,6 +546,14 @@ public class ESEntities {
 			.clientTrackingRange(4)
 			.updateInterval(20)
 			.build(EternalStarlight.id("air_sac_arrow").toString())
+	);
+	public static final RegistryObject<EntityType<?>, EntityType<SpiralArrow>> SPIRAL_ARROW = ENTITIES.register(
+		"spiral_arrow",
+		() -> EntityType.Builder.<SpiralArrow>of(SpiralArrow::new, MobCategory.MISC)
+			.sized(0.5F, 0.5F)
+			.clientTrackingRange(4)
+			.updateInterval(20)
+			.build(EternalStarlight.id("spiral_arrow").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<SonarBomb>> SONAR_BOMB = ENTITIES.register(
 		"sonar_bomb",

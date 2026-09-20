@@ -220,6 +220,30 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.boarwarf.yes"
   },
+  "entity.coniceras.death": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:mob/coniceras/death",
+        "volume": 1.5
+      }
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.coniceras.death"
+  },
+  "entity.coniceras.drill": {
+    "sounds": [
+      "eternal_starlight:mob/coniceras/drill"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.coniceras.drill"
+  },
+  "entity.coniceras.hurt": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:mob/coniceras/hurt",
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.coniceras.hurt"
+  },
   "entity.creteor.charge": {
     "sounds": [
       "eternal_starlight:mob/creteor/charge"

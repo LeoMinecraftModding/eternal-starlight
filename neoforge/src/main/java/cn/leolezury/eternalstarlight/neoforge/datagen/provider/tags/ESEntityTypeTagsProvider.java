@@ -58,6 +58,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.ROOKFISH.get(),
 				ESEntities.LUMINOFISH.get(),
 				ESEntities.LUMINARIS.get(),
+				ESEntities.CONICERAS.get(),
 				ESEntities.TWILIGHT_GAZE.get(),
 				ESEntities.FREEZE.get(),
 				ESEntities.PERMAFROST.get(),
@@ -141,7 +142,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.MALARITE_ARROW.get(),
 				ESEntities.AMARAMBER_ARROW.get(),
 				ESEntities.VORACIOUS_ARROW.get(),
-				ESEntities.AIR_SAC_ARROW.get()
+				ESEntities.AIR_SAC_ARROW.get(),
+				ESEntities.SPIRAL_ARROW.get()
 			);
 		tag(EntityTypeTags.IMPACT_PROJECTILES)
 			.add(
@@ -176,6 +178,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.ROOKFISH.get(),
 				ESEntities.LUMINOFISH.get(),
 				ESEntities.LUMINARIS.get(),
+				ESEntities.CONICERAS.get(),
 				ESEntities.TWILIGHT_GAZE.get()
 			);
 		tag(EntityTypeTags.CAN_BREATHE_UNDER_WATER)
@@ -183,6 +186,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.ROOKFISH.get(),
 				ESEntities.LUMINOFISH.get(),
 				ESEntities.LUMINARIS.get(),
+				ESEntities.CONICERAS.get(),
 				ESEntities.TWILIGHT_GAZE.get()
 			);
 		tag(EntityTypeTags.IMMUNE_TO_INFESTED)

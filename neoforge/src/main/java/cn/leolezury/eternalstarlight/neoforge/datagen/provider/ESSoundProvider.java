@@ -149,6 +149,10 @@ public class ESSoundProvider extends SoundDefinitionsProvider {
 		add(ESSoundEvents.LUMINARIS_DEATH.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminaris.death"));
 		add(ESSoundEvents.LUMINARIS_FLOP.get(), definition().with(sound(mcLoc("entity/fish/flop1")).volume(0.3), sound(mcLoc("entity/fish/flop2")).volume(0.3), sound(mcLoc("entity/fish/flop3")).volume(0.3), sound(mcLoc("entity/fish/flop4")).volume(0.3)).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminaris.flop"));
 
+		add(ESSoundEvents.CONICERAS_HURT.get(), definition().with(sound(loc("mob/coniceras/hurt")).volume(0.6)).subtitle("subtitles.entity." + EternalStarlight.ID + ".coniceras.hurt"));
+		add(ESSoundEvents.CONICERAS_DEATH.get(), definition().with(sound(loc("mob/coniceras/death")).volume(1.5)).subtitle("subtitles.entity." + EternalStarlight.ID + ".coniceras.death"));
+		add(ESSoundEvents.CONICERAS_DRILL.get(), definition().with(sound(loc("mob/coniceras/drill"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".coniceras.drill"));
+
 		add(ESSoundEvents.TWILIGHT_GAZE_HURT.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminaris.hurt"));
 		add(ESSoundEvents.TWILIGHT_GAZE_DEATH.get(), definition().with(sound(mcLoc("entity/fish/hurt1")), sound(mcLoc("entity/fish/hurt2")), sound(mcLoc("entity/fish/hurt3")), sound(mcLoc("entity/fish/hurt4"))).subtitle("subtitles.entity." + EternalStarlight.ID + ".luminaris.death"));
 

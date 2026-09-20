@@ -47,6 +47,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.ROOKFISH_SPAWN_EGG.get());
 		basicItem(ESItems.LUMINOFISH_SPAWN_EGG.get());
 		basicItem(ESItems.LUMINARIS_SPAWN_EGG.get());
+		basicItem(ESItems.CONICERAS_SPAWN_EGG.get());
 		basicItem(ESItems.TWILIGHT_GAZE_SPAWN_EGG.get());
 		basicItem(ESItems.THE_GATEKEEPER_SPAWN_EGG.get());
 		basicItem(ESItems.STARLIGHT_GOLEM_SPAWN_EGG.get());
@@ -886,6 +887,11 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LUMINARIS_BUCKET.get());
 		basicItem(ESItems.LUMINARIS.get());
 		basicItem(ESItems.COOKED_LUMINARIS.get());
+
+		basicItem(ESItems.CONICERAS_SHELL.get());
+		basicItem(ESItems.CONICERAS_TENTACLES.get());
+		basicItem(ESItems.GRILLED_CONICERAS_TENTACLES.get());
+		basicItem(ESItems.SPIRAL_ARROW.get());
 
 		basicItem(ESItems.STARLIT_PAINTING.get());
 		block(ESItems.WHITE_YETI_FUR.get());

@@ -68,6 +68,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> ROOKFISH_SPAWN_EGG = ITEMS.register("rookfish_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.ROOKFISH::get, 0x1d2223, 0x55605a, new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUMINOFISH_SPAWN_EGG = ITEMS.register("luminofish_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.LUMINOFISH::get, 0x35293a, 0xf1ffc8, new Item.Properties()));
 	public static final RegistryObject<Item, Item> LUMINARIS_SPAWN_EGG = ITEMS.register("luminaris_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.LUMINARIS::get, 0x3e3a46, 0x91807c, new Item.Properties()));
+	public static final RegistryObject<Item, Item> CONICERAS_SPAWN_EGG = ITEMS.register("coniceras_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.CONICERAS::get, 0x3e3a46, 0x91807c, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TWILIGHT_GAZE_SPAWN_EGG = ITEMS.register("twilight_gaze_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TWILIGHT_GAZE::get, 0x1e135a, 0x8f56ec, new Item.Properties()));
 	public static final RegistryObject<Item, Item> THE_GATEKEEPER_SPAWN_EGG = ITEMS.register("the_gatekeeper_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.THE_GATEKEEPER::get, 0x1a1932, 0xffffff, new Item.Properties()));
 	public static final RegistryObject<Item, Item> STARLIGHT_GOLEM_SPAWN_EGG = ITEMS.register("starlight_golem_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.STARLIGHT_GOLEM::get, 0x525050, 0x00fff4, new Item.Properties()));
@@ -1059,6 +1060,10 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> LUMINARIS_BUCKET = ITEMS.register("luminaris_bucket", () -> new MobBucketItem(ESEntities.LUMINARIS.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1).component(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY)));
 	public static final RegistryObject<Item, Item> LUMINARIS = ITEMS.register("luminaris", () -> new Item(new Item.Properties().food(ESFoods.LUMINARIS.get())));
 	public static final RegistryObject<Item, Item> COOKED_LUMINARIS = ITEMS.register("cooked_luminaris", () -> new Item(new Item.Properties().food(ESFoods.COOKED_LUMINARIS.get())));
+	public static final RegistryObject<Item, Item> CONICERAS_SHELL = ITEMS.register("coniceras_shell", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> CONICERAS_TENTACLES = ITEMS.register("coniceras_tentacles", () -> new Item(new Item.Properties().food(ESFoods.CONICERAS_TENTACLES.get())));
+	public static final RegistryObject<Item, Item> GRILLED_CONICERAS_TENTACLES = ITEMS.register("grilled_coniceras_tentacles", () -> new Item(new Item.Properties().food(ESFoods.GRILLED_CONICERAS_TENTACLES.get())));
+	public static final RegistryObject<Item, Item> SPIRAL_ARROW = ITEMS.register("spiral_arrow", () -> new SpiralArrowItem(new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> STARLIT_PAINTING = ITEMS.register("starlit_painting", () -> new ESPaintingItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> WHITE_YETI_FUR = ITEMS.register("white_yeti_fur", () -> new BlockItem(ESBlocks.WHITE_YETI_FUR.get(), new Item.Properties()));

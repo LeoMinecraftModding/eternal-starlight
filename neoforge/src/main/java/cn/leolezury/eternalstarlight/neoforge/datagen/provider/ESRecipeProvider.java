@@ -133,6 +133,7 @@ public class ESRecipeProvider extends RecipeProvider {
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.ROOKFISH.get(), ESItems.COOKED_ROOKFISH.get(), ESItems.ROOKFISH.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.LUMINOFISH.get(), ESItems.COOKED_LUMINOFISH.get(), ESItems.LUMINOFISH.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.LUMINARIS.get(), ESItems.COOKED_LUMINARIS.get(), ESItems.LUMINARIS.get());
+		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.CONICERAS_TENTACLES.get(), ESItems.GRILLED_CONICERAS_TENTACLES.get(), ESItems.CONICERAS_TENTACLES.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.AURORA_DEER_STEAK.get(), ESItems.COOKED_AURORA_DEER_STEAK.get(), ESItems.AURORA_DEER_STEAK.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.RATLIN_MEAT.get(), ESItems.COOKED_RATLIN_MEAT.get(), ESItems.RATLIN_MEAT.get());
 		addSmelt(recipeOutput, RecipeCategory.FOOD, 200, ESItems.SHADOW_SNAIL_MEAT.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_MEAT.get());
@@ -226,6 +227,15 @@ public class ESRecipeProvider extends RecipeProvider {
 			.pattern("# #")
 			.define('#', ESItems.ROOKFISH_AIR_SAC.get())
 			.unlockedBy("has_item", has(ESItems.ROOKFISH_AIR_SAC.get()))
+			.save(recipeOutput);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ESItems.SPIRAL_ARROW.get(), 4)
+			.pattern("C")
+			.pattern("S")
+			.pattern("T")
+			.define('S', Tags.Items.RODS_WOODEN)
+			.define('C', ESItems.CONICERAS_SHELL.get())
+			.define('T', ESItems.ROOKFISH_AIR_SAC.get())
+			.unlockedBy("has_item", has(ESItems.CONICERAS_SHELL.get()))
 			.save(recipeOutput);
 		addShapeless(recipeOutput, ESItems.SHADOW_SNAIL_SHELL.get(), ESItems.SHADOW_SNAIL_SHELL_POWDER.get(), 4, ESItems.SHADOW_SNAIL_SHELL.get());
 		addSingleConversion(recipeOutput, Items.BLACK_DYE, ESItems.SHADOW_SNAIL_SHELL_POWDER.get());

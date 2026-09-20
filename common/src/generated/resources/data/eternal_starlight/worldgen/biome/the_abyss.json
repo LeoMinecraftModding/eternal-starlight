@@ -136,6 +136,12 @@
         "weight": 16
       },
       {
+        "type": "eternal_starlight:coniceras",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
         "type": "eternal_starlight:twilight_gaze",
         "maxCount": 6,
         "minCount": 3,

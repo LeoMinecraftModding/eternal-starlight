@@ -136,6 +136,10 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINARIS_DEATH = register("entity.luminaris.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINARIS_FLOP = register("entity.luminaris.flop");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> CONICERAS_HURT = register("entity.coniceras.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> CONICERAS_DEATH = register("entity.coniceras.death");
+	public static final RegistryObject<SoundEvent, SoundEvent> CONICERAS_DRILL = register("entity.coniceras.drill");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_GAZE_HURT = register("entity.twilight_gaze.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_GAZE_DEATH = register("entity.twilight_gaze.death");
 

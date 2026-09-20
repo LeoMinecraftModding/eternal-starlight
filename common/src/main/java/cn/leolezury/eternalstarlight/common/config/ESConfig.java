@@ -57,6 +57,7 @@ public class ESConfig {
 		public MobConfig aethersentGolem = new MobConfig(40, 10, true);
 		public AttackingMobConfig luminofish = new AttackingMobConfig(3, 0, 3, 16, true);
 		public AttackingMobConfig luminaris = new AttackingMobConfig(3, 0, 3, 64, true);
+		public AttackingMobConfig coniceras = new AttackingMobConfig(10, 2, 1, 32, true);
 		public AttackingMobConfig twilightGaze = new AttackingMobConfig(10, 0, 3, 16, true);
 		public GatekeeperConfig theGatekeeper = new GatekeeperConfig(175, 15, 1, 200, true, false);
 		public BossConfig starlightGolem = new BossConfig(200, 10, 1, 200, true);
