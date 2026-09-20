@@ -7,10 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.List;
 
 public record BookDefinition(List<ResourceLocation> sections,
-							 int width, int height, int frameWidth,
-							 Buttons buttons,
-							 Scrollbar scrollbar,
-							 Textures textures) {
+                             int width, int height, int frameWidth,
+                             Buttons buttons,
+                             Scrollbar scrollbar,
+                             Textures textures) {
 	public static final Codec<BookDefinition> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 		ResourceLocation.CODEC.listOf().fieldOf("sections").forGetter(BookDefinition::sections),
 		Codec.INT.fieldOf("width").forGetter(BookDefinition::width),

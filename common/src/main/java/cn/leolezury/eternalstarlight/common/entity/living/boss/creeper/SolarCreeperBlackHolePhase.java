@@ -9,7 +9,7 @@ import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -26,31 +26,29 @@ public class SolarCreeperBlackHolePhase extends BehaviorPhase<SolarCreeper> {
 
 	public static final Vec3 BLACK_HOLE_RAY_NORMAL = new Vec3(1, 4, 1).normalize();
 
-	public static final SmoothSegmentedValue SUN_SCALE = SmoothSegmentedValue
-		.of(Easing.OUT_BOUNCE, 0, 3, 90f / DURATION)
-		.add(Easing.IN_OUT_SINE, 3, 0, 10f / DURATION)
-		.add(Easing.IDENTITY, 0, 0, 100f / DURATION);
+	public static final EasingCurve SUN_SCALE = EasingCurve
+		.of(Easing.OUT_BOUNCE, 0, 3, 90)
+		.add(Easing.IN_OUT_SINE, 3, 0, 10);
 
-	public static final SmoothSegmentedValue SUN_REDNESS = SmoothSegmentedValue
-		.of(Easing.IN_OUT_CIRC, 0, 1, 80f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 120f / DURATION);
+	public static final EasingCurve SUN_REDNESS = EasingCurve
+		.of(Easing.IN_OUT_CIRC, 0, 1, 80);
 
-	public static final SmoothSegmentedValue JITTER_FREQ = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 60f / DURATION)
-		.add(Easing.IN_CUBIC, 0, 5, 40f / DURATION)
-		.add(Easing.IDENTITY, 0.8f, 0.5f, 100f / DURATION);
+	public static final EasingCurve JITTER_FREQ = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 60)
+		.add(Easing.IN_CUBIC, 0, 5, 40)
+		.add(Easing.IDENTITY, 0.8f, 0.5f, 100);
 
-	public static final SmoothSegmentedValue BLACK_HOLE_SCALE = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 100f / DURATION)
-		.add(Easing.OUT_BOUNCE, 0, 3, 10f / DURATION)
-		.add(Easing.IDENTITY, 3, 3, 85f / DURATION)
-		.add(Easing.IN_OUT_SINE, 3, 0, 5f / DURATION);
+	public static final EasingCurve BLACK_HOLE_SCALE = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 100)
+		.add(Easing.OUT_BOUNCE, 0, 3, 10)
+		.add(Easing.IDENTITY, 3, 3, 85)
+		.add(Easing.IN_OUT_SINE, 3, 0, 5);
 
-	public static final SmoothSegmentedValue SHINE_SCALE = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 100f / DURATION)
-		.add(Easing.OUT_BOUNCE, 0, 0.5f, 10f / DURATION)
-		.add(Easing.IDENTITY, 0.5f, 0.5f, 85f / DURATION)
-		.add(Easing.IN_OUT_SINE, 0.5f, 0, 5f / DURATION);
+	public static final EasingCurve SHINE_SCALE = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 100)
+		.add(Easing.OUT_BOUNCE, 0, 0.5f, 10)
+		.add(Easing.IDENTITY, 0.5f, 0.5f, 85)
+		.add(Easing.IN_OUT_SINE, 0.5f, 0, 5);
 
 	public SolarCreeperBlackHolePhase() {
 		super(ID, 1, DURATION, 600);
@@ -71,8 +69,8 @@ public class SolarCreeperBlackHolePhase extends BehaviorPhase<SolarCreeper> {
 				int interval = Mth.lerpInt(ticks / 72f, 8, 2);
 				if (ticks % interval == 0) {
 					RippleParticleOptions shrinkingRipple = new RippleParticleOptions(ESParticles.RIPPLE.get(),
-						SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 5f, 0, 1),
-						SmoothSegmentedValue.of(Easing.OUT_QUART, 0, 0.4f, 1),
+						EasingCurve.of(Easing.IN_OUT_QUAD, 5f, 0, 1),
+						EasingCurve.of(Easing.OUT_QUART, 0, 0.4f, 1),
 						random.nextFloat() < 0.2F ? RippleParticleOptions.PURPLE : RippleParticleOptions.GOLD, interval * 3);
 					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(shrinkingRipple, blackHolePos.x + (random.nextFloat() - random.nextFloat()) * 0.15F, blackHolePos.y + (random.nextFloat() - random.nextFloat()) * 0.15F, blackHolePos.z + (random.nextFloat() - random.nextFloat()) * 0.15F, 0, 0, 0));
 				}
@@ -102,14 +100,14 @@ public class SolarCreeperBlackHolePhase extends BehaviorPhase<SolarCreeper> {
 						ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(new OrbitalTrailParticleOptions(
 							ESParticles.ORBITAL_SPACE_MATTER.get(),
 							BLACK_HOLE_RAY_NORMAL.toVector3f(),
-							SmoothSegmentedValue
+							EasingCurve
 								.of(Easing.IN_OUT_SINE, 6 + random.nextFloat() * 1.5f, 0, 1),
-							SmoothSegmentedValue
+							EasingCurve
 								.of(Easing.OUT_CIRC, speed1, speed2, 0.2f)
 								.add(Easing.OUT_ELASTIC, speed2, speed3, 0.6f)
 								.add(Easing.IN_OUT_SINE, speed3, speed1, 0.2f),
 							0.12f,
-							SmoothSegmentedValue
+							EasingCurve
 								.of(Easing.OUT_QUART, 0, length1, 0.4f)
 								.add(Easing.IN_OUT_QUAD, length1, length2, 0.2f)
 								.add(Easing.IN_OUT_SINE, length2, 0, 0.4f),

@@ -5,7 +5,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.HitResult;
@@ -18,33 +18,32 @@ public class SolarCreeperSolarRayPhase extends BehaviorPhase<SolarCreeper> {
 	public static final int DURATION = 200;
 	public static final float MAX_LENGTH = 20;
 
-	public static final SmoothSegmentedValue SHINE_SCALE = SmoothSegmentedValue
-		.of(Easing.OUT_BOUNCE, 0, 0.8f, 50f / DURATION)
-		.add(Easing.IDENTITY, 0.8f, 0.8f, 120f / DURATION)
-		.add(Easing.IN_CIRC, 0.8f, 0, 30f / DURATION);
+	public static final EasingCurve SHINE_SCALE = EasingCurve
+		.of(Easing.OUT_BOUNCE, 0, 0.8f, 50)
+		.add(Easing.IDENTITY, 0.8f, 0.8f, 120)
+		.add(Easing.IN_CIRC, 0.8f, 0, 30);
 
-	public static final SmoothSegmentedValue SUN_SCALE = SmoothSegmentedValue
-		.of(Easing.OUT_BOUNCE, 0, 3, 30f / DURATION)
-		.add(Easing.IDENTITY, 3, 3, 150f / DURATION)
-		.add(Easing.IN_CIRC, 3, 0, 20f / DURATION);
+	public static final EasingCurve SUN_SCALE = EasingCurve
+		.of(Easing.OUT_BOUNCE, 0, 3, 30)
+		.add(Easing.IDENTITY, 3, 3, 150)
+		.add(Easing.IN_CIRC, 3, 0, 20);
 
-	public static final SmoothSegmentedValue GROUP_1 = SmoothSegmentedValue
-		.of(Easing.OUT_CIRC, 0, 1, 10f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 100f / DURATION)
-		.add(Easing.OUT_CUBIC, 1, 0, 10f / DURATION)
-		.add(Easing.IDENTITY, 0, 0, 80f / DURATION);
+	public static final EasingCurve GROUP_1 = EasingCurve
+		.of(Easing.OUT_CIRC, 0, 1, 10)
+		.add(Easing.IDENTITY, 1, 1, 100)
+		.add(Easing.OUT_CUBIC, 1, 0, 10);
 
-	public static final SmoothSegmentedValue GROUP_2 = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 80f / DURATION)
-		.add(Easing.OUT_CIRC, 0, 1, 10f / DURATION)
-		.add(Easing.IDENTITY, 1, 1, 100f / DURATION)
-		.add(Easing.OUT_CUBIC, 1, 0, 10f / DURATION);
+	public static final EasingCurve GROUP_2 = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 80)
+		.add(Easing.OUT_CIRC, 0, 1, 10)
+		.add(Easing.IDENTITY, 1, 1, 100)
+		.add(Easing.OUT_CUBIC, 1, 0, 10);
 
-	public static final SmoothSegmentedValue ROTATION_SPEED = SmoothSegmentedValue
-		.of(Easing.IN_QUART, 1, 1.2f, 20f / DURATION)
-		.add(Easing.IN_OUT_CIRC, 1.2f, 1.5f, 60f / DURATION)
-		.add(Easing.IN_OUT_BACK, 1.5f, -1.5f, 100f / DURATION)
-		.add(Easing.OUT_CUBIC, -1.5f, -0.5f, 20f / DURATION);
+	public static final EasingCurve ROTATION_SPEED = EasingCurve
+		.of(Easing.IN_QUART, 1, 1.2f, 20)
+		.add(Easing.IN_OUT_CIRC, 1.2f, 1.5f, 60)
+		.add(Easing.IN_OUT_BACK, 1.5f, -1.5f, 100)
+		.add(Easing.OUT_CUBIC, -1.5f, -0.5f, 20);
 
 	public SolarCreeperSolarRayPhase() {
 		super(ID, 1, DURATION, 500);
@@ -59,7 +58,6 @@ public class SolarCreeperSolarRayPhase extends BehaviorPhase<SolarCreeper> {
 	public void tick(SolarCreeper entity) {
 		if (!entity.level().isClientSide) {
 			int ticks = entity.getBehaviorTicks();
-			float progress = ticks / (float) DURATION;
 
 			LivingEntity attackTarget = entity.getTarget();
 
@@ -74,11 +72,11 @@ public class SolarCreeperSolarRayPhase extends BehaviorPhase<SolarCreeper> {
 				entity.setSolarRayNormal(normal.toVector3f());
 			}
 
-			entity.setSolarRayAngle(entity.getSolarRayAngle() + ROTATION_SPEED.calculate(progress));
+			entity.setSolarRayAngle(entity.getSolarRayAngle() + ROTATION_SPEED.calculate(ticks));
 
 			for (int i = 0; i < 6; i++) {
 				boolean isGroup1 = i % 2 == 0;
-				float groupScale = isGroup1 ? GROUP_1.calculate(progress) : GROUP_2.calculate(progress);
+				float groupScale = isGroup1 ? GROUP_1.calculate(ticks) : GROUP_2.calculate(ticks);
 				entity.setSolarRayWidth(i, groupScale);
 			}
 

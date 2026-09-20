@@ -18,7 +18,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "eternal_starlight:music_disc_nest"
+          "name": "eternal_starlight:music_disc_nest_ii"
         },
         {
           "type": "minecraft:item",
@@ -50,7 +50,23 @@
         },
         {
           "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_deep_blue"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_the_dark_side"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_viridescent"
+        },
+        {
+          "type": "minecraft:item",
           "name": "eternal_starlight:music_disc_tranquility_ii"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "eternal_starlight:music_disc_nest"
         }
       ],
       "rolls": 1.0

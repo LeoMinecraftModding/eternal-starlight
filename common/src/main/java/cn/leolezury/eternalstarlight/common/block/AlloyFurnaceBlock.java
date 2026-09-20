@@ -7,11 +7,8 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
@@ -19,7 +16,6 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -43,7 +39,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -117,8 +112,6 @@ public class AlloyFurnaceBlock extends BaseEntityBlock implements WorldlyContain
 		return map;
 	});
 
-	private static final Map<Item, AlloyFurnaceCoolingItem> COOLING_REGISTRY = new HashMap<>();
-
 	public AlloyFurnaceBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(X_OFFSET, 0).setValue(Y_OFFSET, 0).setValue(Z_OFFSET, 1));
@@ -127,34 +120,6 @@ public class AlloyFurnaceBlock extends BaseEntityBlock implements WorldlyContain
 	@Override
 	protected MapCodec<AlloyFurnaceBlock> codec() {
 		return CODEC;
-	}
-
-	public static void registerCoolingItem(Item item, AlloyFurnaceCoolingItem coolingItem) {
-		COOLING_REGISTRY.put(item, coolingItem);
-	}
-
-	public static void registerCoolingItem(TagKey<Item> itemTag, AlloyFurnaceCoolingItem coolingItem) {
-		for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(itemTag)) {
-			COOLING_REGISTRY.put(holder.value(), coolingItem);
-		}
-	}
-
-	public static AlloyFurnaceCoolingItem getCoolingItem(Item item) {
-		return COOLING_REGISTRY.get(item);
-	}
-
-	public static int getCoolDuration(Item item) {
-		AlloyFurnaceCoolingItem coolingItem = getCoolingItem(item);
-		return coolingItem == null ? 0 : coolingItem.duration();
-	}
-
-	public static int getCoolEfficiency(Item item) {
-		AlloyFurnaceCoolingItem coolingItem = getCoolingItem(item);
-		return coolingItem == null ? 0 : coolingItem.efficiency();
-	}
-
-	public static Map<Item, AlloyFurnaceCoolingItem> getCoolingRegistry() {
-		return Collections.unmodifiableMap(COOLING_REGISTRY);
 	}
 
 	@Nullable

@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.world.gen.feature.tree;
 
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.tree.decorator.StarfireBirdNestDecorator;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -12,15 +13,16 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> {
+	public static final float NEST_CHANCE = 1f / 3f;
+
 	public CradlewoodFeature(Codec<Configuration> codec) {
 		super(codec);
 	}
@@ -170,6 +172,30 @@ public class CradlewoodFeature extends Feature<CradlewoodFeature.Configuration> 
 		for (BlockPos trunkPos : woodPositions) {
 			Direction.Axis axis = computeAxisForPos(trunkPos, points, ellipseCenterX, ellipseRadiusA, horizontalAxis);
 			setBlock(level, trunkPos, ESBlocks.CRADLEWOOD_WOOD.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis));
+		}
+		if (random.nextFloat() < NEST_CHANCE) {
+			Set<BlockPos> logPositions = new HashSet<>(trunkPositions);
+			logPositions.addAll(woodPositions);
+			Set<BlockPos> nestCandidates = new LinkedHashSet<>();
+			for (BlockPos leafPos : leavesPositions) {
+				boolean nearLog = false;
+				for (Direction direction : Direction.values()) {
+					if (logPositions.contains(leafPos.relative(direction))) {
+						nearLog = true;
+						break;
+					}
+				}
+				if (nearLog) {
+					BlockPos nestPos = leafPos.below();
+					if (level.isStateAtPosition(nestPos, BlockState::isAir)) {
+						nestCandidates.add(nestPos);
+					}
+				}
+			}
+			if (!nestCandidates.isEmpty()) {
+				List<BlockPos> candidates = new ArrayList<>(nestCandidates);
+				StarfireBirdNestDecorator.placeNest(level, random, candidates.get(random.nextInt(candidates.size())), (nestPos, state) -> setBlock(level, nestPos, state));
+			}
 		}
 		return true;
 	}

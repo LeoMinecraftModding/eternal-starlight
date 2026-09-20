@@ -3,7 +3,6 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.attack.EnergizedFlame;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolemChargeStartPhase;
@@ -13,7 +12,6 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -31,10 +29,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
-import org.joml.Vector4f;
 
-public class FrozenTube extends ThrowableProjectile implements TrailOwner {
+public class FrozenTube extends ThrowableProjectile {
 	public FrozenTube(EntityType<? extends FrozenTube> entityType, Level level) {
 		super(entityType, level);
 	}
@@ -106,22 +102,4 @@ public class FrozenTube extends ThrowableProjectile implements TrailOwner {
 		}
 	}
 
-	@Override
-	public TrailEffect createNewTrail() {
-		return new TrailEffect(0.3f, 8);
-	}
-
-	@Override
-	public void updateTrail(TrailEffect effect) {
-		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(getTrailPosition(oldPos));
-		if (isRemoved()) {
-			effect.setLength(Math.max(effect.getLength() - 0.9f, 0));
-		}
-	}
-
-	@Override
-	public Vector4f getTrailColor() {
-		return new Vector4f(104 / 255f, 204 / 255f, 255 / 255f, 1f);
-	}
 }

@@ -1,6 +1,8 @@
 #version 150
 
+// @formatter:off
 #moj_import <fog.glsl>
+// @formatter:on
 
 in vec3 Position;
 in vec4 Color;

@@ -2,7 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.particle.advanced;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.ParticleStatus;
@@ -21,16 +21,16 @@ import java.util.function.Consumer;
 public class AdvancedParticleOptions {
 	public static final RandomSource RANDOM = RandomSource.create();
 	private RenderType renderType = ESRenderType.PARTICLE_ADDITIVE_GLOW;
-	private SmoothSegmentedValue xSpeed = SmoothSegmentedValue.constant(0);
-	private SmoothSegmentedValue ySpeed = SmoothSegmentedValue.constant(0);
-	private SmoothSegmentedValue zSpeed = SmoothSegmentedValue.constant(0);
-	private SmoothSegmentedValue spinSpeed = SmoothSegmentedValue.constant(18 * Mth.DEG_TO_RAD);
-	private SmoothSegmentedValue quadSize = SmoothSegmentedValue.constant(1);
+	private EasingCurve xSpeed = EasingCurve.constant(0);
+	private EasingCurve ySpeed = EasingCurve.constant(0);
+	private EasingCurve zSpeed = EasingCurve.constant(0);
+	private EasingCurve spinSpeed = EasingCurve.constant(18 * Mth.DEG_TO_RAD);
+	private EasingCurve quadSize = EasingCurve.constant(1);
 	private int lifetime = 50;
-	private SmoothSegmentedValue red = SmoothSegmentedValue.constant(1);
-	private SmoothSegmentedValue green = SmoothSegmentedValue.constant(1);
-	private SmoothSegmentedValue blue = SmoothSegmentedValue.constant(1);
-	private SmoothSegmentedValue alpha = SmoothSegmentedValue.of(Easing.IN_OUT_SINE, 0, 1f, 0.5f).add(Easing.IN_OUT_SINE, 1f, 0, 0.5f);
+	private EasingCurve red = EasingCurve.constant(1);
+	private EasingCurve green = EasingCurve.constant(1);
+	private EasingCurve blue = EasingCurve.constant(1);
+	private EasingCurve alpha = EasingCurve.of(Easing.IN_OUT_SINE, 0, 1f, 0.5f).add(Easing.IN_OUT_SINE, 1f, 0, 0.5f);
 	private final List<Consumer<ParticleOperator>> spawnOperators = new ArrayList<>();
 	private final List<Consumer<ParticleOperator>> tickOperators = new ArrayList<>();
 	private final List<Consumer<ParticleOperator>> renderOperators = new ArrayList<>();
@@ -45,7 +45,7 @@ public class AdvancedParticleOptions {
 		return renderType;
 	}
 
-	public AdvancedParticleOptions speed(SmoothSegmentedValue x, SmoothSegmentedValue y, SmoothSegmentedValue z) {
+	public AdvancedParticleOptions speed(EasingCurve x, EasingCurve y, EasingCurve z) {
 		this.xSpeed = x;
 		this.ySpeed = y;
 		this.zSpeed = z;
@@ -56,7 +56,7 @@ public class AdvancedParticleOptions {
 		return new Vec3(xSpeed.calculate(progress), ySpeed.calculate(progress), zSpeed.calculate(progress));
 	}
 
-	public AdvancedParticleOptions spinSpeed(SmoothSegmentedValue spinSpeed) {
+	public AdvancedParticleOptions spinSpeed(EasingCurve spinSpeed) {
 		this.spinSpeed = spinSpeed;
 		return this;
 	}
@@ -65,7 +65,7 @@ public class AdvancedParticleOptions {
 		return spinSpeed.calculate(progress);
 	}
 
-	public AdvancedParticleOptions quadSize(SmoothSegmentedValue quadSize) {
+	public AdvancedParticleOptions quadSize(EasingCurve quadSize) {
 		this.quadSize = quadSize;
 		return this;
 	}
@@ -79,19 +79,19 @@ public class AdvancedParticleOptions {
 		return this;
 	}
 
-	public AdvancedParticleOptions color(SmoothSegmentedValue r, SmoothSegmentedValue g, SmoothSegmentedValue b) {
+	public AdvancedParticleOptions color(EasingCurve r, EasingCurve g, EasingCurve b) {
 		this.red = r;
 		this.green = g;
 		this.blue = b;
 		return this;
 	}
 
-	public AdvancedParticleOptions alpha(SmoothSegmentedValue alpha) {
+	public AdvancedParticleOptions alpha(EasingCurve alpha) {
 		this.alpha = alpha;
 		return this;
 	}
 
-	public AdvancedParticleOptions color(SmoothSegmentedValue r, SmoothSegmentedValue g, SmoothSegmentedValue b, SmoothSegmentedValue a) {
+	public AdvancedParticleOptions color(EasingCurve r, EasingCurve g, EasingCurve b, EasingCurve a) {
 		color(r, g, b);
 		alpha(a);
 		return this;

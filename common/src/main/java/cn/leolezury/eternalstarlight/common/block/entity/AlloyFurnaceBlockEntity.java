@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.block.entity;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
+import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolant;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.item.menu.AlloyFurnaceMenu;
 import cn.leolezury.eternalstarlight.common.item.recipe.AlloyRecipe;
@@ -199,10 +200,11 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity implements
 			}
 			if (entity.overheatTicks > 0 && entity.coolingTicks <= 0) {
 				ItemStack coolingItem = entity.getItem(AlloyFurnaceMenu.COOLING_SLOT);
-				if (!coolingItem.isEmpty() && isCoolingItem(coolingItem)) {
-					entity.totalCoolingTicks = AlloyFurnaceBlock.getCoolDuration(coolingItem.getItem());
+				AlloyFurnaceCoolant coolant = coolingItem.isEmpty() ? null : AlloyFurnaceCoolant.getCoolant(level.registryAccess(), coolingItem.getItem());
+				if (coolant != null) {
+					entity.totalCoolingTicks = coolant.duration();
 					entity.coolingTicks = entity.totalCoolingTicks;
-					entity.coolingEfficiency = AlloyFurnaceBlock.getCoolEfficiency(coolingItem.getItem());
+					entity.coolingEfficiency = coolant.efficiency();
 					coolingItem.shrink(1);
 					if (ESPlatform.INSTANCE.hasCraftingRemainingItem(coolingItem)) {
 						ESPlatform.INSTANCE.getCraftingRemainingItem(coolingItem).ifPresent(remaining -> {
@@ -335,8 +337,8 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity implements
 		return FurnaceBlockEntity.isFuel(stack);
 	}
 
-	public static boolean isCoolingItem(ItemStack stack) {
-		return AlloyFurnaceBlock.getCoolingItem(stack.getItem()) != null;
+	public static boolean isCoolingItem(HolderLookup.Provider registries, ItemStack stack) {
+		return AlloyFurnaceCoolant.getCoolant(registries, stack.getItem()) != null;
 	}
 
 	@Override
@@ -358,7 +360,7 @@ public class AlloyFurnaceBlockEntity extends BaseContainerBlockEntity implements
 		if (index == AlloyFurnaceMenu.FUEL_SLOT && !isFuel(stack)) {
 			return false;
 		}
-		if (index == AlloyFurnaceMenu.COOLING_SLOT && !isCoolingItem(stack)) {
+		if (index == AlloyFurnaceMenu.COOLING_SLOT && (level == null || !isCoolingItem(level.registryAccess(), stack))) {
 			return false;
 		}
 		return super.canPlaceItem(index, stack);

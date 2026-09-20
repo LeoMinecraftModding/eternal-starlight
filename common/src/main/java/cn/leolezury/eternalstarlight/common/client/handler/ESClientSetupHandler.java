@@ -26,13 +26,18 @@ import cn.leolezury.eternalstarlight.common.client.renderer.blockentity.*;
 import cn.leolezury.eternalstarlight.common.client.renderer.entity.*;
 import cn.leolezury.eternalstarlight.common.client.renderer.layer.accessory.*;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
-import cn.leolezury.eternalstarlight.common.client.visual.TrailVisualEffect;
-import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
+import cn.leolezury.eternalstarlight.common.client.trail.SimpleTrailEmitter;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailManager;
+import cn.leolezury.eternalstarlight.common.client.trail.emitter.GatekeeperTrailEmitter;
+import cn.leolezury.eternalstarlight.common.client.trail.emitter.SolarCreeperTrailEmitter;
 import cn.leolezury.eternalstarlight.common.entity.attack.Candlash;
 import cn.leolezury.eternalstarlight.common.entity.attack.Coldsnap;
 import cn.leolezury.eternalstarlight.common.entity.attack.TentacleSpike;
+import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
+import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.ChainOfSouls;
+import cn.leolezury.eternalstarlight.common.entity.projectile.LunarSpore;
 import cn.leolezury.eternalstarlight.common.item.combat.ShatteredSwordItem;
 import cn.leolezury.eternalstarlight.common.item.misc.GalacticQuiverItem;
 import cn.leolezury.eternalstarlight.common.platform.ESClientPlatform;
@@ -94,6 +99,7 @@ import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Vector4f;
 
 import java.util.HashMap;
 import java.util.List;
@@ -136,10 +142,6 @@ public class ESClientSetupHandler {
 
 	public interface ShaderRegisterStrategy {
 		void register(ResourceLocation location, VertexFormat format, Consumer<ShaderInstance> loaded);
-	}
-
-	public interface WorldVisualEffectSpawnFunction {
-		void clientTick(ClientLevel level, List<WorldVisualEffect> visualEffects);
 	}
 
 	public static final List<Supplier<? extends Block>> BLOCKS_CUTOUT_MIPPED = List.of(
@@ -419,10 +421,6 @@ public class ESClientSetupHandler {
 		ESBlocks.STARLIGHT_PORTAL
 	);
 
-	public static final List<WorldVisualEffectSpawnFunction> VISUAL_EFFECT_SPAWN_FUNCTIONS = List.of(
-		TrailVisualEffect::clientTick
-	);
-
 	public static final Map<ModelResourceLocation, Map<ItemDisplayContext, ModelResourceLocation>> ITEMS_WITH_SPECIAL_MODEL = new HashMap<>();
 
 	public static ModelResourceLocation getSpecialModel(ModelResourceLocation item, ItemDisplayContext context) {
@@ -466,14 +464,18 @@ public class ESClientSetupHandler {
 		// TODO REWORK PLAYER ANIMATION SYSTEM
 		// PlayerAnimator.register(new PlayerAnimator.UseItemAnimationTrigger(ESItems.ORB_OF_PROPHECY), ((player) -> new PlayerAnimator.PlayerAnimationState(PlayerAnimation.ORB_OF_PROPHECY_USE, PlayerAnimation.FIRST_PERSON_ORB_OF_PROPHECY_USE, List.of(new PlayerAnimator.UseItemHandAnimationTransformer(), new PlayerAnimator.CopyOuterLayerAnimationTransformer()), true, true, true, true)));
 
-		TrailVisualEffect.registerTrailRenderType(ESEntities.AETHERSENT_METEOR.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.GATEKEEPER_FIREBALL.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.ENERGY_SPARK.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.BALL_LIGHTNING.get(), ESRenderType.entityTranslucentAdditiveGlow(TrailVisualEffect.TRAIL_TEXTURE));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.SOLAR_CREEPER.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.BOUNCY_STAR.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.SHINING_STAR.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
-		TrailVisualEffect.registerTrailRenderType(ESEntities.ORBITAL_PLANET.get(), RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/planet_trail.png")));
+		TrailManager.register(ESEntities.AETHERSENT_METEOR.get(), new SimpleTrailEmitter<AethersentMeteor>(0.4f, 15, new Vector4f(144 / 255f, 94 / 255f, 168 / 255f, 1), 1.2f, true, false, ESRenderType.entityTranslucentAdditiveGlow(TrailManager.TRAIL_TEXTURE)).width(entity -> Math.max(entity.getSize() / 10f, 0.4f)));
+		TrailManager.register(ESEntities.GATEKEEPER_FIREBALL.get(), new SimpleTrailEmitter<>(0.5f, 18, new Vector4f(250 / 255f, 150 / 255f, 5 / 255f, 1.5f), 0.5f, true, false, ESRenderType.entityTranslucentAdditiveGlow(TrailManager.TRAIL_TEXTURE)));
+		TrailManager.register(ESEntities.ENERGY_SPARK.get(), new SimpleTrailEmitter<>(0.125f, 3, new Vector4f(128 / 255f, 255 / 255f, 255 / 255f, 2f), 0.5f, false, false, ESRenderType.entityTranslucentAdditiveGlow(TrailManager.TRAIL_TEXTURE)));
+		TrailManager.register(ESEntities.BALL_LIGHTNING.get(), new SimpleTrailEmitter<>(0.125f, 10, new Vector4f(128 / 255f, 255 / 255f, 255 / 255f, 2f), 0.5f, false, false, ESRenderType.entityTranslucentAdditiveGlow(TrailManager.TRAIL_TEXTURE)));
+		TrailManager.register(ESEntities.SOLAR_CREEPER.get(), new SolarCreeperTrailEmitter());
+		TrailManager.register(ESEntities.BOUNCY_STAR.get(), new SimpleTrailEmitter<>(0.15f, 6, new Vector4f(1, 1, 1, 1), 0.5f, true, true, RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png"))));
+		TrailManager.register(ESEntities.SHINING_STAR.get(), new SimpleTrailEmitter<>(0.1f, 5, new Vector4f(1, 1, 1, 1), 0.5f, true, true, RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png"))));
+		TrailManager.register(ESEntities.ORBITAL_PLANET.get(), new SimpleTrailEmitter<>(0.12f, 10, new Vector4f(1, 1, 1, 1), 0.5f, true, true, RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/planet_trail.png"))));
+		TrailManager.register(ESEntities.FROZEN_TUBE.get(), new SimpleTrailEmitter<>(0.3f, 8, new Vector4f(104 / 255f, 204 / 255f, 255 / 255f, 1), 0.9f, false, false, ESRenderType.entityTranslucentNoDepth(TrailManager.TRAIL_TEXTURE)));
+		TrailManager.register(ESEntities.LUNAR_SPORE.get(), new SimpleTrailEmitter<LunarSpore>(0.4f, 12, new Vector4f(32 / 255f, 32 / 255f, 64 / 255f, 2f), 0.5f, false, false, ESRenderType.entityTranslucentNoDepth(TrailManager.TRAIL_TEXTURE)).length(entity -> entity.getOwner() instanceof LunarMonstrosity ? 15f : 12f));
+		TrailManager.register(ESEntities.PERMAFROST_SPIT.get(), new SimpleTrailEmitter<>(0.3f, 8, new Vector4f(104 / 255f, 204 / 255f, 255 / 255f, 1), 0.9f, false, false, ESRenderType.entityTranslucentNoDepth(TrailManager.TRAIL_TEXTURE)));
+		TrailManager.register(ESEntities.THE_GATEKEEPER.get(), new GatekeeperTrailEmitter());
 
 		SkullBlockRenderer.SKIN_BY_TYPE.put(ESSkullType.TANGLED, TangledSkullRenderer.ENTITY_TEXTURE);
 
@@ -831,8 +833,6 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.BLAST.get(), ESExplosionParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE.get(), ESSmokeParticle.Provider::new);
 		strategy.register(ESParticles.RING_EXPLOSION.get(), RingExplosionParticle.Provider::new);
-		strategy.register(ESParticles.RING.get(), RingParticle.Provider::new);
-		strategy.register(ESParticles.SURROUNDING_TRAIL.get(), SurroundingTrailParticle.Provider::new);
 		strategy.register(ESParticles.METEOR.get(), MeteorParticle.Provider::new);
 		strategy.register(ESParticles.PARRY.get(), TrailParticle.Provider::new);
 		strategy.register(ESParticles.GATHERING_ENERGY.get(), GatheringTrailParticle.Provider::new);
@@ -840,7 +840,6 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.GATHERING_FLARE.get(), GatheringTrailParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_FLARE.get(), OrbitalTrailParticle.Provider::new);
 		strategy.register(ESParticles.ORBITAL_SPACE_MATTER.get(), OrbitalTrailParticle.Provider::new);
-		strategy.register(ESParticles.GLOW.get(), ESGlowParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_SMOKE.get(), AethersentSmokeParticle.Provider::new);
 		strategy.register(ESParticles.SMOKE_TRAIL.get(), SmokeTrailParticle.Provider::new);
 		strategy.register(ESParticles.AETHERSENT_EXPLOSION.get(), AethersentExplosionParticle.Provider::new);
@@ -891,7 +890,6 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.GEYSER_PLUME.get(), GeyserPlumeParticle.Provider::new);
 		strategy.register(ESParticles.RIPPLE.get(), RippleParticle.Provider::new);
 		strategy.register(ESParticles.ADVANCED_GLOW.get(), AdvancedParticle.Provider::new);
-		strategy.register(ESParticles.SHINE.get(), AdvancedParticle.Provider::new);
 	}
 
 	public static void registerEntityRenderers(EntityRendererRegisterStrategy strategy) {

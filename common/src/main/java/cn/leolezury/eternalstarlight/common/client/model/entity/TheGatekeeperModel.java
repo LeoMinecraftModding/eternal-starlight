@@ -17,6 +17,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -34,8 +36,6 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 	private final ModelPart rightArm;
 	private final ModelPart leftHand;
 	private final ModelPart rightHand;
-	private final ModelPart leftLeg;
-	private final ModelPart rightLeg;
 	private final boolean slim;
 	public final List<String> allPartNames;
 
@@ -49,8 +49,6 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 		this.rightArm = this.body.getChild("right_arm");
 		this.leftHand = this.leftArm.getChild("left_hand");
 		this.rightHand = this.rightArm.getChild("right_hand");
-		this.leftLeg = this.root.getChild("left_leg");
-		this.rightLeg = this.root.getChild("right_leg");
 		this.slim = slim;
 		this.allPartNames = Stream.concat(Stream.of("root"), ESModelUtil.getAllPartNames(this.root)).toList();
 	}
@@ -152,6 +150,14 @@ public class TheGatekeeperModel<T extends TheGatekeeper> extends AnimatedEntityM
 				animate(entity.blockAnimationState, TheGatekeeperAnimation.BLOCK, ageInTicks);
 			}
 		}
+		float partial = Mth.frac(ageInTicks);
+		Vec3 entityPos = entity.getPosition(partial);
+		float bodyYaw = Mth.lerp(partial, entity.yBodyRotO, entity.yBodyRot);
+		Vector3f weaponDir = new Vector3f(0, 0.15f, -1).normalize();
+		entity.rightHandPos = ESModelUtil.getModelPartWorldPosition(entity, entityPos, bodyYaw, List.of(root, body, rightArm, rightHand), new Vector3f(0, 0, 0));
+		entity.rightHandDirPos = ESModelUtil.getModelPartWorldPosition(entity, entityPos, bodyYaw, List.of(root, body, rightArm, rightHand), weaponDir);
+		entity.leftHandPos = ESModelUtil.getModelPartWorldPosition(entity, entityPos, bodyYaw, List.of(root, body, leftArm, leftHand), new Vector3f(0, 0, 0));
+		entity.leftHandDirPos = ESModelUtil.getModelPartWorldPosition(entity, entityPos, bodyYaw, List.of(root, body, leftArm, leftHand), weaponDir);
 	}
 
 	@Override

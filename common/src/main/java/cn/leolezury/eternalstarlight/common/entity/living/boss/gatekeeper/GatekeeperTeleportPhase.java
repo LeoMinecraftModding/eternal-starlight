@@ -15,6 +15,7 @@ public class GatekeeperTeleportPhase extends BehaviorPhase<TheGatekeeper> {
 	public boolean canStart(TheGatekeeper entity, boolean cooldownOver) {
 		return cooldownOver && entity.getTarget() != null && (entity.isGatekeeperStuck() || !canReachTarget(entity, 40));
 	}
+
 	@Override
 	public void tick(TheGatekeeper entity) {
 		LivingEntity target = entity.getTarget();

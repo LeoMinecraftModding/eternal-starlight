@@ -33,8 +33,7 @@ public class SolarCreeperPowerUpOutlineLayer<T extends SolarCreeper> extends Ren
 
 		if (entity.getBehaviorState() == SolarCreeperPowerUpPhase.ID) {
 			if (entity.getBehaviorTicks() >= 3) {
-				float progress = entity.getAnimationTicks(partialTicks) / SolarCreeperPowerUpPhase.DURATION;
-				float outlineDegree = SolarCreeperPowerUpPhase.OUTLINE_DEGREE.calculate(progress);
+				float outlineDegree = SolarCreeperPowerUpPhase.OUTLINE_DEGREE.calculate(entity.getAnimationTicks(partialTicks));
 
 				float bodyExp = outlineExpansion(outlineDegree, 0.0f, 0.2f) * expansionFactor;
 				float leg1Exp = outlineExpansion(outlineDegree, 0.2f, 0.4f) * expansionFactor;

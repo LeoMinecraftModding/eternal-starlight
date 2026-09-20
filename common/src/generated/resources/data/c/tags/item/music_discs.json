@@ -3,7 +3,7 @@
     "eternal_starlight:music_disc_whisper_of_the_stars",
     "eternal_starlight:music_disc_dusk_o_ereyesterday",
     "eternal_starlight:music_disc_tranquility",
-    "eternal_starlight:music_disc_nest",
+    "eternal_starlight:music_disc_nest_ii",
     "eternal_starlight:music_disc_posterity",
     "eternal_starlight:music_disc_the_thorny_reign",
     "eternal_starlight:music_disc_profundity",
@@ -11,6 +11,9 @@
     "eternal_starlight:music_disc_stars_shining_upon_the_sea",
     "eternal_starlight:music_disc_les_iles_du_ciel",
     "eternal_starlight:music_disc_solaris",
+    "eternal_starlight:music_disc_deep_blue",
+    "eternal_starlight:music_disc_the_dark_side",
+    "eternal_starlight:music_disc_viridescent",
     "eternal_starlight:music_disc_optimized_option",
     "eternal_starlight:music_disc_mechanical_fossil",
     "eternal_starlight:music_disc_fake_light",
@@ -19,6 +22,7 @@
     "eternal_starlight:music_disc_spirit",
     "eternal_starlight:music_disc_ether_rain",
     "eternal_starlight:music_disc_brisk",
-    "eternal_starlight:music_disc_moonlight"
+    "eternal_starlight:music_disc_moonlight",
+    "eternal_starlight:music_disc_nest"
   ]
 }

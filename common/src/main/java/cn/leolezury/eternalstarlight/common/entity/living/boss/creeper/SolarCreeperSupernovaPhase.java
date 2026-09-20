@@ -7,7 +7,7 @@ import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
 import cn.leolezury.eternalstarlight.common.util.Easing;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -19,23 +19,23 @@ public class SolarCreeperSupernovaPhase extends BehaviorPhase<SolarCreeper> {
 	public static final int ID = 10;
 	public static final int DURATION = 150;
 
-	public static final SmoothSegmentedValue SHINE_SCALE = SmoothSegmentedValue
-		.of(Easing.IN_CIRC, 0, 0.5f, 72f / DURATION)
-		.add(Easing.OUT_BACK, 0.5f, 2, 12f / DURATION)
-		.add(Easing.IDENTITY, 2, 2, 24f / DURATION)
-		.add(Easing.IN_OUT_CIRC, 2, 0, 42f / DURATION);
+	public static final EasingCurve SHINE_SCALE = EasingCurve
+		.of(Easing.IN_CIRC, 0, 0.5f, 72)
+		.add(Easing.OUT_BACK, 0.5f, 2, 12)
+		.add(Easing.IDENTITY, 2, 2, 24)
+		.add(Easing.IN_OUT_CIRC, 2, 0, 42);
 
-	public static final SmoothSegmentedValue SUN_SCALE = SmoothSegmentedValue
-		.of(Easing.IDENTITY, 0, 0, 72f / DURATION)
-		.add(Easing.OUT_BOUNCE, 0, 4, 12f / DURATION)
-		.add(Easing.IDENTITY, 4, 4, 54f / DURATION)
-		.add(Easing.OUT_QUART, 4, 0, 12f / DURATION);
+	public static final EasingCurve SUN_SCALE = EasingCurve
+		.of(Easing.IDENTITY, 0, 0, 72)
+		.add(Easing.OUT_BOUNCE, 0, 4, 12)
+		.add(Easing.IDENTITY, 4, 4, 54)
+		.add(Easing.OUT_QUART, 4, 0, 12);
 
-	public static final SmoothSegmentedValue BODY_SCALE = SmoothSegmentedValue
-		.of(Easing.IN_OUT_CUBIC, 1, 0.5f, 72f / DURATION)
-		.add(Easing.OUT_ELASTIC, 0.5f, 0, 36f / DURATION)
-		.add(Easing.IDENTITY, 0, 0, 30f / DURATION)
-		.add(Easing.IN_OUT_SINE, 0, 1, 12f / DURATION);
+	public static final EasingCurve BODY_SCALE = EasingCurve
+		.of(Easing.IN_OUT_CUBIC, 1, 0.5f, 72)
+		.add(Easing.OUT_ELASTIC, 0.5f, 0, 36)
+		.add(Easing.IDENTITY, 0, 0, 30)
+		.add(Easing.IN_OUT_SINE, 0, 1, 12);
 
 	public SolarCreeperSupernovaPhase() {
 		super(ID, 1, DURATION, 400);
@@ -55,8 +55,8 @@ public class SolarCreeperSupernovaPhase extends BehaviorPhase<SolarCreeper> {
 				int interval = Mth.lerpInt(ticks / 72f, 8, 2);
 				if (ticks % interval == 0) {
 					RippleParticleOptions shrinkingRipple = new RippleParticleOptions(ESParticles.RIPPLE.get(),
-						SmoothSegmentedValue.of(Easing.IN_OUT_QUAD, 3f, 0, 1),
-						SmoothSegmentedValue.of(Easing.OUT_QUART, 0, 0.4f, 1),
+						EasingCurve.of(Easing.IN_OUT_QUAD, 3f, 0, 1),
+						EasingCurve.of(Easing.OUT_QUART, 0, 0.4f, 1),
 						random.nextFloat() < 0.2F ? RippleParticleOptions.PURPLE : RippleParticleOptions.GOLD, interval * 3);
 					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(shrinkingRipple, entity.getX() + (random.nextFloat() - random.nextFloat()) * 0.15F, entity.getY() + entity.getBbHeight() / 2 + (random.nextFloat() - random.nextFloat()) * 0.15F, entity.getZ() + (random.nextFloat() - random.nextFloat()) * 0.15F, 0, 0, 0));
 				}
@@ -74,13 +74,13 @@ public class SolarCreeperSupernovaPhase extends BehaviorPhase<SolarCreeper> {
 				ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(new OrbitalTrailParticleOptions(
 					ESParticles.ORBITAL_FLARE.get(),
 					new Vec3(random.nextDouble() - random.nextDouble(), random.nextDouble() - random.nextDouble(), random.nextDouble() - random.nextDouble()).normalize().toVector3f(),
-					SmoothSegmentedValue.constant(4 + random.nextFloat() * 1.2f),
-					SmoothSegmentedValue
+					EasingCurve.constant(4 + random.nextFloat() * 1.2f),
+					EasingCurve
 						.of(Easing.OUT_CIRC, speed1 * 0.7f, speed2 * 0.7f, 0.2f)
 						.add(Easing.OUT_ELASTIC, speed2 * 0.7f, speed3 * 0.7f, 0.6f)
 						.add(Easing.IN_OUT_SINE, speed3 * 0.7f, speed1 * 0.7f, 0.2f),
 					0.25f,
-					SmoothSegmentedValue
+					EasingCurve
 						.of(Easing.OUT_QUART, 0, length1, 0.4f)
 						.add(Easing.IN_OUT_QUAD, length1, length2, 0.2f)
 						.add(Easing.IN_OUT_SINE, length2, 0, 0.4f),

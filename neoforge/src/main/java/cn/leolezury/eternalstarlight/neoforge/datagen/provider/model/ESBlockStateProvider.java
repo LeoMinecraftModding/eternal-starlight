@@ -910,9 +910,13 @@ public class ESBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void polishedToxite(Block block) {
-		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.FULL ? models().cubeAll(name(block), blockTexture(block)) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.MIDDLE
-			? models().cubeAll(name(block) + "_middle", blockTexture(block).withSuffix("_middle")) : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.UPPER
-			? models().cubeBottomTop(name(block) + "_upper", blockTexture(block).withSuffix("_upper"), blockTexture(block).withSuffix("_middle"), blockTexture(block)) : models().cubeBottomTop(name(block) + "_lower", blockTexture(block).withSuffix("_lower"), blockTexture(block), blockTexture(block).withSuffix("_middle"))))).build());
+		getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.FULL
+			? models().cubeAll(name(block), blockTexture(block))
+			: (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.MIDDLE
+			   ? models().cubeAll(name(block) + "_middle", blockTexture(block).withSuffix("_middle"))
+			   : (state.getValue(PolishedToxiteBlock.PART) == PolishedToxiteBlock.Part.UPPER
+				  ? models().cubeBottomTop(name(block) + "_upper", blockTexture(block).withSuffix("_upper"), blockTexture(block).withSuffix("_middle"), blockTexture(block))
+				  : models().cubeBottomTop(name(block) + "_lower", blockTexture(block).withSuffix("_lower"), blockTexture(block), blockTexture(block).withSuffix("_middle"))))).build());
 	}
 
 	private void orbflora(Block block) {

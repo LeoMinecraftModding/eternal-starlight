@@ -1,7 +1,7 @@
 package cn.leolezury.eternalstarlight.common.compat.emi;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceBlock;
+import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolant;
 import cn.leolezury.eternalstarlight.common.compat.emi.recipe.*;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -14,6 +14,7 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.recipe.VanillaEmiRecipeCategories;
 import dev.emi.emi.api.render.EmiRenderable;
 import dev.emi.emi.api.stack.EmiStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.ItemLike;
@@ -60,7 +61,7 @@ public class ESEmiPlugin implements EmiPlugin {
 		manager.getAllRecipesFor(ESRecipes.GEYSER_SMOKING.get()).forEach(holder -> registry.addRecipe(new GeyserSmokingEmiRecipe(holder)));
 		manager.getAllRecipesFor(ESRecipes.DRYING.get()).forEach(holder -> registry.addRecipe(new DryingEmiRecipe(holder)));
 		manager.getAllRecipesFor(ESRecipes.ALLOY.get()).forEach(holder -> registry.addRecipe(new AlloyEmiRecipe(holder)));
-		AlloyFurnaceBlock.getCoolingRegistry().forEach((item, cooling) -> registry.addRecipe(new AlloyFurnaceCoolingEmiRecipe(item, cooling)));
+		AlloyFurnaceCoolant.getCoolantMap(Minecraft.getInstance().level.registryAccess()).forEach((item, cooling) -> registry.addRecipe(new AlloyFurnaceCoolingEmiRecipe(item, cooling)));
 		manager.getAllRecipesFor(ESRecipes.ETHER_CONVERSION.get()).forEach(holder -> registry.addRecipe(new EtherConversionEmiRecipe(holder)));
 
 		registry.addRecipeHandler(ESMenuTypes.ALLOY_FURNACE.get(), new AlloyFurnaceEmiRecipeHandler());

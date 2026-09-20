@@ -6,9 +6,9 @@ import cn.leolezury.eternalstarlight.common.client.posteffect.WorldPostEffectMan
 import cn.leolezury.eternalstarlight.common.client.resource.ESBookLoader;
 import cn.leolezury.eternalstarlight.common.client.shader.ESShaders;
 import cn.leolezury.eternalstarlight.common.client.sound.BossMusicSoundInstance;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailManager;
 import cn.leolezury.eternalstarlight.common.client.visual.DelayedMultiBufferSource;
 import cn.leolezury.eternalstarlight.common.client.visual.ScreenShake;
-import cn.leolezury.eternalstarlight.common.client.visual.WorldVisualEffect;
 import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESBiomes;
@@ -69,7 +69,6 @@ import java.util.stream.Collectors;
 public class ESClientHandler {
 	public static ESBookLoader books;
 	public static final Map<UUID, Integer> BOSS_BAR_TYPES = new HashMap<>();
-	public static final List<WorldVisualEffect> VISUAL_EFFECTS = new ArrayList<>();
 	public static final List<ScreenShake> SCREEN_SHAKES = new ArrayList<>();
 	private static final ResourceLocation[] BAR_BACKGROUND_SPRITES = new ResourceLocation[]{ResourceLocation.withDefaultNamespace("boss_bar/pink_background"), ResourceLocation.withDefaultNamespace("boss_bar/blue_background"), ResourceLocation.withDefaultNamespace("boss_bar/red_background"), ResourceLocation.withDefaultNamespace("boss_bar/green_background"), ResourceLocation.withDefaultNamespace("boss_bar/yellow_background"), ResourceLocation.withDefaultNamespace("boss_bar/purple_background"), ResourceLocation.withDefaultNamespace("boss_bar/white_background")};
 	private static final ResourceLocation[] BAR_PROGRESS_SPRITES = new ResourceLocation[]{ResourceLocation.withDefaultNamespace("boss_bar/pink_progress"), ResourceLocation.withDefaultNamespace("boss_bar/blue_progress"), ResourceLocation.withDefaultNamespace("boss_bar/red_progress"), ResourceLocation.withDefaultNamespace("boss_bar/green_progress"), ResourceLocation.withDefaultNamespace("boss_bar/yellow_progress"), ResourceLocation.withDefaultNamespace("boss_bar/purple_progress"), ResourceLocation.withDefaultNamespace("boss_bar/white_progress")};
@@ -131,13 +130,10 @@ public class ESClientHandler {
 				}
 			}
 
-			// vfx
-			for (WorldVisualEffect effect : VISUAL_EFFECTS) {
-				if (!effect.shouldRemove() && !Minecraft.getInstance().isPaused()) {
-					effect.worldTick();
-				}
+			// trails
+			if (!Minecraft.getInstance().isPaused()) {
+				TrailManager.tick(Minecraft.getInstance().level);
 			}
-			VISUAL_EFFECTS.removeIf(WorldVisualEffect::shouldRemove);
 
 			for (ScreenShake effect : SCREEN_SHAKES) {
 				if (!effect.shouldRemove() && !Minecraft.getInstance().isPaused()) {
@@ -182,13 +178,6 @@ public class ESClientHandler {
 				Minecraft.getInstance().getSoundManager().stop(bossMusicInstance);
 				bossMusicInstance.stopMusic();
 				bossMusicInstance = null;
-			}
-		}
-
-		// vfx
-		if (Minecraft.getInstance().level != null) {
-			for (ESClientSetupHandler.WorldVisualEffectSpawnFunction function : ESClientSetupHandler.VISUAL_EFFECT_SPAWN_FUNCTIONS) {
-				function.clientTick(Minecraft.getInstance().level, VISUAL_EFFECTS);
 			}
 		}
 
@@ -291,7 +280,7 @@ public class ESClientHandler {
 
 	private static void clearWorldSpecificVars() {
 		BOSS_BAR_TYPES.clear();
-		VISUAL_EFFECTS.clear();
+		TrailManager.clear();
 		SCREEN_SHAKES.clear();
 		WorldPostEffectManager.clear();
 		DREAM_CATCHER_TEXTS.clear();
@@ -342,11 +331,7 @@ public class ESClientHandler {
 		Vec3 cameraPos = camera.getPosition();
 		stack.pushPose();
 		stack.translate(-cameraPos.x(), -cameraPos.y(), -cameraPos.z());
-		for (WorldVisualEffect effect : VISUAL_EFFECTS) {
-			if (!effect.shouldRemove()) {
-				effect.render(source, stack, partialTicks);
-			}
-		}
+		TrailManager.render(source, stack, partialTicks);
 		stack.popPose();
 	}
 

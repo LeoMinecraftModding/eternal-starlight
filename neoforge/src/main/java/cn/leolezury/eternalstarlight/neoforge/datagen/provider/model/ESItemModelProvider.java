@@ -1122,7 +1122,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get());
 		basicItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get());
 		basicItem(ESItems.MUSIC_DISC_TRANQUILITY.get());
-		basicItem(ESItems.MUSIC_DISC_NEST.get());
+		basicItem(ESItems.MUSIC_DISC_NEST_II.get());
 		basicItem(ESItems.MUSIC_DISC_POSTERITY.get());
 		basicItem(ESItems.MUSIC_DISC_THE_THORNY_REIGN.get());
 		basicItem(ESItems.MUSIC_DISC_PROFUNDITY.get());
@@ -1130,6 +1130,9 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_STARS_SHINING_UPON_THE_SEA.get());
 		basicItem(ESItems.MUSIC_DISC_LES_ILES_DU_CIEL.get());
 		basicItem(ESItems.MUSIC_DISC_SOLARIS.get());
+		basicItem(ESItems.MUSIC_DISC_DEEP_BLUE.get());
+		basicItem(ESItems.MUSIC_DISC_THE_DARK_SIDE.get());
+		basicItem(ESItems.MUSIC_DISC_VIRIDESCENT.get());
 		basicItem(ESItems.MUSIC_DISC_OPTIMIZED_OPTION.get());
 		basicItem(ESItems.MUSIC_DISC_MECHANICAL_FOSSIL.get());
 		basicItem(ESItems.MUSIC_DISC_FAKE_LIGHT.get());
@@ -1139,6 +1142,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.MUSIC_DISC_ETHER_RAIN.get());
 		basicItem(ESItems.MUSIC_DISC_BRISK.get());
 		basicItem(ESItems.MUSIC_DISC_MOONLIGHT.get());
+		basicItem(ESItems.MUSIC_DISC_NEST.get());
 
 		basicItem(ESItems.BLOSSOM_OF_STARS.get());
 	}

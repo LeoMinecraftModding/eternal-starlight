@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Creteor;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
@@ -12,7 +11,6 @@ import cn.leolezury.eternalstarlight.common.registry.*;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.util.ModelSnapshot;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import cn.leolezury.eternalstarlight.common.vfx.ScreenShakeVfx;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
@@ -40,13 +38,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector4f;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class AethersentMeteor extends AbstractHurtingProjectile implements TrailOwner {
+public class AethersentMeteor extends AbstractHurtingProjectile {
 	private static final String TAG_SIZE = "size";
 	private static final String TAG_TARGET = "target";
 	private static final String TAG_TARGET_X = "target_x";
@@ -294,29 +291,5 @@ public class AethersentMeteor extends AbstractHurtingProjectile implements Trail
 	@Override
 	protected boolean shouldBurn() {
 		return false;
-	}
-
-	@Override
-	public TrailEffect createNewTrail() {
-		return new TrailEffect(Math.max(getSize() / 10f, 0.4f), 15);
-	}
-
-	@Override
-	public void updateTrail(TrailEffect effect) {
-		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(getTrailPosition(oldPos));
-		if (isRemoved()) {
-			effect.setLength(Math.max(effect.getLength() - 1.2f, 0));
-		}
-	}
-
-	@Override
-	public Vector4f getTrailColor() {
-		return new Vector4f(144 / 255f, 94 / 255f, 168 / 255f, 1f);
-	}
-
-	@Override
-	public boolean isTrailFullBright() {
-		return true;
 	}
 }

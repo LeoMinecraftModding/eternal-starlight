@@ -1,9 +1,10 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
-import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
+import cn.leolezury.eternalstarlight.common.client.trail.Trail;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailRenderer;
 import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -15,7 +16,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 public class GatheringTrailParticle extends TextureSheetParticle {
-	private final TrailEffect effect;
+	private final Trail trail;
 	private final Vec3 destPos;
 	private final float pitchSpeed, yawSpeed, radiusSpeed;
 	private float pitch, yaw, radius;
@@ -23,7 +24,7 @@ public class GatheringTrailParticle extends TextureSheetParticle {
 	protected GatheringTrailParticle(ClientLevel level, double x, double y, double z, double dx, double dy, double dz, float trailWidth, float trailLength, float speedScale, float rotSpeedScale, SpriteSet spriteSet) {
 		super(level, x, y, z);
 		this.lifetime = 200;
-		this.effect = new TrailEffect(trailWidth, trailLength);
+		this.trail = new Trail(trailWidth, trailLength);
 		this.destPos = new Vec3(x + dx, y + dy, z + dz);
 		this.pitch = ESMathUtil.positionToPitch(-dx, -dy, -dz);
 		this.yaw = ESMathUtil.positionToYaw(-dx, -dz);
@@ -50,14 +51,14 @@ public class GatheringTrailParticle extends TextureSheetParticle {
 		this.y = pos.y();
 		this.z = pos.z();
 		if (this.age > 0) {
-			this.effect.update(new Vec3(xo, yo, zo));
+			this.trail.update(new Vec3(xo, yo, zo));
 		}
 		if (this.age++ >= this.lifetime) {
 			this.remove();
 		}
 		if (radius <= 0) {
-			effect.setLength(Math.max(effect.getLength() - 0.75f, 0));
-			if (effect.getLength() <= 0) {
+			trail.setLength(Math.max(trail.getLength() - 0.75f, 0));
+			if (trail.getLength() <= 0) {
 				remove();
 			}
 		}
@@ -71,9 +72,10 @@ public class GatheringTrailParticle extends TextureSheetParticle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
+		this.trail.setUv(getU0(), getU1(), getV0(), getV1());
+		this.trail.prepareRender(TrailPoint.cameraFacing(new Vec3(x, y, z)), partialTicks);
 		RenderSystem.disableCull();
-		TrailRenderer.render(this.effect, consumer, stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, true, true, 1, 1, 1, 1, getU0(), getU1(), getV0(), getV1(), LightTexture.FULL_BRIGHT);
+		TrailRenderer.render(this.trail, consumer, stack, true, true, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

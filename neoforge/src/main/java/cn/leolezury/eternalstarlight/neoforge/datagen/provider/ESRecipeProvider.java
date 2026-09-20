@@ -2267,6 +2267,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(input))
 			.save(recipeOutput);
 	}
+
 	protected final void addWhip(RecipeOutput recipeOutput, ItemLike output, TagKey<Item> input) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, output)
 			.pattern("###")

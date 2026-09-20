@@ -778,7 +778,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -803,7 +803,28 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
+        "stream": true
+      }
+    ]
+  },
+  "music.biome.lush_shallow_sea": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/viridescent",
+        "stream": true,
+        "weight": 5
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -811,7 +832,7 @@
   "music.biome.scarlet_forest": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/biome/scarlet_forest",
+        "name": "eternal_starlight:music/biome/deep_blue",
         "stream": true,
         "weight": 5
       },
@@ -828,7 +849,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -853,7 +874,28 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
+        "stream": true
+      }
+    ]
+  },
+  "music.biome.spiral_kelp_forest": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/the_dark_side",
+        "stream": true,
+        "weight": 5
+      },
+      {
+        "name": "eternal_starlight:music/dimension/whisper_of_the_stars",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/dusk_o_ereyesterday",
+        "stream": true
+      },
+      {
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -873,7 +915,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -898,7 +940,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -919,7 +961,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -940,7 +982,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -965,7 +1007,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -1009,7 +1051,7 @@
         "stream": true
       },
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -1018,6 +1060,14 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/disc/brisk",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.deep_blue": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/deep_blue",
         "stream": true
       }
     ]
@@ -1073,7 +1123,15 @@
   "music_disc.nest": {
     "sounds": [
       {
-        "name": "eternal_starlight:music/dimension/nest",
+        "name": "eternal_starlight:music/disc/nest",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.nest_ii": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/dimension/nest_ii",
         "stream": true
       }
     ]
@@ -1134,6 +1192,14 @@
       }
     ]
   },
+  "music_disc.the_dark_side": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/the_dark_side",
+        "stream": true
+      }
+    ]
+  },
   "music_disc.the_thorny_reign": {
     "sounds": [
       {
@@ -1154,6 +1220,14 @@
     "sounds": [
       {
         "name": "eternal_starlight:music/disc/tranquility_ii",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.viridescent": {
+    "sounds": [
+      {
+        "name": "eternal_starlight:music/biome/viridescent",
         "stream": true
       }
     ]

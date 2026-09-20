@@ -99,9 +99,4 @@ public class MeteorShowerWeather extends AbstractWeather {
 	public void clientTick() {
 		EternalStarlight.getClientHelper().meteorShowerClientTick();
 	}
-
-	@Override
-	public float modifyRainLevel(float original) {
-		return EternalStarlight.getClientHelper().getWeatherStateRainLevel();
-	}
 }

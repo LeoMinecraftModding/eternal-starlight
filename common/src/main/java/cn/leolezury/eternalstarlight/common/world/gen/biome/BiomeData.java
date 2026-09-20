@@ -9,9 +9,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 public record BiomeData(Holder<Biome> biome,
-						Holder<Block> fluidBlock,
-						int height, int variance,
-						boolean hasRivers, boolean isOcean) {
+                        Holder<Block> fluidBlock,
+                        int height, int variance,
+                        boolean hasRivers, boolean isOcean) {
 	public static final Codec<BiomeData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		Biome.CODEC.fieldOf("biome").forGetter(BiomeData::biome),
 		BuiltInRegistries.BLOCK.holderByNameCodec().fieldOf("fluid").forGetter(BiomeData::fluidBlock),

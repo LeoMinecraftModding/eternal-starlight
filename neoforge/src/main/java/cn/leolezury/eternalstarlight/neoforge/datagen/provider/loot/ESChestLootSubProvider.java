@@ -34,7 +34,7 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_WHISPER_OF_THE_STARS.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_DUSK_O_EREYESTERDAY.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY.get()))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_NEST.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_NEST_II.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_POSTERITY.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_THE_THORNY_REIGN.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_PROFUNDITY.get()))
@@ -42,7 +42,11 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_STARS_SHINING_UPON_THE_SEA.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_LES_ILES_DU_CIEL.get()))
 					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_SOLARIS.get()))
-					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY_II.get()))));
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_DEEP_BLUE.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_THE_DARK_SIDE.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_VIRIDESCENT.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_TRANQUILITY_II.get()))
+					.add(LootItem.lootTableItem(ESItems.MUSIC_DISC_NEST.get()))));
 
 		consumer.accept(ESLootTables.CHEST_ACCESSORIES,
 			LootTable.lootTable()

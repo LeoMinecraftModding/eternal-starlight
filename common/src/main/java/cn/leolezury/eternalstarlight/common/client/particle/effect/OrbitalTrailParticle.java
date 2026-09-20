@@ -1,10 +1,11 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
-import cn.leolezury.eternalstarlight.common.client.visual.TrailRenderer;
+import cn.leolezury.eternalstarlight.common.client.trail.Trail;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailRenderer;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
-import cn.leolezury.eternalstarlight.common.util.SmoothSegmentedValue;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
+import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -17,16 +18,16 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
 public class OrbitalTrailParticle extends TextureSheetParticle {
-	private final TrailEffect effect;
+	private final Trail trail;
 	private final Vec3 center, axis;
-	private final SmoothSegmentedValue radius, speed, length;
+	private final EasingCurve radius, speed, length;
 	private final float red, green, blue;
 	private final boolean reverseSpeed;
 	private float angle;
 
-	protected OrbitalTrailParticle(ClientLevel level, double x, double y, double z, Vector3f axis, SmoothSegmentedValue radius, SmoothSegmentedValue speed, float width, SmoothSegmentedValue length, Vector3f color, int lifetime, SpriteSet spriteSet) {
+	protected OrbitalTrailParticle(ClientLevel level, double x, double y, double z, Vector3f axis, EasingCurve radius, EasingCurve speed, float width, EasingCurve length, Vector3f color, int lifetime, SpriteSet spriteSet) {
 		super(level, x, y, z);
-		this.effect = new TrailEffect(width, length.calculate(0));
+		this.trail = new Trail(width, length.calculate(0));
 		this.center = new Vec3(x, y, z);
 		this.axis = new Vec3(axis);
 		this.radius = radius;
@@ -54,8 +55,8 @@ public class OrbitalTrailParticle extends TextureSheetParticle {
 		this.y = pos.y();
 		this.z = pos.z();
 		if (this.age > 0) {
-			this.effect.update(new Vec3(xo, yo, zo));
-			this.effect.setLength(length.calculate(progress));
+			this.trail.update(TrailPoint.cameraFacing(new Vec3(xo, yo, zo)).color(red, green, blue, 1));
+			this.trail.setLength(length.calculate(progress));
 		}
 		if (this.age++ >= this.lifetime) {
 			this.remove();
@@ -70,9 +71,10 @@ public class OrbitalTrailParticle extends TextureSheetParticle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.effect.prepareRender(new Vec3(x, y, z), partialTicks);
+		this.trail.setUv(getU0(), getU1(), getV0(), getV1());
+		this.trail.prepareRender(TrailPoint.cameraFacing(new Vec3(x, y, z)), partialTicks);
 		RenderSystem.disableCull();
-		TrailRenderer.render(this.effect, consumer, stack, TrailEffect.TrailOffsetFunction.FACE_CAMERA, true, true, red, green, blue, 1, getU0(), getU1(), getV0(), getV1(), LightTexture.FULL_BRIGHT);
+		TrailRenderer.render(this.trail, consumer, stack, true, true, LightTexture.FULL_BRIGHT);
 		stack.popPose();
 	}
 

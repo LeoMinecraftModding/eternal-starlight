@@ -1,10 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.projectile;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
-import cn.leolezury.eternalstarlight.common.entity.interfaces.TrailOwner;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
-import cn.leolezury.eternalstarlight.common.util.TrailEffect;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -16,11 +14,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Vector4f;
 
 import java.util.UUID;
 
-public class BouncyStar extends ThrowableProjectile implements TrailOwner {
+public class BouncyStar extends ThrowableProjectile {
 	private static final String TAG_TARGET = "target";
 
 	public BouncyStar(EntityType<? extends BouncyStar> entityType, Level level) {
@@ -118,34 +115,5 @@ public class BouncyStar extends ThrowableProjectile implements TrailOwner {
 		if (target != null) {
 			compoundTag.putUUID(TAG_TARGET, target.getUUID());
 		}
-	}
-
-	@Override
-	public TrailEffect createNewTrail() {
-		return new TrailEffect(0.15f, 6);
-	}
-
-	@Override
-	public void updateTrail(TrailEffect effect) {
-		Vec3 oldPos = new Vec3(xOld, yOld, zOld);
-		effect.update(getTrailPosition(oldPos));
-		if (isRemoved()) {
-			effect.setLength(Math.max(effect.getLength() - 0.5f, 0));
-		}
-	}
-
-	@Override
-	public Vector4f getTrailColor() {
-		return new Vector4f(1f, 1f, 1f, 1f);
-	}
-
-	@Override
-	public boolean isTrailFullBright() {
-		return true;
-	}
-
-	@Override
-	public boolean isTrailSolid() {
-		return true;
 	}
 }

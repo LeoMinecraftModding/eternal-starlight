@@ -1,6 +1,8 @@
 #version 150
 
+// @formatter:off
 #moj_import <fog.glsl>
+// @formatter:on
 
 #define PI 3.1415926538
 
