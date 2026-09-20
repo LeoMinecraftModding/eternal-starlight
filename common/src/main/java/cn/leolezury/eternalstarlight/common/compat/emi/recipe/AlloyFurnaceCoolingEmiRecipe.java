@@ -25,13 +25,17 @@ public class AlloyFurnaceCoolingEmiRecipe extends BasicEmiRecipe {
 		this.inputs.add(EmiStack.of(item));
 	}
 
-	/** One coolant entry can cover several items, so the recipe ID is built from the item to stay unique. */
+	/**
+	 * One coolant entry can cover several items, so the recipe ID is built from the item to stay unique.
+	 */
 	private static ResourceLocation syntheticId(Item item) {
 		ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
 		return EternalStarlight.id("/alloy_furnace_cooling/" + itemId.getNamespace() + "/" + itemId.getPath());
 	}
 
-	/** Width depends on the translated text, so every cooling entry shares the widest one. */
+	/**
+	 * Width depends on the translated text, so every cooling entry shares the widest one.
+	 */
 	private static int maxWidth() {
 		var font = Minecraft.getInstance().font;
 		int text = Math.max(font.width(durationText(10000000 * 200)), font.width(efficiencyText(10000000 * 200)));

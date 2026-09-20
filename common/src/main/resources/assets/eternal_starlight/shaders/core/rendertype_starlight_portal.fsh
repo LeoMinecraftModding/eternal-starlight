@@ -1,6 +1,8 @@
 #version 150
 
+// @formatter:off
 #moj_import <fog.glsl>
+// @formatter:ob
 
 uniform vec4 ColorModulator;
 uniform float FogStart;
@@ -32,10 +34,10 @@ void main() {
     float layer2 = smoothstep(-1.5, 1., cos(a * anim2 * 10.)) * 0.2 + 0.5;
     float layer3 = smoothstep(-1.5, 1., cos(a * anim3 * 10.)) * 0.2 + 0.5;
 
-    shape += 1. -smoothstep(layer0, layer0 + 0.5, r);
-    shape += 1. -smoothstep(layer1, layer1 + 0.5, r);
-    shape += 1. -smoothstep(layer2, layer2 + 0.5, r);
-    shape += 1. -smoothstep(layer3, layer3 + 0.5, r);
+    shape += 1. - smoothstep(layer0, layer0 + 0.5, r);
+    shape += 1. - smoothstep(layer1, layer1 + 0.5, r);
+    shape += 1. - smoothstep(layer2, layer2 + 0.5, r);
+    shape += 1. - smoothstep(layer3, layer3 + 0.5, r);
     shape += smoothstep(0.65, 0., length(pos));
 
     vec3 color = vec3(0.1, 0.1, 0.1);

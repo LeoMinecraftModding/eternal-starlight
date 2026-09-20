@@ -21,7 +21,9 @@ public class AlloyEmiRecipe extends BasicEmiRecipe {
 	private static final ResourceLocation LIT_PROGRESS = EternalStarlight.id("textures/gui/sprites/screen/alloy_furnace/lit_progress.png");
 	private static final ResourceLocation COOLING_PROGRESS = EternalStarlight.id("textures/gui/sprites/screen/alloy_furnace/cooling_progress.png");
 	private static final List<int[]> OUTPUT_POSITIONS = List.of(new int[]{114, 5}, new int[]{105, 40}, new int[]{123, 40});
-	/** Free-running loop for the decorative flame and cooling icons, in milliseconds. */
+	/**
+	 * Free-running loop for the decorative flame and cooling icons, in milliseconds.
+	 */
 	private static final int IDLE_ANIMATION = 15000;
 
 	private final int burnTime;

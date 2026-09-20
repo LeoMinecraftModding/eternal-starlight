@@ -1,6 +1,8 @@
 #version 150
 
+// @formatter:off
 #moj_import <fog.glsl>
+// @formatter:on
 
 uniform vec4 ColorModulator;
 uniform float FogStart;

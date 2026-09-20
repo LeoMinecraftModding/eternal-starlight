@@ -58,10 +58,10 @@ public class GatekeeperEatPhase extends BehaviorPhase<TheGatekeeper> {
 		int newId = (entity.healInterrupted && entity.healInterruptedIndirect)
 			? GatekeeperEatFailPhase.ID
 			: (canReachTarget(entity, 3)
-			? GatekeeperGreatswordPhase.ID
-			: (canReachTarget(entity, 18)
-			? GatekeeperBowPhase.ID
-			: GatekeeperBowComboPhase.ID));
+			   ? GatekeeperGreatswordPhase.ID
+			   : (canReachTarget(entity, 18)
+				  ? GatekeeperBowPhase.ID
+				  : GatekeeperBowComboPhase.ID));
 		if (newId != GatekeeperEatFailPhase.ID) {
 			entity.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 		}

@@ -200,7 +200,9 @@ public class ESBiomes {
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.SHADOW_SNAIL.get(), 6, 1, 2));
 	}
 
-	/** Open air above the world -- nothing spawns here. */
+	/**
+	 * Open air above the world -- nothing spawns here.
+	 */
 	private static MobSpawnSettings.Builder skySpawns() {
 		return new MobSpawnSettings.Builder();
 	}
@@ -439,7 +441,9 @@ public class ESBiomes {
 		return builder;
 	}
 
-	/** The filler that keeps Solaris Isles inside its own climate range -- it generates nothing itself. */
+	/**
+	 * The filler that keeps Solaris Isles inside its own climate range -- it generates nothing itself.
+	 */
 	private static BiomeGenerationSettings.Builder skyGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		return new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 	}
