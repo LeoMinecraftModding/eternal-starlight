@@ -65,7 +65,7 @@ public abstract class CreativeModeInventoryScreenMixin {
 							player.canUseGameMasterBlocks() && this.displayOperatorCreativeTab,
 							player.level().registryAccess()
 						);
-						tab.buildContents(parameters);
+						group.forceRebuildContents(parameters);
 						this.refreshCurrentTabContents(group.tab().getDisplayItems());
 					}
 				});

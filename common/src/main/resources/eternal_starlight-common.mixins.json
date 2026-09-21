@@ -23,6 +23,7 @@
     "FrostedIceBlockMixin",
     "IceBlockMixin",
     "InventoryChangeTriggerMixin",
+    "ItemDisplayParametersMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",
