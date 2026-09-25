@@ -22,6 +22,7 @@ public class ESRegistryProvider extends DatapackBuiltinEntriesProvider {
 		.add(Registries.DENSITY_FUNCTION, ESDimensions::bootstrapDensityFunctions)
 		.add(Registries.NOISE_SETTINGS, ESDimensions::bootstrapNoiseSettings)
 		.add(Registries.DIMENSION_TYPE, ESDimensions::bootstrapDimType)
+		.add(ESRegistries.SURFACE_CLIMATE, ESSurfaceClimate::bootstrap)
 		.add(Registries.LEVEL_STEM, ESDimensions::bootstrapLevelStem)
 		.add(Registries.PROCESSOR_LIST, ESTemplatePools::bootstrapProcessors)
 		.add(Registries.TEMPLATE_POOL, ESTemplatePools::bootstrap)

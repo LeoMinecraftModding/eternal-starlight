@@ -83,6 +83,22 @@ public final class ESBiomeBuilder {
 		{null, null, null, null, null}
 	};
 
+	// Sky band on the depth axis, declared twice as far out as the sky is meant to begin. The nearest match search puts
+	// the boundary halfway between a band edge and the surface biome's depth zero anchor, so a band whose lower edge
+	// sat at -0.4 would only start 26 blocks above the ground instead of 51.
+	private static final float SKY_BAND_BOTTOM_DEPTH = -0.8F;
+	private static final float SKY_BAND_TOP_DEPTH = -1.3F;
+	/**
+	 * Where islands are placed, 51 to 115 blocks above the surface. Deliberately independent of the band's depths.
+	 */
+	public static final int SKY_BAND_MIN_ABOVE_SURFACE = 51;
+	public static final int SKY_BAND_MAX_ABOVE_SURFACE = 115;
+
+	/**
+	 * Small fitness handicap that decides exact ties inside Solaris Isles' own ranges.
+	 */
+	private static final float SKY_FILLER_OFFSET = 0.05F;
+
 	public List<Climate.ParameterPoint> spawnTarget() {
 		Climate.Parameter surfaceDepth = Climate.Parameter.point(0.0F);
 		return List.of(
@@ -730,28 +746,17 @@ public final class ESBiomeBuilder {
 			ESBiomeData.SOLARIS_ISLES
 		);
 
-		// Solaris Isles used to be the only entry off the surface depth, so the nearest-match search handed it the
-		// whole sky band no matter how far the climate actually strayed from the range above. These four cover the
-		// rest of that band -- the complement of the range above, sliced into boxes so nothing overlaps it and ties.
-		this.addSkyBiome(
-			biomes, this.FULL_RANGE, this.FULL_RANGE, this.mushroomFieldsContinentalness,
-			this.FULL_RANGE, this.FULL_RANGE, 0.0F, ESBiomeData.STARLIT_SKY
-		);
-		this.addSkyBiome(
-			biomes, this.FULL_RANGE, this.FULL_RANGE,
-			Climate.Parameter.span(this.oceanContinentalness, this.FULL_RANGE),
-			this.FULL_RANGE, this.FULL_RANGE, 0.0F, ESBiomeData.STARLIT_SKY
-		);
-		this.addSkyBiome(
-			biomes, this.FULL_RANGE, this.FULL_RANGE, this.deepOceanContinentalness,
-			Climate.Parameter.span(this.erosions[3], this.erosions[6]),
-			this.FULL_RANGE, 0.0F, ESBiomeData.STARLIT_SKY
-		);
+		// Surface biomes only anchor at depth points, so without a filler spanning the band Solaris Isles would win
+		// everywhere on inflated climate ranges inside it.
 		this.addSkyBiome(
 			biomes,
-			Climate.Parameter.span(this.temperatures[0], this.temperatures[1]),
-			this.FULL_RANGE, this.deepOceanContinentalness, solarisErosion,
-			this.FULL_RANGE, 0.0F, ESBiomeData.STARLIT_SKY
+			this.FULL_RANGE,
+			this.FULL_RANGE,
+			Climate.Parameter.span(this.mushroomFieldsContinentalness, this.FULL_RANGE),
+			this.FULL_RANGE,
+			this.FULL_RANGE,
+			SKY_FILLER_OFFSET,
+			ESBiomeData.STARLIT_SKY
 		);
 	}
 
@@ -804,6 +809,7 @@ public final class ESBiomeBuilder {
 		float offset,
 		ResourceKey<BiomeData> second
 	) {
+		// depth anchors: -1 far above (this bounds the sky band), 0 at the surface, 1 deep below
 		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(-1.0F), weirdness, offset), second));
 		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(0.0F), weirdness, offset), second));
 		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(1.0F), weirdness, offset), second));
@@ -819,7 +825,7 @@ public final class ESBiomeBuilder {
 		float offset,
 		ResourceKey<BiomeData> biome
 	) {
-		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(-0.9F, -0.4F), weirdness, offset), biome));
+		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(SKY_BAND_TOP_DEPTH, SKY_BAND_BOTTOM_DEPTH), weirdness, offset), biome));
 	}
 
 	private void addUndergroundBiome(
@@ -832,8 +838,9 @@ public final class ESBiomeBuilder {
 		float offset,
 		ResourceKey<BiomeData> biome
 	) {
+		// 26 to 115 blocks below the surface, the same band vanilla carves its cave biomes out of
 		biomes.accept(
-			Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(0.8F, 1.1F), weirdness, offset), biome)
+			Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(0.2F, 0.9F), weirdness, offset), biome)
 		);
 	}
 }

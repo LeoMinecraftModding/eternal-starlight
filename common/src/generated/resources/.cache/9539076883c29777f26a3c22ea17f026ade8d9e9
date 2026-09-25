@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-20T19:21:20.664895	Item Models: eternal_starlight
+// 1.21.1	2026-09-25T16:47:21.3794299	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -173,6 +173,9 @@ b464d6a2fd9e4ed2831d1e261e5f84be8577a3bb assets/eternal_starlight/models/item/co
 b89e1b376ee5d26d8c7c66bc18efb136078e6c3d assets/eternal_starlight/models/item/coldsnap.json
 5ebbdbcbc51d7f409c9a844d0cf3b672fa82ad62 assets/eternal_starlight/models/item/coldsnap_extended.json
 e5922d9cdec25ffd0c4b642850df91ce37b44c55 assets/eternal_starlight/models/item/conebloom.json
+719b79925875c27d594d85f260b8fa7c2e4d3089 assets/eternal_starlight/models/item/coniceras_shell.json
+73689c1d3820264189a9679d1ccc20251a6a0d7c assets/eternal_starlight/models/item/coniceras_spawn_egg.json
+ec8ee38c6d47a0cc47b3104da7b7ba6076bc0a9f assets/eternal_starlight/models/item/coniceras_tentacles.json
 d2aa32a295b619c1175ab7584d4d1a2cecad816d assets/eternal_starlight/models/item/cooked_aurora_deer_steak.json
 dbc44a3bef447cc58a07df460d2d772bec150c0c assets/eternal_starlight/models/item/cooked_luminaris.json
 535ae2fcfb3aa8b3d300509977556ba145dcdce5 assets/eternal_starlight/models/item/cooked_luminofish.json
@@ -508,6 +511,7 @@ a2acab2fe516db498a5a2f06e4adc4bb93b14a31 assets/eternal_starlight/models/item/gr
 99bbd21c4746bac37856387e55a710d31c5a3c53 assets/eternal_starlight/models/item/green_fantagrass.json
 f5ef9e4901d586241eee148b637f3c8597222673 assets/eternal_starlight/models/item/green_yeti_fur.json
 5dbe8618ce812c05ef7a7d5c2a8d2be94e682563 assets/eternal_starlight/models/item/green_yeti_fur_carpet.json
+8d51e10de7065b86316d961cea66bee123d19a8d assets/eternal_starlight/models/item/grilled_coniceras_tentacles.json
 32a32e497cc99a6ed4e8337b8fa81e5ca722cc27 assets/eternal_starlight/models/item/grimstone.json
 b5cbbcb9afde0f069576b171f2c0c883224d74c2 assets/eternal_starlight/models/item/grimstone_bricks.json
 64098ad413e14c8b5e37b9621354bb0dbb77c230 assets/eternal_starlight/models/item/grimstone_brick_slab.json
@@ -923,6 +927,7 @@ ade5562e07e55ff428316a6928d85616b89fc56e assets/eternal_starlight/models/item/so
 3eb8de761a7fec0608d955e8b229fc078271c52c assets/eternal_starlight/models/item/sonar_bomb.json
 412c2a56108c618337bdceaf98c229558cfd818d assets/eternal_starlight/models/item/soulit_spectator.json
 b3ef87caf18f942c7168c65d3a255a3d7d932c95 assets/eternal_starlight/models/item/soul_dew.json
+6095847d599415d3dd36cffe8059c42a2b2ad911 assets/eternal_starlight/models/item/spiral_arrow.json
 606d991e109acb7e7ac9cca5cdb7ddc5186fdd92 assets/eternal_starlight/models/item/spiral_kelp.json
 9ccb4b7789a2e5fcfb1bb09bcf12d8f8570d9fb4 assets/eternal_starlight/models/item/springstone.json
 831733ad85ed936ceaed272d6cc7bed49cc19568 assets/eternal_starlight/models/item/springstone_bricks.json

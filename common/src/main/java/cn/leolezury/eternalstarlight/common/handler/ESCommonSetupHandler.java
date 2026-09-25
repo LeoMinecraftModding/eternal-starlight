@@ -1,6 +1,5 @@
 package cn.leolezury.eternalstarlight.common.handler;
 
-import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.CarvedLunarisCactusFruitBlock;
 import cn.leolezury.eternalstarlight.common.command.ESCommand;
 import cn.leolezury.eternalstarlight.common.entity.attack.TangledHusk;
@@ -26,15 +25,16 @@ import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESPotions;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
-import cn.leolezury.eternalstarlight.common.world.gen.biomesource.ESBiomeSource;
-import cn.leolezury.eternalstarlight.common.world.gen.chunkgenerator.ESChunkGenerator;
 import com.google.common.base.Suppliers;
 import com.mojang.brigadier.CommandDispatcher;
 import it.unimi.dsi.fastutil.objects.Object2FloatArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
@@ -545,14 +545,6 @@ public class ESCommonSetupHandler {
 
 	public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {
 		ESCommand.register(dispatcher, context);
-	}
-
-	public static void registerChunkGenerator() {
-		Registry.register(BuiltInRegistries.CHUNK_GENERATOR, EternalStarlight.ID + ":biome_based", ESChunkGenerator.CODEC);
-	}
-
-	public static void registerBiomeSource() {
-		Registry.register(BuiltInRegistries.BIOME_SOURCE, EternalStarlight.ID + ":multi_noise", ESBiomeSource.CODEC);
 	}
 
 	public static void addReloadListeners(Consumer<PreparableReloadListener> strategy) {

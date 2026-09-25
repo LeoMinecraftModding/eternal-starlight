@@ -94,8 +94,6 @@ public class ESFabricEntrypoint implements ModInitializer {
 		}));
 		CommandRegistrationCallback.EVENT.register(((dispatcher, context, environment) -> ESCommonSetupHandler.registerCommands(dispatcher, context)));
 		ArgumentTypeRegistry.registerArgumentType(EternalStarlight.id("post_effect"), PostEffectArgument.class, new PostEffectArgument.Info());
-		ESCommonSetupHandler.registerChunkGenerator();
-		ESCommonSetupHandler.registerBiomeSource();
 		ESCommonSetupHandler.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
 
 		// common handlers

@@ -5,6 +5,7 @@ import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.placement.AvoidStructureFilter;
 import cn.leolezury.eternalstarlight.common.world.gen.feature.placement.HeightRangeFilter;
+import cn.leolezury.eternalstarlight.common.world.gen.feature.placement.VerticalOffsetPlacement;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -280,7 +281,7 @@ public class ESPlacedFeatures {
 		PlacementUtils.register(context, BLUE_CRYSTAL_MOSS_PATCH_CEILING, configuredFeatures.getOrThrow(ESConfiguredFeatures.BLUE_CRYSTAL_MOSS_PATCH), CountPlacement.of(10), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45)), EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN), BlockPredicate.ONLY_IN_AIR_PREDICATE, 20), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 		PlacementUtils.register(context, SWAMP_WATER, configuredFeatures.getOrThrow(ESConfiguredFeatures.SWAMP_WATER), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, HEIGHT_FILTER, BiomeFilter.biome());
 		PlacementUtils.register(context, HOT_SPRING, configuredFeatures.getOrThrow(ESConfiguredFeatures.HOT_SPRING), RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, HEIGHT_FILTER, BiomeFilter.biome());
-		PlacementUtils.register(context, SOLARIS_ISLAND, configuredFeatures.getOrThrow(ESConfiguredFeatures.SOLARIS_ISLAND), CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(ConstantInt.of(0), 10).add(UniformInt.of(1, 2), 3).add(UniformInt.of(4, 5), 1).build())), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.belowTop(140), VerticalAnchor.belowTop(20)), BiomeFilter.biome());
+		PlacementUtils.register(context, SOLARIS_ISLAND, configuredFeatures.getOrThrow(ESConfiguredFeatures.SOLARIS_ISLAND), CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(ConstantInt.of(0), 10).add(UniformInt.of(1, 2), 3).add(UniformInt.of(4, 5), 1).build())), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, new VerticalOffsetPlacement(UniformInt.of(ESBiomeBuilder.SKY_BAND_MIN_ABOVE_SURFACE, ESBiomeBuilder.SKY_BAND_MAX_ABOVE_SURFACE)), BiomeFilter.biome());
 	}
 
 	private static ResourceKey<PlacedFeature> create(String name) {

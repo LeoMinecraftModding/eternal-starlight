@@ -1,25 +1,18 @@
 {
-  "type": "minecraft:add",
-  "argument1": {
-    "type": "minecraft:y_clamped_gradient",
-    "from_value": 1.5,
-    "from_y": -64,
-    "to_value": -1.5,
-    "to_y": 320
-  },
+  "type": "minecraft:mul",
+  "argument1": 0.0078125,
   "argument2": {
-    "type": "minecraft:flat_cache",
-    "argument": {
-      "type": "minecraft:cache_2d",
-      "argument": {
-        "type": "minecraft:mul",
-        "argument1": 0.03,
-        "argument2": {
-          "type": "minecraft:noise",
-          "noise": "eternal_starlight:depth_offset",
-          "xz_scale": 0.3,
-          "y_scale": 0.0
-        }
+    "type": "minecraft:add",
+    "argument1": "eternal_starlight:biome_height",
+    "argument2": {
+      "type": "minecraft:mul",
+      "argument1": -1.0,
+      "argument2": {
+        "type": "minecraft:y_clamped_gradient",
+        "from_value": -64.0,
+        "from_y": -64,
+        "to_value": 320.0,
+        "to_y": 320
       }
     }
   }

@@ -1,0 +1,124 @@
+{
+  "type": "minecraft:interpolated",
+  "argument": {
+    "type": "minecraft:min",
+    "argument1": {
+      "type": "minecraft:clamp",
+      "input": {
+        "type": "minecraft:mul",
+        "argument1": 0.125,
+        "argument2": {
+          "type": "minecraft:add",
+          "argument1": "eternal_starlight:biome_height",
+          "argument2": {
+            "type": "minecraft:mul",
+            "argument1": -1.0,
+            "argument2": {
+              "type": "minecraft:y_clamped_gradient",
+              "from_value": -64.0,
+              "from_y": -64,
+              "to_value": 320.0,
+              "to_y": 320
+            }
+          }
+        }
+      },
+      "max": 1.0,
+      "min": -1.0
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:clamp",
+        "input": {
+          "type": "minecraft:mul",
+          "argument1": 0.125,
+          "argument2": {
+            "type": "minecraft:add",
+            "argument1": "eternal_starlight:biome_height",
+            "argument2": {
+              "type": "minecraft:mul",
+              "argument1": -1.0,
+              "argument2": {
+                "type": "minecraft:y_clamped_gradient",
+                "from_value": -64.0,
+                "from_y": -64,
+                "to_value": 320.0,
+                "to_y": 320
+              }
+            }
+          }
+        },
+        "max": 1.0,
+        "min": -1.0
+      },
+      "argument2": {
+        "type": "minecraft:range_choice",
+        "input": {
+          "type": "minecraft:add",
+          "argument1": "eternal_starlight:biome_height",
+          "argument2": {
+            "type": "minecraft:mul",
+            "argument1": -1.0,
+            "argument2": {
+              "type": "minecraft:y_clamped_gradient",
+              "from_value": -64.0,
+              "from_y": -64,
+              "to_value": 320.0,
+              "to_y": 320
+            }
+          }
+        },
+        "max_exclusive": 6.0,
+        "min_inclusive": -1000000.0,
+        "when_in_range": 0.0,
+        "when_out_of_range": {
+          "type": "minecraft:mul",
+          "argument1": {
+            "type": "minecraft:mul",
+            "argument1": {
+              "type": "minecraft:mul",
+              "argument1": 0.05555555555555555,
+              "argument2": {
+                "type": "minecraft:clamp",
+                "input": {
+                  "type": "minecraft:add",
+                  "argument1": -6.0,
+                  "argument2": {
+                    "type": "minecraft:add",
+                    "argument1": "eternal_starlight:biome_height",
+                    "argument2": {
+                      "type": "minecraft:mul",
+                      "argument1": -1.0,
+                      "argument2": {
+                        "type": "minecraft:y_clamped_gradient",
+                        "from_value": -64.0,
+                        "from_y": -64,
+                        "to_value": 320.0,
+                        "to_y": 320
+                      }
+                    }
+                  }
+                },
+                "max": 18.0,
+                "min": 0.0
+              }
+            },
+            "argument2": {
+              "type": "minecraft:y_clamped_gradient",
+              "from_value": 0.0,
+              "from_y": -64,
+              "to_value": 1.0,
+              "to_y": -48
+            }
+          },
+          "argument2": {
+            "type": "minecraft:mul",
+            "argument1": 3.0,
+            "argument2": "eternal_starlight:cavern_noise"
+          }
+        }
+      }
+    }
+  }
+}

@@ -33,15 +33,15 @@
       "type": "minecraft:in_square"
     },
     {
-      "type": "minecraft:height_range",
-      "height": {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "eternal_starlight:vertical_offset",
+      "offset": {
         "type": "minecraft:uniform",
-        "max_inclusive": {
-          "below_top": 20
-        },
-        "min_inclusive": {
-          "below_top": 140
-        }
+        "max_inclusive": 115,
+        "min_inclusive": 51
       }
     },
     {

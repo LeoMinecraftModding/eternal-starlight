@@ -40,7 +40,6 @@
     "SignBlockMixin",
     "SnowAndFreezeFeatureMixin",
     "SpawnEggItemMixin",
-    "SurfaceSystemMixin",
     "TagLoaderMixin",
     "ThrowableProjectileMixin",
     "TntBlockMixin",
