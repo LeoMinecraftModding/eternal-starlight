@@ -18,6 +18,8 @@ public final class ESCreativeModeTab {
 	private static final RegistrationProvider<CreativeModeTab> TABS = RegistrationProvider.get(Registries.CREATIVE_MODE_TAB, EternalStarlight.ID);
 	private static final Map<CreativeModeTab, ESCreativeModeTab> BY_TAB = new IdentityHashMap<>();
 
+	private static final ThreadLocal<Boolean> FORCE_REBUILD = new ThreadLocal<>();
+
 	public record Section(Supplier<ItemStack> icon, Component name, ContentSupplier content) {
 		@FunctionalInterface
 		public interface ContentSupplier {
@@ -101,6 +103,19 @@ public final class ESCreativeModeTab {
 			} else {
 				this.sections.get(index).content().addItems(parameters, (stack, visibility) -> dedupedOutput.accept(stack, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY));
 			}
+		}
+	}
+
+	public static boolean isForcedRebuild() {
+		return Boolean.TRUE.equals(FORCE_REBUILD.get());
+	}
+
+	public void forceRebuildContents(CreativeModeTab.ItemDisplayParameters parameters) {
+		FORCE_REBUILD.set(Boolean.TRUE);
+		try {
+			this.tab.buildContents(parameters);
+		} finally {
+			FORCE_REBUILD.remove();
 		}
 	}
 }
