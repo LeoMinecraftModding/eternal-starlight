@@ -56,7 +56,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LUNAR_MONSTROSITY_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
-
+		basicItem(ESItems.ECTOSTONE_SPAWN_EGG.get());
 		// wood
 		flatBlockTexture(ESItems.LUNAR_SAPLING.get());
 		block(ESItems.LUNAR_LEAVES.get());
@@ -889,6 +889,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.COOKED_LUMINARIS.get());
 
 		basicItem(ESItems.CONICERAS_SHELL.get());
+		basicItem(ESItems.MAGIC_STONE.get());
 		basicItem(ESItems.CONICERAS_TENTACLES.get());
 		basicItem(ESItems.GRILLED_CONICERAS_TENTACLES.get());
 		basicItem(ESItems.SPIRAL_ARROW.get());

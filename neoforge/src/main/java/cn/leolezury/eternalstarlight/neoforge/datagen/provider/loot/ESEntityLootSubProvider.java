@@ -183,6 +183,10 @@ public class ESEntityLootSubProvider extends EntityLootSubProvider {
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 				.add(LootItem.lootTableItem(ESItems.CONICERAS_SHELL.get())).when(LootItemRandomChanceCondition.randomChance(0.05F))));
 
+		add(ESEntities.ECTOSTONE.get(), LootTable.lootTable()
+			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+				.add(LootItem.lootTableItem(ESItems.MAGIC_STONE.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F))))));
+
 		add(ESEntities.TWILIGHT_GAZE.get(), LootTable.lootTable()
 			.withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 				.add(LootItem.lootTableItem(ESItems.SEEKING_EYE.get())))

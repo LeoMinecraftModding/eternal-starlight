@@ -825,6 +825,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESParticles.FALLING_RED_CRYSTAL_MOSS.get(), FallingLeavesParticle.GlowProvider::new);
 		strategy.register(ESParticles.FALLING_BLUE_CRYSTAL_MOSS.get(), FallingLeavesParticle.GlowProvider::new);
 		strategy.register(ESParticles.ENERGY.get(), EnergyParticle.Provider::new);
+		strategy.register(ESParticles.ECTOSTONE_GLINT.get(), EnergyParticle.Provider::new);
 		strategy.register(ESParticles.ELECTRIC_SPARK.get(), ElectricSparkParticle.Provider::new);
 		strategy.register(ESParticles.LUNAR_SLASH.get(), LunarSlashParticle.Provider::new);
 		strategy.register(ESParticles.CRYSTALLIZED_MOTH_SONAR.get(), SonarParticle.Provider::new);
@@ -967,6 +968,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.SPIRAL_ARROW.get(), SpiralArrowRenderer::new);
 		strategy.register(ESEntities.SONAR_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.ASHEN_SNOWBALL.get(), ThrownItemRenderer::new);
+		strategy.register(ESEntities.MAGIC_STONE.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.FROZEN_BOMB.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.WILTED_PETAL.get(), WiltedPetalRenderer::new);
 		strategy.register(ESEntities.SHOT_SEEDS.get(), ThrownItemRenderer::new);
@@ -979,6 +981,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.ENERGY_BOOMERANG.get(), ThrownBoomerangRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
+		strategy.register(ESEntities.ECTOSTONE.get(), EctostoneRenderer::new);
 	}
 
 	public static void registerBlockEntityRenderers(BlockEntityRendererRegisterStrategy strategy) {
@@ -1096,6 +1099,7 @@ public class ESClientSetupHandler {
 		strategy.register(OutlineModel.LAYER_LOCATION, OutlineModel::createBodyLayer);
 		strategy.register(TearBombMinecartRenderer.LAYER_LOCATION, MinecartModel::createBodyLayer);
 		strategy.register(ChainOfSoulsModel.LAYER_LOCATION, ChainOfSoulsModel::createBodyLayer);
+		strategy.register(EctostoneModel.LAYER_LOCATION, EctostoneModel::createBodyLayer);
 
 		// vanilla entities
 		strategy.register(ArmorLikeAccessoryLayer.INNER_LOCATION, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.0F)), 64, 32));

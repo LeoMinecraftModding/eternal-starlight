@@ -38,6 +38,7 @@ public class ESRegistryProvider extends DatapackBuiltinEntriesProvider {
 		.add(ESRegistries.ENT_VARIANT, ESEntVariants::bootstrap)
 		.add(ESRegistries.SHIMMER_LACEWING_VARIANT, ESShimmerLacewingVariants::bootstrap)
 		.add(ESRegistries.SEEKER_VARIANT, ESSeekerVariants::bootstrap)
+		.add(ESRegistries.ECTOSTONE_VARIANT, ESEctostoneVariants::bootstrap)
 		.add(ESRegistries.SEEDS_LAUNCHER_AMMO_TYPE, ESSeedsLauncherAmmoTypes::bootstrap)
 		.add(ESRegistries.ALLOY_FURNACE_COOLANT, ESAlloyFurnaceCoolants::bootstrap)
 		.add(ESRegistries.PAINTING_VARIANT, ESPaintingVariants::bootstrap);

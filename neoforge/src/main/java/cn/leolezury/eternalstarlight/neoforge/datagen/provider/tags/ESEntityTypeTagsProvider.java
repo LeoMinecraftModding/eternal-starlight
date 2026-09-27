@@ -113,6 +113,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			.add(
 				ESEntities.SEEKER.get(),
 				ESEntities.TINY_CRETEOR.get(),
+				ESEntities.ECTOSTONE.get(),
 				EntityType.PHANTOM
 			);
 		tag(ESTags.EntityTypes.SOLARIS_ISLES_INHABITANTS)

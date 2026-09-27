@@ -13,6 +13,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.ectostone.Ectostone;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.entity.misc.ESBoat;
@@ -479,6 +480,7 @@ public class ESCommonSetupHandler {
 		strategy.register(ESEntities.TANGLED_SKULL.get(), TangledSkull.createAttributes().build());
 		strategy.register(ESEntities.SOLAR_CREEPER.get(), SolarCreeper.createAttributes().build());
 		strategy.register(ESEntities.TANGLED_HUSK.get(), TangledHusk.createAttributes().build());
+		strategy.register(ESEntities.ECTOSTONE.get(), Ectostone.createAttributes().build());
 	}
 
 	public interface SpawnPlacementRegisterStrategy {

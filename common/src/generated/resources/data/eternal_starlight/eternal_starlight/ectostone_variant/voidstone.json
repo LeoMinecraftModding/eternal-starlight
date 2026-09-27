@@ -1,0 +1,8 @@
+{
+  "biomes": [
+    "eternal_starlight:starlight_forest",
+    "eternal_starlight:starlight_dense_forest"
+  ],
+  "glow_texture": "eternal_starlight:entity/ectostone/voidstone_glow",
+  "texture": "eternal_starlight:entity/ectostone/voidstone"
+}

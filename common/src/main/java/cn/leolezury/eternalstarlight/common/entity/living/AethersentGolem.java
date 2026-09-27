@@ -1,6 +1,7 @@
 package cn.leolezury.eternalstarlight.common.entity.living;
 
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.ectostone.Ectostone;
 import cn.leolezury.eternalstarlight.common.entity.projectile.AethersentMeteor;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ESExplosionParticleOptions;
@@ -133,7 +134,8 @@ public class AethersentGolem extends AbstractGolem {
 		if (!level().isClientSide) {
 			if (tickCount % 20 == 0) {
 				List<AethersentMeteor> meteors = level().getEntitiesOfClass(AethersentMeteor.class, getBoundingBox().inflate(75)).stream().filter(AethersentMeteor::isNatural).toList();
-				List<LivingEntity> mobTargets = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(50)).stream().filter(living -> living.getType().is(ESTags.EntityTypes.AETHERSENT_GOLEM_TARGETS)).toList();
+				List<LivingEntity> mobTargets = level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(50)).stream() .filter(living -> living.getType().is(ESTags.EntityTypes.AETHERSENT_GOLEM_TARGETS))
+					.filter(living -> !(living instanceof Ectostone ectostone) || !ectostone.isTrulyDormant()).toList();
 				if (!meteors.isEmpty() || !mobTargets.isEmpty()) {
 					level().broadcastEntityEvent(this, (byte) 100);
 					meteors.forEach(meteor -> meteor.dropAndDiscard(true));

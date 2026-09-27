@@ -13,6 +13,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.Permafrost;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.golem.StarlightGolem;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.monstrosity.LunarMonstrosity;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.*;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.ectostone.Ectostone;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.Boarwarf;
 import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.AstralGolem;
 import cn.leolezury.eternalstarlight.common.entity.misc.*;
@@ -563,6 +564,14 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("sonar_bomb").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<MagicStone>> MAGIC_STONE = ENTITIES.register(
+		"magic_stone",
+		() -> EntityType.Builder.<MagicStone>of(MagicStone::new, MobCategory.MISC)
+			.sized(0.3f, 0.3f)
+			.clientTrackingRange(10)
+			.updateInterval(1)
+			.build(EternalStarlight.id("magic_stone").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<AshenSnowball>> ASHEN_SNOWBALL = ENTITIES.register(
 		"ashen_snowball",
 		() -> EntityType.Builder.<AshenSnowball>of(AshenSnowball::new, MobCategory.MISC)
@@ -699,7 +708,14 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("orbital_planet").toString())
 	);
-
+	public static final RegistryObject<EntityType<?>, EntityType<Ectostone>> ECTOSTONE = ENTITIES.register(
+		"ectostone",
+		() -> EntityType.Builder.of(Ectostone::new, MobCategory.MONSTER)
+			.sized(0.75F, 1.0F)
+			.clientTrackingRange(4)
+			.fireImmune()
+			.build(EternalStarlight.id("ectostone").toString())
+	);
 	public static void loadClass() {
 	}
 }

@@ -24,6 +24,7 @@ public class ESParticles {
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> FALLING_RED_CRYSTAL_MOSS = PARTICLE_TYPES.register("falling_red_crystal_moss", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> FALLING_BLUE_CRYSTAL_MOSS = PARTICLE_TYPES.register("falling_blue_crystal_moss", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ENERGY = PARTICLE_TYPES.register("energy", () -> new SimpleParticleType(false));
+	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ECTOSTONE_GLINT = PARTICLE_TYPES.register("ectostone_glint", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> ELECTRIC_SPARK = PARTICLE_TYPES.register("electric_spark", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> LUNAR_SLASH = PARTICLE_TYPES.register("lunar_slash", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<?>, SimpleParticleType> CRYSTALLIZED_MOTH_SONAR = PARTICLE_TYPES.register("crystallized_moth_sonar", () -> new SimpleParticleType(false));
