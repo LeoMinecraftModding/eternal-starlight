@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:torreya_forest",
   "fluid": "eternal_starlight:ether",
   "has_rivers": true,
-  "height": 57,
+  "height": 62,
   "is_ocean": false,
-  "variance": 6
+  "variance": 12
 }

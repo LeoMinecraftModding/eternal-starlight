@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.world.gen.biomesource;
 
-import cn.leolezury.eternalstarlight.common.data.ESSurfaceClimate;
+import cn.leolezury.eternalstarlight.common.data.ESBiomeClimate;
 import cn.leolezury.eternalstarlight.common.world.gen.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.biome.RiverEntry;
 import com.mojang.datafixers.util.Pair;
@@ -13,17 +13,19 @@ import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.DensityFunction;
+import net.minecraft.world.level.levelgen.DensityFunctions;
 import net.minecraft.world.level.levelgen.RandomState;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class ESBiomeSource extends BiomeSource {
 	public static final MapCodec<ESBiomeSource> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-		ESSurfaceClimate.HOLDER_CODEC.fieldOf("surface_climate").forGetter(o -> o.surfaceClimate),
+		ESBiomeClimate.HOLDER_CODEC.fieldOf("surface_climate").forGetter(o -> o.surfaceClimate),
 		DensityFunction.CODEC.fieldOf("river_value").forGetter(o -> o.riverValue),
 		RiverEntry.CODEC.listOf().fieldOf("rivers").forGetter(o -> o.rivers)
 	).apply(instance, instance.stable(ESBiomeSource::new)));
@@ -41,27 +43,22 @@ public class ESBiomeSource extends BiomeSource {
 		this.rivers = rivers;
 	}
 
-	/**
-	 * The biome source has to agree with the terrain on where the rivers run, so the field is rebuilt around the random
-	 * state's noise cache. The registry copy still has unwired noise holders, which read as a constant zero.
-	 */
 	public void bindNoise(RandomState randomState) {
 		NoiseBinding binding = this.noiseBinding;
 		if (binding != null && binding.source() == randomState) {
 			return;
 		}
-		DensityFunction riverValue = wireNoise(this.riverValue.value(), randomState);
-		if (riverValue.minValue() == 0.0 && riverValue.maxValue() == 0.0) {
-			// a zero field would turn every column into a river
+		AtomicInteger wired = new AtomicInteger();
+		DensityFunction riverValue = wireNoise(this.riverValue.value(), randomState, wired);
+		if (wired.get() == 0) {
+			// nothing was rewired, so every distance would read zero and turn every column into a river: rail them off
+			this.noiseBinding = new NoiseBinding(randomState, DensityFunctions.constant(64.0));
 			return;
 		}
 		this.noiseBinding = new NoiseBinding(randomState, riverValue);
 	}
 
-	/**
-	 * Rewires the noise holders only: the graph holds no BlendedNoise, which would need re-seeding like RandomState does.
-	 */
-	private static DensityFunction wireNoise(DensityFunction function, RandomState randomState) {
+	private static DensityFunction wireNoise(DensityFunction function, RandomState randomState, AtomicInteger wired) {
 		return function.mapAll(new DensityFunction.Visitor() {
 			@Override
 			public DensityFunction apply(DensityFunction visited) {
@@ -71,24 +68,18 @@ public class ESBiomeSource extends BiomeSource {
 			@Override
 			public DensityFunction.NoiseHolder visitNoise(DensityFunction.NoiseHolder noiseHolder) {
 				return noiseHolder.noiseData().unwrapKey()
-					.map(key -> new DensityFunction.NoiseHolder(noiseHolder.noiseData(), randomState.getOrCreateNoise(key)))
+					.map(key -> {
+						wired.incrementAndGet();
+						return new DensityFunction.NoiseHolder(noiseHolder.noiseData(), randomState.getOrCreateNoise(key));
+					})
 					.orElse(noiseHolder);
 			}
 		});
 	}
 
-	private DensityFunction riverValue() {
-		NoiseBinding binding = this.noiseBinding;
-		return binding == null ? this.riverValue.value() : binding.riverValue();
-	}
-
 	private record NoiseBinding(RandomState source, DensityFunction riverValue) {
 	}
 
-	/**
-	 * Fluid the biome wants above its floor, or null when it has none. Keyed by resource key because holders coming
-	 * back out of a chunk are not guaranteed to be the instances the table handed out.
-	 */
 	public Holder<Block> fluidFor(Holder<Biome> biome) {
 		if (this.fluids == null) {
 			Map<ResourceKey<Biome>, Holder<Block>> built = new HashMap<>();
@@ -133,7 +124,9 @@ public class ESBiomeSource extends BiomeSource {
 		if (this.rivers.isEmpty() || !base.value().hasRivers()) {
 			return base;
 		}
-		return RiverEntry.resolve(base, this.rivers, this.riverColumn.get().values(this.rivers, this.riverValue(), blockX, blockY, blockZ));
+		NoiseBinding binding = this.noiseBinding;
+		DensityFunction riverValue = binding == null ? this.riverValue.value() : binding.riverValue();
+		return RiverEntry.resolve(base, this.rivers, this.riverColumn.get().values(this.rivers, binding, riverValue, blockX, blockY, blockZ));
 	}
 
 	@Override
@@ -141,21 +134,22 @@ public class ESBiomeSource extends BiomeSource {
 		return getBiomeData(x << 2, y << 2, z << 2, sampler).value().biome();
 	}
 
-	/**
-	 * River widths do not depend on y, so one column of values per thread is enough.
-	 */
 	private static final class RiverColumn {
-		private int x = Integer.MIN_VALUE;
-		private int z = Integer.MIN_VALUE;
-		private float[] values = new float[0];
+		private static final int COLUMNS = 16;
+		private final NoiseBinding[] bindings = new NoiseBinding[COLUMNS];
+		private final int[] xs = new int[COLUMNS];
+		private final int[] zs = new int[COLUMNS];
+		private final float[][] values = new float[COLUMNS][];
 
-		private float[] values(List<RiverEntry> rivers, DensityFunction riverValue, int x, int y, int z) {
-			if (this.x != x || this.z != z || this.values.length != rivers.size()) {
-				this.x = x;
-				this.z = z;
-				this.values = RiverEntry.values(rivers, riverValue, x, y, z);
+		private float[] values(List<RiverEntry> rivers, NoiseBinding binding, DensityFunction riverValue, int x, int y, int z) {
+			int index = ((x >> 2) & 3) | (((z >> 2) & 3) << 2);
+			if (this.bindings[index] != binding || this.xs[index] != x || this.zs[index] != z) {
+				this.bindings[index] = binding;
+				this.xs[index] = x;
+				this.zs[index] = z;
+				this.values[index] = RiverEntry.values(rivers, riverValue, x, y, z);
 			}
-			return this.values;
+			return this.values[index];
 		}
 	}
 }

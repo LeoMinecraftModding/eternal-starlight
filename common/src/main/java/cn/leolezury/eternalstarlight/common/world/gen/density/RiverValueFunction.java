@@ -5,11 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.levelgen.DensityFunction;
 
-/**
- * Approximate distance in blocks from a column to the centreline of the river described by the wrapped noise, obtained
- * by dividing the noise value by the length of its horizontal gradient. Normalising by the gradient is what makes the
- * rivers equally wide: the noise itself only decides where the rivers run.
- */
 public record RiverValueFunction(DensityFunction noise) implements DensityFunction {
 	private static final double MIN_GRADIENT = 1.0E-4;
 	private static final double MAX_VALUE = 64.0;

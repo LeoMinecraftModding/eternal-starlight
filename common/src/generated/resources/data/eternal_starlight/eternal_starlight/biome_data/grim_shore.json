@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:grim_shore",
   "fluid": "minecraft:water",
   "has_rivers": true,
-  "height": 61,
+  "height": 66,
   "is_ocean": false,
-  "variance": 12
+  "variance": 16
 }

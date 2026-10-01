@@ -4,11 +4,11 @@
     "type": "minecraft:add",
     "argument1": {
       "type": "minecraft:mul",
-      "argument1": 0.7,
+      "argument1": 0.4,
       "argument2": {
         "type": "minecraft:noise",
         "noise": "eternal_starlight:biome_height",
-        "xz_scale": 1.0,
+        "xz_scale": 2.6,
         "y_scale": 0.0
       }
     },
@@ -16,21 +16,21 @@
       "type": "minecraft:add",
       "argument1": {
         "type": "minecraft:mul",
-        "argument1": 0.2,
+        "argument1": 0.35,
         "argument2": {
           "type": "minecraft:noise",
           "noise": "eternal_starlight:biome_height",
-          "xz_scale": 0.4,
+          "xz_scale": 1.2,
           "y_scale": 0.0
         }
       },
       "argument2": {
         "type": "minecraft:mul",
-        "argument1": 0.1,
+        "argument1": 0.25,
         "argument2": {
           "type": "minecraft:noise",
           "noise": "eternal_starlight:biome_height",
-          "xz_scale": 0.15,
+          "xz_scale": 0.35,
           "y_scale": 0.0
         }
       }

@@ -88,15 +88,10 @@ public final class ESBiomeBuilder {
 	// sat at -0.4 would only start 26 blocks above the ground instead of 51.
 	private static final float SKY_BAND_BOTTOM_DEPTH = -0.8F;
 	private static final float SKY_BAND_TOP_DEPTH = -1.3F;
-	/**
-	 * Where islands are placed, 51 to 115 blocks above the surface. Deliberately independent of the band's depths.
-	 */
+
 	public static final int SKY_BAND_MIN_ABOVE_SURFACE = 51;
 	public static final int SKY_BAND_MAX_ABOVE_SURFACE = 115;
 
-	/**
-	 * Small fitness handicap that decides exact ties inside Solaris Isles' own ranges.
-	 */
 	private static final float SKY_FILLER_OFFSET = 0.05F;
 
 	public List<Climate.ParameterPoint> spawnTarget() {
@@ -746,8 +741,7 @@ public final class ESBiomeBuilder {
 			ESBiomeData.SOLARIS_ISLES
 		);
 
-		// Surface biomes only anchor at depth points, so without a filler spanning the band Solaris Isles would win
-		// everywhere on inflated climate ranges inside it.
+		// surface biomes only anchor at depth points, so without a filler spanning the band Solaris Isles would win everywhere on inflated climate ranges inside it
 		this.addSkyBiome(
 			biomes,
 			this.FULL_RANGE,
@@ -809,7 +803,6 @@ public final class ESBiomeBuilder {
 		float offset,
 		ResourceKey<BiomeData> second
 	) {
-		// depth anchors: -1 far above (this bounds the sky band), 0 at the surface, 1 deep below
 		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(-1.0F), weirdness, offset), second));
 		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(0.0F), weirdness, offset), second));
 		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(1.0F), weirdness, offset), second));
@@ -838,7 +831,6 @@ public final class ESBiomeBuilder {
 		float offset,
 		ResourceKey<BiomeData> biome
 	) {
-		// 26 to 115 blocks below the surface, the same band vanilla carves its cave biomes out of
 		biomes.accept(
 			Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(0.2F, 0.9F), weirdness, offset), biome)
 		);

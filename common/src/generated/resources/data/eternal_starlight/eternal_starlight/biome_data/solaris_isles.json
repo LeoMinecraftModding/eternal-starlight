@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:solaris_isles",
   "fluid": "minecraft:water",
   "has_rivers": false,
-  "height": 64,
+  "height": 66,
   "is_ocean": false,
-  "variance": 6
+  "variance": 14
 }

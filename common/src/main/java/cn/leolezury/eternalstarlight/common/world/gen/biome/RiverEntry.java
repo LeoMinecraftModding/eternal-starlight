@@ -10,10 +10,6 @@ import net.minecraft.world.level.levelgen.DensityFunction;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * A river carved out of the climate table by a distance field, so {@code size} is the half width of the river in blocks
- * and rivers keep the same width everywhere instead of widening wherever the noise happens to change slowly.
- */
 public record RiverEntry(Holder<BiomeData> river, float size, Optional<Holder<BiomeData>> transition, float transitionSize, int offset, boolean oceanOnly) {
 	public static final Codec<RiverEntry> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC)
@@ -26,9 +22,6 @@ public record RiverEntry(Holder<BiomeData> river, float size, Optional<Holder<Bi
 		Codec.BOOL.optionalFieldOf("ocean_only", false).forGetter(RiverEntry::oceanOnly)
 	).apply(instance, RiverEntry::new));
 
-	/**
-	 * Distance to every centreline at a column, independent of y so callers can cache one column of values.
-	 */
 	public static float[] values(List<RiverEntry> rivers, DensityFunction riverValue, int x, int y, int z) {
 		float[] values = new float[rivers.size()];
 		for (int i = 0; i < rivers.size(); i++) {
@@ -58,9 +51,6 @@ public record RiverEntry(Holder<BiomeData> river, float size, Optional<Holder<Bi
 		return base;
 	}
 
-	/**
-	 * One shot variant: entries on the other side of the ocean split are skipped before their noise is evaluated.
-	 */
 	public static Holder<BiomeData> resolve(Holder<BiomeData> base, List<RiverEntry> rivers, DensityFunction riverValue, int x, int y, int z) {
 		if (rivers.isEmpty() || !base.value().hasRivers()) {
 			return base;

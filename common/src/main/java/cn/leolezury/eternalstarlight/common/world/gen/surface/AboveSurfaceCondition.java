@@ -7,12 +7,6 @@ import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 
-/**
- * True within {@code depth} blocks below the column's own floor. Vanilla's preliminary surface check interpolates the
- * level across a sixteen block surface cell, which is far too coarse for the twenty plus block deep river beds of this
- * dimension, so those beds fall outside the gate and lose their material. The floor comes from the chunk's own heightmap
- * instead, which is primed from the filled chunk the first time it is asked for.
- */
 public record AboveSurfaceCondition(int depth) implements SurfaceRules.ConditionSource {
 	public static final MapCodec<AboveSurfaceCondition> DATA_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 		Codec.INT.fieldOf("depth").forGetter(AboveSurfaceCondition::depth)

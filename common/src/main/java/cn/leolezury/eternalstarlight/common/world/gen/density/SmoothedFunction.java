@@ -8,11 +8,6 @@ import net.minecraft.world.level.levelgen.DensityFunction;
 
 import java.util.Objects;
 
-/**
- * Disc shaped weighted average of the wrapped function, used to blur the surface height across biome borders.
- * {@code upwardFill} is how much of the amount by which the average sits above the column's own height is kept: at 1
- * every dip is filled, at 0 river beds keep their own height while their banks are still blended down towards them.
- */
 public final class SmoothedFunction implements DensityFunction {
 	private static final int TAP_STEP = 4;
 	private static final int COLUMN_MASK = ~3;
@@ -22,9 +17,6 @@ public final class SmoothedFunction implements DensityFunction {
 	private final DensityFunction input;
 	private final int radius;
 	private final double upwardFill;
-	/**
-	 * One weight per tap, precomputed, see the constructor.
-	 */
 	private final double[] weights;
 	private final double totalWeight;
 	private final int taps;
@@ -32,11 +24,9 @@ public final class SmoothedFunction implements DensityFunction {
 
 	public SmoothedFunction(DensityFunction input, int radius, double upwardFill) {
 		this.input = input;
-		this.radius = radius;
+		// taps sit on the column grid, so a radius that is not a multiple of the tap step would shift the kernel
+		this.radius = Math.max(0, radius - Math.floorMod(radius, TAP_STEP));
 		this.upwardFill = upwardFill;
-		// A tap stands for a whole four block column, so its weight is the cone integrated over that column, sampled once
-		// per block. Weighing the tap by the cone's value at its corner instead leaves the kernel with a square support,
-		// and that is what makes smoothed features read as rounded squares rather than circles.
 		this.taps = 2 * radius / TAP_STEP + 1;
 		this.weights = new double[this.taps * this.taps];
 		double total = 0.0;
@@ -85,9 +75,6 @@ public final class SmoothedFunction implements DensityFunction {
 		return columnHeight(context.blockX(), context.blockY(), context.blockZ());
 	}
 
-	/**
-	 * Callers sample whole columns, so a per thread per column cache saves dozens of tap sets.
-	 */
 	private double columnHeight(int x, int y, int z) {
 		int columnX = x & COLUMN_MASK;
 		int columnZ = z & COLUMN_MASK;

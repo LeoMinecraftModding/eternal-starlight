@@ -14,18 +14,15 @@ import net.minecraft.world.level.biome.Climate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The dimension's climate table, read by both the biome source and the terrain height function.
- */
-public class ESSurfaceClimate {
+public class ESBiomeClimate {
 	public static final ResourceKey<Climate.ParameterList<Holder<BiomeData>>> STARLIGHT =
-		ResourceKey.create(ESRegistries.SURFACE_CLIMATE, EternalStarlight.id("starlight"));
+		ResourceKey.create(ESRegistries.BIOME_CLIMATE, EternalStarlight.id("starlight"));
 
 	public static final Codec<Climate.ParameterList<Holder<BiomeData>>> CODEC =
 		Climate.ParameterList.codec(RegistryFileCodec.create(ESRegistries.BIOME_DATA, BiomeData.CODEC).fieldOf("biome_data"));
 
 	public static final Codec<Holder<Climate.ParameterList<Holder<BiomeData>>>> HOLDER_CODEC =
-		RegistryFileCodec.create(ESRegistries.SURFACE_CLIMATE, CODEC);
+		RegistryFileCodec.create(ESRegistries.BIOME_CLIMATE, CODEC);
 
 	public static void bootstrap(BootstrapContext<Climate.ParameterList<Holder<BiomeData>>> context) {
 		HolderGetter<BiomeData> biomeData = context.lookup(ESRegistries.BIOME_DATA);

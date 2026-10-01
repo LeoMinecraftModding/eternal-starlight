@@ -1,8 +1,9 @@
 package cn.leolezury.eternalstarlight.common.world.gen.density;
 
-import cn.leolezury.eternalstarlight.common.data.ESSurfaceClimate;
+import cn.leolezury.eternalstarlight.common.data.ESBiomeClimate;
 import cn.leolezury.eternalstarlight.common.world.gen.biome.BiomeData;
 import cn.leolezury.eternalstarlight.common.world.gen.biome.RiverEntry;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
@@ -13,15 +14,7 @@ import net.minecraft.world.level.levelgen.DensityFunction;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Surface height of a column's biome, the anchor both the terrain and the relative depth axis are measured from.
- */
 public final class SurfaceBiomeHeightFunction implements DensityFunction {
-	private static final int MIN_HEIGHT = -64;
-	private static final int MAX_HEIGHT = 320;
-	/**
-	 * Heights are per column, so quantising to the noise chunk cell grid makes them cacheable.
-	 */
 	private static final int COLUMN_MASK = ~3;
 	private static final int CACHE_SIZE = 1024;
 	private static final int CACHE_MASK = CACHE_SIZE - 1;
@@ -35,6 +28,8 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 	private final DensityFunction noise;
 	private final DensityFunction riverValue;
 	private final List<RiverEntry> rivers;
+	private final int minHeight;
+	private final int maxHeight;
 	private final ThreadLocal<HeightCache> heightCache = ThreadLocal.withInitial(HeightCache::new);
 
 	public SurfaceBiomeHeightFunction(
@@ -46,7 +41,9 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		DensityFunction weirdness,
 		DensityFunction noise,
 		DensityFunction riverValue,
-		List<RiverEntry> rivers
+		List<RiverEntry> rivers,
+		int minHeight,
+		int maxHeight
 	) {
 		this.biomes = biomes;
 		this.temperature = temperature;
@@ -57,10 +54,12 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		this.noise = noise;
 		this.riverValue = riverValue;
 		this.rivers = rivers;
+		this.minHeight = minHeight;
+		this.maxHeight = maxHeight;
 	}
 
 	public static final MapCodec<SurfaceBiomeHeightFunction> DATA_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-		ESSurfaceClimate.HOLDER_CODEC.fieldOf("biomes").forGetter(SurfaceBiomeHeightFunction::biomes),
+		ESBiomeClimate.HOLDER_CODEC.fieldOf("biomes").forGetter(SurfaceBiomeHeightFunction::biomes),
 		DensityFunction.HOLDER_HELPER_CODEC.fieldOf("temperature").forGetter(SurfaceBiomeHeightFunction::temperature),
 		DensityFunction.HOLDER_HELPER_CODEC.fieldOf("humidity").forGetter(SurfaceBiomeHeightFunction::humidity),
 		DensityFunction.HOLDER_HELPER_CODEC.fieldOf("continentalness").forGetter(SurfaceBiomeHeightFunction::continentalness),
@@ -68,7 +67,9 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		DensityFunction.HOLDER_HELPER_CODEC.fieldOf("weirdness").forGetter(SurfaceBiomeHeightFunction::weirdness),
 		DensityFunction.HOLDER_HELPER_CODEC.fieldOf("noise").forGetter(SurfaceBiomeHeightFunction::noise),
 		DensityFunction.HOLDER_HELPER_CODEC.fieldOf("river_value").forGetter(SurfaceBiomeHeightFunction::riverValue),
-		RiverEntry.CODEC.listOf().fieldOf("rivers").forGetter(SurfaceBiomeHeightFunction::rivers)
+		RiverEntry.CODEC.listOf().fieldOf("rivers").forGetter(SurfaceBiomeHeightFunction::rivers),
+		Codec.INT.optionalFieldOf("min_height", -64).forGetter(SurfaceBiomeHeightFunction::minHeight),
+		Codec.INT.optionalFieldOf("max_height", 320).forGetter(SurfaceBiomeHeightFunction::maxHeight)
 	).apply(instance, SurfaceBiomeHeightFunction::new));
 	public static final KeyDispatchDataCodec<SurfaceBiomeHeightFunction> CODEC = KeyDispatchDataCodec.of(DATA_CODEC);
 
@@ -108,14 +109,19 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		return this.rivers;
 	}
 
+	public int minHeight() {
+		return this.minHeight;
+	}
+
+	public int maxHeight() {
+		return this.maxHeight;
+	}
+
 	@Override
 	public double compute(DensityFunction.FunctionContext context) {
 		return columnHeight(context.blockX(), context.blockY(), context.blockZ());
 	}
 
-	/**
-	 * The smoothing node samples many neighbouring columns, so the cache saves recomputing the same one.
-	 */
 	private double columnHeight(int x, int y, int z) {
 		int columnX = x & COLUMN_MASK;
 		int columnZ = z & COLUMN_MASK;
@@ -162,18 +168,20 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 			this.weirdness.mapAll(visitor),
 			this.noise.mapAll(visitor),
 			this.riverValue.mapAll(visitor),
-			this.rivers
+			this.rivers,
+			this.minHeight,
+			this.maxHeight
 		));
 	}
 
 	@Override
 	public double minValue() {
-		return MIN_HEIGHT;
+		return this.minHeight;
 	}
 
 	@Override
 	public double maxValue() {
-		return MAX_HEIGHT;
+		return this.maxHeight;
 	}
 
 	@Override
@@ -192,12 +200,14 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 			&& this.weirdness.equals(function.weirdness)
 			&& this.noise.equals(function.noise)
 			&& this.riverValue.equals(function.riverValue)
-			&& this.rivers.equals(function.rivers);
+			&& this.rivers.equals(function.rivers)
+			&& this.minHeight == function.minHeight
+			&& this.maxHeight == function.maxHeight;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(this.biomes, this.temperature, this.humidity, this.continentalness, this.erosion, this.weirdness, this.noise, this.riverValue, this.rivers);
+		return Objects.hash(this.biomes, this.temperature, this.humidity, this.continentalness, this.erosion, this.weirdness, this.noise, this.riverValue, this.rivers, this.minHeight, this.maxHeight);
 	}
 
 	private static final class HeightCache {

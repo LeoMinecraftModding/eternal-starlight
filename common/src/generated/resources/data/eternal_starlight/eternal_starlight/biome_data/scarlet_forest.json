@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:scarlet_forest",
   "fluid": "minecraft:water",
   "has_rivers": true,
-  "height": 70,
+  "height": 78,
   "is_ocean": false,
-  "variance": 18
+  "variance": 28
 }
