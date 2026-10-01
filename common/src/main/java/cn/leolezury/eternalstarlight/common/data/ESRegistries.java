@@ -11,11 +11,14 @@ import cn.leolezury.eternalstarlight.common.entity.living.npc.boarwarf.golem.Ast
 import cn.leolezury.eternalstarlight.common.item.combat.SeedsLauncherAmmoType;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.world.gen.biome.BiomeData;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Climate;
 
 public class ESRegistries {
 	public static final ResourceKey<Registry<BiomeData>> BIOME_DATA = ResourceKey.createRegistryKey(EternalStarlight.id("biome_data"));
+	public static final ResourceKey<Registry<Climate.ParameterList<Holder<BiomeData>>>> BIOME_CLIMATE = ResourceKey.createRegistryKey(EternalStarlight.id("biome_climate"));
 	public static final ResourceKey<Registry<BoarwarfType>> BOARWARF_TYPE = ResourceKey.createRegistryKey(EternalStarlight.id("boarwarf_type"));
 	public static final ResourceKey<Registry<AstralGolemMaterial>> ASTRAL_GOLEM_MATERIAL = ResourceKey.createRegistryKey(EternalStarlight.id("astral_golem_material"));
 	public static final ResourceKey<Registry<EntVariant>> ENT_VARIANT = ResourceKey.createRegistryKey(EternalStarlight.id("ent_variant"));
@@ -40,5 +43,7 @@ public class ESRegistries {
 	}
 
 	public static void loadClass() {
+		// kept out of the static block: ESBiomeClimate reads this key, so registering it there would hit a null codec
+		ESPlatform.INSTANCE.registerDatapackRegistry(BIOME_CLIMATE, ESBiomeClimate.CODEC, null);
 	}
 }

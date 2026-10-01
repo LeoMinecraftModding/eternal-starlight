@@ -39,48 +39,48 @@ public class ESBiomeData {
 	public static void bootstrap(BootstrapContext<BiomeData> context) {
 		HolderGetter<Biome> biomeHolderGetter = context.lookup(Registries.BIOME);
 
-		context.register(STARLIGHT_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_FOREST), 65, 14)
+		context.register(STARLIGHT_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_FOREST), 70, 20)
 			.build());
 
-		context.register(STARLIGHT_DENSE_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST), 65, 14)
+		context.register(STARLIGHT_DENSE_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_DENSE_FOREST), 70, 20)
 			.build());
 
-		context.register(UMBRAL_PLAINS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.UMBRAL_PLAINS), 60, 8)
+		context.register(UMBRAL_PLAINS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.UMBRAL_PLAINS), 64, 14)
 			.build());
 
-		context.register(GLIMMER_SCRUBLAND, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.GLIMMER_SCRUBLAND), 60, 10)
+		context.register(GLIMMER_SCRUBLAND, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.GLIMMER_SCRUBLAND), 66, 16)
 			.build());
 
-		context.register(STARLIGHT_PERMAFROST_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST), 90, 40)
+		context.register(STARLIGHT_PERMAFROST_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_PERMAFROST_FOREST), 96, 46)
 			.hasRivers(false)
 			.build());
 
-		context.register(PERMAFROST_PEAKS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.PERMAFROST_PEAKS), 120, 30)
+		context.register(PERMAFROST_PEAKS, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.PERMAFROST_PEAKS), 126, 40)
 			.hasRivers(false)
 			.build());
 
-		context.register(STARLIGHT_TAIGA, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_TAIGA), 75, 20)
+		context.register(STARLIGHT_TAIGA, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.STARLIGHT_TAIGA), 82, 32)
 			.build());
 
-		context.register(DARK_SWAMP, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.DARK_SWAMP), 61, 5)
+		context.register(DARK_SWAMP, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.DARK_SWAMP), 63, 12)
 			.build());
 
-		context.register(SCARLET_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.SCARLET_FOREST), 70, 18)
+		context.register(SCARLET_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.SCARLET_FOREST), 78, 28)
 			.build());
 
-		context.register(TORREYA_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.TORREYA_FOREST), 57, 6)
+		context.register(TORREYA_FOREST, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.TORREYA_FOREST), 62, 12)
 			.withFluid(ESBlocks.ETHER.asHolder())
 			.build());
 
-		context.register(CRYSTALLIZED_DESERT, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.CRYSTALLIZED_DESERT), 65, 14)
+		context.register(CRYSTALLIZED_DESERT, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.CRYSTALLIZED_DESERT), 70, 20)
 			.hasRivers(false)
 			.build());
 
-		context.register(LUCENT_MYCELIUM_ISLE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.LUCENT_MYCELIUM_ISLE), 65, 10)
+		context.register(LUCENT_MYCELIUM_ISLE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.LUCENT_MYCELIUM_ISLE), 68, 17)
 			.hasRivers(false)
 			.build());
 
-		context.register(SOLARIS_ISLES, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.SOLARIS_ISLES), 64, 6)
+		context.register(SOLARIS_ISLES, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.SOLARIS_ISLES), 66, 14)
 			.hasRivers(false)
 			.build());
 
@@ -122,10 +122,10 @@ public class ESBiomeData {
 			.withFluid(ESBlocks.ETHER.asHolder())
 			.build());
 
-		context.register(WARM_SHORE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.WARM_SHORE), 61, 5)
+		context.register(WARM_SHORE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.WARM_SHORE), 63, 12)
 			.build());
 
-		context.register(GRIM_SHORE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.GRIM_SHORE), 61, 12)
+		context.register(GRIM_SHORE, new BiomeData.Builder(biomeHolderGetter.getOrThrow(ESBiomes.GRIM_SHORE), 66, 16)
 			.build());
 	}
 

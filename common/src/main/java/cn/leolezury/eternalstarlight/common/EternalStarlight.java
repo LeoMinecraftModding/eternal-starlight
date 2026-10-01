@@ -38,8 +38,11 @@ public class EternalStarlight {
 		ESBlockEntities.loadClass();
 		ESMenuTypes.loadClass();
 		ESEnchantmentEntityEffects.loadClass();
-		ESMaterialConditions.loadClass();
 		ESWorldCarvers.loadClass();
+		ESChunkGeneratorTypes.loadClass();
+		ESBiomeSourceTypes.loadClass();
+		ESDensityFunctionTypes.loadClass();
+		ESSurfaceConditionTypes.loadClass();
 		ESFeatures.loadClass();
 		ESPlacementModifierTypes.loadClass();
 		ESTreePlacers.loadClass();

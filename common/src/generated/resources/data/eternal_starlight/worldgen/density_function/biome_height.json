@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:flat_cache",
+  "argument": {
+    "type": "eternal_starlight:smoothed",
+    "input": "eternal_starlight:biome_height_raw",
+    "radius": 12,
+    "upward_fill": 0.5
+  }
+}

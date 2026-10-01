@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:cache_2d",
+  "argument": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:mul",
+      "argument1": 0.4,
+      "argument2": {
+        "type": "minecraft:noise",
+        "noise": "eternal_starlight:biome_height",
+        "xz_scale": 2.6,
+        "y_scale": 0.0
+      }
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:mul",
+        "argument1": 0.35,
+        "argument2": {
+          "type": "minecraft:noise",
+          "noise": "eternal_starlight:biome_height",
+          "xz_scale": 1.2,
+          "y_scale": 0.0
+        }
+      },
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": 0.25,
+        "argument2": {
+          "type": "minecraft:noise",
+          "noise": "eternal_starlight:biome_height",
+          "xz_scale": 0.35,
+          "y_scale": 0.0
+        }
+      }
+    }
+  }
+}

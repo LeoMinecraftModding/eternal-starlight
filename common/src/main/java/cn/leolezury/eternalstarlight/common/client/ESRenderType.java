@@ -84,7 +84,7 @@ public abstract class ESRenderType extends RenderType {
 			.createCompositeState(true)));
 
 	public static final Function<ResourceLocation, RenderType> CUTOUT_GLOW = Util.memoize(location ->
-		create(EternalStarlight.ID + ":entity_translucent_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
+		create(EternalStarlight.ID + ":entity_cutout_glow", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true, RenderType.CompositeState.builder()
 			.setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
 			.setShaderState(RENDERTYPE_BEACON_BEAM_SHADER)
 			.setTransparencyState(NO_TRANSPARENCY)

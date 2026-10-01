@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:permafrost_peaks",
   "fluid": "minecraft:water",
   "has_rivers": false,
-  "height": 120,
+  "height": 126,
   "is_ocean": false,
-  "variance": 30
+  "variance": 40
 }

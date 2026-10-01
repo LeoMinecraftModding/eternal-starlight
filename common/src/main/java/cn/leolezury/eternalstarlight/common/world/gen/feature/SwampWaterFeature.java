@@ -20,8 +20,9 @@ public class SwampWaterFeature extends ESFeature<NoneFeatureConfiguration> {
 		super(codec);
 	}
 
-	private long lastSeed;
-	private PerlinSimplexNoise noise = new PerlinSimplexNoise(RandomSource.create(lastSeed), List.of(0));
+	// placed from several worldgen threads
+	private volatile long lastSeed;
+	private volatile PerlinSimplexNoise noise = new PerlinSimplexNoise(RandomSource.create(lastSeed), List.of(0));
 
 	public void setSeed(long seed) {
 		if (seed != lastSeed) {

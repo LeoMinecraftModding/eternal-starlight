@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:flat_cache",
+  "argument": {
+    "type": "eternal_starlight:surface_biome_height",
+    "biomes": "eternal_starlight:starlight",
+    "continentalness": "minecraft:overworld/continents",
+    "erosion": "minecraft:overworld/erosion",
+    "humidity": "eternal_starlight:humidity",
+    "noise": "eternal_starlight:height_noise",
+    "river_value": "eternal_starlight:river_value",
+    "rivers": [
+      {
+        "offset": 0,
+        "river": "eternal_starlight:shimmer_river",
+        "size": 6.0,
+        "transition": "eternal_starlight:shimmer_river_transition",
+        "transition_size": 12.0
+      },
+      {
+        "offset": 2009,
+        "river": "eternal_starlight:ether_river",
+        "size": 8.0,
+        "transition": "eternal_starlight:torreya_forest",
+        "transition_size": 16.0
+      },
+      {
+        "ocean_only": true,
+        "offset": 707,
+        "river": "eternal_starlight:the_abyss",
+        "size": 16.0,
+        "transition": "eternal_starlight:the_abyss_transition",
+        "transition_size": 24.0
+      }
+    ],
+    "temperature": "eternal_starlight:temperature",
+    "weirdness": "minecraft:overworld/ridges"
+  }
+}

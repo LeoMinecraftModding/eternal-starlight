@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:shifted_noise",
+  "noise": "eternal_starlight:river",
+  "shift_x": "eternal_starlight:river_shift_x",
+  "shift_y": 0.0,
+  "shift_z": "eternal_starlight:river_shift_z",
+  "xz_scale": 1.0,
+  "y_scale": 0.0
+}

@@ -27,7 +27,8 @@ public class FinalModificationFeature extends ESFeature<NoneFeatureConfiguration
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 		for (int x = chunkCoord.getX(); x < chunkCoord.getX() + 16; x++) {
 			for (int z = chunkCoord.getZ(); z < chunkCoord.getZ() + 16; z++) {
-				pos.set(x, ESDimensions.SEA_LEVEL, z);
+				// the top fluid block sits one below sea level, as in vanilla
+				pos.set(x, ESDimensions.SEA_LEVEL - 1, z);
 				while (level.getBlockState(pos).is(ESBlocks.ETHER.get())) {
 					for (Direction direction : Direction.values()) {
 						BlockPos relativePos = pos.relative(direction);

@@ -24,8 +24,9 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class SkyIslandFeature extends ESFeature<SkyIslandFeature.Configuration> {
-	private long lastSeed;
-	private PerlinSimplexNoise noise = new PerlinSimplexNoise(RandomSource.create(lastSeed), List.of(0));
+	// placed from several worldgen threads
+	private volatile long lastSeed;
+	private volatile PerlinSimplexNoise noise = new PerlinSimplexNoise(RandomSource.create(lastSeed), List.of(0));
 
 	public SkyIslandFeature(Codec<Configuration> codec) {
 		super(codec);

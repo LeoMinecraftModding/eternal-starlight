@@ -2,7 +2,7 @@
   "biome": "eternal_starlight:warm_shore",
   "fluid": "minecraft:water",
   "has_rivers": true,
-  "height": 61,
+  "height": 63,
   "is_ocean": false,
-  "variance": 5
+  "variance": 12
 }

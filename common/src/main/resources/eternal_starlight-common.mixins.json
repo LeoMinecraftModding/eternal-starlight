@@ -6,6 +6,7 @@
   "mixins": [
     "AbstractArrowMixin",
     "AbstractSkullBlockMixin",
+    "AquiferMixin",
     "AxeItemMixin",
     "BaseFireBlockMixin",
     "BlockStateBaseMixin",
@@ -40,7 +41,6 @@
     "SignBlockMixin",
     "SnowAndFreezeFeatureMixin",
     "SpawnEggItemMixin",
-    "SurfaceSystemMixin",
     "TagLoaderMixin",
     "ThrowableProjectileMixin",
     "TntBlockMixin",
