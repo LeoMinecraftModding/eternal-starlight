@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Aquifer.NoiseBasedAquifer.class)
-public abstract class AquiferMixin {
+public abstract class NoiseBasedAquiferMixin {
 	@Shadow
 	@Final
 	private Aquifer.FluidPicker globalFluidPicker;

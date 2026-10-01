@@ -6,7 +6,6 @@
   "mixins": [
     "AbstractArrowMixin",
     "AbstractSkullBlockMixin",
-    "AquiferMixin",
     "AxeItemMixin",
     "BaseFireBlockMixin",
     "BlockStateBaseMixin",
@@ -31,6 +30,7 @@
     "LevelChunkMixin",
     "LivingEntityMixin",
     "NaturalSpawnerMixin",
+    "NoiseBasedAquiferMixin",
     "PlayerListMixin",
     "PlayerMixin",
     "ProjectileMixin",
