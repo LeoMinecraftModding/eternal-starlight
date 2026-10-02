@@ -50,6 +50,8 @@ public class OrbitalAshenSnowParticle extends BaseAshSmokeParticle {
 			Vec3 pos = ESMathUtil.rotationToPosition(new Vec3(cx, 0, cz), Mth.lerp(partialTick, oRadius, radius), 0, Mth.lerp(partialTick, oAngle, angle));
 			this.x = pos.x;
 			this.z = pos.z;
+			this.xo = pos.x;
+			this.zo = pos.z;
 		}
 		super.render(consumer, camera, partialTick);
 	}
