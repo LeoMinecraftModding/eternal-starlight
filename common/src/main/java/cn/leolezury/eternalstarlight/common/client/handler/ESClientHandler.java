@@ -336,7 +336,7 @@ public class ESClientHandler {
 	}
 
 	public static void onAfterRenderParticles() {
-		modelViewMatrix = RenderSystem.getModelViewMatrix();
+		modelViewMatrix = new Matrix4f(RenderSystem.getModelViewMatrix());
 	}
 
 	public static void onAfterRenderWeather(float partialTicks) {
@@ -351,9 +351,6 @@ public class ESClientHandler {
 		}
 		DELAYED_BUFFER_SOURCE.endBatch();
 		RenderSystem.getModelViewMatrix().set(matrix4f);
-		if (Minecraft.useShaderTransparency() && Minecraft.getInstance().levelRenderer.getCloudsTarget() != null) {
-			Minecraft.getInstance().levelRenderer.getCloudsTarget().bindWrite(false);
-		}
 		// aurora
 		float aurora = Mth.lerp(partialTicks, oldAuroraIntensity, auroraIntensity);
 		if (aurora > 0 && Minecraft.getInstance().level != null) {
@@ -367,28 +364,53 @@ public class ESClientHandler {
 	}
 
 	public static void onAfterRenderLevel(Matrix4f viewMatrix, Matrix4f projectionMatrix, Camera camera, float partialTicks) {
+		float[] shaderColor = RenderSystem.getShaderColor().clone();
 		Matrix4f matrix4f = new Matrix4f(RenderSystem.getModelViewMatrix());
 		RenderSystem.getModelViewMatrix().set(viewMatrix);
 		AFTER_LEVEL_BUFFER_SOURCE.endBatch();
 		RenderSystem.getModelViewMatrix().set(matrix4f);
+		restoreLevelRenderState(shaderColor);
 		PostEffectRenderer.render(Minecraft.getInstance().level, camera, viewMatrix, projectionMatrix, partialTicks);
+		// post effect chains leave blend and depth test disabled, which would leak into the hand render
+		restoreLevelRenderState(shaderColor);
+	}
+
+	private static void restoreLevelRenderState(float[] shaderColor) {
+		RenderSystem.enableCull();
+		RenderSystem.disableBlend();
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.enableDepthTest();
+		RenderSystem.depthMask(true);
+		RenderSystem.polygonOffset(0.0F, 0.0F);
+		RenderSystem.disablePolygonOffset();
+		RenderSystem.setShaderColor(shaderColor[0], shaderColor[1], shaderColor[2], shaderColor[3]);
 	}
 
 	private static void renderSkyShader(ShaderInstance shader, float intensity) {
-		Tesselator tesselator = Tesselator.getInstance();
-		BufferBuilder buffer = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-
 		final float scale = 2048F * (Minecraft.getInstance().gameRenderer.getRenderDistance() / 32F);
 		Vec3 pos = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
 		float height = (float) (pos.y() + 128);
-		float cloud = Minecraft.getInstance().level.effects().getCloudHeight() + 64;
+		float cloudHeight = Minecraft.getInstance().level.effects().getCloudHeight();
+		float cloud = Float.isNaN(cloudHeight) ? 0F : cloudHeight + 64;
 		float y = (float) (Math.max(height, cloud) - pos.y());
+		if (!Float.isFinite(y)) {
+			return;
+		}
+
+		Tesselator tesselator = Tesselator.getInstance();
+		BufferBuilder buffer = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
 		buffer.addVertex(-scale, y, scale).setColor(1F, 1F, 1F, 1F);
 		buffer.addVertex(-scale, y, -scale).setColor(1F, 1F, 1F, 1F);
 		buffer.addVertex(scale, y, -scale).setColor(1F, 1F, 1F, 1F);
 		buffer.addVertex(scale, y, scale).setColor(1F, 1F, 1F, 1F);
 
-		// blend and depth test are set up by the caller; this helper only owns the shader and the shader color
+		// shader instance ignores the blend config of the json, and flushing buffers above clears the
+		// render state, so the blend state has to be set here or the shader draws an opaque sheet
+		RenderSystem.enableCull();
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.enableDepthTest();
+		RenderSystem.depthMask(false);
 		float[] lastColor = RenderSystem.getShaderColor().clone();
 		RenderSystem.setShaderColor(1F, 1F, 1F, intensity);
 		ShaderInstance last = RenderSystem.getShader();

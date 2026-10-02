@@ -32,6 +32,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.CopyBlockState;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
@@ -44,7 +45,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ESBlockLootSubProvider extends BlockLootSubProvider {
-	protected static final LootItemCondition.Builder HAS_SHEARS_OR_SICKLE = HAS_SHEARS.or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ESTags.Items.SICKLES)));
+	protected static final LootItemCondition.Builder HAS_SICKLES = MatchTool.toolMatches(ItemPredicate.Builder.item().of(ESTags.Items.SICKLES));
+	protected static final LootItemCondition.Builder HAS_SHEARS_OR_SICKLE = HAS_SHEARS.or(HAS_SICKLES);
+	// [Vanilla copy] BlockLootSubProvider#NORMAL_LEAVES_STICK_CHANCES, which is private there
+	private static final float[] LEAVES_STICK_CHANCES = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
 
 	public ESBlockLootSubProvider(HolderLookup.Provider lookup) {
 		super(Set.of(), FeatureFlags.REGISTRY.allFlags(), lookup);
@@ -1019,7 +1023,37 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 
 	private LootTable.Builder createLunarLeavesDrops(Block leaves, Block sapling, float... saplingChances) {
 		HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-		return this.createLeavesDrops(leaves, sapling, saplingChances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(this.doesNotHaveShearsOrSilkTouch()).add((this.applyExplosionCondition(leaves, LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()))).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+		return this.createLeavesDrops(leaves, sapling, saplingChances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(this.doesNotHaveShearsOrSickleOrSilkTouch()).add((this.applyExplosionCondition(leaves, LootItem.lootTableItem(ESItems.LUNAR_BERRIES.get()))).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+	}
+
+	// [Vanilla copy] BlockLootSubProvider#createLeavesDrops with the shears check widened to shears or sickle
+	@Override
+	protected LootTable.Builder createLeavesDrops(Block leavesBlock, Block saplingBlock, float... chances) {
+		HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+		return LootTable.lootTable()
+			.withPool(
+				LootPool.lootPool()
+					.setRolls(ConstantValue.exactly(1.0F))
+					.add(
+						LootItem.lootTableItem(leavesBlock)
+							.when(this.hasShearsOrSickleOrSilkTouch())
+							.otherwise(
+								((LootPoolSingletonContainer.Builder) this.applyExplosionCondition(leavesBlock, LootItem.lootTableItem(saplingBlock)))
+									.when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), chances))
+							)
+					)
+			)
+			.withPool(
+				LootPool.lootPool()
+					.setRolls(ConstantValue.exactly(1.0F))
+					.when(this.doesNotHaveShearsOrSickleOrSilkTouch())
+					.add(
+						((LootPoolSingletonContainer.Builder) this.applyExplosionDecay(
+							leavesBlock, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+						))
+							.when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), LEAVES_STICK_CHANCES))
+					)
+			);
 	}
 
 	private LootTable.Builder createThioquartzBlockDrop(Block block) {
@@ -1036,11 +1070,11 @@ public class ESBlockLootSubProvider extends BlockLootSubProvider {
 		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block).when(this.hasSilkTouch()).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CONTAINER).include(ESDataComponents.BIRDS.get())).apply(CopyBlockState.copyState(block).copy(StarfireBirdNestBlock.EGGS)).otherwise(LootItem.lootTableItem(block).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CONTAINER)))));
 	}
 
-	private LootItemCondition.Builder hasShearsOrSilkTouch() {
-		return HAS_SHEARS.or(this.hasSilkTouch());
+	private LootItemCondition.Builder hasShearsOrSickleOrSilkTouch() {
+		return AnyOfCondition.anyOf(HAS_SHEARS, HAS_SICKLES, this.hasSilkTouch());
 	}
 
-	private LootItemCondition.Builder doesNotHaveShearsOrSilkTouch() {
-		return this.hasShearsOrSilkTouch().invert();
+	private LootItemCondition.Builder doesNotHaveShearsOrSickleOrSilkTouch() {
+		return this.hasShearsOrSickleOrSilkTouch().invert();
 	}
 }

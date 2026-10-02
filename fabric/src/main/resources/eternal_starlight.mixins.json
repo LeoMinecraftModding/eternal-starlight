@@ -11,6 +11,7 @@
     "EntityMixin",
     "LiquidBlockMixin",
     "LivingEntityMixin",
+    "MatchToolMixin",
     "MobMixin",
     "NbtUtilsMixin",
     "PistonStructureResolverMixin",

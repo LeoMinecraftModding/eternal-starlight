@@ -110,5 +110,5 @@ void main() {
     float shapeNoise = rayMarch(shapeNoisePos, shapeNoisePos, noiseZ);
     colorNoise = ((colorNoise + 1.0) / 2.0) * 0.5;
     vec4 color = vec4(0.0, 0.5 + colorNoise, 1.0 - colorNoise, shapeNoise);
-    fragColor = linear_fog(vec4(vertexColor.rgb * ColorModulator.rgb * color.rgb, vertexColor.a * ColorModulator.a * color.a * smoothstep(10.0, 4.0, length(shapeNoisePos)) * linear_fog_fade(length(texCoord0 / 4.5), FogStart, FogEnd)), length(texCoord0 / 4.5), FogStart, FogEnd, FogColor);
+    fragColor = linear_fog(vec4(vertexColor.rgb * ColorModulator.rgb * color.rgb, vertexColor.a * ColorModulator.a * color.a * (1.0 - smoothstep(4.0, 10.0, length(shapeNoisePos))) * linear_fog_fade(length(texCoord0 / 4.5), FogStart, FogEnd)), length(texCoord0 / 4.5), FogStart, FogEnd, FogColor);
 }

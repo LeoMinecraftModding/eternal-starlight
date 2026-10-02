@@ -7,11 +7,9 @@ import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorIt
 import cn.leolezury.eternalstarlight.common.item.armor.UnrealiumArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
-import cn.leolezury.eternalstarlight.common.item.combat.PetalScytheItem;
-import cn.leolezury.eternalstarlight.common.item.combat.ScytheItem;
+import cn.leolezury.eternalstarlight.common.item.combat.SickleItem;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -34,7 +32,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.boss.EnderDragonPart;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -51,8 +48,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ServiceLoader;
 import java.util.function.BiPredicate;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public interface ESPlatform {
@@ -95,12 +90,8 @@ public interface ESPlatform {
 		return new SpawnEggItem(defaultType.get(), backgroundColor, highlightColor, properties);
 	}
 
-	default ScytheItem createScythe(Tier tier, boolean canTill, Item.Properties properties) {
-		return new ScytheItem(tier, canTill, properties);
-	}
-
-	default ScytheItem createPetalScythe(Tier tier, boolean canTill, Item.Properties properties) {
-		return new PetalScytheItem(tier, canTill, properties);
+	default SickleItem createSickle(Tier tier, Item.Properties properties) {
+		return new SickleItem(tier, properties);
 	}
 
 	default HammerItem createHammer(Tier tier, Supplier<ParticleOptions> smashParticle, Holder<SoundEvent> smashSound, Item.Properties properties) {
@@ -187,8 +178,6 @@ public interface ESPlatform {
 	default boolean canScrape(ItemStack stack) {
 		return stack.is(ItemTags.AXES);
 	}
-
-	Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context);
 
 	default int getBurnTime(ItemStack stack, RecipeType<?> type) {
 		return AbstractFurnaceBlockEntity.getFuel().get(stack.getItem());

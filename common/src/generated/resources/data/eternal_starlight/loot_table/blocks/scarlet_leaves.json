@@ -22,6 +22,12 @@
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
+                        "items": "#eternal_starlight:sickles"
+                      }
+                    },
+                    {
+                      "condition": "minecraft:match_tool",
+                      "predicate": {
                         "predicates": {
                           "minecraft:enchantments": [
                             {
@@ -75,6 +81,12 @@
                 "condition": "minecraft:match_tool",
                 "predicate": {
                   "items": "minecraft:shears"
+                }
+              },
+              {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "items": "#eternal_starlight:sickles"
                 }
               },
               {

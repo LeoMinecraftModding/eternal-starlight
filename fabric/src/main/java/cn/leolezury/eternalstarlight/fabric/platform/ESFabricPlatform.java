@@ -6,9 +6,9 @@ import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
 import cn.leolezury.eternalstarlight.common.resource.gatekeeper.TheGatekeeperNameManager;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.fabric.resource.gatekeeper.FabricGatekeeperNameManager;
 import com.google.auto.service.AutoService;
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Lifecycle;
 import net.fabricmc.api.EnvType;
@@ -21,7 +21,6 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.fabricmc.fabric.impl.attachment.AttachmentRegistryImpl;
-import net.fabricmc.fabric.mixin.content.registry.HoeItemAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Holder;
 import net.minecraft.core.MappedRegistry;
@@ -36,14 +35,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
 import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.BiPredicate;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 @AutoService(ESPlatform.class)
@@ -195,17 +191,12 @@ public class ESFabricPlatform implements ESPlatform {
 
 	@Override
 	public boolean isShears(ItemStack stack) {
-		return stack.is(ConventionalItemTags.SHEARS_TOOLS);
+		return stack.is(ConventionalItemTags.SHEARS_TOOLS) || stack.is(ESTags.Items.SICKLES);
 	}
 
 	@Override
 	public boolean isShield(ItemStack stack) {
 		return stack.is(ConventionalItemTags.SHIELDS_TOOLS);
-	}
-
-	@Override
-	public Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context) {
-		return HoeItemAccessor.getTillingActions().get(context.getLevel().getBlockState(context.getClickedPos()).getBlock());
 	}
 
 	@Override

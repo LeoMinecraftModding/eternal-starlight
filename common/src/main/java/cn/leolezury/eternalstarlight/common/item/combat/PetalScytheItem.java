@@ -14,8 +14,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class PetalScytheItem extends ScytheItem implements SwingAttackWeapon {
-	public PetalScytheItem(Tier tier, boolean canTill, Properties properties) {
-		super(tier, canTill, properties);
+	public PetalScytheItem(Tier tier, Properties properties) {
+		super(tier, properties);
 	}
 
 	private void performSpecialAttack(LivingEntity entity) {

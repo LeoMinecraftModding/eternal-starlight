@@ -8,11 +8,12 @@ import cn.leolezury.eternalstarlight.common.item.armor.ThermalSpringstoneArmorIt
 import cn.leolezury.eternalstarlight.common.item.armor.UnrealiumArmorItem;
 import cn.leolezury.eternalstarlight.common.item.combat.CrescentSpearItem;
 import cn.leolezury.eternalstarlight.common.item.combat.HammerItem;
-import cn.leolezury.eternalstarlight.common.item.combat.ScytheItem;
+import cn.leolezury.eternalstarlight.common.item.combat.SickleItem;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.platform.EntityDataAttachment;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistrationProvider;
 import cn.leolezury.eternalstarlight.common.platform.registry.RegistryObject;
+import cn.leolezury.eternalstarlight.common.util.ESTags;
 import cn.leolezury.eternalstarlight.neoforge.block.NeoTearBombBlock;
 import cn.leolezury.eternalstarlight.neoforge.block.fluid.NeoEtherFluid;
 import cn.leolezury.eternalstarlight.neoforge.item.armor.NeoAlchemistArmorItem;
@@ -21,11 +22,9 @@ import cn.leolezury.eternalstarlight.neoforge.item.armor.NeoThermalSpringstoneAr
 import cn.leolezury.eternalstarlight.neoforge.item.armor.NeoUnrealiumArmorItem;
 import cn.leolezury.eternalstarlight.neoforge.item.combat.NeoCrescentSpearItem;
 import cn.leolezury.eternalstarlight.neoforge.item.combat.NeoHammerItem;
-import cn.leolezury.eternalstarlight.neoforge.item.combat.NeoPetalScytheItem;
-import cn.leolezury.eternalstarlight.neoforge.item.combat.NeoScytheItem;
+import cn.leolezury.eternalstarlight.neoforge.item.combat.NeoSickleItem;
 import cn.leolezury.eternalstarlight.neoforge.network.ESNeoNetworkHandler;
 import com.google.auto.service.AutoService;
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -45,14 +44,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -74,8 +71,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 @AutoService(ESPlatform.class)
@@ -189,13 +184,8 @@ public class ESNeoPlatform implements ESPlatform {
 	}
 
 	@Override
-	public ScytheItem createScythe(Tier tier, boolean canTill, Item.Properties properties) {
-		return new NeoScytheItem(tier, canTill, properties);
-	}
-
-	@Override
-	public ScytheItem createPetalScythe(Tier tier, boolean canTill, Item.Properties properties) {
-		return new NeoPetalScytheItem(tier, canTill, properties);
+	public SickleItem createSickle(Tier tier, Item.Properties properties) {
+		return new NeoSickleItem(tier, properties);
 	}
 
 	@Override
@@ -336,7 +326,7 @@ public class ESNeoPlatform implements ESPlatform {
 
 	@Override
 	public boolean isShears(ItemStack stack) {
-		return stack.is(Tags.Items.TOOLS_SHEAR);
+		return stack.is(Tags.Items.TOOLS_SHEAR) || stack.canPerformAction(ItemAbilities.SHEARS_DIG) || stack.is(ESTags.Items.SICKLES);
 	}
 
 	@Override
@@ -347,14 +337,6 @@ public class ESNeoPlatform implements ESPlatform {
 	@Override
 	public boolean canScrape(ItemStack stack) {
 		return stack.canPerformAction(ItemAbilities.AXE_SCRAPE);
-	}
-
-	@Override
-	public Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> getToolTillAction(UseOnContext context) {
-		Level level = context.getLevel();
-		BlockPos blockpos = context.getClickedPos();
-		BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(context, ItemAbilities.HOE_TILL, false);
-		return toolModifiedState == null ? null : Pair.of(ctx -> true, ScytheItem.changeIntoState(toolModifiedState));
 	}
 
 	@Override
