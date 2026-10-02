@@ -70,22 +70,22 @@ public record RippleParticleOptions(ParticleType<RippleParticleOptions> type, Pa
 
 	public static MapCodec<RippleParticleOptions> codec(ParticleType<RippleParticleOptions> type) {
 		return RecordCodecBuilder.mapCodec((instance) -> instance.group(
+			ParticleFacing.CODEC.optionalFieldOf("facing", ParticleFacing.CAMERA).forGetter(RippleParticleOptions::facing),
 			EasingCurve.CODEC.fieldOf("radius").forGetter(RippleParticleOptions::radius),
 			EasingCurve.CODEC.fieldOf("width").forGetter(RippleParticleOptions::width),
 			ExtraCodecs.VECTOR3F.fieldOf("color").forGetter(RippleParticleOptions::color),
-			Codec.INT.fieldOf("lifetime").forGetter(RippleParticleOptions::lifetime),
-			ParticleFacing.CODEC.optionalFieldOf("facing", ParticleFacing.CAMERA).forGetter(RippleParticleOptions::facing)
-		).apply(instance, (radius, width, color, lifetime, facing) -> new RippleParticleOptions(type, facing, radius, width, color, lifetime)));
+			Codec.INT.fieldOf("lifetime").forGetter(RippleParticleOptions::lifetime)
+		).apply(instance, (facing, radius, width, color, lifetime) -> new RippleParticleOptions(type, facing, radius, width, color, lifetime)));
 	}
 
 	public static StreamCodec<RegistryFriendlyByteBuf, RippleParticleOptions> streamCodec(ParticleType<RippleParticleOptions> type) {
 		return StreamCodec.composite(
+			ParticleFacing.STREAM_CODEC, RippleParticleOptions::facing,
 			EasingCurve.STREAM_CODEC, RippleParticleOptions::radius,
 			EasingCurve.STREAM_CODEC, RippleParticleOptions::width,
 			ByteBufCodecs.VECTOR3F, RippleParticleOptions::color,
 			ByteBufCodecs.VAR_INT, RippleParticleOptions::lifetime,
-			ParticleFacing.STREAM_CODEC, RippleParticleOptions::facing,
-			(radius, width, color, lifetime, facing) -> new RippleParticleOptions(type, facing, radius, width, color, lifetime)
+			(facing, radius, width, color, lifetime) -> new RippleParticleOptions(type, facing, radius, width, color, lifetime)
 		);
 	}
 
