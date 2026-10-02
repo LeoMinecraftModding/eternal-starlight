@@ -1,6 +1,8 @@
 package cn.leolezury.eternalstarlight.common.client.trail;
 
+import cn.leolezury.eternalstarlight.common.client.renderer.SpriteUv;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -21,7 +23,9 @@ public class Trail {
 	private float length;
 	private float u0 = 0, u1 = 1, v0 = 0, v1 = 1;
 	@Nullable
-	private Function<Float, Vector4f> colorFunction;
+	private Function<Float, Vector4f> colorProfile;
+	@Nullable
+	private Function<Float, Float> widthProfile;
 
 	public Trail(float width, float length) {
 		this(width, length, DEFAULT_CAPACITY);
@@ -35,6 +39,14 @@ public class Trail {
 
 	public float getWidth() {
 		return width;
+	}
+
+	// width multiplier over progress (0 = tail, 1 = head)
+	public float getWidthAt(float progress) {
+		if (widthProfile == null) {
+			return width;
+		}
+		return width * Math.max(widthProfile.apply(progress), 0);
 	}
 
 	public float getLength() {
@@ -81,13 +93,27 @@ public class Trail {
 		this.v1 = v1;
 	}
 
-	public void setColorFunction(@Nullable Function<Float, Vector4f> colorFunction) {
-		this.colorFunction = colorFunction;
+	public void setSpriteUv(TextureAtlasSprite sprite) {
+		SpriteUv uv = SpriteUv.of(sprite);
+		setUv(uv.u0(), uv.u1(), uv.v0(), uv.v1());
+	}
+
+	public void setColorProfile(@Nullable Function<Float, Vector4f> colorProfile) {
+		this.colorProfile = colorProfile;
 	}
 
 	@Nullable
-	public Function<Float, Vector4f> getColorFunction() {
-		return colorFunction;
+	public Function<Float, Vector4f> getColorProfile() {
+		return colorProfile;
+	}
+
+	public void setWidthProfile(@Nullable Function<Float, Float> widthProfile) {
+		this.widthProfile = widthProfile;
+	}
+
+	@Nullable
+	public Function<Float, Float> getWidthProfile() {
+		return widthProfile;
 	}
 
 	public void update(TrailPoint point) {

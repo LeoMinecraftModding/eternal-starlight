@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 import cn.leolezury.eternalstarlight.common.client.trail.Trail;
 import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
 import cn.leolezury.eternalstarlight.common.client.trail.TrailRenderer;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailStyles;
 import cn.leolezury.eternalstarlight.common.particle.OrbitalTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import cn.leolezury.eternalstarlight.common.util.EasingCurve;
@@ -16,6 +17,9 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
+
+import java.util.function.Function;
 
 public class OrbitalTrailParticle extends TextureSheetParticle {
 	private final Trail trail;
@@ -25,9 +29,11 @@ public class OrbitalTrailParticle extends TextureSheetParticle {
 	private final boolean reverseSpeed;
 	private float angle;
 
-	protected OrbitalTrailParticle(ClientLevel level, double x, double y, double z, Vector3f axis, EasingCurve radius, EasingCurve speed, float width, EasingCurve length, Vector3f color, int lifetime, SpriteSet spriteSet) {
+	protected OrbitalTrailParticle(ClientLevel level, double x, double y, double z, Vector3f axis, EasingCurve radius, EasingCurve speed, float width, EasingCurve length, Vector3f color, int lifetime, SpriteSet spriteSet, Function<Float, Vector4f> colorProfile) {
 		super(level, x, y, z);
 		this.trail = new Trail(width, length.calculate(0));
+		this.trail.setColorProfile(TrailStyles.tint(colorProfile, new Vector4f(color, 1)));
+		this.trail.setWidthProfile(TrailStyles.TAPER);
 		this.center = new Vec3(x, y, z);
 		this.axis = new Vec3(axis);
 		this.radius = radius;
@@ -71,7 +77,7 @@ public class OrbitalTrailParticle extends TextureSheetParticle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.trail.setUv(getU0(), getU1(), getV0(), getV1());
+		this.trail.setSpriteUv(this.sprite);
 		this.trail.prepareRender(TrailPoint.cameraFacing(new Vec3(x, y, z)), partialTicks);
 		RenderSystem.disableCull();
 		TrailRenderer.render(this.trail, consumer, stack, true, true, LightTexture.FULL_BRIGHT);
@@ -85,14 +91,16 @@ public class OrbitalTrailParticle extends TextureSheetParticle {
 
 	public static class Provider implements ParticleProvider<OrbitalTrailParticleOptions> {
 		private final SpriteSet sprites;
+		private final Function<Float, Vector4f> colorProfile;
 
-		public Provider(SpriteSet spriteSet) {
+		public Provider(SpriteSet spriteSet, Function<Float, Vector4f> colorProfile) {
 			this.sprites = spriteSet;
+			this.colorProfile = colorProfile;
 		}
 
 		@Override
 		public Particle createParticle(OrbitalTrailParticleOptions options, ClientLevel level, double x, double y, double z, double dx, double dy, double dz) {
-			return new OrbitalTrailParticle(level, x, y, z, options.axis(), options.radius(), options.speed(), options.width(), options.length(), options.color(), options.lifetime(), sprites);
+			return new OrbitalTrailParticle(level, x, y, z, options.axis(), options.radius(), options.speed(), options.width(), options.length(), options.color(), options.lifetime(), sprites, colorProfile);
 		}
 	}
 }

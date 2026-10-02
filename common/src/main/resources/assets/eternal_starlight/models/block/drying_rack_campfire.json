@@ -37,6 +37,7 @@
           "texture": "#log"
         },
         "east": {
+          "cullface": "east",
           "uv": [
             12,
             0,
@@ -64,6 +65,7 @@
           "texture": "#log"
         },
         "up": {
+          "cullface": "up",
           "uv": [
             0,
             12,
@@ -73,6 +75,7 @@
           "texture": "#log"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             0,
             12,
@@ -209,6 +212,7 @@
           "texture": "#log"
         },
         "west": {
+          "cullface": "west",
           "uv": [
             0,
             0,
@@ -218,6 +222,7 @@
           "texture": "#log"
         },
         "up": {
+          "cullface": "up",
           "uv": [
             0,
             12,
@@ -227,6 +232,7 @@
           "texture": "#log"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             2,
             12,

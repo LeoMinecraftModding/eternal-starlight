@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
 import cn.leolezury.eternalstarlight.common.client.ESRenderType;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
+import cn.leolezury.eternalstarlight.common.client.renderer.SpriteUv;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
@@ -70,10 +71,11 @@ public class ElectricSparkParticle extends TextureSheetParticle {
 			Vec3 sight = camPos.subtract(start).scale(-1);
 			Vec3 sideOffset = offset.cross(sight).normalize().scale(0.03);
 			PoseStack.Pose pose = stack.last();
-			float u0 = this.getU0();
-			float u1 = this.getU1();
-			float v0 = this.getV0();
-			float v1 = this.getV1();
+			SpriteUv uv = SpriteUv.of(this.sprite);
+			float u0 = uv.u0();
+			float u1 = uv.u1();
+			float v0 = uv.v0();
+			float v1 = uv.v1();
 			vertexConsumer.addVertex(pose, start.add(sideOffset).toVector3f()).setColor(0.6F, 0.6F, 0.9F, 0.75F).setUv(u0, v0).setLight(LightTexture.FULL_BRIGHT);
 			vertexConsumer.addVertex(pose, start.add(sideOffset.scale(-1)).toVector3f()).setColor(0.6F, 0.6F, 0.9f, 0.75f).setUv(u0, v1).setLight(LightTexture.FULL_BRIGHT);
 			vertexConsumer.addVertex(pose, end.add(sideOffset.scale(-1)).toVector3f()).setColor(0.6F, 0.6F, 0.9f, 0.75f).setUv(u1, v1).setLight(LightTexture.FULL_BRIGHT);

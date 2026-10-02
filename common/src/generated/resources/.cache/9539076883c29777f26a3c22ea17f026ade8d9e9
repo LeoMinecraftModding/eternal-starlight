@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-25T16:47:21.3794299	Item Models: eternal_starlight
+// 1.21.1	2026-10-02T14:41:36.2835279	Item Models: eternal_starlight
 f36b77087c8c68017703cd72753faa9ec0bb05c9 assets/eternal_starlight/models/item/abyssal_fruit.json
 566abbb0b7c88c3e62953e9a59a3c7a789481e57 assets/eternal_starlight/models/item/abyssal_geyser.json
 22602a3404b600eeca3221ff2689c59995af1cfc assets/eternal_starlight/models/item/abyssal_magma_block.json
@@ -334,6 +334,7 @@ b0e816c796c37e24ef9efbb2e645a37edd762d26 assets/eternal_starlight/models/item/du
 73d49b4a2a67e4bc5a7941554448ed9bebc1b743 assets/eternal_starlight/models/item/dusted_gravel.json
 68a0a867c43ef3e5aff8882f2152f903918149d1 assets/eternal_starlight/models/item/dusted_shard.json
 42f49e7093d93eb6e0f5f82e75093d50d12edd13 assets/eternal_starlight/models/item/eclipse_core.json
+be9188e638c12930a827570d32f0449ee17edefa assets/eternal_starlight/models/item/ectostone_spawn_egg.json
 4663cf98e41b90faa681afbf847ee70ee5b85509 assets/eternal_starlight/models/item/energy_block.json
 6bf8f042029a60879ab272c5ab4f2b7ab7ad9cea assets/eternal_starlight/models/item/energy_boomerang.json
 3928ba295508531f6edd8a8a37ff96b0d0dd459f assets/eternal_starlight/models/item/energy_sword.json
@@ -622,6 +623,7 @@ d44e97c44e57d2b52cee9663418e8bab8d49f4de assets/eternal_starlight/models/item/lu
 25ee05d669e3f3d3014d330330133b3696100f7f assets/eternal_starlight/models/item/lunar_wood.json
 7e83d0390b1bb67b060754c590ef8429cc9b1164 assets/eternal_starlight/models/item/magenta_yeti_fur.json
 21ae6095ce868121c431781dc7b57ed86cdccb20 assets/eternal_starlight/models/item/magenta_yeti_fur_carpet.json
+7e7688d1d5f9230dbb5287fdeb392db961ac69d7 assets/eternal_starlight/models/item/magic_stone.json
 f491a98996a0307777883eea1187b18dabed4458 assets/eternal_starlight/models/item/malarite.json
 16dc7dfd297cfcf4569905d2cf6b64ca9ebaa1a5 assets/eternal_starlight/models/item/malarite_arrow.json
 ecbd12598648660acf012d114063e086c972c668 assets/eternal_starlight/models/item/malarite_axe.json

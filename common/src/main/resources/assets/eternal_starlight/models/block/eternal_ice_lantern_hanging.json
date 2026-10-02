@@ -157,6 +157,7 @@
           "texture": "#lantern"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             4,
             2,

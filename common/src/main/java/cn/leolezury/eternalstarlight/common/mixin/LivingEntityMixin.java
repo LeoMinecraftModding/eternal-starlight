@@ -29,6 +29,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -128,6 +129,18 @@ public abstract class LivingEntityMixin {
 		doCrescentSpearDamage();
 	}
 
+	@Inject(method = "canFreeze", at = @At("RETURN"), cancellable = true)
+	private void canFreeze(CallbackInfoReturnable<Boolean> cir) {
+		if (!cir.getReturnValue()) {
+			return;
+		}
+		LivingEntity livingEntity = (LivingEntity) (Object) this;
+		AttributeInstance coldResistance = livingEntity.getAttribute(ESAttributes.COLD_RESISTANCE.asHolder());
+		if (coldResistance != null && coldResistance.getValue() >= 1.0) {
+			cir.setReturnValue(false);
+		}
+	}
+
 	@Inject(method = "checkAutoSpinAttack", at = @At("HEAD"))
 	private void checkAutoSpinAttackTail(CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity) (Object) this;
@@ -146,7 +159,7 @@ public abstract class LivingEntityMixin {
 						player.attackStrengthTicker = Mth.ceil(player.getCurrentItemAttackStrengthDelay());
 						player.attack(living);
 						if (entity.level() instanceof ServerLevel serverLevel) {
-							Vec3 targetPos = living.position().add((entity.getRandom().nextDouble() - 0.5) * living.getBbWidth(), entity.getRandom().nextDouble() * living.getBbHeight(), (entity.getRandom().nextDouble() - 0.5) * living.getBbWidth());
+							Vec3 targetPos = living.position().add((entity.getRandom().nextDouble() - 0.5) * living.getBbWidth() * 0.2, (0.5 + (entity.getRandom().nextDouble() - 0.5) * 0.2) * living.getBbHeight(), (entity.getRandom().nextDouble() - 0.5) * living.getBbWidth() * 0.2);
 							Vec3 speed = targetPos.subtract(entity.position().add(0, entity.getBbHeight() / 2, 0));
 							Vec3 pos = targetPos.subtract(speed.normalize().scale(1));
 							for (int i = 0; i < 2; i++) {

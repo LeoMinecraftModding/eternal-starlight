@@ -52,7 +52,7 @@ public class MeteorParticle extends TextureSheetParticle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.trail.setUv(getU0(), getU1(), getV0(), getV1());
+		this.trail.setSpriteUv(this.sprite);
 		this.trail.prepareRender(TrailPoint.cameraFacing(new Vec3(x, y, z)), partialTicks);
 		TrailRenderer.render(this.trail, ESClientHandler.DELAYED_BUFFER_SOURCE.getBuffer(ESRenderType.PARTICLE_ADDITIVE_GLOW), stack, true, false, LightTexture.FULL_BRIGHT);
 		stack.popPose();

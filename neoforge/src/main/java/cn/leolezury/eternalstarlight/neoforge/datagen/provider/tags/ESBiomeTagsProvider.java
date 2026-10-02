@@ -6,6 +6,7 @@ import cn.leolezury.eternalstarlight.common.util.ESTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
+import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -34,8 +35,26 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 			.addTag(Tags.Biomes.IS_BADLANDS);
 		tag(ESTags.Biomes.HAS_PORTAL_RUINS_JUNGLE)
 			.addTag(Tags.Biomes.IS_JUNGLE);
+		// cold land biomes only, the cold overworld tag also contains the cold oceans
 		tag(ESTags.Biomes.HAS_PORTAL_RUINS_COLD)
-			.addTag(Tags.Biomes.IS_COLD_OVERWORLD);
+			.add(
+				Biomes.TAIGA,
+				Biomes.OLD_GROWTH_PINE_TAIGA,
+				Biomes.OLD_GROWTH_SPRUCE_TAIGA,
+				Biomes.WINDSWEPT_HILLS,
+				Biomes.WINDSWEPT_GRAVELLY_HILLS,
+				Biomes.WINDSWEPT_FOREST,
+				Biomes.SNOWY_PLAINS,
+				Biomes.ICE_SPIKES,
+				Biomes.GROVE,
+				Biomes.SNOWY_SLOPES,
+				Biomes.JAGGED_PEAKS,
+				Biomes.FROZEN_PEAKS,
+				Biomes.SNOWY_TAIGA,
+				Biomes.SNOWY_BEACH,
+				Biomes.STONY_SHORE,
+				Biomes.FROZEN_RIVER
+			);
 		tag(ESTags.Biomes.HAS_GOLEM_FORGE)
 			.add(
 				ESBiomes.STARLIGHT_FOREST,

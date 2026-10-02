@@ -34,12 +34,12 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.SMOKE.get(), loc("big_smoke"), 12, false);
 		sprite(ESParticles.RING_EXPLOSION.get(), loc("ring"));
 		sprite(ESParticles.METEOR.get(), loc("trail"));
-		sprite(ESParticles.PARRY.get(), loc("parry_trail"));
-		sprite(ESParticles.GATHERING_ENERGY.get(), loc("energy_trail"));
-		sprite(ESParticles.GATHERING_SOUL.get(), loc("soul_trail"));
-		sprite(ESParticles.GATHERING_FLARE.get(), loc("flare_trail"));
-		sprite(ESParticles.ORBITAL_FLARE.get(), loc("flare_trail"));
-		sprite(ESParticles.ORBITAL_SPACE_MATTER.get(), loc("space_matter_trail"));
+		sprite(ESParticles.PARRY.get(), loc("blank"));
+		sprite(ESParticles.GATHERING_ENERGY.get(), loc("blank"));
+		sprite(ESParticles.GATHERING_SOUL.get(), loc("blank"));
+		sprite(ESParticles.GATHERING_FLARE.get(), loc("blank"));
+		sprite(ESParticles.ORBITAL_FLARE.get(), loc("blank"));
+		sprite(ESParticles.ORBITAL_SPACE_MATTER.get(), loc("blank"));
 		sprite(ESParticles.AETHERSENT_SMOKE.get(), loc("big_smoke_3"));
 		spriteSet(ESParticles.ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);
 		spriteSet(ESParticles.ORBITAL_ASHEN_SNOW.get(), loc("ashen_snow"), 4, false);
@@ -56,7 +56,7 @@ public class ESParticleDescriptionProvider extends ParticleDescriptionProvider {
 		spriteSet(ESParticles.STARFIRE_EXPLOSION_SMALL.get(), loc("starfire_explosion_small"), 6, false);
 		spriteSet(ESParticles.SOUL_TRAIL.get(), loc("soul_trail"), 5, false);
 		sprite(ESParticles.CANDLASH_TRAIL.get(), loc("candlash_trail"));
-		sprite(ESParticles.ETHER_TRAIL.get(), loc("ether_trail"));
+		sprite(ESParticles.ETHER_TRAIL.get(), loc("blank"));
 		spriteSet(ESParticles.GEYSER_BASE.get(), loc("geyser_base"), 8, false);
 		spriteSet(ESParticles.GEYSER_POOF.get(), loc("geyser_poof"), 8, false);
 		spriteSet(ESParticles.GEYSER_PLUME.get(), loc("geyser_plume"), 8, false);

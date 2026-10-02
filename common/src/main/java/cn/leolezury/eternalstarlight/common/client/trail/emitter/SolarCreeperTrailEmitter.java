@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.trail.emitter;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.trail.SimpleTrailEmitter;
 import cn.leolezury.eternalstarlight.common.client.trail.Trail;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailStyles;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.creeper.SolarCreeper;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.creeper.SolarCreeperDashPhase;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.creeper.SolarCreeperJumpStartPhase;
@@ -12,7 +13,9 @@ import org.joml.Vector4f;
 
 public class SolarCreeperTrailEmitter extends SimpleTrailEmitter<SolarCreeper> {
 	public SolarCreeperTrailEmitter() {
-		super(0.15f, 0, new Vector4f(1, 1, 1, 1), 0.5f, true, true, RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/solar_creeper/solar_trail.png")));
+		super(0.15f, 0, new Vector4f(1, 1, 1, 1), 0.5f, true, true, RenderType.entityCutoutNoCull(EternalStarlight.id("textures/entity/blank.png")));
+		colorProfile(TrailStyles.FLARE);
+		widthProfile(TrailStyles.SOLAR_TAPER);
 	}
 
 	@Override

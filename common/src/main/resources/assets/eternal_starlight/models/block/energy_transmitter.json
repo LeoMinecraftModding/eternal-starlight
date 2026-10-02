@@ -73,6 +73,7 @@
           "texture": "#transmitter"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             0,
             0,

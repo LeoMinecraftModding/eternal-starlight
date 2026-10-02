@@ -28,6 +28,7 @@
           "texture": "#torch"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             7,
             13,

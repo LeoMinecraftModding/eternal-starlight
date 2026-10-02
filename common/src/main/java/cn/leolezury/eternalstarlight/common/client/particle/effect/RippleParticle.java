@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.particle.effect;
 
+import cn.leolezury.eternalstarlight.common.client.renderer.SpriteUv;
 import cn.leolezury.eternalstarlight.common.particle.ParticleFacing;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.EasingCurve;
@@ -59,7 +60,8 @@ public class RippleParticle extends TextureSheetParticle {
 		int segments = Math.max(24, (int) (currentRadius * 48));
 		float angleStep = Mth.TWO_PI / segments;
 		int packedLight = this.getLightColor(partialTicks);
-		float u0 = this.getU0(), u1 = this.getU1(), v0 = this.getV0(), v1 = this.getV1();
+		SpriteUv uv = SpriteUv.of(this.sprite);
+		float u0 = uv.u0(), u1 = uv.u1(), v0 = uv.v0(), v1 = uv.v1();
 
 		for (int i = 0; i < segments; i++) {
 			float a1 = i * angleStep;

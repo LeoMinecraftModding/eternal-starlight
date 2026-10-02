@@ -7,6 +7,7 @@ import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptio
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESEntities;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -85,8 +87,13 @@ public class BallLightning extends ThrowableProjectile {
 	@Override
 	public void tick() {
 		Vec3 movement = getDeltaMovement();
+		pushOutOfBlocks();
 		super.tick();
-		setDeltaMovement(getDeltaMovement().normalize().scale(movement.length()));
+		Vec3 currentMovement = getDeltaMovement();
+		if (movement.lengthSqr() > 1e-8 && currentMovement.lengthSqr() > 1e-8) {
+			setDeltaMovement(currentMovement.normalize().scale(movement.length()));
+		}
+		pushOutOfBlocks();
 		if (!level().isClientSide) {
 			Entity owner = getOwner();
 			if (owner != null && owner.distanceTo(this) > 32) {
@@ -148,6 +155,34 @@ public class BallLightning extends ThrowableProjectile {
 			case Y -> setDeltaMovement(getDeltaMovement().multiply(1, -1, 1));
 			case Z -> setDeltaMovement(getDeltaMovement().multiply(1, 1, -1));
 		}
+	}
+
+	// moves the ball out of overlapping blocks and reflects its movement if it still points into them
+	private void pushOutOfBlocks() {
+		AABB box = getBoundingBox();
+		if (level().noBlockCollision(this, box)) {
+			return;
+		}
+		Vec3 pos = position();
+		for (double distance = 1.0 / 16.0; distance <= 2.0; distance += 1.0 / 16.0) {
+			for (Direction direction : Direction.values()) {
+				Vec3 offset = Vec3.atLowerCornerOf(direction.getNormal()).scale(distance);
+				if (level().noBlockCollision(this, box.move(offset))) {
+					setPos(pos.add(offset));
+					Vec3 delta = getDeltaMovement();
+					if (delta.dot(offset) < 0) {
+						setDeltaMovement(new Vec3(
+							direction.getStepX() != 0 ? -delta.x : delta.x,
+							direction.getStepY() != 0 ? -delta.y : delta.y,
+							direction.getStepZ() != 0 ? -delta.z : delta.z
+						));
+					}
+					return;
+				}
+			}
+		}
+		// completely buried, stopping beats tunneling on
+		setDeltaMovement(Vec3.ZERO);
 	}
 
 	private void explodeAndDiscard() {

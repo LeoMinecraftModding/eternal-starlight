@@ -246,9 +246,4 @@ public class EyeOfSeeking extends Entity implements ItemSupplier {
 	public boolean isPickable() {
 		return true;
 	}
-
-	@Override
-	public float getPickRadius() {
-		return 1.0F;
-	}
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-25T16:47:21.3157958	Loot Tables
+// 1.21.1	2026-10-02T14:41:36.2659843	Loot Tables
 2b18f4ee4964de853f965809175e41672c73f2a3 data/eternal_starlight/loot_table/blocks/abyssal_fire.json
 188b8614ef4815c81bb45c3a918877795892cf25 data/eternal_starlight/loot_table/blocks/abyssal_geyser.json
 77967e1af1e01fc2bbf8f97dd52c510df8648a4c data/eternal_starlight/loot_table/blocks/abyssal_kelp.json
@@ -799,6 +799,7 @@ fa0d1dceaeb0277bfa61ee74b03cfbe13644ee9c data/eternal_starlight/loot_table/entit
 4dffa4fde08929a2d2f781532d4cf1d17e74d0d8 data/eternal_starlight/loot_table/entities/coniceras.json
 89858c663569f0d0993a8a2a56da73397747fcd8 data/eternal_starlight/loot_table/entities/creteor.json
 691a8bff1f5eeba0b472628916c6f0f9338c0260 data/eternal_starlight/loot_table/entities/crystallized_moth.json
+33b59e408729bda9597488df29e34e51e04fbf4d data/eternal_starlight/loot_table/entities/ectostone.json
 52bfbe930d0f8091d2fc183b8a20bd034df9bcfb data/eternal_starlight/loot_table/entities/ent.json
 b791a321eaa99deaa5ecbb0710602f123f3f9349 data/eternal_starlight/loot_table/entities/freeze.json
 5cca4201a87355780a9fe2e994af4aed7e0a619a data/eternal_starlight/loot_table/entities/gleech.json

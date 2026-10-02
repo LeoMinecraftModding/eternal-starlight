@@ -61,6 +61,7 @@
           "cullface": "south"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             9,
             9,
@@ -70,6 +71,7 @@
           "texture": "#bars"
         },
         "up": {
+          "cullface": "up",
           "uv": [
             7,
             9,

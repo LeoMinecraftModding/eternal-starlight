@@ -62,7 +62,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 	@Override
 	public Trail createTrail(TheGatekeeper entity) {
 		Trail trail = new Trail(0, 0);
-		trail.setColorFunction(progress -> new Vector4f(FAR_COLOR).lerp(NEAR_COLOR, progress));
+		trail.setColorProfile(progress -> new Vector4f(FAR_COLOR).lerp(NEAR_COLOR, progress));
 		return trail;
 	}
 

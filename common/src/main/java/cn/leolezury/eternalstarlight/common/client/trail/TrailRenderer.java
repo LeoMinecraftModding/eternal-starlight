@@ -25,8 +25,7 @@ public class TrailRenderer {
 		Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
 		Vec3 cameraPos = camera.getPosition();
 		Quaternionf cameraRotation = new Quaternionf(camera.rotation());
-		float halfWidth = trail.getWidth() / 2;
-		Function<Float, Vector4f> colorFunction = trail.getColorFunction();
+		Function<Float, Vector4f> colorProfile = trail.getColorProfile();
 
 		Vec3[] tangents = new Vec3[size];
 		for (int i = 0; i < size; i++) {
@@ -57,6 +56,7 @@ public class TrailRenderer {
 			if (tangent.lengthSqr() < 0.5) {
 				tangent = new Vec3(0, 1, 0);
 			}
+			float halfWidth = trail.getWidthAt(point.progressFactor()) / 2;
 			Vec3 offsetDir = calculateOffset(point, tangent, cameraPos, cameraRotation, halfWidth);
 			upperOffsets[i] = offsetDir;
 			lowerOffsets[i] = offsetDir.scale(-1);
@@ -77,8 +77,8 @@ public class TrailRenderer {
 			Vec3 toLower = to.pos().add(lowerOffsets[i + 1]);
 			Vec3 fromLower = from.pos().add(lowerOffsets[i]);
 
-			Vector4f fromColor = colorFunction != null ? colorFunction.apply(from.progressFactor()) : from.color();
-			Vector4f toColor = colorFunction != null ? colorFunction.apply(to.progressFactor()) : to.color();
+			Vector4f fromColor = colorProfile != null ? colorProfile.apply(from.progressFactor()) : from.color();
+			Vector4f toColor = colorProfile != null ? colorProfile.apply(to.progressFactor()) : to.color();
 			float fromAlpha = solid ? 1 : Mth.clamp(fromColor.w() * from.progressFactor(), 0, 1);
 			float toAlpha = solid ? 1 : Mth.clamp(toColor.w() * to.progressFactor(), 0, 1);
 

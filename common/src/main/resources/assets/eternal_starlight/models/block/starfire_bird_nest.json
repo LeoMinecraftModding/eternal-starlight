@@ -75,6 +75,7 @@
           "texture": "#nest"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             2,
             2,
@@ -107,6 +108,7 @@
       },
       "faces": {
         "north": {
+          "cullface": "north",
           "uv": [
             2,
             12,
@@ -134,6 +136,7 @@
           "texture": "#nest"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             2,
             14,
@@ -184,6 +187,7 @@
           "texture": "#nest"
         },
         "south": {
+          "cullface": "south",
           "uv": [
             2,
             12,
@@ -211,6 +215,7 @@
           "texture": "#nest"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             2,
             0,
@@ -243,6 +248,7 @@
       },
       "faces": {
         "north": {
+          "cullface": "north",
           "uv": [
             14,
             12,
@@ -262,6 +268,7 @@
           "texture": "#nest"
         },
         "south": {
+          "cullface": "south",
           "uv": [
             0,
             12,
@@ -271,6 +278,7 @@
           "texture": "#nest"
         },
         "west": {
+          "cullface": "west",
           "uv": [
             0,
             12,
@@ -289,6 +297,7 @@
           "texture": "#nest"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             0,
             0,
@@ -321,6 +330,7 @@
       },
       "faces": {
         "north": {
+          "cullface": "north",
           "uv": [
             0,
             12,
@@ -330,6 +340,7 @@
           "texture": "#nest"
         },
         "east": {
+          "cullface": "east",
           "uv": [
             0,
             12,
@@ -339,6 +350,7 @@
           "texture": "#nest"
         },
         "south": {
+          "cullface": "south",
           "uv": [
             14,
             12,
@@ -367,6 +379,7 @@
           "texture": "#nest"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             14,
             0,

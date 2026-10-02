@@ -3,6 +3,7 @@ package cn.leolezury.eternalstarlight.common.client.particle.effect;
 import cn.leolezury.eternalstarlight.common.client.trail.Trail;
 import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
 import cn.leolezury.eternalstarlight.common.client.trail.TrailRenderer;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailStyles;
 import cn.leolezury.eternalstarlight.common.particle.GatheringTrailParticleOptions;
 import cn.leolezury.eternalstarlight.common.util.ESMathUtil;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -14,6 +15,9 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector4f;
+
+import java.util.function.Function;
 
 public class GatheringTrailParticle extends TextureSheetParticle {
 	private final Trail trail;
@@ -21,10 +25,12 @@ public class GatheringTrailParticle extends TextureSheetParticle {
 	private final float pitchSpeed, yawSpeed, radiusSpeed;
 	private float pitch, yaw, radius;
 
-	protected GatheringTrailParticle(ClientLevel level, double x, double y, double z, double dx, double dy, double dz, float trailWidth, float trailLength, float speedScale, float rotSpeedScale, SpriteSet spriteSet) {
+	protected GatheringTrailParticle(ClientLevel level, double x, double y, double z, double dx, double dy, double dz, float trailWidth, float trailLength, float speedScale, float rotSpeedScale, SpriteSet spriteSet, Function<Float, Vector4f> colorProfile) {
 		super(level, x, y, z);
 		this.lifetime = 200;
 		this.trail = new Trail(trailWidth, trailLength);
+		this.trail.setColorProfile(colorProfile);
+		this.trail.setWidthProfile(TrailStyles.TAPER);
 		this.destPos = new Vec3(x + dx, y + dy, z + dz);
 		this.pitch = ESMathUtil.positionToPitch(-dx, -dy, -dz);
 		this.yaw = ESMathUtil.positionToYaw(-dx, -dz);
@@ -72,7 +78,7 @@ public class GatheringTrailParticle extends TextureSheetParticle {
 		float z = (float) Mth.lerp(partialTicks, this.zo, this.z);
 		stack.pushPose();
 		stack.translate(-camera.getPosition().x, -camera.getPosition().y, -camera.getPosition().z);
-		this.trail.setUv(getU0(), getU1(), getV0(), getV1());
+		this.trail.setSpriteUv(this.sprite);
 		this.trail.prepareRender(TrailPoint.cameraFacing(new Vec3(x, y, z)), partialTicks);
 		RenderSystem.disableCull();
 		TrailRenderer.render(this.trail, consumer, stack, true, true, LightTexture.FULL_BRIGHT);
@@ -86,14 +92,16 @@ public class GatheringTrailParticle extends TextureSheetParticle {
 
 	public static class Provider implements ParticleProvider<GatheringTrailParticleOptions> {
 		private final SpriteSet sprites;
+		private final Function<Float, Vector4f> colorProfile;
 
-		public Provider(SpriteSet spriteSet) {
+		public Provider(SpriteSet spriteSet, Function<Float, Vector4f> colorProfile) {
 			this.sprites = spriteSet;
+			this.colorProfile = colorProfile;
 		}
 
 		@Override
 		public Particle createParticle(GatheringTrailParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new GatheringTrailParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.trailWidth(), options.trailLength(), options.speedScale(), options.rotSpeedScale(), sprites);
+			return new GatheringTrailParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.trailWidth(), options.trailLength(), options.speedScale(), options.rotSpeedScale(), sprites, colorProfile);
 		}
 	}
 }

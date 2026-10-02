@@ -29,6 +29,7 @@
       },
       "faces": {
         "north": {
+          "cullface": "north",
           "uv": [
             0,
             2,
@@ -38,6 +39,7 @@
           "texture": "#planks"
         },
         "east": {
+          "cullface": "east",
           "uv": [
             0,
             2,
@@ -47,6 +49,7 @@
           "texture": "#planks"
         },
         "south": {
+          "cullface": "south",
           "uv": [
             0,
             2,
@@ -56,6 +59,7 @@
           "texture": "#planks"
         },
         "west": {
+          "cullface": "west",
           "uv": [
             0,
             2,
@@ -65,6 +69,7 @@
           "texture": "#planks"
         },
         "up": {
+          "cullface": "up",
           "uv": [
             0,
             0,
@@ -97,6 +102,7 @@
       ],
       "faces": {
         "north": {
+          "cullface": "north",
           "uv": [
             0,
             14,
@@ -106,6 +112,7 @@
           "texture": "#planks"
         },
         "east": {
+          "cullface": "east",
           "uv": [
             0,
             14,
@@ -115,6 +122,7 @@
           "texture": "#planks"
         },
         "south": {
+          "cullface": "south",
           "uv": [
             0,
             14,
@@ -124,6 +132,7 @@
           "texture": "#planks"
         },
         "west": {
+          "cullface": "west",
           "uv": [
             0,
             14,
@@ -142,6 +151,7 @@
           "texture": "#planks"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             0,
             0,
@@ -206,6 +216,7 @@
       },
       "faces": {
         "north": {
+          "cullface": "north",
           "uv": [
             14,
             2,
@@ -224,6 +235,7 @@
           "texture": "#stripped_log"
         },
         "south": {
+          "cullface": "south",
           "uv": [
             0,
             2,
@@ -233,6 +245,7 @@
           "texture": "#stripped_log"
         },
         "west": {
+          "cullface": "west",
           "uv": [
             0,
             2,
@@ -274,6 +287,7 @@
           "texture": "#stripped_log"
         },
         "south": {
+          "cullface": "south",
           "uv": [
             2,
             2,
@@ -306,6 +320,7 @@
       },
       "faces": {
         "north": {
+          "cullface": "north",
           "uv": [
             0,
             2,
@@ -315,6 +330,7 @@
           "texture": "#stripped_log"
         },
         "east": {
+          "cullface": "east",
           "uv": [
             0,
             2,
@@ -324,6 +340,7 @@
           "texture": "#stripped_log"
         },
         "south": {
+          "cullface": "south",
           "uv": [
             14,
             2,

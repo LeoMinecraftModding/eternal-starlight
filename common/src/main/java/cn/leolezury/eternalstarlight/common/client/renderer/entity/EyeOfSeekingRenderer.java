@@ -15,13 +15,15 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.phys.Vec3;
 
 public class EyeOfSeekingRenderer extends EntityRenderer<EyeOfSeeking> {
 	private static final float MIN_CAMERA_DISTANCE_SQUARED = 12.25F;
-	private static final ResourceLocation LINE_TEXTURE = EternalStarlight.id("textures/entity/seeking_eye_line.png");
+	private static final ResourceLocation LINE_TEXTURE = EternalStarlight.id("textures/entity/blank.png");
+	private static final int[] LINE_BLOCK_COLORS = {0xBAE3EA, 0xA368AD, 0x5E3F7A, 0x220B3D};
 	private final ItemRenderer itemRenderer;
 
 	public EyeOfSeekingRenderer(EntityRendererProvider.Context context) {
@@ -63,10 +65,32 @@ public class EyeOfSeekingRenderer extends EntityRenderer<EyeOfSeeking> {
 		Vec3 sideOffset = end.cross(sight).normalize().scale(1.0 / 36.0);
 		PoseStack.Pose pose = poseStack.last();
 		VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(LINE_TEXTURE));
-		vertexConsumer.addVertex(pose, sideOffset.toVector3f()).setColor(-1).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, sideOffset.scale(-1).toVector3f()).setColor(-1).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, end.add(sideOffset.scale(-1)).toVector3f()).setColor(-1).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		vertexConsumer.addVertex(pose, end.add(sideOffset).toVector3f()).setColor(-1).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		// a trapezoid from the vertices instead of the old tapering texture, still split into four color blocks
+		int segments = LINE_BLOCK_COLORS.length;
+		for (int i = 0; i < segments; i++) {
+			float fromProgress = (float) i / segments;
+			float toProgress = (float) (i + 1) / segments;
+			Vec3 from = end.scale(fromProgress);
+			Vec3 to = end.scale(toProgress);
+			Vec3 fromOffset = sideOffset.scale(lineWidth(fromProgress));
+			Vec3 toOffset = sideOffset.scale(lineWidth(toProgress));
+			int color = LINE_BLOCK_COLORS[i];
+			float red = ((color >> 16) & 0xFF) / 255f;
+			float green = ((color >> 8) & 0xFF) / 255f;
+			float blue = (color & 0xFF) / 255f;
+			addLineVertex(pose, vertexConsumer, from.add(fromOffset), red, green, blue, 0, 0);
+			addLineVertex(pose, vertexConsumer, from.subtract(fromOffset), red, green, blue, 0, 1);
+			addLineVertex(pose, vertexConsumer, to.subtract(toOffset), red, green, blue, 1, 1);
+			addLineVertex(pose, vertexConsumer, to.add(toOffset), red, green, blue, 1, 0);
+		}
+	}
+
+	private static float lineWidth(float progress) {
+		return Mth.lerp(Mth.clamp(progress, 0f, 1f), 1f, 1f / 16f);
+	}
+
+	private static void addLineVertex(PoseStack.Pose pose, VertexConsumer vertexConsumer, Vec3 pos, float red, float green, float blue, float u, float v) {
+		vertexConsumer.addVertex(pose, pos.toVector3f()).setColor(red, green, blue, 1).setUv(u, v).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose, 0.0F, 1.0F, 0.0F);
 	}
 
 	@Override

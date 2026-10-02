@@ -66,6 +66,7 @@
           "texture": "#side"
         },
         "up": {
+          "cullface": "up",
           "uv": [
             1,
             1,
@@ -75,6 +76,7 @@
           "texture": "#top"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             1,
             1,

@@ -496,6 +496,7 @@
           "texture": "#light"
         },
         "down": {
+          "cullface": "down",
           "uv": [
             0,
             0,
