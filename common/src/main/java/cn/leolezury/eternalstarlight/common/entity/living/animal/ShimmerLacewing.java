@@ -40,6 +40,9 @@ import java.util.Optional;
 
 public class ShimmerLacewing extends Animal implements VariantHolder<Holder<ShimmerLacewingVariant>>, FlyingAnimal {
 	private static final String TAG_VARIANT = "variant";
+	private static final String TAG_FLIGHT_ALTITUDE = "flight_altitude";
+
+	private double flightAltitude = Double.NaN;
 
 	protected static final EntityDataAccessor<String> VARIANT = SynchedEntityData.defineId(ShimmerLacewing.class, EntityDataSerializers.STRING);
 
@@ -103,8 +106,15 @@ public class ShimmerLacewing extends Animal implements VariantHolder<Holder<Shim
 	@Override
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new FloatGoal(this));
-		goalSelector.addGoal(1, new RandomFlyGoal(this));
+		goalSelector.addGoal(1, new RandomFlyGoal(this, () -> getVariant().value().skyFlying() ? getFlightAltitude() : Double.NaN));
 		goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
+	}
+
+	public double getFlightAltitude() {
+		if (Double.isNaN(flightAltitude)) {
+			flightAltitude = getY();
+		}
+		return flightAltitude;
 	}
 
 	private class LacewingMoveControl extends MoveControl {
@@ -162,12 +172,18 @@ public class ShimmerLacewing extends Animal implements VariantHolder<Holder<Shim
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		setVariantId(ResourceLocation.read(compoundTag.getString(TAG_VARIANT)).getOrThrow());
+		if (compoundTag.contains(TAG_FLIGHT_ALTITUDE)) {
+			flightAltitude = compoundTag.getDouble(TAG_FLIGHT_ALTITUDE);
+		}
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compoundTag) {
 		super.addAdditionalSaveData(compoundTag);
 		compoundTag.putString(TAG_VARIANT, getVariantId().toString());
+		if (!Double.isNaN(flightAltitude)) {
+			compoundTag.putDouble(TAG_FLIGHT_ALTITUDE, flightAltitude);
+		}
 	}
 
 	@Override

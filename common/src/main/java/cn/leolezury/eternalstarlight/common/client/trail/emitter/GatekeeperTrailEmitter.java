@@ -2,7 +2,6 @@ package cn.leolezury.eternalstarlight.common.client.trail.emitter;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.client.trail.Trail;
-import cn.leolezury.eternalstarlight.common.client.trail.TrailEmitter;
 import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.*;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
@@ -178,7 +177,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 		if (item == ESItems.GLISTERING_MORNING_STAR.get() || item == Items.MACE) {
 			return 0.5f;
 		}
-		return 1.0f;
+		return 0.1f;
 	}
 
 	private static float weaponLength(TheGatekeeper entity) {
@@ -192,7 +191,7 @@ public class GatekeeperTrailEmitter implements TrailEmitter<TheGatekeeper> {
 		if (item == ESItems.GLISTERING_MORNING_STAR.get() || item == Items.MACE) {
 			return 0.7f;
 		}
-		return 1.0f;
+		return 0.3f;
 	}
 
 	@Nullable

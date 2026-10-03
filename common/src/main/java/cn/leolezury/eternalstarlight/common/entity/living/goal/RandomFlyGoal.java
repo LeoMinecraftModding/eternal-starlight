@@ -9,12 +9,21 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
+import java.util.function.DoubleSupplier;
 
 public class RandomFlyGoal extends Goal {
+	public static final int ALTITUDE_RANGE = 8;
+
 	private final PathfinderMob mob;
+	private final DoubleSupplier altitude;
 
 	public RandomFlyGoal(PathfinderMob mob) {
+		this(mob, () -> Double.NaN);
+	}
+
+	public RandomFlyGoal(PathfinderMob mob, DoubleSupplier altitude) {
 		this.mob = mob;
+		this.altitude = altitude;
 		setFlags(EnumSet.of(Flag.MOVE));
 	}
 
@@ -43,25 +52,31 @@ public class RandomFlyGoal extends Goal {
 	private Vec3 getRandomPos() {
 		Vec3 target = mob.position().add((mob.getRandom().nextFloat() - 0.5f) * 2 * 15, 0, (mob.getRandom().nextFloat() - 0.5f) * 2 * 15);
 
-		BlockPos position = mob.blockPosition();
-		int blockY = position.getY();
-		if (!mob.level().getBlockState(position).isAir()) {
-			for (int i = position.getY(); !mob.level().getBlockState(new BlockPos(position.getX(), i, position.getZ())).isAir(); i++) {
-				if (i > mob.level().getMaxBuildHeight()) {
-					break;
-				}
-				blockY = i;
-			}
+		double altitude = this.altitude.getAsDouble();
+		if (!Double.isNaN(altitude)) {
+			// mobs living above the ground stay around their altitude instead of descending to the terrain below
+			target = new Vec3(target.x, altitude + (mob.getRandom().nextDouble() * 2 - 1) * ALTITUDE_RANGE, target.z);
 		} else {
-			for (int i = position.getY(); mob.level().getBlockState(new BlockPos(position.getX(), i, position.getZ())).isAir(); i--) {
-				if (i < mob.level().getMinBuildHeight()) {
-					break;
+			BlockPos position = mob.blockPosition();
+			int blockY = position.getY();
+			if (!mob.level().getBlockState(position).isAir()) {
+				for (int i = position.getY(); !mob.level().getBlockState(new BlockPos(position.getX(), i, position.getZ())).isAir(); i++) {
+					if (i > mob.level().getMaxBuildHeight()) {
+						break;
+					}
+					blockY = i;
 				}
-				blockY = i + 1;
+			} else {
+				for (int i = position.getY(); mob.level().getBlockState(new BlockPos(position.getX(), i, position.getZ())).isAir(); i--) {
+					if (i < mob.level().getMinBuildHeight()) {
+						break;
+					}
+					blockY = i + 1;
+				}
 			}
-		}
 
-		target = new Vec3(target.x, blockY + 5 + mob.getRandom().nextInt(3), target.z);
+			target = new Vec3(target.x, blockY + 5 + mob.getRandom().nextInt(3), target.z);
+		}
 
 		BlockHitResult result = mob.level().clip(new ClipContext(mob.position(), target, ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, mob));
 		if (result.getType() != HitResult.Type.MISS) {

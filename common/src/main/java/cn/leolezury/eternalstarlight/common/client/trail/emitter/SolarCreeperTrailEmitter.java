@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.client.trail.emitter;
 
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
-import cn.leolezury.eternalstarlight.common.client.trail.SimpleTrailEmitter;
 import cn.leolezury.eternalstarlight.common.client.trail.Trail;
 import cn.leolezury.eternalstarlight.common.client.trail.TrailStyles;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.creeper.SolarCreeper;

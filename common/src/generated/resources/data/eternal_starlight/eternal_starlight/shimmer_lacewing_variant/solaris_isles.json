@@ -1,0 +1,6 @@
+{
+  "biomes": "eternal_starlight:solaris_isles",
+  "glow_texture": "eternal_starlight:entity/shimmer_lacewing/solaris_isles_glow",
+  "sky_flying": true,
+  "texture": "eternal_starlight:entity/shimmer_lacewing/solaris_isles"
+}

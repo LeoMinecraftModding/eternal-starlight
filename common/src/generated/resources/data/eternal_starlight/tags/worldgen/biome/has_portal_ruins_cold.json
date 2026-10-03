@@ -12,9 +12,6 @@
     "minecraft:snowy_slopes",
     "minecraft:jagged_peaks",
     "minecraft:frozen_peaks",
-    "minecraft:snowy_taiga",
-    "minecraft:snowy_beach",
-    "minecraft:stony_shore",
-    "minecraft:frozen_river"
+    "minecraft:snowy_taiga"
   ]
 }

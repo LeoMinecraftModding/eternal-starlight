@@ -1,5 +1,7 @@
-package cn.leolezury.eternalstarlight.common.client.trail;
+package cn.leolezury.eternalstarlight.common.client.trail.emitter;
 
+import cn.leolezury.eternalstarlight.common.client.trail.Trail;
+import cn.leolezury.eternalstarlight.common.client.trail.TrailPoint;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.Entity;

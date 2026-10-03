@@ -120,7 +120,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			.add(
 				ESEntities.ENT.get(),
 				ESEntities.RATLIN.get(),
-				ESEntities.SHADOW_SNAIL.get()
+				ESEntities.SHADOW_SNAIL.get(),
+				ESEntities.SHIMMER_LACEWING.get()
 			);
 		tag(ESTags.EntityTypes.UNDERGROUND_CREATURES)
 			.add(

@@ -50,10 +50,7 @@ public class ESBiomeTagsProvider extends BiomeTagsProvider {
 				Biomes.SNOWY_SLOPES,
 				Biomes.JAGGED_PEAKS,
 				Biomes.FROZEN_PEAKS,
-				Biomes.SNOWY_TAIGA,
-				Biomes.SNOWY_BEACH,
-				Biomes.STONY_SHORE,
-				Biomes.FROZEN_RIVER
+				Biomes.SNOWY_TAIGA
 			);
 		tag(ESTags.Biomes.HAS_GOLEM_FORGE)
 			.add(

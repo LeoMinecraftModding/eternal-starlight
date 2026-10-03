@@ -12,15 +12,20 @@ import net.minecraft.world.level.biome.Biome;
 import java.util.Objects;
 import java.util.Optional;
 
-public record ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation textureFull, ResourceLocation glowTexture, ResourceLocation glowTextureFull, HolderSet<Biome> biomes) {
+public record ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation textureFull, ResourceLocation glowTexture, ResourceLocation glowTextureFull, HolderSet<Biome> biomes, boolean skyFlying) {
 	public static final Codec<ShimmerLacewingVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(ShimmerLacewingVariant::texture),
 		ResourceLocation.CODEC.fieldOf("glow_texture").forGetter(ShimmerLacewingVariant::glowTexture),
-		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(ShimmerLacewingVariant::biomes)
+		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(ShimmerLacewingVariant::biomes),
+		Codec.BOOL.optionalFieldOf("sky_flying", false).forGetter(ShimmerLacewingVariant::skyFlying)
 	).apply(instance, ShimmerLacewingVariant::new));
 
 	public ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation glowTexture, HolderSet<Biome> biomes) {
-		this(texture, fullTextureId(texture), glowTexture, fullTextureId(glowTexture), biomes);
+		this(texture, glowTexture, biomes, false);
+	}
+
+	public ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation glowTexture, HolderSet<Biome> biomes, boolean skyFlying) {
+		this(texture, fullTextureId(texture), glowTexture, fullTextureId(glowTexture), biomes, skyFlying);
 	}
 
 	private static ResourceLocation fullTextureId(ResourceLocation location) {

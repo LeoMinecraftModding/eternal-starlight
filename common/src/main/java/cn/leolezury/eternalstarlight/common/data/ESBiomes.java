@@ -198,12 +198,10 @@ public class ESBiomes {
 		return baseSpawnBuilder(false)
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ENT.get(), 10, 1, 2))
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.RATLIN.get(), 8, 1, 3))
-			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.SHADOW_SNAIL.get(), 6, 1, 2));
+			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.SHADOW_SNAIL.get(), 6, 1, 2))
+			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 6, 1, 2));
 	}
 
-	/**
-	 * Open air above the world -- nothing spawns here.
-	 */
 	private static MobSpawnSettings.Builder skySpawns() {
 		return new MobSpawnSettings.Builder();
 	}
