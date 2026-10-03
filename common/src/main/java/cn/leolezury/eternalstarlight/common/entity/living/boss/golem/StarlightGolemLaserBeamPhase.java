@@ -33,9 +33,4 @@ public class StarlightGolemLaserBeamPhase extends BehaviorPhase<StarlightGolem> 
 			entity.spawnEnergizedFlame(1, 15, entity.getPhase() == 1);
 		}
 	}
-
-	@Override
-	public boolean canContinue(StarlightGolem entity) {
-		return true;
-	}
 }

@@ -41,9 +41,4 @@ public class SolarCreeperStarPhase extends BehaviorPhase<SolarCreeper> {
 			entity.level().addFreshEntity(projectile);
 		}
 	}
-
-	@Override
-	public boolean canContinue(SolarCreeper entity) {
-		return true;
-	}
 }

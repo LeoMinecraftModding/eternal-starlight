@@ -38,9 +38,4 @@ public class PermafrostSneezePhase extends BehaviorPhase<Permafrost> {
 			}
 		}
 	}
-
-	@Override
-	public boolean canContinue(Permafrost entity) {
-		return true;
-	}
 }

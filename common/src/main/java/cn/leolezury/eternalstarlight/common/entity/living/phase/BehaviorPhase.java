@@ -51,7 +51,6 @@ public abstract class BehaviorPhase<T extends LivingEntity & MultiBehaviorUser> 
 
 	public abstract void tick(T entity);
 
-	// phases run until their duration is over unless they need to end earlier
 	public boolean canContinue(T entity) {
 		return true;
 	}

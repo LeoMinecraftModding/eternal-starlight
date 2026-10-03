@@ -28,9 +28,4 @@ public class LunarMonstrositySneakPhase extends BehaviorPhase<LunarMonstrosity> 
 			}
 		}
 	}
-
-	@Override
-	public boolean canContinue(LunarMonstrosity entity) {
-		return true;
-	}
 }

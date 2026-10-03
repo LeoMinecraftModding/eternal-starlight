@@ -24,9 +24,4 @@ public class LunarMonstrosityBitePhase extends BehaviorPhase<LunarMonstrosity> {
 			entity.doBiteDamage(20);
 		}
 	}
-
-	@Override
-	public boolean canContinue(LunarMonstrosity entity) {
-		return true;
-	}
 }

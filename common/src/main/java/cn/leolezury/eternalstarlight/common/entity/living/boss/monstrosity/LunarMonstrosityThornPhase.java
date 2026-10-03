@@ -90,9 +90,4 @@ public class LunarMonstrosityThornPhase extends BehaviorPhase<LunarMonstrosity> 
 			entity.level().addFreshEntity(thorn);
 		}
 	}
-
-	@Override
-	public boolean canContinue(LunarMonstrosity entity) {
-		return true;
-	}
 }

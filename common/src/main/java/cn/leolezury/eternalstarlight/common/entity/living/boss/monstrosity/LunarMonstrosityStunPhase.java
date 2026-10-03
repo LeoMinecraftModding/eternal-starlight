@@ -20,11 +20,6 @@ public class LunarMonstrosityStunPhase extends BehaviorPhase<LunarMonstrosity> {
 	}
 
 	@Override
-	public boolean canContinue(LunarMonstrosity entity) {
-		return true;
-	}
-
-	@Override
 	public void onStop(LunarMonstrosity entity) {
 
 	}

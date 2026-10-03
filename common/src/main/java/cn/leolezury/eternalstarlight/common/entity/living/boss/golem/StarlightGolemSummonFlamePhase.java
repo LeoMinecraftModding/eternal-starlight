@@ -25,9 +25,4 @@ public class StarlightGolemSummonFlamePhase extends BehaviorPhase<StarlightGolem
 			entity.spawnEnergizedFlame(2, 15, true);
 		}
 	}
-
-	@Override
-	public boolean canContinue(StarlightGolem entity) {
-		return true;
-	}
 }

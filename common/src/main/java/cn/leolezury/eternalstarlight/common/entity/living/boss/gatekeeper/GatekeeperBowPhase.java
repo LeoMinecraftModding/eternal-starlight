@@ -70,9 +70,4 @@ public class GatekeeperBowPhase extends BehaviorPhase<TheGatekeeper> {
 			}
 		}
 	}
-
-	@Override
-	public boolean canContinue(TheGatekeeper entity) {
-		return true;
-	}
 }

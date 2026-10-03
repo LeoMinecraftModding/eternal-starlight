@@ -28,9 +28,4 @@ public class LunarMonstrosityToxicBreathPhase extends BehaviorPhase<LunarMonstro
 			ScreenShakeVfx.createInstance(entity.level().dimension(), entity.position(), 45, 25, 0.24f, 0.24f, 4.5f, 5).send(serverLevel);
 		}
 	}
-
-	@Override
-	public boolean canContinue(LunarMonstrosity entity) {
-		return true;
-	}
 }

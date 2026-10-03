@@ -25,9 +25,4 @@ public class LunarMonstrosityDigPhase extends BehaviorPhase<LunarMonstrosity> {
 	public void tick(LunarMonstrosity entity) {
 
 	}
-
-	@Override
-	public boolean canContinue(LunarMonstrosity entity) {
-		return true;
-	}
 }

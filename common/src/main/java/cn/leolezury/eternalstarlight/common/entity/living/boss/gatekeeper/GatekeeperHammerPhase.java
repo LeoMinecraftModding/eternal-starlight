@@ -39,9 +39,4 @@ public class GatekeeperHammerPhase extends BehaviorPhase<TheGatekeeper> {
 			entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(0.7));
 		}
 	}
-
-	@Override
-	public boolean canContinue(TheGatekeeper entity) {
-		return true;
-	}
 }

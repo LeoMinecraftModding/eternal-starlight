@@ -35,9 +35,4 @@ public class PermafrostMeleePhase extends BehaviorPhase<Permafrost> {
 		entity.hurtMarked = true;
 		entity.addDeltaMovement(new Vec3(0, entity.getBehaviorTicks() <= 7 ? 0.12 : -0.1, 0));
 	}
-
-	@Override
-	public boolean canContinue(Permafrost entity) {
-		return true;
-	}
 }

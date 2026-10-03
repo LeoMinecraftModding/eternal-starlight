@@ -28,9 +28,4 @@ public class SolarCreeperJumpStartPhase extends BehaviorPhase<SolarCreeper> {
 			entity.addDeltaMovement(new Vec3(0, 1.5, 0));
 		}
 	}
-
-	@Override
-	public boolean canContinue(SolarCreeper entity) {
-		return true;
-	}
 }

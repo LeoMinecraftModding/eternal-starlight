@@ -137,9 +137,4 @@ public class StarlightGolemSmashPhase extends BehaviorPhase<StarlightGolem> {
 			}
 		}
 	}
-
-	@Override
-	public boolean canContinue(StarlightGolem entity) {
-		return true;
-	}
 }

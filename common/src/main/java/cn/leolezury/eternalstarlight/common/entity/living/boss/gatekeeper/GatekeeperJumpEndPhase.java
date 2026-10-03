@@ -70,11 +70,6 @@ public class GatekeeperJumpEndPhase extends BehaviorPhase<TheGatekeeper> {
 	}
 
 	@Override
-	public boolean canContinue(TheGatekeeper entity) {
-		return true;
-	}
-
-	@Override
 	public void stop(TheGatekeeper entity, BehaviorManager<TheGatekeeper> manager) {
 		entity.setBehaviorState(0);
 		entity.setBehaviorTicks(0);

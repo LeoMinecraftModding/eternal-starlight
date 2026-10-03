@@ -45,9 +45,4 @@ public class LunarMonstrositySoulPhase extends BehaviorPhase<LunarMonstrosity> {
 			}
 		}
 	}
-
-	@Override
-	public boolean canContinue(LunarMonstrosity entity) {
-		return true;
-	}
 }

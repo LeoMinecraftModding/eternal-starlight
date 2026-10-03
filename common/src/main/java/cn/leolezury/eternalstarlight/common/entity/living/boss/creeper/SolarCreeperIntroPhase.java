@@ -65,11 +65,6 @@ public class SolarCreeperIntroPhase extends BehaviorPhase<SolarCreeper> {
 	}
 
 	@Override
-	public boolean canContinue(SolarCreeper entity) {
-		return true;
-	}
-
-	@Override
 	public void onStop(SolarCreeper entity) {
 		entity.finishIntro();
 	}

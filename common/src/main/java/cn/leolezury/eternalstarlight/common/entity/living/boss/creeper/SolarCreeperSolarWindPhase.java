@@ -47,9 +47,4 @@ public class SolarCreeperSolarWindPhase extends BehaviorPhase<SolarCreeper> {
 			ESPlatform.INSTANCE.sendToAllClients(serverLevel, new ParticlePacket(ExplosionShockParticleOptions.FLARE_LONG, pos.x, pos.y, pos.z, speed.x, speed.y, speed.z));
 		}
 	}
-
-	@Override
-	public boolean canContinue(SolarCreeper entity) {
-		return true;
-	}
 }

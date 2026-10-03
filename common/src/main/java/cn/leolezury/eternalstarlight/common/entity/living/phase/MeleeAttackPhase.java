@@ -33,11 +33,6 @@ public class MeleeAttackPhase<T extends LivingEntity & MultiBehaviorUser> extend
 	}
 
 	@Override
-	public boolean canContinue(T entity) {
-		return true;
-	}
-
-	@Override
 	public void onStop(T entity) {
 
 	}

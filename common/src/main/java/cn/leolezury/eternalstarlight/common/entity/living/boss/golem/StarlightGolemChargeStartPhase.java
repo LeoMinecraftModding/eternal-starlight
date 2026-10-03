@@ -27,9 +27,4 @@ public class StarlightGolemChargeStartPhase extends BehaviorPhase<StarlightGolem
 			entity.heal(0.04f);
 		}
 	}
-
-	@Override
-	public boolean canContinue(StarlightGolem entity) {
-		return true;
-	}
 }

@@ -64,9 +64,4 @@ public class SolarCreeperJumpEndPhase extends BehaviorPhase<SolarCreeper> {
 			}
 		}
 	}
-
-	@Override
-	public boolean canContinue(SolarCreeper entity) {
-		return true;
-	}
 }

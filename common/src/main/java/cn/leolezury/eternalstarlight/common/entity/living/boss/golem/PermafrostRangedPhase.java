@@ -47,9 +47,4 @@ public class PermafrostRangedPhase extends BehaviorPhase<Permafrost> {
 			}
 		}
 	}
-
-	@Override
-	public boolean canContinue(Permafrost entity) {
-		return true;
-	}
 }

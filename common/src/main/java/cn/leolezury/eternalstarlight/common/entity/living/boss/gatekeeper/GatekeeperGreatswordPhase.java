@@ -39,9 +39,4 @@ public class GatekeeperGreatswordPhase extends BehaviorPhase<TheGatekeeper> {
 			entity.addDeltaMovement(target.position().subtract(entity.position()).normalize().scale(0.6));
 		}
 	}
-
-	@Override
-	public boolean canContinue(TheGatekeeper entity) {
-		return true;
-	}
 }

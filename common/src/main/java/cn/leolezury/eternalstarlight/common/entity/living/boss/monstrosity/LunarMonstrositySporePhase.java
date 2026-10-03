@@ -29,9 +29,4 @@ public class LunarMonstrositySporePhase extends BehaviorPhase<LunarMonstrosity> 
 			entity.level().addFreshEntity(spore);
 		}
 	}
-
-	@Override
-	public boolean canContinue(LunarMonstrosity entity) {
-		return true;
-	}
 }
