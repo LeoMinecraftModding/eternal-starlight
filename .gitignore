@@ -21,3 +21,5 @@ classes/
 .architectury-transformer/
 
 .opencode/
+
+**/src/generated/resources/.cache/
