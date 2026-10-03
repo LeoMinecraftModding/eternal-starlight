@@ -1,7 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster.ectostone;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.entity.projectile.MagicStone;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
@@ -9,7 +8,6 @@ import cn.leolezury.eternalstarlight.common.particle.ParticleFacing;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
-import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.EasingCurve;
@@ -24,12 +22,12 @@ public class EctostoneShootPhase extends BehaviorPhase<Ectostone> {
 	public static final int ID = 1;
 
 	public EctostoneShootPhase() {
-		super(ID, 1, 50, 160);
+		super(ID, 1, 35, 160);
 	}
 
 	@Override
 	public boolean canStart(Ectostone entity, boolean cooldownOver) {
-		return cooldownOver && canReachTarget(entity, 20);
+		return cooldownOver && !entity.isDormant() && canReachTarget(entity, 20);
 	}
 
 	@Override
@@ -58,26 +56,18 @@ public class EctostoneShootPhase extends BehaviorPhase<Ectostone> {
 						ParticleFacing.fromNormal(delta),
 						EasingCurve.of(Easing.OUT_QUAD, 0, 0.6f, 1),
 						EasingCurve.of(Easing.IN_OUT_QUAD, 0.25f, 0, 1),
-						new Vector3f(232/ 255f, 117/ 255f, 194/ 255f), 10);
-					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(ripple, pos.x, pos.y + 0.625, pos.z, 0, 0, 0));
+						new Vector3f(232 / 255f, 117 / 255f, 194 / 255f), 10);
+					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(ripple, pos.x, pos.y + 0.625 * entity.getBbHeight(), pos.z, 0, 0, 0));
 					for (int i = 0; i < 5; i++) {
+						Vec3 speed = new Vec3(entity.getRandom().nextFloat() - entity.getRandom().nextFloat(), entity.getRandom().nextFloat() - entity.getRandom().nextFloat(), entity.getRandom().nextFloat() - entity.getRandom().nextFloat()).normalize();
 						ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(
-							ExplosionShockParticleOptions.fromIntColor(
-								new Vector3f(255, 71, 180),
-								new Vector3f(151, 63, 115),
-								0.5f, 0.1f, 0.6f),
-							pos.x, pos.y + 0.625, pos.z,
-							(entity.getRandom().nextDouble() - 0.5) * 0.2,
-							(entity.getRandom().nextDouble() - 0.5) * 0.2,
-							(entity.getRandom().nextDouble() - 0.5) * 0.2));
+							ExplosionShockParticleOptions.ECTOSTONE,
+							pos.x, pos.y + 0.625 * entity.getBbHeight(), pos.z,
+							speed.x, speed.y, speed.z));
 					}
 				}
 			}
 		}
 	}
 
-	@Override
-	public boolean canContinue(Ectostone entity) {
-		return true;
-	}
 }

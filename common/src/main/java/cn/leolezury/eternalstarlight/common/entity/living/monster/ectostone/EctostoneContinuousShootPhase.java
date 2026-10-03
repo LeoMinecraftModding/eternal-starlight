@@ -1,10 +1,8 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster.ectostone;
 
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorPhase;
-import cn.leolezury.eternalstarlight.common.entity.projectile.FrozenTube;
 import cn.leolezury.eternalstarlight.common.entity.projectile.MagicStone;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
-import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.particle.ParticleFacing;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -20,22 +18,22 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
 public class EctostoneContinuousShootPhase extends BehaviorPhase<Ectostone> {
-	public static final int ID = 3;
+	public static final int ID = 5;
 
 	public EctostoneContinuousShootPhase() {
-		super(ID, 1, 80, 160);
+		super(ID, 1, 65, 160);
 	}
 
 	@Override
 	public boolean canStart(Ectostone entity, boolean cooldownOver) {
-		return cooldownOver && canReachTarget(entity, 20);
+		return cooldownOver && !entity.isDormant() && canReachTarget(entity, 20);
 	}
 
 	@Override
 	public void tick(Ectostone entity) {
 		Level level = entity.level();
-		if (entity.getTarget() != null) {
-			LivingEntity target = entity.getTarget();
+		LivingEntity target = entity.getTarget();
+		if (target != null) {
 			Vec3 aimPos = target.position().add(0, target.getEyeHeight(), 0);
 			ESEntityUtil.instantLook(entity, aimPos);
 			Vec3 launchPos = entity.position().add(0, entity.getBbHeight() / 2f, 0);
@@ -49,21 +47,16 @@ public class EctostoneContinuousShootPhase extends BehaviorPhase<Ectostone> {
 				stone.setPos(launchPos);
 				stone.playSound(SoundEvents.DRAGON_FIREBALL_EXPLODE, 0.7f, 1.2f);
 				level.addFreshEntity(stone);
-				if (entity.level() instanceof ServerLevel serverLevel) {
+				if (level instanceof ServerLevel serverLevel) {
 					Vec3 pos = entity.position().add(Vec3.directionFromRotation(0.0F, entity.yBodyRot).scale(0.5));
 					RippleParticleOptions ripple = new RippleParticleOptions(ESParticles.RIPPLE.get(),
 						ParticleFacing.fromNormal(stone.getDeltaMovement()),
 						EasingCurve.of(Easing.OUT_QUAD, 0, 0.6f, 1),
 						EasingCurve.of(Easing.IN_OUT_QUAD, 0.25f, 0, 1),
-						new Vector3f(232/ 255f, 117/ 255f, 194/ 255f), 10);
+						new Vector3f(232 / 255f, 117 / 255f, 194 / 255f), 10);
 					ESPlatform.INSTANCE.sendToTrackingClients(serverLevel, entity, new ParticlePacket(ripple, pos.x, pos.y + 0.625, pos.z, 0, 0, 0));
 				}
 			}
 		}
-	}
-
-	@Override
-	public boolean canContinue(Ectostone entity) {
-		return true;
 	}
 }

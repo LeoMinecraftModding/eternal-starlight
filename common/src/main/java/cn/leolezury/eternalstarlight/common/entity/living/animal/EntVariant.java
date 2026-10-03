@@ -14,15 +14,15 @@ import net.minecraft.world.level.biome.Biome;
 import java.util.Objects;
 import java.util.Optional;
 
-public record EntVariant(Holder<Item> leaves, ResourceLocation texture, ResourceLocation textureFull, HolderSet<Biome> biomes) {
+public record EntVariant(ResourceLocation texture, ResourceLocation textureFull, Holder<Item> leaves, HolderSet<Biome> biomes) {
 	public static final Codec<EntVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-		BuiltInRegistries.ITEM.holderByNameCodec().fieldOf("leaves").forGetter(EntVariant::leaves),
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(EntVariant::texture),
+		BuiltInRegistries.ITEM.holderByNameCodec().fieldOf("leaves").forGetter(EntVariant::leaves),
 		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(EntVariant::biomes)
 	).apply(instance, EntVariant::new));
 
-	public EntVariant(Holder<Item> leaves, ResourceLocation texture, HolderSet<Biome> biomes) {
-		this(leaves, texture, fullTextureId(texture), biomes);
+	public EntVariant(ResourceLocation texture, Holder<Item> leaves, HolderSet<Biome> biomes) {
+		this(texture, fullTextureId(texture), leaves, biomes);
 	}
 
 	private static ResourceLocation fullTextureId(ResourceLocation location) {

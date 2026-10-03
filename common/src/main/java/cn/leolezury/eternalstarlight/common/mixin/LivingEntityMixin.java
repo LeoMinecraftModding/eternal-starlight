@@ -2,6 +2,7 @@ package cn.leolezury.eternalstarlight.common.mixin;
 
 import cn.leolezury.eternalstarlight.common.data.ESDamageTypes;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.Stranghoul;
+import cn.leolezury.eternalstarlight.common.entity.projectile.MagicStone;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
@@ -301,6 +302,9 @@ public abstract class LivingEntityMixin {
 				original.call(instance, strength * 0.5, x, z);
 				return;
 			}
+		}
+		if (source.getDirectEntity() instanceof MagicStone) {
+			return;
 		}
 		original.call(instance, strength, x, z);
 	}

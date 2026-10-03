@@ -130,8 +130,19 @@ public class Creteor extends Monster implements PowerableMob {
 			this.setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP, Flag.LOOK));
 		}
 
+		@Override
 		public boolean canUse() {
 			return !Creteor.this.isActivated();
+		}
+
+		@Override
+		public boolean requiresUpdateEveryTick() {
+			return true;
+		}
+
+		@Override
+		public void tick() {
+			Creteor.this.stopInPlace();
 		}
 	}
 

@@ -70,8 +70,19 @@ public class ShadowSnail extends Animal {
 			this.setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP, Flag.LOOK));
 		}
 
+		@Override
 		public boolean canUse() {
 			return ShadowSnail.this.getHideState() != 0;
+		}
+
+		@Override
+		public boolean requiresUpdateEveryTick() {
+			return true;
+		}
+
+		@Override
+		public void tick() {
+			ShadowSnail.this.stopInPlace();
 		}
 	}
 

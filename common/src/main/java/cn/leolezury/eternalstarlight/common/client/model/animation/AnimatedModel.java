@@ -25,6 +25,10 @@ public interface AnimatedModel {
 		ESKeyframeAnimations.animate(this, definition, accumulatedTime, interpolationScale, ANIMATION_VECTOR_CACHE);
 	}
 
+	default void applyStatic(AnimationDefinition animationDefinition) {
+		ESKeyframeAnimations.animate(this, animationDefinition, 0L, 1.0F, ANIMATION_VECTOR_CACHE);
+	}
+
 	ModelPart root();
 
 	default Optional<ModelPart> getAnyDescendantWithName(String name) {

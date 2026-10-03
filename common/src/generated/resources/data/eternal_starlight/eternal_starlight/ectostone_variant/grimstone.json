@@ -1,8 +1,10 @@
 {
-  "biomes": [
-    "eternal_starlight:starlight_forest",
-    "eternal_starlight:starlight_dense_forest"
-  ],
+  "biomes": "#eternal_starlight:is_starlight",
   "glow_texture": "eternal_starlight:entity/ectostone/grimstone_glow",
+  "stones": [
+    "eternal_starlight:grimstone",
+    "eternal_starlight:cobbled_grimstone",
+    "eternal_starlight:glowing_grimstone"
+  ],
   "texture": "eternal_starlight:entity/ectostone/grimstone"
 }

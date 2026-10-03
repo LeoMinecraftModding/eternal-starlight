@@ -92,7 +92,7 @@ public class ConicerasChargeDrillGoal extends Goal {
 			charger.walkAnimation.setSpeed(charger.walkAnimation.speed() + 0.5F);
 			if (charger instanceof Charger chargingMob) {
 				chargingMob.setCharging(true);
-				Minecraft.getInstance().getSoundManager().play(new DrillSoundInstance(ESSoundEvents.CONICERAS_DRILL.get(), charger,charger.position()));
+				Minecraft.getInstance().getSoundManager().play(new DrillSoundInstance(ESSoundEvents.CONICERAS_DRILL.get(), charger, charger.position()));
 			}
 		} else if (charger.distanceToSqr(target) <= (double) attackRange * attackRange) {
 			holdPosition();

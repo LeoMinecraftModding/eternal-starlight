@@ -126,6 +126,7 @@ public class Freeze extends Monster implements RangedAttackMob {
 		return Monster.createMonsterAttributes()
 			.add(Attributes.MAX_HEALTH, ESConfig.INSTANCE.mobsConfig.freeze.maxHealth())
 			.add(Attributes.ARMOR, ESConfig.INSTANCE.mobsConfig.freeze.armor())
+			.add(Attributes.ATTACK_DAMAGE, ESConfig.INSTANCE.mobsConfig.freeze.attackDamage())
 			.add(Attributes.FOLLOW_RANGE, ESConfig.INSTANCE.mobsConfig.freeze.followRange())
 			.add(Attributes.MOVEMENT_SPEED, 0.3)
 			.add(Attributes.FLYING_SPEED, 0.6);

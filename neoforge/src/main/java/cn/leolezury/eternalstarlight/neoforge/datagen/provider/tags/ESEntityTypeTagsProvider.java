@@ -118,6 +118,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			);
 		tag(ESTags.EntityTypes.SOLARIS_ISLES_INHABITANTS)
 			.add(
+				ESEntities.ECTOSTONE.get(),
 				ESEntities.ENT.get(),
 				ESEntities.RATLIN.get(),
 				ESEntities.SHADOW_SNAIL.get(),

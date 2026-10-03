@@ -2,6 +2,8 @@ package cn.leolezury.eternalstarlight.common.client.renderer.layer;
 
 import cn.leolezury.eternalstarlight.common.client.model.entity.EctostoneModel;
 import cn.leolezury.eternalstarlight.common.entity.living.monster.ectostone.Ectostone;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.ectostone.EctostoneFallAsleepPhase;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.ectostone.EctostoneWakeUpPhase;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.LightTexture;
@@ -20,19 +22,20 @@ public class EctostoneGlowLayer<T extends Ectostone, M extends EctostoneModel<T>
 
 	@Override
 	public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource buffer, int packedLight,
-					   @NotNull T entity, float limbSwing, float limbSwingAmount, float partialTicks,
-					   float ageInTicks, float netHeadYaw, float headPitch) {
+	                   @NotNull T entity, float limbSwing, float limbSwingAmount, float partialTicks,
+	                   float ageInTicks, float netHeadYaw, float headPitch) {
 		float time = entity.tickCount + partialTicks;
 		float wave = Mth.cos(time * 0.025F) + 1.0F;
 		float breathing = 0.35F + 0.65F * wave * 0.5F;
 
 		float alpha;
-		if (entity.getDormancyState() == Ectostone.DORMANCY_STATE_FALLING_ASLEEP) {
-			float fade = 1.0F - Mth.clamp(entity.getBehaviorTicks() + partialTicks / 25.0F, 0.0F, 1.0F);
-			alpha = breathing * fade;
-		} else if (entity.getDormancyState() == Ectostone.DORMANCY_STATE_AWAKENING) {
-			alpha = breathing * Mth.clamp(entity.getBehaviorTicks() + partialTicks / 40.0F, 0.0F, 1.0F);
-		} else if (entity.isDormancy()) {
+		if (entity.isFallingAsleep()) {
+			float progress = Mth.clamp((entity.getBehaviorTicks() + partialTicks) / EctostoneFallAsleepPhase.DURATION, 0.0F, 1.0F);
+			alpha = breathing * (1.0F - progress);
+		} else if (entity.isWakingUp()) {
+			float progress = Mth.clamp((entity.getBehaviorTicks() + partialTicks) / EctostoneWakeUpPhase.DURATION, 0.0F, 1.0F);
+			alpha = breathing * progress;
+		} else if (entity.isDormant()) {
 			alpha = 0.0F;
 		} else {
 			alpha = breathing;

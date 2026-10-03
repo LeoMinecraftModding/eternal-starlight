@@ -907,6 +907,7 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.LONESTAR_SKELETON.get(), LonestarSkeletonRenderer::new);
 		strategy.register(ESEntities.NIGHTFALL_SPIDER.get(), NightfallSpiderRenderer::new);
 		strategy.register(ESEntities.SEEKER.get(), SeekerRenderer::new);
+		strategy.register(ESEntities.ECTOSTONE.get(), EctostoneRenderer::new);
 		strategy.register(ESEntities.THIRST_WALKER.get(), ThirstWalkerRenderer::new);
 		strategy.register(ESEntities.CRETEOR.get(), CreteorRenderer::new);
 		strategy.register(ESEntities.TINY_CRETEOR.get(), TinyCreteorRenderer::new);
@@ -980,7 +981,6 @@ public class ESClientSetupHandler {
 		strategy.register(ESEntities.ENERGY_BOOMERANG.get(), ThrownBoomerangRenderer::new);
 		strategy.register(ESEntities.SOULIT_SPECTATOR.get(), ThrownItemRenderer::new);
 		strategy.register(ESEntities.CHAIN_OF_SOULS.get(), ChainOfSoulsRenderer::new);
-		strategy.register(ESEntities.ECTOSTONE.get(), EctostoneRenderer::new);
 	}
 
 	public static void registerBlockEntityRenderers(BlockEntityRendererRegisterStrategy strategy) {

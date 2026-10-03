@@ -29,6 +29,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LONESTAR_SKELETON_SPAWN_EGG.get());
 		basicItem(ESItems.NIGHTFALL_SPIDER_SPAWN_EGG.get());
 		basicItem(ESItems.SEEKER_SPAWN_EGG.get());
+		basicItem(ESItems.ECTOSTONE_SPAWN_EGG.get());
 		basicItem(ESItems.THIRST_WALKER_SPAWN_EGG.get());
 		basicItem(ESItems.CRETEOR_SPAWN_EGG.get());
 		basicItem(ESItems.TINY_CRETEOR_SPAWN_EGG.get());
@@ -56,7 +57,7 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.LUNAR_MONSTROSITY_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SPAWN_EGG.get());
 		basicItem(ESItems.TANGLED_SKULL_SPAWN_EGG.get());
-		basicItem(ESItems.ECTOSTONE_SPAWN_EGG.get());
+
 		// wood
 		flatBlockTexture(ESItems.LUNAR_SAPLING.get());
 		block(ESItems.LUNAR_LEAVES.get());
@@ -889,7 +890,6 @@ public class ESItemModelProvider extends ItemModelProvider {
 		basicItem(ESItems.COOKED_LUMINARIS.get());
 
 		basicItem(ESItems.CONICERAS_SHELL.get());
-		basicItem(ESItems.MAGIC_STONE.get());
 		basicItem(ESItems.CONICERAS_TENTACLES.get());
 		basicItem(ESItems.GRILLED_CONICERAS_TENTACLES.get());
 		basicItem(ESItems.SPIRAL_ARROW.get());
@@ -952,6 +952,8 @@ public class ESItemModelProvider extends ItemModelProvider {
 
 		basicItem(ESItems.SEEKER_TENTACLE.get());
 		whip(ESItems.TENTACLE_SPIKE.get());
+
+		basicItem(ESItems.MAGIC_STONE.get());
 
 		templateSkull(ESItems.TANGLED_SKULL.get());
 

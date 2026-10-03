@@ -131,6 +131,14 @@ public class ESEntities {
 			.fireImmune()
 			.build(EternalStarlight.id("seeker").toString())
 	);
+	public static final RegistryObject<EntityType<?>, EntityType<Ectostone>> ECTOSTONE = ENTITIES.register(
+		"ectostone",
+		() -> EntityType.Builder.of(Ectostone::new, MobCategory.MONSTER)
+			.sized(0.75F, 1.0F)
+			.clientTrackingRange(4)
+			.fireImmune()
+			.build(EternalStarlight.id("ectostone").toString())
+	);
 	public static final RegistryObject<EntityType<?>, EntityType<ThirstWalker>> THIRST_WALKER = ENTITIES.register(
 		"thirst_walker",
 		() -> EntityType.Builder.of(ThirstWalker::new, MobCategory.MONSTER)
@@ -708,14 +716,7 @@ public class ESEntities {
 			.updateInterval(1)
 			.build(EternalStarlight.id("orbital_planet").toString())
 	);
-	public static final RegistryObject<EntityType<?>, EntityType<Ectostone>> ECTOSTONE = ENTITIES.register(
-		"ectostone",
-		() -> EntityType.Builder.of(Ectostone::new, MobCategory.MONSTER)
-			.sized(0.75F, 1.0F)
-			.clientTrackingRange(4)
-			.fireImmune()
-			.build(EternalStarlight.id("ectostone").toString())
-	);
+
 	public static void loadClass() {
 	}
 }

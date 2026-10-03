@@ -84,6 +84,10 @@
   ],
   "has_precipitation": true,
   "spawn_costs": {
+    "eternal_starlight:ectostone": {
+      "charge": 1.0,
+      "energy_budget": 0.5
+    },
     "eternal_starlight:lonestar_skeleton": {
       "charge": 1.0,
       "energy_budget": 0.5
@@ -158,6 +162,12 @@
         "maxCount": 2,
         "minCount": 1,
         "weight": 15
+      },
+      {
+        "type": "eternal_starlight:ectostone",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 8
       }
     ],
     "underground_water_creature": [],

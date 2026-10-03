@@ -12,20 +12,20 @@ import net.minecraft.world.level.biome.Biome;
 import java.util.Objects;
 import java.util.Optional;
 
-public record ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation textureFull, ResourceLocation glowTexture, ResourceLocation glowTextureFull, HolderSet<Biome> biomes, boolean skyFlying) {
+public record ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation textureFull, ResourceLocation glowTexture, ResourceLocation glowTextureFull, boolean skyFlying, HolderSet<Biome> biomes) {
 	public static final Codec<ShimmerLacewingVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 		ResourceLocation.CODEC.fieldOf("texture").forGetter(ShimmerLacewingVariant::texture),
 		ResourceLocation.CODEC.fieldOf("glow_texture").forGetter(ShimmerLacewingVariant::glowTexture),
-		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(ShimmerLacewingVariant::biomes),
-		Codec.BOOL.optionalFieldOf("sky_flying", false).forGetter(ShimmerLacewingVariant::skyFlying)
+		Codec.BOOL.optionalFieldOf("sky_flying", false).forGetter(ShimmerLacewingVariant::skyFlying),
+		RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(ShimmerLacewingVariant::biomes)
 	).apply(instance, ShimmerLacewingVariant::new));
 
 	public ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation glowTexture, HolderSet<Biome> biomes) {
-		this(texture, glowTexture, biomes, false);
+		this(texture, glowTexture, false, biomes);
 	}
 
-	public ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation glowTexture, HolderSet<Biome> biomes, boolean skyFlying) {
-		this(texture, fullTextureId(texture), glowTexture, fullTextureId(glowTexture), biomes, skyFlying);
+	public ShimmerLacewingVariant(ResourceLocation texture, ResourceLocation glowTexture, boolean skyFlying, HolderSet<Biome> biomes) {
+		this(texture, fullTextureId(texture), glowTexture, fullTextureId(glowTexture), skyFlying, biomes);
 	}
 
 	private static ResourceLocation fullTextureId(ResourceLocation location) {

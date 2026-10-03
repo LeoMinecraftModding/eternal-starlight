@@ -38,7 +38,12 @@
     ]
   ],
   "has_precipitation": false,
-  "spawn_costs": {},
+  "spawn_costs": {
+    "eternal_starlight:ectostone": {
+      "charge": 1.0,
+      "energy_budget": 0.5
+    }
+  },
   "spawners": {
     "ambient": [
       {
@@ -76,7 +81,14 @@
       }
     ],
     "misc": [],
-    "monster": [],
+    "monster": [
+      {
+        "type": "eternal_starlight:ectostone",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 8
+      }
+    ],
     "underground_water_creature": [],
     "water_ambient": [],
     "water_creature": []

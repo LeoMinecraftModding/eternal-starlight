@@ -1,5 +1,12 @@
 {
-  "biomes": "eternal_starlight:scarlet_forest",
+  "biomes": [
+    "eternal_starlight:ether_river",
+    "eternal_starlight:torreya_forest"
+  ],
   "glow_texture": "eternal_starlight:entity/ectostone/toxite_glow",
+  "stones": [
+    "eternal_starlight:toxite",
+    "eternal_starlight:thioquartz_block"
+  ],
   "texture": "eternal_starlight:entity/ectostone/toxite"
 }

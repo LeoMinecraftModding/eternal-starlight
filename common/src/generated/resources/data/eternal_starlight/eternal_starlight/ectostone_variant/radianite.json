@@ -1,5 +1,10 @@
 {
   "biomes": "eternal_starlight:solaris_isles",
   "glow_texture": "eternal_starlight:entity/ectostone/radianite_glow",
+  "sky_flying": true,
+  "stones": [
+    "eternal_starlight:radianite",
+    "eternal_starlight:cobbled_radianite"
+  ],
   "texture": "eternal_starlight:entity/ectostone/radianite"
 }

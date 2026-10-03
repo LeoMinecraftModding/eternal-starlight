@@ -141,9 +141,11 @@ public class ESBiomes {
 			builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.NIGHTFALL_SPIDER.get(), 15, 1, 2))
 				.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.LONESTAR_SKELETON.get(), 10, 1, 2))
 				.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.SEEKER.get(), 15, 1, 2))
+				.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.ECTOSTONE.get(), 8, 1, 2))
 				.addMobCharge(ESEntities.NIGHTFALL_SPIDER.get(), 1, 0.5)
 				.addMobCharge(ESEntities.LONESTAR_SKELETON.get(), 1, 0.5)
-				.addMobCharge(ESEntities.SEEKER.get(), 1, 0.5);
+				.addMobCharge(ESEntities.SEEKER.get(), 1, 0.5)
+				.addMobCharge(ESEntities.ECTOSTONE.get(), 1, 0.5);
 		}
 		return builder.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 2, 1, 2));
 	}
@@ -199,7 +201,9 @@ public class ESBiomes {
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.ENT.get(), 10, 1, 2))
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.RATLIN.get(), 8, 1, 3))
 			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.SHADOW_SNAIL.get(), 6, 1, 2))
-			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 6, 1, 2));
+			.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(ESEntities.SHIMMER_LACEWING.get(), 6, 1, 2))
+			.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(ESEntities.ECTOSTONE.get(), 8, 1, 2))
+			.addMobCharge(ESEntities.ECTOSTONE.get(), 1, 0.5);
 	}
 
 	private static MobSpawnSettings.Builder skySpawns() {

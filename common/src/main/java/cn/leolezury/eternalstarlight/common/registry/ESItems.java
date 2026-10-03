@@ -50,6 +50,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> LONESTAR_SKELETON_SPAWN_EGG = ITEMS.register("lonestar_skeleton_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.LONESTAR_SKELETON::get, 0xd9d9d9, 0x4f5158, new Item.Properties()));
 	public static final RegistryObject<Item, Item> NIGHTFALL_SPIDER_SPAWN_EGG = ITEMS.register("nightfall_spider_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.NIGHTFALL_SPIDER::get, 0x233e47, 0x879cca, new Item.Properties()));
 	public static final RegistryObject<Item, Item> SEEKER_SPAWN_EGG = ITEMS.register("seeker_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.SEEKER::get, 0x42447d, 0xe9a4c8, new Item.Properties()));
+	public static final RegistryObject<Item, Item> ECTOSTONE_SPAWN_EGG = ITEMS.register("ectostone_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.ECTOSTONE::get, 0x262e39, 0xff47b4, new Item.Properties()));
 	public static final RegistryObject<Item, Item> THIRST_WALKER_SPAWN_EGG = ITEMS.register("thirst_walker_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.THIRST_WALKER::get, 0x352b2f, 0xa4e0f2, new Item.Properties()));
 	public static final RegistryObject<Item, Item> CRETEOR_SPAWN_EGG = ITEMS.register("creteor_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.CRETEOR::get, 0x53235b, 0xe9aded, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TINY_CRETEOR_SPAWN_EGG = ITEMS.register("tiny_creteor_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TINY_CRETEOR::get, 0x53235b, 0xe9aded, new Item.Properties()));
@@ -77,7 +78,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> LUNAR_MONSTROSITY_SPAWN_EGG = ITEMS.register("lunar_monstrosity_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.LUNAR_MONSTROSITY::get, 0x322579, 0x99bbe5, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TANGLED_SPAWN_EGG = ITEMS.register("tangled_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED::get, 0x96b3bb, 0x6275c1, new Item.Properties()));
 	public static final RegistryObject<Item, Item> TANGLED_SKULL_SPAWN_EGG = ITEMS.register("tangled_skull_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.TANGLED_SKULL::get, 0x838c8d, 0x445955, new Item.Properties()));
-	public static final RegistryObject<Item, Item> ECTOSTONE_SPAWN_EGG = ITEMS.register("ectostone_spawn_egg", () -> ESPlatform.INSTANCE.createSpawnEgg(ESEntities.ECTOSTONE::get, 0x838c8d, 0x445955, new Item.Properties()));
 
 	// lunar wood
 	public static final RegistryObject<Item, Item> LUNAR_SAPLING = ITEMS.register("lunar_sapling", () -> new BlockItem(ESBlocks.LUNAR_SAPLING.get(), new Item.Properties()));
@@ -1065,7 +1065,6 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> CONICERAS_TENTACLES = ITEMS.register("coniceras_tentacles", () -> new Item(new Item.Properties().food(ESFoods.CONICERAS_TENTACLES.get())));
 	public static final RegistryObject<Item, Item> GRILLED_CONICERAS_TENTACLES = ITEMS.register("grilled_coniceras_tentacles", () -> new Item(new Item.Properties().food(ESFoods.GRILLED_CONICERAS_TENTACLES.get())));
 	public static final RegistryObject<Item, Item> SPIRAL_ARROW = ITEMS.register("spiral_arrow", () -> new SpiralArrowItem(new Item.Properties()));
-	public static final RegistryObject<Item, Item> MAGIC_STONE = ITEMS.register("magic_stone", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> STARLIT_PAINTING = ITEMS.register("starlit_painting", () -> new ESPaintingItem(new Item.Properties()));
 	public static final RegistryObject<Item, Item> WHITE_YETI_FUR = ITEMS.register("white_yeti_fur", () -> new BlockItem(ESBlocks.WHITE_YETI_FUR.get(), new Item.Properties()));
@@ -1126,6 +1125,8 @@ public class ESItems {
 
 	public static final RegistryObject<Item, Item> SEEKER_TENTACLE = ITEMS.register("seeker_tentacle", () -> new Item(new Item.Properties().food(ESFoods.SEEKER_TENTACLE.get())));
 	public static final RegistryObject<Item, Item> TENTACLE_SPIKE = ITEMS.register("tentacle_spike", () -> new TentacleSpikeItem(ESItemTiers.TENTACLE_SPIKE, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.TENTACLE_SPIKE, 2.8F, -3.0F))));
+
+	public static final RegistryObject<Item, Item> MAGIC_STONE = ITEMS.register("magic_stone", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> TANGLED_SKULL = ITEMS.register("tangled_skull", () -> new TangledSkullItem(ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
 
