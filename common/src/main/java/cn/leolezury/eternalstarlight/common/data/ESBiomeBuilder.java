@@ -83,14 +83,11 @@ public final class ESBiomeBuilder {
 		{null, null, null, null, null}
 	};
 
-	// Sky band on the depth axis, declared twice as far out as the sky is meant to begin. The nearest match search puts
-	// the boundary halfway between a band edge and the surface biome's depth zero anchor, so a band whose lower edge
-	// sat at -0.4 would only start 26 blocks above the ground instead of 51.
-	private static final float SKY_BAND_BOTTOM_DEPTH = -0.8F;
-	private static final float SKY_BAND_TOP_DEPTH = -1.3F;
+	private static final float SKY_BAND_BOTTOM_DEPTH = -1.0F;
+	private static final float SKY_BAND_TOP_DEPTH = -1.5F;
 
-	public static final int SKY_BAND_MIN_ABOVE_SURFACE = 51;
-	public static final int SKY_BAND_MAX_ABOVE_SURFACE = 115;
+	public static final int SKY_BAND_MIN_ABOVE_SURFACE = 80;
+	public static final int SKY_BAND_MAX_ABOVE_SURFACE = 150;
 
 	private static final float SKY_FILLER_OFFSET = 0.05F;
 

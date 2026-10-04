@@ -18,6 +18,9 @@ public abstract class NoiseBasedAquiferMixin {
 	@Final
 	private Aquifer.FluidPicker globalFluidPicker;
 
+	@Shadow
+	private boolean shouldScheduleFluidUpdate;
+
 	@Inject(
 		method = "computeSubstance(Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;D)Lnet/minecraft/world/level/block/state/BlockState;",
 		at = @At("RETURN"),
@@ -28,6 +31,7 @@ public abstract class NoiseBasedAquiferMixin {
 			return;
 		}
 		if (context.blockY() >= picker.ground(context.blockX(), context.blockZ())) {
+			this.shouldScheduleFluidUpdate = false;
 			cir.setReturnValue(Blocks.AIR.defaultBlockState());
 		}
 	}

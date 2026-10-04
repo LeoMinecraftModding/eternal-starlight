@@ -542,7 +542,7 @@ public class ESCommonHandler {
 		if (entity instanceof ItemEntity item) {
 			if (!level.isClientSide) {
 				if (item.tickCount % 100 == 0 && ESBlockUtil.isEntityInBlock(item, ESBlocks.ETHER.get())) {
-					ItemStack content = item.getItem();
+					ItemStack content = item.getItem().copy();
 					level.getRecipeManager().getRecipeFor(ESRecipes.ETHER_CONVERSION.get(), new SingleRecipeInput(content), level).ifPresent(recipeHolder -> {
 						EtherConversionRecipe recipe = recipeHolder.value();
 						if (content.getCount() >= recipe.inputCount()) {
@@ -557,6 +557,7 @@ public class ESCommonHandler {
 									serverLevel.sendParticles(ESParticles.ETHER_TRAIL.get(), item.getX(), item.getY() + item.getBbHeight() / 2, item.getZ(), 8, 0, 0, 0, 0.1 + item.getRandom().nextFloat() * 0.2);
 									ESPlatform.INSTANCE.sendToAllClients(serverLevel, new PostEffectPacket(ESPostEffects.FLASH.get(), new FlashPostEffect.Data(2, 8, 0xd1ffe1), item.position().add(0, item.getBbHeight() / 2, 0), 20, 6.0F, 1.0F));
 								}
+								item.setItem(content);
 								if (content.isEmpty()) {
 									item.discard();
 								}

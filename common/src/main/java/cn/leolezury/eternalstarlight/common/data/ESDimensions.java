@@ -54,9 +54,7 @@ public class ESDimensions {
 	// and fades out this far above the bottom of the world, so the floor stays sealed
 	private static final int CAVERN_BOTTOM_FADE = 16;
 	private static final int HEIGHT_SMOOTHING_RADIUS = 12;
-	// how much of the amount by which the smoothing lifts a column above its own height is kept. At 1 the banks are one
-	// continuous slope, at 0 river beds hold their own height but the channel edge becomes a wall, and the ether thins
-	// out as this rises, so it sits in the middle.
+	// fraction of the smoothing lift kept: 0 keeps river beds but walls off the channel edge, 1 merges the banks
 	private static final double SMOOTHING_UPWARD_FILL = 0.5;
 	// how far below the column floor the surface material rules may still apply
 	private static final int SURFACE_RULE_DEPTH = 8;
@@ -74,7 +72,7 @@ public class ESDimensions {
 			SurfaceRules.ifTrue(
 				SurfaceRules.ON_FLOOR,
 				SurfaceRules.sequence(
-					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.ICY_SEA, ESBiomes.SPIRAL_KELP_FOREST), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
 					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.LUSH_SHALLOW_SEA), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.ICE, -0.0625, 0.025), SurfaceRules.state(ESBlocks.GLOWING_MOSSY_DUSTED_GRAVEL.get().defaultBlockState())), SurfaceRules.state(ESBlocks.MOSSY_DUSTED_GRAVEL.get().defaultBlockState()))),
 					SurfaceRules.ifTrue(
 						SurfaceRules.waterBlockCheck(-1, 0),
@@ -90,7 +88,7 @@ public class ESDimensions {
 				SurfaceRules.UNDER_FLOOR,
 				SurfaceRules.sequence(
 					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.CRYSTALLIZED_DESERT, ESBiomes.SHIMMER_RIVER, ESBiomes.ETHER_RIVER, ESBiomes.WARM_SHORE), SurfaceRules.state(ESBlocks.TWILIGHT_SAND.get().defaultBlockState())),
-					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.SPIRAL_KELP_FOREST, ESBiomes.LUSH_SHALLOW_SEA), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
+					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.STARLIT_SEA, ESBiomes.ICY_SEA, ESBiomes.SPIRAL_KELP_FOREST, ESBiomes.LUSH_SHALLOW_SEA), SurfaceRules.state(ESBlocks.DUSTED_GRAVEL.get().defaultBlockState())),
 					SurfaceRules.ifTrue(SurfaceRules.isBiome(ESBiomes.DARK_SWAMP), SurfaceRules.state(ESBlocks.NIGHTFALL_MUD.get().defaultBlockState())),
 					SurfaceRules.state(ESBlocks.NIGHTFALL_DIRT.get().defaultBlockState())
 				)

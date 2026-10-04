@@ -444,9 +444,6 @@ public class ESBiomes {
 		return builder;
 	}
 
-	/**
-	 * The filler that keeps Solaris Isles inside its own climate range -- it generates nothing itself.
-	 */
 	private static BiomeGenerationSettings.Builder skyGenSettings(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		return new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 	}

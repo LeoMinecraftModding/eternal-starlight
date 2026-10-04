@@ -29,15 +29,17 @@ public class FinalModificationFeature extends ESFeature<NoneFeatureConfiguration
 			for (int z = chunkCoord.getZ(); z < chunkCoord.getZ() + 16; z++) {
 				// the top fluid block sits one below sea level, as in vanilla
 				pos.set(x, ESDimensions.SEA_LEVEL - 1, z);
-				while (level.getBlockState(pos).is(ESBlocks.ETHER.get())) {
+				while (level.getBlockState(pos).is(ESBlocks.ETHER.get()) || level.getBlockState(pos).is(ESBlocks.THIOQUARTZ_BLOCK.get())) {
 					for (Direction direction : Direction.values()) {
 						BlockPos relativePos = pos.relative(direction);
 						BlockState relativeState = level.getBlockState(relativePos);
 						if (!relativeState.is(ESBlocks.ETHER.get()) && !relativeState.is(ESBlocks.THIOQUARTZ_BLOCK.get()) && !relativeState.isAir()) {
 							setBlock(level, pos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
 							for (Direction dir : Direction.values()) {
-								if (random.nextInt(3) == 0 && (level.getBlockState(relativePos.relative(dir)).getBlock() instanceof LiquidBlock || level.isEmptyBlock(relativePos.relative(dir)))) {
-									setBlock(level, relativePos.relative(dir), ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
+								BlockPos spreadPos = relativePos.relative(dir);
+								BlockState spreadState = level.getBlockState(spreadPos);
+								if (dir != Direction.DOWN && random.nextInt(3) == 0 && ((spreadState.getBlock() instanceof LiquidBlock && !spreadState.is(ESBlocks.ETHER.get())) || level.isEmptyBlock(spreadPos))) {
+									setBlock(level, spreadPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
 								}
 							}
 						}
