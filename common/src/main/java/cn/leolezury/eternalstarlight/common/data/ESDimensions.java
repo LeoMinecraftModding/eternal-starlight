@@ -56,6 +56,8 @@ public class ESDimensions {
 	private static final int HEIGHT_SMOOTHING_RADIUS = 12;
 	// fraction of the smoothing lift kept: 0 keeps river beds but walls off the channel edge, 1 merges the banks
 	private static final double SMOOTHING_UPWARD_FILL = 0.5;
+	// distance outside a river band over which the biome heights are blended
+	private static final double RIVER_BANK_FADE = SurfaceBiomeHeightFunction.DEFAULT_BANK_FADE;
 	// how far below the column floor the surface material rules may still apply
 	private static final int SURFACE_RULE_DEPTH = 8;
 
@@ -226,7 +228,8 @@ public class ESDimensions {
 			getFunction(densityFunctions, RIVER_VALUE),
 			rivers,
 			MIN_Y,
-			MAX_Y
+			MAX_Y,
+			RIVER_BANK_FADE
 		)));
 		context.register(BIOME_HEIGHT, DensityFunctions.flatCache(new SmoothedFunction(
 			getFunction(densityFunctions, BIOME_HEIGHT_RAW), HEIGHT_SMOOTHING_RADIUS, SMOOTHING_UPWARD_FILL

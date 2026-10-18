@@ -22,11 +22,11 @@ public record RiverEntry(Holder<BiomeData> river, float size, Optional<Holder<Bi
 		Codec.BOOL.optionalFieldOf("ocean_only", false).forGetter(RiverEntry::oceanOnly)
 	).apply(instance, RiverEntry::new));
 
-	public static float[] values(List<RiverEntry> rivers, DensityFunction riverValue, int x, int y, int z) {
+	public static float[] values(List<RiverEntry> rivers, DensityFunction riverValue, int x, int z) {
 		float[] values = new float[rivers.size()];
 		for (int i = 0; i < rivers.size(); i++) {
 			int offset = rivers.get(i).offset();
-			values[i] = (float) riverValue.compute(new DensityFunction.SinglePointContext(x + offset, y, z + offset));
+			values[i] = (float) riverValue.compute(new DensityFunction.SinglePointContext(x + offset, 0, z + offset));
 		}
 		return values;
 	}
@@ -45,26 +45,6 @@ public record RiverEntry(Holder<BiomeData> river, float size, Optional<Holder<Bi
 				return entry.river();
 			}
 			if (entry.transition().isPresent() && values[i] < entry.transitionSize()) {
-				return entry.transition().get();
-			}
-		}
-		return base;
-	}
-
-	public static Holder<BiomeData> resolve(Holder<BiomeData> base, List<RiverEntry> rivers, DensityFunction riverValue, int x, int y, int z) {
-		if (rivers.isEmpty() || !base.value().hasRivers()) {
-			return base;
-		}
-		boolean ocean = base.value().isOcean();
-		for (RiverEntry entry : rivers) {
-			if (ocean != entry.oceanOnly()) {
-				continue;
-			}
-			float value = (float) riverValue.compute(new DensityFunction.SinglePointContext(x + entry.offset(), y, z + entry.offset()));
-			if (value < entry.size()) {
-				return entry.river();
-			}
-			if (entry.transition().isPresent() && value < entry.transitionSize()) {
 				return entry.transition().get();
 			}
 		}

@@ -12,7 +12,6 @@ public final class SmoothedFunction implements DensityFunction {
 	private static final int TAP_STEP = 4;
 	private static final int COLUMN_MASK = ~3;
 	private static final int CACHE_SIZE = 1024;
-	private static final int CACHE_MASK = CACHE_SIZE - 1;
 
 	private final DensityFunction input;
 	private final int radius;
@@ -79,7 +78,8 @@ public final class SmoothedFunction implements DensityFunction {
 		int columnX = x & COLUMN_MASK;
 		int columnZ = z & COLUMN_MASK;
 		ColumnCache cache = this.columnCache.get();
-		int index = ((columnX >> 2) * 961 + (columnZ >> 2)) & CACHE_MASK;
+		// direct address over a 32x32 quart cell window: no collisions inside a chunk and its halo
+		int index = ((columnX >> 2) & 31) << 5 | ((columnZ >> 2) & 31);
 		if (cache.valid[index] && cache.x[index] == columnX && cache.z[index] == columnZ) {
 			return cache.height[index];
 		}

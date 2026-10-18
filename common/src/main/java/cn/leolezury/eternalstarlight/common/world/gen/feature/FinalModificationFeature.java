@@ -30,16 +30,18 @@ public class FinalModificationFeature extends ESFeature<NoneFeatureConfiguration
 				// the top fluid block sits one below sea level, as in vanilla
 				pos.set(x, ESDimensions.SEA_LEVEL - 1, z);
 				while (level.getBlockState(pos).is(ESBlocks.ETHER.get()) || level.getBlockState(pos).is(ESBlocks.THIOQUARTZ_BLOCK.get())) {
-					for (Direction direction : Direction.values()) {
-						BlockPos relativePos = pos.relative(direction);
-						BlockState relativeState = level.getBlockState(relativePos);
-						if (!relativeState.is(ESBlocks.ETHER.get()) && !relativeState.is(ESBlocks.THIOQUARTZ_BLOCK.get()) && !relativeState.isAir()) {
-							setBlock(level, pos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
-							for (Direction dir : Direction.values()) {
-								BlockPos spreadPos = relativePos.relative(dir);
-								BlockState spreadState = level.getBlockState(spreadPos);
-								if (dir != Direction.DOWN && random.nextInt(3) == 0 && ((spreadState.getBlock() instanceof LiquidBlock && !spreadState.is(ESBlocks.ETHER.get())) || level.isEmptyBlock(spreadPos))) {
-									setBlock(level, spreadPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
+					if (level.getBlockState(pos).is(ESBlocks.ETHER.get())) {
+						for (Direction direction : Direction.values()) {
+							BlockPos relativePos = pos.relative(direction);
+							BlockState relativeState = level.getBlockState(relativePos);
+							if (!relativeState.is(ESBlocks.ETHER.get()) && !relativeState.is(ESBlocks.THIOQUARTZ_BLOCK.get()) && !relativeState.isAir()) {
+								setBlock(level, pos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
+								for (Direction dir : Direction.values()) {
+									BlockPos spreadPos = relativePos.relative(dir);
+									BlockState spreadState = level.getBlockState(spreadPos);
+									if (dir != Direction.DOWN && random.nextInt(3) == 0 && ((spreadState.getBlock() instanceof LiquidBlock && !spreadState.is(ESBlocks.ETHER.get())) || level.isEmptyBlock(spreadPos))) {
+										setBlock(level, spreadPos, ESBlocks.THIOQUARTZ_BLOCK.get().defaultBlockState().setValue(ThioquartzBlock.SEED, random.nextDouble() < 0.1));
+									}
 								}
 							}
 						}

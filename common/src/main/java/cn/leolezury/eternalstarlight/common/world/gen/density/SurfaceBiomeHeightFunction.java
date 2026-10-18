@@ -7,7 +7,9 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
+import net.minecraft.core.QuartPos;
 import net.minecraft.util.KeyDispatchDataCodec;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.levelgen.DensityFunction;
 
@@ -17,7 +19,7 @@ import java.util.Objects;
 public final class SurfaceBiomeHeightFunction implements DensityFunction {
 	private static final int COLUMN_MASK = ~3;
 	private static final int CACHE_SIZE = 1024;
-	private static final int CACHE_MASK = CACHE_SIZE - 1;
+	public static final double DEFAULT_BANK_FADE = 16.0;
 
 	private final Holder<Climate.ParameterList<Holder<BiomeData>>> biomes;
 	private final DensityFunction temperature;
@@ -30,6 +32,7 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 	private final List<RiverEntry> rivers;
 	private final int minHeight;
 	private final int maxHeight;
+	private final double bankFade;
 	private final ThreadLocal<HeightCache> heightCache = ThreadLocal.withInitial(HeightCache::new);
 
 	public SurfaceBiomeHeightFunction(
@@ -43,7 +46,8 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		DensityFunction riverValue,
 		List<RiverEntry> rivers,
 		int minHeight,
-		int maxHeight
+		int maxHeight,
+		double bankFade
 	) {
 		this.biomes = biomes;
 		this.temperature = temperature;
@@ -56,6 +60,7 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		this.rivers = rivers;
 		this.minHeight = minHeight;
 		this.maxHeight = maxHeight;
+		this.bankFade = bankFade;
 	}
 
 	public static final MapCodec<SurfaceBiomeHeightFunction> DATA_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -69,7 +74,8 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		DensityFunction.HOLDER_HELPER_CODEC.fieldOf("river_value").forGetter(SurfaceBiomeHeightFunction::riverValue),
 		RiverEntry.CODEC.listOf().fieldOf("rivers").forGetter(SurfaceBiomeHeightFunction::rivers),
 		Codec.INT.optionalFieldOf("min_height", -64).forGetter(SurfaceBiomeHeightFunction::minHeight),
-		Codec.INT.optionalFieldOf("max_height", 320).forGetter(SurfaceBiomeHeightFunction::maxHeight)
+		Codec.INT.optionalFieldOf("max_height", 320).forGetter(SurfaceBiomeHeightFunction::maxHeight),
+		Codec.DOUBLE.optionalFieldOf("bank_fade", DEFAULT_BANK_FADE).forGetter(SurfaceBiomeHeightFunction::bankFade)
 	).apply(instance, SurfaceBiomeHeightFunction::new));
 	public static final KeyDispatchDataCodec<SurfaceBiomeHeightFunction> CODEC = KeyDispatchDataCodec.of(DATA_CODEC);
 
@@ -117,20 +123,24 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		return this.maxHeight;
 	}
 
-	@Override
-	public double compute(DensityFunction.FunctionContext context) {
-		return columnHeight(context.blockX(), context.blockY(), context.blockZ());
+	public double bankFade() {
+		return this.bankFade;
 	}
 
-	private double columnHeight(int x, int y, int z) {
+	@Override
+	public double compute(DensityFunction.FunctionContext context) {
+		return columnHeight(context.blockX(), context.blockZ());
+	}
+
+	private double columnHeight(int x, int z) {
 		int columnX = x & COLUMN_MASK;
 		int columnZ = z & COLUMN_MASK;
 		HeightCache cache = this.heightCache.get();
-		int index = ((columnX >> 2) * 961 + (columnZ >> 2)) & CACHE_MASK;
+		int index = cacheIndex(columnX, columnZ);
 		if (cache.valid[index] && cache.x[index] == columnX && cache.z[index] == columnZ) {
 			return cache.height[index];
 		}
-		double height = rawHeight(columnX, y, columnZ);
+		double height = rawHeight(columnX, columnZ);
 		cache.x[index] = columnX;
 		cache.z[index] = columnZ;
 		cache.height[index] = height;
@@ -138,18 +148,56 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 		return height;
 	}
 
-	private double rawHeight(int x, int y, int z) {
+	private double rawHeight(int x, int z) {
+		DensityFunction.SinglePointContext climateContext = new DensityFunction.SinglePointContext(QuartPos.fromBlock(x), 0, QuartPos.fromBlock(z));
 		Climate.TargetPoint target = Climate.target(
-			(float) this.temperature.compute(new DensityFunction.SinglePointContext(x, y, z)),
-			(float) this.humidity.compute(new DensityFunction.SinglePointContext(x, y, z)),
-			(float) this.continentalness.compute(new DensityFunction.SinglePointContext(x, y, z)),
-			(float) this.erosion.compute(new DensityFunction.SinglePointContext(x, y, z)),
+			(float) this.temperature.compute(climateContext),
+			(float) this.humidity.compute(climateContext),
+			(float) this.continentalness.compute(climateContext),
+			(float) this.erosion.compute(climateContext),
 			0.0F,
-			(float) this.weirdness.compute(new DensityFunction.SinglePointContext(x, y, z))
+			(float) this.weirdness.compute(climateContext)
 		);
-		Holder<BiomeData> base = this.biomes.value().findValue(target);
-		BiomeData data = RiverEntry.resolve(base, this.rivers, this.riverValue, x, y, z).value();
-		return data.height() + data.variance() * this.noise.compute(new DensityFunction.SinglePointContext(x, y, z));
+		BiomeData base = this.biomes.value().findValue(target).value();
+		double noise = this.noise.compute(new DensityFunction.SinglePointContext(x, 0, z));
+		double baseHeight = base.height() + base.variance() * noise;
+		if (this.rivers.isEmpty() || !base.hasRivers()) {
+			return baseHeight;
+		}
+		boolean ocean = base.isOcean();
+		double height = baseHeight;
+		for (RiverEntry entry : this.rivers) {
+			if (ocean != entry.oceanOnly()) {
+				continue;
+			}
+			double band = entry.transition().isPresent() ? entry.transitionSize() : entry.size();
+			double halfFade = this.bankFade * 0.5;
+			double distance = this.riverValue.compute(new DensityFunction.SinglePointContext(x + entry.offset(), 0, z + entry.offset()));
+			if (this.bankFade <= 0.0 ? distance >= band : distance >= band + halfFade) {
+				continue;
+			}
+			BiomeData river = entry.river().value();
+			BiomeData transition = entry.transition().map(Holder::value).orElse(river);
+			double riverHeight = river.height() + river.variance() * noise;
+			double transitionHeight = transition.height() + transition.variance() * noise;
+			double profile;
+			if (this.bankFade <= 0.0) {
+				profile = distance <= entry.size() ? riverHeight : (distance <= band ? transitionHeight : baseHeight);
+			} else {
+				double bed = Mth.lerp(saturate((distance - (entry.size() - halfFade)) / this.bankFade), riverHeight, transitionHeight);
+				profile = Mth.lerp(saturate((distance - (band - halfFade)) / this.bankFade), bed, baseHeight);
+			}
+			height = Math.min(height, profile);
+		}
+		return height;
+	}
+
+	private static double saturate(double value) {
+		return Math.clamp(value, 0.0, 1.0);
+	}
+
+	private static int cacheIndex(int columnX, int columnZ) {
+		return ((columnX >> 2) & 31) << 5 | ((columnZ >> 2) & 31);
 	}
 
 	@Override
@@ -170,7 +218,8 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 			this.riverValue.mapAll(visitor),
 			this.rivers,
 			this.minHeight,
-			this.maxHeight
+			this.maxHeight,
+			this.bankFade
 		));
 	}
 
@@ -202,12 +251,13 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 			&& this.riverValue.equals(function.riverValue)
 			&& this.rivers.equals(function.rivers)
 			&& this.minHeight == function.minHeight
-			&& this.maxHeight == function.maxHeight;
+			&& this.maxHeight == function.maxHeight
+			&& this.bankFade == function.bankFade;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(this.biomes, this.temperature, this.humidity, this.continentalness, this.erosion, this.weirdness, this.noise, this.riverValue, this.rivers, this.minHeight, this.maxHeight);
+		return Objects.hash(this.biomes, this.temperature, this.humidity, this.continentalness, this.erosion, this.weirdness, this.noise, this.riverValue, this.rivers, this.minHeight, this.maxHeight, this.bankFade);
 	}
 
 	private static final class HeightCache {

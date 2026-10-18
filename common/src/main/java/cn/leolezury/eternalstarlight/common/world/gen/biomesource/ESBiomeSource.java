@@ -126,7 +126,7 @@ public class ESBiomeSource extends BiomeSource {
 		}
 		NoiseBinding binding = this.noiseBinding;
 		DensityFunction riverValue = binding == null ? this.riverValue.value() : binding.riverValue();
-		return RiverEntry.resolve(base, this.rivers, this.riverColumn.get().values(this.rivers, binding, riverValue, blockX, blockY, blockZ));
+		return RiverEntry.resolve(base, this.rivers, this.riverColumn.get().values(this.rivers, binding, riverValue, blockX, blockZ));
 	}
 
 	@Override
@@ -141,13 +141,13 @@ public class ESBiomeSource extends BiomeSource {
 		private final int[] zs = new int[COLUMNS];
 		private final float[][] values = new float[COLUMNS][];
 
-		private float[] values(List<RiverEntry> rivers, NoiseBinding binding, DensityFunction riverValue, int x, int y, int z) {
+		private float[] values(List<RiverEntry> rivers, NoiseBinding binding, DensityFunction riverValue, int x, int z) {
 			int index = ((x >> 2) & 3) | (((z >> 2) & 3) << 2);
 			if (this.bindings[index] != binding || this.xs[index] != x || this.zs[index] != z) {
 				this.bindings[index] = binding;
 				this.xs[index] = x;
 				this.zs[index] = z;
-				this.values[index] = RiverEntry.values(rivers, riverValue, x, y, z);
+				this.values[index] = RiverEntry.values(rivers, riverValue, x, z);
 			}
 			return this.values[index];
 		}
