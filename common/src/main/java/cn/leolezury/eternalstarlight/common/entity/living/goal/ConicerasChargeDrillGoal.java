@@ -1,9 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.goal;
 
-import cn.leolezury.eternalstarlight.common.client.sound.DrillSoundInstance;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Charger;
-import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
@@ -14,6 +11,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
 
+// TODO: OVERHAUL CHARGE GOALS
 public class ConicerasChargeDrillGoal extends Goal {
 	private final PathfinderMob charger;
 	private final double speed;
@@ -92,7 +90,8 @@ public class ConicerasChargeDrillGoal extends Goal {
 			charger.walkAnimation.setSpeed(charger.walkAnimation.speed() + 0.5F);
 			if (charger instanceof Charger chargingMob) {
 				chargingMob.setCharging(true);
-				Minecraft.getInstance().getSoundManager().play(new DrillSoundInstance(ESSoundEvents.CONICERAS_DRILL.get(), charger, charger.position()));
+				// TODO: FIX ME
+				// Minecraft.getInstance().getSoundManager().play(new DrillSoundInstance(ESSoundEvents.CONICERAS_DRILL.get(), charger, charger.position()));
 			}
 		} else if (charger.distanceToSqr(target) <= (double) attackRange * attackRange) {
 			holdPosition();
