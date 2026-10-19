@@ -1,0 +1,41 @@
+{
+  "type": "eternal_starlight:alloy",
+  "burn_time": 400,
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "eternal_starlight:magic_stone"
+    }
+  ],
+  "results": [
+    {
+      "amount": 8,
+      "item": {
+        "id": "eternal_starlight:starcore"
+      }
+    }
+  ]
+}

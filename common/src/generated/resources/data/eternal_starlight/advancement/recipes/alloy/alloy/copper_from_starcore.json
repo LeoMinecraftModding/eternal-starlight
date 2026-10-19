@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_magic_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:magic_stone"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_starcore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:starcore"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:alloy/copper_from_starcore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_starcore",
+      "has_magic_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:alloy/copper_from_starcore"
+    ]
+  }
+}

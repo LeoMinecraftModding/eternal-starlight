@@ -643,33 +643,61 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(ESItems.SOUL_DEW.get()), ESItems.SOUL_DEW.get())
 			.save(recipeOutput, EternalStarlight.id("alloy/unrealium"));
 
-		AlloyRecipeBuilder.alloy(Items.IRON_INGOT.getDefaultInstance(), 1, 400)
-			.requires(ESItems.DEEPSILVER_INGOT.get())
+		AlloyRecipeBuilder.alloy(Items.IRON_INGOT.getDefaultInstance(), 8, 400)
+			.requires(ESItems.DEEPSILVER_INGOT.get(), 8)
 			.requires(ESItems.MAGIC_STONE.get())
 			.unlockedBy(getHasName(ESItems.DEEPSILVER_INGOT.get()), ESItems.DEEPSILVER_INGOT.get())
 			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
 			.save(recipeOutput, EternalStarlight.id("alloy/iron_from_deepsilver"));
 
-		AlloyRecipeBuilder.alloy(ESItems.DEEPSILVER_INGOT.get().getDefaultInstance(), 1, 400)
-			.requires(Items.IRON_INGOT)
+		AlloyRecipeBuilder.alloy(ESItems.DEEPSILVER_INGOT.get().getDefaultInstance(), 8, 400)
+			.requires(Items.IRON_INGOT, 8)
 			.requires(ESItems.MAGIC_STONE.get())
 			.unlockedBy(getHasName(Items.IRON_INGOT), Items.IRON_INGOT)
 			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
 			.save(recipeOutput, EternalStarlight.id("alloy/deepsilver_from_iron"));
 
-		AlloyRecipeBuilder.alloy(Items.DIAMOND.getDefaultInstance(), 1, 400)
-			.requires(ESItems.STARLIT_DIAMOND.get())
+		AlloyRecipeBuilder.alloy(Items.DIAMOND.getDefaultInstance(), 8, 400)
+			.requires(ESItems.STARLIT_DIAMOND.get(), 8)
 			.requires(ESItems.MAGIC_STONE.get())
 			.unlockedBy(getHasName(ESItems.STARLIT_DIAMOND.get()), ESItems.STARLIT_DIAMOND.get())
 			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
 			.save(recipeOutput, EternalStarlight.id("alloy/diamond_from_starlit_diamond"));
 
-		AlloyRecipeBuilder.alloy(ESItems.STARLIT_DIAMOND.get().getDefaultInstance(), 1, 400)
-			.requires(Items.DIAMOND)
+		AlloyRecipeBuilder.alloy(ESItems.STARLIT_DIAMOND.get().getDefaultInstance(), 8, 400)
+			.requires(Items.DIAMOND, 8)
 			.requires(ESItems.MAGIC_STONE.get())
 			.unlockedBy(getHasName(Items.DIAMOND), Items.DIAMOND)
 			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
 			.save(recipeOutput, EternalStarlight.id("alloy/starlit_diamond_from_diamond"));
+
+		AlloyRecipeBuilder.alloy(Items.COAL.getDefaultInstance(), 8, 400)
+			.requires(ESItems.SALTPETER_POWDER.get(), 8)
+			.requires(ESItems.MAGIC_STONE.get())
+			.unlockedBy(getHasName(ESItems.SALTPETER_POWDER.get()), ESItems.SALTPETER_POWDER.get())
+			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
+			.save(recipeOutput, EternalStarlight.id("alloy/coal_from_saltpeter"));
+
+		AlloyRecipeBuilder.alloy(ESItems.SALTPETER_POWDER.get().getDefaultInstance(), 8, 400)
+			.requires(Items.COAL, 8)
+			.requires(ESItems.MAGIC_STONE.get())
+			.unlockedBy(getHasName(Items.COAL), Items.COAL)
+			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
+			.save(recipeOutput, EternalStarlight.id("alloy/saltpeter_from_coal"));
+
+		AlloyRecipeBuilder.alloy(Items.COPPER_INGOT.getDefaultInstance(), 8, 400)
+			.requires(ESItems.STARCORE.get(), 8)
+			.requires(ESItems.MAGIC_STONE.get())
+			.unlockedBy(getHasName(ESItems.STARCORE.get()), ESItems.STARCORE.get())
+			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
+			.save(recipeOutput, EternalStarlight.id("alloy/copper_from_starcore"));
+
+		AlloyRecipeBuilder.alloy(ESItems.STARCORE.get().getDefaultInstance(), 8, 400)
+			.requires(Items.COPPER_INGOT, 8)
+			.requires(ESItems.MAGIC_STONE.get())
+			.unlockedBy(getHasName(Items.COPPER_INGOT), Items.COPPER_INGOT)
+			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
+			.save(recipeOutput, EternalStarlight.id("alloy/starcore_from_copper"));
 
 		AlloyRecipeBuilder.alloy(ESItems.GOLEM_STEEL_INGOT.get().getDefaultInstance(), 1, 400)
 			.requires(ESConventionalTags.Items.INGOTS_DEEPSILVER, 3)

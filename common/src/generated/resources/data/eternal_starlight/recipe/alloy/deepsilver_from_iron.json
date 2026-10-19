@@ -6,12 +6,33 @@
       "item": "minecraft:iron_ingot"
     },
     {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
       "item": "eternal_starlight:magic_stone"
     }
   ],
   "results": [
     {
-      "amount": 1,
+      "amount": 8,
       "item": {
         "id": "eternal_starlight:deepsilver_ingot"
       }
