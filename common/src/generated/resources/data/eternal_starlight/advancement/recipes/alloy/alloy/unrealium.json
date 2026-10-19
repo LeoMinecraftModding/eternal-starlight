@@ -27,11 +27,11 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_malarite": {
+    "has_magic_stone": {
       "conditions": {
         "items": [
           {
-            "items": "#c:gems/malarite"
+            "items": "eternal_starlight:magic_stone"
           },
           {
             "items": "#eternal_starlight:alloy_furnaces"
@@ -65,7 +65,7 @@
       "has_the_recipe",
       "has_deepsilver_ingot",
       "has_golem_steel_nugget",
-      "has_malarite",
+      "has_magic_stone",
       "has_soul_dew"
     ]
   ],

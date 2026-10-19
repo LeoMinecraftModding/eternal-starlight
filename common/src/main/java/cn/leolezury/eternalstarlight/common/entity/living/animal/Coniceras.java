@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
+import cn.leolezury.eternalstarlight.common.client.sound.DrillSoundInstance;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Charger;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.ConicerasChargeDrillGoal;
@@ -49,7 +50,9 @@ public class Coniceras extends WaterAnimal implements Charger {
 
 	@Override
 	public void setCharging(boolean charging) {
-		this.getEntityData().set(CHARGING, charging);
+		if (charging != this.isCharging()) {
+			this.getEntityData().set(CHARGING, charging);
+		}
 	}
 
 	public AnimationState chargeAnimationState = new AnimationState();
@@ -81,7 +84,7 @@ public class Coniceras extends WaterAnimal implements Charger {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new TryFindWaterGoal(this));
 		this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, TwilightGaze.class, 8.0F, 1.6, 1.4));
-		this.goalSelector.addGoal(3, new ConicerasChargeDrillGoal(this, 6f, 2.0f, 16.0));
+		this.goalSelector.addGoal(3, new ConicerasChargeDrillGoal(this, 6f, 2.0f, 16.0, 3));
 		this.goalSelector.addGoal(4, new RandomSwimmingGoal(this, 1.0, 7));
 	}
 
@@ -128,8 +131,14 @@ public class Coniceras extends WaterAnimal implements Charger {
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
 		super.onSyncedDataUpdated(accessor);
-		if (accessor.equals(CHARGING) && isCharging()) {
+		if (!accessor.equals(CHARGING)) {
+			return;
+		}
+		if (isCharging()) {
 			chargeAnimationState.start(tickCount);
+			if (this.level().isClientSide) {
+				DrillSoundInstance.playFor(this);
+			}
 		}
 	}
 

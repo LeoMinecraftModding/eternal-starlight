@@ -284,6 +284,7 @@ public class ESCommonSetupHandler {
 		DispenserBlock.registerProjectileBehavior(ESItems.FROZEN_BOMB.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.STARFIRE.get());
 		DispenserBlock.registerProjectileBehavior(ESItems.GLEECH_EGG.get());
+		DispenserBlock.registerProjectileBehavior(ESItems.MAGIC_STONE.get());
 		DispenserBlock.registerBehavior(ESItems.LUNAR_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.LUNAR));
 		DispenserBlock.registerBehavior(ESItems.LUNAR_CHEST_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.LUNAR, true));
 		DispenserBlock.registerBehavior(ESItems.NORTHLAND_BOAT.get(), new ESBoatDispenseItemBehavior(ESBoat.Type.NORTHLAND));

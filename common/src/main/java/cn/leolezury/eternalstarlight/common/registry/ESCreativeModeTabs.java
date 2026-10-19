@@ -837,6 +837,7 @@ public class ESCreativeModeTabs {
 	public static final List<Supplier<Item>> COMBAT_ITEMS = List.of(
 		ESItems.ASHEN_SNOWBALL,
 		ESItems.FROZEN_BOMB,
+		ESItems.MAGIC_STONE,
 		ESItems.AETHERSENT_ARROW,
 		ESItems.RAGE_OF_STARS,
 		ESItems.STARFALL_LONGBOW,
@@ -1025,7 +1026,6 @@ public class ESCreativeModeTabs {
 		ESItems.SHADOW_SNAIL_SHELL_POWDER,
 		ESItems.SHIVERING_GEL,
 		ESItems.NIGHTFALL_SPIDER_EYE,
-		ESItems.MAGIC_STONE,
 		ESItems.TOOTH_OF_HUNGER,
 		ESItems.SEEKING_EYE,
 		ESItems.GOLEM_STEEL_INGOT,

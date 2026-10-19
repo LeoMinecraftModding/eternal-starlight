@@ -1126,7 +1126,7 @@ public class ESItems {
 	public static final RegistryObject<Item, Item> SEEKER_TENTACLE = ITEMS.register("seeker_tentacle", () -> new Item(new Item.Properties().food(ESFoods.SEEKER_TENTACLE.get())));
 	public static final RegistryObject<Item, Item> TENTACLE_SPIKE = ITEMS.register("tentacle_spike", () -> new TentacleSpikeItem(ESItemTiers.TENTACLE_SPIKE, new Item.Properties().attributes(WhipItem.createAttributes(ESItemTiers.TENTACLE_SPIKE, 2.8F, -3.0F))));
 
-	public static final RegistryObject<Item, Item> MAGIC_STONE = ITEMS.register("magic_stone", () -> new Item(new Item.Properties()));
+	public static final RegistryObject<Item, Item> MAGIC_STONE = ITEMS.register("magic_stone", () -> new MagicStoneItem(new Item.Properties()));
 
 	public static final RegistryObject<Item, Item> TANGLED_SKULL = ITEMS.register("tangled_skull", () -> new TangledSkullItem(ESBlocks.TANGLED_SKULL.get(), ESBlocks.TANGLED_WALL_SKULL.get(), new Item.Properties().rarity(Rarity.UNCOMMON), Direction.DOWN));
 
