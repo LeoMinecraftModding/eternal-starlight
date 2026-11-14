@@ -2,20 +2,17 @@ package cn.leolezury.eternalstarlight.common.client.sound;
 
 import cn.leolezury.eternalstarlight.common.entity.living.animal.Coniceras;
 import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.sounds.SoundSource;
 
-@Environment(EnvType.CLIENT)
-public class DrillSoundInstance extends AbstractTickableSoundInstance {
+public class ConicerasDrillSoundInstance extends AbstractTickableSoundInstance {
 	private static final float VOLUME_STEP = 0.05F;
 
 	private final Coniceras mob;
 
-	public DrillSoundInstance(Coniceras mob) {
+	public ConicerasDrillSoundInstance(Coniceras mob) {
 		super(ESSoundEvents.CONICERAS_DRILL.get(), SoundSource.NEUTRAL, SoundInstance.createUnseededRandom());
 		this.mob = mob;
 		this.looping = true;
@@ -27,7 +24,7 @@ public class DrillSoundInstance extends AbstractTickableSoundInstance {
 
 	public static void playFor(Coniceras mob) {
 		if (!mob.isSilent()) {
-			Minecraft.getInstance().getSoundManager().play(new DrillSoundInstance(mob));
+			Minecraft.getInstance().getSoundManager().play(new ConicerasDrillSoundInstance(mob));
 		}
 	}
 

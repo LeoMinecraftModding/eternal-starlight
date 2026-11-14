@@ -12,8 +12,12 @@ import cn.leolezury.eternalstarlight.common.client.gui.toast.SimpleTextToast;
 import cn.leolezury.eternalstarlight.common.client.handler.ESClientHandler;
 import cn.leolezury.eternalstarlight.common.client.particle.advanced.AdvancedParticleOptions;
 import cn.leolezury.eternalstarlight.common.client.posteffect.WorldPostEffectManager;
+import cn.leolezury.eternalstarlight.common.client.sound.ConicerasDrillSoundInstance;
+import cn.leolezury.eternalstarlight.common.client.sound.CreteorChargeSoundInstance;
 import cn.leolezury.eternalstarlight.common.client.weather.ClientWeatherState;
+import cn.leolezury.eternalstarlight.common.entity.living.animal.Coniceras;
 import cn.leolezury.eternalstarlight.common.entity.living.boss.gatekeeper.TheGatekeeper;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.Creteor;
 import cn.leolezury.eternalstarlight.common.entity.projectile.SoulitSpectator;
 import cn.leolezury.eternalstarlight.common.item.component.GuideBook;
 import cn.leolezury.eternalstarlight.common.network.*;
@@ -238,14 +242,17 @@ public class ClientSideHelper extends ClientHelper {
 	}
 
 	@Override
-	public float getWeatherStateRainLevel() {
-		float partialTick = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(Minecraft.getInstance().level != null && Minecraft.getInstance().level.tickRateManager().runsNormally());
-		ClientWeatherState.levelTarget = 1;
-		return ClientWeatherState.getRainLevel(partialTick);
+	public void openSeekingEyeGui() {
+		Minecraft.getInstance().setScreen(new SeekingEyeScreen());
 	}
 
 	@Override
-	public void openSeekingEyeGui() {
-		Minecraft.getInstance().setScreen(new SeekingEyeScreen());
+	public void playConicerasDrillSound(Coniceras mob) {
+		ConicerasDrillSoundInstance.playFor(mob);
+	}
+
+	@Override
+	public void playCreteorChargeSound(Creteor mob) {
+		CreteorChargeSoundInstance.playFor(mob);
 	}
 }

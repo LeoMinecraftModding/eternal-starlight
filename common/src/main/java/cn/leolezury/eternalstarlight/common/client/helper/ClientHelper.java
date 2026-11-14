@@ -1,5 +1,7 @@
 package cn.leolezury.eternalstarlight.common.client.helper;
 
+import cn.leolezury.eternalstarlight.common.entity.living.animal.Coniceras;
+import cn.leolezury.eternalstarlight.common.entity.living.monster.Creteor;
 import cn.leolezury.eternalstarlight.common.network.*;
 import net.minecraft.world.phys.Vec3;
 
@@ -52,11 +54,15 @@ public class ClientHelper {
 
 	}
 
-	public float getWeatherStateRainLevel() {
-		return 0;
+	public void openSeekingEyeGui() {
+
 	}
 
-	public void openSeekingEyeGui() {
+	public void playConicerasDrillSound(Coniceras mob) {
+
+	}
+
+	public void playCreteorChargeSound(Creteor mob) {
 
 	}
 }

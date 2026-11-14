@@ -1,5 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.monster;
 
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.network.ParticlePacket;
 import cn.leolezury.eternalstarlight.common.particle.ExplosionShockParticleOptions;
@@ -111,6 +112,14 @@ public class Creteor extends Monster implements PowerableMob {
 	}
 
 	@Override
+	public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
+		super.onSyncedDataUpdated(accessor);
+		if (accessor.equals(SWELL) && this.level().isClientSide && getSwell() >= 80) {
+			EternalStarlight.getClientHelper().playCreteorChargeSound(this);
+		}
+	}
+
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new CreteorDoNothingGoal());
 		this.goalSelector.addGoal(1, new FloatGoal(this));
@@ -189,9 +198,6 @@ public class Creteor extends Monster implements PowerableMob {
 					setDeltaMovement(new Vec3(0, 0.1, 0));
 				} else {
 					setDeltaMovement(Vec3.ZERO);
-				}
-				if (spinTicks == 1) {
-					playSound(ESSoundEvents.CRETEOR_CHARGE.get());
 				}
 				if (spinTicks > 80) {
 					explode();

@@ -1,6 +1,6 @@
 package cn.leolezury.eternalstarlight.common.entity.living.animal;
 
-import cn.leolezury.eternalstarlight.common.client.sound.DrillSoundInstance;
+import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.entity.interfaces.Charger;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.ConicerasChargeDrillGoal;
@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+// TODO: ORGANIZE THIS
 public class Coniceras extends WaterAnimal implements Charger {
 	public float xBodyRot;
 	public float xBodyRotO;
@@ -136,9 +137,7 @@ public class Coniceras extends WaterAnimal implements Charger {
 		}
 		if (isCharging()) {
 			chargeAnimationState.start(tickCount);
-			if (this.level().isClientSide) {
-				DrillSoundInstance.playFor(this);
-			}
+			EternalStarlight.getClientHelper().playConicerasDrillSound(this);
 		}
 	}
 
