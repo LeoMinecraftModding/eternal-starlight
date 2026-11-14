@@ -38,8 +38,14 @@ public class EtherConversionCategory extends AbstractRecipeCategory<RecipeHolder
 	public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<EtherConversionRecipe> recipeHolder, IFocusGroup focuses) {
 		EtherConversionRecipe recipe = recipeHolder.value();
 
-		List<ItemStack> ingredients = Arrays.asList(recipe.input().getItems());
-		ingredients.forEach(stack -> stack.applyComponents(recipe.components().asPatch()));
+		var patch = recipe.components().asPatch();
+		List<ItemStack> ingredients = Arrays.stream(recipe.input().getItems())
+			.map(stack -> {
+				ItemStack copy = stack.copy();
+				copy.applyComponents(patch);
+				return copy;
+			})
+			.toList();
 
 		builder.addInputSlot(1, 14)
 			.setStandardSlotBackground()
