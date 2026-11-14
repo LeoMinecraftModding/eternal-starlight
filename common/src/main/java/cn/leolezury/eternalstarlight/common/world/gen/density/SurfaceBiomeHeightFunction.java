@@ -7,7 +7,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
-import net.minecraft.core.QuartPos;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.Climate;
@@ -149,7 +148,7 @@ public final class SurfaceBiomeHeightFunction implements DensityFunction {
 	}
 
 	private double rawHeight(int x, int z) {
-		DensityFunction.SinglePointContext climateContext = new DensityFunction.SinglePointContext(QuartPos.fromBlock(x), 0, QuartPos.fromBlock(z));
+		DensityFunction.SinglePointContext climateContext = new DensityFunction.SinglePointContext(x, 0, z);
 		Climate.TargetPoint target = Climate.target(
 			(float) this.temperature.compute(climateContext),
 			(float) this.humidity.compute(climateContext),

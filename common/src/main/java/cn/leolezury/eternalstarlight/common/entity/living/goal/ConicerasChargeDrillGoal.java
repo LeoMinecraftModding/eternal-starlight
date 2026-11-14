@@ -15,26 +15,16 @@ import java.util.EnumSet;
 
 // TODO: OVERHAUL CHARGE GOALS
 public class ConicerasChargeDrillGoal extends Goal {
-//	private final PathfinderMob charger;
-//	private final double speed;
-//	private final double targetBoatRange;
-//	private final float attackRange;
-//	private int attackCooldown;
-//	private int runningTicks;
-//	private Entity target;
-// ===== 阶段常量 =====
-	private static final int WINDUP_TICKS = 40;          // 蓄力时长
-	private static final int MAX_DURATION = 120;         // 总持续时长
-	private static final int DECAY_START = 90;           // 开始减速的 tick
-	private static final int DECAY_DURATION = 30;        // 减速持续时间
+	private static final int WINDUP_TICKS = 40;
+	private static final int MAX_DURATION = 120;
+	private static final int DECAY_START = 90;
+	private static final int DECAY_DURATION = 30;
 	private static final double MAX_LIVING_TARGET_DISTANCE = 20.0D;
 
-	// ===== 运动常量 =====
 	private static final double DASH_SPEED_FACTOR = 0.1D;
 	private static final double HOLD_SINK_SPEED = -0.005D;
 	private static final float WINDUP_ANIM_SPEED = 0.5F;
 
-	// ===== 攻击常量 =====
 	private static final int ATTACK_INTERVAL = 2;
 
 	private final PathfinderMob charger;
