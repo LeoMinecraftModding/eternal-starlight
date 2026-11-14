@@ -70,7 +70,7 @@ public abstract class EtherFluid extends FlowingFluid {
 
 	@Override
 	protected boolean canBeReplacedWith(FluidState fluidState, BlockGetter blockGetter, BlockPos blockPos, Fluid fluid, Direction direction) {
-		return direction == Direction.DOWN && !fluidState.is(FluidTags.WATER);
+		return direction == Direction.DOWN && !isSame(fluid);
 	}
 
 	@Override
