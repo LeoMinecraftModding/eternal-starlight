@@ -24,9 +24,12 @@ public class EtherConversionEmiRecipe extends BasicEmiRecipe {
 		super(ESEmiPlugin.ETHER_CONVERSION, holder.id(), holder.value().outputs().size() > 8 ? 142 : 130, 44);
 		EtherConversionRecipe recipe = holder.value();
 
-		List<ItemStack> ingredients = Arrays.asList(recipe.input().getItems());
-		ingredients.forEach(stack -> stack.applyComponents(recipe.components().asPatch()));
-		ingredients.forEach(stack -> this.inputs.add(EmiStack.of(stack)));
+		var patch = recipe.components().asPatch();
+		Arrays.stream(recipe.input().getItems()).forEach(stack -> {
+			ItemStack copy = stack.copy();
+			copy.applyComponents(patch);
+			this.inputs.add(EmiStack.of(copy));
+		});
 
 		int totalWeight = 0;
 		for (EtherConversionRecipe.WeightedOutput output : recipe.outputs()) {
