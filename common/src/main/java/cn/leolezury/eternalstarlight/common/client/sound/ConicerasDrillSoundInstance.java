@@ -13,10 +13,9 @@ public class ConicerasDrillSoundInstance extends AbstractTickableSoundInstance {
 	private final Coniceras mob;
 
 	public ConicerasDrillSoundInstance(Coniceras mob) {
-		super(ESSoundEvents.CONICERAS_DRILL.get(), SoundSource.NEUTRAL, SoundInstance.createUnseededRandom());
+		super(ESSoundEvents.CONICERAS_DRILL.get(), mob.getSoundSource(), SoundInstance.createUnseededRandom());
 		this.mob = mob;
 		this.looping = true;
-		this.volume = 0.0F;
 		this.x = mob.getX();
 		this.y = mob.getY();
 		this.z = mob.getZ();
