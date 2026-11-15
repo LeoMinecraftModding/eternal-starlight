@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:milk_bucket",
+          "name": "eternal_starlight:lunaris_cactus_gel",
           "weight": 10
         },
         {
