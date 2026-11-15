@@ -97,7 +97,7 @@ public record ESChestLootSubProvider(HolderLookup.Provider registries) implement
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(4))
-					.add(LootItem.lootTableItem(Items.MILK_BUCKET).setWeight(10))
+					.add(LootItem.lootTableItem(ESItems.LUNARIS_CACTUS_GEL.get()).setWeight(10))
 					.add(LootItem.lootTableItem(ESItems.AMARAMBER_ARROW.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(15, 30))).setWeight(40))
 					.add(LootItem.lootTableItem(ESItems.GLOWING_LUNAR_GRASS.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(25))
 					.add(LootItem.lootTableItem(ESItems.GLOWING_PARASOL_GRASS.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))).setWeight(25))
