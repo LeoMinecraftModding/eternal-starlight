@@ -1765,8 +1765,8 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_DEEPSILVER))
 			.save(recipeOutput, EternalStarlight.id("shield_from_deepsilver_ingot"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Items.SHEARS)
-			.pattern("# ")
 			.pattern(" #")
+			.pattern("# ")
 			.define('#', ESConventionalTags.Items.INGOTS_DEEPSILVER)
 			.unlockedBy("has_item", has(ESConventionalTags.Items.INGOTS_DEEPSILVER))
 			.save(recipeOutput, EternalStarlight.id("shears_from_deepsilver_ingot"));

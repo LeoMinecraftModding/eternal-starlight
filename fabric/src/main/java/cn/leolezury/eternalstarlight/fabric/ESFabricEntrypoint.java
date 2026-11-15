@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
@@ -97,9 +98,9 @@ public class ESFabricEntrypoint implements ModInitializer {
 		ESCommonSetupHandler.addReloadListeners(listener -> ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener((IdentifiableResourceReloadListener) listener));
 
 		// common handlers
-		ServerTickEvents.END_SERVER_TICK.register(ESCommonHandler::onServerTick);
 		ServerTickEvents.START_WORLD_TICK.register(ESCommonHandler::onLevelTick);
 		ServerWorldEvents.LOAD.register((server, world) -> ESCommonHandler.onLevelLoad(world));
+		ServerLifecycleEvents.SERVER_STOPPED.register(server -> ESCommonHandler.onServerStopped());
 		ServerPlayerEvents.JOIN.register(ESCommonHandler::onPlayerJoin);
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> ESCommonHandler.onBlockBroken(player, pos, state));
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register(ESCommonHandler::onAllowLivingHurt);

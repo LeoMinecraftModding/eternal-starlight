@@ -1853,5 +1853,6 @@
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling": "Alloy Furnace Cooling",
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "%sx Overheat Time",
   "gui.eternal_starlight.jei.category.ether_conversion": "Ether Conversion",
-  "gui.eternal_starlight.jei.category.ether_conversion.chance": "Chance: %s%%"
+  "gui.eternal_starlight.jei.category.ether_conversion.chance": "Chance: %s%%",
+  "gui.eternal_starlight.jei.tool_modification.damaged": "Damaged by 1 when used"
 }

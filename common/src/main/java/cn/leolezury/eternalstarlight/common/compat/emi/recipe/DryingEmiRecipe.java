@@ -39,7 +39,7 @@ public class DryingEmiRecipe extends BasicEmiRecipe {
 		widgets.addSlot(inputs.getFirst(), 0, 8);
 		widgets.addSlot(outputs.getFirst(), 56, 4).large(true).recipeContext(this);
 		if (!fireBelow.isEmpty()) {
-			// purely informative: the rack has to sit above a lit campfire
+			// purely informative
 			widgets.addSlot(fireBelow, 0, 27);
 		}
 		if (durationTicks > 0) {

@@ -3,6 +3,8 @@ package cn.leolezury.eternalstarlight.common.util;
 import cn.leolezury.eternalstarlight.common.item.component.Accessory;
 import cn.leolezury.eternalstarlight.common.item.component.ItemStackList;
 import cn.leolezury.eternalstarlight.common.registry.ESDataComponents;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
@@ -91,5 +93,50 @@ public class ESAccessoryUtil {
 		} else {
 			return false;
 		}
+	}
+
+	public static ItemStack copyAndApplyAccessory(ItemStack equipmentStack, ItemStack accessoryStack) {
+		Accessory data = accessoryStack.get(ESDataComponents.ACCESSORY.get());
+		if (!(data != null && !equipmentStack.isEmpty() && equipmentStack.is(data.combinationTarget()))) {
+			return ItemStack.EMPTY;
+		}
+		ItemStack result = equipmentStack.copy();
+		applyAccessory(result, accessoryStack);
+		return result;
+	}
+
+	public static List<ItemStack> getAccessoryItems() {
+		List<ItemStack> items = new ArrayList<>();
+		for (Item item : BuiltInRegistries.ITEM) {
+			ItemStack stack = item.getDefaultInstance();
+			if (stack.has(ESDataComponents.ACCESSORY.get())) {
+				items.add(stack);
+			}
+		}
+		return items;
+	}
+
+	public static List<ItemStack> getCombinationTargets(ItemStack accessory) {
+		List<ItemStack> targets = new ArrayList<>();
+		Accessory data = accessory.get(ESDataComponents.ACCESSORY.get());
+		if (data == null) {
+			return targets;
+		}
+		for (Holder<Item> target : BuiltInRegistries.ITEM.getTagOrEmpty(data.combinationTarget())) {
+			targets.add(target.value().getDefaultInstance());
+		}
+		return targets;
+	}
+
+	public static List<ItemStack> getAllCombinationTargets() {
+		List<ItemStack> targets = new ArrayList<>();
+		for (ItemStack accessory : getAccessoryItems()) {
+			for (ItemStack candidate : getCombinationTargets(accessory)) {
+				if (targets.stream().noneMatch(existing -> existing.is(candidate.getItem()))) {
+					targets.add(candidate);
+				}
+			}
+		}
+		return targets;
 	}
 }

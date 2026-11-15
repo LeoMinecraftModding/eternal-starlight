@@ -10,10 +10,6 @@ import net.minecraft.world.inventory.Slot;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Lets EMI's fill button move ingredients into the alloy furnace, for the alloy grid as well as the
- * single fuel and cooling slots.
- */
 public class AlloyFurnaceEmiRecipeHandler implements StandardRecipeHandler<AlloyFurnaceMenu> {
 	@Override
 	public List<Slot> getInputSources(AlloyFurnaceMenu menu) {

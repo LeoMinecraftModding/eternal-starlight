@@ -26,19 +26,14 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
-import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.Map;
 
 @EventBusSubscriber(modid = EternalStarlight.ID)
 public class CommonEvents {
-	@SubscribeEvent
-	private static void onServerTick(ServerTickEvent.Post event) {
-		ESCommonHandler.onServerTick(event.getServer());
-	}
-
 	@SubscribeEvent
 	private static void onLevelTick(LevelTickEvent.Post event) {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
@@ -51,6 +46,11 @@ public class CommonEvents {
 		if (event.getLevel() instanceof ServerLevel serverLevel) {
 			ESCommonHandler.onLevelLoad(serverLevel);
 		}
+	}
+
+	@SubscribeEvent
+	private static void onServerStopped(ServerStoppedEvent event) {
+		ESCommonHandler.onServerStopped();
 	}
 
 	@SubscribeEvent

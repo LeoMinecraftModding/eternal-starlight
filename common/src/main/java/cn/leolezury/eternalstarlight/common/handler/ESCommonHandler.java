@@ -48,7 +48,6 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.protocol.game.ClientboundLevelEventPacket;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
@@ -115,8 +114,9 @@ public class ESCommonHandler {
 
 	private static final AttributeModifier AMARAMBER_BONUS = new AttributeModifier(EternalStarlight.id("armor.amaramber_bonus"), 7, AttributeModifier.Operation.ADD_VALUE);
 
-	public static void onServerTick(MinecraftServer server) {
-
+	public static void onServerStopped() {
+		starlightWeathers = null;
+		lastWeather = null;
 	}
 
 	public static void onLevelLoad(ServerLevel serverLevel) {

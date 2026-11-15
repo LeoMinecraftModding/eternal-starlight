@@ -4,8 +4,12 @@ import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolant;
 import cn.leolezury.eternalstarlight.common.client.gui.screen.AlloyFurnaceScreen;
 import cn.leolezury.eternalstarlight.common.compat.jei.category.*;
+import cn.leolezury.eternalstarlight.common.compat.jei.extension.AccessoryCombinationExtension;
+import cn.leolezury.eternalstarlight.common.compat.jei.extension.ToolModificationExtension;
 import cn.leolezury.eternalstarlight.common.compat.jei.recipe.AlloyFurnaceCoolingRecipe;
 import cn.leolezury.eternalstarlight.common.item.menu.AlloyFurnaceMenu;
+import cn.leolezury.eternalstarlight.common.item.recipe.AccessoryCombinationRecipe;
+import cn.leolezury.eternalstarlight.common.item.recipe.ToolModificationRecipe;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMenuTypes;
@@ -15,6 +19,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
+import mezz.jei.api.recipe.category.extensions.vanilla.crafting.IExtendableCraftingRecipeCategory;
 import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -45,6 +50,13 @@ public class ESJeiPlugin implements IModPlugin {
 			registration.addRecipes(EtherConversionCategory.ETHER_CONVERSION, manager.getAllRecipesFor(ESRecipes.ETHER_CONVERSION.get()));
 			registration.addRecipes(AlloyFurnaceCoolingCategory.ALLOY_FURNACE_COOLING, AlloyFurnaceCoolant.getCoolantMap(Minecraft.getInstance().level.registryAccess()).entrySet().stream().map(entry -> new AlloyFurnaceCoolingRecipe(entry.getKey(), entry.getValue())).toList());
 		}
+	}
+
+	@Override
+	public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
+		IExtendableCraftingRecipeCategory crafting = registration.getCraftingCategory();
+		crafting.addExtension(ToolModificationRecipe.class, new ToolModificationExtension());
+		crafting.addExtension(AccessoryCombinationRecipe.class, new AccessoryCombinationExtension());
 	}
 
 	@Override

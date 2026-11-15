@@ -63,8 +63,33 @@ public class ToolModificationRecipe extends CustomRecipe {
 	}
 
 	@Override
+	public NonNullList<Ingredient> getIngredients() {
+		NonNullList<Ingredient> ingredients = NonNullList.create();
+		ingredients.add(Ingredient.of(this.tool));
+		ingredients.add(Ingredient.of(this.input));
+		return ingredients;
+	}
+
+	@Override
+	public ItemStack getResultItem(HolderLookup.Provider provider) {
+		return this.output;
+	}
+
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return ESRecipeSerializers.TOOL_MODIFICATION.get();
+	}
+
+	public Item tool() {
+		return this.tool;
+	}
+
+	public Item input() {
+		return this.input;
+	}
+
+	public ItemStack output() {
+		return this.output;
 	}
 
 	public static class Serializer implements RecipeSerializer<ToolModificationRecipe> {

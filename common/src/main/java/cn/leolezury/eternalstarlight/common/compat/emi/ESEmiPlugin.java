@@ -3,10 +3,13 @@ package cn.leolezury.eternalstarlight.common.compat.emi;
 import cn.leolezury.eternalstarlight.common.EternalStarlight;
 import cn.leolezury.eternalstarlight.common.block.AlloyFurnaceCoolant;
 import cn.leolezury.eternalstarlight.common.compat.emi.recipe.*;
+import cn.leolezury.eternalstarlight.common.item.recipe.AccessoryCombinationRecipe;
+import cn.leolezury.eternalstarlight.common.item.recipe.ToolModificationRecipe;
 import cn.leolezury.eternalstarlight.common.registry.ESBlocks;
 import cn.leolezury.eternalstarlight.common.registry.ESItems;
 import cn.leolezury.eternalstarlight.common.registry.ESMenuTypes;
 import cn.leolezury.eternalstarlight.common.registry.ESRecipes;
+import cn.leolezury.eternalstarlight.common.util.ESAccessoryUtil;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
@@ -15,15 +18,17 @@ import dev.emi.emi.api.recipe.VanillaEmiRecipeCategories;
 import dev.emi.emi.api.render.EmiRenderable;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.ItemLike;
 
-/**
- * Native EMI support. Registered through the {@code emi} entrypoint on Fabric and through
- * {@link EmiEntrypoint} on NeoForge; mirrors the categories of
- * {@link cn.leolezury.eternalstarlight.common.compat.jei.ESJeiPlugin} and reuses its translation keys.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 @EmiEntrypoint
 public class ESEmiPlugin implements EmiPlugin {
 	public static final EmiRecipeCategory GEYSER_SMOKING = category("geyser_smoking", EmiStack.of(ESItems.ABYSSAL_GEYSER.get()));
@@ -64,6 +69,25 @@ public class ESEmiPlugin implements EmiPlugin {
 		AlloyFurnaceCoolant.getCoolantMap(Minecraft.getInstance().level.registryAccess()).forEach((item, cooling) -> registry.addRecipe(new AlloyFurnaceCoolingEmiRecipe(item, cooling)));
 		manager.getAllRecipesFor(ESRecipes.ETHER_CONVERSION.get()).forEach(holder -> registry.addRecipe(new EtherConversionEmiRecipe(holder)));
 
+		List<RecipeHolder<?>> specialCraftingRecipes = new ArrayList<>();
+		for (RecipeHolder<?> holder : manager.getRecipes()) {
+			if (holder.value() instanceof AccessoryCombinationRecipe || holder.value() instanceof ToolModificationRecipe) {
+				specialCraftingRecipes.add(holder);
+			}
+		}
+		for (RecipeHolder<?> original : specialCraftingRecipes) {
+			ResourceLocation id = original.id().withPrefix("/");
+			registry.removeRecipes(recipe -> recipe.getId() != null && recipe.getId().equals(original.id()));
+			if (original.value() instanceof AccessoryCombinationRecipe) {
+				for (ItemStack accessory : ESAccessoryUtil.getAccessoryItems()) {
+					ResourceLocation accessoryId = id.withSuffix("/" + BuiltInRegistries.ITEM.getKey(accessory.getItem()).getPath());
+					registry.addRecipe(new AccessoryCombinationEmiRecipe(accessoryId, accessory));
+				}
+			} else if (original.value() instanceof ToolModificationRecipe tool) {
+				registry.addRecipe(new ToolModificationEmiRecipe(id, tool));
+			}
+		}
+
 		registry.addRecipeHandler(ESMenuTypes.ALLOY_FURNACE.get(), new AlloyFurnaceEmiRecipeHandler());
 	}
 
@@ -74,7 +98,6 @@ public class ESEmiPlugin implements EmiPlugin {
 	}
 
 	private static EmiRecipeCategory category(String path, EmiRenderable icon) {
-		// the JEI keys are the ones Crowdin already translates, so both viewers share them
 		Component name = Component.translatable("gui." + EternalStarlight.ID + ".jei.category." + path);
 		return new EmiRecipeCategory(EternalStarlight.id(path), icon) {
 			@Override
