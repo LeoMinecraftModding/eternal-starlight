@@ -1853,5 +1853,6 @@
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling": "合金炉の冷却",
   "gui.eternal_starlight.jei.category.alloy_furnace_cooling.efficiency": "過熱時間：%s倍",
   "gui.eternal_starlight.jei.category.ether_conversion": "エーテルによる変換",
-  "gui.eternal_starlight.jei.category.ether_conversion.chance": "確率：%s%%"
+  "gui.eternal_starlight.jei.category.ether_conversion.chance": "確率：%s%%",
+  "gui.eternal_starlight.jei.tool_modification.damaged": "Damaged by 1 when used"
 }
