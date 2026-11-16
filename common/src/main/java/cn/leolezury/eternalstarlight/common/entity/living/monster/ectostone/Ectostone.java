@@ -98,6 +98,7 @@ public class Ectostone extends Monster implements MultiBehaviorUser, VariantHold
 		this.flyingMoveControl = new FlyingMoveControl(this, 5, true);
 		this.moveControl = this.flyingMoveControl;
 		this.setNoGravity(true);
+		this.setDormant(true);
 	}
 
 	@Override
