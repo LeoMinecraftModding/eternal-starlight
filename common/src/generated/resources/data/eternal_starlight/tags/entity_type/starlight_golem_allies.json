@@ -1,7 +1,7 @@
 {
   "values": [
+    "eternal_starlight:starlight_golem",
     "eternal_starlight:freeze",
-    "eternal_starlight:permafrost",
-    "eternal_starlight:starlight_golem"
+    "eternal_starlight:permafrost"
   ]
 }

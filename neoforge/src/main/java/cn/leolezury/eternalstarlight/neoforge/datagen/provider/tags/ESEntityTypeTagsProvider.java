@@ -40,6 +40,7 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.LONESTAR_SKELETON.get(),
 				ESEntities.NIGHTFALL_SPIDER.get(),
 				ESEntities.SEEKER.get(),
+				ESEntities.ECTOSTONE.get(),
 				ESEntities.THIRST_WALKER.get(),
 				ESEntities.CRETEOR.get(),
 				ESEntities.TINY_CRETEOR.get(),
@@ -58,8 +59,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 				ESEntities.ROOKFISH.get(),
 				ESEntities.LUMINOFISH.get(),
 				ESEntities.LUMINARIS.get(),
-				ESEntities.CONICERAS.get(),
 				ESEntities.TWILIGHT_GAZE.get(),
+				ESEntities.CONICERAS.get(),
 				ESEntities.FREEZE.get(),
 				ESEntities.PERMAFROST.get(),
 				ESEntities.TANGLED.get(),
@@ -67,15 +68,15 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			);
 		tag(ESTags.EntityTypes.STARLIGHT_GOLEM_ALLIES)
 			.add(
+				ESEntities.STARLIGHT_GOLEM.get(),
 				ESEntities.FREEZE.get(),
-				ESEntities.PERMAFROST.get(),
-				ESEntities.STARLIGHT_GOLEM.get()
+				ESEntities.PERMAFROST.get()
 			);
 		tag(ESTags.EntityTypes.LUNAR_MONSTROSITY_ALLIES)
 			.add(
+				ESEntities.LUNAR_MONSTROSITY.get(),
 				ESEntities.TANGLED.get(),
-				ESEntities.TANGLED_SKULL.get(),
-				ESEntities.LUNAR_MONSTROSITY.get()
+				ESEntities.TANGLED_SKULL.get()
 			);
 		tag(ESTags.EntityTypes.ABYSSAL_FIRE_IMMUNE)
 			.add(
@@ -112,8 +113,8 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 		tag(ESTags.EntityTypes.AETHERSENT_GOLEM_TARGETS)
 			.add(
 				ESEntities.SEEKER.get(),
-				ESEntities.TINY_CRETEOR.get(),
 				ESEntities.ECTOSTONE.get(),
+				ESEntities.TINY_CRETEOR.get(),
 				EntityType.PHANTOM
 			);
 		tag(ESTags.EntityTypes.SOLARIS_ISLES_INHABITANTS)
@@ -173,24 +174,24 @@ public class ESEntityTypeTagsProvider extends EntityTypeTagsProvider {
 			);
 		tag(EntityTypeTags.ARTHROPOD)
 			.add(
-				ESEntities.NIGHTFALL_SPIDER.get(),
-				ESEntities.GLEECH.get()
+				ESEntities.GLEECH.get(),
+				ESEntities.NIGHTFALL_SPIDER.get()
 			);
 		tag(EntityTypeTags.AQUATIC)
 			.add(
 				ESEntities.ROOKFISH.get(),
 				ESEntities.LUMINOFISH.get(),
 				ESEntities.LUMINARIS.get(),
-				ESEntities.CONICERAS.get(),
-				ESEntities.TWILIGHT_GAZE.get()
+				ESEntities.TWILIGHT_GAZE.get(),
+				ESEntities.CONICERAS.get()
 			);
 		tag(EntityTypeTags.CAN_BREATHE_UNDER_WATER)
 			.add(
 				ESEntities.ROOKFISH.get(),
 				ESEntities.LUMINOFISH.get(),
 				ESEntities.LUMINARIS.get(),
-				ESEntities.CONICERAS.get(),
-				ESEntities.TWILIGHT_GAZE.get()
+				ESEntities.TWILIGHT_GAZE.get(),
+				ESEntities.CONICERAS.get()
 			);
 		tag(EntityTypeTags.IMMUNE_TO_INFESTED)
 			.add(

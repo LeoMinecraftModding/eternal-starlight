@@ -163,6 +163,27 @@
         {
           "icon": {
             "count": 1,
+            "id": "eternal_starlight:ectostone_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:ectostone_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.ectostone",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
             "id": "eternal_starlight:thirst_walker_spawn_egg"
           },
           "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
@@ -563,6 +584,27 @@
             },
             {
               "content": "entity.eternal_starlight.twilight_gaze",
+              "translation": true
+            }
+          ]
+        },
+        {
+          "icon": {
+            "count": 1,
+            "id": "eternal_starlight:coniceras_spawn_egg"
+          },
+          "icon_frame": "eternal_starlight:textures/gui/screen/book/chapter_frame.png",
+          "icon_frame_height": 24,
+          "icon_frame_width": 24,
+          "jump_to": "eternal_starlight:coniceras_display",
+          "listening": [],
+          "text": [
+            {
+              "content": "${color: #acfffc}",
+              "translation": false
+            },
+            {
+              "content": "entity.eternal_starlight.coniceras",
               "translation": true
             }
           ]

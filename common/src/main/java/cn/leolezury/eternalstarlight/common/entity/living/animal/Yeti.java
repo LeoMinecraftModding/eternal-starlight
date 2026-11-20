@@ -186,7 +186,7 @@ public class Yeti extends Animal {
 	@Override
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemStack = player.getItemInHand(hand);
-		if (ESPlatform.INSTANCE.isShears(itemStack) && hasFur()) {
+		if (ESPlatform.INSTANCE.isShears(itemStack) && hasFur() && !isBaby()) {
 			if (!level().isClientSide) {
 				this.level().playSound(null, this, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1.0F, 1.0F);
 				this.gameEvent(GameEvent.SHEAR, player);

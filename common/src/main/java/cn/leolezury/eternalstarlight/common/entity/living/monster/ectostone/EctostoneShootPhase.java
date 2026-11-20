@@ -27,7 +27,7 @@ public class EctostoneShootPhase extends BehaviorPhase<Ectostone> {
 
 	@Override
 	public boolean canStart(Ectostone entity, boolean cooldownOver) {
-		return cooldownOver && !entity.isDormant() && canReachTarget(entity, 20);
+		return cooldownOver && !entity.isDormant() && canReachTarget(entity, 10);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class EctostoneShootPhase extends BehaviorPhase<Ectostone> {
 			Vec3 launchPos = entity.position().add(0, entity.getBbHeight() / 2f, 0);
 
 			if (entity.getBehaviorTicks() == 10) {
-				Vec3 direction = Vec3.directionFromRotation(0.0F, entity.yHeadRot).scale(0.8);
+				Vec3 direction = Vec3.directionFromRotation(0.0F, entity.yHeadRot).scale(0.4);
 				entity.setDeltaMovement(-direction.x(), 0.0, -direction.z());
 				Vec3 delta = aimPos.subtract(launchPos).normalize();
 				for (int i = 0; i < 4; i++) {

@@ -48,6 +48,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 		EternalStarlight.id("lonestar_skeleton_display"),
 		EternalStarlight.id("nightfall_spider_display"),
 		EternalStarlight.id("seeker_display"),
+		EternalStarlight.id("ectostone_display"),
 		EternalStarlight.id("thirst_walker_display"),
 		EternalStarlight.id("creteor_display"),
 		EternalStarlight.id("tiny_creteor_display"),
@@ -66,7 +67,8 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 		EternalStarlight.id("rookfish_display"),
 		EternalStarlight.id("luminofish_display"),
 		EternalStarlight.id("luminaris_display"),
-		EternalStarlight.id("twilight_gaze_display")
+		EternalStarlight.id("twilight_gaze_display"),
+		EternalStarlight.id("coniceras_display")
 	);
 
 	private static final HashSet<ResourceLocation> BOSSES_LISTENING_IDS = Sets.newHashSet(
@@ -99,6 +101,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 			EternalStarlight.id("lonestar_skeleton"),
 			EternalStarlight.id("nightfall_spider"),
 			EternalStarlight.id("seeker"),
+			EternalStarlight.id("ectostone"),
 			EternalStarlight.id("thirst_walker"),
 			EternalStarlight.id("dagger_of_hunger"),
 			EternalStarlight.id("crystalborn_catalyst"),
@@ -124,6 +127,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 			EternalStarlight.id("luminofish"),
 			EternalStarlight.id("luminaris"),
 			EternalStarlight.id("twilight_gaze"),
+			EternalStarlight.id("coniceras"),
 			EternalStarlight.id("the_gatekeeper"),
 			EternalStarlight.id("starlight_golem"),
 			EternalStarlight.id("freeze"),
@@ -166,6 +170,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 		addSection(EternalStarlight.id("lonestar_skeleton"), lonestarSkeletonSection());
 		addSection(EternalStarlight.id("nightfall_spider"), nightfallSpiderSection());
 		addSection(EternalStarlight.id("seeker"), seekerSection());
+		addSection(EternalStarlight.id("ectostone"), ectostoneSection());
 		addSection(EternalStarlight.id("thirst_walker"), thirstWalkerSection(provider));
 		addSection(EternalStarlight.id("dagger_of_hunger"), daggerOfHungerSection(provider));
 		addSection(EternalStarlight.id("crystalborn_catalyst"), crystalbornCatalystSection(provider));
@@ -191,6 +196,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 		addSection(EternalStarlight.id("luminofish"), luminofishSection());
 		addSection(EternalStarlight.id("luminaris"), luminarisSection());
 		addSection(EternalStarlight.id("twilight_gaze"), twilightGazeSection());
+		addSection(EternalStarlight.id("coniceras"), conicerasSection());
 		addSection(EternalStarlight.id("the_gatekeeper"), theGatekeeperSection());
 		addSection(EternalStarlight.id("starlight_golem"), starlightGolemSection(provider));
 		addSection(EternalStarlight.id("freeze"), freezeSection());
@@ -312,6 +318,7 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				simpleMobIndexEntry(provider, "lonestar_skeleton", new HashSet<>()),
 				simpleMobIndexEntry(provider, "nightfall_spider", new HashSet<>()),
 				simpleMobIndexEntry(provider, "seeker", new HashSet<>()),
+				simpleMobIndexEntry(provider, "ectostone", new HashSet<>()),
 				simpleMobIndexEntry(provider, "thirst_walker", Sets.newHashSet(EternalStarlight.id("dagger_of_hunger_display"), EternalStarlight.id("crystalborn_catalyst_display"))),
 				simpleMobIndexEntry(provider, "creteor", new HashSet<>()),
 				simpleMobIndexEntry(provider, "tiny_creteor", new HashSet<>()),
@@ -330,7 +337,8 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 				simpleMobIndexEntry(provider, "rookfish", new HashSet<>()),
 				simpleMobIndexEntry(provider, "luminofish", new HashSet<>()),
 				simpleMobIndexEntry(provider, "luminaris", new HashSet<>()),
-				simpleMobIndexEntry(provider, "twilight_gaze", new HashSet<>())
+				simpleMobIndexEntry(provider, "twilight_gaze", new HashSet<>()),
+				simpleMobIndexEntry(provider, "coniceras", new HashSet<>())
 			), 0, 20, 125, 12))
 		);
 	}
@@ -379,6 +387,15 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 
 	private static List<ConfiguredBookComponent<?, ?>> seekerSection() {
 		return simpleMobPage("seeker", 65, 57, 0, 0, 25, new Quaternionf().rotationXYZ(5.1F, 0.5F, 2.7F), List.of(
+			attributeInfoEntry(Attributes.MAX_HEALTH.value()),
+			attributeInfoEntry(Attributes.ARMOR.value()),
+			attributeInfoEntry(Attributes.ATTACK_DAMAGE.value()),
+			attributeInfoEntry(Attributes.FLYING_SPEED.value())
+		));
+	}
+
+	private static List<ConfiguredBookComponent<?, ?>> ectostoneSection() {
+		return simpleMobPage("ectostone", 65, 77, -25, 210, 40, new Quaternionf().rotationXYZ(0.45F, 0.0F, 3.14F), List.of(
 			attributeInfoEntry(Attributes.MAX_HEALTH.value()),
 			attributeInfoEntry(Attributes.ARMOR.value()),
 			attributeInfoEntry(Attributes.ATTACK_DAMAGE.value()),
@@ -672,6 +689,15 @@ public class ESBookDefinitionProvider extends BookDefinitionProvider {
 	private static List<ConfiguredBookComponent<?, ?>> twilightGazeSection() {
 		return simpleMobPage("twilight_gaze", 65, 70, -25, 210, 40, new Quaternionf().rotationXYZ(0.45F, 0.0F, 3.14F), List.of(
 			biomeInfoEntry(Util.makeDescriptionId("biome", ESBiomes.THE_ABYSS.location())),
+			attributeInfoEntry(Attributes.MAX_HEALTH.value()),
+			attributeInfoEntry(Attributes.ARMOR.value()),
+			attributeInfoEntry(Attributes.ATTACK_DAMAGE.value()),
+			attributeInfoEntry(Attributes.MOVEMENT_SPEED.value())
+		));
+	}
+
+	private static List<ConfiguredBookComponent<?, ?>> conicerasSection() {
+		return simpleMobPage("coniceras", 65, 65, -25, 210, 35, new Quaternionf().rotationXYZ(0.45F, 0.0F, 3.14F), List.of(
 			attributeInfoEntry(Attributes.MAX_HEALTH.value()),
 			attributeInfoEntry(Attributes.ARMOR.value()),
 			attributeInfoEntry(Attributes.ATTACK_DAMAGE.value()),

@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_magic_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:magic_stone"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_malarite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "eternal_starlight:malarite"
+          },
+          {
+            "items": "#eternal_starlight:alloy_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eternal_starlight:alloy/gold_from_malarite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_malarite",
+      "has_magic_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eternal_starlight:alloy/gold_from_malarite"
+    ]
+  }
+}

@@ -26,7 +26,7 @@ public class EctostoneContinuousShootPhase extends BehaviorPhase<Ectostone> {
 
 	@Override
 	public boolean canStart(Ectostone entity, boolean cooldownOver) {
-		return cooldownOver && !entity.isDormant() && canReachTarget(entity, 20);
+		return cooldownOver && !entity.isDormant() && canReachTarget(entity, 10);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class EctostoneContinuousShootPhase extends BehaviorPhase<Ectostone> {
 			Vec3 launchPos = entity.position().add(0, entity.getBbHeight() / 2f, 0);
 
 			if (entity.getBehaviorTicks() == 20 || entity.getBehaviorTicks() == 30 || entity.getBehaviorTicks() == 40 || entity.getBehaviorTicks() == 50) {
-				Vec3 direction = Vec3.directionFromRotation(0.0F, entity.yHeadRot).scale(0.3);
+				Vec3 direction = Vec3.directionFromRotation(0.0F, entity.yHeadRot).scale(0.1);
 				entity.setDeltaMovement(-direction.x(), 0.0, -direction.z());
 				Vec3 delta = aimPos.subtract(launchPos).normalize();
 				MagicStone stone = new MagicStone(level, entity);

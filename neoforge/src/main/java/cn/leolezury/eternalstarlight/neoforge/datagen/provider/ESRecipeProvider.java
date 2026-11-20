@@ -237,6 +237,7 @@ public class ESRecipeProvider extends RecipeProvider {
 			.define('T', ESItems.ROOKFISH_AIR_SAC.get())
 			.unlockedBy("has_item", has(ESItems.CONICERAS_SHELL.get()))
 			.save(recipeOutput);
+		addSingleConversion(recipeOutput, Items.LIGHT_GRAY_DYE, ESItems.CONICERAS_SHELL.get());
 		addShapeless(recipeOutput, ESItems.SHADOW_SNAIL_SHELL.get(), ESItems.SHADOW_SNAIL_SHELL_POWDER.get(), 4, ESItems.SHADOW_SNAIL_SHELL.get());
 		addSingleConversion(recipeOutput, Items.BLACK_DYE, ESItems.SHADOW_SNAIL_SHELL_POWDER.get());
 		addShapeless(recipeOutput, RecipeCategory.FOOD, ESItems.COOKED_SHADOW_SNAIL_MEAT.get(), ESItems.SHADOW_SNAIL_PIE.get(), 1, ESItems.RAW_AMARAMBER.get(), ESItems.CRINOA.get(), ESItems.COOKED_SHADOW_SNAIL_MEAT.get());
@@ -642,6 +643,20 @@ public class ESRecipeProvider extends RecipeProvider {
 			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
 			.unlockedBy(getHasName(ESItems.SOUL_DEW.get()), ESItems.SOUL_DEW.get())
 			.save(recipeOutput, EternalStarlight.id("alloy/unrealium"));
+
+		AlloyRecipeBuilder.alloy(Items.GOLD_INGOT.getDefaultInstance(), 8, 400)
+			.requires(ESItems.MALARITE.get(), 8)
+			.requires(ESItems.MAGIC_STONE.get())
+			.unlockedBy(getHasName(ESItems.MALARITE.get()), ESItems.MALARITE.get())
+			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
+			.save(recipeOutput, EternalStarlight.id("alloy/gold_from_malarite"));
+
+		AlloyRecipeBuilder.alloy(ESItems.MALARITE.get().getDefaultInstance(), 8, 400)
+			.requires(Tags.Items.INGOTS_GOLD, 8)
+			.requires(ESItems.MAGIC_STONE.get())
+			.unlockedBy(getHasName(Items.GOLD_INGOT), Tags.Items.INGOTS_GOLD)
+			.unlockedBy(getHasName(ESItems.MAGIC_STONE.get()), ESItems.MAGIC_STONE.get())
+			.save(recipeOutput, EternalStarlight.id("alloy/malarite_from_gold"));
 
 		AlloyRecipeBuilder.alloy(Items.IRON_INGOT.getDefaultInstance(), 8, 400)
 			.requires(ESItems.DEEPSILVER_INGOT.get(), 8)

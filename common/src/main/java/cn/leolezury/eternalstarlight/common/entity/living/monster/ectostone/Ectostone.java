@@ -4,6 +4,7 @@ import cn.leolezury.eternalstarlight.common.config.ESConfig;
 import cn.leolezury.eternalstarlight.common.data.ESEctostoneVariants;
 import cn.leolezury.eternalstarlight.common.data.ESRegistries;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.LookAtTargetGoal;
+import cn.leolezury.eternalstarlight.common.entity.living.goal.MoveToTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
@@ -40,7 +41,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -51,6 +51,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: FIX SOUNDS
 public class Ectostone extends Monster implements MultiBehaviorUser, VariantHolder<Holder<EctostoneVariant>> {
 	private static final String TAG_VARIANT = "variant";
 	private static final String TAG_DORMANT = "dormant";
@@ -221,7 +222,19 @@ public class Ectostone extends Monster implements MultiBehaviorUser, VariantHold
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new EctostoneDoNothingGoal());
 		goalSelector.addGoal(1, new FloatGoal(this));
-		goalSelector.addGoal(2, new EctostoneFlyToTargetGoal());
+		goalSelector.addGoal(2, new MoveToTargetGoal(this, 1) {
+			@Override
+			public boolean canUse() {
+				LivingEntity target = getTarget();
+				boolean nearTarget = target != null && level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(4)).contains(target) && hasLineOfSight(target);
+				return super.canUse() && isFreeToMove() && !nearTarget;
+			}
+
+			@Override
+			public boolean canContinueToUse() {
+				return super.canContinueToUse() && isFreeToMove();
+			}
+		});
 		goalSelector.addGoal(3, new RandomFlyGoal(this, () -> getVariant().value().skyFlying() ? getFlightAltitude() : Double.NaN) {
 			@Override
 			public boolean canUse() {
@@ -239,42 +252,6 @@ public class Ectostone extends Monster implements MultiBehaviorUser, VariantHold
 		this.targetSelector.addGoal(0, new HurtByTargetGoal(this).setAlertOthers());
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
 		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
-	}
-
-	class EctostoneFlyToTargetGoal extends Goal {
-		public EctostoneFlyToTargetGoal() {
-			setFlags(EnumSet.of(Flag.MOVE));
-		}
-
-		@Override
-		public boolean canUse() {
-			return isFreeToMove() && getTarget() != null;
-		}
-
-		@Override
-		public boolean canContinueToUse() {
-			return isFreeToMove() && getTarget() != null;
-		}
-
-		@Override
-		public boolean requiresUpdateEveryTick() {
-			return true;
-		}
-
-		@Override
-		public void tick() {
-			LivingEntity target = getTarget();
-			if (target != null) {
-				Vec3 targetPos = target.position();
-				BlockHitResult result = level().clip(new ClipContext(targetPos.add(0, target.getBbHeight() / 2, 0), targetPos.add(0, target.getBbHeight() / 2 + getBbHeight(), 0), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, Ectostone.this));
-				if (result.getType() != HitResult.Type.MISS) {
-					targetPos = result.getLocation();
-				} else {
-					targetPos = targetPos.add(0, target.getBbHeight() / 2 + getBbHeight(), 0);
-				}
-				getNavigation().moveTo(targetPos.x, targetPos.y - getBbHeight(), targetPos.z, 1);
-			}
-		}
 	}
 
 	class EctostoneDoNothingGoal extends Goal {

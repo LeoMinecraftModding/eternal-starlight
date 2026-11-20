@@ -1,11 +1,13 @@
 package cn.leolezury.eternalstarlight.common.entity.living.goal;
 
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
 
+// TODO FIX MOB STUCK
 public class MoveToTargetGoal extends Goal {
 	private final Mob mob;
 	private final double speedModifier;
@@ -29,14 +31,24 @@ public class MoveToTargetGoal extends Goal {
 		return true;
 	}
 
+	@Override
 	public boolean canUse() {
-		return mob.getTarget() != null;
+		LivingEntity target = this.mob.getTarget();
+		return target != null && target.isAlive();
 	}
 
+	@Override
 	public boolean canContinueToUse() {
-		return mob.getTarget() != null;
+		LivingEntity target = this.mob.getTarget();
+		return target != null && target.isAlive();
 	}
 
+	@Override
+	public void stop() {
+		mob.getNavigation().stop();
+	}
+
+	@Override
 	public void tick() {
 		if (mob.getTarget() != null) {
 			mob.getLookControl().setLookAt(mob.getTarget(), 360, 360);

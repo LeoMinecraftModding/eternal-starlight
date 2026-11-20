@@ -14,7 +14,7 @@ public class EctostoneSmashPhase extends BehaviorPhase<Ectostone> {
 
 	@Override
 	public boolean canStart(Ectostone entity, boolean cooldownOver) {
-		return cooldownOver && !entity.isDormant() && canReachTarget(entity, 4) && entity.hasGroundBelow(Ectostone.GROUND_CHECK_DISTANCE);
+		return cooldownOver && !entity.isDormant() && canReachTargetXZ(entity, 1.5) && entity.hasGroundBelow(Ectostone.GROUND_CHECK_DISTANCE);
 	}
 
 	@Override
