@@ -64,7 +64,7 @@ public class Luminaris extends AbstractSchoolingFish implements Charger {
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, new ChargeAttackGoal(this, true, 3f, 3, 60, 0.5f));
+		this.goalSelector.addGoal(1, new ChargeAttackGoal(this, 0.45D, 60, 0.5F, 20.0D, 2.0D, 0.5F, 3, true, false));
 		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 8.0F, 1.6, 1.4, EntitySelector.NO_SPECTATORS::test) {
 			@Override
 			public boolean canUse() {

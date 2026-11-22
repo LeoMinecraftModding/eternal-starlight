@@ -62,7 +62,7 @@ public class ESPainting extends HangingEntity {
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
-		// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#onSyncedDataUpdated
+		// [Vanilla copy] Painting#onSyncedDataUpdated
 		if (DATA_VARIANT.equals(key)) {
 			this.recalculateBoundingBox();
 		}
@@ -130,10 +130,9 @@ public class ESPainting extends HangingEntity {
 		return tag;
 	}
 
-	// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#calculateBoundingBox
+	// [Vanilla copy] Painting#calculateBoundingBox
 	@Override
 	protected AABB calculateBoundingBox(BlockPos pos, Direction direction) {
-		float f = 0.46875F;
 		Vec3 vec3 = Vec3.atCenterOf(pos).relative(direction, -0.46875);
 		ESPaintingVariant variant = this.getVariant().value();
 		double d0 = this.offsetForPaintingSize(variant.width());
@@ -142,48 +141,48 @@ public class ESPainting extends HangingEntity {
 		Vec3 vec31 = vec3.relative(counterClockWise, d0).relative(Direction.UP, d1);
 		Direction.Axis axis = direction.getAxis();
 		double d2 = axis == Direction.Axis.X ? 0.0625 : (double) variant.width();
-		double d3 = (double) variant.height();
+		double d3 = variant.height();
 		double d4 = axis == Direction.Axis.Z ? 0.0625 : (double) variant.width();
 		return AABB.ofSize(vec31, d2, d3, d4);
 	}
 
-	// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#offsetForPaintingSize
+	// [Vanilla copy] Painting#offsetForPaintingSize
 	private double offsetForPaintingSize(int size) {
 		return size % 2 == 0 ? 0.5 : 0.0;
 	}
 
-	// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#getAddEntityPacket
+	// [Vanilla copy] Painting#getAddEntityPacket
 	@Override
 	public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entity) {
 		return new ClientboundAddEntityPacket(this, this.direction.get3DDataValue(), this.getPos());
 	}
 
-	// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#recreateFromPacket
+	// [Vanilla copy] Painting#recreateFromPacket
 	@Override
 	public void recreateFromPacket(ClientboundAddEntityPacket packet) {
 		super.recreateFromPacket(packet);
 		this.setDirection(Direction.from3DDataValue(packet.getData()));
 	}
 
-	// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#moveTo
+	// [Vanilla copy] Painting#moveTo
 	@Override
 	public void moveTo(double x, double y, double z, float yaw, float pitch) {
 		this.setPos(x, y, z);
 	}
 
-	// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#lerpTo
+	// [Vanilla copy] Painting#lerpTo
 	@Override
 	public void lerpTo(double x, double y, double z, float yRot, float xRot, int steps) {
 		this.setPos(x, y, z);
 	}
 
-	// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#trackingPosition
+	// [Vanilla copy] Painting#trackingPosition
 	@Override
 	public Vec3 trackingPosition() {
 		return Vec3.atLowerCornerOf(this.pos);
 	}
 
-	// [Vanilla copy] net.minecraft.world.entity.decoration.Painting#playPlacementSound
+	// [Vanilla copy] Painting#playPlacementSound
 	@Override
 	public void playPlacementSound() {
 		this.playSound(SoundEvents.PAINTING_PLACE, 1.0F, 1.0F);

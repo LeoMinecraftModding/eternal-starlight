@@ -94,7 +94,7 @@ public class AuroraDeer extends Animal implements Charger {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new ChargeAttackGoal(this, false, 2f, 80, 80, 0.6f) {
+		this.goalSelector.addGoal(1, new ChargeAttackGoal(this, 0.5D, 80, 0.5F, 20.0D, 0.0D, 0.6F, 80, true, true) {
 			@Override
 			public boolean canUse() {
 				return super.canUse() && AuroraDeer.this.getHealth() / AuroraDeer.this.getMaxHealth() >= 0.5f && (hasLeftAntler() || hasRightAntler());

@@ -277,6 +277,32 @@
     ],
     "subtitle": "subtitles.entity.eternal_starlight.creteor.roll"
   },
+  "entity.ectostone.death": {
+    "sounds": [
+      "eternal_starlight:mob/ectostone/death1",
+      "eternal_starlight:mob/ectostone/death2"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.ectostone.death"
+  },
+  "entity.ectostone.hurt": {
+    "sounds": [
+      "eternal_starlight:mob/ectostone/hurt1",
+      "eternal_starlight:mob/ectostone/hurt2"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.ectostone.hurt"
+  },
+  "entity.ectostone.shoot": {
+    "sounds": [
+      "eternal_starlight:mob/ectostone/shoot"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.ectostone.shoot"
+  },
+  "entity.ectostone.smash": {
+    "sounds": [
+      "eternal_starlight:mob/ectostone/smash"
+    ],
+    "subtitle": "subtitles.entity.eternal_starlight.ectostone.smash"
+  },
   "entity.ent.hurt": {
     "sounds": [
       "eternal_starlight:mob/ent/hurt"
@@ -623,7 +649,7 @@
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.eternal_starlight.luminaris.death"
+    "subtitle": "subtitles.entity.eternal_starlight.twilight_gaze.death"
   },
   "entity.twilight_gaze.hurt": {
     "sounds": [
@@ -632,7 +658,7 @@
       "entity/fish/hurt3",
       "entity/fish/hurt4"
     ],
-    "subtitle": "subtitles.entity.eternal_starlight.luminaris.hurt"
+    "subtitle": "subtitles.entity.eternal_starlight.twilight_gaze.hurt"
   },
   "item.armor.equip_aethersent": {
     "sounds": [

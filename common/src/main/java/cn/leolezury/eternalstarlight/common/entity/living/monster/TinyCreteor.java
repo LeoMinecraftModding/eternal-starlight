@@ -99,7 +99,7 @@ public class TinyCreteor extends Monster implements PowerableMob {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new MoveToTargetGoal(this, 1.0D));
+		this.goalSelector.addGoal(1, new MoveToTargetGoal(this, 1.0D, true));
 		this.goalSelector.addGoal(2, new RandomFlyGoal(this));
 		this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
 		this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Mob.class, 8.0F));

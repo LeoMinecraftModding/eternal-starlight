@@ -96,22 +96,13 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> ASTRAL_GOLEM_DEATH = register("entity.astral_golem.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> ASTRAL_GOLEM_REPAIR = register("entity.astral_golem.repair");
 
-	public static final RegistryObject<SoundEvent, SoundEvent> ENT_HURT = register("entity.ent.hurt");
-
-	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_AMBIENT = register("entity.aurora_deer.ambient");
-	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_HURT = register("entity.aurora_deer.hurt");
-	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_DEATH = register("entity.aurora_deer.death");
-
-	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_AMBIENT = register("entity.starfire_bird.ambient");
-	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_HURT = register("entity.starfire_bird.hurt");
-	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_DEATH = register("entity.starfire_bird.death");
-
-	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_HURT = register("entity.aethersent_golem.hurt");
-	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_DEATH = register("entity.aethersent_golem.death");
-	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_SHOOT = register("entity.aethersent_golem.shoot");
-
 	public static final RegistryObject<SoundEvent, SoundEvent> SEEKER_HURT = register("entity.seeker.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> SEEKER_DEATH = register("entity.seeker.death");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> ECTOSTONE_HURT = register("entity.ectostone.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> ECTOSTONE_DEATH = register("entity.ectostone.death");
+	public static final RegistryObject<SoundEvent, SoundEvent> ECTOSTONE_SHOOT = register("entity.ectostone.shoot");
+	public static final RegistryObject<SoundEvent, SoundEvent> ECTOSTONE_SMASH = register("entity.ectostone.smash");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> THIRST_WALKER_AMBIENT = register("entity.thirst_walker.ambient");
 	public static final RegistryObject<SoundEvent, SoundEvent> THIRST_WALKER_HURT = register("entity.thirst_walker.hurt");
@@ -128,6 +119,20 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> STRANGHOUL_DEATH = register("entity.stranghoul.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> STRANGHOUL_SHOOT = register("entity.stranghoul.shoot");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> ENT_HURT = register("entity.ent.hurt");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_AMBIENT = register("entity.aurora_deer.ambient");
+	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_HURT = register("entity.aurora_deer.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> AURORA_DEER_DEATH = register("entity.aurora_deer.death");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_AMBIENT = register("entity.starfire_bird.ambient");
+	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_HURT = register("entity.starfire_bird.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> STARFIRE_BIRD_DEATH = register("entity.starfire_bird.death");
+
+	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_HURT = register("entity.aethersent_golem.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_DEATH = register("entity.aethersent_golem.death");
+	public static final RegistryObject<SoundEvent, SoundEvent> AETHERSENT_GOLEM_SHOOT = register("entity.aethersent_golem.shoot");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_HURT = register("entity.luminofish.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_DEATH = register("entity.luminofish.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINOFISH_FLOP = register("entity.luminofish.flop");
@@ -136,12 +141,12 @@ public class ESSoundEvents {
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINARIS_DEATH = register("entity.luminaris.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> LUMINARIS_FLOP = register("entity.luminaris.flop");
 
+	public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_GAZE_HURT = register("entity.twilight_gaze.hurt");
+	public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_GAZE_DEATH = register("entity.twilight_gaze.death");
+
 	public static final RegistryObject<SoundEvent, SoundEvent> CONICERAS_HURT = register("entity.coniceras.hurt");
 	public static final RegistryObject<SoundEvent, SoundEvent> CONICERAS_DEATH = register("entity.coniceras.death");
 	public static final RegistryObject<SoundEvent, SoundEvent> CONICERAS_DRILL = register("entity.coniceras.drill");
-
-	public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_GAZE_HURT = register("entity.twilight_gaze.hurt");
-	public static final RegistryObject<SoundEvent, SoundEvent> TWILIGHT_GAZE_DEATH = register("entity.twilight_gaze.death");
 
 	public static final RegistryObject<SoundEvent, SoundEvent> THE_GATEKEEPER_PARRY = register("entity.the_gatekeeper.parry");
 

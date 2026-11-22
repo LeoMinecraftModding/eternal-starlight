@@ -24,10 +24,14 @@ public class ConicerasRenderer<T extends Coniceras> extends MobRenderer<T, Conic
 
 	@Override
 	protected void setupRotations(T coniceras, PoseStack poseStack, float f, float g, float h, float i) {
-		float j = Mth.lerp(h, coniceras.xBodyRotO, coniceras.xBodyRot);
-		float k = Mth.lerp(h, coniceras.zBodyRotO, coniceras.zBodyRot);
-		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - g));
-		poseStack.mulPose(Axis.XP.rotationDegrees(j));
-		poseStack.mulPose(Axis.YP.rotationDegrees(k));
+		// While charging the body yaw has to follow the synced entity yaw directly: the client side
+		// body rotation control only follows yRot while the mob is moving, and Coniceras holds still
+		// during the windup.
+		float yaw = coniceras.isCharging() ? Mth.rotLerp(h, coniceras.yRotO, coniceras.getYRot()) : g;
+		float pitch = Mth.lerp(h, coniceras.xBodyRotO, coniceras.xBodyRot);
+		float roll = Mth.lerp(h, coniceras.zBodyRotO, coniceras.zBodyRot);
+		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - yaw));
+		poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+		poseStack.mulPose(Axis.YP.rotationDegrees(roll));
 	}
 }

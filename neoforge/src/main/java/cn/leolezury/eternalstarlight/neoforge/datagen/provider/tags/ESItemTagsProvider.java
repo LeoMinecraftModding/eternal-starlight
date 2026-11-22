@@ -123,12 +123,13 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 			);
 		tag(Tags.Items.ANIMAL_FOODS)
 			.addTags(
-				ESTags.Items.AURORA_DEER_FOOD,
-				ESTags.Items.CRYSTALLIZED_MOTH_FOOD,
 				ESTags.Items.ENT_FOOD,
 				ESTags.Items.RATLIN_FOOD,
 				ESTags.Items.SHADOW_SNAIL_FOOD,
-				ESTags.Items.YETI_FOOD
+				ESTags.Items.YETI_FOOD,
+				ESTags.Items.AURORA_DEER_FOOD,
+				ESTags.Items.CRYSTALLIZED_MOTH_FOOD,
+				ESTags.Items.CONICERAS_FOOD
 			);
 		tag(Tags.Items.SEEDS)
 			.addTags(
@@ -535,19 +536,6 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.PEARL_NECKLACE.get(),
 				ESItems.CRESCENT_PENDANT.get()
 			);
-		tag(ESTags.Items.AURORA_DEER_FOOD)
-			.add(
-				ESItems.LUNAR_BERRIES.get(),
-				ESItems.ABYSSAL_FRUIT.get(),
-				ESItems.CRINOA.get()
-			);
-		tag(ESTags.Items.CRYSTALLIZED_MOTH_FOOD)
-			.addTag(ItemTags.MEAT);
-		tag(ESTags.Items.STARFIRE_BIRD_FOOD)
-			.addTag(Tags.Items.SEEDS)
-			.add(
-				ESItems.LUNAR_BERRIES.get()
-			);
 		tag(ESTags.Items.ENT_FOOD)
 			.add(
 				ESItems.LUNAR_BERRIES.get(),
@@ -570,6 +558,26 @@ public class ESItemTagsProvider extends ItemTagsProvider {
 				ESItems.LUNAR_BERRIES.get(),
 				ESItems.CAVE_MOSS.get(),
 				ESItems.CRINOA.get()
+			);
+		tag(ESTags.Items.AURORA_DEER_FOOD)
+			.add(
+				ESItems.LUNAR_BERRIES.get(),
+				ESItems.ABYSSAL_FRUIT.get(),
+				ESItems.CRINOA.get()
+			);
+		tag(ESTags.Items.CRYSTALLIZED_MOTH_FOOD)
+			.addTag(ItemTags.MEAT);
+		tag(ESTags.Items.STARFIRE_BIRD_FOOD)
+			.addTag(Tags.Items.SEEDS)
+			.add(
+				ESItems.LUNAR_BERRIES.get()
+			);
+		tag(ESTags.Items.CONICERAS_FOOD)
+			.add(
+				ESItems.HANGING_ALGALEAVES.get(),
+				ESItems.ALGALEAVES.get(),
+				ESItems.ABYSSAL_FRUIT.get(),
+				ESItems.VELVETUMOSS_BALL.get()
 			);
 		tag(ESTags.Items.UNTRIMMABLE_ARMOR)
 			.add(

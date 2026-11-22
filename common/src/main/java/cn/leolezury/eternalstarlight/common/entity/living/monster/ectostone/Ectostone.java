@@ -8,6 +8,7 @@ import cn.leolezury.eternalstarlight.common.entity.living.goal.MoveToTargetGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.goal.RandomFlyGoal;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.BehaviorManager;
 import cn.leolezury.eternalstarlight.common.entity.living.phase.MultiBehaviorUser;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -17,6 +18,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -51,7 +53,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: FIX SOUNDS
 public class Ectostone extends Monster implements MultiBehaviorUser, VariantHolder<Holder<EctostoneVariant>> {
 	private static final String TAG_VARIANT = "variant";
 	private static final String TAG_DORMANT = "dormant";
@@ -222,7 +223,7 @@ public class Ectostone extends Monster implements MultiBehaviorUser, VariantHold
 	protected void registerGoals() {
 		goalSelector.addGoal(0, new EctostoneDoNothingGoal());
 		goalSelector.addGoal(1, new FloatGoal(this));
-		goalSelector.addGoal(2, new MoveToTargetGoal(this, 1) {
+		goalSelector.addGoal(2, new MoveToTargetGoal(this, 1, true) {
 			@Override
 			public boolean canUse() {
 				LivingEntity target = getTarget();
@@ -285,6 +286,12 @@ public class Ectostone extends Monster implements MultiBehaviorUser, VariantHold
 			.add(Attributes.FLYING_SPEED, 1);
 	}
 
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
+		setVariant(EctostoneVariant.getSpawnVariant(level.registryAccess(), level.getBiome(blockPosition()), level, blockPosition(), level.getRandom()));
+		return super.finalizeSpawn(level, instance, spawnType, data);
+	}
+
 	public double getFlightAltitude() {
 		if (Double.isNaN(flightAltitude)) {
 			flightAltitude = getY();
@@ -318,18 +325,20 @@ public class Ectostone extends Monster implements MultiBehaviorUser, VariantHold
 				idleAnimationState.stop();
 			} else {
 				idleAnimationState.startIfStopped(tickCount);
-				for (Vec3 pos : this.particlePositions) {
-					if (pos == null) continue;
-					for (int i = 0; i < 2; i++) {
-						this.level().addParticle(
-							new DustColorTransitionOptions(
-								new Vector3f(255 / 255F, 71 / 255F, 180 / 255F),
-								new Vector3f(151 / 255F, 63 / 255F, 115 / 255F),
-								1.2F
-							),
-							pos.x, pos.y, pos.z,
-							0, 0, 0
-						);
+				if (isAlive()) {
+					for (Vec3 pos : this.particlePositions) {
+						if (pos == null) continue;
+						for (int i = 0; i < 2; i++) {
+							this.level().addParticle(
+								new DustColorTransitionOptions(
+									new Vector3f(255 / 255F, 71 / 255F, 180 / 255F),
+									new Vector3f(151 / 255F, 63 / 255F, 115 / 255F),
+									1.2F
+								),
+								pos.x, pos.y, pos.z,
+								0, 0, 0
+							);
+						}
 					}
 				}
 			}
@@ -355,9 +364,13 @@ public class Ectostone extends Monster implements MultiBehaviorUser, VariantHold
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData data) {
-		setVariant(EctostoneVariant.getSpawnVariant(level.registryAccess(), level.getBiome(blockPosition()), level, blockPosition(), level.getRandom()));
-		return super.finalizeSpawn(level, instance, spawnType, data);
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
+		return ESSoundEvents.ECTOSTONE_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return ESSoundEvents.ECTOSTONE_DEATH.get();
 	}
 
 	@Override

@@ -286,6 +286,7 @@ public class ESEntities {
 		() -> EntityType.Builder.of(Coniceras::new, MobCategory.WATER_CREATURE)
 			.sized(1.0F, 0.5F)
 			.clientTrackingRange(10)
+			.updateInterval(1)
 			.build(EternalStarlight.id("coniceras").toString())
 	);
 	public static final RegistryObject<EntityType<?>, EntityType<EyeOfSeeking>> EYE_OF_SEEKING = ENTITIES.register(

@@ -35,13 +35,14 @@ public class ESTags {
 		public static final TagKey<Item> WHIPS = create("whips");
 		public static final TagKey<Item> SMALL_SHIELDS = create("small_shields");
 		public static final TagKey<Item> ACCESSORIES = create("accessories");
-		public static final TagKey<Item> AURORA_DEER_FOOD = create("aurora_deer_food");
-		public static final TagKey<Item> CRYSTALLIZED_MOTH_FOOD = create("crystallized_moth_food");
-		public static final TagKey<Item> STARFIRE_BIRD_FOOD = create("starfire_bird_food");
 		public static final TagKey<Item> ENT_FOOD = create("ent_food");
 		public static final TagKey<Item> RATLIN_FOOD = create("ratlin_food");
 		public static final TagKey<Item> SHADOW_SNAIL_FOOD = create("shadow_snail_food");
 		public static final TagKey<Item> YETI_FOOD = create("yeti_food");
+		public static final TagKey<Item> AURORA_DEER_FOOD = create("aurora_deer_food");
+		public static final TagKey<Item> CRYSTALLIZED_MOTH_FOOD = create("crystallized_moth_food");
+		public static final TagKey<Item> STARFIRE_BIRD_FOOD = create("starfire_bird_food");
+		public static final TagKey<Item> CONICERAS_FOOD = create("coniceras_food");
 		public static final TagKey<Item> UNTRIMMABLE_ARMOR = create("untrimmable_armor");
 		public static final TagKey<Item> THERMAL_SPRINGSTONE_WEAPONS = create("thermal_springstone_weapons");
 		public static final TagKey<Item> GLACITE_WEAPONS = create("glacite_weapons");

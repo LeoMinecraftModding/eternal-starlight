@@ -7,11 +7,11 @@ import cn.leolezury.eternalstarlight.common.particle.ParticleFacing;
 import cn.leolezury.eternalstarlight.common.particle.RippleParticleOptions;
 import cn.leolezury.eternalstarlight.common.platform.ESPlatform;
 import cn.leolezury.eternalstarlight.common.registry.ESParticles;
+import cn.leolezury.eternalstarlight.common.registry.ESSoundEvents;
 import cn.leolezury.eternalstarlight.common.util.ESEntityUtil;
 import cn.leolezury.eternalstarlight.common.util.Easing;
 import cn.leolezury.eternalstarlight.common.util.EasingCurve;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -45,8 +45,8 @@ public class EctostoneContinuousShootPhase extends BehaviorPhase<Ectostone> {
 				MagicStone stone = new MagicStone(level, entity);
 				stone.shoot(delta.x, delta.y, delta.z, 1.25f, 16.0f);
 				stone.setPos(launchPos);
-				stone.playSound(SoundEvents.DRAGON_FIREBALL_EXPLODE, 0.7f, 1.2f);
 				level.addFreshEntity(stone);
+				entity.playSound(ESSoundEvents.ECTOSTONE_SHOOT.get(), 1.0f, 1.0f);
 				if (level instanceof ServerLevel serverLevel) {
 					Vec3 pos = entity.position().add(Vec3.directionFromRotation(0.0F, entity.yBodyRot).scale(0.5));
 					RippleParticleOptions ripple = new RippleParticleOptions(ESParticles.RIPPLE.get(),

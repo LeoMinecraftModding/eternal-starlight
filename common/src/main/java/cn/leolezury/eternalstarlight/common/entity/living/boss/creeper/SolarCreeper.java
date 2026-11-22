@@ -273,7 +273,7 @@ public class SolarCreeper extends ESBoss {
 	protected void registerGoals() {
 		super.registerGoals();
 		goalSelector.addGoal(0, new FloatGoal(this));
-		goalSelector.addGoal(1, new MoveToTargetGoal(this, 1));
+		goalSelector.addGoal(1, new MoveToTargetGoal(this, 1, true));
 		goalSelector.addGoal(2, new LookAtTargetGoal(this));
 		goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
 		goalSelector.addGoal(4, new LookAtPlayerGoal(this, Mob.class, 8.0F));
